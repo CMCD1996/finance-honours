@@ -1,0 +1,9 @@
+[0] Config.pm:304> INFO - This is Biber 2.12
+[0] Config.pm:307> INFO - Logfile is 'finance-788-research-essay.blg'
+[38] biber-darwin:315> INFO - === Sun Aug  1, 2021, 20:39:50
+[59] Biber.pm:371> INFO - Reading 'finance-788-research-essay.bcf'
+[146] Biber.pm:889> INFO - Found 14 citekeys in bib section 0
+[159] Biber.pm:4093> INFO - Processing section 0
+[171] Biber.pm:4254> INFO - Looking for bibtex format file 'sources.bib' for section 0
+[331] Utils.pm:209> ERROR - Cannot find 'sources.bib'!
+[331] Biber.pm:114> INFO - ERRORS: 1
