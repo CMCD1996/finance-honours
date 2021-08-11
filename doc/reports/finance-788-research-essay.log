@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.3.23)  1 AUG 2021 20:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.3.23)  5 AUG 2021 16:32
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/Project/doc/reports/finance-788-research-essay"
-(/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/Project/doc/reports/finance-788-research-essay.tex
+**"/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/finance-788-research-essay"
+(/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/finance-788-research-essay.tex
 LaTeX2e <2018-12-01>
 (/usr/local/texlive/2019/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
@@ -971,7 +971,10 @@ Package biblatex Info: ... file 'blx-dm.def' found.
 File: blx-dm.def 2018/11/02 v3.12 biblatex localization (PK/MW)
 )
 Package biblatex Info: Trying to load biblatex style data model...
-Package biblatex Info: ... file 'numeric.dbx' not found.
+Package biblatex Info: ... file 'apa.dbx' found.
+ (/usr/local/texlive/2019/texmf-dist/tex/latex/biblatex-apa/apa.dbx
+File: apa.dbx 2018/04/02 v7.7 APA biblatex style data model
+)
 Package biblatex Info: Trying to load biblatex custom data model...
 Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
 \c@afterword=\count383
@@ -1010,38 +1013,48 @@ Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
 \c@savedshortauthor=\count416
 \c@shorteditor=\count417
 \c@savedshorteditor=\count418
-\c@labelname=\count419
-\c@savedlabelname=\count420
-\c@institution=\count421
-\c@savedinstitution=\count422
-\c@lista=\count423
-\c@savedlista=\count424
-\c@listb=\count425
-\c@savedlistb=\count426
-\c@listc=\count427
-\c@savedlistc=\count428
-\c@listd=\count429
-\c@savedlistd=\count430
-\c@liste=\count431
-\c@savedliste=\count432
-\c@listf=\count433
-\c@savedlistf=\count434
-\c@location=\count435
-\c@savedlocation=\count436
-\c@organization=\count437
-\c@savedorganization=\count438
-\c@origlocation=\count439
-\c@savedoriglocation=\count440
-\c@origpublisher=\count441
-\c@savedorigpublisher=\count442
-\c@publisher=\count443
-\c@savedpublisher=\count444
-\c@language=\count445
-\c@savedlanguage=\count446
-\c@origlanguage=\count447
-\c@savedoriglanguage=\count448
-\c@pageref=\count449
-\c@savedpageref=\count450
+\c@with=\count419
+\c@savedwith=\count420
+\c@writer=\count421
+\c@savedwriter=\count422
+\c@producer=\count423
+\c@savedproducer=\count424
+\c@execproducer=\count425
+\c@savedexecproducer=\count426
+\c@director=\count427
+\c@saveddirector=\count428
+\c@labelname=\count429
+\c@savedlabelname=\count430
+\c@institution=\count431
+\c@savedinstitution=\count432
+\c@lista=\count433
+\c@savedlista=\count434
+\c@listb=\count435
+\c@savedlistb=\count436
+\c@listc=\count437
+\c@savedlistc=\count438
+\c@listd=\count439
+\c@savedlistd=\count440
+\c@liste=\count441
+\c@savedliste=\count442
+\c@listf=\count443
+\c@savedlistf=\count444
+\c@location=\count445
+\c@savedlocation=\count446
+\c@organization=\count447
+\c@savedorganization=\count448
+\c@origlocation=\count449
+\c@savedoriglocation=\count450
+\c@origpublisher=\count451
+\c@savedorigpublisher=\count452
+\c@publisher=\count453
+\c@savedpublisher=\count454
+\c@language=\count455
+\c@savedlanguage=\count456
+\c@origlanguage=\count457
+\c@savedoriglanguage=\count458
+\c@pageref=\count459
+\c@savedpageref=\count460
 \shorthandwidth=\skip83
 \shortjournalwidth=\skip84
 \shortserieswidth=\skip85
@@ -1065,40 +1078,40 @@ Package biblatex Info: Trying to load generic definitions...
 Package biblatex Info: ... file 'biblatex.def' found.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/biblatex/biblatex.def
 File: biblatex.def 2018/11/02 v3.12 biblatex compatibility (PK/MW)
-\c@textcitecount=\count451
-\c@textcitetotal=\count452
-\c@textcitemaxnames=\count453
-\c@biburlnumpenalty=\count454
-\c@biburlucpenalty=\count455
-\c@biburllcpenalty=\count456
-\c@smartand=\count457
+\c@textcitecount=\count461
+\c@textcitetotal=\count462
+\c@textcitemaxnames=\count463
+\c@biburlnumpenalty=\count464
+\c@biburlucpenalty=\count465
+\c@biburllcpenalty=\count466
+\c@smartand=\count467
 )
-Package biblatex Info: Trying to load bibliography style 'numeric'...
-Package biblatex Info: ... file 'numeric.bbx' found.
- (/usr/local/texlive/2019/texmf-dist/tex/latex/biblatex/bbx/numeric.bbx
-File: numeric.bbx 2018/11/02 v3.12 biblatex bibliography style (PK/MW)
+Package biblatex Info: Trying to load bibliography style 'apa'...
+Package biblatex Info: ... file 'apa.bbx' found.
+ (/usr/local/texlive/2019/texmf-dist/tex/latex/biblatex-apa/apa.bbx
+File: apa.bbx 2018/04/02 v7.7 APA biblatex references style
 Package biblatex Info: Trying to load bibliography style 'standard'...
 Package biblatex Info: ... file 'standard.bbx' found.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
 File: standard.bbx 2018/11/02 v3.12 biblatex bibliography style (PK/MW)
-\c@bbx:relatedcount=\count458
-\c@bbx:relatedtotal=\count459
+\c@bbx:relatedcount=\count468
+\c@bbx:relatedtotal=\count469
 ))
-Package biblatex Info: Trying to load citation style 'numeric'...
-Package biblatex Info: ... file 'numeric.cbx' found.
- (/usr/local/texlive/2019/texmf-dist/tex/latex/biblatex/cbx/numeric.cbx
-File: numeric.cbx 2018/11/02 v3.12 biblatex citation style (PK/MW)
-Package biblatex Info: Redefining '\cite'.
+Package biblatex Info: Trying to load citation style 'apa'...
+Package biblatex Info: ... file 'apa.cbx' found.
+ (/usr/local/texlive/2019/texmf-dist/tex/latex/biblatex-apa/apa.cbx
+File: apa.cbx 2018/04/02 v7.7 APA biblatex citation style
+Package biblatex Info: Delimiter 'nameyeardelim' in context '' already defined, overwriting.
+Package biblatex Info: Delimiter 'nameyeardelim' in context 'textcite' already defined, overwriting.
+Package biblatex Info: Delimiter 'andothersdelim' in context '' already defined, overwriting.
 Package biblatex Info: Redefining '\parencite'.
+Package biblatex Info: Redefining '\fullcite'.
+Package biblatex Info: Redefining '\citeyear'.
+Package biblatex Info: Redefining '\cite'.
 Package biblatex Info: Redefining '\footcite'.
-Package biblatex Info: Redefining '\footcitetext'.
-Package biblatex Info: Redefining '\smartcite'.
-Package biblatex Info: Redefining '\supercite'.
-Package biblatex Info: Redefining '\textcite'.
 Package biblatex Info: Redefining '\textcites'.
-Package biblatex Info: Redefining '\cites'.
-Package biblatex Info: Redefining '\parencites'.
-Package biblatex Info: Redefining '\smartcites'.
+Package biblatex Info: Redefining '\textcite'.
+Package biblatex Info: Redefining '\citeauthor'.
 )
 Package biblatex Info: Trying to load configuration file...
 Package biblatex Info: ... file 'biblatex.cfg' found.
@@ -1202,14 +1215,14 @@ Package: hycolor 2016/05/16 v1.8 Color options for hyperref/bookmark (HO)
 Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
 )
 \@linkdim=\dimen310
-\Hy@linkcounter=\count460
-\Hy@pagecounter=\count461
+\Hy@linkcounter=\count470
+\Hy@pagecounter=\count471
  (/usr/local/texlive/2019/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2018/11/30 v6.88e Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 )
-\Hy@SavedSpaceFactor=\count462
+\Hy@SavedSpaceFactor=\count472
  (/usr/local/texlive/2019/texmf-dist/tex/latex/latexconfig/hyperref.cfg
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
 )
@@ -1220,10 +1233,10 @@ Package hyperref Info: Plain pages OFF on input line 4534.
 Package hyperref Info: Backreferencing OFF on input line 4539.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4772.
-\c@Hy@tempcnt=\count463
+\c@Hy@tempcnt=\count473
 LaTeX Info: Redefining \url on input line 5125.
 \XeTeXLinkMargin=\dimen311
-\Fld@menulength=\count464
+\Fld@menulength=\count474
 \Field@Width=\dimen312
 \Fld@charsize=\dimen313
 Package hyperref Info: Hyper figures OFF on input line 6380.
@@ -1235,30 +1248,46 @@ Package hyperref Info: Link coloring with OCG OFF on input line 6405.
 Package hyperref Info: PDF/A mode OFF on input line 6410.
 LaTeX Info: Redefining \ref on input line 6450.
 LaTeX Info: Redefining \pageref on input line 6454.
-\Hy@abspage=\count465
-\c@Item=\count466
-\c@Hfootnote=\count467
+\Hy@abspage=\count475
+\c@Item=\count476
+\c@Hfootnote=\count477
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/hyperref/hpdftex.def
 File: hpdftex.def 2018/11/30 v6.88e Hyperref driver for pdfTeX
-\Fld@listcount=\count468
-\c@bookmark@seq@number=\count469
+\Fld@listcount=\count478
+\c@bookmark@seq@number=\count479
  (/usr/local/texlive/2019/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
 Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 282.
 )
 \Hy@SectionHShift=\skip143
 )
+Package biblatex Info: Trying to load language 'english' -> 'english-apa'...
+Package biblatex Info: ... file 'english-apa.lbx' found.
+ (/usr/local/texlive/2019/texmf-dist/tex/latex/biblatex-apa/english-apa.lbx
+File: english-apa.lbx 2018/04/02 v7.7 APA biblatex localisation
 Package biblatex Info: Trying to load language 'english'...
 Package biblatex Info: ... file 'english.lbx' found.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/biblatex/lbx/english.lbx
 File: english.lbx 2018/11/02 v3.12 biblatex localization (PK/MW)
 )
-\@quotelevel=\count470
-\@quotereset=\count471
-
-No file finance-788-research-essay.aux.
+Package biblatex Info: Trying to load language 'american' -> 'american-apa'...
+Package biblatex Info: ... file 'american-apa.lbx' found.
+ (/usr/local/texlive/2019/texmf-dist/tex/latex/biblatex-apa/american-apa.lbx
+File: american-apa.lbx 2018/04/02 v7.7 APA biblatex localisation
+Package biblatex Info: Trying to load language 'american'...
+Package biblatex Info: ... file 'american.lbx' found.
+ (/usr/local/texlive/2019/texmf-dist/tex/latex/biblatex/lbx/american.lbx
+File: american.lbx 2018/11/02 v3.12 biblatex localization (PK/MW)
+Package biblatex Info: Trying to load language 'english'...
+Package biblatex Info: ... file 'english.lbx' found.
+ (/usr/local/texlive/2019/texmf-dist/tex/latex/biblatex/lbx/english.lbx
+File: english.lbx 2018/11/02 v3.12 biblatex localization (PK/MW)
+))))
+\@quotelevel=\count480
+\@quotereset=\count481
+ (./finance-788-research-essay.aux)
 \openout1 = `finance-788-research-essay.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 87.
@@ -1275,7 +1304,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 87.
 LaTeX Font Info:    ... okay on input line 87.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 87.
 LaTeX Font Info:    Try loading font information for TS1+cmr on input line 87.
-(/usr/local/texlive/2019/texmf-dist/tex/latex/base/ts1cmr.fd
+ (/usr/local/texlive/2019/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 87.
@@ -1318,16 +1347,16 @@ LaTeX Font Info:    ... okay on input line 87.
 
 (/usr/local/texlive/2019/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count472
+\scratchcounter=\count482
 \scratchdimen=\dimen314
 \scratchbox=\box101
-\nofMPsegments=\count473
-\nofMParguments=\count474
+\nofMPsegments=\count483
+\nofMParguments=\count484
 \everyMPshowfont=\toks44
-\MPscratchCnt=\count475
+\MPscratchCnt=\count485
 \MPscratchDim=\dimen315
-\MPnumerator=\count476
-\makeMPintoPDFobject=\count477
+\MPnumerator=\count486
+\makeMPintoPDFobject=\count487
 \everyMPtoPDFconversion=\toks45
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
@@ -1359,29 +1388,29 @@ Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count478
+\c@lstlisting=\count488
 Package biblatex Info: Input encoding 'utf8' detected.
 Package biblatex Info: Automatic encoding selection.
 (biblatex)             Assuming data encoding 'utf8'.
 \openout4 = `finance-788-research-essay.bcf'.
 
 Package biblatex Info: Trying to load bibliographic data...
-Package biblatex Info: ... file 'finance-788-research-essay.bbl' not found.
-
-No file finance-788-research-essay.bbl.
+Package biblatex Info: ... file 'finance-788-research-essay.bbl' found.
+ (./finance-788-research-essay.bbl)
 Package biblatex Info: Reference section=0 on input line 87.
 Package biblatex Info: Reference segment=0 on input line 87.
 Package hyperref Info: Link coloring OFF on input line 87.
-(/usr/local/texlive/2019/texmf-dist/tex/latex/hyperref/nameref.sty
+ (/usr/local/texlive/2019/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
  (/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count479
+\c@section@level=\count489
 )
 LaTeX Info: Redefining \ref on input line 87.
 LaTeX Info: Redefining \pageref on input line 87.
 LaTeX Info: Redefining \nameref on input line 87.
+ (./finance-788-research-essay.out) (./finance-788-research-essay.out)
 \@outlinefile=\write5
 \openout5 = `finance-788-research-essay.out'.
 
@@ -1398,115 +1427,81 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 <to be read again> 
                    \relax 
 l.132 \newpage
-               [1] [2] [3]
+               [1] [2] [3] (./finance-788-research-essay.toc)
 \tf@toc=\write6
 \openout6 = `finance-788-research-essay.toc'.
 
- [4]
+ [4] (./finance-788-research-essay.lof)
 \tf@lof=\write7
 \openout7 = `finance-788-research-essay.lof'.
 
+ (./finance-788-research-essay.lot)
 \tf@lot=\write8
 \openout8 = `finance-788-research-essay.lot'.
 
- [5] [6]
+ [5] [6] [7] [8] [9]
 
-LaTeX Warning: Citation 'J:10' on page 7 undefined on input line 153.
+LaTeX Warning: Reference `OseMOSYS' on page 10 undefined on input line 283.
 
-
-LaTeX Warning: Citation 'Google_Drive' on page 7 undefined on input line 156.
-
-
-LaTeX Warning: Citation 'Git' on page 7 undefined on input line 156.
-
-
-LaTeX Warning: Citation 'J:10' on page 7 undefined on input line 172.
-
-[7]
-
-LaTeX Warning: Citation 'IEA_WEM' on page 8 undefined on input line 188.
-
-
-LaTeX Warning: Citation 'Python_Features' on page 8 undefined on input line 192.
-
-
-LaTeX Warning: Citation 'PYPL_Pop' on page 8 undefined on input line 194.
-
-
-LaTeX Warning: Citation 'Anaconda' on page 8 undefined on input line 201.
-
-
-LaTeX Warning: Citation 'CBNF' on page 8 undefined on input line 218.
-
-[8]
-
-LaTeX Warning: Reference `OseMOSYS' on page 9 undefined on input line 224.
-
-
-LaTeX Warning: Citation 'IBM_ILOG' on page 9 undefined on input line 226.
-
-
-LaTeX Warning: Citation 'IPM' on page 9 undefined on input line 227.
-
-
-LaTeX Warning: Citation 'Simplex' on page 9 undefined on input line 227.
-
-
-LaTeX Warning: Citation 'IBM_AI' on page 9 undefined on input line 240.
-
-
-LaTeX Warning: Citation 'IBM_WML' on page 9 undefined on input line 247.
-
-[9]
-
-LaTeX Warning: Citation 'PEP8' on page 10 undefined on input line 260.
-
-
-LaTeX Warning: Reference `Version Control' on page 10 undefined on input line 275.
-
-[10] [11]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 297.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 297.
+[10] [11] [12]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 356.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 356.
  (./finance-788-research-essay.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 297.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 297.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 356.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 356.
+Package rerunfilecheck Info: File `finance-788-research-essay.out' has not changed.
+(rerunfilecheck)             Checksum: 89BE008977F8D5B8A2B42E5EAC396715;1306.
 
-
-Package rerunfilecheck Warning: File `finance-788-research-essay.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `finance-788-research-essay.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  9D2D98BD8F220B2520F3670A6BDE6FB9;1305.
 
 LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package biblatex Warning: Please (re)run Biber on the file:
-(biblatex)                finance-788-research-essay
-(biblatex)                and rerun LaTeX afterwards.
 
 Package logreq Info: Writing requests to 'finance-788-research-essay.run.xml'.
 \openout1 = `finance-788-research-essay.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 39695 strings out of 492616
- 763438 string characters out of 6129481
- 1146302 words of memory out of 5000000
- 43087 multiletter control sequences out of 15000+600000
+ 40208 strings out of 492616
+ 774460 string characters out of 6129481
+ 1198925 words of memory out of 5000000
+ 43538 multiletter control sequences out of 15000+600000
  544877 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,11n,63p,927b,1112s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on finance-788-research-essay.pdf (12 pages, 110589 bytes).
+ 55i,12n,63p,944b,3866s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{cite.0@PEP8} has been referenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{cite.0@IBM_WML} has been referenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{cite.0@IBM_AI} has been referenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{cite.0@Simplex} has been referenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{cite.0@IPM} has been referenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{cite.0@IBM_ILOG} has been referenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{cite.0@CBNF} has been referenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{cite.0@Anaconda} has been referenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{cite.0@PYPL_Pop} has been referenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{cite.0@Python_Features} has been referenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{cite.0@IEA_WEM} has been referenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{cite.0@Git} has been referenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{cite.0@Google_Drive} has been referenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{cite.0@J:10} has been referenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{cite.0@jensen2021there} has been referenced but does not exist, replaced by a fixed one
+
+</usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on finance-788-research-essay.pdf (13 pages, 162191 bytes).
 PDF statistics:
- 132 PDF objects out of 1000 (max. 8388607)
- 109 compressed objects within 2 object streams
- 41 named destinations out of 1000 (max. 500000)
- 13 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 300 PDF objects out of 1000 (max. 8388607)
+ 270 compressed objects within 3 object streams
+ 76 named destinations out of 1000 (max. 500000)
+ 173 words of extra memory for PDF output out of 10000 (max. 10000000)
 

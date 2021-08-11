@@ -62,7 +62,7 @@
 \usepackage{float}
 
 % References
-\usepackage[backend=biber,style = numeric]{biblatex}
+\usepackage[backend=biber,style = apa]{biblatex}
 \bibliography{sources}
 
 %%% HEADERS & FOOTERS
@@ -145,10 +145,69 @@
 \section{Introduction}
 \newpage
 \section{Literature Review}\label{LR}
-Insert
-\section{Project Scope and Research Question}
+\textbf{Insert Research Intent}
+\section{Research Intent}
+\textbf{Insert Research Intent}
 \section{Theory}
-\section{Methodology and Implementation}
+Return predictability underlies asset pricing theory. 
+\begin{align}
+	\hat{y} 
+\end{align}
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{||c|c|c|c||}
+			\hline
+			Variable & Description & $ MSE(y,\hat{y}) $ & $ HP(y,\hat{y}) $\\ [0.5ex]
+			\hline
+			&&&\\
+			$\theta$ & Est/Train& $ \hat{\theta}_{MSE}$& $ \hat{\theta}_{HP}$ \\ [0.5ex]
+			\hline
+			&&&\\
+			$\lambda$ & Validation & $\hat{\lambda}_{MSE}$ & $\hat{\lambda}_{MSE}$\\ [1.0ex]
+			\hline
+		\end{tabular}
+	\caption{Objective (MSE: Mean Square Error, HP: Hedge Portfolio)}
+\end{table}
+The formation of hedge portfolios rely on monotonic functions.
+These functions both preserve or reverse a given ordered set.
+We rank the cross-sections of portfolio returns using variations in monotonic functions to assign weights and form hedge portfolios.
+\begin{align}
+	R(y_{i,t})
+\end{align}
+The ranking function (R($y_{i,t}$)) and thresholds (u,v) form subsets of long and short portfolios.
+\begin{align}
+	L &= \{ y_{i,t} | R(y_{i,t})\geq u\}\\
+	S &= \{ y_{i,t} | R(y_{i,t})\leq v\}\\
+	0 & < u < 1\\
+	0 & < v < 1\\
+	u & > v
+\end{align}
+These truth sets inform the construction of time-series hedge portfolios. 
+The first set of time-series hedge portfolio equations assumes equal weighting in long and short portfolios through dividing each subset (L,S) by their cardinality. 
+\begin{align}
+	H_t &= \frac{1}{|L|}\sum_{i\epsilon L} y_{i,t} - \frac{1}{|S|}\sum_{i\epsilon S} y_{i,t}\\
+\end{align}
+The Ordinary Least Squares regression is the most prominent statistical model used for asset pricing theory.
+Equations \ref{OLS} and \ref{OLSD} are the OLS estimator and Ordinary Least Squares (OLS) method, respectively.
+
+\begin{align}
+	\hat{\theta} &= (X^{T}X)^{-1}(X^{T}y) \label{OLSD}\\
+	\hat{y} &= X^{T} \hat{\theta} \label{OLS}\\
+\end{align}
+\begin{align}
+	X^{T} &= \text{ Transposed matrix of regressors/factors}\\
+	\hat{\theta} &= \text{ Vector of estimates/sensitivities to regressors/factors}\\
+	y &= \text{ Vector of observed portfolio returns}\\
+	\hat{y} &= \text{ Vector of predicted portfolio returns}
+\end{align}
+Loss functions inform the strength of the ordinary least squares estimator and regression.
+\begin{align}
+	(MSE(y,\hat{y}) &= 
+\end{align}
+The cruciality of the OLS estimator leads to a revision 
+\section{Data}
+\textbf{Expand: Dataset implies, use this dataset (\cite{jensen2021there})}
+\section{Methodology}
 \subsection{Project organisation}
 GOCPI adopted Data Science best practice, as described by Wilson et al \cite{J:10}. Although these practices are
 mostly reserved for data science projects, their principles are suitable for product development and version control. All data and
