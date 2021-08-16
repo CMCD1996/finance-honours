@@ -112,7 +112,7 @@
 	%	Author(s)
 	%------------------------------------------------
 	
-	{\large\textit{Author: Connor McDowall \\Supervisor: Rosalind Archer}}\\
+	{\large\textit{Author: Connor McDowall \\Supervisor: Dr Paul Geertsema}}\\
 	
 	%------------------------------------------------
 	%	Date
@@ -188,8 +188,7 @@ The first set of time-series hedge portfolio equations assumes equal weighting i
 	H_t &= \frac{1}{|L|}\sum_{i\epsilon L} y_{i,t} - \frac{1}{|S|}\sum_{i\epsilon S} y_{i,t}\\
 \end{align}
 The Ordinary Least Squares regression is the most prominent statistical model used for asset pricing theory.
-Equations \ref{OLS} and \ref{OLSD} are the OLS estimator and Ordinary Least Squares (OLS) method, respectively.
-
+Equations \ref{OLSD} and \ref{OLS} are the Ordinary Least Squares (OLS) estimator and OLS method, respectively.
 \begin{align}
 	\hat{\theta} &= (X^{T}X)^{-1}(X^{T}y) \label{OLSD}\\
 	\hat{y} &= X^{T} \hat{\theta} \label{OLS}\\
@@ -201,8 +200,12 @@ Equations \ref{OLS} and \ref{OLSD} are the OLS estimator and Ordinary Least Squa
 	\hat{y} &= \text{ Vector of predicted portfolio returns}
 \end{align}
 Loss functions inform the strength of the ordinary least squares estimator and regression.
+These functions train models by comparing predictions to realised observations using optimisation algorithms to minimise the loss function.
+Mean square error (\ref{mse}) and Gradient Descent are examples a loss function and optimisation procedure, respectively.
+Firstly, gradient descent takes the partial derivative of a selected loss function.
+Secondly, the procedure is iterative, incrementing parameters to iterative optimisation algorithm adjusting parameters  increments
 \begin{align}
-	(MSE(y,\hat{y}) &= 
+	MSE(y,\hat{y}) &= \frac{1}{n} \sum_{i=1}^{n}(y_i - \hat{y}_i)^{2} \label{mse}
 \end{align}
 The cruciality of the OLS estimator leads to a revision 
 \section{Data}
