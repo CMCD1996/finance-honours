@@ -3,19 +3,19 @@
 \contentsline {section}{\numberline {2}Literature Review}{7}{section.2}% 
 \contentsline {section}{\numberline {3}Research Intent}{7}{section.3}% 
 \contentsline {section}{\numberline {4}Theory}{7}{section.4}% 
-\contentsline {section}{\numberline {5}Data}{8}{section.5}% 
-\contentsline {section}{\numberline {6}Methodology}{8}{section.6}% 
-\contentsline {subsection}{\numberline {6.1}Project organisation}{8}{subsection.6.1}% 
+\contentsline {section}{\numberline {5}Data}{9}{section.5}% 
+\contentsline {section}{\numberline {6}Methodology}{9}{section.6}% 
+\contentsline {subsection}{\numberline {6.1}Project organisation}{9}{subsection.6.1}% 
 \contentsline {subsubsection}{\numberline {6.1.1}Version Control}{9}{subsubsection.6.1.1}% 
 \contentsline {subsubsection}{\numberline {6.1.2}Folder Structure}{9}{subsubsection.6.1.2}% 
-\contentsline {subsubsection}{\numberline {6.1.3}Python}{9}{subsubsection.6.1.3}% 
+\contentsline {subsubsection}{\numberline {6.1.3}Python}{10}{subsubsection.6.1.3}% 
 \contentsline {subsubsection}{\numberline {6.1.4}Package Management}{10}{subsubsection.6.1.4}% 
 \contentsline {subsubsection}{\numberline {6.1.5}Excel}{10}{subsubsection.6.1.5}% 
-\contentsline {subsubsection}{\numberline {6.1.6}IBM ILOG CPLEX Optimization}{10}{subsubsection.6.1.6}% 
+\contentsline {subsubsection}{\numberline {6.1.6}IBM ILOG CPLEX Optimization}{11}{subsubsection.6.1.6}% 
 \contentsline {subsubsection}{\numberline {6.1.7}IBM Watson Machine Learning Service}{11}{subsubsection.6.1.7}% 
-\contentsline {subsubsection}{\numberline {6.1.8}PyPI}{11}{subsubsection.6.1.8}% 
-\contentsline {subsubsection}{\numberline {6.1.9}Code Style}{11}{subsubsection.6.1.9}% 
+\contentsline {subsubsection}{\numberline {6.1.8}PyPI}{12}{subsubsection.6.1.8}% 
+\contentsline {subsubsection}{\numberline {6.1.9}Code Style}{12}{subsubsection.6.1.9}% 
 \contentsline {subsubsection}{\numberline {6.1.10}Infrastructure}{12}{subsubsection.6.1.10}% 
 \contentsline {subsection}{\numberline {6.2}Documentation}{12}{subsection.6.2}% 
-\contentsline {subsubsection}{\numberline {6.2.1}Project updates}{12}{subsubsection.6.2.1}% 
-\contentsline {subsubsection}{\numberline {6.2.2}Meeting minutes}{12}{subsubsection.6.2.2}% 
+\contentsline {subsubsection}{\numberline {6.2.1}Project updates}{13}{subsubsection.6.2.1}% 
+\contentsline {subsubsection}{\numberline {6.2.2}Meeting minutes}{13}{subsubsection.6.2.2}% 
