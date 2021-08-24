@@ -507,6 +507,30 @@
       \field{howpublished}{Available at \url{http://pypl.github.io/PYPL.html} (2020/08/06)}
       \field{title}{PYPL PopularitY of Programming Language}
     \endentry
+    \entry{olsmf}{misc}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=05f57e118887fe6ca946d77689a2efaf}{%
+           family={Rosenfeld},
+           familyi={R\bibinitperiod},
+           given={Michael\bibnamedelima J.},
+           giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{05f57e118887fe6ca946d77689a2efaf}
+      \strng{fullhash}{05f57e118887fe6ca946d77689a2efaf}
+      \strng{bibnamehash}{05f57e118887fe6ca946d77689a2efaf}
+      \strng{authorbibnamehash}{05f57e118887fe6ca946d77689a2efaf}
+      \strng{authornamehash}{05f57e118887fe6ca946d77689a2efaf}
+      \strng{authorfullhash}{05f57e118887fe6ca946d77689a2efaf}
+      \field{sortinit}{R}
+      \field{sortinithash}{da6b42bd3ab22fee61abed031ee405f7}
+      \field{labeldatesource}{nodate}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Available at \url{https://web.stanford.edu/~mrosenfe/soc_meth_proj3/matrix_OLS_NYU_notes.pdf} (2021/08/18)}
+      \field{title}{OLS in Matrix Form}
+    \endentry
     \entry{J:10}{article}{}
       \name{author}{6}{}{%
         {{uniquename=0,uniquepart=base,hash=fda30198609a1ab29a82b93d4e8f347b}{%

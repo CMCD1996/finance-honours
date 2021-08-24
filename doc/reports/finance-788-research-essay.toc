@@ -3,19 +3,29 @@
 \contentsline {section}{\numberline {2}Literature Review}{7}{section.2}% 
 \contentsline {section}{\numberline {3}Research Intent}{7}{section.3}% 
 \contentsline {section}{\numberline {4}Theory}{7}{section.4}% 
-\contentsline {section}{\numberline {5}Data}{9}{section.5}% 
-\contentsline {section}{\numberline {6}Methodology}{9}{section.6}% 
-\contentsline {subsection}{\numberline {6.1}Project organisation}{9}{subsection.6.1}% 
-\contentsline {subsubsection}{\numberline {6.1.1}Version Control}{9}{subsubsection.6.1.1}% 
-\contentsline {subsubsection}{\numberline {6.1.2}Folder Structure}{9}{subsubsection.6.1.2}% 
-\contentsline {subsubsection}{\numberline {6.1.3}Python}{10}{subsubsection.6.1.3}% 
-\contentsline {subsubsection}{\numberline {6.1.4}Package Management}{10}{subsubsection.6.1.4}% 
-\contentsline {subsubsection}{\numberline {6.1.5}Excel}{10}{subsubsection.6.1.5}% 
-\contentsline {subsubsection}{\numberline {6.1.6}IBM ILOG CPLEX Optimization}{11}{subsubsection.6.1.6}% 
-\contentsline {subsubsection}{\numberline {6.1.7}IBM Watson Machine Learning Service}{11}{subsubsection.6.1.7}% 
-\contentsline {subsubsection}{\numberline {6.1.8}PyPI}{12}{subsubsection.6.1.8}% 
-\contentsline {subsubsection}{\numberline {6.1.9}Code Style}{12}{subsubsection.6.1.9}% 
-\contentsline {subsubsection}{\numberline {6.1.10}Infrastructure}{12}{subsubsection.6.1.10}% 
-\contentsline {subsection}{\numberline {6.2}Documentation}{12}{subsection.6.2}% 
-\contentsline {subsubsection}{\numberline {6.2.1}Project updates}{13}{subsubsection.6.2.1}% 
-\contentsline {subsubsection}{\numberline {6.2.2}Meeting minutes}{13}{subsubsection.6.2.2}% 
+\contentsline {subsection}{\numberline {4.1}Return predictability}{7}{subsection.4.1}% 
+\contentsline {subsection}{\numberline {4.2}Modelling, loss, and optimisation}{7}{subsection.4.2}% 
+\contentsline {subsection}{\numberline {4.3}Ordinary Least Squares (OLS)}{7}{subsection.4.3}% 
+\contentsline {subsubsection}{\numberline {4.3.1}Criteria for estimation}{8}{subsubsection.4.3.1}% 
+\contentsline {subsubsection}{\numberline {4.3.2}Properties of OLS Estimators}{8}{subsubsection.4.3.2}% 
+\contentsline {subsubsection}{\numberline {4.3.3}The Gauss-Markov Theorem}{9}{subsubsection.4.3.3}% 
+\contentsline {subsection}{\numberline {4.4}Hedge portfolios}{9}{subsection.4.4}% 
+\contentsline {section}{\numberline {5}Data}{11}{section.5}% 
+\contentsline {section}{\numberline {6}Methodology}{11}{section.6}% 
+\contentsline {subsection}{\numberline {6.1}Project organisation}{11}{subsection.6.1}% 
+\contentsline {subsubsection}{\numberline {6.1.1}Version Control}{11}{subsubsection.6.1.1}% 
+\contentsline {subsubsection}{\numberline {6.1.2}Folder Structure}{11}{subsubsection.6.1.2}% 
+\contentsline {subsubsection}{\numberline {6.1.3}Python}{12}{subsubsection.6.1.3}% 
+\contentsline {subsubsection}{\numberline {6.1.4}Package Management}{12}{subsubsection.6.1.4}% 
+\contentsline {subsubsection}{\numberline {6.1.5}Excel}{12}{subsubsection.6.1.5}% 
+\contentsline {subsubsection}{\numberline {6.1.6}IBM ILOG CPLEX Optimization}{13}{subsubsection.6.1.6}% 
+\contentsline {subsubsection}{\numberline {6.1.7}IBM Watson Machine Learning Service}{13}{subsubsection.6.1.7}% 
+\contentsline {subsubsection}{\numberline {6.1.8}PyPI}{14}{subsubsection.6.1.8}% 
+\contentsline {subsubsection}{\numberline {6.1.9}Code Style}{14}{subsubsection.6.1.9}% 
+\contentsline {subsubsection}{\numberline {6.1.10}Infrastructure}{14}{subsubsection.6.1.10}% 
+\contentsline {subsection}{\numberline {6.2}Documentation}{14}{subsection.6.2}% 
+\contentsline {subsubsection}{\numberline {6.2.1}Project updates}{15}{subsubsection.6.2.1}% 
+\contentsline {subsubsection}{\numberline {6.2.2}Meeting minutes}{15}{subsubsection.6.2.2}% 
+\contentsline {section}{\numberline {7}Results}{15}{section.7}% 
+\contentsline {section}{\numberline {8}Discussion}{15}{section.8}% 
+\contentsline {section}{\numberline {9}Conclusion}{15}{section.9}% 

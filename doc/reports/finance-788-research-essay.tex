@@ -70,7 +70,7 @@
 \setlength{\headheight}{15pt}
 \pagestyle{fancy} % options: empty , plain , fancy
 \renewcommand{\headrulewidth}{0pt} % customise the layout...
-\lhead{University of Auckland}\chead{GOCPI}\rhead{Connor McDowall}
+\lhead{University of Auckland}\chead{Finance 788}\rhead{Connor McDowall}
 \lfoot{}\cfoot{\thepage}\rfoot{}
 
 %%% SECTION TITLE APPEARANCE
@@ -145,29 +145,105 @@
 \section{Introduction}
 \newpage
 \section{Literature Review}\label{LR}
-\textbf{Insert Research Intent}
+\textbf{Insert Literature Review}
+\subsection{History of Asset Pricing Theory}
+\subsubsection{Optimisation Methodologies}
+\subsubsection{Machine Learning in Financial Contexts}
+A couple of recent publications highlight the increased application of machine learning algorithms in financial contexts.
+\cite{corporate-culture}
+Gu et al (\citeyear{eapvml}) explore the comparative use of machine learning in empirical asset pricing.
+
 \section{Research Intent}
 \textbf{Insert Research Intent}
 \section{Theory}
+\subsection{Return predictability}
 Return predictability underlies asset pricing theory. 
+\textbf{Insert}
+\subsection{Modelling, loss, and optimisation}
+We summarize the theory surrounding predictive modelling, loss functions, and optimisation algorithms.
+These functions train models by comparing predictions to realized observations using optimisation algorithms to minimize the loss function.
+We examine a linear model as our predictive model (\ref{lm}).
+Mean square error (\ref{mse}) and Gradient Descent (GD) are basic examples of a loss function and optimisation algorithm, respectively.
 \begin{align}
-	\hat{y} 
+	\hat{y} &= mx_i + b \label{lm}\\
+	f(y,(mx_{i} + b)) &= \frac{1}{n} \sum_{i=1}^{n}(y_i - (mx_{i} + b))^{2} \label{mse}
 \end{align}
-	\begin{table}[H]
-		\centering
-		\begin{tabular}{||c|c|c|c||}
-			\hline
-			Variable & Description & $ MSE(y,\hat{y}) $ & $ HP(y,\hat{y}) $\\ [0.5ex]
-			\hline
-			&&&\\
-			$\theta$ & Est/Train& $ \hat{\theta}_{MSE}$& $ \hat{\theta}_{HP}$ \\ [0.5ex]
-			\hline
-			&&&\\
-			$\lambda$ & Validation & $\hat{\lambda}_{MSE}$ & $\hat{\lambda}_{MSE}$\\ [1.0ex]
-			\hline
-		\end{tabular}
-	\caption{Objective (MSE: Mean Square Error, HP: Hedge Portfolio)}
-\end{table}
+Firstly, gradient descent takes the partial derivatives of the loss function, with the respect to the parameters in our predictive model.
+In our example, equations \ref{pdmsem} and \ref{pdmseb} are the partial derivatives for the mean square error loss function.
+\begin{align}
+	\frac{\partial f(y,(mx_{i} + b)}{ \partial m} &= \frac{1}{n} \sum_{i=1}^{n}-2x_{i}(y_i - (mx_{i} + b))^{2} \label{pdmsem}\\
+	\frac{\partial f(y,(mx_{i} + b)}{ \partial b} &= \frac{1}{n} \sum_{i=1}^{n}-2(y_i - (mx_{i} + b))^{2} \label{pdmseb}
+\end{align}
+Secondly, the algorithm explores epochs, using a learning rate to update parameters to move in the opposite directions of the partial derivatives until settling in a local minima.
+This extrema is the optimisation of the loss function, quantifying the accuracy of the predicative model.
+Ordinary Least Squares (OLS) regressions is an extension of the linear model prevalent in asset pricing.
+\subsection{Ordinary Least Squares (OLS)}\label{ols}
+The OLS regression is the most prominent statistical model in asset pricing theory.
+Rosenfeld \citeyear{olsmf} contributes an OLS summary.
+The composition of the true OLS model includes four components.
+Firstly, \textbf{X}, an n x k matrix of k independent variables for n observations.
+Secondly, \textbf{y}, an n x 1 vector of observation on the dependent variable.
+Thirdly, \textbf{$\epsilon$}, an n x 1 vector of unexplained error.
+Lastly, $\theta$, a k x 1 vector of parameters to be estimated.
+\begin{align}
+	y &= X\theta + \epsilon
+\end{align}
+\subsubsection{Criteria for estimation}
+The criteria to obtain the parameter estimate ($\hat{\theta}$) relies on the minimisation of the sum of squared residuals (\ref{ssr}).
+We highlight the observed residuals (e) are distinct from unexplained disturbances ($\epsilon$).
+Equation \ref{res} derives residuals by taking the difference between observations based on parameter estimates.
+\begin{align}
+	\sum & e_i^2  \label{ssr}\\
+	e = y & - X \hat{\theta} \label{res}
+\end{align}
+Expanding the quadratic $e^{T}e$ after substituting in equation \ref{res} leads to the alternative expression of the sum of squared residuals in equation \ref{ssrm}.
+Minimizing the sum of square residuals requires taking the partial derivative of equation \ref{ssrm} with respect to the estimated parameters (equation) using matrix differentiation (\ref{ssrmd}).
+It is imperative X has full rank where all vectors in the matrix are linearly independent, validating both the presence of a positive definite matrix and minimum.
+\begin{align}
+	e^{T}e &= y^{T}y - 2\hat{\theta}^{T}X^{T}y + \hat{\theta}^{T}X^{T}\hat{\theta}X \label{ssrm}\\
+	\frac{\partial e^{T}e}{\partial \hat{\theta}} &= - 2X^{T}y + 2X^{T}X\hat{\theta} =0 \label{ssrmd}
+\end{align}
+We find the expression for the Ordinary Least Squares (OLS) estimator (\ref{OLSD}) after rearranging equation \ref{ssrmd} to normal form, utilizing inverse matrices to form identity matrices, and simplifying.
+\begin{align}
+	2X^{T}X\hat{\theta} &= 2X^{T}y \\
+	(X^{T}X)^{-1}(X^{T}X)\hat{\theta} &= (X^{T}X)^{-1}X^{T}y \\
+	I\hat{\theta} &= (X^{T}X)^{-1}X^{T}y \\
+	\hat{\theta} &= (X^{T}X)^{-1}(X^{T}y) \label{OLSD}\\
+\end{align}
+Therefore, we can use the OLS estimator to make predictions with OLS (\ref{OLS}).
+\begin{align*}
+	\hat{y} &= X^{T} \hat{\theta} \label{OLS}
+\end{align*}
+\subsubsection{Properties of OLS Estimators}
+There are six key properties in addition to the satisfaction in minimizing the summation of squared residuals.
+\begin{enumerate}
+	\item The residuals are uncorrelated with the observed values of X i.e., $X^{T}e=0$.
+	\item The sum of the residuals is zero i.e., $\sum e_i=0$.
+	\item The sample mean of the residuals is zero i.e., $\bar{e} = \frac{\sum e_i}{n} = 0$.
+	\item The regression hyperplane passes through the means of observed values i.e., $\frac{e} = \frac{y - X\theta}{n} = 0$. Since $\bar{e} = 0$ assumed, it is implied $\bar{y}=\bar{x}\bar{\theta}$.
+	\item The residuals are uncorrelated with the predicted y i.e., $\hat{y} = X\hat{\theta}$, $\hat{y}^{T}e = (X\hat{\beta})^{T}e = b^{T}X^{T}e = 0$ 
+	\item The mean of $\hat{y}$ for the sample will equal the mean of the y.
+\end{enumerate}
+\subsubsection{The Gauss-Markov Theorem}
+However, OLS makes Gauss-Markov assumptions about the true model to make inferences regarding $\beta$ from $\hat{\beta}$.
+The intention of the Gauss-Markov Theorem, conditional on the below assumptions, states the OLS estimator is the best linear, unbiased, and efficient estimator: 
+\begin{align}
+	y &= x\beta + \epsilon\\
+	E[\epsilon|X] &= 0 \label{gma3}\\
+	E(\epsilon \epsilon^{T}|X) &= \Omega = \sigma^{2}I \label{gma4}\\
+	\epsilon &| X ~ N[0,\sigma^{T}I] \text{ (hypothesis testing)}
+\end{align}
+\begin{itemize}
+	\item X is an n x k matrix of full rank
+	\item X must be generated randomly, or fixed, by a mechanism uncorrelated to disturbances.
+\end{itemize}
+Equation \ref{gma3} implies $E(y) = X\beta$ as no observations of the independent variables convey any information about the expected values of the disturbances.
+Equation \ref{gma4} captures homoskedasticity and no autocorrelation assumptions.
+Additionally,
+The theory underlying Ordinary Least Squares informs the common practice in minimising of the sum of least squares when evaluating prediction performance.
+The mathematical tractability, in accordance with the aforementioned assumption, frame our thinking surrounding the derivation of custom loss functions.
+\subsection{Hedge portfolios}
+
 The formation of hedge portfolios rely on monotonic functions.
 These functions both preserve or reverse a given ordered set.
 We rank the cross-sections of portfolio returns using variations in monotonic functions to assign weights and form hedge portfolios.
@@ -187,31 +263,33 @@ The first set of time-series hedge portfolio equations assumes equal weighting i
 \begin{align}
 	H_t &= \frac{1}{|L|}\sum_{i\epsilon L} y_{i,t} - \frac{1}{|S|}\sum_{i\epsilon S} y_{i,t}\\
 \end{align}
-The Ordinary Least Squares regression is the most prominent statistical model used for asset pricing theory.
-Equations \ref{OLSD} and \ref{OLS} are the Ordinary Least Squares (OLS) estimator and OLS method, respectively.
-\begin{align}
-	\hat{\theta} &= (X^{T}X)^{-1}(X^{T}y) \label{OLSD}\\
-	\hat{y} &= X^{T} \hat{\theta} \label{OLS}\\
-\end{align}
-\begin{align}
-	X^{T} &= \text{ Transposed matrix of regressors/factors}\\
-	\hat{\theta} &= \text{ Vector of estimates/sensitivities to regressors/factors}\\
-	y &= \text{ Vector of observed portfolio returns}\\
-	\hat{y} &= \text{ Vector of predicted portfolio returns}
-\end{align}
-Loss functions inform the strength of the ordinary least squares estimator and regression.
-These functions train models by comparing predictions to realised observations using optimisation algorithms to minimise the loss function.
-Mean square error (\ref{mse}) and Gradient Descent are examples a loss function and optimisation procedure, respectively.
-Firstly, gradient descent takes the partial derivative of a selected loss function.
-Secondly, the procedure is iterative, incrementing parameters to iterative optimisation algorithm adjusting parameters  increments
-\begin{align}
-	MSE(y,\hat{y}) &= \frac{1}{n} \sum_{i=1}^{n}(y_i - \hat{y}_i)^{2} \label{mse}
-\end{align}
-The cruciality of the OLS estimator leads to a revision 
+Our aim is to re-configure the loss function to maximise returns 
+Subsequently, this enables the derivation of objective functions ex-post transaction costs.
+\subsection{Optimisation of Hedge Portfolios}
+Table \ref{hpt} provides a simple 
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{||c|c|c|c||}
+			\hline
+			Variable & Description & $ MSE(y,\hat{y}) $ & $ HP(y,\hat{y}) $\\ [0.5ex]
+			\hline
+			&&&\\
+			$\theta$ & Est/Train& $ \hat{\theta}_{MSE}$& $ \hat{\theta}_{HP}$ \\ [0.5ex]
+			\hline
+			&&&\\
+			$\lambda$ & Validation & $\hat{\lambda}_{MSE}$ & $\hat{\lambda}_{HP}$\\ [1.0ex]
+			\hline
+		\end{tabular}
+	\caption{Objective (MSE: Mean Square Error, HP: Hedge Portfolio)}
+	\label{hpt}
+\end{table}
 \newpage
+
 \section{Data}
 \textbf{Expand: Dataset implies, use this dataset (\cite{jensen2021there})}
+
 \section{Methodology}
+\textbf{Adapt for the context of this research essay}
 \subsection{Project organisation}
 GOCPI adopted Data Science best practice, as described by Wilson et al \cite{J:10}. Although these practices are
 mostly reserved for data science projects, their principles are suitable for product development and version control. All data and
@@ -353,6 +431,11 @@ Project meetings took place for half an hour once a week.
 These meetings included discussions on energy markets, modelling methodologies, project progress and key design decisions.
 The minutes from these meetings accompanies project updates in the project logbook nested within the research compendium.
 
+\section{Results}
+
+\section{Discussion}
+
+\section{Conclusion}
 
 \newpage
 %\includepdf[pages=-]{GOCPI-appendix.pdf}
