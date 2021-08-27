@@ -236,6 +236,63 @@
       \verb https://www.google.com/drive/
       \endverb
     \endentry
+    \entry{eapvml}{article}{}
+      \name{author}{3}{}{%
+        {{uniquename=0,uniquepart=base,hash=6dfe1a2bf09425e309ca767a1acc7325}{%
+           family={Gu},
+           familyi={G\bibinitperiod},
+           given={Shihao},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=96799198bea175b6a69479505180a2cd}{%
+           family={Kelly},
+           familyi={K\bibinitperiod},
+           given={Bryan},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=c07af227d21eedc8d6d13f10a6243d02}{%
+           family={Xiu},
+           familyi={X\bibinitperiod},
+           given={Dacheng},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{5a2306bd30910cd36a3da688076a2d28}
+      \strng{fullhash}{3fcd024cd3a906ee97216ed3d8ad76c6}
+      \strng{bibnamehash}{3fcd024cd3a906ee97216ed3d8ad76c6}
+      \strng{authorbibnamehash}{3fcd024cd3a906ee97216ed3d8ad76c6}
+      \strng{authornamehash}{5a2306bd30910cd36a3da688076a2d28}
+      \strng{authorfullhash}{3fcd024cd3a906ee97216ed3d8ad76c6}
+      \field{sortinit}{G}
+      \field{sortinithash}{5e8d2bf9d38de41b1528bd307546008f}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{{We perform a comparative analysis of machine learning methods for the canonical problem of empirical asset pricing: measuring asset risk premiums. We demonstrate large economic gains to investors using machine learning forecasts, in some cases doubling the performance of leading regression-based strategies from the literature. We identify the best-performing methods (trees and neural networks) and trace their predictive gains to allowing nonlinear predictor interactions missed by other methods. All methods agree on the same set of dominant predictive signals, a set that includes variations on momentum, liquidity, and volatility.Authors have furnished an Internet Appendix, which is available on the Oxford University Press Web site next to the link to the final published paper online.}}
+      \field{issn}{0893-9454}
+      \field{journaltitle}{The Review of Financial Studies}
+      \field{month}{02}
+      \field{number}{5}
+      \field{title}{{Empirical Asset Pricing via Machine Learning}}
+      \field{volume}{33}
+      \field{year}{2020}
+      \field{pages}{2223\bibrangedash 2273}
+      \range{pages}{51}
+      \verb{doi}
+      \verb 10.1093/rfs/hhaa009
+      \endverb
+      \verb{eprint}
+      \verb https://academic.oup.com/rfs/article-pdf/33/5/2223/33209812/hhaa009.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1093/rfs/hhaa009
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1093/rfs/hhaa009
+      \endverb
+    \endentry
     \entry{PEP8}{unpublished}{}
       \name{author}{2}{}{%
         {{uniquename=0,uniquepart=base,hash=6467ec401f141c16acd4cc3be2bf47dc}{%
@@ -384,6 +441,69 @@
       \field{title}{Is There A Replication Crisis In Finance?}
       \field{type}{techreport}
       \field{year}{2021}
+    \endentry
+    \entry{corporate-culture}{article}{}
+      \name{author}{4}{}{%
+        {{uniquename=0,uniquepart=base,hash=4838f7fdd28d5cefb28f3b3c734976d4}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Kai},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=d1a99677b7dfcd5d884ba7d2329f4965}{%
+           family={Mai},
+           familyi={M\bibinitperiod},
+           given={Feng},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=45b0521325076ed5402be04bfa201f93}{%
+           family={Shen},
+           familyi={S\bibinitperiod},
+           given={Rui},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=a9babb4986761bfaa228cdd1ba83963c}{%
+           family={Yan},
+           familyi={Y\bibinitperiod},
+           given={Xinyan},
+           giveni={X\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{b3f698a3666c5669ec9d523ad2dd1389}
+      \strng{fullhash}{5ee5da3078c3cf1d02545e912c9565e1}
+      \strng{bibnamehash}{5ee5da3078c3cf1d02545e912c9565e1}
+      \strng{authorbibnamehash}{5ee5da3078c3cf1d02545e912c9565e1}
+      \strng{authornamehash}{b3f698a3666c5669ec9d523ad2dd1389}
+      \strng{authorfullhash}{5ee5da3078c3cf1d02545e912c9565e1}
+      \field{sortinit}{L}
+      \field{sortinithash}{2c7981aaabc885868aba60f0c09ee20f}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{{We create a culture dictionary using one of the latest machine learning techniques—the word embedding model—and 209,480 earnings call transcripts. We score the five corporate cultural values of innovation, integrity, quality, respect, and teamwork for 62,664 firm-year observations over the period 2001–2018. We show that an innovative culture is broader than the usual measures of corporate innovation – R\\&amp;D expenses and the number of patents. Moreover, we show that corporate culture correlates with business outcomes, including operational efficiency, risk-taking, earnings management, executive compensation design, firm value, and deal making, and that the culture-performance link is more pronounced in bad times. Finally, we present suggestive evidence that corporate culture is shaped by major corporate events, such as mergers and acquisitions.}}
+      \field{issn}{0893-9454}
+      \field{journaltitle}{The Review of Financial Studies}
+      \field{month}{07}
+      \field{number}{7}
+      \field{title}{{Measuring Corporate Culture Using Machine Learning}}
+      \field{volume}{34}
+      \field{year}{2020}
+      \field{pages}{3265\bibrangedash 3315}
+      \range{pages}{51}
+      \verb{doi}
+      \verb 10.1093/rfs/hhaa079
+      \endverb
+      \verb{eprint}
+      \verb https://academic.oup.com/rfs/article-pdf/34/7/3265/38692689/hhaa079\_supplementary\_data.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1093/rfs/hhaa079
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1093/rfs/hhaa079
+      \endverb
     \endentry
     \entry{Git}{software}{}
       \name{author}{1}{}{%

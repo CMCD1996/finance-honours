@@ -147,7 +147,9 @@
 \section{Literature Review}\label{LR}
 \textbf{Insert Literature Review}
 \subsection{History of Asset Pricing Theory}
+
 \subsubsection{Optimisation Methodologies}
+Convexity is an important concept in optimisation 
 \subsubsection{Machine Learning in Financial Contexts}
 A couple of recent publications highlight the increased application of machine learning algorithms in financial contexts.
 \cite{corporate-culture}
@@ -242,9 +244,10 @@ Equation \ref{gma4} captures homoskedasticity and no autocorrelation assumptions
 Additionally,
 The theory underlying Ordinary Least Squares informs the common practice in minimising of the sum of least squares when evaluating prediction performance.
 The mathematical tractability, in accordance with the aforementioned assumption, frame our thinking surrounding the derivation of custom loss functions.
-\subsection{Hedge portfolios}
-
-The formation of hedge portfolios rely on monotonic functions.
+\subsubsection{Weaknesses in OLS: Return Predictability}
+\textbf{Include examples on the minimisation of sum of the square errors does not contribute to this subset}
+\subsection{Portfolio Formation: Hedge Portfolios}
+Our formation of hedge portfolios rely on monotonic functions.
 These functions both preserve or reverse a given ordered set.
 We rank the cross-sections of portfolio returns using variations in monotonic functions to assign weights and form hedge portfolios.
 \begin{align}
@@ -432,7 +435,17 @@ These meetings included discussions on energy markets, modelling methodologies, 
 The minutes from these meetings accompanies project updates in the project logbook nested within the research compendium.
 
 \section{Results}
-
+\begin{itemize}
+	\item Langrangion
+	\item KKT Theoretical
+	\item Hoobyiest Edition - Mathematica
+	\item Raspberry PI: 
+	\item Can you predict returns, interogate returns, take inspiration from GKX, look at hedge portfolio's.
+	\item Use two loss functions (MSE, Huber Loss Function), Begs question if maximise profitability
+	\item Give a toy example
+	\item Two period, two stocks, predict accurately but not make more money, no dials to turn, OLS susceptible to outliers, one outlier creates a massive error.
+	\item OLS susceptible to outliers, windsorise (not true)
+\end{itemize}
 \section{Discussion}
 
 \section{Conclusion}
