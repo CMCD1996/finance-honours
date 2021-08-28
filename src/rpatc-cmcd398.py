@@ -26,6 +26,37 @@ import scipy as sc # Scipy packages
 import tabulate as tb # Create tables in python
 import itertools as it # Find combinations of lists
 
-# Implements project script
-
 # Writes functions
+
+def ranking_function(type):
+    """ Ranking function to produce charts for demonstration purposes
+
+    Args:
+        type ([type]): String for desired ranking functions
+    """
+    if type == 'linear':
+        # Creates an ordered, random array of proxy returns (%)
+        num = 100
+        returns_uniform =np.sort(np.arange(-10,10,0.2))
+        print('returns',returns_uniform)
+        print('returns size',np.size(returns_uniform))
+        returns = np.sort(np.random.uniform(low=-10.0, high=10.0, size=(num,)))
+        base = np.zeros(num)
+        # Creates rank array
+        rank = np.array(list(range(1,len(returns)+ 1)))
+        print('returns: ', np.size(returns))
+        print('rank: ', np.size(rank))
+        # Fit monotonic functions between curves
+
+        # Plots the functions
+        plt.plot(rank,returns, 'r.', rank,base, 'k.')
+        plt.legend('Returns','Baseline')
+        plt.xlabel('Rank')
+        plt.ylabel('Return (%)')
+        plt.title('Ranking: Monotonic Functions')
+        plt.savefig('results/plots/monotonic-ranking.png')
+    return
+
+# Implements project script
+ranking_function('linear')
+

@@ -11,6 +11,7 @@
 % \usepackage{caption}
 % \usepackage{subcaption}
 \usepackage{graphicx} % For better graphics
+\usepackage{grffile}
 \usepackage{pdfpages} % To insert pdfs into the library
 \usepackage{tikz}
 \usepackage{wrapfig}
@@ -29,6 +30,9 @@
 \usepackage{cancel}
 \usepackage{color}
 \usepackage{listings}
+
+% Declare the argmax function
+\DeclareMathOperator*{\argmax}{argmax} % thin space, limits underneath in displays
 
 % Create Listing Colours
 \usepackage{xcolor}
@@ -245,7 +249,7 @@ Additionally,
 The theory underlying Ordinary Least Squares informs the common practice in minimising of the sum of least squares when evaluating prediction performance.
 The mathematical tractability, in accordance with the aforementioned assumption, frame our thinking surrounding the derivation of custom loss functions.
 \subsubsection{Weaknesses in OLS: Return Predictability}
-\textbf{Include examples on the minimisation of sum of the square errors does not contribute to this subset}
+\textbf{Include examples on the minimisation of sum of the square errors does not contribute to maximising returns}
 \subsection{Portfolio Formation: Hedge Portfolios}
 Our formation of hedge portfolios rely on monotonic functions.
 These functions both preserve or reverse a given ordered set.
@@ -266,7 +270,22 @@ The first set of time-series hedge portfolio equations assumes equal weighting i
 \begin{align}
 	H_t &= \frac{1}{|L|}\sum_{i\epsilon L} y_{i,t} - \frac{1}{|S|}\sum_{i\epsilon S} y_{i,t}\\
 \end{align}
-Our aim is to re-configure the loss function to maximise returns 
+Our aim is to re-configure the loss function to maximise returns. 
+Permutations for ranking functions exist (figure \ref{fig:mrf}).
+\begin{figure}[H]
+    \centering 
+    \includegraphics[width=\textwidth]{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/monotonic-ranking}.png}
+    \caption{Monotonic ranking functions}
+    \label{fig:mrf}
+\end{figure}
+First, we explore a ranking function with weights directly proportional to returns (equation \ref{w1}).
+\begin{align}
+	R(y_{i,t}) &= W_{i,t} \hat{y}_{i,t}\\
+	\hat{y} &= X^{T} \hat{\theta} + \epsilon\\
+	W&:= \frac{\hat{y}(\hat{\theta})}{\textbf{1}\hat{y}(\hat{\theta})} \label{w1}\\
+	\argmax_{\hat{\theta}} &: \frac{\hat{y}}{\textbf{1}\hat{y}} \hat{y}\\
+	\argmax_{\hat{\theta}} &: \frac{X^{T} \hat{\theta}}{\vec{\textbf{1}}X^{T} \hat{\theta}} X^{T} \hat{\theta}
+\end{align}
 Subsequently, this enables the derivation of objective functions ex-post transaction costs.
 \subsection{Optimisation of Hedge Portfolios}
 Table \ref{hpt} provides a simple 
@@ -435,22 +454,34 @@ These meetings included discussions on energy markets, modelling methodologies, 
 The minutes from these meetings accompanies project updates in the project logbook nested within the research compendium.
 
 \section{Results}
+
+\section{Discussion}
+
+\section{Conclusion}
+\newpage
+\section{Appendix}
+\subsection{Meeting Minutes}
+\subsubsection*{27/08/2021}
+Notes:
 \begin{itemize}
 	\item Langrangion
 	\item KKT Theoretical
-	\item Hoobyiest Edition - Mathematica
+	\item Hobbyists Edition - Mathematica
 	\item Raspberry PI: 
 	\item Can you predict returns, interogate returns, take inspiration from GKX, look at hedge portfolio's.
 	\item Use two loss functions (MSE, Huber Loss Function), Begs question if maximise profitability
 	\item Give a toy example
 	\item Two period, two stocks, predict accurately but not make more money, no dials to turn, OLS susceptible to outliers, one outlier creates a massive error.
-	\item OLS susceptible to outliers, windsorise (not true)
+	\item OLS susceptible to outliers, windsorize (not true)
 \end{itemize}
-\section{Discussion}
+To do list:
+\begin{itemize}
+	\item Mathematical Function for Maximising the portfolio weight functions
+	\item Tensorflows OLS with Dataset
+	\item Literature
+\end{itemize}
+\subsubsection*{Next Date}
 
-\section{Conclusion}
-
-\newpage
 %\includepdf[pages=-]{GOCPI-appendix.pdf}
 \newpage
 \end{document}
