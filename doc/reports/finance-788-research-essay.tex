@@ -165,7 +165,7 @@ Gu et al (\citeyear{eapvml}) explore the comparative use of machine learning in 
 \subsection{Return predictability}
 Return predictability underlies asset pricing theory. 
 \textbf{Insert}
-\subsection{Modelling, loss, and optimisation}
+\subsection{Modelling, loss, and optimisation}\label{sec:mlo}
 We summarize the theory surrounding predictive modelling, loss functions, and optimisation algorithms.
 These functions train models by comparing predictions to realized observations using optimisation algorithms to minimize the loss function.
 We examine a linear model as our predictive model (\ref{lm}).
@@ -278,13 +278,25 @@ Permutations for ranking functions exist (figure \ref{fig:mrf}).
     \caption{Monotonic ranking functions}
     \label{fig:mrf}
 \end{figure}
-First, we explore a ranking function with weights directly proportional to returns (equation \ref{w1}).
+First, we explore a ranking function with weights directly proportional to returns (\ref{w1})
+to derive the below loss function (\ref{lf}).
 \begin{align}
-	R(y_{i,t}) &= W_{i,t} \hat{y}_{i,t}\\
-	\hat{y} &= X^{T} \hat{\theta} + \epsilon\\
-	W&:= \frac{\hat{y}(\hat{\theta})}{\textbf{1}\hat{y}(\hat{\theta})} \label{w1}\\
-	\argmax_{\hat{\theta}} &: \frac{\hat{y}}{\textbf{1}\hat{y}} \hat{y}\\
-	\argmax_{\hat{\theta}} &: \frac{X^{T} \hat{\theta}}{\vec{\textbf{1}}X^{T} \hat{\theta}} X^{T} \hat{\theta}
+	R(\hat{y}) &= W \label{w1}\\
+	W&:= \frac{\hat{y}}{\vec{\textbf{1}}\hat{y}}\\
+	\hat{y} &= X^{T} \hat{\theta}\\
+	f_{\hat{\theta}}(X) &= (\frac{X^{T} \hat{\theta}}{\vec{\textbf{1}}X^{T} \hat{\theta}})^\top X^{T} \hat{\theta} \label{lf}\\
+\end{align}
+Section \ref{sec:mlo} explains the theory on predicative modelling, loss functions and optimisation algorithms.
+The ability to find partial derivatives (\ref{pdlf}) and argmax (\ref{argmax}) inform the practicality of this ranking function.
+\begin{align}
+	\frac{\partial f_{\hat{\theta}}(X)}{\partial \hat{\theta}} &= \frac{\partial ((\frac{X^{T} \hat{\theta}}{\vec{\textbf{1}}X^{T} \hat{\theta}})^\top X^{T} \hat{\theta})}{\partial \hat{\theta}} \label{pdlf}\\
+	\argmax_{\hat{\theta}} &: (\frac{X^{T} \hat{\theta}}{\vec{\textbf{1}}X^{T} \hat{\theta}})^\top X^{T} \hat{\theta} \label{argmax}
+\end{align}
+The argmax (\label{argmax}) requires to use partial derivative with respect to $\hat{\theta}$
+\begin{align}
+	\frac{\partial (f_{\hat{\theta}}(X))}{\partial \hat{\theta}}  &= \frac{1}{(\hat{\theta}^\top X \vec{1})} X X^\top \hat{\theta}\\
+	&+\frac{1}{\vec{1}X^\top \hat{\theta}} XX^\top \hat{\theta}\\
+	&-\frac{1}{(\hat{\theta}^\top X \vec{1})^{2}} \hat{\theta}^\top XX^\top \hat{\theta} X \vec{1}
 \end{align}
 Subsequently, this enables the derivation of objective functions ex-post transaction costs.
 \subsection{Optimisation of Hedge Portfolios}

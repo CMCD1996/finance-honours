@@ -1,6 +1,7 @@
 # Imports useful python packages
 # Essential
-import numpy as np # Arithmetic operations
+import numpy as np
+from numpy.core.fromnumeric import transpose # Arithmetic operations
 import pandas as pd # Data analysis package
 import matplotlib.pyplot as plt # Simple plotting
 import sklearn as skl # Simple statistical models 
@@ -28,6 +29,7 @@ import itertools as it # Find combinations of lists
 
 # Writes functions
 
+
 def ranking_function(type):
     """ Ranking function to produce charts for demonstration purposes
 
@@ -42,10 +44,16 @@ def ranking_function(type):
         print('returns size',np.size(returns_uniform))
         returns = np.sort(np.random.uniform(low=-10.0, high=10.0, size=(num,)))
         base = np.zeros(num)
+        ones = np.ones(num)
         # Creates rank array
         rank = np.array(list(range(1,len(returns)+ 1)))
-        print('returns: ', np.size(returns))
-        print('rank: ', np.size(rank))
+        # Create weights
+        weights  = returns/transpose(ones)
+        print('weights',weights)
+        print('Sum of weights', np.sum(weights))
+        weights  = weights*returns
+        print('weights',weights)
+        print('Sum of weights', np.sum(weights))
         # Fit monotonic functions between curves
 
         # Plots the functions
