@@ -1,4 +1,6 @@
 # Imports useful python packages
+# Analytical
+import sympy as sym
 # Essential
 import numpy as np
 from numpy.core.fromnumeric import transpose # Arithmetic operations
@@ -27,7 +29,23 @@ import scipy as sc # Scipy packages
 import tabulate as tb # Create tables in python
 import itertools as it # Find combinations of lists
 
+# Functions to prepare and inspect data
+def show_data():
+    # Converts dta file to csv
+    data_location = '/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/data/combined_predictors_filtered_us.dta'
+    data = pd.io.stata.read_stata(data_location)
+    print(data.info())
+    print(data.head())
+    print(data.tail())
+
 # Writes functions
+def analytical_analysis(command):
+    # Test simple functionality
+    if command == 'Test':
+        print(sym.sqrt(8))
+    if command == 'simple':
+        theta, x = sym.symbols('O X')
+    return
 
 
 def ranking_function(type):
@@ -65,6 +83,11 @@ def ranking_function(type):
         plt.savefig('results/plots/monotonic-ranking.png')
     return
 
-# Implements project script
-ranking_function('linear')
+# Get information on dataset
+show_data()
+# Do analytical function
+# analytical_analysis('Test')
+
+# Creates monotonic ranking function plots
+# ranking_function('linear')
 
