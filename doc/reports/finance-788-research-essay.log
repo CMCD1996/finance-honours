@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.3.23)  5 SEP 2021 15:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.3.23)  19 NOV 2021 16:37
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1294,7 +1294,11 @@ File: english.lbx 2018/11/02 v3.12 biblatex localization (PK/MW)
 ))))
 \@quotelevel=\count480
 \@quotereset=\count481
- (./finance-788-research-essay.aux)
+ (./finance-788-research-essay.aux
+
+LaTeX Warning: Label `argmax' multiply defined.
+
+)
 \openout1 = `finance-788-research-essay.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 91.
@@ -1464,73 +1468,40 @@ Overfull \hbox (22.35211pt too wide) in paragraph at lines 300--302
 
 [11] [12] [13]
 
-LaTeX Warning: Reference `OseMOSYS' on page 14 undefined on input line 399.
+LaTeX Warning: Reference `OseMOSYS' on page 14 undefined on input line 400.
 
-[14] [15] [16] [17]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 499.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 499.
+[14] [15] [16] [17] [18]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 500.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 500.
  (./finance-788-research-essay.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 499.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 499.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 500.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 500.
 Package rerunfilecheck Info: File `finance-788-research-essay.out' has not changed.
 (rerunfilecheck)             Checksum: C32514AE7D5E72EA8B4810964F9DAACA;2576.
 
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package logreq Info: Writing requests to 'finance-788-research-essay.run.xml'.
 \openout1 = `finance-788-research-essay.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 40378 strings out of 492616
- 777653 string characters out of 6129481
- 1202630 words of memory out of 5000000
- 43649 multiletter control sequences out of 15000+600000
- 545835 words of font info for 76 fonts, out of 8000000 for 9000
+ 40421 strings out of 492616
+ 778603 string characters out of 6129481
+ 1203246 words of memory out of 5000000
+ 43690 multiletter control sequences out of 15000+600000
+ 546182 words of font info for 77 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,14n,63p,1100b,3866s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{cite.0@PEP8} has been referenced but does not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{cite.0@IBM_WML} has been referenced but does not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{cite.0@IBM_AI} has been referenced but does not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{cite.0@Simplex} has been referenced but does not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{cite.0@IPM} has been referenced but does not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{cite.0@IBM_ILOG} has been referenced but does not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{cite.0@CBNF} has been referenced but does not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{cite.0@Anaconda} has been referenced but does not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{cite.0@PYPL_Pop} has been referenced but does not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{cite.0@Python_Features} has been referenced but does not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{cite.0@IEA_WEM} has been referenced but does not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{cite.0@Git} has been referenced but does not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{cite.0@Google_Drive} has been referenced but does not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{cite.0@J:10} has been referenced but does not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{cite.0@jensen2021there} has been referenced but does not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{cite.0@olsmf} has been referenced but does not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{cite.0@eapvml} has been referenced but does not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{cite.0@corporate-culture} has been referenced but does not exist, replaced by a fixed one
-
 {/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on finance-788-research-essay.pdf (18 pages, 226908 bytes).
+Output written on finance-788-research-essay.pdf (19 pages, 238932 bytes).
 PDF statistics:
- 492 PDF objects out of 1000 (max. 8388607)
- 449 compressed objects within 5 object streams
- 129 named destinations out of 1000 (max. 500000)
+ 528 PDF objects out of 1000 (max. 8388607)
+ 484 compressed objects within 5 object streams
+ 131 named destinations out of 1000 (max. 500000)
  314 words of extra memory for PDF output out of 10000 (max. 10000000)
 

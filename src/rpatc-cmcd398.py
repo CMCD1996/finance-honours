@@ -5,6 +5,7 @@ import sympy as sym
 import numpy as np
 from numpy.core.fromnumeric import transpose # Arithmetic operations
 import pandas as pd # Data analysis package
+import dask as ds # Data importing for very large software packages.
 import matplotlib.pyplot as plt # Simple plotting
 import sklearn as skl # Simple statistical models 
 import tensorflow as tf # Tensorflow (https://www.tensorflow.org/)
@@ -30,13 +31,14 @@ import tabulate as tb # Create tables in python
 import itertools as it # Find combinations of lists
 
 # Functions to prepare and inspect data
-def show_data():
+def convert_data():
+    """Converts Strata data format (.dta) to csv format
+    """
     # Converts dta file to csv
     data_location = '/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/data/combined_predictors_filtered_us.dta'
+    data_destination = '/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/data/combined_predictors_filtered_us.csv'
     data = pd.io.stata.read_stata(data_location)
-    print(data.info())
-    print(data.head())
-    print(data.tail())
+    data.to_csv(data_destination)
 
 # Writes functions
 def analytical_analysis(command):
@@ -84,7 +86,8 @@ def ranking_function(type):
     return
 
 # Get information on dataset
-show_data()
+convert_data()
+
 # Do analytical function
 # analytical_analysis('Test')
 
