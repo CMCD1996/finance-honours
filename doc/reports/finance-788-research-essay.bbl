@@ -325,6 +325,51 @@
       \field{title}{PEP 8: Style Guide for Python Code}
       \field{year}{2001}
     \endentry
+    \entry{hou2020replicating}{article}{}
+      \name{author}{3}{}{%
+        {{uniquename=0,uniquepart=base,hash=ede7111684645f18f6c02f6e398c5246}{%
+           family={Hou},
+           familyi={H\bibinitperiod},
+           given={Kewei},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=41cca85a05200437ff19c297f2da2d9f}{%
+           family={Xue},
+           familyi={X\bibinitperiod},
+           given={Chen},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=da9f7c9885c62f90094bae30cd44886c}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Lu},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Oxford University Press}%
+      }
+      \strng{namehash}{b3216507310f0d465e44e3fd2ef69d04}
+      \strng{fullhash}{c0507ab192d4e3412b9fe50043fdfb87}
+      \strng{bibnamehash}{c0507ab192d4e3412b9fe50043fdfb87}
+      \strng{authorbibnamehash}{c0507ab192d4e3412b9fe50043fdfb87}
+      \strng{authornamehash}{b3216507310f0d465e44e3fd2ef69d04}
+      \strng{authorfullhash}{c0507ab192d4e3412b9fe50043fdfb87}
+      \field{sortinit}{H}
+      \field{sortinithash}{5f15a7bc777ad49ff15aa4d2831b1681}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Review of Financial Studies}
+      \field{number}{5}
+      \field{title}{Replicating anomalies}
+      \field{volume}{33}
+      \field{year}{2020}
+      \field{pages}{2019\bibrangedash 2133}
+      \range{pages}{115}
+    \endentry
     \entry{IBM_AI}{misc}{}
       \name{author}{1}{}{%
         {{uniquename=0,uniquepart=base,hash=cbf44511d041dc6d1dd73cc0c033122c}{%

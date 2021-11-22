@@ -19,16 +19,16 @@
 \contentsline {section}{\numberline {6}Methodology}{12}{section.6}% 
 \contentsline {subsection}{\numberline {6.1}Project organisation}{12}{subsection.6.1}% 
 \contentsline {subsubsection}{\numberline {6.1.1}Version Control}{12}{subsubsection.6.1.1}% 
-\contentsline {subsubsection}{\numberline {6.1.2}Folder Structure}{12}{subsubsection.6.1.2}% 
+\contentsline {subsubsection}{\numberline {6.1.2}Folder Structure}{13}{subsubsection.6.1.2}% 
 \contentsline {subsubsection}{\numberline {6.1.3}Python}{13}{subsubsection.6.1.3}% 
-\contentsline {subsubsection}{\numberline {6.1.4}Package Management}{13}{subsubsection.6.1.4}% 
+\contentsline {subsubsection}{\numberline {6.1.4}Package Management}{14}{subsubsection.6.1.4}% 
 \contentsline {subsubsection}{\numberline {6.1.5}Excel}{14}{subsubsection.6.1.5}% 
 \contentsline {subsubsection}{\numberline {6.1.6}IBM ILOG CPLEX Optimization}{14}{subsubsection.6.1.6}% 
 \contentsline {subsubsection}{\numberline {6.1.7}IBM Watson Machine Learning Service}{15}{subsubsection.6.1.7}% 
 \contentsline {subsubsection}{\numberline {6.1.8}PyPI}{15}{subsubsection.6.1.8}% 
 \contentsline {subsubsection}{\numberline {6.1.9}Code Style}{15}{subsubsection.6.1.9}% 
-\contentsline {subsubsection}{\numberline {6.1.10}Infrastructure}{15}{subsubsection.6.1.10}% 
-\contentsline {subsection}{\numberline {6.2}Documentation}{15}{subsection.6.2}% 
+\contentsline {subsubsection}{\numberline {6.1.10}Infrastructure}{16}{subsubsection.6.1.10}% 
+\contentsline {subsection}{\numberline {6.2}Documentation}{16}{subsection.6.2}% 
 \contentsline {subsubsection}{\numberline {6.2.1}Project updates}{16}{subsubsection.6.2.1}% 
 \contentsline {subsubsection}{\numberline {6.2.2}Meeting minutes}{16}{subsubsection.6.2.2}% 
 \contentsline {section}{\numberline {7}Results}{16}{section.7}% 

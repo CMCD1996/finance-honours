@@ -1,6 +1,6 @@
 # Imports useful python packages
 # Analytical
-import sympy as sym
+import sympy as sym # Symbolic package for calculus
 # Essential
 import numpy as np
 from numpy.core.fromnumeric import transpose # Arithmetic operations
@@ -32,14 +32,56 @@ import tabulate as tb # Create tables in python
 import itertools as it # Find combinations of lists
 
 # Functions to prepare and inspect data
-def convert_data():
-    """Converts Strata data format (.dta) to csv format
+def convert_data(data_location, data_destination):
+    """ Converts dta  format to a series of 100k line csvs
+
+    Args:
+        data_location (str): directory of dta file
+        data_destination (str): 
     """
-    # Converts dta file to csv
-    data_location = '/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/data/combined_predictors_filtered_us.dta'
-    data_destination = '/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/data/combined_predictors_filtered_us.csv'
-    data = pd.io.stata.read_stata(data_location)
-    data.to_csv(data_destination)
+    # Converts dta file to chunks
+    dflocation = data_destination
+    data = pd.read_stata(data_location, chunksize=100000)
+    num = 1
+    for chunk in data:
+        # Saves chunck to seperate csvs given dataset size
+        df = pd.DataFrame()
+        df = df.append(chunk)
+        df.to_csv(dflocation + str(num) +'.csv')
+        num_convert = num*100000
+        print('Number of rows converted: ',num_convert)
+        num = num + 1
+
+def process_data(csv_location):
+    """ Function to create 
+    """
+    '/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/data/dataframe-columns.txt'
+    # Get test loading one dataframe
+    num_csvs = list(range(1,29,1))
+    print(num_csvs)
+    df = pd.read_csv(csv_location + "1.csv")
+    # Show frame information
+    show_info = False
+    if show_info == True: 
+        # Prints df head, info, columns
+        print('information on Dataframe')
+        print(df.info())
+        print('Dataframe Head')
+        print(df.head())
+        print('Dataframe Columns')
+        print(df.columns)
+        # Saves columns as list in txt file
+        np.savetxt(r'/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/data/dataframe-columns.txt', df.columns, fmt='%s')
+    # Pre-process dataframe for suitability
+    
+    
+    # Uses data
+    return
+
+def neural_network():
+    """[summary]
+    """
+    return
 
 def sass_access(data_location):
     # Two files are accessed once for reference
@@ -48,21 +90,23 @@ def sass_access(data_location):
     # SAS User credientials for granting access
     '/Users/connor/.authinfo'
     # Enable SAS Connection
-    sas_session = sas.SASsession()
-    # Convert the SAS dataset to a dataframe to use in TensorFlow
-    data = sas_session.sasdata2dataframe(data_location)
+    session = sas.SASsession()
+    # Create sass dataset
+    # sass_data = session.submit('''proc import out= fulldata datafile = "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/data/combined_predictors_filtered_us.dta";
+    # run; ''',results = 'TEXT')
+    # proc contents data=hsb2;
+    # run;
+    # data = sas_session.sasdata2dataframe(data_location)
     # print(data.head())
     # print(data.tail())
     # print(data.info())
     return
 
 # Writes functions
-def analytical_analysis(command):
+def analytical_analysis():
     # Test simple functionality
-    if command == 'Test':
-        print(sym.sqrt(8))
-    if command == 'simple':
-        theta, x = sym.symbols('O X')
+    print(sym.sqrt(8))
+    theta, x = sym.symbols('O X')
     return
 
 
@@ -102,13 +146,27 @@ def ranking_function(type):
     return
 
 # Variables
-data_location = '/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/data/combined_predictors_filtered_us.dta'
-data_destination = '/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/data/combined_predictors_filtered_us.csv'
+# File paths
+# data_location = '/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/data/combined_predictors_filtered_us.dta'
+data_source = 'data/combined_predictors_filtered_us.dta'
+csv_location = '/Volumes/Seagate/dataframes/'
 
-# Get information on dataset
+# Binary (Set to True or False depending on the functions to run)
+source_data = False
+use_sass = False
+analytical = False
+rank_functions = False
+create_data_pipelines = True
 
-# convert_data()
-sass_access(data_location)
+# Executes functions
+# Calls convert data
+if source_data == True:
+    convert_data(data_source,csv_location)
+
+# Creates processing pipelines for TensorFlow
+if create_data_pipelines == True:
+    process_data(csv_location)
+# sass_access(data_location)
 
 # Do analytical function
 # analytical_analysis('Test')
