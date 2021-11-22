@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt # Simple plotting
 import sklearn as skl # Simple statistical models 
 import tensorflow as tf # Tensorflow (https://www.tensorflow.org/)
 import csv as csv # read and write csvs
+import os # change/manipulate operating systems
 # Additional
 import random as rd # random functionality
 import saspy as sas # Use saspy functionality in python
@@ -39,6 +40,21 @@ def convert_data():
     data_destination = '/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/data/combined_predictors_filtered_us.csv'
     data = pd.io.stata.read_stata(data_location)
     data.to_csv(data_destination)
+
+def sass_access(data_location):
+    # Two files are accessed once for reference
+    # sascfg_personal is a configuration file for accessing SAS Ondemand Academic Packages
+    '/opt/anaconda3/lib/python3.7/site-packages/saspy'
+    # SAS User credientials for granting access
+    '/Users/connor/.authinfo'
+    # Enable SAS Connection
+    sas_session = sas.SASsession()
+    # Convert the SAS dataset to a dataframe to use in TensorFlow
+    data = sas_session.sasdata2dataframe(data_location)
+    # print(data.head())
+    # print(data.tail())
+    # print(data.info())
+    return
 
 # Writes functions
 def analytical_analysis(command):
@@ -85,8 +101,14 @@ def ranking_function(type):
         plt.savefig('results/plots/monotonic-ranking.png')
     return
 
+# Variables
+data_location = '/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/data/combined_predictors_filtered_us.dta'
+data_destination = '/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/data/combined_predictors_filtered_us.csv'
+
 # Get information on dataset
-convert_data()
+
+# convert_data()
+sass_access(data_location)
 
 # Do analytical function
 # analytical_analysis('Test')
