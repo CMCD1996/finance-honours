@@ -32,13 +32,14 @@ import tabulate as tb # Create tables in python
 import itertools as it # Find combinations of lists
 
 # Functions to prepare and inspect data
-def convert_data(data_location, data_destination):
+def convert_data(data_location, data_destination,):
     """ Converts dta  format to a series of 100k line csvs
 
     Args:
         data_location (str): directory of dta file
         data_destination (str): 
     """
+
     # Converts dta file to chunks
     dflocation = data_destination
     data = pd.read_stata(data_location, chunksize=100000)
@@ -76,7 +77,7 @@ def create_dataframes(csv_location,multi_csv):
     else:
         df_list = []
         for num in num_csvs:
-            df = pd.read_csv(csv_location + num + ".csv")
+            df = pd.read_csv(csv_location + str(num) + ".csv")
             # Append all the dataframes after reading the csv
             df_list.append(df)
             # Concantenate into one dataframe
@@ -172,7 +173,7 @@ if need_dataframe == True:
     print(data.info())
     print(data.head())
     # Save summary statistics to dataframe
-    data_stats = data.describe()
+    data_stats = data.describe().round(4)
     data_stats.T.to_latex('results/tables/summary-statistics.txt')
     # Uses the stargazor package to produce a table for the summary statistics
 if use_sass == True:
