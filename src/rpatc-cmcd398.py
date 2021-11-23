@@ -22,7 +22,7 @@ import datetime as dt # Manipulate datetime values
 import statsmodels.api as sm # Create Stats functionalities
 import linearmodels as lp # Ability to use PooledOLS
 from sklearn.linear_model import LinearRegression
-from stargazer.stargazer import Stargazer
+from stargazer.stargazer import Stargazer #Stargazor package to produce latex tables
 import finance_byu as fin # Python Package for Fama-MacBeth Regressions
 from statsmodels.regression.rolling import RollingOLS # Use factor loadings
 from stargazer.stargazer import Stargazer
@@ -52,38 +52,45 @@ def convert_data(data_location, data_destination):
         print('Number of rows converted: ',num_convert)
         num = num + 1
 
-def process_data(csv_location):
+def create_dataframes(csv_location,multi_csv):
     """ Function to create 
     """
-    '/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/data/dataframe-columns.txt'
-    # Get test loading one dataframe
+    # Creates list of dataframes
     num_csvs = list(range(1,29,1))
-    print(num_csvs)
-    df = pd.read_csv(csv_location + "1.csv")
-    # Show frame information
-    show_info = False
-    if show_info == True: 
-        # Prints df head, info, columns
-        print('information on Dataframe')
-        print(df.info())
-        print('Dataframe Head')
-        print(df.head())
-        print('Dataframe Columns')
-        print(df.columns)
-        # Saves columns as list in txt file
-        np.savetxt(r'/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/data/dataframe-columns.txt', df.columns, fmt='%s')
-    # Pre-process dataframe for suitability
-    
-    
-    # Uses data
-    return
+    if multi_csv == False:
+        df = pd.read_csv(csv_location + "1.csv")
+        # Show frame information
+        show_info = False
+        if show_info == True: 
+            # Prints df head, info, columns
+            print('information on Dataframe')
+            print(df.info())
+            print('Dataframe Head')
+            print(df.head())
+            print('Dataframe Columns')
+            print(df.columns)
+            # Saves columns as list in txt file
+            np.savetxt(r'/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/data/dataframe-columns.txt', df.columns, fmt='%s')
+        return df
+        # Pre-process dataframe for suitability (Remove empty rows, columns etc.)
+    else:
+        df_list = []
+        for num in num_csvs:
+            df = pd.read_csv(csv_location + num + ".csv")
+            # Append all the dataframes after reading the csv
+            df_list.append(df)
+            # Concantenate into one dataframe
+            df = pd.concat(df_list)
+        return df
 
-def neural_network():
+def Tensor_flow_analysis():
     """[summary]
     """
-    return
+    # Create tensorflow dataset
+    dataset = tf.data.Dataset.from_tensor_slices(dict(df))
+    return dataset
 
-def sass_access(data_location):
+def sass_access(dataframe):
     # Two files are accessed once for reference
     # sascfg_personal is a configuration file for accessing SAS Ondemand Academic Packages
     '/opt/anaconda3/lib/python3.7/site-packages/saspy'
@@ -91,15 +98,10 @@ def sass_access(data_location):
     '/Users/connor/.authinfo'
     # Enable SAS Connection
     session = sas.SASsession()
-    # Create sass dataset
-    # sass_data = session.submit('''proc import out= fulldata datafile = "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/data/combined_predictors_filtered_us.dta";
-    # run; ''',results = 'TEXT')
-    # proc contents data=hsb2;
-    # run;
-    # data = sas_session.sasdata2dataframe(data_location)
-    # print(data.head())
-    # print(data.tail())
-    # print(data.info())
+    # Create sass data
+    data = session.dataframe2sasdata(dataframe)
+    # Display summary statistics for the data
+    data.means()
     return
 
 # Writes functions
@@ -151,23 +153,31 @@ def ranking_function(type):
 data_source = 'data/combined_predictors_filtered_us.dta'
 csv_location = '/Volumes/Seagate/dataframes/'
 
+#############################################################################################
 # Binary (Set to True or False depending on the functions to run)
 source_data = False
 use_sass = False
+need_dataframe = True
 analytical = False
 rank_functions = False
-create_data_pipelines = True
-
+#############################################################################################
 # Executes functions
 # Calls convert data
 if source_data == True:
     convert_data(data_source,csv_location)
 
-# Creates processing pipelines for TensorFlow
-if create_data_pipelines == True:
-    process_data(csv_location)
-# sass_access(data_location)
-
+# Creates 
+if need_dataframe == True:
+    data = create_dataframes(csv_location,False)
+    print(data.info())
+    print(data.head())
+    # Save summary statistics to dataframe
+    data_stats = data.describe()
+    data_stats.T.to_latex('results/tables/summary-statistics.txt')
+    # Uses the stargazor package to produce a table for the summary statistics
+if use_sass == True:
+    sass_access(data)
+    
 # Do analytical function
 # analytical_analysis('Test')
 
