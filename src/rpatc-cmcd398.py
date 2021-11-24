@@ -158,7 +158,7 @@ csv_location = '/Volumes/Seagate/dataframes/'
 # Binary (Set to True or False depending on the functions to run)
 source_data = False
 use_sass = False
-need_dataframe = True
+need_dataframe = False
 analytical = False
 rank_functions = False
 #############################################################################################
