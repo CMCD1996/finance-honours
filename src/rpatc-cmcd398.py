@@ -54,9 +54,12 @@ def partition_data(data_location, data_destination):
         num = num + 1
     return
 
-def split_vm_dataset():
-    """ Splits the dataset into train and testing dataset using the complete dta file
+def split_vm_dataset(data_vm_directory):
+    """ Splits the VM
     """
+    # Read data into one dataframe on python
+    total_df = pd.read_stata(data_vm_directory)
+    print(total_df.describe())
     return
 
 def create_dataframes(csv_location,multi_csv):
@@ -159,10 +162,11 @@ def ranking_function():
 # data_location = '/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/data/combined_predictors_filtered_us.dta'
 data_source = 'data/combined_predictors_filtered_us.dta'
 csv_location = '/Volumes/Seagate/dataframes/'
-
+data_vm_directory = ''
 #############################################################################################
 # Binary (Set to True or False depending on the functions to run)
 source_data = False
+process_vm_data = True
 use_sass = False
 need_dataframe = False
 analytical = False
@@ -172,6 +176,9 @@ rank_functions = False
 # Calls convert data
 if source_data == True:
     partition_data(data_source,csv_location)
+
+if process_vm_data == True:
+    split_vm_dataset(data_vm_directory)
 
 # Creates 
 if need_dataframe == True:
