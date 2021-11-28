@@ -8,12 +8,12 @@ import pandas as pd # Data analysis package
 import dask as ds # Data importing for very large software packages.
 import matplotlib.pyplot as plt # Simple plotting
 import sklearn as skl # Simple statistical models 
-# import tensorflow as tf # Tensorflow (https://www.tensorflow.org/)
+import tensorflow as tf # Tensorflow (https://www.tensorflow.org/)
 import csv as csv # read and write csvs
 import os # change/manipulate operating systems
 # Additional
 import random as rd # random functionality
-# import saspy as sas # Use saspy functionality in python
+import saspy as sas # Use saspy functionality in python
 import seaborn as sb # Imports seaborn library for use
 # import wrds as wrds# Wharton Research Data Services API
 # import pydatastream as pds # Thomas Reuters Datastream API
