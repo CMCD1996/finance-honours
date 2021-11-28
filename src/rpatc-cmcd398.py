@@ -8,27 +8,27 @@ import pandas as pd # Data analysis package
 import dask as ds # Data importing for very large software packages.
 import matplotlib.pyplot as plt # Simple plotting
 import sklearn as skl # Simple statistical models 
-import tensorflow as tf # Tensorflow (https://www.tensorflow.org/)
+# import tensorflow as tf # Tensorflow (https://www.tensorflow.org/)
 import csv as csv # read and write csvs
 import os # change/manipulate operating systems
 # Additional
 import random as rd # random functionality
-import saspy as sas # Use saspy functionality in python
+# import saspy as sas # Use saspy functionality in python
 import seaborn as sb # Imports seaborn library for use
 # import wrds as wrds# Wharton Research Data Services API
 # import pydatastream as pds # Thomas Reuters Datastream API
 # import yfinance as yf # Yahoo Finance API
 import datetime as dt # Manipulate datetime values
 import statsmodels.api as sm # Create Stats functionalities
-import linearmodels as lp # Ability to use PooledOLS
+# import linearmodels as lp # Ability to use PooledOLS
 from sklearn.linear_model import LinearRegression
-from stargazer.stargazer import Stargazer #Stargazor package to produce latex tables
-import finance_byu as fin # Python Package for Fama-MacBeth Regressions
+# from stargazer.stargazer import Stargazer #Stargazor package to produce latex tables
+# import finance_byu as fin # Python Package for Fama-MacBeth Regressions
 from statsmodels.regression.rolling import RollingOLS # Use factor loadings
-from stargazer.stargazer import Stargazer
+# from stargazer.stargazer import Stargazer
 import sympy as sy # convert latex code
 import scipy as sc # Scipy packages
-import tabulate as tb # Create tables in python
+# import tabulate as tb # Create tables in python
 import itertools as it # Find combinations of lists
 
 # Functions to prepare and inspect data
@@ -59,7 +59,8 @@ def split_vm_dataset(data_vm_directory):
     """
     # Read data into one dataframe on python
     total_df = pd.read_stata(data_vm_directory)
-    print(total_df.describe())
+    print('Prints Dataframe Head')
+    print(total_df.head())
     return
 
 def create_dataframes(csv_location,multi_csv):
@@ -162,7 +163,7 @@ def ranking_function():
 # data_location = '/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/data/combined_predictors_filtered_us.dta'
 data_source = 'data/combined_predictors_filtered_us.dta'
 csv_location = '/Volumes/Seagate/dataframes/'
-data_vm_directory = ''
+data_vm_directory = '/home/connormcdowall/local-data/combined_predictors_filtered_us.dta'
 #############################################################################################
 # Binary (Set to True or False depending on the functions to run)
 source_data = False
