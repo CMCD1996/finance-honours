@@ -2,5 +2,5 @@
     "python.pythonPath": "/opt/anaconda3/bin/python",
     "python.formatting.provider": "yapf",
     "editor.formatOnSave": true,
-    "autoDocstring.docstringFormat": "google",
+    "autoDocstring.docstringFormat": "google"
 }

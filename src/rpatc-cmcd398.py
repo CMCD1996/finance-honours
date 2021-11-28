@@ -15,9 +15,9 @@ import os # change/manipulate operating systems
 import random as rd # random functionality
 import saspy as sas # Use saspy functionality in python
 import seaborn as sb # Imports seaborn library for use
-import wrds as wrds# Wharton Research Data Services API
-import pydatastream as pds # Thomas Reuters Datastream API
-import yfinance as yf # Yahoo Finance API
+# import wrds as wrds# Wharton Research Data Services API
+# import pydatastream as pds # Thomas Reuters Datastream API
+# import yfinance as yf # Yahoo Finance API
 import datetime as dt # Manipulate datetime values
 import statsmodels.api as sm # Create Stats functionalities
 import linearmodels as lp # Ability to use PooledOLS
@@ -32,7 +32,7 @@ import tabulate as tb # Create tables in python
 import itertools as it # Find combinations of lists
 
 # Functions to prepare and inspect data
-def convert_data(data_location, data_destination,):
+def partition_data(data_location, data_destination):
     """ Converts dta  format to a series of 100k line csvs
 
     Args:
@@ -52,6 +52,12 @@ def convert_data(data_location, data_destination,):
         num_convert = num*100000
         print('Number of rows converted: ',num_convert)
         num = num + 1
+    return
+
+def split_vm_dataset():
+    """ Splits the dataset into train and testing dataset using the complete dta file
+    """
+    return
 
 def create_dataframes(csv_location,multi_csv):
     """ Function to create 
@@ -113,39 +119,39 @@ def analytical_analysis():
     return
 
 
-def ranking_function(type):
+def ranking_function():
     """ Ranking function to produce charts for demonstration purposes
 
     Args:
         type ([type]): String for desired ranking functions
     """
-    if type == 'linear':
-        # Creates an ordered, random array of proxy returns (%)
-        num = 100
-        returns_uniform =np.sort(np.arange(-10,10,0.2))
-        print('returns',returns_uniform)
-        print('returns size',np.size(returns_uniform))
-        returns = np.sort(np.random.uniform(low=-10.0, high=10.0, size=(num,)))
-        base = np.zeros(num)
-        ones = np.ones(num)
-        # Creates rank array
-        rank = np.array(list(range(1,len(returns)+ 1)))
-        # Create weights
-        weights  = returns/transpose(ones)
-        print('weights',weights)
-        print('Sum of weights', np.sum(weights))
-        weights  = weights*returns
-        print('weights',weights)
-        print('Sum of weights', np.sum(weights))
-        # Fit monotonic functions between curves
+    
+    # Creates an ordered, random array of proxy returns (%)
+    num = 100
+    returns_uniform =np.sort(np.arange(-10,10,0.2))
+    print('returns',returns_uniform)
+    print('returns size',np.size(returns_uniform))
+    returns = np.sort(np.random.uniform(low=-10.0, high=10.0, size=(num,)))
+    base = np.zeros(num)
+    ones = np.ones(num)
+    # Creates rank array
+    rank = np.array(list(range(1,len(returns)+ 1)))
+    # Create weights
+    weights  = returns/transpose(ones)
+    print('weights',weights)
+    print('Sum of weights', np.sum(weights))
+    weights  = weights*returns
+    print('weights',weights)
+    print('Sum of weights', np.sum(weights))
+    # Fit monotonic functions between curves
 
-        # Plots the functions
-        plt.plot(rank,returns, 'r.', rank,base, 'k.')
-        plt.legend('Returns','Baseline')
-        plt.xlabel('Rank')
-        plt.ylabel('Return (%)')
-        plt.title('Ranking: Monotonic Functions')
-        plt.savefig('results/plots/monotonic-ranking.png')
+    # Plots the functions
+    plt.plot(rank,returns, 'r.', rank,base, 'k.')
+    plt.legend('Returns','Baseline')
+    plt.xlabel('Rank')
+    plt.ylabel('Return (%)')
+    plt.title('Ranking: Monotonic Functions')
+    plt.savefig('results/plots/monotonic-ranking.png')
     return
 
 # Variables
@@ -165,7 +171,7 @@ rank_functions = False
 # Executes functions
 # Calls convert data
 if source_data == True:
-    convert_data(data_source,csv_location)
+    partition_data(data_source,csv_location)
 
 # Creates 
 if need_dataframe == True:
@@ -180,9 +186,13 @@ if use_sass == True:
     sass_access(data)
     
 # Do analytical function
+if analytical == True:
+        analytical_analysis()
 # analytical_analysis('Test')
 
 # Creates monotonic ranking function plots
+if rank_functions == True:
+    ranking_function()
 # ranking_function('linear')
 
 # Practise updating the file
