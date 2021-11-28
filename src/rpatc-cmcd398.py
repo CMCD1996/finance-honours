@@ -8,7 +8,7 @@ import pandas as pd # Data analysis package
 import dask as ds # Data importing for very large software packages.
 import matplotlib.pyplot as plt # Simple plotting
 import sklearn as skl # Simple statistical models 
-import tensorflow as tf # Tensorflow (https://www.tensorflow.org/)
+# import tensorflow as tf # Tensorflow (https://www.tensorflow.org/)
 import csv as csv # read and write csvs
 import os # change/manipulate operating systems
 # Additional
