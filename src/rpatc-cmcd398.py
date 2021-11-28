@@ -58,9 +58,16 @@ def split_vm_dataset(data_vm_directory):
     """ Splits the VM
     """
     # Read data into one dataframe on python
-    total_df = pd.read_stata(data_vm_directory)
-    print('Prints Dataframe Head')
-    print(total_df.head())
+    total_df = pd.read_stata(data_vm_directory + 'combined_predictors_filtered_us.dta')
+    # Create summary statisitics for the entire dataset
+    data_stats = total_df.describe().round(4)
+    data_stats.T.to_latex('results/tables/summary-statistics.txt')
+    # Create training and testing dataframes for Tensorflow
+    train_df = total_df[total_df["train"] == 1]
+    test_df = total_df[total_df["test"] == 1]
+    # Convert training and testing sets to stata files
+    train_df.to_stata(data_vm_directory + 'train.dta')
+    test_df.to_stata(data_vm_directory + 'test.dta')
     return
 
 def create_dataframes(csv_location,multi_csv):
@@ -163,7 +170,7 @@ def ranking_function():
 # data_location = '/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/data/combined_predictors_filtered_us.dta'
 data_source = 'data/combined_predictors_filtered_us.dta'
 csv_location = '/Volumes/Seagate/dataframes/'
-data_vm_directory = '/home/connormcdowall/local-data/combined_predictors_filtered_us.dta'
+data_vm_directory = '/home/connormcdowall/local-data/'
 #############################################################################################
 # Binary (Set to True or False depending on the functions to run)
 source_data = False
