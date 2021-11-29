@@ -84,6 +84,7 @@ def process_vm_dataset(data_vm_directory):
     # Load the test and train datasets into dataframes
     train_df = pd.read_stata(data_vm_directory + 'train.dta')
     print('Number of instances: ',len(train_df))
+    print(train_df.info())
 
 def create_dataframes(csv_location,multi_csv):
     """ Function to create 
