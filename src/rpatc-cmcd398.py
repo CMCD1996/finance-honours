@@ -77,15 +77,18 @@ def split_vm_dataset(data_vm_directory):
     test_df.to_stata(data_vm_directory + 'test.dta')
     return
 
-def process_vm_dataset(data_vm_directory):
+def process_vm_dataset(data_vm_dta, data_vm_directory, save_types):
     """ This script processes the training and testing datasets for Tensorflow
     following the classify structured data with feature columns tutorial
     """
     # Load the test and train datasets into dataframes
-    train_df = pd.read_stata(data_vm_directory + 'train.dta')
-    print('Number of instances: ',len(train_df))
-    print(train_df.info())
-
+    df = pd.read_stata(data_vm_dta)
+    print('Number of instances: ',len(df))
+    print(df.info())
+    # Find the dtypes of the dataframe and save them to a data column
+    if save_types==True:
+        np.savetxt(r'/home/connormcdowall/finance-honours/results/tables/factor-types.txt', df.dtypes, fmt='%s')
+    
 def create_dataframes(csv_location,multi_csv):
     """ Function to create 
     """
@@ -198,6 +201,8 @@ def ranking_function():
 data_source = 'data/combined_predictors_filtered_us.dta'
 csv_location = '/Volumes/Seagate/dataframes/'
 data_vm_directory = '/home/connormcdowall/local-data/'
+data_vm_dta = '/home/connormcdowall/local-data/train.dta'
+results_tables = '/home/connormcdowall/finance-honours/results/tables'
 # Binary (Set to True or False depending on the functions to run)
 # Data processing
 source_data = False
@@ -221,7 +226,7 @@ if split_vm_data == True:
     split_vm_dataset(data_vm_directory)
 # Process vm data for Tensorflow
 if process_vm_data == True:
-    process_vm_dataset(data_vm_directory)
+    process_vm_dataset(data_vm_dta,results_tables,True)
 
 if need_dataframe == True:
     data = create_dataframes(csv_location,False)
