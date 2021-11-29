@@ -8,7 +8,7 @@ import pandas as pd # Data analysis package
 import dask as ds # Data importing for very large software packages.
 import matplotlib.pyplot as plt # Simple plotting
 import sklearn as skl # Simple statistical models 
-# import tensorflow as tf # Tensorflow (https://www.tensorflow.org/)
+import tensorflow as tf # Tensorflow (https://www.tensorflow.org/)
 import csv as csv # read and write csvs
 import os # change/manipulate operating systems
 # Additional
@@ -31,7 +31,11 @@ import scipy as sc # Scipy packages
 # import tabulate as tb # Create tables in python
 import itertools as it # Find combinations of lists
 
-# Functions to prepare and inspect data
+#################################################################################
+# Function Calls
+#################################################################################
+# Data Processing
+#################################################################################
 def partition_data(data_location, data_destination):
     """ Converts dta  format to a series of 100k line csvs
 
@@ -55,7 +59,10 @@ def partition_data(data_location, data_destination):
     return
 
 def split_vm_dataset(data_vm_directory):
-    """ Splits the VM
+    """ Creates summmary statistics from unprocessed dataset
+
+    Args:
+        data_vm_directory (str): Directory location of data stored on the VM instance.
     """
     # Read data into one dataframe on python
     total_df = pd.read_stata(data_vm_directory + 'combined_predictors_filtered_us.dta')
@@ -69,6 +76,14 @@ def split_vm_dataset(data_vm_directory):
     train_df.to_stata(data_vm_directory + 'train.dta')
     test_df.to_stata(data_vm_directory + 'test.dta')
     return
+
+def process_vm_dataset(data_vm_directory):
+    """ This script processes the training and testing datasets for Tensorflow
+    following the classify structured data with feature columns tutorial
+    """
+    # Load the test and train datasets into dataframes
+    train_df = pd.read_stata(data_vm_directory + 'train.dta')
+    print('Number of instances: ',len(train_df))
 
 def create_dataframes(csv_location,multi_csv):
     """ Function to create 
@@ -89,6 +104,9 @@ def create_dataframes(csv_location,multi_csv):
             print(df.columns)
             # Saves columns as list in txt file
             np.savetxt(r'/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/data/dataframe-columns.txt', df.columns, fmt='%s')
+        # Save summary statistics to dataframe
+        data_stats = df.describe().round(4)
+        data_stats.T.to_latex('results/tables/subset-summary-statistics.txt')
         return df
         # Pre-process dataframe for suitability (Remove empty rows, columns etc.)
     else:
@@ -99,14 +117,10 @@ def create_dataframes(csv_location,multi_csv):
             df_list.append(df)
             # Concantenate into one dataframe
             df = pd.concat(df_list)
+        # Save summary statistics to dataframe
+        data_stats = df.describe().round(4)
+        data_stats.T.to_latex('results/tables/subset-summary-statistics.txt')
         return df
-
-def Tensor_flow_analysis():
-    """[summary]
-    """
-    # Create tensorflow dataset
-    dataset = tf.data.Dataset.from_tensor_slices(dict(df))
-    return dataset
 
 def sass_access(dataframe):
     # Two files are accessed once for reference
@@ -122,13 +136,24 @@ def sass_access(dataframe):
     data.means()
     return
 
+#################################################################################
+# Machine Learning
+#################################################################################
+def Tensor_flow_analysis():
+    """[summary]
+    """
+    # Create tensorflow dataset
+    dataset = tf.data.Dataset.from_tensor_slices(dict(df))
+    return dataset
+#################################################################################
+# Analytical/Calculus
+#################################################################################
 # Writes functions
 def analytical_analysis():
     # Test simple functionality
     print(sym.sqrt(8))
     theta, x = sym.symbols('O X')
     return
-
 
 def ranking_function():
     """ Ranking function to produce charts for demonstration purposes
@@ -165,50 +190,52 @@ def ranking_function():
     plt.savefig('results/plots/monotonic-ranking.png')
     return
 
+#################################################################################
 # Variables
+#################################################################################
 # File paths
-# data_location = '/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/data/combined_predictors_filtered_us.dta'
 data_source = 'data/combined_predictors_filtered_us.dta'
 csv_location = '/Volumes/Seagate/dataframes/'
 data_vm_directory = '/home/connormcdowall/local-data/'
-#############################################################################################
 # Binary (Set to True or False depending on the functions to run)
+# Data processing
 source_data = False
+split_vm_data = False
 process_vm_data = True
 use_sass = False
 need_dataframe = False
+# Analytical
 analytical = False
 rank_functions = False
-#############################################################################################
-# Executes functions
-# Calls convert data
+
+#################################################################################
+# Function Calls
+#################################################################################
+# Data processing
+# Source data from local drive
 if source_data == True:
     partition_data(data_source,csv_location)
-
-if process_vm_data == True:
+# Source data from VM Instance
+if split_vm_data == True:
     split_vm_dataset(data_vm_directory)
+# Process vm data for Tensorflow
+if process_vm_data == True:
+    process_vm_dataset(data_vm_directory)
 
-# Creates 
 if need_dataframe == True:
     data = create_dataframes(csv_location,False)
     print(data.info())
     print(data.head())
-    # Save summary statistics to dataframe
-    data_stats = data.describe().round(4)
-    data_stats.T.to_latex('results/tables/summary-statistics.txt')
+    
     # Uses the stargazor package to produce a table for the summary statistics
 if use_sass == True:
     sass_access(data)
-    
+
+# Analytical function
 # Do analytical function
 if analytical == True:
         analytical_analysis()
-# analytical_analysis('Test')
-
 # Creates monotonic ranking function plots
 if rank_functions == True:
     ranking_function()
-# ranking_function('linear')
-
-# Practise updating the file
 
