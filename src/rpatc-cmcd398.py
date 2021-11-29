@@ -77,7 +77,7 @@ def split_vm_dataset(data_vm_directory):
     test_df.to_stata(data_vm_directory + 'test.dta')
     return
 
-def process_vm_dataset(data_vm_dta, data_vm_directory, save_types):
+def process_vm_dataset(data_vm_dta, save_types):
     """ This script processes the training and testing datasets for Tensorflow
     following the classify structured data with feature columns tutorial
     """
@@ -226,7 +226,7 @@ if split_vm_data == True:
     split_vm_dataset(data_vm_directory)
 # Process vm data for Tensorflow
 if process_vm_data == True:
-    process_vm_dataset(data_vm_dta,results_tables,True)
+    process_vm_dataset(data_vm_dta,True)
 
 if need_dataframe == True:
     data = create_dataframes(csv_location,False)
