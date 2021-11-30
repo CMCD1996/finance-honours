@@ -8,6 +8,7 @@ import pandas as pd # Data analysis package
 import dask as ds # Data importing for very large software packages.
 import matplotlib.pyplot as plt # Simple plotting
 import sklearn as skl # Simple statistical models 
+from sklearn.model_selection import train_test_split
 import tensorflow as tf # Tensorflow (https://www.tensorflow.org/)
 import csv as csv # read and write csvs
 import os # change/manipulate operating systems
@@ -58,23 +59,31 @@ def partition_data(data_location, data_destination):
         num = num + 1
     return
 
-def split_vm_dataset(data_vm_directory):
+def split_vm_dataset(data_vm_directory,create_statistics,split_new_data, create_validation_set):
     """ Creates summmary statistics from unprocessed dataset
 
     Args:
         data_vm_directory (str): Directory location of data stored on the VM instance.
     """
-    # Read data into one dataframe on python
-    total_df = pd.read_stata(data_vm_directory + 'combined_predictors_filtered_us.dta')
+    
     # Create summary statisitics for the entire dataset
-    data_stats = total_df.describe().round(4)
-    data_stats.T.to_latex('results/tables/summary-statistics.txt')
+    if create_statistics == True:
+        # Read data into one dataframe on python
+        total_df = pd.read_stata(data_vm_directory + 'combined_predictors_filtered_us.dta')
+        data_stats = total_df.describe().round(4)
+        data_stats.T.to_latex('results/tables/summary-statistics.txt')
     # Create training and testing dataframes for Tensorflow
-    train_df = total_df[total_df["train"] == 1]
-    test_df = total_df[total_df["test"] == 1]
-    # Convert training and testing sets to stata files
-    train_df.to_stata(data_vm_directory + 'train.dta')
-    test_df.to_stata(data_vm_directory + 'test.dta')
+    if split_new_data == True:
+        train_df = total_df[total_df["train"] == 1]
+        test_df = total_df[total_df["test"] == 1]
+        # Convert training and testing sets to stata files
+        if create_validation_set == True:
+            train_new_df,val_df = train_test_split(train_df,test_size=0.2)
+            train_new_df.to_stata(data_vm_directory + 'train.dta')
+            val_df.to_stata(data_vm_directory + 'val.dta')
+        else:
+            train_df.to_stata(data_vm_directory + 'train.dta')
+        test_df.to_stata(data_vm_directory + 'test.dta')
     return
 
 def process_vm_dataset(data_vm_dta, save_statistics):
@@ -107,7 +116,7 @@ def process_vm_dataset(data_vm_dta, save_statistics):
             df[column].fillna(df[column].median(), inplace = True)
     # Get list of unique values for 
     print(df.info(verbose=True))
-
+    return df
 
 def create_dataframes(csv_location,multi_csv):
     """ Function to create 
@@ -163,12 +172,34 @@ def sass_access(dataframe):
 #################################################################################
 # Machine Learning
 #################################################################################
+# Utility method to use pandas dataframe to create a tf.data dataset
+# Adapted from https://www.tensorflow.org/tutorials/structured_data/feature_columns#use_pandas_to_create_a_dataframe
+def create_tf_dataset(df, target_column, shuffle=True, batch_size=32):
+    """[summary]
+
+    Args:
+        df (dataframe): dataframe
+        target_column (str): Column used to predict for labels
+        shuffle (bool, optional): [description]. Defaults to True.
+        batch_size (int, optional): Sets batch size. Defaults to 32.
+
+    Returns:
+        [type]: [description]
+    """
+    working_df = df.copy()
+    labels = df.pop(target_column)
+    dataset = tf.data.Dataset.from_tensor_slices((dict(df), labels))
+    if shuffle:
+        dataset = dataset.shuffle(buffer_size=len(df))
+    dataset = dataset.batch(batch_size)
+    return dataset
+
+
 def Tensor_flow_analysis():
     """[summary]
     """
     # Create tensorflow dataset
-    dataset = tf.data.Dataset.from_tensor_slices(dict(df))
-    return dataset
+    return
 #################################################################################
 # Analytical/Calculus
 #################################################################################
@@ -243,7 +274,7 @@ if source_data == True:
     partition_data(data_source,csv_location)
 # Source data from VM Instance
 if split_vm_data == True:
-    split_vm_dataset(data_vm_directory)
+    split_vm_dataset(data_vm_directory,create_statistics=False, split_new_data= False,create_validation_set= False)
 # Process vm data for Tensorflow
 if process_vm_data == True:
     process_vm_dataset(data_vm_dta,save_statistics=False)
