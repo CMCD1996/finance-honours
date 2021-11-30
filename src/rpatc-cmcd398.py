@@ -195,9 +195,13 @@ def create_tf_dataset(df, target_column, shuffle=True, batch_size=32):
     return dataset
 
 
-def Tensor_flow_analysis():
+def Tensor_flow_analysis(train_df, val_df, test_df,shuffle=True,batch_size):
     """[summary]
     """
+    # Set the batch size
+    train_dataset = create_tf_dataset(train_df,shuffle,batch_size)
+    val_dataset = create_tf_dataset(val_df,shuffle,batch_size)
+    test_dataset = create_tf_dataset(test_df,shuffle,batch_size)
     # Create tensorflow dataset
     return
 #################################################################################
