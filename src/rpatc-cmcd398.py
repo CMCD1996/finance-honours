@@ -84,7 +84,6 @@ def process_vm_dataset(data_vm_dta, save_statistics):
     # Load the test and train datasets into dataframes
     df = pd.read_stata(data_vm_dta)
     print('Number of instances: ',len(df))
-    print(df.info())
     # Find the dtypes of the dataframe and save them to a data column
     if save_statistics==True:
         # Saves dtypes for column dataframe
@@ -97,10 +96,17 @@ def process_vm_dataset(data_vm_dta, save_statistics):
     data_type_list = list(df.dtypes.unique())
     # Gets unique list of size_grp
     size_grp_list = list(df['size_grp'].unique())
-    # Impute missing values with medium values (replace with mean command if necessary)
-    # for column in column_list:
-    #     df[column].fillna(df[column].median(), inplace = True)
+    # Removes the mth column/factor from the dataframe given datatime format
+    df['mth'] = pd.to_numeric(df['mth'],downcast='float')
+    # df.drop(columns=['mth'])
+    for column in column_list:
+        if column != 'size_grp':
+            # Sets each column value to float type
+            df.astype({column:'float64'}).dtypes
+            # Impute missing values with medium values (replace with mean command if necessary)
+            df[column].fillna(df[column].median(), inplace = True)
     # Get list of unique values for 
+    print(df.info(verbose=True))
 
 
 def create_dataframes(csv_location,multi_csv):
