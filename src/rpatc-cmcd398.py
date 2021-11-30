@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt # Simple plotting
 import sklearn as skl # Simple statistical models 
 from sklearn.model_selection import train_test_split
 import tensorflow as tf # Tensorflow (https://www.tensorflow.org/)
+from tensorflow.keras import layers
 import csv as csv # read and write csvs
 import os # change/manipulate operating systems
 # Additional
@@ -174,6 +175,7 @@ def sass_access(dataframe):
 #################################################################################
 # Utility method to use pandas dataframe to create a tf.data dataset
 # Adapted from https://www.tensorflow.org/tutorials/structured_data/feature_columns#use_pandas_to_create_a_dataframe
+# Adapted from https://www.tensorflow.org/tutorials/structured_data/preprocessing_layers
 def create_tf_dataset(df, target_column, shuffle=True, batch_size=32):
     """[summary]
 
@@ -194,14 +196,28 @@ def create_tf_dataset(df, target_column, shuffle=True, batch_size=32):
     dataset = dataset.batch(batch_size)
     return dataset
 
+def df_to_dataset(dataframe, shuffle=True, batch_size=32):
+    df = dataframe.copy()
+    labels = df.pop('target')
+    df = {key: value[:,tf.newaxis] for key, value in dataframe.items()}
+    ds = tf.data.Dataset.from_tensor_slices((dict(df), labels))
+    if shuffle:
+        ds = ds.shuffle(buffer_size=len(dataframe))
+    ds = ds.batch(batch_size)
+    ds = ds.prefetch(batch_size)
+    return ds
 
-def Tensor_flow_analysis(train_df, val_df, test_df,shuffle=True,batch_size):
+def create_tf_tensor_columns():
+    return
+
+
+def Tensor_flow_analysis(train_df, val_df, test_df,size_of_batch):
     """[summary]
     """
     # Set the batch size
-    train_dataset = create_tf_dataset(train_df,shuffle,batch_size)
-    val_dataset = create_tf_dataset(val_df,shuffle,batch_size)
-    test_dataset = create_tf_dataset(test_df,shuffle,batch_size)
+    train_dataset = create_tf_dataset(train_df,shuffle=True,batch_size = size_of_batch)
+    val_dataset = create_tf_dataset(val_df,shuffle=False,batch_size = size_of_batch)
+    test_dataset = create_tf_dataset(test_df,shuffle=False,batch_size = size_of_batch)
     # Create tensorflow dataset
     return
 #################################################################################
