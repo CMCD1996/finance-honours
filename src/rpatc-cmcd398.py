@@ -77,7 +77,7 @@ def split_vm_dataset(data_vm_directory):
     test_df.to_stata(data_vm_directory + 'test.dta')
     return
 
-def process_vm_dataset(data_vm_dta, save_types):
+def process_vm_dataset(data_vm_dta, save_statistics):
     """ This script processes the training and testing datasets for Tensorflow
     following the classify structured data with feature columns tutorial
     """
@@ -86,9 +86,23 @@ def process_vm_dataset(data_vm_dta, save_types):
     print('Number of instances: ',len(df))
     print(df.info())
     # Find the dtypes of the dataframe and save them to a data column
-    if save_types==True:
-        np.savetxt(r'/home/connormcdowall/finance-honours/results/tables/factor-types.txt', df.dtypes, fmt='%s')
-    
+    if save_statistics==True:
+        # Saves dtypes for column dataframe
+        np.savetxt(r'/home/connormcdowall/finance-honours/results/statistics/factor-types.txt', df.dtypes, fmt='%s')
+        # Saves information on missing values in the dataframe
+        np.savetxt(r'/home/connormcdowall/finance-honours/results/statistics/missing-values.txt', df.isna().sum(), fmt='%s')
+    # Gets list of dataframe column values
+    column_list = list(df.columns.values)
+    # Gets list of unique dataframe dtype 
+    data_type_list = list(df.dtypes.unique())
+    # Gets unique list of size_grp
+    size_grp_list = list(df['size_grp'].unique())
+    # Impute missing values with medium values (replace with mean command if necessary)
+    # for column in column_list:
+    #     df[column].fillna(df[column].median(), inplace = True)
+    # Get list of unique values for 
+
+
 def create_dataframes(csv_location,multi_csv):
     """ Function to create 
     """
@@ -226,7 +240,7 @@ if split_vm_data == True:
     split_vm_dataset(data_vm_directory)
 # Process vm data for Tensorflow
 if process_vm_data == True:
-    process_vm_dataset(data_vm_dta,True)
+    process_vm_dataset(data_vm_dta,save_statistics=False)
 
 if need_dataframe == True:
     data = create_dataframes(csv_location,False)
