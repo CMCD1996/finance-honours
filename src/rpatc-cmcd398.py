@@ -176,13 +176,30 @@ def sass_access(dataframe):
 # Utility method to use pandas dataframe to create a tf.data dataset
 # Adapted from https://www.tensorflow.org/tutorials/structured_data/feature_columns#use_pandas_to_create_a_dataframe
 # Adapted from https://www.tensorflow.org/tutorials/structured_data/preprocessing_layers
-def create_variable_lists(list_of_columns, categorical_assignment):
+def download_test_data():
+    dataset_url = 'http://storage.googleapis.com/download.tensorflow.org/data/petfinder-mini.zip'
+    csv_file = 'datasets/petfinder-mini/petfinder-mini.csv'
+    tf.keras.utils.get_file('petfinder_mini.zip', dataset_url,
+                        extract=True, cache_dir='.')
+    dataframe = pd.read_csv(csv_file)
+
+    # Creates the target variable for the assignment
+    dataframe['target'] = np.where(dataframe['AdoptionSpeed']==4, 0, 1)
+    # Drop unused features.
+    dataframe = dataframe.drop(columns=['AdoptionSpeed', 'Description'])
+    # Split the dataset into training, validation and testing sets
+    train, val, test = np.split(dataframe.sample(frac=1), [int(0.8*len(dataframe)), int(0.9*len(dataframe))])
+    # Returns the dataframe and the three subsets
+    return dataframe, train, val, test
+
+def create_feature_lists(list_of_columns, categorical_assignment):
     # Assignn variables
     categorical_features = []
     numerical_features = []
     file = open(list_of_columns,'r')
     lines = file.readlines()
     for line in lines:
+        line = line.rstrip('\n')
         if line in categorical_assignment:
             categorical_features.append(line)
         else:
@@ -214,7 +231,7 @@ def create_tf_dataset(dataframe, target_column, shuffle=True, batch_size=32):
 
 def get_normalization_layer(name, dataset):
   # Create a Normalization layer for the feature.
-  normalizer = layers.LayerNormalization(axis=None)
+  normalizer = layers.Normalization(axis=None)
   # Prepare a Dataset that only yields the feature.
   feature_ds = dataset.map(lambda x, y: x[name])
   # Learn the statistics of the data.
@@ -238,13 +255,13 @@ def get_category_encoding_layer(name, dataset, dtype, max_tokens=None):
   # layer, so you can use them, or include them in the Keras Functional model later.
   return lambda feature: encoder(index(feature))
 
-def build_tensor_flow_model(train_df, val_df, test_df, numerical_columns, categorical_colummns, name_model, size_of_batch=256):
+def encode_tensor_flow_features(train_df, val_df, test_df,target_column, numerical_columns, categorical_colummns,categorical_dictionary, size_of_batch=256):
     """ size of batch may vary, defaults to 256
     """
     # Creates the dataset
-    train_dataset = create_tf_dataset(train_df,shuffle=True,batch_size = size_of_batch)
-    val_dataset = create_tf_dataset(val_df,shuffle=False,batch_size = size_of_batch)
-    test_dataset = create_tf_dataset(test_df,shuffle=False,batch_size = size_of_batch)
+    train_dataset = create_tf_dataset(train_df,target_column, shuffle=True,batch_size = size_of_batch)
+    val_dataset = create_tf_dataset(val_df,target_column,shuffle=False,batch_size = size_of_batch)
+    test_dataset = create_tf_dataset(test_df,target_column,shuffle=False,batch_size = size_of_batch)
 
     # Display a set of batches
     [(train_features, label_batch)] = train_dataset.take(1)
@@ -263,21 +280,26 @@ def build_tensor_flow_model(train_df, val_df, test_df, numerical_columns, catego
         encoded_numeric_col = normalization_layer(numeric_col)
         all_inputs.append(numeric_col)
         encoded_features.append(encoded_numeric_col)
-    
-    # Encode the categorical features
+
+    # Encode the remaicategorical features
     for header in categorical_colummns:
-        categorical_col = tf.keras.Input(shape=(1,), name=header, dtype='string')
+        print('Start: ', header)
+        categorical_col = tf.keras.Input(shape=(1,), name=header, dtype=categorical_dictionary[header])
         encoding_layer = get_category_encoding_layer(name=header,
                                                     dataset=train_dataset,
-                                                    dtype='string',
+                                                    dtype=categorical_dictionary[header],
                                                     max_tokens=5)
         encoded_categorical_col = encoding_layer(categorical_col)
         all_inputs.append(categorical_col)
         encoded_features.append(encoded_categorical_col)
+        print('Passed: ', header)
 
-
-    # Create, compile and train the model
+    # Concatenate all encoded layers
     all_features = tf.keras.layers.concatenate(encoded_features)
+    return all_features, all_inputs, train_dataset, val_dataset, test_dataset
+    # Create, compile and train the model
+def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name, all_features, all_inputs):
+
     x = tf.keras.layers.Dense(32, activation="relu")(all_features)
     x = tf.keras.layers.Dropout(0.5)(x)
     output = tf.keras.layers.Dense(1)(x)
@@ -296,13 +318,10 @@ def build_tensor_flow_model(train_df, val_df, test_df, numerical_columns, catego
 
     # Test the model
     loss, accuracy = model.evaluate(test_dataset)
-    print("Accuracy", accuracy)
+    print("Loss: ", loss)
+    print("Accuracy: ", accuracy)
 
     # Save the model
-    if name_model:
-        model_name = input('Please name the model')
-    else: 
-        model_name = 'model'
     model.save(model_name)
 
     # Return the model, loss and accuracy
@@ -323,6 +342,49 @@ def perform_tensorflow_model_inference(model_name, sample):
     predictions = reloaded_model.predict(input_dict)
     prob = tf.nn.sigmoid(predictions[0])
     return prob
+
+def implement_test_data(dataframe, train, val, test,full_implementation = False):
+    # Sets the batch size
+    target_column = 'target'
+    batch_size = 5
+    train_ds = create_tf_dataset(train, target_column, shuffle=True, batch_size=batch_size)
+    # See arrangement of the data
+    [(train_features, label_batch)] = train_ds.take(1)
+    print('Every feature:', list(train_features.keys()))
+    print('A batch of ages:', train_features['Age'])
+    print('A batch of targets:', label_batch)
+    # Test the get_normalisation function
+    photo_count_col = train_features['PhotoAmt']
+    layer = get_normalization_layer('PhotoAmt', train_ds)
+    layer(photo_count_col)
+    # Test the get category encoding layer function
+    test_type_col = train_features['Type']
+    test_type_layer = get_category_encoding_layer(name='Type',
+                                              dataset=train_ds,
+                                              dtype='string')
+    test_type_layer(test_type_col)
+    test_age_col = train_features['Age']
+    test_age_layer = get_category_encoding_layer(name='Age',
+                                             dataset=train_ds,
+                                             dtype='int64',
+                                             max_tokens=5)
+    test_age_layer(test_age_col)
+    # Continues with a full implementation if necessary
+    if full_implementation:
+        print("Continues with full implmentation")
+        numerical_features = ['PhotoAmt', 'Fee']
+        categorical_features = ['Age','Type', 'Color1', 'Color2', 'Gender', 'MaturitySize',
+                    'FurLength', 'Vaccinated', 'Sterilized', 'Health', 'Breed1']
+        # Create categorical type dictionary
+        categorical_dictionary = dict.fromkeys(categorical_features,'string')
+        categorical_dictionary["Age"] = 'int64'
+        model_name = 'pets_test'
+        all_features, all_inputs, train_dataset, val_dataset, test_dataset = encode_tensor_flow_features(train, val, test, target_column, numerical_features, categorical_features,categorical_dictionary, size_of_batch=256)
+        model, loss, accuracy = build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name, all_features, all_inputs)
+    else:
+        print('Test functions complete')
+    return
+
 
 #################################################################################
 # Analytical/Calculus
@@ -372,21 +434,28 @@ def ranking_function():
 #################################################################################
 # Variables
 #################################################################################
+# Strings
+target_variable = 'ret'
 # Lists and arrays
-
+categorical_assignment = ['size_grp']
 # File paths
 data_source = 'data/combined_predictors_filtered_us.dta'
 csv_location = '/Volumes/Seagate/dataframes/'
 data_vm_directory = '/home/connormcdowall/local-data/'
 data_vm_dta = '/home/connormcdowall/local-data/train.dta'
 results_tables = '/home/connormcdowall/finance-honours/results/tables'
+list_of_columns = 'data/dataframe-columns.txt'
 # Binary (Set to True or False depending on the functions to run)
 # Data processing
 source_data = False
 split_vm_data = False
-process_vm_data = True
+process_vm_data = False
 use_sass = False
 need_dataframe = False
+# Tensorflow
+assign_features = False
+extract_test_data = True
+test_implementation = True
 # Analytical
 analytical = False
 rank_functions = False
@@ -395,6 +464,7 @@ rank_functions = False
 # Function Calls
 #################################################################################
 # Data processing
+#################################################################################
 # Source data from local drive
 if source_data:
     partition_data(data_source,csv_location)
@@ -410,10 +480,21 @@ if need_dataframe:
     print(data.info())
     print(data.head())
     
-    # Uses the stargazor package to produce a table for the summary statistics
 if use_sass:
     sass_access(data)
+#################################################################################
+# Tensorflow
+#################################################################################
+if assign_features:
+    numerical_features, categorical_features = create_feature_lists(list_of_columns, categorical_assignment)
 
+if extract_test_data:
+    df, train_data, val_data, test_data = download_test_data()
+    if test_implementation:
+        implement_test_data(df, train_data, val_data, test_data,full_implementation = True)
+#################################################################################
+# Analytical
+#################################################################################
 # Analytical function
 # Do analytical function
 if analytical:
