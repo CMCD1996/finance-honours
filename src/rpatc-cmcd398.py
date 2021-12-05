@@ -298,34 +298,187 @@ def encode_tensor_flow_features(train_df, val_df, test_df,target_column, numeric
     all_features = tf.keras.layers.concatenate(encoded_features)
     return all_features, all_inputs, train_dataset, val_dataset, test_dataset
     # Create, compile and train the model
-def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name, all_features, all_inputs):
+def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name, all_features, all_inputs,selected_optimizer, selected_loss, finance_configuration = True):
+    # Information pertaining to the tf.keras.layers.dense function
+    if finance_configuration:
+        # https://www.tensorflow.org/api_docs/python/tf/keras/layers/Dense
+        # Configure the neural network layers
+        x = tf.keras.layers.Dense(
+        units = 32, activation="relu", use_bias=True,
+        kernel_initializer='glorot_uniform',
+        bias_initializer='zeros', kernel_regularizer=None,
+        bias_regularizer=None, activity_regularizer=None, kernel_constraint=None,
+        bias_constraint=None)(all_features)
+        # List of activation functions
+        # 'relu' = Rectified linear unit activation
+        # 'sigmond' = Sigmoid activation function, sigmoid(x) = 1 / (1 + exp(-x)).
+        # 'softmax' = Softmax converts a vector of values to a probability distribution
+        # 'softplus' = Softplus activation function, softplus(x) = log(exp(x) + 1)
+        # 'softsign' = Softsign activation function, softsign(x) = x / (abs(x) + 1).
+        # 'tanh' = Hyperbolic tangent activation function.
+        # 'selu' = Scaled Exponential Linear Unit (SELU) activation function is defined as:
+        #   if x > 0: return scale * x
+        #   if x < 0: return scale * alpha * (exp(x) - 1)
+        # 'elu' = The exponential linear unit (ELU) with alpha > 0 is: 
+            # x if x > 0 and alpha * (exp(x) - 1) if x < 0 
+        # Note: The ELU hyperparameter alpha controls the value to which an ELU saturates 
+        # for negative net inputs. ELUs diminish the vanishing gradient effect.
 
-    x = tf.keras.layers.Dense(32, activation="relu")(all_features)
-    x = tf.keras.layers.Dropout(0.5)(x)
-    output = tf.keras.layers.Dense(1)(x)
-    model = tf.keras.Model(all_inputs, output)
+        # https://www.tensorflow.org/api_docs/python/tf/keras/layers/Dropout
+        # Dropout layer to randomly set input units to zero with a deterministic rate
+        # during each step of training to help prevent overfitting. Note:
+        # inputs not set to zero are scaled by 1/(1-rate) so the sum of all inputs is unchanged.
+        x = tf.keras.layers.Dropout(rate=0.5, noise_shape = None, seed = None)(x)
+        output = tf.keras.layers.Dense(1)(x)
+        # Configure the model (https://www.tensorflow.org/api_docs/python/tf/keras/Model)
+        model = tf.keras.Model(all_inputs, output)
+        # Initilises optimizer variables
+        lr = 0.001
+        eps =1e-07
+        rh = 0.95
+        mom = 0.0
+        b0 = 0.0
+        b1 = 0.9
+        b2 = 0.999
+        iav = 0.1
+        lrp = -0.5
+        l1rs = 0.0
+        l2rs = 0.0
+        l2srs = 0.0
+        ams= False 
+        cen = False
+        nes = False
+        #################################################################################
+        # Optimizer (https://www.tensorflow.org/api_docs/python/tf/keras/optimizers)
+        #################################################################################
+        if selected_optimizer == 'Adagrad':
+            opt = tf.keras.optimizers.Adagrad(
+            learning_rate=lr, initial_accumulator_value=iav, epsilon=eps, name='Adagrad')
+        if selected_optimizer == 'Adadelta':
+            opt = tf.keras.optimizers.Adadelta(
+            learning_rate=lr, rho=rh, epsilon=eps, name='Adadelta')
+        if selected_optimizer == 'Adam':
+            opt = tf.keras.optimizers.Adam(
+            learning_rate=lr, beta_1=b1, beta_2=b2, epsilon=eps, amsgrad=ams, name='Adam')
+        if selected_optimizer == 'Adamax': 
+            opt = tf.keras.optimizers.Adamax(
+            learning_rate=lr, beta_1=b1, beta_2=b2, epsilon=eps, name='Adamax')
+        if selected_optimizer == 'Ftrl':
+            opt = tf.keras.optimizers.Ftrl(
+            learning_rate=lr, learning_rate_power=lrp, initial_accumulator_value=iav,
+            l1_regularization_strength=l1rs, l2_regularization_strength=l2rs,
+            name='Ftrl', l2_shrinkage_regularization_strength=l2srs, beta=b0)
+        if selected_optimizer == 'Nadam':
+            opt = tf.keras.optimizers.Nadam(
+            learning_rate=lr, beta_1=b1, beta_2=b2, epsilon=eps, name='Nadam')
+        if selected_optimizer == 'RMSprop':
+            opt = tf.keras.optimizers.RMSprop(
+            learning_rate=lr, rho=rh, momentum=mom, epsilon=eps, centered=cen, name='RMSprop')
+        if selected_optimizer == 'SGD':
+            opt = tf.keras.optimizers.SGD(learning_rate=lr, momentum=mom, nesterov=nes, name='SGD')
+        #################################################################################
+        # Losses
+        #################################################################################
+        # Loss variables
+        red = tf.keras.losses.Reduction
+        flt = True
+        ls = 0.0
+        ax = -1
+        dta = 1.0
+        # Loss classes
+        if selected_loss == 'binary_crossentropy':
+            lf = tf.keras.losses.BinaryCrossentropy(
+            from_logits=flt, label_smoothing=ls, axis=ax, reduction=red, name='binary_crossentropy')
+        if selected_loss == 'categorical_crossentropy':
+            lf = tf.keras.losses.CategoricalCrossentropy(
+            from_logits=flt, label_smoothing=ls, axis=ax, reduction=red, name='categorical_crossentropy')
+        if selected_loss == 'cosine_similarity':
+            lf = tf.keras.losses.CosineSimilarity(
+            axis=-1, reduction=red, name='cosine_similarity')
+        if selected_loss == 'hinge':
+            lf = tf.keras.losses.Hinge(reduction=red, name='hinge')
+        if selected_loss == 'huber_loss':
+            lf = tf.keras.losses.Huber(delta=dta, reduction=red, name='huber_loss')
+        if selected_loss == 'kl_divergence': # loss = y_true * log(y_true / y_pred)
+            lf = tf.keras.losses.KLDivergence(reduction=red, name='kl_divergence')
+        if selected_loss == 'log_cosh': #logcosh = log((exp(x) + exp(-x))/2), where x is the error y_pred - y_true.
+            lf = tf.keras.losses.LogCosh(reduction=red, name='log_cosh')
+        if selected_loss == 'loss':
+            lf = tf.keras.losses.Loss(reduction=red, name=None)
+        if selected_loss == 'mean_absolute_error': # loss = abs(y_true - y_pred)
+            lf = tf.keras.losses.MeanAbsoluteError(reduction=red, name='mean_absolute_error')
+        if selected_loss == 'mean_absolute_percentage_error': # loss = 100 * abs(y_true - y_pred) / y_true
+            lf = tf.keras.losses.MeanAbsolutePercentageError(reduction=red, name='mean_absolute_percentage_error')
+        if selected_loss == 'mean_squared_error': # loss = square(y_true - y_pred)
+            lf = tf.keras.losses.MeanSquaredError(reduction=red, name='mean_squared_error')
+        if selected_loss == 'mean_squared_logarithmic_error': # loss = square(log(y_true + 1.) - log(y_pred + 1.))
+            lf = tf.keras.losses.MeanSquaredLogarithmicError(reduction=red, name='mean_squared_logarithmic_error')
+        if selected_loss == 'poisson': # loss = y_pred - y_true * log(y_pred)
+            lf = tf.keras.losses.Poisson(reduction=red, name='poisson')
+        if selected_loss == 'sparse_categorical_crossentropy':
+            lf = tf.keras.losses.SparseCategoricalCrossentropy(
+            from_logits=flt, reduction=red, name='sparse_categorical_crossentropy')
+        if selected_loss == 'squared_hinge': # loss = square(maximum(1 - y_true * y_pred, 0))
+            lf = tf.keras.losses.SquaredHinge(reduction=red, name='squared_hinge')
+        #################################################################################
+        # Metrics
+        #################################################################################
+        
+        #################################################################################
+        # Loss weights
+        #################################################################################
 
-    # Configure the model
-    model.compile(optimizer='adam',
-            loss=tf.keras.losses.BinaryCrossentropy(from_logits=True),
-            metrics=["accuracy"])
+        #################################################################################
+        # Metrics
+        #################################################################################
 
-    # Visualise the model via a connectivity graph
-    tf.keras.utils.plot_model(model, show_shapes=True, rankdir="LR")
+        #################################################################################
+        # Losses
+        #################################################################################
 
-    # Train the model
-    model.fit(train_dataset, epochs=10, validation_data=val_dataset)
-
-    # Test the model
-    loss, accuracy = model.evaluate(test_dataset)
-    print("Loss: ", loss)
-    print("Accuracy: ", accuracy)
-
-    # Save the model
-    model.save(model_name)
-
-    # Return the model, loss and accuracy
-    return model,loss, accuracy
+        #################################################################################
+        # Metrics
+        #################################################################################
+        # Establishes the compiler
+        model.compile(
+            optimizer=opt, loss=tf.keras.losses.BinaryCrossentropy(from_logits=True), metrics=["accuracy"], loss_weights=None,
+            weighted_metrics=None, run_eagerly=None, steps_per_execution=None)
+        # Optimizer
+        # tf.keras.optimizers
+        tf.keras.utils.plot_model(model, show_shapes=True, rankdir="LR")
+        # Train the model
+        model.fit(train_dataset, epochs=10, validation_data=val_dataset)
+        # Test the model
+        loss, accuracy = model.evaluate(test_dataset)
+        print("Loss: ", loss)
+        print("Accuracy: ", accuracy)
+        # Save the model
+        model.save(model_name)
+        # Return the model, loss and accuracy
+        return model,loss, accuracy
+    else:
+        # Set up neural net layers
+        x = tf.keras.layers.Dense(32, activation="relu")(all_features)
+        x = tf.keras.layers.Dropout(rate=0.5, noise_shape = None, seed = None)(x)
+        output = tf.keras.layers.Dense(1)(x)
+        # Configure the model
+        model = tf.keras.Model(all_inputs, output)
+        model.compile(optimizer='adam',
+                loss=tf.keras.losses.BinaryCrossentropy(from_logits=True),
+                metrics=["accuracy"])
+        # Visualise the model via a connectivity graph
+        tf.keras.utils.plot_model(model, show_shapes=True, rankdir="LR")
+        # Train the model
+        model.fit(train_dataset, epochs=10, validation_data=val_dataset)
+        # Test the model
+        loss, accuracy = model.evaluate(test_dataset)
+        print("Loss: ", loss)
+        print("Accuracy: ", accuracy)
+        # Save the model
+        model.save(model_name)
+        # Return the model, loss and accuracy
+        return model,loss, accuracy
+        return model,loss, accuracy
 
 def perform_tensorflow_model_inference(model_name, sample):
     """ Perform evaluations from model (must be configured)
@@ -379,8 +532,9 @@ def implement_test_data(dataframe, train, val, test,full_implementation = False)
         categorical_dictionary = dict.fromkeys(categorical_features,'string')
         categorical_dictionary["Age"] = 'int64'
         model_name = 'pets_test'
+        selected_optimizer = 'adam'
         all_features, all_inputs, train_dataset, val_dataset, test_dataset = encode_tensor_flow_features(train, val, test, target_column, numerical_features, categorical_features,categorical_dictionary, size_of_batch=256)
-        model, loss, accuracy = build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name, all_features, all_inputs)
+        model, loss, accuracy = build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name, all_features, all_inputs, selected_optimizer, finance_configuration = False)
     else:
         print('Test functions complete')
     return
