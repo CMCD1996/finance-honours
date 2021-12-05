@@ -176,6 +176,20 @@ def sass_access(dataframe):
 # Utility method to use pandas dataframe to create a tf.data dataset
 # Adapted from https://www.tensorflow.org/tutorials/structured_data/feature_columns#use_pandas_to_create_a_dataframe
 # Adapted from https://www.tensorflow.org/tutorials/structured_data/preprocessing_layers
+def create_variable_lists(list_of_columns, categorical_assignment):
+    # Assignn variables
+    categorical_features = []
+    numerical_features = []
+    file = open(list_of_columns,'r')
+    lines = file.readlines()
+    for line in lines:
+        if line in categorical_assignment:
+            categorical_features.append(line)
+        else:
+            numerical_features.append(line)
+    # Returns numerical and categorical features
+    return numerical_features, categorical_features
+
 def create_tf_dataset(dataframe, target_column, shuffle=True, batch_size=32):
     """[summary]
 
@@ -358,6 +372,8 @@ def ranking_function():
 #################################################################################
 # Variables
 #################################################################################
+# Lists and arrays
+
 # File paths
 data_source = 'data/combined_predictors_filtered_us.dta'
 csv_location = '/Volumes/Seagate/dataframes/'
