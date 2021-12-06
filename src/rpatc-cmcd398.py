@@ -1,5 +1,6 @@
 # Imports useful python packages
 # Analytical
+from pandas.core.base import NoNewAttributesMixin
 import sympy as sym # Symbolic package for calculus
 # Essential
 import numpy as np
@@ -420,7 +421,6 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
             from_logits=flt, reduction=red, name='sparse_categorical_crossentropy')
         if selected_loss == 'squared_hinge': # loss = square(maximum(1 - y_true * y_pred, 0))
             lf = tf.keras.losses.SquaredHinge(reduction=red, name='squared_hinge')
-        
         #################################################################################
         # Metrics
         #################################################################################
@@ -562,11 +562,13 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         # losses, weighted by the loss_weights coefficients. If a list, it is expected 
         # to have a 1:1 mapping to the model's outputs. If a dict, it is expected to map 
         # output names (strings) to scalar coefficients.
+        lw = None
         #################################################################################
         # Weighted Metrics
         #################################################################################
         # List of metrics to be evaluated and weighted by sample_weight or class_weight 
         # during training and testing.
+        wm = None
         #################################################################################
         # Run eagerly
         #################################################################################
@@ -574,6 +576,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         # tf.function. Recommended to leave this as None unless your Model cannot be run 
         # inside a tf.function. run_eagerly=True is not supported when using 
         # tf.distribute.experimental.ParameterServerStrategy.
+        regly = None
         #################################################################################
         # Steps_per_execution
         #################################################################################
@@ -585,24 +588,89 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         # epoch. Note that if steps_per_execution is set to N, Callback.on_batch_begin 
         # and Callback.on_batch_end methods will only be called every N batches 
         # (i.e. before/after each tf.function execution).
+        spe = None
         #################################################################################
+        # Compiler
+        #################################################################################
+        # Compiler variables
         # Establishes the compiler
         model.compile(
-            optimizer=opt, loss=tf.keras.losses.BinaryCrossentropy(from_logits=True), metrics=["accuracy"], loss_weights=None,
-            weighted_metrics=None, run_eagerly=None, steps_per_execution=None)
-        # Optimizer
-        # tf.keras.optimizers
-        tf.keras.utils.plot_model(model, show_shapes=True, rankdir="LR")
-        # Train the model
-        model.fit(train_dataset, epochs=10, validation_data=val_dataset)
-        # Test the model
-        loss, accuracy = model.evaluate(test_dataset)
+            optimizer=opt, loss=lf, metrics=met, loss_weights=lw,
+            weighted_metrics=wm, run_eagerly=regly, steps_per_execution=spe)
+        #################################################################################
+        # Visualise model (https://www.tensorflow.org/api_docs/python/tf/keras/utils/plot_model)
+        #################################################################################
+        # Visualisation variables
+        to_file = 'results/plots/tensorflow-visualisations/'+ model_name +'.png'
+        show_shapes = True
+        show_dtype = False
+        show_layer_names = True
+        rankdir = 'LR' # TB (Top Bottom), LR (Left Right)
+        expand_nested = False
+        dpi = 96
+        layer_range = None
+        show_layer_activations = False
+        tf.keras.utils.plot_model(model, to_file, show_shapes, show_dtype,
+        show_layer_names, rankdir, expand_nested, dpi,layer_range, show_layer_activations)
+        #################################################################################
+        # Model.fir (https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit)
+        #################################################################################
+        # Fit variables
+        x = train_dataset
+        y = None
+        batch_size = None
+        epochs=10
+        verbose = 'auto'
+        callbacks=None
+        validation_split=0.0
+        validation_data=val_dataset
+        shuffle=True,
+        class_weight=None
+        sample_weight=None
+        initial_epoch=0
+        steps_per_epoch=None
+        validation_steps=None
+        validation_batch_size=None
+        validation_freq=1,
+        max_queue_size=10
+        workers=1
+        use_multiprocessing=False
+        # Fit the model
+        model.fit(x, y, batch_size, epochs, verbose,
+        callbacks, validation_split, validation_data, shuffle,
+        class_weight, sample_weight, initial_epoch, steps_per_epoch,
+        validation_steps, validation_batch_size, validation_freq,
+        max_queue_size, workers, use_multiprocessing)
+        #################################################################################
+        # Model.evaluate (https://www.tensorflow.org/api_docs/python/tf/keras/Model#evaluate)
+        #################################################################################
+        # Evaluation variables
+        x = test_dataset
+        y = None#Only use if target variables not specified in dataset, must align with x.
+        batch_size = None
+        sample_weight = None
+        steps = None
+        verbose = 1 # 0 or 1. Verbosity mode. 0 = silent, 1 = progress bar.
+        sample_weight = None
+        steps = None
+        callbacks = None
+        max_queue_size = 10
+        workers = 1
+        use_multiprocessing = False
+        return_dict = False
+        # Model evaluation
+        model.evaluate(x, y, batch_size, verbose, sample_weight, steps,
+        callbacks, max_queue_size, workers, use_multiprocessing,
+        return_dict)
+        #################################################################################
+        loss, metrics = model.evaluate(test_dataset)
         print("Loss: ", loss)
-        print("Accuracy: ", accuracy)
+        print("Metric Descriptions: ", model.metrics_names)
+        print("Metric Values: ", metrics)
         # Save the model
-        model.save(model_name)
+        model.save('results/plots/tensorflow-models/'+model_name)
         # Return the model, loss and accuracy
-        return model,loss, accuracy
+        return model,loss, metrics
     else:
         # Set up neural net layers
         x = tf.keras.layers.Dense(32, activation="relu")(all_features)
@@ -618,6 +686,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         # Train the model
         model.fit(train_dataset, epochs=10, validation_data=val_dataset)
         # Test the model
+        
         loss, accuracy = model.evaluate(test_dataset)
         print("Loss: ", loss)
         print("Accuracy: ", accuracy)
