@@ -298,7 +298,7 @@ def encode_tensor_flow_features(train_df, val_df, test_df,target_column, numeric
     all_features = tf.keras.layers.concatenate(encoded_features)
     return all_features, all_inputs, train_dataset, val_dataset, test_dataset
     # Create, compile and train the model
-def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name, all_features, all_inputs,selected_optimizer, selected_loss, finance_configuration = True):
+def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name, all_features, all_inputs,selected_optimizer, selected_loss,selected_metric, finance_configuration = True):
     # Information pertaining to the tf.keras.layers.dense function
     if finance_configuration:
         # https://www.tensorflow.org/api_docs/python/tf/keras/layers/Dense
@@ -420,24 +420,171 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
             from_logits=flt, reduction=red, name='sparse_categorical_crossentropy')
         if selected_loss == 'squared_hinge': # loss = square(maximum(1 - y_true * y_pred, 0))
             lf = tf.keras.losses.SquaredHinge(reduction=red, name='squared_hinge')
+        
         #################################################################################
         # Metrics
         #################################################################################
-        
+        # Metric variables
+        meaniou_num_classes = 2
+        def mean_metric_wrapper_function(y_true, y_pred):
+            return tf.cast(tf.math.equal(y_true, y_pred), tf.float32)
+        mean_relative_error_normalizer = [1,2,3,4] # Must be the same size as predictions 
+        recall = 0.5 # A scalar value in range [0, 1]
+        precision = 0.5 # A scalar value in range [0, 1]
+        specificity = 0.5 # A scalar value in range [0, 1]
+        sensitivity = 0.5 # A scalar value in range [0, 1]
+        # Metric Classes
+        if selected_metric == 'Auc':
+            met = tf.keras.metrics.AUC(
+            num_thresholds=200, curve='ROC',
+            summation_method='interpolation', name=None, dtype=None,
+            thresholds=None, multi_label=False, num_labels=None, label_weights=None,
+            from_logits=False)
+        if selected_metric == 'accuracy':
+            met = tf.keras.metrics.Accuracy(
+            name='accuracy', dtype=None)
+        if selected_metric == 'binary_accuracy':
+            met = tf.keras.metrics.BinaryAccuracy(
+            name='binary_accuracy', dtype=None, threshold=0.5)
+        if selected_metric == 'binary_crossentropy':
+            met = tf.keras.metrics.BinaryCrossentropy(
+            name='binary_crossentropy', dtype=None, from_logits=False,
+            label_smoothing=0)
+        if selected_metric == 'categorical_accuracy':
+            met = tf.keras.metrics.CategoricalAccuracy(
+            name='categorical_accuracy', dtype=None)
+        if selected_metric == 'categorical_crossentropy':
+            met = tf.keras.metrics.CategoricalCrossentropy(
+            name='categorical_crossentropy', dtype=None, from_logits=False,
+            label_smoothing=0)
+        if selected_metric == 'categorical_hinge':
+            met = tf.keras.metrics.CategoricalHinge(
+            name='categorical_hinge', dtype=None)
+        if selected_metric == 'cosine_similarity':
+            tf.keras.metrics.CosineSimilarity(
+            name='cosine_similarity', dtype=None, axis=-1)
+        if selected_metric == 'Fn':
+            met = tf.keras.metrics.FalseNegatives(
+                thresholds=None, name=None, dtype=None)
+        if selected_metric == 'Fp':
+            met = tf.keras.metrics.FalsePositives(
+            thresholds=None, name=None, dtype=None)
+        if selected_metric == 'hinge':
+            met = tf.keras.metrics.Hinge(
+            name='hinge', dtype=None)
+        if selected_metric == 'kullback_leibler_divergence':
+            met = tf.keras.metrics.KLDivergence(
+            name='kullback_leibler_divergence', dtype=None)
+        if selected_metric == 'logcosh':
+            met = tf.keras.metrics.LogCoshError(
+            name='logcosh', dtype=None)
+        if selected_metric == 'mean':
+            met = tf.keras.metrics.Mean(
+            name='mean', dtype=None)
+        if selected_metric == 'mean_absolute_error':
+            met = tf.keras.metrics.MeanAbsoluteError(
+            name='mean_absolute_error', dtype=None)
+        if selected_metric == 'mean_absolute_percentage_error':
+            met = tf.keras.metrics.MeanAbsolutePercentageError(
+            name='mean_absolute_percentage_error', dtype=None)
+        if selected_metric == 'meaniou':
+            met = tf.keras.metrics.MeanIoU(
+            num_classes=meaniou_num_classes, name=None, dtype=None)
+        if selected_metric == 'mean_metric_wrapper':
+            met = tf.keras.metrics.MeanMetricWrapper(
+            fn=mean_metric_wrapper_function, name=None, dtype=None)
+        if selected_metric == 'mean_relative_error':
+            met = tf.keras.metrics.MeanRelativeError(
+            normalizer = mean_relative_error_normalizer, name=None, dtype=None)
+        if selected_metric == 'mean_squared_error':
+            met = tf.keras.metrics.MeanSquaredError(
+            name='mean_squared_error', dtype=None)
+        if selected_metric == 'mean_squared_logarithmic_error':
+            met = tf.keras.metrics.MeanSquaredLogarithmicError(
+            name='mean_squared_logarithmic_error', dtype=None)
+        if selected_metric == 'mean_tensor':
+            met = tf.keras.metrics.MeanTensor(
+            name='mean_tensor', dtype=None, shape=None)
+        if selected_metric == 'metric':
+            met = tf.keras.metrics.Metric(
+            name=None, dtype=None)
+        if selected_metric == 'poisson':
+            met = tf.keras.metrics.Poisson(
+            name='poisson', dtype=None)
+        if selected_metric == 'precision':
+            met = tf.keras.metrics.Precision(
+            thresholds=None, top_k=None, class_id=None, name=None, dtype=None)
+        if selected_metric == 'precision_at_recall':
+            met = tf.keras.metrics.PrecisionAtRecall(
+            recall, num_thresholds=200, class_id=None, name=None, dtype=None)
+        if selected_metric == 'recall':
+            met = tf.keras.metrics.Recall(
+            thresholds=None, top_k=None, class_id=None, name=None, dtype=None)
+        if selected_metric == 'recall_at_precision':
+            met = tf.keras.metrics.RecallAtPrecision(
+            precision, num_thresholds=200, class_id=None, name=None, dtype=None)
+        if selected_metric == 'root_mean_squared_error':
+            met = tf.keras.metrics.RootMeanSquaredError(
+            name='root_mean_squared_error', dtype=None)
+        if selected_metric == 'sensitivity_at_specificity':
+            met = tf.keras.metrics.SensitivityAtSpecificity(
+            specificity, num_thresholds=200, class_id=None, name=None, dtype=None)
+        if selected_metric == 'sparse_categorical_accuracy':
+            met = tf.keras.metrics.SparseCategoricalAccuracy(
+            name='sparse_categorical_accuracy', dtype=None)
+        if selected_metric == 'sparse_top_k_categorical_accuracy':
+            met = tf.keras.metrics.SparseTopKCategoricalAccuracy(
+            k=5, name='sparse_top_k_categorical_accuracy', dtype=None)
+        if selected_metric == 'specificty_at_sensitivity':
+            met = tf.keras.metrics.SpecificityAtSensitivity(
+            sensitivity, num_thresholds=200, class_id=None, name=None, dtype=None)
+        if selected_metric == 'squared_hinge':
+            met = tf.keras.metrics.SquaredHinge(
+            name='squared_hinge', dtype=None)
+        if selected_metric == 'sum':
+            met = tf.keras.metrics.Sum(
+            name='sum', dtype=None)
+        if selected_metric == 'top_k_categorical_accuracy':
+            met = tf.keras.metrics.TopKCategoricalAccuracy(
+            k=5, name='top_k_categorical_accuracy', dtype=None)
+        if selected_metric == 'Tn':
+            met = tf.keras.metrics.TrueNegatives(
+            thresholds=None, name=None, dtype=None)
+        if selected_metric == 'Tp':
+            met = tf.keras.metrics.TruePositives(
+            thresholds=None, name=None, dtype=None)
         #################################################################################
         # Loss weights
         #################################################################################
-
+        # Optional list or dictionary specifying scalar coefficients (Python floats) to 
+        # weight the loss contributions of different model outputs. The loss value that 
+        # will be minimized by the model will then be the weighted sum of all individual 
+        # losses, weighted by the loss_weights coefficients. If a list, it is expected 
+        # to have a 1:1 mapping to the model's outputs. If a dict, it is expected to map 
+        # output names (strings) to scalar coefficients.
         #################################################################################
-        # Metrics
+        # Weighted Metrics
         #################################################################################
-
+        # List of metrics to be evaluated and weighted by sample_weight or class_weight 
+        # during training and testing.
         #################################################################################
-        # Losses
+        # Run eagerly
         #################################################################################
-
+        # Bool. Defaults to False. If True, this Model's logic will not be wrapped in a 
+        # tf.function. Recommended to leave this as None unless your Model cannot be run 
+        # inside a tf.function. run_eagerly=True is not supported when using 
+        # tf.distribute.experimental.ParameterServerStrategy.
         #################################################################################
-        # Metrics
+        # Steps_per_execution
+        #################################################################################
+        # Int. Defaults to 1. The number of batches to run during each tf.function call. 
+        # Running multiple batches inside a single tf.function call can greatly improve 
+        # performance on TPUs or small models with a large Python overhead. At most, 
+        # one full epoch will be run each execution. If a number larger than the size 
+        # of the epoch is passed, the execution will be truncated to the size of the 
+        # epoch. Note that if steps_per_execution is set to N, Callback.on_batch_begin 
+        # and Callback.on_batch_end methods will only be called every N batches 
+        # (i.e. before/after each tf.function execution).
         #################################################################################
         # Establishes the compiler
         model.compile(
@@ -534,7 +681,7 @@ def implement_test_data(dataframe, train, val, test,full_implementation = False)
         model_name = 'pets_test'
         selected_optimizer = 'adam'
         all_features, all_inputs, train_dataset, val_dataset, test_dataset = encode_tensor_flow_features(train, val, test, target_column, numerical_features, categorical_features,categorical_dictionary, size_of_batch=256)
-        model, loss, accuracy = build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name, all_features, all_inputs, selected_optimizer, finance_configuration = False)
+        model, loss, accuracy = build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name, all_features, all_inputs, selected_optimizer,selected_loss, selected_metric, finance_configuration = False)
     else:
         print('Test functions complete')
     return
@@ -592,6 +739,21 @@ def ranking_function():
 target_variable = 'ret'
 # Lists and arrays
 categorical_assignment = ['size_grp']
+# Tensorflow configurations
+optimzers = ['Adagrad','Adadelta','Adam','Adamax','Ftrl','Nadam','RMSprop','SGD']
+losses = ['binary_crossentropy','categorical_crossentropy','cosine_similarity',
+        'hinge','huber_loss','kl_divergence','log_cosh','loss','mean_absolute_error','mean_absolute_percentage_error',
+        'mean_squared_error','mean_squared_logarithmic_error','poisson','sparse_categorical_crossentropy',
+        'squared_hinge']
+metrics = ['Auc','accuracy','binary_accuracy','binary_crossentropy', 'categorical_accuracy',
+        'categorical_crossentropy','categorical_hinge','cosine_similarity','Fn','Fp','hinge',
+        'kullback_leibler_divergence','logcosh','mean','mean_absolute_error',
+        'mean_absolute_percentage_error','meaniou', 'mean_metric_wrapper',
+        'mean_relative_error','mean_squared_error', 'mean_squared_logarithmic_error',
+         'mean_tensor','metric','poisson','precision','precision_at_recall',
+         'recall','recall_at_precision','root_mean_squared_error','sensitivity_at_specificity',
+        'sparse_categorical_accuracy','sparse_top_k_categorical_accuracy','squared_hinge',
+        'sum','top_k_categorical_accuracy','Tn','Tp']
 # File paths
 data_source = 'data/combined_predictors_filtered_us.dta'
 csv_location = '/Volumes/Seagate/dataframes/'
