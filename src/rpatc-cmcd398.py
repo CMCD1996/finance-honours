@@ -876,7 +876,6 @@ enable_autodiff = True
 # Analytical
 analytical = False
 rank_functions = False
-
 #################################################################################
 # Function Calls
 #################################################################################
@@ -891,12 +890,10 @@ if split_vm_data:
 # Process vm data for Tensorflow
 if process_vm_data:
     process_vm_dataset(data_vm_dta,save_statistics=False)
-
 if need_dataframe:
     data = create_dataframes(csv_location,False)
     print(data.info())
     print(data.head())
-    
 if use_sass:
     sass_access(data)
 #################################################################################
@@ -916,7 +913,7 @@ if enable_autodiff:
 # Analytical function
 # Do analytical function
 if analytical:
-        analytical_analysis()
+    analytical_analysis()
 # Creates monotonic ranking function plots
 if rank_functions:
     ranking_function()
