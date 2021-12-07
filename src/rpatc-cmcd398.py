@@ -773,6 +773,7 @@ def implement_test_data(dataframe, train, val, test,full_implementation = False)
     else:
         print('Test functions complete')
     return
+
 def autodiff_guide(example):
     # Uses the autodiff functionality to test custom gradients with gradient tape
     # Extracted from
@@ -804,6 +805,9 @@ def autodiff_guide(example):
             loss = tf.reduce_mean(y**2)
         # Calculate gradients with respect to every trainable variable
         grad = tape.gradient(loss, layer.trainable_variables)
+        # Print the outcomes of the simple model analysis
+        for var, g in zip(layer.trainable_variables, grad):
+            print(f'{var.name}, shape: {g.shape}')
     return
 #################################################################################
 # Analytical/Calculus
