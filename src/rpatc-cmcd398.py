@@ -773,20 +773,38 @@ def implement_test_data(dataframe, train, val, test,full_implementation = False)
     else:
         print('Test functions complete')
     return
-
-def create_custom_gradients():
+def autodiff_guide(example):
     # Uses the autodiff functionality to test custom gradients with gradient tape
-    # Simple example
-    print('Starting create custom gradients')
-    x = tf.Variable(3.0)
-    with tf.GradientTape() as tape:
-        y = x**2
-    
-    # dy = 2x * dx
-    dy_dx = tape.gradient(y,x)
-    dy_dx.numpy()
+    # Extracted from
+    if example == 'simple':
+        # Simple example
+        print('Starting Simple Example')
+        x = tf.Variable(3.0)
+        with tf.GradientTape() as tape:
+            y = x**2
+        # dy = 2x * dx
+        dy_dx = tape.gradient(y,x)
+        print(dy_dx.numpy())
+    if example == 'simple_tensor':
+        w = tf.Variable(tf.random.normal((3, 2)), name='w')
+        b = tf.Variable(tf.zeros(2, dtype=tf.float32), name='b')
+        x = [[1., 2., 3.]]
+        with tf.GradientTape(persistent=True) as tape:
+            y =x @ w + b
+        loss = tf.reduce_mean(y**2)
+        [dl_dw, dl_db] = tape.gradient(loss, [w, b])
+        print(w.shape)
+        print(dl_dw.shape)
+    if example == 'simple_model':
+        layer = tf.keras.layers.Dense(2, activation='relu')
+        x = tf.constant([[1., 2., 3.]])
+        with tf.GradientTape() as tape:
+            # Forward pass
+            y = layer(x)
+            loss = tf.reduce_mean(y**2)
+        # Calculate gradients with respect to every trainable variable
+        grad = tape.gradient(loss, layer.trainable_variables)
     return
-
 #################################################################################
 # Analytical/Calculus
 #################################################################################
@@ -831,7 +849,6 @@ def ranking_function():
     plt.title('Ranking: Monotonic Functions')
     plt.savefig('results/plots/monotonic-ranking.png')
     return
-
 #################################################################################
 # Variables
 #################################################################################
@@ -906,7 +923,7 @@ if extract_test_data:
     if test_implementation:
         implement_test_data(df, train_data, val_data, test_data,full_implementation = True)
 if enable_autodiff:
-    create_custom_gradients()
+    autodiff_guide(example='simple_model')
 #################################################################################
 # Analytical
 #################################################################################
