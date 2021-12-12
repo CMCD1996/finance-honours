@@ -32,7 +32,9 @@ from statsmodels.regression.rolling import RollingOLS # Use factor loadings
 import sympy as sy # convert latex code
 import scipy as sc # Scipy packages
 # import tabulate as tb # Create tables in python
-import itertools as it # Find combinations of lists
+import itertools as it
+
+from tensorflow.python.ops.gen_array_ops import split # Find combinations of lists
 
 #################################################################################
 # Function Calls
@@ -67,7 +69,8 @@ def split_vm_dataset(data_vm_directory,create_statistics,split_new_data, create_
     Args:
         data_vm_directory (str): Directory location of data stored on the VM instance.
     """
-    
+    # Create Dataframe from the entire dataset
+    # total_df = pd.read_stata(data_vm_directory + 'combined_predictors_filtered_us.dta')
     # Create summary statisitics for the entire dataset
     if create_statistics == True:
         # Read data into one dataframe on python
@@ -76,11 +79,19 @@ def split_vm_dataset(data_vm_directory,create_statistics,split_new_data, create_
         data_stats.T.to_latex('results/tables/summary-statistics.txt')
     # Create training and testing dataframes for Tensorflow
     if split_new_data == True:
-        train_df = total_df[total_df["train"] == 1]
-        test_df = total_df[total_df["test"] == 1]
+        train_df = pd.DataFrame()
+        test_df = pd.DataFrame()
+        total_df = pd.read_stata(data_vm_directory + 'combined_predictors_filtered_us.dta', chunksize =100000)
+        for chunk in total_df:
+            # train_df = train_df.append(chunk[chunk["train"] == 1])
+            test_df = test_df.append(chunk[chunk["test"] == 1])
+        # train_df = total_df[total_df["train"] == 1]
+        # test_df = total_df[total_df["test"] == 1]
         # Convert training and testing sets to stata files
         if create_validation_set == True:
             train_new_df,val_df = train_test_split(train_df,test_size=0.2)
+            print(train_df.info())
+            print(val_df.info())
             train_new_df.to_stata(data_vm_directory + 'train.dta')
             val_df.to_stata(data_vm_directory + 'val.dta')
         else:
@@ -92,33 +103,38 @@ def process_vm_dataset(data_vm_dta, save_statistics):
     """ This script processes the training and testing datasets for Tensorflow
     following the classify structured data with feature columns tutorial
     """
-    # Load the test and train datasets into dataframes
-    df = pd.read_stata(data_vm_dta)
-    print('Number of instances: ',len(df))
-    # Find the dtypes of the dataframe and save them to a data column
-    if save_statistics==True:
-        # Saves dtypes for column dataframe
-        np.savetxt(r'/home/connormcdowall/finance-honours/results/statistics/factor-types.txt', df.dtypes, fmt='%s')
-        # Saves information on missing values in the dataframe
-        np.savetxt(r'/home/connormcdowall/finance-honours/results/statistics/missing-values.txt', df.isna().sum(), fmt='%s')
-    # Gets list of dataframe column values
-    column_list = list(df.columns.values)
-    # Gets list of unique dataframe dtype 
-    data_type_list = list(df.dtypes.unique())
-    # Gets unique list of size_grp
-    size_grp_list = list(df['size_grp'].unique())
-    # Removes the mth column/factor from the dataframe given datatime format
-    df['mth'] = pd.to_numeric(df['mth'],downcast='float')
-    # df.drop(columns=['mth'])
-    for column in column_list:
-        if column != 'size_grp':
-            # Sets each column value to float type
-            df.astype({column:'float64'}).dtypes
-            # Impute missing values with medium values (replace with mean command if necessary)
-            df[column].fillna(df[column].median(), inplace = True)
+    df_full = pd.DataFrame()
+    # Load the test and train datasets into dataframes in chunks
+    # df = pd.read_stata(data_vm_dta)
+    subset = pd.read_stata(data_vm_dta, chunksize = 100000)
+    for df in subset:
+        print('Number of instances: ',len(df))
+        # Find the dtypes of the dataframe and save them to a data column
+        if save_statistics==True:
+            # Saves dtypes for column dataframe
+            np.savetxt(r'/home/connormcdowall/finance-honours/results/statistics/factor-types.txt', df.dtypes, fmt='%s')
+            # Saves information on missing values in the dataframe
+            np.savetxt(r'/home/connormcdowall/finance-honours/results/statistics/missing-values.txt', df.isna().sum(), fmt='%s')
+        # Gets list of dataframe column values
+        column_list = list(df.columns.values)
+        # Gets list of unique dataframe dtype 
+        data_type_list = list(df.dtypes.unique())
+        # Gets unique list of size_grp
+        size_grp_list = list(df['size_grp'].unique())
+        # Removes the mth column/factor from the dataframe given datatime format
+        df['mth'] = pd.to_numeric(df['mth'],downcast='float')
+        # df.drop(columns=['mth'])
+        for column in column_list:
+            if column != 'size_grp':
+                # Sets each column value to float type
+                df[column] = df.astype({column:'float64'}).dtypes
+                # Impute missing values with medium values (replace with mean command if necessary)
+                df[column].fillna(df[column].median(), inplace = True)
+                # Append values to the dataset
+                df_full = df_full.append(df)
     # Get list of unique values for 
-    print(df.info(verbose=True))
-    return df
+    print(df_full.info(verbose=True))
+    return df_full
 
 def create_dataframes(csv_location,multi_csv):
     """ Function to create 
@@ -834,7 +850,23 @@ def autodiff_guide(example):
     
     return
 def autodiff_implementation():
+    """ Implments all the project functionality
 
+    """
+    # Develop this function to test autodiff functionality
+
+    return
+def project_analysis(split_data = False):
+    # Split the initial vm dataset
+    if split_data:
+        split_vm_dataset(data_vm_directory,create_statistics=False,split_new_data=True, create_validation_set=True)
+    # Creates the training, validation and testing dataframes
+    test_df = process_vm_dataset(data_vm_directory + 'test.dta',save_statistics=False)
+    train_df = process_vm_dataset(data_vm_directory + 'train.dta',save_statistics=False)
+    val_df = process_vm_dataset(data_vm_directory + 'val.dta',save_statistics=False)
+    print(train_df.info())
+    print(val_df.info())
+    print(test_df.info())
     return
 #################################################################################
 # Analytical/Calculus
@@ -906,7 +938,7 @@ metrics = ['Auc','accuracy','binary_accuracy','binary_crossentropy', 'categorica
 data_source = 'data/combined_predictors_filtered_us.dta'
 csv_location = '/Volumes/Seagate/dataframes/'
 data_vm_directory = '/home/connormcdowall/local-data/'
-data_vm_dta = '/home/connormcdowall/local-data/train.dta'
+data_vm_dta = '/home/connormcdowall/local-data/combined_predictors_filtered_us.dta'
 results_tables = '/home/connormcdowall/finance-honours/results/tables'
 list_of_columns = 'data/dataframe-columns.txt'
 # Binary (Set to True or False depending on the functions to run)
@@ -925,7 +957,7 @@ enable_autodiff = False
 analytical = False
 rank_functions = False
 # Research Proposal Analysis
-project_analysis = True
+begin_analysis = True
 #################################################################################
 # Function Calls - Testing
 #################################################################################
@@ -970,8 +1002,7 @@ if rank_functions:
 ##################################################################################
 # Function Call - Analysis
 ##################################################################################
-if project_analysis:
-    # Creates the training, validation and testing dataframes
-    df = process_vm_dataset(data_vm_directory,save_statistics=False)
-    print(df.head())
+if begin_analysis:
+    project_analysis(split_data=False)
+    
 
