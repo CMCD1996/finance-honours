@@ -823,6 +823,7 @@ def autodiff_guide(example):
         for g in grad:
             print(g)
         [var.name for var in tape.watched_variables()]
+    if example == 'control_tensor_tape':
         x = tf.constant(3.0)
         with tf.GradientTape() as tape:
             tape.watch(x)
@@ -830,6 +831,10 @@ def autodiff_guide(example):
         # dy = 2x * dx
         dy_dx = tape.gradient(y, x)
         print(dy_dx.numpy())
+    
+    return
+def autodiff_implementation():
+
     return
 #################################################################################
 # Analytical/Calculus
@@ -915,12 +920,14 @@ need_dataframe = False
 assign_features = False
 extract_test_data = False
 test_implementation = False
-enable_autodiff = True
+enable_autodiff = False
 # Analytical
 analytical = False
 rank_functions = False
+# Research Proposal Analysis
+project_analysis = True
 #################################################################################
-# Function Calls
+# Function Calls - Testing
 #################################################################################
 # Data processing
 #################################################################################
@@ -960,4 +967,11 @@ if analytical:
 # Creates monotonic ranking function plots
 if rank_functions:
     ranking_function()
+##################################################################################
+# Function Call - Analysis
+##################################################################################
+if project_analysis:
+    # Creates the training, validation and testing dataframes
+    df = process_vm_dataset(data_vm_directory,save_statistics=False)
+    print(df.head())
 
