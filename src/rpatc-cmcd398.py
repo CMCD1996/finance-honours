@@ -130,8 +130,8 @@ def process_vm_dataset(data_vm_dta, save_statistics):
                 df[column] = df.astype({column:'float64'}).dtypes
                 # Impute missing values with medium values (replace with mean command if necessary)
                 df[column].fillna(df[column].median(), inplace = True)
-                # Append values to the dataset
-                df_full = df_full.append(df)
+        # Append values to the dataset
+        df_full = df_full.append(df)
     # Get list of unique values for 
     print(df_full.info(verbose=True))
     return df_full
@@ -272,7 +272,7 @@ def get_category_encoding_layer(name, dataset, dtype, max_tokens=None):
   # layer, so you can use them, or include them in the Keras Functional model later.
   return lambda feature: encoder(index(feature))
 
-def encode_tensor_flow_features(train_df, val_df, test_df,target_column, numerical_columns, categorical_colummns,categorical_dictionary, size_of_batch=256):
+def encode_tensor_flow_features(train_df, val_df, test_df,target_column, numerical_features, categorical_features,categorical_dictionary, size_of_batch=256):
     """ size of batch may vary, defaults to 256
     """
     # Creates the dataset
@@ -291,7 +291,7 @@ def encode_tensor_flow_features(train_df, val_df, test_df,target_column, numeric
     encoded_features = []
 
     # Normalise the numerical features
-    for header in numerical_columns:
+    for header in numerical_features:
         numeric_col = tf.keras.Input(shape=(1,), name=header)
         normalization_layer = get_normalization_layer(header, train_dataset)
         encoded_numeric_col = normalization_layer(numeric_col)
@@ -299,7 +299,7 @@ def encode_tensor_flow_features(train_df, val_df, test_df,target_column, numeric
         encoded_features.append(encoded_numeric_col)
 
     # Encode the remaicategorical features
-    for header in categorical_colummns:
+    for header in categorical_features:
         print('Start: ', header)
         categorical_col = tf.keras.Input(shape=(1,), name=header, dtype=categorical_dictionary[header])
         encoding_layer = get_category_encoding_layer(name=header,
@@ -313,6 +313,7 @@ def encode_tensor_flow_features(train_df, val_df, test_df,target_column, numeric
 
     # Concatenate all encoded layers
     all_features = tf.keras.layers.concatenate(encoded_features)
+    print('Encoding: Successful')
     return all_features, all_inputs, train_dataset, val_dataset, test_dataset
     # Create, compile and train the model
 def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name, all_features, all_inputs,selected_optimizer, selected_loss,selected_metrics, finance_configuration = True):
@@ -756,7 +757,7 @@ def implement_test_data(dataframe, train, val, test,full_implementation = False)
     test_age_layer(test_age_col)
     # Continues with a full implementation if necessary
     if full_implementation:
-        print("Continues with full implmentation")
+        print("Continues with full implementation")
         numerical_features = ['PhotoAmt', 'Fee']
         categorical_features = ['Age','Type', 'Color1', 'Color2', 'Gender', 'MaturitySize',
                     'FurLength', 'Vaccinated', 'Sterilized', 'Health', 'Breed1']
@@ -856,7 +857,7 @@ def autodiff_implementation():
     # Develop this function to test autodiff functionality
 
     return
-def project_analysis(split_data = False):
+def project_analysis(data_vm_directory,list_of_columns,categorical_assignment,target_column,model_name, selected_optimizer, selected_loss, selected_metrics, split_data = False):
     # Split the initial vm dataset
     if split_data:
         split_vm_dataset(data_vm_directory,create_statistics=False,split_new_data=True, create_validation_set=True)
@@ -864,9 +865,16 @@ def project_analysis(split_data = False):
     test_df = process_vm_dataset(data_vm_directory + 'test.dta',save_statistics=False)
     train_df = process_vm_dataset(data_vm_directory + 'train.dta',save_statistics=False)
     val_df = process_vm_dataset(data_vm_directory + 'val.dta',save_statistics=False)
-    print(train_df.info())
-    print(val_df.info())
-    print(test_df.info())
+    # Creates inputs for the create feature lists function
+    # Create feature lists for deep learning
+    numerical_features, categorical_features = create_feature_lists(list_of_columns, categorical_assignment)
+    # Creates the categorical dictonary
+    categorical_dictionary = dict.fromkeys(categorical_features,'string')
+    categorical_dictionary["size_grp"] = 'float64'
+    # Encodes the tensorflow matrix
+    all_features, all_inputs, train_dataset, val_dataset, test_dataset = encode_tensor_flow_features(train_df,val_df,test_df,target_column,numerical_features,categorical_features,categorical_dictionary,size_of_batch=256)
+    # Buids tensorflow model
+    # model,loss, metrics = build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name, all_features, all_inputs,selected_optimizer, selected_loss,selected_metrics, finance_configuration = True)
     return
 #################################################################################
 # Analytical/Calculus
@@ -916,11 +924,11 @@ def ranking_function():
 # Variables
 #################################################################################
 # Strings
-target_variable = 'ret'
+target_column= 'ret'
 # Lists and arrays
 categorical_assignment = ['size_grp']
 # Tensorflow configurations
-optimzers = ['Adagrad','Adadelta','Adam','Adamax','Ftrl','Nadam','RMSprop','SGD']
+optimizers = ['Adagrad','Adadelta','Adam','Adamax','Ftrl','Nadam','RMSprop','SGD']
 losses = ['binary_crossentropy','categorical_crossentropy','cosine_similarity',
         'hinge','huber_loss','kl_divergence','log_cosh','loss','mean_absolute_error','mean_absolute_percentage_error',
         'mean_squared_error','mean_squared_logarithmic_error','poisson','sparse_categorical_crossentropy',
@@ -934,6 +942,11 @@ metrics = ['Auc','accuracy','binary_accuracy','binary_crossentropy', 'categorica
          'recall','recall_at_precision','root_mean_squared_error','sensitivity_at_specificity',
         'sparse_categorical_accuracy','sparse_top_k_categorical_accuracy','squared_hinge',
         'sum','top_k_categorical_accuracy','Tn','Tp']
+# Tensorflow selections
+model_name = 'finance-honours-test'
+selected_optimizer = 'Adam'
+selected_loss = 'mean_squared_error'
+selected_metrics = ['mean_relative_error','mean_squared_error','mean_absolute_error']
 # File paths
 data_source = 'data/combined_predictors_filtered_us.dta'
 csv_location = '/Volumes/Seagate/dataframes/'
@@ -1003,6 +1016,6 @@ if rank_functions:
 # Function Call - Analysis
 ##################################################################################
 if begin_analysis:
-    project_analysis(split_data=False)
+    project_analysis(data_vm_directory,list_of_columns,categorical_assignment,target_column, model_name, selected_optimizer, selected_loss, selected_metrics, split_data = False)
     
 
