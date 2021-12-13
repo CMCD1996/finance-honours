@@ -1,4 +1,4 @@
-Unnamed: 0
+index
 size_grp
 permno
 permco

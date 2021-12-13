@@ -99,14 +99,14 @@ def split_vm_dataset(data_vm_directory,create_statistics,split_new_data, create_
         test_df.to_stata(data_vm_directory + 'test.dta')
     return
 
-def process_vm_dataset(data_vm_dta, save_statistics):
+def process_vm_dataset(data_vm_dta, save_statistics, sample = False):
     """ This script processes the training and testing datasets for Tensorflow
     following the classify structured data with feature columns tutorial
     """
-    df_full = pd.DataFrame()
     # Load the test and train datasets into dataframes in chunks
-    # df = pd.read_stata(data_vm_dta)
+    #df = pd.read_stata(data_vm_dta)
     subset = pd.read_stata(data_vm_dta, chunksize = 100000)
+    df_full = pd.DataFrame()
     for df in subset:
         print('Number of instances: ',len(df))
         # Find the dtypes of the dataframe and save them to a data column
@@ -126,15 +126,22 @@ def process_vm_dataset(data_vm_dta, save_statistics):
         # df.drop(columns=['mth'])
         for column in column_list:
             if column != 'size_grp':
-                # Sets each column value to float type
+                # Sets each column value to float type (Change datatype depending on memory)
                 df[column] = df.astype({column:'float64'}).dtypes
                 # Impute missing values with medium values (replace with mean command if necessary)
                 df[column].fillna(df[column].median(), inplace = True)
         # Append values to the dataset
         df_full = df_full.append(df)
+        if sample:
+            print(df_full.info(verbose=True))
+            return df_full
     # Get list of unique values for 
+    # print(df.info(verbose=True))
+    # return df
     print(df_full.info(verbose=True))
+    print(df_full.head())
     return df_full
+
 
 def create_dataframes(csv_location,multi_csv):
     """ Function to create 
@@ -244,6 +251,7 @@ def create_tf_dataset(dataframe, target_column, shuffle=True, batch_size=32):
         ds = ds.shuffle(buffer_size=len(dataframe))
     ds = ds.batch(batch_size)
     ds = ds.prefetch(batch_size)
+    print('Create Dataset: Successful')
     return ds
 
 def get_normalization_layer(name, dataset):
@@ -283,8 +291,8 @@ def encode_tensor_flow_features(train_df, val_df, test_df,target_column, numeric
     # Display a set of batches
     [(train_features, label_batch)] = train_dataset.take(1)
     print('Every feature:', list(train_features.keys()))
-    print('A batch of ages:', train_features['Age'])
-    print('A batch of targets:', label_batch )
+    print('A batch of ages:', train_features['size_grp'])
+    print('A batch of targets:', label_batch)
 
     # Initilise input and encoded featture arrays
     all_inputs = []
@@ -857,14 +865,19 @@ def autodiff_implementation():
     # Develop this function to test autodiff functionality
 
     return
-def project_analysis(data_vm_directory,list_of_columns,categorical_assignment,target_column,model_name, selected_optimizer, selected_loss, selected_metrics, split_data = False):
+def project_analysis(data_vm_directory,list_of_columns,categorical_assignment,target_column,model_name, selected_optimizer, selected_loss, selected_metrics, split_data = False, trial = False, sample = True):
     # Split the initial vm dataset
     if split_data:
         split_vm_dataset(data_vm_directory,create_statistics=False,split_new_data=True, create_validation_set=True)
     # Creates the training, validation and testing dataframes
-    test_df = process_vm_dataset(data_vm_directory + 'test.dta',save_statistics=False)
-    train_df = process_vm_dataset(data_vm_directory + 'train.dta',save_statistics=False)
-    val_df = process_vm_dataset(data_vm_directory + 'val.dta',save_statistics=False)
+    test_df = process_vm_dataset(data_vm_directory + 'test.dta',save_statistics=False, sample = True)
+    train_df = process_vm_dataset(data_vm_directory + 'train.dta',save_statistics=False, sample = True)
+    val_df = process_vm_dataset(data_vm_directory + 'val.dta',save_statistics=False, sample = True)
+    # Use trial to test the dataframe when functions not as large
+    if trial:
+        test_df,test_discard_df = train_new_df,val_df = train_test_split(test_df,test_size=0.9)
+        train_df, train_discard_df = train_new_df,val_df = train_test_split(train_df,test_size=0.9)
+        val_df, val_discard_df = train_new_df,val_df = train_test_split(val_df,test_size=0.9)
     # Creates inputs for the create feature lists function
     # Create feature lists for deep learning
     numerical_features, categorical_features = create_feature_lists(list_of_columns, categorical_assignment)
@@ -984,7 +997,7 @@ if split_vm_data:
     split_vm_dataset(data_vm_directory,create_statistics=False, split_new_data= False,create_validation_set= False)
 # Process vm data for Tensorflow
 if process_vm_data:
-    process_vm_dataset(data_vm_dta,save_statistics=False)
+    process_vm_dataset(data_vm_dta,save_statistics=False, sample= False)
 if need_dataframe:
     data = create_dataframes(csv_location,False)
     print(data.info())
@@ -1016,6 +1029,6 @@ if rank_functions:
 # Function Call - Analysis
 ##################################################################################
 if begin_analysis:
-    project_analysis(data_vm_directory,list_of_columns,categorical_assignment,target_column, model_name, selected_optimizer, selected_loss, selected_metrics, split_data = False)
+    project_analysis(data_vm_directory,list_of_columns,categorical_assignment,target_column, model_name, selected_optimizer, selected_loss, selected_metrics, split_data = False, trial = False, sample = True)
     
 
