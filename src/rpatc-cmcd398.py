@@ -99,7 +99,7 @@ def split_vm_dataset(data_vm_directory,create_statistics,split_new_data, create_
         test_df.to_stata(data_vm_directory + 'test.dta')
     return
 
-def process_vm_dataset(data_vm_dta, save_statistics, sample = False):
+def process_vm_dataset(data_vm_dta,categorical_assignment, save_statistics, sample = False):
     """ This script processes the training and testing datasets for Tensorflow
     following the classify structured data with feature columns tutorial
     """
@@ -125,7 +125,7 @@ def process_vm_dataset(data_vm_dta, save_statistics, sample = False):
         df['mth'] = pd.to_numeric(df['mth'],downcast='float')
         # df.drop(columns=['mth'])
         for column in column_list:
-            if column != 'size_grp':
+            if column not in categorical_assignment:
                 # Sets each column value to float type (Change datatype depending on memory)
                 df[column] = df.astype({column:'float64'}).dtypes
                 # Impute missing values with medium values (replace with mean command if necessary)
@@ -889,9 +889,9 @@ def project_analysis(data_vm_directory,list_of_columns,categorical_assignment,ta
     if split_data:
         split_vm_dataset(data_vm_directory,create_statistics=False,split_new_data=True, create_validation_set=True)
     # Creates the training, validation and testing dataframes
-    test_df = process_vm_dataset(data_vm_directory + 'test.dta',save_statistics=False, sample = True)
-    train_df = process_vm_dataset(data_vm_directory + 'train.dta',save_statistics=False, sample = True)
-    val_df = process_vm_dataset(data_vm_directory + 'val.dta',save_statistics=False, sample = True)
+    test_df = process_vm_dataset(data_vm_directory + 'test.dta',categorical_assignment,save_statistics=False, sample = True)
+    train_df = process_vm_dataset(data_vm_directory + 'train.dta',categorical_assignment,save_statistics=False, sample = True)
+    val_df = process_vm_dataset(data_vm_directory + 'val.dta',categorical_assignment,save_statistics=False, sample = True)
     # Use trial to test the dataframe when functions not as large
     if trial:
         test_df,test_discard_df = train_test_split(test_df,test_size=0.95)
