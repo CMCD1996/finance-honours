@@ -858,7 +858,7 @@ def autodiff_guide(example):
         print(dy_dx.numpy())
     
     return
-class PortfolioReturnsEquallyWeighted(tf.keras.losses.loss):
+class PortfolioReturnsEquallyWeighted(tf.keras.losses.Loss):
     def __init__(self):
         # Initialise the function
         super().__init__()
