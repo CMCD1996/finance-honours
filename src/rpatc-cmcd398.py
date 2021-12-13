@@ -907,7 +907,7 @@ def project_analysis(data_vm_directory,list_of_columns,categorical_assignment,ta
     categorical_dictionary = dict.fromkeys(categorical_features,'string')
     categorical_dictionary["size_grp"] = 'float64'
     # Encodes the tensorflow matrix
-    all_features, all_inputs, train_dataset, val_dataset, test_dataset = encode_tensor_flow_features(train_df,val_df,test_df,target_column,numerical_features,categorical_features,categorical_dictionary,size_of_batch=1)
+    # all_features, all_inputs, train_dataset, val_dataset, test_dataset = encode_tensor_flow_features(train_df,val_df,test_df,target_column,numerical_features,categorical_features,categorical_dictionary,size_of_batch=1)
     # Buids tensorflow model
     # model,loss, metrics = build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name, all_features, all_inputs,selected_optimizer, selected_loss,selected_metrics, finance_configuration = True)
     return
