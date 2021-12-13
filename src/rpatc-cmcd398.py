@@ -858,11 +858,28 @@ def autodiff_guide(example):
         print(dy_dx.numpy())
     
     return
+class PortfolioReturnsEquallyWeighted(tf.keras.losses.loss):
+    def __init__(self):
+        # Initialise the function
+        super().__init__()
+        # Define the call of the function
+    def call(self,y_true,y_pred):
+        return 1
 def autodiff_implementation():
     """ Implments all the project functionality
 
     """
-
+    layer = tf.keras.layers.Dense(2, activation='relu')
+    x = tf.constant([[1., 2., 3.]])
+    with tf.GradientTape() as tape:
+        # Forward pass
+        y = layer(x)
+        loss = tf.reduce_mean(y**2)
+    # Calculate gradients with respect to every trainable variable
+    grad = tape.gradient(loss, layer.trainable_variables)
+    # Print the outcomes of the simple model analysis
+    for var, g in zip(layer.trainable_variables, grad):
+        print(f'{var.name}, shape: {g.shape}')
     # Develop this function to test autodiff functionality
 
     return
