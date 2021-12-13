@@ -902,6 +902,8 @@ def project_analysis(data_vm_directory,list_of_columns,categorical_assignment,ta
     print(test_df.info())
     print(train_df.info())
     print(val_df.info())
+    print('Excess Return')
+    print(train_df['ret_exc'])
     # Creates inputs for the create feature lists function
     # Create feature lists for deep learning
     numerical_features, categorical_features = create_feature_lists(list_of_columns, categorical_assignment)
