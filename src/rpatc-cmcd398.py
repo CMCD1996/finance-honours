@@ -305,7 +305,8 @@ def encode_tensor_flow_features(train_df, val_df, test_df,target_column, numeric
     # Initilise input and encoded featture arrays
     all_inputs = []
     encoded_features = []
-
+    numerical_count = 0
+    categorical_count = 0
     # Normalise the numerical features
     for header in numerical_features:
         print('Start: ',header)
@@ -314,7 +315,9 @@ def encode_tensor_flow_features(train_df, val_df, test_df,target_column, numeric
         encoded_numeric_col = normalization_layer(numeric_col)
         all_inputs.append(numeric_col)
         encoded_features.append(encoded_numeric_col)
-        print('End: ',header)
+        print('Passed: ',header)
+        numerical_count = numerical_count + 1
+        print('Number of Numerical Features Encoded: ',numerical_count)
 
     # Encode the remaicategorical features
     for header in categorical_features:
@@ -328,6 +331,8 @@ def encode_tensor_flow_features(train_df, val_df, test_df,target_column, numeric
         all_inputs.append(categorical_col)
         encoded_features.append(encoded_categorical_col)
         print('Passed: ', header)
+        categorical_count = categorical_count + 1
+        print('Number of Numerical Features Encoded: ',categorical_count)
 
     # Concatenate all encoded layers
     all_features = tf.keras.layers.concatenate(encoded_features)
