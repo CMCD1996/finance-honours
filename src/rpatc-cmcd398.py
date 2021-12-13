@@ -311,8 +311,11 @@ def encode_tensor_flow_features(train_df, val_df, test_df,target_column, numeric
     for header in numerical_features:
         print('Start: ',header)
         numeric_col = tf.keras.Input(shape=(1,), name=header)
+        print('Processing: Input Numeric Column')
         normalization_layer = get_normalization_layer(header, train_dataset)
+        print('Processing: Sourced Normalization Layer')
         encoded_numeric_col = normalization_layer(numeric_col)
+        print('Processing: Encoded Numerical Column')
         all_inputs.append(numeric_col)
         encoded_features.append(encoded_numeric_col)
         print('Passed: ',header)
@@ -323,16 +326,19 @@ def encode_tensor_flow_features(train_df, val_df, test_df,target_column, numeric
     for header in categorical_features:
         print('Start: ', header)
         categorical_col = tf.keras.Input(shape=(1,), name=header, dtype=categorical_dictionary[header])
+        print('Processing: Input Categorical Column')
         encoding_layer = get_category_encoding_layer(name=header,
                                                     dataset=train_dataset,
                                                     dtype=categorical_dictionary[header],
                                                     max_tokens=5)
+        print('Processing: Sourced Encoding Layer')
         encoded_categorical_col = encoding_layer(categorical_col)
+        print('Processing: Encoded Categorical Column')
         all_inputs.append(categorical_col)
         encoded_features.append(encoded_categorical_col)
         print('Passed: ', header)
         categorical_count = categorical_count + 1
-        print('Number of Numerical Features Encoded: ',categorical_count)
+        print('Number of Categorical Features Encoded: ',categorical_count)
 
     # Concatenate all encoded layers
     all_features = tf.keras.layers.concatenate(encoded_features)
