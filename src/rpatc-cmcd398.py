@@ -126,10 +126,10 @@ def process_vm_dataset(data_vm_dta,categorical_assignment, save_statistics, samp
         # Removes the mth column/factor from the dataframe given datatime format
         df['mth'] = pd.to_numeric(df['mth'],downcast='float')
         # df.drop(columns=['mth'])
-        for column in column_list:
-            if column not in categorical_assignment:
+        #for column in column_list:
+            #if column not in categorical_assignment:
                 # Sets each column value to float type (Change datatype depending on memory)
-                df[column] = df.astype({column:'float64'}).dtypes
+                # df[column] = df.astype({column:'float64'}).dtypes
                 # Impute missing values with medium values (replace with mean command if necessary)
                 # df[column].fillna(df[column].median(), inplace = True)
         # Append values to the dataset
