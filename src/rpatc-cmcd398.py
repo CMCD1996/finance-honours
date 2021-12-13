@@ -906,17 +906,11 @@ def project_analysis(data_vm_directory,list_of_columns,categorical_assignment,ta
     # Creates inputs for the create feature lists function
     # Create feature lists for deep learning
     numerical_features, categorical_features = create_feature_lists(list_of_columns, categorical_assignment)
-    print('Numerical Features')
-    print(numerical_features)
-    print('Categorical Feature')
-    print(categorical_features)
-    print('Excess Return: ret_exc')
-    print(train_df['ret_exc'])
     # Creates the categorical dictonary
     categorical_dictionary = dict.fromkeys(categorical_features,'float64')
     # categorical_dictionary["size_grp"] = 'float64'
     # Encodes the tensorflow matrix
-    # all_features, all_inputs, train_dataset, val_dataset, test_dataset = encode_tensor_flow_features(train_df,val_df,test_df,target_column,numerical_features,categorical_features,categorical_dictionary,size_of_batch=1)
+    all_features, all_inputs, train_dataset, val_dataset, test_dataset = encode_tensor_flow_features(train_df,val_df,test_df,target_column,numerical_features,categorical_features,categorical_dictionary,size_of_batch=1)
     # Buids tensorflow model
     # model,loss, metrics = build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name, all_features, all_inputs,selected_optimizer, selected_loss,selected_metrics, finance_configuration = True)
     return
