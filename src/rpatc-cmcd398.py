@@ -965,7 +965,7 @@ def ranking_function():
 # Variables
 #################################################################################
 # Strings
-target_column= 'ret'
+target_column= 'ret_exc'
 # Lists and arrays
 categorical_assignment = ['size_grp']
 # Tensorflow configurations
