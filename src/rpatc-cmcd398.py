@@ -907,8 +907,8 @@ def project_analysis(data_vm_directory,list_of_columns,categorical_assignment,ta
     print(numerical_features)
     print('Categorical Feature')
     print(categorical_features)
-    print('Target Column: ret')
-    print(train_df['ret'])
+    print('Excess Return: ret_exc')
+    print(train_df['ret_exc'])
     # Creates the categorical dictonary
     categorical_dictionary = dict.fromkeys(categorical_features,'float64')
     # categorical_dictionary["size_grp"] = 'float64'
