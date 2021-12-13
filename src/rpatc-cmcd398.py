@@ -285,6 +285,12 @@ def get_category_encoding_layer(name, dataset, dtype, max_tokens=None):
 def encode_tensor_flow_features(train_df, val_df, test_df,target_column, numerical_features, categorical_features,categorical_dictionary, size_of_batch=256):
     """ size of batch may vary, defaults to 256
     """
+    print('Train missing values')
+    print(train_df.isna().sum())
+    print('Validation missing values')
+    print(val_df.isna().sum())
+    print('Testing missing values')
+    print(test_df.isna().sum())
     # Creates the dataset
     train_dataset = create_tf_dataset(train_df,target_column, shuffle=True,batch_size = size_of_batch)
     val_dataset = create_tf_dataset(val_df,target_column,shuffle=False,batch_size = size_of_batch)
