@@ -244,6 +244,7 @@ def create_tf_dataset(dataframe, target_column, shuffle=True, batch_size=32):
         [type]: [description]
     """
     df = dataframe.copy()
+    print(df[target_column].head())
     labels = df.pop(target_column)
     df = {key: value[:,tf.newaxis] for key, value in dataframe.items()}
     ds = tf.data.Dataset.from_tensor_slices((dict(df), labels))
@@ -893,9 +894,12 @@ def project_analysis(data_vm_directory,list_of_columns,categorical_assignment,ta
     val_df = process_vm_dataset(data_vm_directory + 'val.dta',save_statistics=False, sample = True)
     # Use trial to test the dataframe when functions not as large
     if trial:
-        test_df,test_discard_df = train_new_df,val_df = train_test_split(test_df,test_size=0.9)
-        train_df, train_discard_df = train_new_df,val_df = train_test_split(train_df,test_size=0.9)
-        val_df, val_discard_df = train_new_df,val_df = train_test_split(val_df,test_size=0.9)
+        test_df,test_discard_df = train_new_df,val_df = train_test_split(test_df,test_size=0.95)
+        train_df, train_discard_df = train_new_df,val_df = train_test_split(train_df,test_size=0.95)
+        val_df, val_discard_df = train_new_df,val_df = train_test_split(val_df,test_size=0.95)
+        print(test_df.info())
+        print(train_df.info())
+        print(val_df.info())
     # Creates inputs for the create feature lists function
     # Create feature lists for deep learning
     numerical_features, categorical_features = create_feature_lists(list_of_columns, categorical_assignment)
