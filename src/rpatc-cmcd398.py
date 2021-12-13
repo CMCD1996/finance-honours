@@ -109,6 +109,8 @@ def process_vm_dataset(data_vm_dta,categorical_assignment, save_statistics, samp
     df_full = pd.DataFrame()
     for df in subset:
         print('Number of instances: ',len(df))
+        print('Excess Return')
+        print(df['ret_exc'])
         # Find the dtypes of the dataframe and save them to a data column
         if save_statistics==True:
             # Saves dtypes for column dataframe
@@ -127,7 +129,7 @@ def process_vm_dataset(data_vm_dta,categorical_assignment, save_statistics, samp
         for column in column_list:
             if column not in categorical_assignment:
                 # Sets each column value to float type (Change datatype depending on memory)
-                df[column] = df.astype({column:'float64'}).dtypes
+                df[column] = df[column].astype({column:'float64'}).dtypes
                 # Impute missing values with medium values (replace with mean command if necessary)
                 df[column].fillna(df[column].median(), inplace = True)
         # Append values to the dataset
