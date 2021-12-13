@@ -302,11 +302,13 @@ def encode_tensor_flow_features(train_df, val_df, test_df,target_column, numeric
 
     # Normalise the numerical features
     for header in numerical_features:
+        print('Start: ',header)
         numeric_col = tf.keras.Input(shape=(1,), name=header)
         normalization_layer = get_normalization_layer(header, train_dataset)
         encoded_numeric_col = normalization_layer(numeric_col)
         all_inputs.append(numeric_col)
         encoded_features.append(encoded_numeric_col)
+        print('End: ',header)
 
     # Encode the remaicategorical features
     for header in categorical_features:
