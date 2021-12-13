@@ -897,12 +897,16 @@ def project_analysis(data_vm_directory,list_of_columns,categorical_assignment,ta
         test_df,test_discard_df = train_new_df,val_df = train_test_split(test_df,test_size=0.95)
         train_df, train_discard_df = train_new_df,val_df = train_test_split(train_df,test_size=0.95)
         val_df, val_discard_df = train_new_df,val_df = train_test_split(val_df,test_size=0.95)
-        print(test_df.info())
-        print(train_df.info())
-        print(val_df.info())
+    print(test_df.info())
+    print(train_df.info())
+    print(val_df.info())
     # Creates inputs for the create feature lists function
     # Create feature lists for deep learning
     numerical_features, categorical_features = create_feature_lists(list_of_columns, categorical_assignment)
+    print('Numerical Features')
+    print(numerical_features)
+    print('Categorical Feature')
+    print(categorical_features)
     # Creates the categorical dictonary
     categorical_dictionary = dict.fromkeys(categorical_features,'string')
     categorical_dictionary["size_grp"] = 'float64'
@@ -1051,6 +1055,6 @@ if rank_functions:
 # Function Call - Analysis
 ##################################################################################
 if begin_analysis:
-    project_analysis(data_vm_directory,list_of_columns,categorical_assignment,target_column, model_name, selected_optimizer, selected_loss, selected_metrics, split_data = False, trial = False, sample = True)
+    project_analysis(data_vm_directory,list_of_columns,categorical_assignment,target_column, model_name, selected_optimizer, selected_loss, selected_metrics, split_data = False, trial = True, sample = True)
     
 
