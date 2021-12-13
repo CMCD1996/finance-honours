@@ -862,6 +862,7 @@ def autodiff_implementation():
     """ Implments all the project functionality
 
     """
+
     # Develop this function to test autodiff functionality
 
     return
@@ -966,7 +967,7 @@ csv_location = '/Volumes/Seagate/dataframes/'
 data_vm_directory = '/home/connormcdowall/local-data/'
 data_vm_dta = '/home/connormcdowall/local-data/combined_predictors_filtered_us.dta'
 results_tables = '/home/connormcdowall/finance-honours/results/tables'
-list_of_columns = 'data/dataframe-columns.txt'
+list_of_columns = '/home/connormcdowall/finance-honours/data/dataframe-columns.txt'
 # Binary (Set to True or False depending on the functions to run)
 # Data processing
 source_data = False
