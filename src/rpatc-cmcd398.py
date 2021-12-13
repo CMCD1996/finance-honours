@@ -129,7 +129,7 @@ def process_vm_dataset(data_vm_dta,categorical_assignment, save_statistics, samp
         for column in column_list:
             if column not in categorical_assignment:
                 # Sets each column value to float type (Change datatype depending on memory)
-                df[column] = df[column].astype({column:'float64'}).dtypes
+                df = df.astype({column:'float64'}).dtypes
                 # Impute missing values with medium values (replace with mean command if necessary)
                 df[column].fillna(df[column].median(), inplace = True)
         # Append values to the dataset
@@ -143,7 +143,6 @@ def process_vm_dataset(data_vm_dta,categorical_assignment, save_statistics, samp
     print(df_full.info(verbose=True))
     print(df_full.head())
     return df_full
-
 
 def create_dataframes(csv_location,multi_csv):
     """ Function to create 
