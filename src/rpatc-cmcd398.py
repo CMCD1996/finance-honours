@@ -131,7 +131,7 @@ def process_vm_dataset(data_vm_dta,categorical_assignment, save_statistics, samp
                 # Sets each column value to float type (Change datatype depending on memory)
                 df[column] = df.astype({column:'float64'}).dtypes
                 # Impute missing values with medium values (replace with mean command if necessary)
-                df[column].fillna(df[column].median(), inplace = True)
+                # df[column].fillna(df[column].median(), inplace = True)
         # Append values to the dataset
         df_full = df_full.append(df)
         if sample:
