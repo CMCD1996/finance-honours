@@ -385,7 +385,7 @@ def encode_tensor_flow_features(train_df, val_df, test_df,target_column, numeric
     # Display a set of batches
     [(train_features, label_batch)] = train_dataset.take(1)
     print('Every feature:', list(train_features.keys()))
-    print('A batch of ages:', train_features['size_grp'])
+    print('A batch of size groups:', train_features['size_grp'])
     print('A batch of targets:', label_batch)
 
     # Initilise input and encoded feature arrays
@@ -440,10 +440,6 @@ def encode_tensor_flow_features(train_df, val_df, test_df,target_column, numeric
     print('Encoding: Successful')
     # Monitor memory usage
     monitor_memory_usage(units = 3,cpu = True, gpu = True)
-    print('all_inputs')
-    print(all_inputs)
-    print('encoded_features')
-    print(encoded_features)
     return all_features, all_inputs, train_dataset, val_dataset, test_dataset
     
 def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name, all_features, all_inputs,selected_optimizer, selected_loss,selected_metrics, finance_configuration = True):
@@ -458,8 +454,8 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
             x = tf.keras.layers.Dropout(rate=0.5, noise_shape = None, seed = None)(x)
         else:
             x = tf.keras.layers.Dense(
-            units = 32, activation="relu", use_bias=False,
-            kernel_initializer='glorot_uniform', use_bias = True,
+            units = 32, activation="relu", use_bias=True,
+            kernel_initializer='glorot_uniform',
             bias_initializer='zeros', kernel_regularizer=None,
             bias_regularizer=None, activity_regularizer=None, kernel_constraint=None,
             bias_constraint=None)(all_features)
@@ -1217,8 +1213,8 @@ metrics = ['Auc','accuracy','binary_accuracy','binary_crossentropy', 'categorica
 # Tensorflow selections
 model_name = 'finance-honours-test'
 selected_optimizer = 'Adam'
-selected_loss = 'mean_squared_error'
-selected_metrics = ['mean_relative_error','mean_squared_error','mean_absolute_error']
+selected_loss = 'binary_crossentropy'
+selected_metrics = ['accuracy']
 # File paths
 data_source = 'data/combined_predictors_filtered_us.dta'
 csv_location = '/Volumes/Seagate/dataframes/'
