@@ -1226,7 +1226,7 @@ test_loss_function = False
 analytical = False
 rank_functions = False
 # Research Proposal Analysis
-begin_analysis = False
+begin_analysis = True
 #################################################################################
 # Function Calls - Testing
 #################################################################################
@@ -1262,7 +1262,7 @@ if extract_test_data:
     if test_implementation:
         implement_test_data(df, train_data, val_data, test_data,full_implementation = True)
 if example_autodiff:
-    autodiff_guide(example=3)
+    autodiff_guide(example=5)
 if test_loss_function:
     print('Add Function Here')
 #################################################################################
