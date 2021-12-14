@@ -453,7 +453,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         # Configure the neural network layers
         print('Start: Configuration of Deep Network Layers')
         x = tf.keras.layers.Dense(
-        units = 32, activation="relu", use_bias=True,
+        units = 32, activation="relu", use_bias=False,
         kernel_initializer='glorot_uniform',
         bias_initializer='zeros', kernel_regularizer=None,
         bias_regularizer=None, activity_regularizer=None, kernel_constraint=None,
