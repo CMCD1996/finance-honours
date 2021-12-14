@@ -440,6 +440,10 @@ def encode_tensor_flow_features(train_df, val_df, test_df,target_column, numeric
     print('Encoding: Successful')
     # Monitor memory usage
     monitor_memory_usage(units = 3,cpu = True, gpu = True)
+    print('all_inputs')
+    print(all_inputs)
+    print('encoded_features')
+    print(encoded_features)
     return all_features, all_inputs, train_dataset, val_dataset, test_dataset
     
 def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name, all_features, all_inputs,selected_optimizer, selected_loss,selected_metrics, finance_configuration = True):
@@ -473,6 +477,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         # during each step of training to help prevent overfitting. Note:
         # inputs not set to zero are scaled by 1/(1-rate) so the sum of all inputs is unchanged.
         x = tf.keras.layers.Dropout(rate=0.5, noise_shape = None, seed = None)(x)
+        # Creates the output layer
         output = tf.keras.layers.Dense(1)(x)
         print('End: Configuration of Deep Network Layers')
         # Configure the model (https://www.tensorflow.org/api_docs/python/tf/keras/Model)
@@ -752,7 +757,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         show_shapes = True
         show_dtype = False
         show_layer_names = True
-        rankdir = 'LR' # TB (Top Bottom), LR (Left Right)
+        rankdir = 'TB' # TB (Top Bottom), LR (Left Right)
         expand_nested = False
         dpi = 96
         layer_range = None
@@ -793,11 +798,10 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         use_multiprocessing=False #Boolean. Used for generator or keras.utils.Sequence input only. 
         # Fit the model
         print('Start: Model Fitting')
-        model.fit(train_dataset, epochs=10, validation_data=val_dataset)
-        # model.fit(x=x_train, batch_size=32, epochs=eps, verbose='auto',
-        #     callbacks=None, validation_data=val_dataset, shuffle=True,
-        #     class_weight=None, sample_weight=None, initial_epoch=0, steps_per_epoch=None,
-        #     validation_steps=None, max_queue_size=10, workers=1, use_multiprocessing=False)
+        model.fit(x=x_train, batch_size=32, epochs=eps, verbose='auto',
+            callbacks=None, validation_data=val_dataset, shuffle=True,
+            class_weight=None, sample_weight=None, initial_epoch=0, steps_per_epoch=None,
+            validation_steps=None, max_queue_size=10, workers=1, use_multiprocessing=False)
         print('End: Model Fitting')
         # model.fit(x, batch_size, epochs=eps, verbose='auto',
         # callbacks, validation_data, shuffle,
@@ -852,7 +856,6 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         # Train the model
         model.fit(train_dataset, epochs=10, validation_data=val_dataset)
         # Test the model
-
         loss, accuracy = model.evaluate(test_dataset)
         print("Loss: ", loss)
         print("Accuracy: ", accuracy)
@@ -977,7 +980,12 @@ def project_analysis(data_vm_directory,list_of_columns,categorical_assignment,ta
 #################################################################################
 # Custom Loss Functions / Autodiff Testing
 #################################################################################
-# Classes for the loss functions
+# Classes for the loss functions:
+# Key:
+# 0 = Matrix of Parameters (Theta)
+# X = Feature Matrix
+# f_(0)(X) = Target (e.g., Excess Returns)
+# V = All-Ones=Vector
 class CustomLossFunctionExample(tf.keras.losses.Loss):
     # Example from Youtube (https://www.youtube.com/watch?v=gcwRjM1nZ4o)
     def __init__(self):
@@ -994,7 +1002,14 @@ class WeightByPortfolioExcessReturns(tf.keras.losses.Loss):
         super().__init__()
         # Define the call of the function
     def call(self,y_true,y_pred):
-        # Insert derivation here
+        # Function
+        # f_(0)(X) = ((X^T(0)/V(X^T))^T)X^T(0)
+        # Derivitive of Function
+        # df_(0)(X)/d(0) = (1/((0^T)X1)(X)(X^T)(0)
+        #                + (1/((VX^T)(0))(X)(X^T)(0)
+        #                - (1/((0^T)(X)(V))**2)(0^T)(X)(X^T)(0)(X)(V)
+
+
         return 
 
 class FinanceCustomFunctionPlaceholder2(tf.keras.losses.Loss):
@@ -1050,7 +1065,6 @@ def loss_function_testing():
     # Print the outcomes of the simple model analysis
     for var, g in zip(layer.trainable_variables, grad):
         print(f'{var.name}, shape: {g.shape}')
-    # Develop this function to test autodiff functionality
 
     return
 # Function for implementing autodiff
