@@ -310,36 +310,42 @@ def encode_tensor_flow_features(train_df, val_df, test_df,target_column, numeric
     
     # Encode the remaicategorical features
     for header in categorical_features:
-        print('Start: ', header)
-        categorical_col = tf.keras.Input(shape=(1,), name=header, dtype=categorical_dictionary[header])
-        print('Processing: Input Categorical Column')
-        encoding_layer = get_category_encoding_layer(name=header,
-                                                    dataset=train_dataset,
-                                                    dtype=categorical_dictionary[header],
-                                                    max_tokens=5)
-        print('Processing: Sourced Encoding Layer')
-        encoded_categorical_col = encoding_layer(categorical_col)
-        print('Processing: Encoded Categorical Column')
-        all_inputs.append(categorical_col)
-        encoded_features.append(encoded_categorical_col)
-        print('Passed: ', header)
-        categorical_count = categorical_count + 1
-        print('Number of Categorical Features Encoded: ',categorical_count)
+        try:
+            print('Start: ', header)
+            categorical_col = tf.keras.Input(shape=(1,), name=header, dtype=categorical_dictionary[header])
+            print('Processing: Input Categorical Column')
+            encoding_layer = get_category_encoding_layer(name=header,
+                                                        dataset=train_dataset,
+                                                        dtype=categorical_dictionary[header],
+                                                        max_tokens=5)
+            print('Processing: Sourced Encoding Layer')
+            encoded_categorical_col = encoding_layer(categorical_col)
+            print('Processing: Encoded Categorical Column')
+            all_inputs.append(categorical_col)
+            encoded_features.append(encoded_categorical_col)
+            print('Passed: ', header)
+            categorical_count = categorical_count + 1
+            print('Number of Categorical Features Encoded: ',categorical_count)
+        except RuntimeError as e:
+            print(e) 
 
     # Normalise the numerical features
     for header in numerical_features:
-        print('Start: ',header)
-        numeric_col = tf.keras.Input(shape=(1,), name=header)
-        print('Processing: Input Numeric Column')
-        normalization_layer = get_normalization_layer(header, train_dataset)
-        print('Processing: Sourced Normalization Layer')
-        encoded_numeric_col = normalization_layer(numeric_col)
-        print('Processing: Encoded Numerical Column')
-        all_inputs.append(numeric_col)
-        encoded_features.append(encoded_numeric_col)
-        print('Passed: ',header)
-        numerical_count = numerical_count + 1
-        print('Number of Numerical Features Encoded: ',numerical_count)
+        try:
+            print('Start: ',header)
+            numeric_col = tf.keras.Input(shape=(1,), name=header)
+            print('Processing: Input Numeric Column')
+            normalization_layer = get_normalization_layer(header, train_dataset)
+            print('Processing: Sourced Normalization Layer')
+            encoded_numeric_col = normalization_layer(numeric_col)
+            print('Processing: Encoded Numerical Column')
+            all_inputs.append(numeric_col)
+            encoded_features.append(encoded_numeric_col)
+            print('Passed: ',header)
+            numerical_count = numerical_count + 1
+            print('Number of Numerical Features Encoded: ',numerical_count)
+        except RuntimeError as e:
+            print(e) 
 
     # Concatenate all encoded layers
     all_features = tf.keras.layers.concatenate(encoded_features)
@@ -981,8 +987,9 @@ def ranking_function():
 #################################################################################
 # Variables
 #################################################################################
-# Strings
-target_column= 'ret_exc'
+# Targets
+targets_dictionary = {1:'ret_exc',2:'ret_exc_lead1m'}
+target_column= targets_dictionary[1] # Sets the intended target column (test multiple configurations)
 # Lists and arrays
 categorical_assignment = ['size_grp','permno','permco','crsp_shrcd','crsp_exchcd','adjfct','sic','ff49']
 # Tensorflow configurations
@@ -1037,7 +1044,32 @@ begin_analysis = False
 # System Checks
 #################################################################################
 if sys_check:
+    restrict_tf = True
+    growth_memory = True
+    # Check the number of GPUs avaiable to Tensorflow and in use
     print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
+    # Limit tf to a specfic set of GO devices
+    gpus = tf.config.list_physical_devices('GPU')
+    # Restrict TensorFlow to only use the first GPU
+    if gpus and restrict_tf:
+        try:
+            tf.config.set_visible_devices(gpus[0], 'GPU')
+            logical_gpus = tf.config.list_logical_devices('GPU')
+            print(len(gpus), "Physical GPUs,", len(logical_gpus), "Logical GPU")
+        except RuntimeError as e:
+    # Visible devices must be set before GPUs have been initialized
+            print(e)
+    # Limit GPU Memory Growth
+    if gpus and growth_memory:
+        try:
+    # Currently, memory growth needs to be the same across GPUs
+            for gpu in gpus:
+                tf.config.experimental.set_memory_growth(gpu, True)
+            logical_gpus = tf.config.list_logical_devices('GPU')
+            print(len(gpus), "Physical GPUs,", len(logical_gpus), "Logical GPUs")
+        except RuntimeError as e:
+    # Memory growth must be set before GPUs have been initialized
+            print(e)
 #################################################################################
 # Data processing
 #################################################################################
