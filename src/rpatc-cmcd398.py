@@ -279,12 +279,12 @@ def process_vm_dataset(data_vm_dta,size_of_chunks, save_statistics, sample = Fal
         if sample:
             df_full = replace_nan(df_full, replacement_method = 3)
             # Print size and shape of dataframe
-            print('The dataframe has {} entries with {} rows and {} columns.',format(df_full.size,df_full.shape[0],df_full.shape[1]))
+            print('The dataframe has {} entries with {} rows and {} columns.'.format(df_full.size,df_full.shape[0],df_full.shape[1]))
             return df_full
     # Checks Nan in dataframe
     df_full = replace_nan(df_full, replacement_method = 3)
     # Print size and shape of dataframe
-    print('The dataframe has {} entries with {} rows and {} columns.',format(df_full.size,df_full.shape[0],df_full.shape[1]))
+    print('The dataframe has {} entries with {} rows and {} columns.'.format(df_full.size,df_full.shape[0],df_full.shape[1]))
     # Prints memory usage after the process
     monitor_memory_usage(units = 3,cpu = True, gpu = True)
     return df_full
@@ -1008,6 +1008,8 @@ def autodiff_implementation():
 
     return
 def project_analysis(data_vm_directory,list_of_columns,categorical_assignment,target_column,chunk_size,batch_size,model_name, selected_optimizer, selected_loss, selected_metrics, split_data = False, trial = False, sample = False):
+    # Prints memory usage before analysis
+    monitor_memory_usage(units = 3, cpu = True, gpu = True)
     # Split the initial vm dataset
     if split_data:
         split_vm_dataset(data_vm_directory,create_statistics=False,split_new_data=True, create_validation_set=True)
