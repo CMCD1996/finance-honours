@@ -1,4 +1,7 @@
 # Imports useful python packages
+# System
+import psutil as ps
+import nvidia_smi
 # Analytical
 from pandas.core.base import NoNewAttributesMixin
 import sympy as sym # Symbolic package for calculus
@@ -147,6 +150,21 @@ def replace_nan(df, replacement_method):
     nan_total = df.isnull().sum().sum()
     print('Number of nan values after processing: ',nan_total)
     return df
+
+def monitor_memory_usage():
+    # Shows CPU information using psutil
+    # Shows GPU information using nvidia-ml-py3
+    nvidia_smi.nvmlInit()
+    deviceCount = nvidia_smi.nvmlDeviceGetCount()
+    for i in range(deviceCount):
+        # Gets device handle
+        handle = nvidia_smi.nvmlDeviceGetHandleByIndex(i)
+        # Uses handle to get GPU device info
+        info = nvidia_smi.nvmlDeviceGetMemoryInfo(handle)
+        # Prints GPU information
+        print("Device {}: {}, Memory : ({:.2f}% free): {}(total), {} (free), {} (used)".format(i, nvidia_smi.nvmlDeviceGetName(handle), 100*info.free/info.total, info.total, info.free, info.used))
+    nvidia_smi.nvmlShutdown()
+    return
 
 def split_vm_dataset(data_vm_directory,create_statistics,split_new_data, create_validation_set):
     """ Creates summmary statistics from unprocessed dataset
