@@ -38,7 +38,6 @@ import sympy as sy # convert latex code
 import scipy as sc # Scipy packages
 # import tabulate as tb # Create tables in python
 import itertools as it
-
 #################################################################################
 # Function Calls
 #################################################################################
@@ -276,6 +275,8 @@ def process_vm_dataset(data_vm_dta,categorical_assignment, save_statistics, samp
         # Removes the mth column/factor from the dataframe given datatime format
         df['mth'] = pd.to_numeric(df['mth'],downcast='float')
         df_full = df_full.append(df)
+        # Prints memory usage after the process
+        monitor_memory_usage(units = 3,cpu = True, gpu = True)
         if sample:
             df_full = replace_nan(df_full, replacement_method = 3)
             return df_full
@@ -377,12 +378,6 @@ def get_category_encoding_layer(name, dataset, dtype, max_tokens=None):
 def encode_tensor_flow_features(train_df, val_df, test_df,target_column, numerical_features, categorical_features,categorical_dictionary, size_of_batch=256):
     """ size of batch may vary, defaults to 256
     """
-    print('Train missing values')
-    print(train_df.isna().sum())
-    print('Validation missing values')
-    print(val_df.isna().sum())
-    print('Testing missing values')
-    print(test_df.isna().sum())
     # Creates the dataset
     train_dataset = create_tf_dataset(train_df,target_column, shuffle=True,batch_size = size_of_batch)
     val_dataset = create_tf_dataset(val_df,target_column,shuffle=False,batch_size = size_of_batch)
@@ -420,12 +415,11 @@ def encode_tensor_flow_features(train_df, val_df, test_df,target_column, numeric
             print('Number of Categorical Features Encoded: ',categorical_count)
         except RuntimeError as e:
             print(e) 
-
+        # Monitor memory usage
+        monitor_memory_usage(units = 3,cpu = True, gpu = True)
     # Normalise the numerical features
     for header in numerical_features:
         try:
-            # Monitor Memory Usage
-            monitor_memory_usage(units = 3,cpu = True, gpu = True)
             print('Start: ',header)
             numeric_col = tf.keras.Input(shape=(1,), name=header)
             print('Processing: Input Numeric Column')
@@ -440,10 +434,13 @@ def encode_tensor_flow_features(train_df, val_df, test_df,target_column, numeric
             print('Number of Numerical Features Encoded: ',numerical_count)
         except RuntimeError as e:
             print(e) 
-
+        # Monitor memory usage
+        monitor_memory_usage(units = 3,cpu = True, gpu = True)
     # Concatenate all encoded layers
     all_features = tf.keras.layers.concatenate(encoded_features)
     print('Encoding: Successful')
+    # Monitor memory usage
+    monitor_memory_usage(units = 3,cpu = True, gpu = True)
     return all_features, all_inputs, train_dataset, val_dataset, test_dataset
     # Create, compile and train the model
 def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name, all_features, all_inputs,selected_optimizer, selected_loss,selected_metrics, finance_configuration = True):
@@ -817,6 +814,8 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         print("Metric Values: ", metrics)
         # Save the model
         model.save('results/plots/tensorflow-models/'+model_name+'.pb')
+        # Monitor memory usage
+        monitor_memory_usage(units = 3,cpu = True, gpu = True)
         # Return the model, loss and accuracy
         return model,loss, metrics
     else:
@@ -1005,7 +1004,7 @@ def autodiff_implementation():
     # Develop this function to test autodiff functionality
 
     return
-def project_analysis(data_vm_directory,list_of_columns,categorical_assignment,target_column,model_name, selected_optimizer, selected_loss, selected_metrics, split_data = False, trial = False, sample = True):
+def project_analysis(data_vm_directory,list_of_columns,categorical_assignment,target_column,model_name, selected_optimizer, selected_loss, selected_metrics, split_data = False, trial = False, sample = False):
     # Split the initial vm dataset
     if split_data:
         split_vm_dataset(data_vm_directory,create_statistics=False,split_new_data=True, create_validation_set=True)
@@ -1033,7 +1032,7 @@ def project_analysis(data_vm_directory,list_of_columns,categorical_assignment,ta
         categorical_dictionary[key] = category_dtypes[key]
     # categorical_dictionary["size_grp"] = 'float64'
     # Encodes the tensorflow matrix
-    all_features, all_inputs, train_dataset, val_dataset, test_dataset = encode_tensor_flow_features(train_df,val_df,test_df,target_column,numerical_features,categorical_features,categorical_dictionary,size_of_batch=1)
+    all_features, all_inputs, train_dataset, val_dataset, test_dataset = encode_tensor_flow_features(train_df,val_df,test_df,target_column,numerical_features,categorical_features,categorical_dictionary,size_of_batch=32)
     # Buids tensorflow model
     # model,loss, metrics = build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name, all_features, all_inputs,selected_optimizer, selected_loss,selected_metrics, finance_configuration = True)
     return
