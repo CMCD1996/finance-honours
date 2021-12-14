@@ -827,7 +827,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         print("Metric Descriptions: ", model.metrics_names)
         print("Metric Values: ", metrics)
         # Save the model
-        model.save('results/plots/tensorflow-models/'+model_name+'.pb')
+        model.save('/home/connormcdowall/finance-honours/results/model/tensorflow-models/'+model_name+'.pb')
         # Monitor memory usage
         monitor_memory_usage(units = 3,cpu = True, gpu = True)
         # Return the model, loss and accuracy
