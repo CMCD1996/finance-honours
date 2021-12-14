@@ -307,21 +307,7 @@ def encode_tensor_flow_features(train_df, val_df, test_df,target_column, numeric
     encoded_features = []
     numerical_count = 0
     categorical_count = 0
-    # Normalise the numerical features
-    for header in numerical_features:
-        print('Start: ',header)
-        numeric_col = tf.keras.Input(shape=(1,), name=header)
-        print('Processing: Input Numeric Column')
-        normalization_layer = get_normalization_layer(header, train_dataset)
-        print('Processing: Sourced Normalization Layer')
-        encoded_numeric_col = normalization_layer(numeric_col)
-        print('Processing: Encoded Numerical Column')
-        all_inputs.append(numeric_col)
-        encoded_features.append(encoded_numeric_col)
-        print('Passed: ',header)
-        numerical_count = numerical_count + 1
-        print('Number of Numerical Features Encoded: ',numerical_count)
-
+    
     # Encode the remaicategorical features
     for header in categorical_features:
         print('Start: ', header)
@@ -339,6 +325,21 @@ def encode_tensor_flow_features(train_df, val_df, test_df,target_column, numeric
         print('Passed: ', header)
         categorical_count = categorical_count + 1
         print('Number of Categorical Features Encoded: ',categorical_count)
+
+    # Normalise the numerical features
+    for header in numerical_features:
+        print('Start: ',header)
+        numeric_col = tf.keras.Input(shape=(1,), name=header)
+        print('Processing: Input Numeric Column')
+        normalization_layer = get_normalization_layer(header, train_dataset)
+        print('Processing: Sourced Normalization Layer')
+        encoded_numeric_col = normalization_layer(numeric_col)
+        print('Processing: Encoded Numerical Column')
+        all_inputs.append(numeric_col)
+        encoded_features.append(encoded_numeric_col)
+        print('Passed: ',header)
+        numerical_count = numerical_count + 1
+        print('Number of Numerical Features Encoded: ',numerical_count)
 
     # Concatenate all encoded layers
     all_features = tf.keras.layers.concatenate(encoded_features)
