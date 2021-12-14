@@ -328,7 +328,7 @@ def create_feature_lists(list_of_columns, categorical_assignment):
     return numerical_features, categorical_features
 
 def create_tf_dataset(dataframe, target_column, shuffle=True, batch_size=32):
-    """[summary]
+    """Set target variable and converts dataframe to tensorflow dataset
 
     Args:
         df (dataframe): dataframe
@@ -750,7 +750,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         # Visualise model (https://www.tensorflow.org/api_docs/python/tf/keras/utils/plot_model)
         #################################################################################
         # Visualisation variables
-        to_file = 'results/plots/tensorflow-visualisations/'+ model_name +'.png'
+        to_file = '/home/connormcdowall/finance-honours/results/plots/tensorflow-visualisations/'+ model_name +'.png'
         show_shapes = True
         show_dtype = False
         show_layer_names = True
@@ -984,17 +984,67 @@ class CustomLossFunctionExample(tf.keras.losses.Loss):
         rmse = tf.math.sqrt(mse)
         return rmse / tf.reduce_mean(tf.square(y_true)) - 1
 
-class PortfolioReturnsEquallyWeighted(tf.keras.losses.Loss):
+class WeightByPortfolioExcessReturns(tf.keras.losses.Loss):
     def __init__(self):
         # Initialise the function
         super().__init__()
         # Define the call of the function
     def call(self,y_true,y_pred):
+        # Insert derivation here
         return 
+
+class FinanceCustomFunctionPlaceholder2(tf.keras.losses.Loss):
+    def __init__(self):
+        # Initialise the function
+        super().__init__()
+        # Define the call of the function
+    def call(self,y_true,y_pred):
+        # Insert derivation here
+        return 
+
+class FinanceCustomFunctionPlaceholder3(tf.keras.losses.Loss):
+    def __init__(self):
+        # Initialise the function
+        super().__init__()
+        # Define the call of the function
+    def call(self,y_true,y_pred):
+        # Insert derivation here
+        return 
+
+class FinanceCustomFunctionPlaceholder4(tf.keras.losses.Loss):
+    def __init__(self):
+        # Initialise the function
+        super().__init__()
+        # Define the call of the function
+    def call(self,y_true,y_pred):
+        # Insert derivation here
+        return 
+
+class FinanceCustomFunctionPlaceholder5(tf.keras.losses.Loss):
+    def __init__(self):
+        # Initialise the function
+        super().__init__()
+        # Define the call of the function
+    def call(self,y_true,y_pred):
+        # Insert derivation here
+        return 
+
+# Function for implementing autodiff
 def autodiff_guide(example):
+    """ Execute autodiff examples from Tensorflow resources
+
+    Args:
+        example (int): Example to implement
+                     : 1 - simple
+                     : 2 - 'simple_tensor'
+                     : 3 - 'simple_model'
+                     : 4 - 'control_tape'
+                     : 5 - 'control_tensor_tape'
+
+    """
     # Uses the autodiff functionality to test custom gradients with gradient tape
     # Extracted from
-    if example == 'simple':
+    if example == 1:
         # Simple example
         print('Starting Simple Example')
         x = tf.Variable(3.0)
@@ -1003,7 +1053,7 @@ def autodiff_guide(example):
         # dy = 2x * dx
         dy_dx = tape.gradient(y,x)
         print(dy_dx.numpy())
-    if example == 'simple_tensor':
+    if example == 2:
         w = tf.Variable(tf.random.normal((3, 2)), name='w')
         b = tf.Variable(tf.zeros(2, dtype=tf.float32), name='b')
         x = [[1., 2., 3.]]
@@ -1013,7 +1063,7 @@ def autodiff_guide(example):
         [dl_dw, dl_db] = tape.gradient(loss, [w, b])
         print(w.shape)
         print(dl_dw.shape)
-    if example == 'simple_model':
+    if example == 3:
         layer = tf.keras.layers.Dense(2, activation='relu')
         x = tf.constant([[1., 2., 3.]])
         with tf.GradientTape() as tape:
@@ -1025,7 +1075,7 @@ def autodiff_guide(example):
         # Print the outcomes of the simple model analysis
         for var, g in zip(layer.trainable_variables, grad):
             print(f'{var.name}, shape: {g.shape}')
-    if example == 'control_tape':
+    if example == 4:
         # A trainable variable
         x0 = tf.Variable(3.0, name='x0')
         # Not trainable
@@ -1040,7 +1090,7 @@ def autodiff_guide(example):
         for g in grad:
             print(g)
         [var.name for var in tape.watched_variables()]
-    if example == 'control_tensor_tape':
+    if example == 5:
         x = tf.constant(3.0)
         with tf.GradientTape() as tape:
             tape.watch(x)
