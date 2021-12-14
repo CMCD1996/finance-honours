@@ -932,8 +932,11 @@ def project_analysis(data_vm_directory,list_of_columns,categorical_assignment,ta
     # Creates inputs for the create feature lists function
     # Create feature lists for deep learning
     numerical_features, categorical_features = create_feature_lists(list_of_columns, categorical_assignment)
-    # Creates the categorical dictonary
+    # Creates the categorical dictonary (must specify the variables types of each)
     categorical_dictionary = dict.fromkeys(categorical_features,'string')
+    category_dtypes = {'size_grp':'string','permno':'int32','permco': 'int32','crsp_shrcd':'int8','crsp_exchcd':'int8','adjfct':'float64','sic':'float64','ff49':'float64'}
+    for key in category_dtypes:
+        categorical_dictionary[key] = category_dtypes[key]
     # categorical_dictionary["size_grp"] = 'float64'
     # Encodes the tensorflow matrix
     all_features, all_inputs, train_dataset, val_dataset, test_dataset = encode_tensor_flow_features(train_df,val_df,test_df,target_column,numerical_features,categorical_features,categorical_dictionary,size_of_batch=1)
