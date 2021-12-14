@@ -1004,7 +1004,7 @@ def autodiff_implementation():
     # Develop this function to test autodiff functionality
 
     return
-def project_analysis(data_vm_directory,list_of_columns,categorical_assignment,target_column,model_name, selected_optimizer, selected_loss, selected_metrics, split_data = False, trial = False, sample = False):
+def project_analysis(data_vm_directory,list_of_columns,categorical_assignment,target_column,batch_size,model_name, selected_optimizer, selected_loss, selected_metrics, split_data = False, trial = False, sample = False):
     # Split the initial vm dataset
     if split_data:
         split_vm_dataset(data_vm_directory,create_statistics=False,split_new_data=True, create_validation_set=True)
@@ -1032,7 +1032,7 @@ def project_analysis(data_vm_directory,list_of_columns,categorical_assignment,ta
         categorical_dictionary[key] = category_dtypes[key]
     # categorical_dictionary["size_grp"] = 'float64'
     # Encodes the tensorflow matrix
-    all_features, all_inputs, train_dataset, val_dataset, test_dataset = encode_tensor_flow_features(train_df,val_df,test_df,target_column,numerical_features,categorical_features,categorical_dictionary,size_of_batch=32)
+    all_features, all_inputs, train_dataset, val_dataset, test_dataset = encode_tensor_flow_features(train_df,val_df,test_df,target_column,numerical_features,categorical_features,categorical_dictionary,size_of_batch=batch_size)
     # Buids tensorflow model
     # model,loss, metrics = build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name, all_features, all_inputs,selected_optimizer, selected_loss,selected_metrics, finance_configuration = True)
     return
@@ -1083,6 +1083,8 @@ def ranking_function():
 #################################################################################
 # Variables
 #################################################################################
+# Integers
+batch_size = 256
 # Targets
 targets_dictionary = {1:'ret_exc',2:'ret_exc_lead1m'}
 target_column= targets_dictionary[1] # Sets the intended target column (test multiple configurations)
@@ -1184,6 +1186,6 @@ if rank_functions:
 # Function Call - Analysis
 ##################################################################################
 if begin_analysis:
-    project_analysis(data_vm_directory,list_of_columns,categorical_assignment,target_column, model_name, selected_optimizer, selected_loss, selected_metrics, split_data = False, trial = True, sample = True)
+    project_analysis(data_vm_directory,list_of_columns,categorical_assignment,target_column,batch_size, model_name, selected_optimizer, selected_loss, selected_metrics, split_data = False, trial = False, sample = True)
     
 
