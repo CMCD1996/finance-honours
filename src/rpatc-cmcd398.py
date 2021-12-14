@@ -62,6 +62,90 @@ def partition_data(data_location, data_destination):
         print('Number of rows converted: ',num_convert)
         num = num + 1
     return
+def create_dataframes(csv_location,multi_csv):
+    """ Function to create 
+    """
+    # Creates list of dataframes
+    num_csvs = list(range(1,29,1))
+    if multi_csv == False:
+        df = pd.read_csv(csv_location + "1.csv")
+        # Show frame information
+        show_info = False
+        if show_info == True: 
+            # Prints df head, info, columns
+            print('information on Dataframe')
+            print(df.info())
+            print('Dataframe Head')
+            print(df.head())
+            print('Dataframe Columns')
+            print(df.columns)
+            # Saves columns as list in txt file
+            np.savetxt(r'/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/data/dataframe-columns.txt', df.columns, fmt='%s')
+        # Save summary statistics to dataframe
+        data_stats = df.describe().round(4)
+        data_stats.T.to_latex('results/tables/subset-summary-statistics.txt')
+        return df
+        # Pre-process dataframe for suitability (Remove empty rows, columns etc.)
+    else:
+        df_list = []
+        for num in num_csvs:
+            df = pd.read_csv(csv_location + str(num) + ".csv")
+            # Append all the dataframes after reading the csv
+            df_list.append(df)
+            # Concantenate into one dataframe
+            df = pd.concat(df_list)
+        # Save summary statistics to dataframe
+        data_stats = df.describe().round(4)
+        data_stats.T.to_latex('results/tables/subset-summary-statistics.txt')
+        return df
+
+def sass_access(dataframe):
+    # Two files are accessed once for reference
+    # sascfg_personal is a configuration file for accessing SAS Ondemand Academic Packages
+    '/opt/anaconda3/lib/python3.7/site-packages/saspy'
+    # SAS User credientials for granting access
+    '/Users/connor/.authinfo'
+    # Enable SAS Connection
+    session = sas.SASsession()
+    # Create sass data
+    data = session.dataframe2sasdata(dataframe)
+    # Display summary statistics for the data
+    data.means()
+    return
+
+def replace_nan(df, replacement_method):
+    """[summary]
+
+    Args:
+        df (dataframe): Pandas Dataframe
+        replacement_method (int): Specify replacement methods
+                                : 0 - remove rows with nan values
+                                : 1 - remove columns with nan values
+                                : 2 - fill nan with column mean
+                                : 3 - fill nan with column median
+    Returns:
+        dataframe: Updated pandas dataframe
+    """
+    nan_total = df.isnull().sum().sum()
+    print('Number of nan values before processing: ',nan_total)
+    if nan_total > 0:
+        # Replace dataframe level nan (rows or columns)
+        # Replacement methods (0: remove rows with nan values, medium, remove, none)
+        if replacement_method == 0:
+            df.dropna(axis = 0, how = 'any',inplace = True)
+        # Caution: Change to dataframe-columns.txt and features list required (Do not use)
+        if replacement_method == 1:
+            df.dropna(axis = 1, how = 'any',inplace = True)
+        # Replace column level nan
+        for column in df.columns:
+            if df[column].isnull().sum() > 0:
+                if replacement_method == 2:
+                    df[column].fillna(df[column].mean(), inplace = True)
+                elif replacement_method == 3:
+                    df[column].fillna(df[column].median(), inplace = True)
+    nan_total = df.isnull().sum().sum()
+    print('Number of nan values after processing: ',nan_total)
+    return df
 
 def split_vm_dataset(data_vm_directory,create_statistics,split_new_data, create_validation_set):
     """ Creates summmary statistics from unprocessed dataset
@@ -135,65 +219,15 @@ def process_vm_dataset(data_vm_dta,categorical_assignment, save_statistics, samp
         # Append values to the dataset
         df_full = df_full.append(df)
         if sample:
+            df_full = replace_nan(df_full, replacement_method = 3)
             print(df_full.info(verbose=True))
             return df_full
-    # Get list of unique values for 
-    # print(df.info(verbose=True))
-    # return df
+    # Checks Nan in dataframe
+    df_full = replace_nan(df_full, replacement_method = 3)
+    # Pribts row information
     print(df_full.info(verbose=True))
     print(df_full.head())
     return df_full
-
-def create_dataframes(csv_location,multi_csv):
-    """ Function to create 
-    """
-    # Creates list of dataframes
-    num_csvs = list(range(1,29,1))
-    if multi_csv == False:
-        df = pd.read_csv(csv_location + "1.csv")
-        # Show frame information
-        show_info = False
-        if show_info == True: 
-            # Prints df head, info, columns
-            print('information on Dataframe')
-            print(df.info())
-            print('Dataframe Head')
-            print(df.head())
-            print('Dataframe Columns')
-            print(df.columns)
-            # Saves columns as list in txt file
-            np.savetxt(r'/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/data/dataframe-columns.txt', df.columns, fmt='%s')
-        # Save summary statistics to dataframe
-        data_stats = df.describe().round(4)
-        data_stats.T.to_latex('results/tables/subset-summary-statistics.txt')
-        return df
-        # Pre-process dataframe for suitability (Remove empty rows, columns etc.)
-    else:
-        df_list = []
-        for num in num_csvs:
-            df = pd.read_csv(csv_location + str(num) + ".csv")
-            # Append all the dataframes after reading the csv
-            df_list.append(df)
-            # Concantenate into one dataframe
-            df = pd.concat(df_list)
-        # Save summary statistics to dataframe
-        data_stats = df.describe().round(4)
-        data_stats.T.to_latex('results/tables/subset-summary-statistics.txt')
-        return df
-
-def sass_access(dataframe):
-    # Two files are accessed once for reference
-    # sascfg_personal is a configuration file for accessing SAS Ondemand Academic Packages
-    '/opt/anaconda3/lib/python3.7/site-packages/saspy'
-    # SAS User credientials for granting access
-    '/Users/connor/.authinfo'
-    # Enable SAS Connection
-    session = sas.SASsession()
-    # Create sass data
-    data = session.dataframe2sasdata(dataframe)
-    # Display summary statistics for the data
-    data.means()
-    return
 
 #################################################################################
 # Machine Learning
