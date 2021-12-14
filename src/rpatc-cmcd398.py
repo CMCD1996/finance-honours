@@ -1,45 +1,43 @@
 #################################################################################
 # Module Imports
 #################################################################################
+# System
 import psutil as ps # Monitor CPU usage
 import nvidia_smi # Monitor GPU usage
+import os # change/manipulate operating systems
+import datetime as dt # Manipulate datetime values
+import random as rd # random functionality
+import csv as csv # read and write csvs
+import itertools as it 
 # Analytical
 from pandas.core.base import NoNewAttributesMixin
 import sympy as sym # Symbolic package for calculus
-# Essential
+# Machine Learning/AI/Statistics
 import numpy as np
 from numpy.core.fromnumeric import transpose # Arithmetic operations
 import pandas as pd # Data analysis package
 import dask as ds # Data importing for very large software packages.
-import matplotlib.pyplot as plt # Simple plotting
+import seaborn as sb # Imports seaborn library for use
 import sklearn as skl # Simple statistical models 
 from sklearn.model_selection import train_test_split
 import tensorflow as tf # Tensorflow (https://www.tensorflow.org/)
 from tensorflow.keras import layers
 from tensorflow.python.ops.gen_array_ops import split # Find combinations of lists
-import csv as csv # read and write csvs
-import os # change/manipulate operating systems
-# Additional
-import random as rd # random functionality
-import saspy as sas # Use saspy functionality in python
-import seaborn as sb # Imports seaborn library for use
-# import wrds as wrds# Wharton Research Data Services API
-# import pydatastream as pds # Thomas Reuters Datastream API
-# import yfinance as yf # Yahoo Finance API
-import datetime as dt # Manipulate datetime values
-import statsmodels.api as sm # Create Stats functionalities
-# import linearmodels as lp # Ability to use PooledOLS
-from sklearn.linear_model import LinearRegression
-# from stargazer.stargazer import Stargazer #Stargazor package to produce latex tables
-# import finance_byu as fin # Python Package for Fama-MacBeth Regressions
+import linearmodels as lp # Ability to use PooledOLS
 from statsmodels.regression.rolling import RollingOLS # Use factor loadings
-# from stargazer.stargazer import Stargazer
-import sympy as sy # convert latex code
+# APIs
+import wrds as wrds# Wharton Research Data Services API
+import pydatastream as pds # Thomas Reuters Datastream API
+import yfinance as yf # Yahoo Finance API
+import finance_byu as fin # Python Package for Fama-MacBeth Regressions
+import saspy as sas # Use saspy functionality in python
+import statsmodels.api as sm # Create Stats functionalities
+# Formatting/Graphing
+import tabulate as tb # Create tables in python
+import pydot as pyd # Dynamically generate graphs
+import matplotlib.pyplot as plt # Simple plotting
 import scipy as sc # Scipy packages
-# import tabulate as tb # Create tables in python
-import itertools as it
-import pydot
-
+from stargazer.stargazer import Stargazer #Stargazor package to lm latex tables
 #################################################################################
 # Function Calls
 #################################################################################
@@ -179,7 +177,7 @@ def sass_access(dataframe):
     return
 
 def replace_nan(df, replacement_method):
-    """[summary]
+    """ Replace/Remove nan files in a dataframe
 
     Args:
         df (dataframe): Pandas Dataframe
@@ -232,11 +230,8 @@ def split_vm_dataset(data_vm_directory,create_statistics,split_new_data, create_
         test_df = pd.DataFrame()
         total_df = pd.read_stata(data_vm_directory + 'combined_predictors_filtered_us.dta', chunksize =100000)
         for chunk in total_df:
-            # train_df = train_df.append(chunk[chunk["train"] == 1])
             test_df = test_df.append(chunk[chunk["test"] == 1])
-        # train_df = total_df[total_df["train"] == 1]
-        # test_df = total_df[total_df["test"] == 1]
-        # Convert training and testing sets to stata files
+        # Split training set into training and validation
         if create_validation_set == True:
             train_new_df,val_df = train_test_split(train_df,test_size=0.2)
             print(train_df.info())
@@ -452,6 +447,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
     if finance_configuration:
         # https://www.tensorflow.org/api_docs/python/tf/keras/layers/Dense
         # Configure the neural network layers
+        print('Start: Configuration of Deep Network Layers')
         x = tf.keras.layers.Dense(
         units = 32, activation="relu", use_bias=True,
         kernel_initializer='glorot_uniform',
@@ -472,13 +468,13 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
             # x if x > 0 and alpha * (exp(x) - 1) if x < 0 
         # Note: The ELU hyperparameter alpha controls the value to which an ELU saturates 
         # for negative net inputs. ELUs diminish the vanishing gradient effect.
-
         # https://www.tensorflow.org/api_docs/python/tf/keras/layers/Dropout
         # Dropout layer to randomly set input units to zero with a deterministic rate
         # during each step of training to help prevent overfitting. Note:
         # inputs not set to zero are scaled by 1/(1-rate) so the sum of all inputs is unchanged.
         x = tf.keras.layers.Dropout(rate=0.5, noise_shape = None, seed = None)(x)
         output = tf.keras.layers.Dense(1)(x)
+        print('End: Configuration of Deep Network Layers')
         # Configure the model (https://www.tensorflow.org/api_docs/python/tf/keras/Model)
         model = tf.keras.Model(all_inputs, output)
         # Initilises optimizer variables
@@ -743,9 +739,11 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         #################################################################################
         # Compiler variables
         # Establishes the compiler
+        print('Start: Model Compilation')
         model.compile(
             optimizer=opt, loss=lf, metrics=metrics_list, loss_weights=lw,
             weighted_metrics=wm, run_eagerly=regly, steps_per_execution=spe)
+        print('End: Model Compilation')
         #################################################################################
         # Visualise model (https://www.tensorflow.org/api_docs/python/tf/keras/utils/plot_model)
         #################################################################################
@@ -790,12 +788,12 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         workers=1 # Integer. Used for generator or keras.utils.Sequence input only (Not this case)
         use_multiprocessing=False #Boolean. Used for generator or keras.utils.Sequence input only. 
         # Fit the model
-        model.fit(
-            x=x_train, batch_size=32, epochs=eps, verbose='auto',
+        print('Start: Model Fitting')
+        model.fit(x=x_train, batch_size=32, epochs=eps, verbose='auto',
             callbacks=None, validation_data=val_dataset, shuffle=True,
             class_weight=None, sample_weight=None, initial_epoch=0, steps_per_epoch=None,
-            validation_steps=None, max_queue_size=10, workers=1, use_multiprocessing=False
-        )
+            validation_steps=None, max_queue_size=10, workers=1, use_multiprocessing=False)
+        print('End: Model Fitting')
         # model.fit(x, batch_size, epochs=eps, verbose='auto',
         # callbacks, validation_data, shuffle,
         # class_weight, sample_weight, initial_epoch, steps_per_epoch,
@@ -819,10 +817,11 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         rd = False # If True, loss and metric results are returned as a dict, 
         # with each key being the name of the metric. If False, they are returned as a list.
         # Model evaluation
-        model.evaluate(x, batch_size=None, verbose = verb, steps = None, callbacks = None,
+        print('Start: Model Evaluation')
+        loss, metrics = model.evaluate(x_test, batch_size=None, verbose = verb, steps = None, callbacks = None,
         max_queue_size = mqs, workers = 1, use_multiprocessing = ump,return_dict=rd)
         #################################################################################
-        loss, metrics = model.evaluate(test_dataset)
+        print('End: Model Evaluation')
         print("Loss: ", loss)
         print("Metric Descriptions: ", model.metrics_names)
         print("Metric Values: ", metrics)
