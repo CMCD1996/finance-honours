@@ -452,31 +452,36 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         # https://www.tensorflow.org/api_docs/python/tf/keras/layers/Dense
         # Configure the neural network layers
         print('Start: Configuration of Deep Network Layers')
-        x = tf.keras.layers.Dense(
-        units = 32, activation="relu", use_bias=False,
-        kernel_initializer='glorot_uniform',
-        bias_initializer='zeros', kernel_regularizer=None,
-        bias_regularizer=None, activity_regularizer=None, kernel_constraint=None,
-        bias_constraint=None)(all_features)
-        # List of activation functions
-        # 'relu' = Rectified linear unit activation
-        # 'sigmond' = Sigmoid activation function, sigmoid(x) = 1 / (1 + exp(-x)).
-        # 'softmax' = Softmax converts a vector of values to a probability distribution
-        # 'softplus' = Softplus activation function, softplus(x) = log(exp(x) + 1)
-        # 'softsign' = Softsign activation function, softsign(x) = x / (abs(x) + 1).
-        # 'tanh' = Hyperbolic tangent activation function.
-        # 'selu' = Scaled Exponential Linear Unit (SELU) activation function is defined as:
-        #   if x > 0: return scale * x
-        #   if x < 0: return scale * alpha * (exp(x) - 1)
-        # 'elu' = The exponential linear unit (ELU) with alpha > 0 is: 
-            # x if x > 0 and alpha * (exp(x) - 1) if x < 0 
-        # Note: The ELU hyperparameter alpha controls the value to which an ELU saturates 
-        # for negative net inputs. ELUs diminish the vanishing gradient effect.
-        # https://www.tensorflow.org/api_docs/python/tf/keras/layers/Dropout
-        # Dropout layer to randomly set input units to zero with a deterministic rate
-        # during each step of training to help prevent overfitting. Note:
-        # inputs not set to zero are scaled by 1/(1-rate) so the sum of all inputs is unchanged.
-        x = tf.keras.layers.Dropout(rate=0.5, noise_shape = None, seed = None)(x)
+        simple_config = True
+        if simple_config:
+            x = tf.keras.layers.Dense(32, activation="relu")(all_features)
+            x = tf.keras.layers.Dropout(rate=0.5, noise_shape = None, seed = None)(x)
+        else:
+            x = tf.keras.layers.Dense(
+            units = 32, activation="relu", use_bias=False,
+            kernel_initializer='glorot_uniform', use_bias = True,
+            bias_initializer='zeros', kernel_regularizer=None,
+            bias_regularizer=None, activity_regularizer=None, kernel_constraint=None,
+            bias_constraint=None)(all_features)
+            # List of activation functions
+            # 'relu' = Rectified linear unit activation
+            # 'sigmond' = Sigmoid activation function, sigmoid(x) = 1 / (1 + exp(-x)).
+            # 'softmax' = Softmax converts a vector of values to a probability distribution
+            # 'softplus' = Softplus activation function, softplus(x) = log(exp(x) + 1)
+            # 'softsign' = Softsign activation function, softsign(x) = x / (abs(x) + 1).
+            # 'tanh' = Hyperbolic tangent activation function.
+            # 'selu' = Scaled Exponential Linear Unit (SELU) activation function is defined as:
+            #   if x > 0: return scale * x
+            #   if x < 0: return scale * alpha * (exp(x) - 1)
+            # 'elu' = The exponential linear unit (ELU) with alpha > 0 is: 
+                # x if x > 0 and alpha * (exp(x) - 1) if x < 0 
+            # Note: The ELU hyperparameter alpha controls the value to which an ELU saturates 
+            # for negative net inputs. ELUs diminish the vanishing gradient effect.
+            # https://www.tensorflow.org/api_docs/python/tf/keras/layers/Dropout
+            # Dropout layer to randomly set input units to zero with a deterministic rate
+            # during each step of training to help prevent overfitting. Note:
+            # inputs not set to zero are scaled by 1/(1-rate) so the sum of all inputs is unchanged.
+            x = tf.keras.layers.Dropout(rate=0.5, noise_shape = None, seed = None)(x)
         # Creates the output layer
         output = tf.keras.layers.Dense(1)(x)
         print('End: Configuration of Deep Network Layers')
