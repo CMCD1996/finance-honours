@@ -53,7 +53,7 @@ def monitor_memory_usage(units, cpu = False, gpu = False):
         gpu (bool, optional): GPU Information. Defaults to False.
     """
     # Set unit conversion for readability
-    convertor = (1024^units)
+    convertor = (1024**units)
     print('Convertor',convertor)
     # Shows CPU information using psutil
     if cpu:
