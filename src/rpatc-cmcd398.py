@@ -42,6 +42,58 @@ from tensorflow.python.ops.gen_array_ops import split # Find combinations of lis
 #################################################################################
 # Function Calls
 #################################################################################
+# System Functions
+#################################################################################
+def monitor_memory_usage(cpu = False, gpu = False):
+    # Shows CPU information using psutil
+    if cpu:
+        cpu_f = ps.virtual_memory().available
+        cpu_t = ps.virtual_memory().total 
+        cpu_u = ps.virtual_memory().total - ps.virtual_memory().available
+        cpu_fp = ps.virtual_memory().available * 100 / ps.virtual_memory().total
+        print("GPU - Memory : ({:.2f}% free): {}(total), {} (free), {} (used)".format(cpu_fp,cpu_t,cpu_f, cpu_u))
+        # Shows GPU information using nvidia-ml-py3
+    if gpu:
+        print("GPU Memory Summary")
+        nvidia_smi.nvmlInit()
+        deviceCount = nvidia_smi.nvmlDeviceGetCount()
+        for i in range(deviceCount):
+            # Gets device handle
+            handle = nvidia_smi.nvmlDeviceGetHandleByIndex(i)
+            # Uses handle to get GPU device info
+            info = nvidia_smi.nvmlDeviceGetMemoryInfo(handle)
+            # Prints GPU information
+            print("GPU - Device {}: {}, Memory : ({:.2f}% free): {}(total), {} (free), {} (used)".format(i, nvidia_smi.nvmlDeviceGetName(handle), 100*info.free/info.total, info.total, info.free, info.used))
+        nvidia_smi.nvmlShutdown()
+    return
+
+def reconfigure_gpu(restrict_tf,growth_memory):
+    # Check the number of GPUs avaiable to Tensorflow and in use
+    print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
+    # Limit tf to a specfic set of GO devices
+    gpus = tf.config.list_physical_devices('GPU')
+    # Restrict TensorFlow to only use the first GPU
+    if gpus and restrict_tf:
+        try:
+            tf.config.set_visible_devices(gpus[0], 'GPU')
+            logical_gpus = tf.config.list_logical_devices('GPU')
+            print(len(gpus), "Physical GPUs,", len(logical_gpus), "Logical GPU")
+        except RuntimeError as e:
+            # Visible devices must be set before GPUs have been initialized
+            print(e)
+    # Limit GPU Memory Growth
+    if gpus and growth_memory:
+        try:
+            # Currently, memory growth needs to be the same across GPUs
+            for gpu in gpus:
+                tf.config.experimental.set_memory_growth(gpu, True)
+            logical_gpus = tf.config.list_logical_devices('GPU')
+            print(len(gpus), "Physical GPUs,", len(logical_gpus), "Logical GPUs")
+        except RuntimeError as e:
+            # Memory growth must be set before GPUs have been initialized
+            print(e)
+    return
+#################################################################################
 # Data Processing
 #################################################################################
 def partition_data(data_location, data_destination):
@@ -150,56 +202,6 @@ def replace_nan(df, replacement_method):
     nan_total = df.isnull().sum().sum()
     print('Number of nan values after processing: ',nan_total)
     return df
-
-def monitor_memory_usage(cpu = False, gpu = False):
-    # Shows CPU information using psutil
-    if cpu:
-        cpu_f = ps.virtual_memory().available
-        cpu_t = ps.virtual_memory().total 
-        cpu_u = ps.virtual_memory().total - ps.virtual_memory().available
-        cpu_fp = ps.virtual_memory().available * 100 / ps.virtual_memory().total
-        print("GPU - Memory : ({:.2f}% free): {}(total), {} (free), {} (used)".format(cpu_fp,cpu_t,cpu_f, cpu_u))
-        # Shows GPU information using nvidia-ml-py3
-    if gpu:
-        print("GPU Memory Summary")
-        nvidia_smi.nvmlInit()
-        deviceCount = nvidia_smi.nvmlDeviceGetCount()
-        for i in range(deviceCount):
-            # Gets device handle
-            handle = nvidia_smi.nvmlDeviceGetHandleByIndex(i)
-            # Uses handle to get GPU device info
-            info = nvidia_smi.nvmlDeviceGetMemoryInfo(handle)
-            # Prints GPU information
-            print("GPU - Device {}: {}, Memory : ({:.2f}% free): {}(total), {} (free), {} (used)".format(i, nvidia_smi.nvmlDeviceGetName(handle), 100*info.free/info.total, info.total, info.free, info.used))
-        nvidia_smi.nvmlShutdown()
-    return
-
-def reconfigure_gpu(restrict_tf,growth_memory):
-    # Check the number of GPUs avaiable to Tensorflow and in use
-    print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
-    # Limit tf to a specfic set of GO devices
-    gpus = tf.config.list_physical_devices('GPU')
-    # Restrict TensorFlow to only use the first GPU
-    if gpus and restrict_tf:
-        try:
-            tf.config.set_visible_devices(gpus[0], 'GPU')
-            logical_gpus = tf.config.list_logical_devices('GPU')
-            print(len(gpus), "Physical GPUs,", len(logical_gpus), "Logical GPU")
-        except RuntimeError as e:
-            # Visible devices must be set before GPUs have been initialized
-            print(e)
-    # Limit GPU Memory Growth
-    if gpus and growth_memory:
-        try:
-            # Currently, memory growth needs to be the same across GPUs
-            for gpu in gpus:
-                tf.config.experimental.set_memory_growth(gpu, True)
-            logical_gpus = tf.config.list_logical_devices('GPU')
-            print(len(gpus), "Physical GPUs,", len(logical_gpus), "Logical GPUs")
-        except RuntimeError as e:
-            # Memory growth must be set before GPUs have been initialized
-            print(e)
-    return
 
 def split_vm_dataset(data_vm_directory,create_statistics,split_new_data, create_validation_set):
     """ Creates summmary statistics from unprocessed dataset
@@ -420,6 +422,8 @@ def encode_tensor_flow_features(train_df, val_df, test_df,target_column, numeric
     # Normalise the numerical features
     for header in numerical_features:
         try:
+            # Monitor Memory Usage
+            monitor_memory_usage(cpu = True, gpu = True)
             print('Start: ',header)
             numeric_col = tf.keras.Input(shape=(1,), name=header)
             print('Processing: Input Numeric Column')
@@ -1135,7 +1139,7 @@ begin_analysis = True
 # System Checks
 #################################################################################
 if sys_check:
-    reconfigure_gpu(restrict_tf = True, growth_memory=True)
+    reconfigure_gpu(restrict_tf = False, growth_memory=True)
 #################################################################################
 # Data processing
 #################################################################################
