@@ -1012,6 +1012,8 @@ data_vm_dta = '/home/connormcdowall/local-data/combined_predictors_filtered_us.d
 results_tables = '/home/connormcdowall/finance-honours/results/tables'
 list_of_columns = '/home/connormcdowall/finance-honours/data/dataframe-columns.txt'
 # Binary (Set to True or False depending on the functions to run)
+# System Checks
+sys_check = True
 # Data processing
 source_data = False
 split_vm_data = False
@@ -1031,6 +1033,10 @@ begin_analysis = True
 #################################################################################
 # Function Calls - Testing
 #################################################################################
+# System Checks
+#################################################################################
+if sys_check:
+    print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
 # Data processing
 #################################################################################
 # Source data from local drive
