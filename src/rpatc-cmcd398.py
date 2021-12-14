@@ -38,6 +38,8 @@ import sympy as sy # convert latex code
 import scipy as sc # Scipy packages
 # import tabulate as tb # Create tables in python
 import itertools as it
+import pydot
+
 #################################################################################
 # Function Calls
 #################################################################################
@@ -763,52 +765,62 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         # Model.fir (https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit)
         #################################################################################
         # Fit variables
-        x = train_dataset
-        y = None 
-        batch_size = None
-        epochs=10
+        x_train = train_dataset
+        y = None # If x is a dataset, generator, or keras.utils.Sequence instance, y should 
+        # not be specified (since targets will be obtained from x).
+        batch_size = None # Defaults to 32
+        eps=10 # Integer. Number of epochs to train the model. An epoch is an iteration over 
+        # the entire x and y data provided (unless the steps_per_epoch flag is set to something other than None).
         verbose = 'auto'
         callbacks=None
-        validation_split=0.0  # Not needed given provision of validation dataset
+        validation_split=0.0  # Not support when x is a dataset
         validation_data=val_dataset
-        shuffle=True,
-        class_weight=None
-        sample_weight=None
-        initial_epoch=0
-        steps_per_epoch=None
-        validation_steps=None
-        validation_batch_size=None
-        validation_freq=1,
-        max_queue_size=10
-        workers=1
-        use_multiprocessing=False
+        shuffle=True #Ignored when x is a generator or an object of tf.data.Dataset (This case)
+        class_weight=None # Optional dictionary mapping class indices (integers) to a 
+        # continued: weight (float) value, used for weighting the loss function (during training only)
+        sample_weight=None # This argument is not supported when x is a dataset
+        initial_epoch=0 # Integer. Epoch at which to start training (useful for resuming a previous training run).
+        steps_per_epoch=None # If x is a tf.data dataset, and 'steps_per_epoch' is None, the epoch will run until the input dataset is exhausted.
+        validation_steps=None # Only relevant if validation_data is provided and is a tf.data dataset.
+        # Continued: If 'validation_steps' is None, validation will run until the validation_data dataset is exhausted.
+        validation_batch_size=None # Do not specify the validation_batch_size if your data is in the form of datasets
+        validation_freq=1
+        max_queue_size=10 #Integer. Used for generator or keras.utils.Sequence input only. 
+        # Continued: Maximum size for the generator queue. If unspecified, max_queue_size will default to 10.
+        workers=1 # Integer. Used for generator or keras.utils.Sequence input only (Not this case)
+        use_multiprocessing=False #Boolean. Used for generator or keras.utils.Sequence input only. 
         # Fit the model
-        model.fit(x, batch_size, epochs, verbose,
-        callbacks, validation_data, shuffle,
-        class_weight, sample_weight, initial_epoch, steps_per_epoch,
-        validation_steps, validation_batch_size, validation_freq,
-        max_queue_size, workers, use_multiprocessing)
+        model.fit(
+            x=x_train, batch_size=32, epochs=eps, verbose='auto',
+            callbacks=None, validation_data=val_dataset, shuffle=True,
+            class_weight=None, sample_weight=None, initial_epoch=0, steps_per_epoch=None,
+            validation_steps=None, max_queue_size=10, workers=1, use_multiprocessing=False
+        )
+        # model.fit(x, batch_size, epochs=eps, verbose='auto',
+        # callbacks, validation_data, shuffle,
+        # class_weight, sample_weight, initial_epoch, steps_per_epoch,
+        # validation_steps, validation_batch_size, validation_freq,
+        # max_queue_size, workers, use_multiprocessing)
         #################################################################################
         # Model.evaluate (https://www.tensorflow.org/api_docs/python/tf/keras/Model#evaluate)
         #################################################################################
         # Evaluation variables
-        x = test_dataset
+        x_test = test_dataset
         y = None #Only use if target variables not specified in dataset, must align with x.
-        batch_size = None
-        sample_weight = None
-        steps = None
-        verbose = 1 # 0 or 1. Verbosity mode. 0 = silent, 1 = progress bar.
-        sample_weight = None
-        steps = None
+        batch_size = None # Defaults to 32
+        verb = 1 # 0 or 1. Verbosity mode. 0 = silent, 1 = progress bar.
+        sample_weight = None # Optional, This argument is not supported when x is a dataset
+        steps = None # If x is a tf.data dataset and steps is None, 'evaluate' will run until the dataset is exhausted
         callbacks = None
-        max_queue_size = 10
-        workers = 1
-        use_multiprocessing = False
-        return_dict = False
+        mqs = 10 # Max queue size. If unspecified, max_queue_size will default to 10
+        workers = 1 # Integer. Used for generator or keras.utils.Sequence
+        ump = False # use_multiprocessing, boolean. Used for generator or keras.utils.Sequence input only. 
+        # Continued: If True, use process-based threading. If unspecified, use_multiprocessing will default to False.
+        rd = False # If True, loss and metric results are returned as a dict, 
+        # with each key being the name of the metric. If False, they are returned as a list.
         # Model evaluation
-        model.evaluate(x, batch_size, verbose, sample_weight, steps,
-        callbacks, max_queue_size, workers, use_multiprocessing,
-        return_dict)
+        model.evaluate(x, batch_size=None, verbose = verb, steps = None, callbacks = None,
+        max_queue_size = mqs, workers = 1, use_multiprocessing = ump,return_dict=rd)
         #################################################################################
         loss, metrics = model.evaluate(test_dataset)
         print("Loss: ", loss)
