@@ -11,7 +11,6 @@ import matplotlib.pyplot as plt # Simple plotting
 import sklearn as skl # Simple statistical models 
 from sklearn.model_selection import train_test_split
 import tensorflow as tf # Tensorflow (https://www.tensorflow.org/)
-import tensorflow
 from tensorflow.keras import layers
 import csv as csv # read and write csvs
 import os # change/manipulate operating systems
