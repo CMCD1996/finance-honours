@@ -528,7 +528,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         # Losses
         #################################################################################
         # Loss variables
-        red = tf.keras.losses.Reduction
+        red = 'auto'
         flt = True
         ls = 0.0
         ax = -1
