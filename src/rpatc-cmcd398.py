@@ -139,6 +139,7 @@ def replace_nan(df, replacement_method):
         # Replace column level nan
         for column in df.columns:
             if df[column].isnull().sum() > 0:
+                print('Processing nan in: ', column)
                 if replacement_method == 2:
                     df[column].fillna(df[column].mean(), inplace = True)
                 elif replacement_method == 3:
