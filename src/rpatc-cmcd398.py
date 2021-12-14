@@ -203,7 +203,6 @@ def replace_nan(df, replacement_method):
         # Replace column level nan
         for column in df.columns:
             if df[column].isnull().sum() > 0:
-                print('Processing nan in: ', column)
                 if replacement_method == 2:
                     df[column].fillna(df[column].mean(), inplace = True)
                 elif replacement_method == 3:
@@ -279,9 +278,13 @@ def process_vm_dataset(data_vm_dta,categorical_assignment, save_statistics, samp
         monitor_memory_usage(units = 3,cpu = True, gpu = True)
         if sample:
             df_full = replace_nan(df_full, replacement_method = 3)
+            # Print size and shape of dataframe
+            print('The dataframe has {} entries with {} rows and {} columns.',format(df_full.size,df_full.shape[0],df_full.shape[1]))
             return df_full
     # Checks Nan in dataframe
     df_full = replace_nan(df_full, replacement_method = 3)
+    # Print size and shape of dataframe
+    print('The dataframe has {} entries with {} rows and {} columns.',format(df_full.size,df_full.shape[0],df_full.shape[1]))
     # Prints memory usage after the process
     monitor_memory_usage(units = 3,cpu = True, gpu = True)
     return df_full
@@ -1186,6 +1189,6 @@ if rank_functions:
 # Function Call - Analysis
 ##################################################################################
 if begin_analysis:
-    project_analysis(data_vm_directory,list_of_columns,categorical_assignment,target_column,batch_size, model_name, selected_optimizer, selected_loss, selected_metrics, split_data = False, trial = False, sample = True)
+    project_analysis(data_vm_directory,list_of_columns,categorical_assignment,target_column,batch_size, model_name, selected_optimizer, selected_loss, selected_metrics, split_data = False, trial = True, sample = True)
     
 
