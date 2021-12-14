@@ -769,7 +769,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         epochs=10
         verbose = 'auto'
         callbacks=None
-        validation_split=0.0
+        validation_split=0.0  # Not needed given provision of validation dataset
         validation_data=val_dataset
         shuffle=True,
         class_weight=None
