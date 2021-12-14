@@ -757,10 +757,14 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         dpi = 96
         layer_range = None
         show_layer_activations = False
+        # Creates a plot of the model
         tf.keras.utils.plot_model(model, to_file, show_shapes, show_dtype,
         show_layer_names, rankdir, expand_nested, dpi,layer_range, show_layer_activations)
+        # Prints a summary of the model
+        print('Model Summary')
+        print(model.summary())
         #################################################################################
-        # Model.fir (https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit)
+        # Model.fit (https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit)
         #################################################################################
         # Fit variables
         x_train = train_dataset
