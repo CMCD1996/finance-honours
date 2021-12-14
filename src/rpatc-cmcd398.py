@@ -247,13 +247,13 @@ def split_vm_dataset(data_vm_directory,create_statistics,split_new_data, create_
         test_df.to_stata(data_vm_directory + 'test.dta')
     return
 
-def process_vm_dataset(data_vm_dta,categorical_assignment, save_statistics, sample = False):
+def process_vm_dataset(data_vm_dta,size_of_chunks, save_statistics, sample = False):
     """ This script processes the training and testing datasets for Tensorflow
     following the classify structured data with feature columns tutorial
     """
     # Load the test and train datasets into dataframes in chunks
     #df = pd.read_stata(data_vm_dta)
-    subset = pd.read_stata(data_vm_dta, chunksize = 100000)
+    subset = pd.read_stata(data_vm_dta, chunksize = size_of_chunks)
     df_full = pd.DataFrame()
     for df in subset:
         print('Number of instances: ',len(df))
@@ -1007,16 +1007,17 @@ def autodiff_implementation():
     # Develop this function to test autodiff functionality
 
     return
-def project_analysis(data_vm_directory,list_of_columns,categorical_assignment,target_column,batch_size,model_name, selected_optimizer, selected_loss, selected_metrics, split_data = False, trial = False, sample = False):
+def project_analysis(data_vm_directory,list_of_columns,categorical_assignment,target_column,chunk_size,batch_size,model_name, selected_optimizer, selected_loss, selected_metrics, split_data = False, trial = False, sample = False):
     # Split the initial vm dataset
     if split_data:
         split_vm_dataset(data_vm_directory,create_statistics=False,split_new_data=True, create_validation_set=True)
     # Creates the training, validation and testing dataframes
-    test_df = process_vm_dataset(data_vm_directory + 'test.dta',categorical_assignment,save_statistics=False, sample = True)
-    train_df = process_vm_dataset(data_vm_directory + 'train.dta',categorical_assignment,save_statistics=False, sample = True)
-    val_df = process_vm_dataset(data_vm_directory + 'val.dta',categorical_assignment,save_statistics=False, sample = True)
+    test_df = process_vm_dataset(data_vm_directory + 'test.dta',chunk_size,save_statistics=False, sample = True)
+    train_df = process_vm_dataset(data_vm_directory + 'train.dta',chunk_size,save_statistics=False, sample = True)
+    val_df = process_vm_dataset(data_vm_directory + 'val.dta',chunk_size,save_statistics=False, sample = True)
     # Use trial to test the dataframe when functions not as large
     if trial:
+        # Trial run takes 5% of dataframe produced from processed vm datasets
         test_df,test_discard_df = train_test_split(test_df,test_size=0.95)
         train_df, train_discard_df = train_test_split(train_df,test_size=0.95)
         val_df, val_discard_df = train_test_split(val_df,test_size=0.95)
@@ -1087,7 +1088,8 @@ def ranking_function():
 # Variables
 #################################################################################
 # Integers
-batch_size = 256
+batch_size = 256 # Batch size for creating tf dataset
+chunk_size = 1000 # chunk size for reading stata files
 # Targets
 targets_dictionary = {1:'ret_exc',2:'ret_exc_lead1m'}
 target_column= targets_dictionary[1] # Sets the intended target column (test multiple configurations)
@@ -1189,6 +1191,6 @@ if rank_functions:
 # Function Call - Analysis
 ##################################################################################
 if begin_analysis:
-    project_analysis(data_vm_directory,list_of_columns,categorical_assignment,target_column,batch_size, model_name, selected_optimizer, selected_loss, selected_metrics, split_data = False, trial = True, sample = True)
+    project_analysis(data_vm_directory,list_of_columns,categorical_assignment,target_column,chunk_size,batch_size, model_name, selected_optimizer, selected_loss, selected_metrics, split_data = False, trial = True, sample = True)
     
 
