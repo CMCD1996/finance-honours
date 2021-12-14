@@ -1030,7 +1030,7 @@ enable_autodiff = False
 analytical = False
 rank_functions = False
 # Research Proposal Analysis
-begin_analysis = True
+begin_analysis = False
 #################################################################################
 # Function Calls - Testing
 #################################################################################
@@ -1038,6 +1038,7 @@ begin_analysis = True
 #################################################################################
 if sys_check:
     print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
+#################################################################################
 # Data processing
 #################################################################################
 # Source data from local drive
