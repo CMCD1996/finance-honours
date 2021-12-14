@@ -784,7 +784,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         use_multiprocessing=False
         # Fit the model
         model.fit(x, batch_size, epochs, verbose,
-        callbacks, validation_split, validation_data, shuffle,
+        callbacks, validation_data, shuffle,
         class_weight, sample_weight, initial_epoch, steps_per_epoch,
         validation_steps, validation_batch_size, validation_freq,
         max_queue_size, workers, use_multiprocessing)
