@@ -833,6 +833,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         # Return the model, loss and accuracy
         return model,loss, metrics
     else:
+        # Exemplar implementation prior to finance adaptation
         # Set up neural net layers
         x = tf.keras.layers.Dense(32, activation="relu")(all_features)
         x = tf.keras.layers.Dropout(rate=0.5, noise_shape = None, seed = None)(x)
@@ -934,6 +935,62 @@ def implement_test_data(dataframe, train, val, test,full_implementation = False)
         print('Test functions complete')
     return
 
+def project_analysis(data_vm_directory,list_of_columns,categorical_assignment,target_column,chunk_size,batch_size,model_name, selected_optimizer, selected_loss, selected_metrics, split_data = False, trial = False, sample = False):
+    # Prints memory usage before analysis
+    monitor_memory_usage(units = 3, cpu = True, gpu = True)
+    # Split the initial vm dataset
+    if split_data:
+        split_vm_dataset(data_vm_directory,create_statistics=False,split_new_data=True, create_validation_set=True)
+    # Creates the training, validation and testing dataframes
+    test_df = process_vm_dataset(data_vm_directory + 'test.dta',chunk_size,save_statistics=False, sample = True)
+    train_df = process_vm_dataset(data_vm_directory + 'train.dta',chunk_size,save_statistics=False, sample = True)
+    val_df = process_vm_dataset(data_vm_directory + 'val.dta',chunk_size,save_statistics=False, sample = True)
+    # Use trial to test the dataframe when functions not as large
+    if trial:
+        # Trial run takes 5% of dataframe produced from processed vm datasets
+        test_df,test_discard_df = train_test_split(test_df,test_size=0.95)
+        train_df, train_discard_df = train_test_split(train_df,test_size=0.95)
+        val_df, val_discard_df = train_test_split(val_df,test_size=0.95)
+    print(test_df.info())
+    print(train_df.info())
+    print(val_df.info())
+    print('Excess Return')
+    print(train_df['ret_exc'])
+    # Creates inputs for the create feature lists function
+    # Create feature lists for deep learning
+    numerical_features, categorical_features = create_feature_lists(list_of_columns, categorical_assignment)
+    # Creates the categorical dictonary (must specify the variables types of each)
+    categorical_dictionary = dict.fromkeys(categorical_features,'string')
+    category_dtypes = {'size_grp':'string','permno':'int32','permco': 'int32','crsp_shrcd':'int8','crsp_exchcd':'int8','adjfct':'float64','sic':'float64','ff49':'float64'}
+    for key in category_dtypes:
+        categorical_dictionary[key] = category_dtypes[key]
+    # categorical_dictionary["size_grp"] = 'float64'
+    # Encodes the tensorflow matrix
+    all_features, all_inputs, train_dataset, val_dataset, test_dataset = encode_tensor_flow_features(train_df,val_df,test_df,target_column,numerical_features,categorical_features,categorical_dictionary,size_of_batch=batch_size)
+    # Buids tensorflow model
+    model,loss, metrics = build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name, all_features, all_inputs,selected_optimizer, selected_loss,selected_metrics, finance_configuration = True)
+    return
+#################################################################################
+# Custom Loss Functions / Autodiff Testing
+#################################################################################
+# Classes for the loss functions
+class CustomLossFunctionExample(tf.keras.losses.Loss):
+    # Functions must be 
+    def __init__(self):
+        # Initialise the function
+        super().__init__()
+    def call(self,y_true,y_pred):
+        mse = tf.reduce_mean(tf.square(y_true,y_pred))
+        rmse = tf.math.sqrt(mse)
+        return rmse / tf.reduce_mean(tf.square(y_true)) - 1
+
+class PortfolioReturnsEquallyWeighted(tf.keras.losses.Loss):
+    def __init__(self):
+        # Initialise the function
+        super().__init__()
+        # Define the call of the function
+    def call(self,y_true,y_pred):
+        return 
 def autodiff_guide(example):
     # Uses the autodiff functionality to test custom gradients with gradient tape
     # Extracted from
@@ -991,15 +1048,8 @@ def autodiff_guide(example):
         # dy = 2x * dx
         dy_dx = tape.gradient(y, x)
         print(dy_dx.numpy())
-    
     return
-class PortfolioReturnsEquallyWeighted(tf.keras.losses.Loss):
-    def __init__(self):
-        # Initialise the function
-        super().__init__()
-        # Define the call of the function
-    def call(self,y_true,y_pred):
-        return 1
+
 def autodiff_implementation():
     """ Implments all the project functionality
 
@@ -1017,41 +1067,6 @@ def autodiff_implementation():
         print(f'{var.name}, shape: {g.shape}')
     # Develop this function to test autodiff functionality
 
-    return
-def project_analysis(data_vm_directory,list_of_columns,categorical_assignment,target_column,chunk_size,batch_size,model_name, selected_optimizer, selected_loss, selected_metrics, split_data = False, trial = False, sample = False):
-    # Prints memory usage before analysis
-    monitor_memory_usage(units = 3, cpu = True, gpu = True)
-    # Split the initial vm dataset
-    if split_data:
-        split_vm_dataset(data_vm_directory,create_statistics=False,split_new_data=True, create_validation_set=True)
-    # Creates the training, validation and testing dataframes
-    test_df = process_vm_dataset(data_vm_directory + 'test.dta',chunk_size,save_statistics=False, sample = True)
-    train_df = process_vm_dataset(data_vm_directory + 'train.dta',chunk_size,save_statistics=False, sample = True)
-    val_df = process_vm_dataset(data_vm_directory + 'val.dta',chunk_size,save_statistics=False, sample = True)
-    # Use trial to test the dataframe when functions not as large
-    if trial:
-        # Trial run takes 5% of dataframe produced from processed vm datasets
-        test_df,test_discard_df = train_test_split(test_df,test_size=0.95)
-        train_df, train_discard_df = train_test_split(train_df,test_size=0.95)
-        val_df, val_discard_df = train_test_split(val_df,test_size=0.95)
-    print(test_df.info())
-    print(train_df.info())
-    print(val_df.info())
-    print('Excess Return')
-    print(train_df['ret_exc'])
-    # Creates inputs for the create feature lists function
-    # Create feature lists for deep learning
-    numerical_features, categorical_features = create_feature_lists(list_of_columns, categorical_assignment)
-    # Creates the categorical dictonary (must specify the variables types of each)
-    categorical_dictionary = dict.fromkeys(categorical_features,'string')
-    category_dtypes = {'size_grp':'string','permno':'int32','permco': 'int32','crsp_shrcd':'int8','crsp_exchcd':'int8','adjfct':'float64','sic':'float64','ff49':'float64'}
-    for key in category_dtypes:
-        categorical_dictionary[key] = category_dtypes[key]
-    # categorical_dictionary["size_grp"] = 'float64'
-    # Encodes the tensorflow matrix
-    all_features, all_inputs, train_dataset, val_dataset, test_dataset = encode_tensor_flow_features(train_df,val_df,test_df,target_column,numerical_features,categorical_features,categorical_dictionary,size_of_batch=batch_size)
-    # Buids tensorflow model
-    model,loss, metrics = build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name, all_features, all_inputs,selected_optimizer, selected_loss,selected_metrics, finance_configuration = True)
     return
 #################################################################################
 # Analytical/Calculus
