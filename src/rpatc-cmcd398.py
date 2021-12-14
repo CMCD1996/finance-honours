@@ -44,14 +44,23 @@ from tensorflow.python.ops.gen_array_ops import split # Find combinations of lis
 #################################################################################
 # System Functions
 #################################################################################
-def monitor_memory_usage(cpu = False, gpu = False):
+def monitor_memory_usage(units, cpu = False, gpu = False):
+    """ Function to monitor both CPU & GPU memory consumption
+
+    Args:
+        units (int): Memory units (0 = Bytes, 1 = KB, 2 = MB, 3 = GB, 4 = TB, 5 = PB)
+        cpu (bool, optional): CPU Information. Defaults to False.
+        gpu (bool, optional): GPU Information. Defaults to False.
+    """
+    # Set unit conversion for readability
+    convertor = (1024^units)
     # Shows CPU information using psutil
     if cpu:
-        cpu_f = ps.virtual_memory().available
-        cpu_t = ps.virtual_memory().total 
-        cpu_u = ps.virtual_memory().total - ps.virtual_memory().available
-        cpu_fp = ps.virtual_memory().available * 100 / ps.virtual_memory().total
-        print("GPU - Memory : ({:.2f}% free): {}(total), {} (free), {} (used)".format(cpu_fp,cpu_t,cpu_f, cpu_u))
+        cpu_f = (ps.virtual_memory().available)/convertor
+        cpu_t = (ps.virtual_memory().total)/convertor
+        cpu_u = (ps.virtual_memory().used)/convertor
+        cpu_fp = (ps.virtual_memory().available * 100 / ps.virtual_memory().total)
+        print("CPU - Memory : ({:.2f}% free): {}(total), {} (free), {} (used)".format(cpu_fp,cpu_t,cpu_f, cpu_u))
         # Shows GPU information using nvidia-ml-py3
     if gpu:
         print("GPU Memory Summary")
@@ -63,7 +72,7 @@ def monitor_memory_usage(cpu = False, gpu = False):
             # Uses handle to get GPU device info
             info = nvidia_smi.nvmlDeviceGetMemoryInfo(handle)
             # Prints GPU information
-            print("GPU - Device {}: {}, Memory : ({:.2f}% free): {}(total), {} (free), {} (used)".format(i, nvidia_smi.nvmlDeviceGetName(handle), 100*info.free/info.total, info.total, info.free, info.used))
+            print("GPU - Device {}: {}, Memory : ({:.2f}% free): {}(total), {} (free), {} (used)".format(i, nvidia_smi.nvmlDeviceGetName(handle), 100*info.free/info.total, info.total/convertor, info.free//convertor, info.used/convertor))
         nvidia_smi.nvmlShutdown()
     return
 
@@ -423,7 +432,7 @@ def encode_tensor_flow_features(train_df, val_df, test_df,target_column, numeric
     for header in numerical_features:
         try:
             # Monitor Memory Usage
-            monitor_memory_usage(cpu = True, gpu = True)
+            monitor_memory_usage(units = 3,cpu = True, gpu = True)
             print('Start: ',header)
             numeric_col = tf.keras.Input(shape=(1,), name=header)
             print('Processing: Input Numeric Column')
