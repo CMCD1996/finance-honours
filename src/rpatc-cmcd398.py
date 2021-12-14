@@ -53,7 +53,6 @@ def monitor_memory_usage(units, cpu = False, gpu = False):
     """
     # Set unit conversion for readability
     convertor = (1024**units)
-    print('Convertor',convertor)
     # Shows CPU information using psutil
     if cpu:
         cpu_f = (ps.virtual_memory().available)/convertor
@@ -765,7 +764,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         #################################################################################
         # Fit variables
         x = train_dataset
-        y = None
+        y = None 
         batch_size = None
         epochs=10
         verbose = 'auto'
@@ -784,7 +783,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         workers=1
         use_multiprocessing=False
         # Fit the model
-        model.fit(x, y, batch_size, epochs, verbose,
+        model.fit(x, batch_size, epochs, verbose,
         callbacks, validation_split, validation_data, shuffle,
         class_weight, sample_weight, initial_epoch, steps_per_epoch,
         validation_steps, validation_batch_size, validation_freq,
@@ -794,7 +793,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         #################################################################################
         # Evaluation variables
         x = test_dataset
-        y = None#Only use if target variables not specified in dataset, must align with x.
+        y = None #Only use if target variables not specified in dataset, must align with x.
         batch_size = None
         sample_weight = None
         steps = None
@@ -807,7 +806,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         use_multiprocessing = False
         return_dict = False
         # Model evaluation
-        model.evaluate(x, y, batch_size, verbose, sample_weight, steps,
+        model.evaluate(x, batch_size, verbose, sample_weight, steps,
         callbacks, max_queue_size, workers, use_multiprocessing,
         return_dict)
         #################################################################################
@@ -836,7 +835,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         # Train the model
         model.fit(train_dataset, epochs=10, validation_data=val_dataset)
         # Test the model
-        
+
         loss, accuracy = model.evaluate(test_dataset)
         print("Loss: ", loss)
         print("Accuracy: ", accuracy)
