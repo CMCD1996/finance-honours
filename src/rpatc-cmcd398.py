@@ -1,7 +1,8 @@
-# Imports useful python packages
-# System
-import psutil as ps
-import nvidia_smi
+#################################################################################
+# Module Imports
+#################################################################################
+import psutil as ps # Monitor CPU usage
+import nvidia_smi # Monitor GPU usage
 # Analytical
 from pandas.core.base import NoNewAttributesMixin
 import sympy as sym # Symbolic package for calculus
@@ -15,6 +16,7 @@ import sklearn as skl # Simple statistical models
 from sklearn.model_selection import train_test_split
 import tensorflow as tf # Tensorflow (https://www.tensorflow.org/)
 from tensorflow.keras import layers
+from tensorflow.python.ops.gen_array_ops import split # Find combinations of lists
 import csv as csv # read and write csvs
 import os # change/manipulate operating systems
 # Additional
@@ -36,8 +38,6 @@ import sympy as sy # convert latex code
 import scipy as sc # Scipy packages
 # import tabulate as tb # Create tables in python
 import itertools as it
-
-from tensorflow.python.ops.gen_array_ops import split # Find combinations of lists
 
 #################################################################################
 # Function Calls
@@ -275,24 +275,14 @@ def process_vm_dataset(data_vm_dta,categorical_assignment, save_statistics, samp
         size_grp_list = list(df['size_grp'].unique())
         # Removes the mth column/factor from the dataframe given datatime format
         df['mth'] = pd.to_numeric(df['mth'],downcast='float')
-        # df.drop(columns=['mth'])
-        #for column in column_list:
-            #if column not in categorical_assignment:
-                # Sets each column value to float type (Change datatype depending on memory)
-                # df[column] = df.astype({column:'float64'}).dtypes
-                # Impute missing values with medium values (replace with mean command if necessary)
-                # df[column].fillna(df[column].median(), inplace = True)
-        # Append values to the dataset
         df_full = df_full.append(df)
         if sample:
             df_full = replace_nan(df_full, replacement_method = 3)
-            print(df_full.info(verbose=True))
             return df_full
     # Checks Nan in dataframe
     df_full = replace_nan(df_full, replacement_method = 3)
-    # Pribts row information
-    print(df_full.info(verbose=True))
-    print(df_full.head())
+    # Prints memory usage after the process
+    monitor_memory_usage(units = 3,cpu = True, gpu = True)
     return df_full
 
 #################################################################################
@@ -358,6 +348,8 @@ def create_tf_dataset(dataframe, target_column, shuffle=True, batch_size=32):
 
 def get_normalization_layer(name, dataset):
   # Create a Normalization layer for the feature.
+  # Layer Normalization normalizes each feature of the activations 
+  # to zero mean and unit variance.
   normalizer = layers.Normalization(axis=None)
   # Prepare a Dataset that only yields the feature.
   feature_ds = dataset.map(lambda x, y: x[name])
