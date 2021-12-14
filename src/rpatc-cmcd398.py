@@ -54,6 +54,7 @@ def monitor_memory_usage(units, cpu = False, gpu = False):
     """
     # Set unit conversion for readability
     convertor = (1024^units)
+    print('Convertor',convertor)
     # Shows CPU information using psutil
     if cpu:
         cpu_f = (ps.virtual_memory().available)/convertor
