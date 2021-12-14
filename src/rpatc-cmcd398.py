@@ -4,11 +4,11 @@
 # System
 import psutil as ps # Monitor CPU usage
 import nvidia_smi # Monitor GPU usage
-import os # change/manipulate operating systems
+import os # Change/manipulate operating systems
 import datetime as dt # Manipulate datetime values
-import random as rd # random functionality
-import csv as csv # read and write csvs
-import itertools as it 
+import random as rd # Random functionality
+import csv as csv # Read and write csvs
+import itertools as it  # Create iterators for efficient looping
 # Analytical
 from pandas.core.base import NoNewAttributesMixin
 import sympy as sym # Symbolic package for calculus
@@ -388,7 +388,7 @@ def encode_tensor_flow_features(train_df, val_df, test_df,target_column, numeric
     print('A batch of ages:', train_features['size_grp'])
     print('A batch of targets:', label_batch)
 
-    # Initilise input and encoded featture arrays
+    # Initilise input and encoded feature arrays
     all_inputs = []
     encoded_features = []
     numerical_count = 0
@@ -441,7 +441,7 @@ def encode_tensor_flow_features(train_df, val_df, test_df,target_column, numeric
     # Monitor memory usage
     monitor_memory_usage(units = 3,cpu = True, gpu = True)
     return all_features, all_inputs, train_dataset, val_dataset, test_dataset
-    # Create, compile and train the model
+    
 def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name, all_features, all_inputs,selected_optimizer, selected_loss,selected_metrics, finance_configuration = True):
     # Information pertaining to the tf.keras.layers.dense function
     if finance_configuration:
@@ -974,7 +974,7 @@ def project_analysis(data_vm_directory,list_of_columns,categorical_assignment,ta
 #################################################################################
 # Classes for the loss functions
 class CustomLossFunctionExample(tf.keras.losses.Loss):
-    # Functions must be 
+    # Example from Youtube (https://www.youtube.com/watch?v=gcwRjM1nZ4o)
     def __init__(self):
         # Initialise the function
         super().__init__()
@@ -1028,9 +1028,31 @@ class FinanceCustomFunctionPlaceholder5(tf.keras.losses.Loss):
         # Insert derivation here
         return 
 
+def loss_function_testing():
+    """ Uses tensorflow autodifferientiation functionality
+        to confirm differientable nature and feasibility
+        of custom loss functions
+
+    """
+    layer = tf.keras.layers.Dense(2, activation='relu')
+    x = tf.constant([[1., 2., 3.]])
+    with tf.GradientTape() as tape:
+        # Forward pass
+        y = layer(x)
+        loss = tf.reduce_mean(y**2)
+    # Calculate gradients with respect to every trainable variable
+    grad = tape.gradient(loss, layer.trainable_variables)
+    # Print the outcomes of the simple model analysis
+    for var, g in zip(layer.trainable_variables, grad):
+        print(f'{var.name}, shape: {g.shape}')
+    # Develop this function to test autodiff functionality
+
+    return
 # Function for implementing autodiff
 def autodiff_guide(example):
-    """ Execute autodiff examples from Tensorflow resources
+    """ Execute autodiff examples from Tensorflow resources.
+        Used to help gain an understanding of different
+        functionalities
 
     Args:
         example (int): Example to implement
@@ -1097,25 +1119,6 @@ def autodiff_guide(example):
         # dy = 2x * dx
         dy_dx = tape.gradient(y, x)
         print(dy_dx.numpy())
-    return
-
-def autodiff_implementation():
-    """ Implments all the project functionality
-
-    """
-    layer = tf.keras.layers.Dense(2, activation='relu')
-    x = tf.constant([[1., 2., 3.]])
-    with tf.GradientTape() as tape:
-        # Forward pass
-        y = layer(x)
-        loss = tf.reduce_mean(y**2)
-    # Calculate gradients with respect to every trainable variable
-    grad = tape.gradient(loss, layer.trainable_variables)
-    # Print the outcomes of the simple model analysis
-    for var, g in zip(layer.trainable_variables, grad):
-        print(f'{var.name}, shape: {g.shape}')
-    # Develop this function to test autodiff functionality
-
     return
 #################################################################################
 # Analytical/Calculus
@@ -1212,7 +1215,8 @@ need_dataframe = False
 assign_features = False
 extract_test_data = False
 test_implementation = False
-enable_autodiff = False
+example_autodiff = False
+test_loss_function = False
 # Analytical
 analytical = False
 rank_functions = False
@@ -1252,8 +1256,10 @@ if extract_test_data:
     df, train_data, val_data, test_data = download_test_data()
     if test_implementation:
         implement_test_data(df, train_data, val_data, test_data,full_implementation = True)
-if enable_autodiff:
-    autodiff_guide(example='simple_model')
+if example_autodiff:
+    autodiff_guide(example=3)
+if test_loss_function:
+    print('Add Function Here')
 #################################################################################
 # Analytical
 #################################################################################
