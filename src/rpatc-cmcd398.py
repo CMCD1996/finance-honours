@@ -11,6 +11,7 @@ import matplotlib.pyplot as plt # Simple plotting
 import sklearn as skl # Simple statistical models 
 from sklearn.model_selection import train_test_split
 import tensorflow as tf # Tensorflow (https://www.tensorflow.org/)
+import tensorflow
 from tensorflow.keras import layers
 import csv as csv # read and write csvs
 import os # change/manipulate operating systems
@@ -1021,7 +1022,7 @@ results_tables = '/home/connormcdowall/finance-honours/results/tables'
 list_of_columns = '/home/connormcdowall/finance-honours/data/dataframe-columns.txt'
 # Binary (Set to True or False depending on the functions to run)
 # System Checks
-sys_check = True
+sys_check = False
 # Data processing
 source_data = False
 split_vm_data = False
@@ -1037,7 +1038,7 @@ enable_autodiff = False
 analytical = False
 rank_functions = False
 # Research Proposal Analysis
-begin_analysis = False
+begin_analysis = True
 #################################################################################
 # Function Calls - Testing
 #################################################################################
