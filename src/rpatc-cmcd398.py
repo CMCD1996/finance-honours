@@ -330,7 +330,7 @@ def resizing_dataframe(dataframe,resizing_options):
     # Reduce the number of factors to the original ~178 from JKP
     if resizing_options[1]:
          print('Reducing number of factors to original ~178 from JKP')
-         
+
     # Optimise Variable Type
     if resizing_options[2]:
          print('Optimise variable type configuration')
@@ -1378,7 +1378,7 @@ def ranking_function():
 #################################################################################
 # Integers
 batch_size = 256 # Batch size for creating tf dataset
-chunk_size = 1000 # chunk size for reading stata files
+chunk_size = 10000 # chunk size for reading stata files
 # Targets
 targets_dictionary = {1:'ret_exc',2:'ret_exc_lead1m'}
 target_column= targets_dictionary[2] # Sets the intended target column (test multiple configurations)
