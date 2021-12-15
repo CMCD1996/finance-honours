@@ -349,6 +349,14 @@ def resizing_dataframe(dataframe,resizing_options):
                 extract_columns.append(column)  
         # Extract the old columns
         dataframe = dataframe[extract_columns]
+        # Rewrite new working file for numerical encoding
+        file = open("/home/connormcdowall/finance-honours/data/working-columns.txt","r+")
+        file.truncate(0)
+        file.close()
+        textfile = open("/home/connormcdowall/finance-honours/data/working-columns.txt", "w")
+        for element in extract_columns:
+            textfile.write(element + "\n")
+        textfile.close()
         monitor_memory_usage(units = 3,cpu = True, gpu = True)
     # Optimises Variable Type
     if resizing_options[2]:
@@ -1103,6 +1111,16 @@ def implement_test_data(dataframe, train, val, test,full_implementation = False)
 def project_analysis(data_vm_directory,list_of_columns,categorical_assignment,target_column,chunk_size,resizing_options,batch_size,model_name, selected_optimizer, selected_loss, selected_metrics, split_data = False, trial = False, sample = False):
     # Prints memory usage before analysis
     monitor_memory_usage(units = 3, cpu = True, gpu = True)
+    # Reset working textfile if resizing used for numerical encoding
+    #Clear the working file
+    file = open("/home/connormcdowall/finance-honours/data/working-columns.txt","r+")
+    file.truncate(0)
+    file.close()
+    # Tranfer file lines
+    with open("/home/connormcdowall/finance-honours/data/dataframe-columns.txt", "r") as f1:
+        with open("/home/connormcdowall/finance-honours/data/working-columns.txt","w") as f2:
+            for line in f1:
+                f2.write(line)
     # Split the initial vm dataset
     if split_data:
         split_vm_dataset(data_vm_directory,create_statistics=False,split_new_data=True, create_validation_set=True)
@@ -1449,7 +1467,7 @@ csv_location = '/Volumes/Seagate/dataframes/'
 data_vm_directory = '/home/connormcdowall/local-data/'
 data_vm_dta = '/home/connormcdowall/local-data/combined_predictors_filtered_us.dta'
 results_tables = '/home/connormcdowall/finance-honours/results/tables'
-list_of_columns = '/home/connormcdowall/finance-honours/data/dataframe-columns.txt'
+list_of_columns = '/home/connormcdowall/finance-honours/data/working-columns.txt'
 # Binary (Set to True or False depending on the functions to run)
 # System Checks
 sys_check = False

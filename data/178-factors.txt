@@ -129,7 +129,7 @@ seas_11_15an_x
 seas_11_15na_x
 seas_16_20an_x
 seas_16_20na_x
-market_equity_rank_x
+market_equity_x
 ivol_ff3_21d_x
 ivol_capm_252d_x
 ivol_capm_21d_x
