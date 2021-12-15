@@ -330,7 +330,7 @@ def resizing_dataframe(dataframe,resizing_options):
     # Reduce the number of factors to the original ~178 from JKP
     if resizing_options[1]:
          print('Reducing number of factors to original ~178 from JKP')
-
+        
     # Optimise Variable Type
     if resizing_options[2]:
          print('Optimise variable type configuration')
