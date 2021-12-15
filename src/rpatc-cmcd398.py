@@ -322,6 +322,7 @@ def reduce_mem_usage(props):
     return props, NAlist
 
 def resizing_dataframe(dataframe,resizing_options):
+    print(dataframe.head())
     # Remove both micro
     if resizing_options[0]:
         print('Reducing number of size_grp entries')
