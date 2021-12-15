@@ -322,10 +322,10 @@ def reduce_mem_usage(props):
     return props, NAlist
 
 def resizing_dataframe(dataframe,resizing_options):
-    # Remove both nano and tiny firms in size_grp from the dataframe
+    # Remove both micro
     if resizing_options[0]:
         print('Reducing number of size_grp entries')
-        indexNames = dataframe[(dataframe['Age'] >= 30) & (dataframe['Age'] <= 40)].index
+        indexNames = dataframe[(dataframe['size_grp'] == 'micro')].index
         dataframe = dataframe.drop(indexNames , inplace=True)
     # Reduce the number of factors to the original ~178 from JKP
     if resizing_options[1]:
@@ -395,8 +395,6 @@ def process_vm_dataset(data_vm_dta,size_of_chunks, resizing_options, save_statis
         data_type_list = list(df.dtypes.unique())
         # Gets unique list of size_grp
         size_grp_list = list(df['size_grp'].unique())
-        print('List of group sizing')
-        print(size_grp_list)
         # Removes the mth column/factor from the dataframe given datatime format
         df['mth'] = pd.to_numeric(df['mth'],downcast='float')
         df_full = df_full.append(df)
@@ -410,6 +408,10 @@ def process_vm_dataset(data_vm_dta,size_of_chunks, resizing_options, save_statis
             # Print size and shape of dataframe
             print('The dataframe has {} entries with {} rows and {} columns.'.format(df_full.size,df_full.shape[0],df_full.shape[1]))
             return df_full
+    # Prints size categories in dataframe
+    size_grp_list = list(df['size_grp'].unique())
+    print('List of size_grp variables')
+    print(size_grp_list)
     # Checks Nan in dataframe
     df_full = replace_nan(df_full, replacement_method = 3)
     # Memory resizing to prevent excessive memory consumption
@@ -1501,6 +1503,6 @@ if rank_functions:
 # Function Call - Analysis
 ##################################################################################
 if begin_analysis:
-    project_analysis(data_vm_directory,list_of_columns,categorical_assignment,target_column,chunk_size,resizing_options,batch_size, model_name, selected_optimizer, selected_loss, selected_metrics, split_data = False, trial = True, sample = True)
+    project_analysis(data_vm_directory,list_of_columns,categorical_assignment,target_column,chunk_size,resizing_options,batch_size, model_name, selected_optimizer, selected_loss, selected_metrics, split_data = False, trial = True, sample = False)
     
 
