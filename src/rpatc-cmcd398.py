@@ -23,6 +23,7 @@ from sklearn.model_selection import train_test_split
 import tensorflow as tf # Tensorflow (https://www.tensorflow.org/)
 from tensorflow.keras import layers
 from tensorflow.python.ops.gen_array_ops import split # Find combinations of lists
+import tensorflow.keras.backend as K #Keras backend functions to design custom metrics
 import linearmodels as lp # Ability to use PooledOLS
 from statsmodels.regression.rolling import RollingOLS # Use factor loadings
 from keras.callbacks import Callback # Logging training performance
@@ -105,20 +106,23 @@ def reconfigure_gpu(restrict_tf,growth_memory):
             print(e)
     return
 
-class NeptuneCallback(Callback):
-    def on_batch_end(self, batch, logs=None):  
-        for metric_name, metric_value in logs.items():
-            neptune_run[f"{metric_name}"].log(metric_value)
-
-    def on_epoch_end(self, epoch, logs=None): 
-        for metric_name, metric_value in logs.items():
-            neptune_run[f"{metric_name}"].log(metric_value)
-
 def configure_training_ui(project,api_token):
     # Monitor Keras loss using callback
     # https://app.neptune.ai/common/tf-keras-integration/e/TFK-35541/dashboard/metrics-b11ccc73-9ac7-4126-be1a-cf9a3a4f9b74
     # Initialise neptune with credientials
     run = neptune.init(project=project,api_token=api_token)
+    # project - 'connormcdowall/finance-honours')
+    # api_token  = 'eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vYXBwLm5lcHR1bmUuYWkiLCJhcGlfdXJsIjoiaHR0cHM6Ly9hcHAubmVwdHVuZS5haSIsImFwaV9rZXkiOiI4YzBmOTFlNS0zZTFiLTQyNDUtOGFjZi1jZGI0NDY4ZGVkOTQifQ=='
+    # Define the custom class for the function
+    class NeptuneCallback(Callback):
+        def on_batch_end(self, batch, logs=None):  
+            for metric_name, metric_value in logs.items():
+                run[f"{metric_name}"].log(metric_value)
+
+        def on_epoch_end(self, epoch, logs=None): 
+            for metric_name, metric_value in logs.items():
+                run[f"{metric_name}"].log(metric_value)
+    # Find the call back
     neptune_cbk = NeptuneCallback(run=run, base_namespace='metrics')
     # Example to set paramters
     # run["JIRA"] = "NPT-952"
@@ -476,6 +480,7 @@ def encode_tensor_flow_features(train_df, val_df, test_df,target_column, numeric
 def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name, all_features, all_inputs,selected_optimizer, selected_loss,selected_metrics, finance_configuration = True):
     # Information pertaining to the tf.keras.layers.dense function
     if finance_configuration:
+        # Note: The combination of optimizer. loss function and metric must be compatible
         # https://www.tensorflow.org/api_docs/python/tf/keras/layers/Dense
         # Configure the neural network layers
         print('Start: Configuration of Deep Network Layers')
@@ -990,12 +995,6 @@ def project_analysis(data_vm_directory,list_of_columns,categorical_assignment,ta
         test_df,test_discard_df = train_test_split(test_df,test_size=0.95)
         train_df, train_discard_df = train_test_split(train_df,test_size=0.95)
         val_df, val_discard_df = train_test_split(val_df,test_size=0.95)
-    print(test_df.info())
-    print(train_df.info())
-    print(val_df.info())
-    print('Excess Return')
-    print(train_df['ret_exc'])
-    # Creates inputs for the create feature lists function
     # Create feature lists for deep learning
     numerical_features, categorical_features = create_feature_lists(list_of_columns, categorical_assignment)
     # Creates the categorical dictonary (must specify the variables types of each)
@@ -1003,21 +1002,25 @@ def project_analysis(data_vm_directory,list_of_columns,categorical_assignment,ta
     category_dtypes = {'size_grp':'string','permno':'int32','permco': 'int32','crsp_shrcd':'int8','crsp_exchcd':'int8','adjfct':'float64','sic':'float64','ff49':'float64'}
     for key in category_dtypes:
         categorical_dictionary[key] = category_dtypes[key]
-    # categorical_dictionary["size_grp"] = 'float64'
     # Encodes the tensorflow matrix
     all_features, all_inputs, train_dataset, val_dataset, test_dataset = encode_tensor_flow_features(train_df,val_df,test_df,target_column,numerical_features,categorical_features,categorical_dictionary,size_of_batch=batch_size)
+    # Note: Keep Stochastic Gradient Descent as Optimizer for completeness
     # Buids tensorflow model
     model,loss, metrics = build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name, all_features, all_inputs,selected_optimizer, selected_loss,selected_metrics, finance_configuration = True)
     return
 #################################################################################
-# Custom Loss Functions / Autodiff Testing
+# Custom Loss Functions, Metrics and Autodiff Testing
 #################################################################################
-# Classes for the loss functions:
+# Loss Functions
+#################################################################################
 # Key:
 # 0 = Matrix of Parameters (Theta)
 # X = Feature Matrix
 # f_(0)(X) = Target (e.g., Excess Returns)
 # V = All-Ones=Vector
+
+# 0: Custom Example for reference
+# Loss Function
 class CustomLossFunctionExample(tf.keras.losses.Loss):
     # Example from Youtube (https://www.youtube.com/watch?v=gcwRjM1nZ4o)
     def __init__(self):
@@ -1028,7 +1031,25 @@ class CustomLossFunctionExample(tf.keras.losses.Loss):
         rmse = tf.math.sqrt(mse)
         return rmse / tf.reduce_mean(tf.square(y_true)) - 1
 
-class WeightByPortfolioExcessReturns(tf.keras.losses.Loss):
+# 1: In-Built MSE Loss Function / Metric
+# Call MSE Loss Function/Metric with SGD in build_tensorflow_model()
+
+# 2: Custom L2 (Mean Square Error Function)
+# Loss function
+class CustomL2MSE(tf.keras.losses.Loss):
+    # Option 2: Custom L2 Loss Function
+    # Latex sum_{i=1}^{n}(y_{true}-y_{predicted})^{2} (MSE)
+    def __init__(self):
+        # Initialise the function
+        super().__init__()
+    def call(self,y_true,y_pred):
+        # Note: tf.reduce_mean computes the mean of elements
+        # across dimensions of a tensor
+        l2 = tf.reduce_mean(tf.square(y_true,y_pred))
+        return l2
+
+# 3: Custom Hedge Portfolio (HP)
+class CustomHedgePortfolioReturns(tf.keras.losses.Loss):
     def __init__(self):
         # Initialise the function
         super().__init__()
@@ -1040,37 +1061,20 @@ class WeightByPortfolioExcessReturns(tf.keras.losses.Loss):
         # df_(0)(X)/d(0) = (1/((0^T)X1)(X)(X^T)(0)
         #                + (1/((VX^T)(0))(X)(X^T)(0)
         #                - (1/((0^T)(X)(V))**2)(0^T)(X)(X^T)(0)(X)(V)
+        return
 
-
-        return 
-
-class FinanceCustomFunctionPlaceholder2(tf.keras.losses.Loss):
-    def __init__(self):
-        # Initialise the function
-        super().__init__()
-        # Define the call of the function
-    def call(self,y_true,y_pred):
-        # Insert derivation here
-        return 
-
-class FinanceCustomFunctionPlaceholder3(tf.keras.losses.Loss):
-    def __init__(self):
-        # Initialise the function
-        super().__init__()
-        # Define the call of the function
-    def call(self,y_true,y_pred):
-        # Insert derivation here
-        return 
-
+# 4: Custom Sharpe Ratio (SR)
 class FinanceCustomFunctionPlaceholder4(tf.keras.losses.Loss):
+    # 
     def __init__(self):
         # Initialise the function
         super().__init__()
         # Define the call of the function
     def call(self,y_true,y_pred):
         # Insert derivation here
-        return 
+        return
 
+# 5: Custom Information Ratio (IR)
 class FinanceCustomFunctionPlaceholder5(tf.keras.losses.Loss):
     def __init__(self):
         # Initialise the function
@@ -1078,13 +1082,67 @@ class FinanceCustomFunctionPlaceholder5(tf.keras.losses.Loss):
         # Define the call of the function
     def call(self,y_true,y_pred):
         # Insert derivation here
-        return 
+        return
 
+#################################################################################
+# Metrics
+#################################################################################
+# 1: HP Mean
+class CustomMetricExample(tf.keras.metrics.Metric):
+    def __init__(self, num_classes, batch_size,
+                 name="custom_metric_example", **kwargs):
+        super(CustomMetricExample, self).__init__(name=name, **kwargs)
+        self.batch_size = batch_size
+        self.num_classes = num_classes    
+        self.custom_metric = self.add_weight(name="cm", initializer="zeros")
+    def update_state(self, y_true, y_pred, sample_weight=None):
+        # Returns the index of the maximum values along the last axis in y_true (Last layer)   
+        y_true = K.argmax(y_true, axis=-1)
+        # Returns the index of the maximum values along the last axis in y_true (Last layer)
+        y_pred = K.argmax(y_pred, axis=-1)
+        # Flattens a tensor to reshape to a shape equal to the number of elements contained
+        # Removes all dimensions except for one.
+        y_true = K.flatten(y_true)
+        # Defines the metric for assignment
+        true_poss = K.sum(K.cast((K.equal(y_true, y_pred)), dtype=tf.float32))
+        self.custom_metric.assign_add(true_poss)
+    def result(self):
+        return self.custom_metric
+
+# 2: HP Alphas in CAPM, FF3, FF5
+class CustomL2MSE(tf.keras.metrics.Metric):
+    def __init__(self, num_classes, batch_size,
+                 name="custom_l2_mse", **kwargs):
+        super(CustomL2MSE, self).__init__(name=name, **kwargs)
+        self.batch_size = batch_size
+        self.num_classes = num_classes    
+        self.custom_l2_mse = self.add_weight(name="cl2mse", initializer="zeros")
+    def update_state(self, y_true, y_pred, sample_weight=None):
+        # Returns the index of the maximum values along the last axis in y_true (Last layer)   
+        y_true = K.argmax(y_true, axis=-1)
+        # Returns the index of the maximum values along the last axis in y_true (Last layer)
+        y_pred = K.argmax(y_pred, axis=-1)
+        # Flattens a tensor to reshape to a shape equal to the number of elements contained
+        # Removes all dimensions except for one.
+        y_true = K.flatten(y_true)
+        # Defines the metric for assignment
+        true_poss = K.sum(K.cast((K.equal(y_true, y_pred)), dtype=tf.float32))
+        self.custom_l2_mse.assign_add(true_poss)
+    def result(self):
+        return self.custom_l2_mse
+
+# 3: Sharpe Ratio
+
+# 4: Information Ratio
+
+#################################################################################
+# Autodiff Testing
+#################################################################################
+# Function to test loss functions and metrics using autodiff
 def loss_function_testing():
     """ Uses tensorflow autodifferientiation functionality
         to confirm differientable nature and feasibility
         of custom loss functions
-
     """
     layer = tf.keras.layers.Dense(2, activation='relu')
     x = tf.constant([[1., 2., 3.]])
@@ -1097,8 +1155,8 @@ def loss_function_testing():
     # Print the outcomes of the simple model analysis
     for var, g in zip(layer.trainable_variables, grad):
         print(f'{var.name}, shape: {g.shape}')
-
     return
+
 # Function for implementing autodiff
 def autodiff_guide(example):
     """ Execute autodiff examples from Tensorflow resources.
