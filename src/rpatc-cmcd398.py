@@ -1192,7 +1192,7 @@ batch_size = 256 # Batch size for creating tf dataset
 chunk_size = 1000 # chunk size for reading stata files
 # Targets
 targets_dictionary = {1:'ret_exc',2:'ret_exc_lead1m'}
-target_column= targets_dictionary[1] # Sets the intended target column (test multiple configurations)
+target_column= targets_dictionary[2] # Sets the intended target column (test multiple configurations)
 # Lists and arrays
 categorical_assignment = ['size_grp','permno','permco','crsp_shrcd','crsp_exchcd','adjfct','sic','ff49']
 # Tensorflow configurations
@@ -1213,8 +1213,9 @@ metrics = ['Auc','accuracy','binary_accuracy','binary_crossentropy', 'categorica
 # Tensorflow selections
 model_name = 'finance-honours-test'
 selected_optimizer = 'Adam'
-selected_loss = 'binary_crossentropy'
-selected_metrics = ['accuracy']
+selected_loss = 'cosine_similarity'
+# working loss function = 'binary_crossentropy'
+selected_metrics = ['cosine_similarity']
 # File paths
 data_source = 'data/combined_predictors_filtered_us.dta'
 csv_location = '/Volumes/Seagate/dataframes/'
