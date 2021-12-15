@@ -1400,7 +1400,7 @@ targets_dictionary = {1:'ret_exc',2:'ret_exc_lead1m'}
 target_column= targets_dictionary[2] # Sets the intended target column (test multiple configurations)
 # Lists and arrays
 # 1: , 2: , 3:
-resizing_options = [False,False,False]
+resizing_options = [True,True,True]
 categorical_assignment = ['size_grp','permno','permco','crsp_shrcd','crsp_exchcd','adjfct','sic','ff49']
 # Tensorflow configurations (listed for completeness/reference)
 # Optimizers
