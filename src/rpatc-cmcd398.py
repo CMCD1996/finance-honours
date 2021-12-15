@@ -327,6 +327,8 @@ def resizing_dataframe(dataframe,resizing_options):
         print('Reducing number of size_grp entries')
         indexNames = dataframe[(dataframe['size_grp'] == 'micro') | (dataframe['size_grp'] == 'nano')].index
         dataframe = dataframe.drop(indexNames , inplace=True)
+        print(dataframe.info())
+        monitor_memory_usage(units = 3,cpu = True, gpu = True)
     # Reduce the number of factors to the original ~178 from JKP
     if resizing_options[1]:
         print('Reducing number of factors to original ~178 from JKP')
@@ -346,10 +348,12 @@ def resizing_dataframe(dataframe,resizing_options):
                 extract_columns.append(column)  
         # Extract the old columns
         dataframe = dataframe[extract_columns]
+        monitor_memory_usage(units = 3,cpu = True, gpu = True)
     # Optimises Variable Type
     if resizing_options[2]:
          print('Optimise variable type configuration')
          dataframe, NAlist = reduce_mem_usage(dataframe)
+         monitor_memory_usage(units = 3,cpu = True, gpu = True)
     return dataframe
 
 def split_vm_dataset(data_vm_directory,create_statistics,split_new_data, create_validation_set):
