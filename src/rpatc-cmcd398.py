@@ -964,10 +964,11 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         use_multiprocessing=False #Boolean. Used for generator or keras.utils.Sequence input only. 
         # Fit the model
         print('Start: Model Fitting')
-        model.fit(x=x_train, batch_size=32, epochs=eps, verbose='auto',
-            callbacks=None, validation_data=val_dataset, shuffle=True,
-            class_weight=None, sample_weight=None, initial_epoch=0, steps_per_epoch=None,
-            validation_steps=None, max_queue_size=10, workers=1, use_multiprocessing=False)
+        model.fit(x=x_train, batch_size=32, epochs=eps, verbose='auto',validation_data=val_dataset)
+        # model.fit(x=x_train, batch_size=32, epochs=eps, verbose='auto',
+        #     callbacks=None, validation_data=val_dataset, shuffle=True,
+        #     class_weight=None, sample_weight=None, initial_epoch=0, steps_per_epoch=None,
+        #     validation_steps=None, max_queue_size=10, workers=1, use_multiprocessing=False)
         print('End: Model Fitting')
         # model.fit(x, batch_size, epochs=eps, verbose='auto',
         # callbacks, validation_data, shuffle,
