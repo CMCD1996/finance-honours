@@ -325,7 +325,7 @@ def resizing_dataframe(dataframe,resizing_options):
     # Remove both micro
     if resizing_options[0]:
         print('Reducing number of size_grp entries')
-        indexNames = dataframe[(dataframe['size_grp'] == 'micro') or (dataframe['size_grp'] == 'nano')].index
+        indexNames = dataframe[(dataframe['size_grp'] == 'micro') | (dataframe['size_grp'] == 'nano')].index
         dataframe = dataframe.drop(indexNames , inplace=True)
     # Reduce the number of factors to the original ~178 from JKP
     if resizing_options[1]:
