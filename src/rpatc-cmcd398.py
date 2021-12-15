@@ -245,6 +245,96 @@ def replace_nan(df, replacement_method):
     print('Number of nan values after processing: ',nan_total)
     return df
 
+def reduce_mem_usage(props):
+    """ Function reducing the memory size of a dataframe from Kaggle
+        https://www.kaggle.com/arjanso/reducing-dataframe-memory-size-by-65
+
+    Args:
+        props (dataframe): Pandas Dataframe
+
+    Returns:
+        props (dataframe): Resized Pandas Dataframe
+    """
+    # Begin the resizing function
+    start_mem_usg = props.memory_usage().sum() / 1024**2 
+    print("Memory usage of properties dataframe is :",start_mem_usg," MB")
+    NAlist = [] # Keeps track of columns that have missing values filled in. 
+    for col in props.columns:
+        if props[col].dtype != object:  # Exclude strings
+            
+            # Print current column type
+            print("******************************")
+            print("Column: ",col)
+            print("dtype before: ",props[col].dtype)
+            
+            # make variables for Int, max and min
+            IsInt = False
+            mx = props[col].max()
+            mn = props[col].min()
+            
+            # Integer does not support NA, therefore, NA needs to be filled
+            if not np.isfinite(props[col]).all(): 
+                NAlist.append(col)
+                props[col].fillna(mn-1,inplace=True)  
+                   
+            # test if column can be converted to an integer
+            asint = props[col].fillna(0).astype(np.int64)
+            result = (props[col] - asint)
+            result = result.sum()
+            if result > -0.01 and result < 0.01:
+                IsInt = True
+
+            
+            # Make Integer/unsigned Integer datatypes
+            if IsInt:
+                if mn >= 0:
+                    if mx < 255:
+                        props[col] = props[col].astype(np.uint8)
+                    elif mx < 65535:
+                        props[col] = props[col].astype(np.uint16)
+                    elif mx < 4294967295:
+                        props[col] = props[col].astype(np.uint32)
+                    else:
+                        props[col] = props[col].astype(np.uint64)
+                else:
+                    if mn > np.iinfo(np.int8).min and mx < np.iinfo(np.int8).max:
+                        props[col] = props[col].astype(np.int8)
+                    elif mn > np.iinfo(np.int16).min and mx < np.iinfo(np.int16).max:
+                        props[col] = props[col].astype(np.int16)
+                    elif mn > np.iinfo(np.int32).min and mx < np.iinfo(np.int32).max:
+                        props[col] = props[col].astype(np.int32)
+                    elif mn > np.iinfo(np.int64).min and mx < np.iinfo(np.int64).max:
+                        props[col] = props[col].astype(np.int64)    
+            
+            # Make float datatypes 32 bit
+            else:
+                props[col] = props[col].astype(np.float32)
+            
+            # Print new column type
+            print("dtype after: ",props[col].dtype)
+            print("******************************")
+    
+    # Print final result
+    print("___MEMORY USAGE AFTER COMPLETION:___")
+    mem_usg = props.memory_usage().sum() / 1024**2 
+    print("Memory usage is: ",mem_usg," MB")
+    print("This is ",100*mem_usg/start_mem_usg,"% of the initial size")
+    return props, NAlist
+
+def resizing_dataframe(dataframe,resizing_options):
+    # Remove both nano and tiny firms in size_grp from the dataframe
+    if resizing_options[0]:
+        print('Reducing number of size_grp entries')
+    # Reduce the number of factors to the original ~178 from JKP
+    if resizing_options[1]:
+         print('Reducing number of factors to original ~178 from JKP')
+    # Optimise Variable Type
+    if resizing_options[2]:
+         print('Optimise variable type configuration')
+         dataframe, NAlist = reduce_mem_usage(dataframe)
+    return dataframe
+
+
 def split_vm_dataset(data_vm_directory,create_statistics,split_new_data, create_validation_set):
     """ Creates summmary statistics from unprocessed dataset
 
@@ -278,7 +368,7 @@ def split_vm_dataset(data_vm_directory,create_statistics,split_new_data, create_
         test_df.to_stata(data_vm_directory + 'test.dta')
     return
 
-def process_vm_dataset(data_vm_dta,size_of_chunks, save_statistics, sample = False):
+def process_vm_dataset(data_vm_dta,size_of_chunks, resizing_options, save_statistics = False, sample = False):
     """ This script processes the training and testing datasets for Tensorflow
     following the classify structured data with feature columns tutorial
     """
@@ -291,7 +381,7 @@ def process_vm_dataset(data_vm_dta,size_of_chunks, save_statistics, sample = Fal
         print('Excess Return')
         print(df['ret_exc'])
         # Find the dtypes of the dataframe and save them to a data column
-        if save_statistics==True:
+        if save_statistics:
             # Saves dtypes for column dataframe
             np.savetxt(r'/home/connormcdowall/finance-honours/results/statistics/factor-types.txt', df.dtypes, fmt='%s')
             # Saves information on missing values in the dataframe
@@ -302,18 +392,25 @@ def process_vm_dataset(data_vm_dta,size_of_chunks, save_statistics, sample = Fal
         data_type_list = list(df.dtypes.unique())
         # Gets unique list of size_grp
         size_grp_list = list(df['size_grp'].unique())
+        print('List of group sizing')
+        print(size_grp_list)
         # Removes the mth column/factor from the dataframe given datatime format
         df['mth'] = pd.to_numeric(df['mth'],downcast='float')
         df_full = df_full.append(df)
         # Prints memory usage after the process
         monitor_memory_usage(units = 3,cpu = True, gpu = True)
         if sample:
+            # Process nan options in the dataframe
             df_full = replace_nan(df_full, replacement_method = 3)
+            # Resizes the dataframe base on memory options
+            df_full = resizing_dataframe(dataframe=df_full,resizing_options=resizing_options)
             # Print size and shape of dataframe
             print('The dataframe has {} entries with {} rows and {} columns.'.format(df_full.size,df_full.shape[0],df_full.shape[1]))
             return df_full
     # Checks Nan in dataframe
     df_full = replace_nan(df_full, replacement_method = 3)
+    # Memory resizing to prevent excessive memory consumption
+    df_full = resizing_dataframe(dataframe=df_full,resizing_options=resizing_options)
     # Print size and shape of dataframe
     print('The dataframe has {} entries with {} rows and {} columns.'.format(df_full.size,df_full.shape[0],df_full.shape[1]))
     # Prints memory usage after the process
@@ -979,16 +1076,16 @@ def implement_test_data(dataframe, train, val, test,full_implementation = False)
         print('Test functions complete')
     return
 
-def project_analysis(data_vm_directory,list_of_columns,categorical_assignment,target_column,chunk_size,batch_size,model_name, selected_optimizer, selected_loss, selected_metrics, split_data = False, trial = False, sample = False):
+def project_analysis(data_vm_directory,list_of_columns,categorical_assignment,target_column,chunk_size,resizing_options,batch_size,model_name, selected_optimizer, selected_loss, selected_metrics, split_data = False, trial = False, sample = False):
     # Prints memory usage before analysis
     monitor_memory_usage(units = 3, cpu = True, gpu = True)
     # Split the initial vm dataset
     if split_data:
         split_vm_dataset(data_vm_directory,create_statistics=False,split_new_data=True, create_validation_set=True)
     # Creates the training, validation and testing dataframes
-    test_df = process_vm_dataset(data_vm_directory + 'test.dta',chunk_size,save_statistics=False, sample = True)
-    train_df = process_vm_dataset(data_vm_directory + 'train.dta',chunk_size,save_statistics=False, sample = True)
-    val_df = process_vm_dataset(data_vm_directory + 'val.dta',chunk_size,save_statistics=False, sample = True)
+    test_df = process_vm_dataset(data_vm_directory + 'test.dta',chunk_size,resizing_options,save_statistics=False, sample = True)
+    train_df = process_vm_dataset(data_vm_directory + 'train.dta',chunk_size,resizing_options,save_statistics=False, sample = True)
+    val_df = process_vm_dataset(data_vm_directory + 'val.dta',chunk_size,resizing_options,save_statistics=False, sample = True)
     # Use trial to test the dataframe when functions not as large
     if trial:
         # Trial run takes 5% of dataframe produced from processed vm datasets
@@ -1283,8 +1380,10 @@ chunk_size = 1000 # chunk size for reading stata files
 targets_dictionary = {1:'ret_exc',2:'ret_exc_lead1m'}
 target_column= targets_dictionary[2] # Sets the intended target column (test multiple configurations)
 # Lists and arrays
+# 1: , 2: , 3:
+resizing_options = [False,False,False]
 categorical_assignment = ['size_grp','permno','permco','crsp_shrcd','crsp_exchcd','adjfct','sic','ff49']
-# Tensorflow configurations
+# Tensorflow configurations (listed for completeness/reference)
 # Optimizers
 optimizers = ['Adagrad','Adadelta','Adam','Adamax','Ftrl','Nadam','RMSprop','SGD']
 # Losses
@@ -1292,14 +1391,16 @@ binary_classification_losses = ['binary_crossentropy']
 multiclass_classfication_losses = ['categorical_crossentropy','sparse_categorical_crossentropy','poisson','kl_divergence']
 regression_losses = ['cosine_similarity','mean_absolute_error','mean_absolute_percentage_error','mean_squared_logarithmic_error','mean_squared_error','huber_loss']
 extra_losses = ['hinge','log_cosh','loss','squared_hinge']
-losses = binary_classification_losses + multiclass_classfication_losses + regression_losses + extra_losses
+custom_losses = []
+losses = binary_classification_losses + multiclass_classfication_losses + regression_losses + extra_losses + custom_losses
 # Metrics
 binary_classification_metrics = [] 
 multiclass_classification_metrics = [] 
 regression_metrics = []
 extra_metrics = []
-metrics_list = [binary_classification_metrics + multiclass_classification_metrics + regression_metrics + extra_metrics]
-metrics = ['Auc','accuracy','binary_accuracy','binary_crossentropy', 'categorical_accuracy',
+custom_metrics = []
+metrics = binary_classification_metrics + multiclass_classification_metrics + regression_metrics + extra_metrics + custom_metrics
+metrics_all = ['Auc','accuracy','binary_accuracy','binary_crossentropy', 'categorical_accuracy',
         'categorical_crossentropy','categorical_hinge','cosine_similarity','Fn','Fp','hinge',
         'kullback_leibler_divergence','logcosh','mean','mean_absolute_error',
         'mean_absolute_percentage_error','meaniou', 'mean_metric_wrapper',
@@ -1308,13 +1409,17 @@ metrics = ['Auc','accuracy','binary_accuracy','binary_crossentropy', 'categorica
          'recall','recall_at_precision','root_mean_squared_error','sensitivity_at_specificity',
         'sparse_categorical_accuracy','sparse_top_k_categorical_accuracy','squared_hinge',
         'sum','top_k_categorical_accuracy','Tn','Tp']
-# Tensorflow selections
+# Tensorflow congifuration
+optimisation_dictionary = {1:'SGD',2:'SGD',3:'SGD',4:'SGD',5:'SGD'}
+loss_function_dictionary = {1:'mean_squared_error'}
+metrics_dictionary = {1:'mean_squared_error'}
+# Selected Tensorflow Configuration
+tf_option = 1 # Change to 1,2,3,4,5 for configuration
+selected_optimizer = optimisation_dictionary[tf_option]
+selected_loss = loss_function_dictionary[tf_option]
+selected_metrics = metrics_dictionary[tf_option]
+# Strings
 model_name = 'finance-honours-test'
-selected_optimizer = 'SGD'
-selected_loss = 'cosine_similarity'
-# working loss function = 'binary_crossentropy'
-selected_metrics = ['cosine_similarity']
-# File paths
 data_source = 'data/combined_predictors_filtered_us.dta'
 csv_location = '/Volumes/Seagate/dataframes/'
 data_vm_directory = '/home/connormcdowall/local-data/'
@@ -1393,6 +1498,6 @@ if rank_functions:
 # Function Call - Analysis
 ##################################################################################
 if begin_analysis:
-    project_analysis(data_vm_directory,list_of_columns,categorical_assignment,target_column,chunk_size,batch_size, model_name, selected_optimizer, selected_loss, selected_metrics, split_data = False, trial = True, sample = True)
+    project_analysis(data_vm_directory,list_of_columns,categorical_assignment,target_column,chunk_size,resizing_options,batch_size, model_name, selected_optimizer, selected_loss, selected_metrics, split_data = False, trial = True, sample = True)
     
 
