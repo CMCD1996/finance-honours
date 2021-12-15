@@ -325,9 +325,12 @@ def resizing_dataframe(dataframe,resizing_options):
     # Remove both nano and tiny firms in size_grp from the dataframe
     if resizing_options[0]:
         print('Reducing number of size_grp entries')
+        indexNames = dataframe[(dataframe['Age'] >= 30) & (dataframe['Age'] <= 40)].index
+        dataframe = dataframe.drop(indexNames , inplace=True)
     # Reduce the number of factors to the original ~178 from JKP
     if resizing_options[1]:
          print('Reducing number of factors to original ~178 from JKP')
+         
     # Optimise Variable Type
     if resizing_options[2]:
          print('Optimise variable type configuration')
