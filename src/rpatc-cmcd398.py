@@ -25,6 +25,9 @@ from tensorflow.keras import layers
 from tensorflow.python.ops.gen_array_ops import split # Find combinations of lists
 import linearmodels as lp # Ability to use PooledOLS
 from statsmodels.regression.rolling import RollingOLS # Use factor loadings
+from keras.callbacks import Callback # Logging training performance
+import neptune.new as neptune
+from neptunecontrib.monitoring.keras import NeptuneMonitor
 # APIs
 import wrds as wrds# Wharton Research Data Services API
 import pydatastream as pds # Thomas Reuters Datastream API
@@ -101,6 +104,34 @@ def reconfigure_gpu(restrict_tf,growth_memory):
             # Memory growth must be set before GPUs have been initialized
             print(e)
     return
+
+class NeptuneCallback(Callback):
+    def on_batch_end(self, batch, logs=None):  
+        for metric_name, metric_value in logs.items():
+            neptune_run[f"{metric_name}"].log(metric_value)
+
+    def on_epoch_end(self, epoch, logs=None): 
+        for metric_name, metric_value in logs.items():
+            neptune_run[f"{metric_name}"].log(metric_value)
+
+def configure_training_ui(project,api_token):
+    # Monitor Keras loss using callback
+    # https://app.neptune.ai/common/tf-keras-integration/e/TFK-35541/dashboard/metrics-b11ccc73-9ac7-4126-be1a-cf9a3a4f9b74
+    # Initialise neptune with credientials
+    run = neptune.init(project=project,api_token=api_token)
+    neptune_cbk = NeptuneCallback(run=run, base_namespace='metrics')
+    # Example to set paramters
+    # run["JIRA"] = "NPT-952"
+    # run["parameters"] = {"learning_rate": 0.001,
+    #                     "optimizer": "Adam"}
+    # run["f1_score"] = 0.66
+    # Example in using in model callback
+    # model.fit(x_train, y_train, 
+    #         validation_split=0.2, 
+    #         epochs=10, 
+    #         callbacks=[neptune_cbk])
+    # Returns Callback APIs
+    return neptune_cbk
 #################################################################################
 # Data Processing
 #################################################################################
@@ -1196,11 +1227,20 @@ target_column= targets_dictionary[2] # Sets the intended target column (test mul
 # Lists and arrays
 categorical_assignment = ['size_grp','permno','permco','crsp_shrcd','crsp_exchcd','adjfct','sic','ff49']
 # Tensorflow configurations
+# Optimizers
 optimizers = ['Adagrad','Adadelta','Adam','Adamax','Ftrl','Nadam','RMSprop','SGD']
-losses = ['binary_crossentropy','categorical_crossentropy','cosine_similarity',
-        'hinge','huber_loss','kl_divergence','log_cosh','loss','mean_absolute_error','mean_absolute_percentage_error',
-        'mean_squared_error','mean_squared_logarithmic_error','poisson','sparse_categorical_crossentropy',
-        'squared_hinge']
+# Losses
+binary_classification_losses = ['binary_crossentropy']
+multiclass_classfication_losses = ['categorical_crossentropy','sparse_categorical_crossentropy','poisson','kl_divergence']
+regression_losses = ['cosine_similarity','mean_absolute_error','mean_absolute_percentage_error','mean_squared_logarithmic_error','mean_squared_error','huber_loss']
+extra_losses = ['hinge','log_cosh','loss','squared_hinge']
+losses = binary_classification_losses + multiclass_classfication_losses + regression_losses + extra_losses
+# Metrics
+binary_classification_metrics = [] 
+multiclass_classification_metrics = [] 
+regression_metrics = []
+extra_metrics = []
+metrics_list = [binary_classification_metrics + multiclass_classification_metrics + regression_metrics + extra_metrics]
 metrics = ['Auc','accuracy','binary_accuracy','binary_crossentropy', 'categorical_accuracy',
         'categorical_crossentropy','categorical_hinge','cosine_similarity','Fn','Fp','hinge',
         'kullback_leibler_divergence','logcosh','mean','mean_absolute_error',
@@ -1212,7 +1252,7 @@ metrics = ['Auc','accuracy','binary_accuracy','binary_crossentropy', 'categorica
         'sum','top_k_categorical_accuracy','Tn','Tp']
 # Tensorflow selections
 model_name = 'finance-honours-test'
-selected_optimizer = 'Adam'
+selected_optimizer = 'SGD'
 selected_loss = 'cosine_similarity'
 # working loss function = 'binary_crossentropy'
 selected_metrics = ['cosine_similarity']
