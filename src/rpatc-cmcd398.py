@@ -1228,13 +1228,16 @@ class FinanceCustomFunctionPlaceholder5(tf.keras.losses.Loss):
 # Metrics
 #################################################################################
 # 1: HP Mean
-class CustomMetricExample(tf.keras.metrics.Metric):
+class CustomHedgePortolfioMean(tf.keras.metrics.Metric):
+    # Initialisation
     def __init__(self, num_classes, batch_size,
-                 name="custom_metric_example", **kwargs):
-        super(CustomMetricExample, self).__init__(name=name, **kwargs)
+                 name="hedge_portfolio_mean", **kwargs):
+        super(CustomHedgePortolfioMean, self).__init__(name=name, **kwargs)
         self.batch_size = batch_size
         self.num_classes = num_classes    
-        self.custom_metric = self.add_weight(name="cm", initializer="zeros")
+        self.hedge_portflio_mean = self.add_weight(name="hpm", initializer="zeros")
+        # Core componnent of the update state
+    # Update State
     def update_state(self, y_true, y_pred, sample_weight=None):
         # Returns the index of the maximum values along the last axis in y_true (Last layer)   
         y_true = K.argmax(y_true, axis=-1)
@@ -1245,18 +1248,21 @@ class CustomMetricExample(tf.keras.metrics.Metric):
         y_true = K.flatten(y_true)
         # Defines the metric for assignment
         true_poss = K.sum(K.cast((K.equal(y_true, y_pred)), dtype=tf.float32))
-        self.custom_metric.assign_add(true_poss)
+        self.hedge_portflio_mean.assign_add(true_poss)
+    # Metric
     def result(self):
         return self.custom_metric
 
 # 2: HP Alphas in CAPM, FF3, FF5
-class CustomL2MSE(tf.keras.metrics.Metric):
+class CustomHedgePortolfioAlphas(tf.keras.metrics.Metric):
+    # Initialisation
     def __init__(self, num_classes, batch_size,
                  name="custom_l2_mse", **kwargs):
-        super(CustomL2MSE, self).__init__(name=name, **kwargs)
+        super(CustomHedgePortolfioAlphas, self).__init__(name=name, **kwargs)
         self.batch_size = batch_size
         self.num_classes = num_classes    
-        self.custom_l2_mse = self.add_weight(name="cl2mse", initializer="zeros")
+        self.custom_hedge_portfolio_alphas = self.add_weight(name="chpa", initializer="zeros")
+    # Update State
     def update_state(self, y_true, y_pred, sample_weight=None):
         # Returns the index of the maximum values along the last axis in y_true (Last layer)   
         y_true = K.argmax(y_true, axis=-1)
@@ -1267,9 +1273,10 @@ class CustomL2MSE(tf.keras.metrics.Metric):
         y_true = K.flatten(y_true)
         # Defines the metric for assignment
         true_poss = K.sum(K.cast((K.equal(y_true, y_pred)), dtype=tf.float32))
-        self.custom_l2_mse.assign_add(true_poss)
+        self.custom_hedge_portfolio_alphas.assign_add(true_poss)
+    # Metric
     def result(self):
-        return self.custom_l2_mse
+        return self.custom_hedge_portfolio_alphas
 
 # 3: Sharpe Ratio
 
@@ -1278,6 +1285,14 @@ class CustomL2MSE(tf.keras.metrics.Metric):
 #################################################################################
 # Autodiff Testing
 #################################################################################
+# Information: 
+# TensorFlow provides the tf.GradientTape API for automatic differentiation; 
+# that is, computing the gradient of a computation with respect to some inputs, 
+# usually tf.Variables. TensorFlow "records" relevant operations executed inside 
+# the context of a tf.GradientTape onto a "tape". TensorFlow then uses that tape 
+# to compute the gradients of a "recorded" computation using reverse mode differentiation.
+# (https://en.wikipedia.org/wiki/Automatic_differentiation)
+
 # Function to test loss functions and metrics using autodiff
 def loss_function_testing():
     """ Uses tensorflow autodifferientiation functionality
@@ -1455,7 +1470,7 @@ metrics_all = ['Auc','accuracy','binary_accuracy','binary_crossentropy', 'catego
 # Tensorflow congifuration
 optimisation_dictionary = {1:'SGD',2:'SGD',3:'SGD',4:'SGD',5:'SGD'}
 loss_function_dictionary = {1:'mean_squared_error'}
-metrics_dictionary = {1:'mean_squared_error'}
+metrics_dictionary = {1:['mean_squared_error']}
 # Selected Tensorflow Configuration
 tf_option = 1 # Change to 1,2,3,4,5 for configuration
 selected_optimizer = optimisation_dictionary[tf_option]
