@@ -1394,7 +1394,7 @@ def ranking_function():
 #################################################################################
 # Integers
 batch_size = 256 # Batch size for creating tf dataset
-chunk_size = 10000 # chunk size for reading stata files
+chunk_size = 100000 # chunk size for reading stata files
 # Targets
 targets_dictionary = {1:'ret_exc',2:'ret_exc_lead1m'}
 target_column= targets_dictionary[2] # Sets the intended target column (test multiple configurations)
@@ -1517,6 +1517,6 @@ if rank_functions:
 # Function Call - Analysis
 ##################################################################################
 if begin_analysis:
-    project_analysis(data_vm_directory,list_of_columns,categorical_assignment,target_column,chunk_size,resizing_options,batch_size, model_name, selected_optimizer, selected_loss, selected_metrics, split_data = False, trial = True, sample = False)
+    project_analysis(data_vm_directory,list_of_columns,categorical_assignment,target_column,chunk_size,resizing_options,batch_size, model_name, selected_optimizer, selected_loss, selected_metrics, split_data = False, trial = True, sample = True)
     
 
