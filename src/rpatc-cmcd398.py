@@ -1088,9 +1088,9 @@ def project_analysis(data_vm_directory,list_of_columns,categorical_assignment,ta
     if split_data:
         split_vm_dataset(data_vm_directory,create_statistics=False,split_new_data=True, create_validation_set=True)
     # Creates the training, validation and testing dataframes
-    test_df = process_vm_dataset(data_vm_directory + 'test.dta',chunk_size,resizing_options,save_statistics=False, sample = True)
-    train_df = process_vm_dataset(data_vm_directory + 'train.dta',chunk_size,resizing_options,save_statistics=False, sample = True)
-    val_df = process_vm_dataset(data_vm_directory + 'val.dta',chunk_size,resizing_options,save_statistics=False, sample = True)
+    test_df = process_vm_dataset(data_vm_directory + 'test.dta',chunk_size,resizing_options,save_statistics=False, sample = sample)
+    train_df = process_vm_dataset(data_vm_directory + 'train.dta',chunk_size,resizing_options,save_statistics=False, sample = sample)
+    val_df = process_vm_dataset(data_vm_directory + 'val.dta',chunk_size,resizing_options,save_statistics=False, sample = sample)
     # Use trial to test the dataframe when functions not as large
     if trial:
         # Trial run takes 5% of dataframe produced from processed vm datasets
