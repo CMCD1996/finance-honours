@@ -329,14 +329,28 @@ def resizing_dataframe(dataframe,resizing_options):
         dataframe = dataframe.drop(indexNames , inplace=True)
     # Reduce the number of factors to the original ~178 from JKP
     if resizing_options[1]:
-         print('Reducing number of factors to original ~178 from JKP')
-        
-    # Optimise Variable Type
+        print('Reducing number of factors to original ~178 from JKP')
+        # Extract new columns to the dataframe
+        new_columns = []
+        list_of_columns = '/home/connormcdowall/finance-honours/data/178-factors.txt'
+        file = open(list_of_columns,'r')
+        lines = file.readlines()
+        for line in lines:
+            line = line.rstrip('\n')
+            new_columns.append(line)
+        # Only collect column in both lists
+        cols = dataframe.columns
+        extract_columns = []
+        for column in new_columns:
+            if column in cols:
+                extract_columns.append(column)  
+        # Extract the old columns
+        dataframe = dataframe[extract_columns]
+    # Optimises Variable Type
     if resizing_options[2]:
          print('Optimise variable type configuration')
          dataframe, NAlist = reduce_mem_usage(dataframe)
     return dataframe
-
 
 def split_vm_dataset(data_vm_directory,create_statistics,split_new_data, create_validation_set):
     """ Creates summmary statistics from unprocessed dataset
