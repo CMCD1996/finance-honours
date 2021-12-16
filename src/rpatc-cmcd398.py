@@ -767,11 +767,11 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         if selected_loss == 'custom_l2_mse': # loss = square(maximum(1 - y_true * y_pred, 0))
             lf = CustomL2MSE(reduction=red, name = 'custom_l2_mse')
         if selected_loss == 'custom_hedge_portfolio': # loss = square(maximum(1 - y_true * y_pred, 0))
-            lf = CustomL2MSE(reduction=red, name = 'custom_hedge_portfolio')
+            lf = CustomHedgePortfolioReturns(reduction=red, name = 'custom_hedge_portfolio')
         if selected_loss == 'custom_sharpe_ratio': # loss = square(maximum(1 - y_true * y_pred, 0))
-            lf = CustomL2MSE(reduction=red, name = 'custom_sharpe_ratio')
+            lf = CustomSharpeRatio(reduction=red, name = 'custom_sharpe_ratio')
         if selected_loss == 'custom_information_ratio': # loss = square(maximum(1 - y_true * y_pred, 0))
-            lf = CustomL2MSE(reduction=red, name = 'custom_information_ratio')
+            lf = CustomInformationRatio(reduction=red, name = 'custom_information_ratio')
         #################################################################################
         # Metrics
         #################################################################################
@@ -1263,7 +1263,6 @@ class CustomHedgePortfolioReturns():
 
 # 4: Custom Sharpe Ratio (SR)
 class CustomSharpeRatio():
-    # 
     def __init__(self,
         reduction=tf.keras.losses.Reduction.AUTO,
         name='custom_sharpe_ratio', **kwargs):
