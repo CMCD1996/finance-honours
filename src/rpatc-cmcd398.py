@@ -1230,9 +1230,11 @@ class CustomLossFunctionExample(tf.keras.losses.Loss):
 # 2: Custom L2 (Mean Square Error Function)
 @tf.function # Decorate the function
 def customl2mse(y_true,y_pred):
-    l2 = tf.math.reduce_mean(tf.math.square(y_true,y_pred))
-    return l2
+    mse = K.mean(K.square(y_true - y_pred))
+    return mse
 
+
+# 
 @tf.function
 def custom_sharpe_ratio(y_true,y_pred):
     loss = -tf.math.reduce_mean(y_true,y_pred) / tf.math.reduce_std(y_true,y_pred)
