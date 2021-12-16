@@ -765,7 +765,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
             lf = tf.keras.losses.SquaredHinge(reduction=red, name='squared_hinge')
         # Custom loss classes
         if selected_loss == 'custom_l2_mse': # loss = square(maximum(1 - y_true * y_pred, 0))
-            lf = CustomL2MSE(reduction=red, name = 'custom_l2_mse')
+            lf = customl2mse
         if selected_loss == 'custom_hedge_portfolio': # loss = square(maximum(1 - y_true * y_pred, 0))
             lf = CustomHedgePortfolioReturns(reduction=red, name = 'custom_hedge_portfolio')
         if selected_loss == 'custom_sharpe_ratio': # loss = square(maximum(1 - y_true * y_pred, 0))
@@ -1228,6 +1228,10 @@ class CustomLossFunctionExample(tf.keras.losses.Loss):
 # Call MSE Loss Function/Metric with SGD in build_tensorflow_model()
 
 # 2: Custom L2 (Mean Square Error Function)
+def customl2mse(y_true,y_pred):
+    l2 = tf.reduce_mean(tf.square(y_true,y_pred))
+    return l2
+
 # Loss function
 class CustomL2MSE():
     # Option 2: Custom L2 Loss Function
