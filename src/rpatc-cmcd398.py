@@ -659,7 +659,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         if sequential_model:
             x = tf.keras.Sequential(
                 [   # Input layer
-                    tf.keras.Input(shape = (len(all_features))),
+                    tf.keras.Input(shape = (188)),
                     tf.keras.layers.Dense(32, activation = 'relu'),
                     # Drop out layer
                     tf.keras.layers.Dropout(rate=0.5, noise_shape = None, seed = None),
