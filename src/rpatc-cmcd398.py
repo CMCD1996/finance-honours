@@ -764,9 +764,14 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         if selected_loss == 'squared_hinge': # loss = square(maximum(1 - y_true * y_pred, 0))
             lf = tf.keras.losses.SquaredHinge(reduction=red, name='squared_hinge')
         # Custom loss classes
-        if selected_loss == 'squared_hinge': # loss = square(maximum(1 - y_true * y_pred, 0))
-            lf = tf.keras.losses.CustomL2MSE()
-        CustomL2MSE
+        if selected_loss == 'custom_l2_mse': # loss = square(maximum(1 - y_true * y_pred, 0))
+            lf = tf.keras.losses.CustomL2MSE(reduction=red, name = 'custom_l2_mse')
+        if selected_loss == 'custom_hedge_portfolio': # loss = square(maximum(1 - y_true * y_pred, 0))
+            lf = tf.keras.losses.CustomL2MSE(reduction=red, name = 'custom_hedge_portfolio')
+        if selected_loss == 'custom_sharpe_ratio': # loss = square(maximum(1 - y_true * y_pred, 0))
+            lf = tf.keras.losses.CustomL2MSE(reduction=red, name = 'custom_sharpe_ratio')
+        if selected_loss == 'custom_information_ratio': # loss = square(maximum(1 - y_true * y_pred, 0))
+            lf = tf.keras.losses.CustomL2MSE(reduction=red, name = 'custom_information_ratio')
         #################################################################################
         # Metrics
         #################################################################################
@@ -901,7 +906,22 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
             metrics_list.append(tf.keras.metrics.TruePositives(
             thresholds=None, name=None, dtype=None))
         # Custom Metrics
-
+        if 'hedge_portfolio_mean'in selected_metrics:
+            metrics_list.append(tf.keras.metrics.CustomHedgePortolfioMean(
+            num_classes = None, batch_size = None,
+                 name='hedge_portfolio_mean'))
+        if 'hedge_portfolio_alphas'in selected_metrics:
+            metrics_list.append(tf.keras.metrics.CustomHedgePortolfioAlphas(
+            num_classes = None, batch_size = None,
+                 name='hedge_portfolio_alphas'))
+        if 'sharpe_ratio'in selected_metrics:
+            metrics_list.append(tf.keras.metrics.CustomSharpeRatio(
+            num_classes = None, batch_size = None,
+                 name='sharpe_ratio'))
+        if 'information_ratio'in selected_metrics:
+            metrics_list.append(tf.keras.metrics.CustomInformationRatio(
+            num_classes= None, batch_size = None,
+                 name='information_ratio'))
         #################################################################################
         # Loss weights
         #################################################################################
@@ -1212,9 +1232,11 @@ class CustomLossFunctionExample(tf.keras.losses.Loss):
 class CustomL2MSE(tf.keras.losses.Loss):
     # Option 2: Custom L2 Loss Function
     # Latex sum_{i=1}^{n}(y_{true}-y_{predicted})^{2} (MSE)
-    def __init__(self, name='custom_l2_mse', **kwargs):
+    def __init__(self, 
+        reduction=tf.keras.losses.Reduction.AUTO,
+        name='custom_l2_mse', **kwargs):
         # Initialise the function
-        super(CustomL2MSE,self).__init__(name=name, **kwargs)
+        super(CustomL2MSE,self).__init__(reduction=reduction,name=name, **kwargs)
         # Must use y_true and y_pred
     def call(self,y_true,y_pred):
         # Note: tf.reduce_mean computes the mean of elements
@@ -1224,9 +1246,11 @@ class CustomL2MSE(tf.keras.losses.Loss):
 
 # 3: Custom Hedge Portfolio (HP)
 class CustomHedgePortfolioReturns(tf.keras.losses.Loss):
-    def __init__(self, name='custom_hedge_portfolio', **kwargs):
+    def __init__(self,
+        reduction=tf.keras.losses.Reduction.AUTO,
+        name='custom_hedge_portfolio', **kwargs):
         # Initialise the function
-        super(CustomHedgePortfolioReturns,self).__init__(name=name, **kwargs)
+        super(CustomHedgePortfolioReturns,self).__init__(reduction=reduction,name=name, **kwargs)
         # Define the call of the function (Must use y_true and y_pred)
     def call(self,y_true,y_pred):
         # Function
@@ -1240,9 +1264,11 @@ class CustomHedgePortfolioReturns(tf.keras.losses.Loss):
 # 4: Custom Sharpe Ratio (SR)
 class CustomSharpeRatio(tf.keras.losses.Loss):
     # 
-    def __init__(self, name='custom_sharpe_ratio', **kwargs):
+    def __init__(self,
+        reduction=tf.keras.losses.Reduction.AUTO,
+        name='custom_sharpe_ratio', **kwargs):
         # Initialise the function
-        super(CustomSharpeRatio,self).__init__(name=name, **kwargs)
+        super(CustomSharpeRatio,self).__init__(reduction=reduction,name=name, **kwargs)
         # Define the call of the function
         # Must use y_true and y_pred
     def call(self,y_true,y_pred):
@@ -1251,9 +1277,11 @@ class CustomSharpeRatio(tf.keras.losses.Loss):
 
 # 5: Custom Information Ratio (IR)
 class CustomInformationRatio(tf.keras.losses.Loss):
-    def __init__(self, name='custom_information_ratio', **kwargs):
+    def __init__(self,
+        reduction=tf.keras.losses.Reduction.AUTO,
+        name='custom_information_ratio', **kwargs):
         # Initialise the function
-        super(CustomInformationRatio,self).__init__(name=name, **kwargs)
+        super(CustomInformationRatio,self).__init__(reduction=reduction,name=name, **kwargs)
         # Define the call of the function
         # Must use y_true and y_pred
     def call(self,y_true,y_pred):
@@ -1266,12 +1294,12 @@ class CustomInformationRatio(tf.keras.losses.Loss):
 # 1: HP Mean
 class CustomHedgePortolfioMean(tf.keras.metrics.Metric):
     # Initialisation
-    def __init__(self, num_classes, batch_size,
+    def __init__(self, num_classes = None, batch_size = None,
                  name='hedge_portfolio_mean', **kwargs):
         super(CustomHedgePortolfioMean, self).__init__(name=name, **kwargs)
         self.batch_size = batch_size
         self.num_classes = num_classes    
-        self.hedge_portflio_mean = self.add_weight(name="hpm", initializer="zeros")
+        self.hedge_portflio_mean = self.add_weight(name='hedge_portfolio_mean', initializer="zeros")
         # Core componnent of the update state
     # Update State
     def update_state(self, y_true, y_pred, sample_weight=None):
@@ -1292,12 +1320,12 @@ class CustomHedgePortolfioMean(tf.keras.metrics.Metric):
 # 2: HP Alphas in CAPM, FF3, FF5 ()
 class CustomHedgePortolfioAlphas(tf.keras.metrics.Metric):
     # Initialisation
-    def __init__(self, num_classes, batch_size,
-                 name="hedge_portfolio_alphas", **kwargs):
+    def __init__(self, num_classes = None, batch_size = None,
+                 name='hedge_portfolio_alphas', **kwargs):
         super(CustomHedgePortolfioAlphas, self).__init__(name=name, **kwargs)
         self.batch_size = batch_size
         self.num_classes = num_classes    
-        self.custom_hedge_portfolio_alphas = self.add_weight(name="chpa", initializer="zeros")
+        self.custom_hedge_portfolio_alphas = self.add_weight(name='hedge_portfolio_alphas', initializer="zeros")
     # Update State
     def update_state(self, y_true, y_pred, sample_weight=None):
         # Returns the index of the maximum values along the last axis in y_true (Last layer)   
@@ -1317,7 +1345,7 @@ class CustomHedgePortolfioAlphas(tf.keras.metrics.Metric):
 # 3: Sharpe Ratio (SR = E[R - Rf]/SD Excess Return)
 class CustomSharpeRatio(tf.keras.metrics.Metric):
     # Initialisation
-    def __init__(self, num_classes, batch_size,
+    def __init__(self, num_classes = None, batch_size = None,
                  name='sharpe_ratio', **kwargs):
         super(CustomSharpeRatio, self).__init__(name=name, **kwargs)
         self.batch_size = batch_size
@@ -1342,7 +1370,7 @@ class CustomSharpeRatio(tf.keras.metrics.Metric):
 # 4: Information Ratio (IR = [R - Rf]/SD[R-Rf])
 class CustomInformationRatio(tf.keras.metrics.Metric):
     # Initialisation
-    def __init__(self, num_classes, batch_size,
+    def __init__(self, num_classes= None, batch_size = None,
                  name='information_ratio', **kwargs):
         super(CustomHedgePortolfioAlphas, self).__init__(name=name, **kwargs)
         self.batch_size = batch_size
