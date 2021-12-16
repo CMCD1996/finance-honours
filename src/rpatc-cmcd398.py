@@ -1242,7 +1242,7 @@ def custom_hedge_portfolio_returns(y_true,y_pred):
 # 4: Custom Sharpe Ratio (# Negative to maximise)
 @tf.function
 def custom_sharpe_ratio(y_true,y_pred):
-    loss = -(K.mean(y_true,y_pred)/K.std(y_true,y_pred))
+    loss = (K.mean(y_true,y_pred)/K.std(y_true,y_pred))
     return loss 
 
 # 5: Custom Information Ratio
