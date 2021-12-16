@@ -765,13 +765,13 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
             lf = tf.keras.losses.SquaredHinge(reduction=red, name='squared_hinge')
         # Custom loss classes
         if selected_loss == 'custom_l2_mse': # loss = square(maximum(1 - y_true * y_pred, 0))
-            lf = customl2mse
+            lf = custom_l2_mse
         if selected_loss == 'custom_hedge_portfolio': # loss = square(maximum(1 - y_true * y_pred, 0))
-            lf = CustomHedgePortfolioReturns(reduction=red, name = 'custom_hedge_portfolio')
+            lf = custom_hedge_portfolio_returns
         if selected_loss == 'custom_sharpe_ratio': # loss = square(maximum(1 - y_true * y_pred, 0))
-            lf = CustomSharpeRatio(reduction=red, name = 'custom_sharpe_ratio')
+            lf = custom_sharpe_ratio
         if selected_loss == 'custom_information_ratio': # loss = square(maximum(1 - y_true * y_pred, 0))
-            lf = CustomInformationRatio(reduction=red, name = 'custom_information_ratio')
+            lf = custom_information_ratio
         #################################################################################
         # Metrics
         #################################################################################
@@ -1213,7 +1213,7 @@ def project_analysis(data_vm_directory,list_of_columns,categorical_assignment,ta
 # V = All-Ones=Vector
 
 # 0: Custom Example for reference
-# Loss Function
+# Loss Function (Class Example, not as efficient)
 class CustomLossFunctionExample(tf.keras.losses.Loss):
     # Example from Youtube (https://www.youtube.com/watch?v=gcwRjM1nZ4o)
     def __init__(self):
@@ -1229,31 +1229,29 @@ class CustomLossFunctionExample(tf.keras.losses.Loss):
 
 # 2: Custom L2 (Mean Square Error Function)
 @tf.function # Decorate the function
-def customl2mse(y_true,y_pred):
+def custom_l2_mse(y_true,y_pred):
     mse = K.mean(K.square(y_true - y_pred))
     return mse
 
+# 3: Custom Hedge Portfolio Returns
+@tf.function
+def custom_hedge_portfolio_returns(y_true,y_pred):
+    loss = K.mean(K.square(y_true - y_pred)) # Placeholder
+    return loss
 
-# 
+# 4: Custom Sharpe Ratio (# Negative to maximise)
 @tf.function
 def custom_sharpe_ratio(y_true,y_pred):
-    loss = -tf.math.reduce_mean(y_true,y_pred) / tf.math.reduce_std(y_true,y_pred)
+    loss = -(K.mean(y_true,y_pred)/K.std(y_true,y_pred))
+    return loss 
 
-# Loss function
-class CustomL2MSE():
-    # Option 2: Custom L2 Loss Function
-    # Latex sum_{i=1}^{n}(y_{true}-y_{predicted})^{2} (MSE)
-    def __init__(self):
-        # Initialise the function
-        super(CustomL2MSE,self).__init__()
-        # Must use y_true and y_pred
-    def call(self,y_true,y_pred):
-        # Note: tf.reduce_mean computes the mean of elements
-        # across dimensions of a tensor
-        l2 = tf.reduce_mean(tf.square(y_true,y_pred))
-        return l2
+# 5: Custom Information Ratio
+@tf.function
+def custom_information_ratio(y_true,y_pred):
+    loss = K.mean(K.square(y_true - y_pred)) # Placeholder
+    return loss
 
-# 3: Custom Hedge Portfolio (HP)
+# 3: Custom Hedge Portfolio (HP) - To remove of delete
 class CustomHedgePortfolioReturns():
     def __init__(self,
         reduction=tf.keras.losses.Reduction.AUTO,
@@ -1270,7 +1268,7 @@ class CustomHedgePortfolioReturns():
         #                - (1/((0^T)(X)(V))**2)(0^T)(X)(X^T)(0)(X)(V)
         return
 
-# 4: Custom Sharpe Ratio (SR)
+# 4: Custom Sharpe Ratio (SR) - To remove or delete
 class CustomSharpeRatio():
     def __init__(self,
         # reduction=tf.keras.losses.Reduction.AUTO,
@@ -1283,7 +1281,7 @@ class CustomSharpeRatio():
         # Insert derivation here
         return
 
-# 5: Custom Information Ratio (IR)
+# 5: Custom Information Ratio (IR) - To remove or delete
 class CustomInformationRatio():
     def __init__(self,
         reduction=tf.keras.losses.Reduction.AUTO,
@@ -1698,9 +1696,9 @@ metrics = accuracy_metrics + probabilistic_metrics + regression_metrics + classi
 # Tensorflow congifuration
 optimisation_dictionary = {1:'SGD',2:'SGD',3:'SGD',4:'SGD',5:'SGD'}
 loss_function_dictionary = {1:'mean_squared_error',2:'custom_l2_mse',3:'custom_hedge_portfolio',4:'custom_sharpe_ratio',5:'custom_information_ratio'}
-metrics_dictionary = {1:['mean_squared_error'],2:['mean_squared_error']}
+metrics_dictionary = {1:['mean_squared_error'],2:['mean_squared_error'],3:['mean_squared_error'],4:['mean_squared_error'],5:['mean_squared_error']}
 # Selected Tensorflow Configuration
-tf_option = 2 # Change to 1,2,3,4,5 for configuration
+tf_option = 4 # Change to 1,2,3,4,5 for configuration
 selected_optimizer = optimisation_dictionary[tf_option]
 selected_loss = loss_function_dictionary[tf_option]
 selected_metrics = metrics_dictionary[tf_option]
