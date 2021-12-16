@@ -765,13 +765,13 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
             lf = tf.keras.losses.SquaredHinge(reduction=red, name='squared_hinge')
         # Custom loss classes
         if selected_loss == 'custom_l2_mse': # loss = square(maximum(1 - y_true * y_pred, 0))
-            lf = tf.keras.losses.CustomL2MSE(reduction=red, name = 'custom_l2_mse')
+            lf = CustomL2MSE(reduction=red, name = 'custom_l2_mse')
         if selected_loss == 'custom_hedge_portfolio': # loss = square(maximum(1 - y_true * y_pred, 0))
-            lf = tf.keras.losses.CustomL2MSE(reduction=red, name = 'custom_hedge_portfolio')
+            lf = CustomL2MSE(reduction=red, name = 'custom_hedge_portfolio')
         if selected_loss == 'custom_sharpe_ratio': # loss = square(maximum(1 - y_true * y_pred, 0))
-            lf = tf.keras.losses.CustomL2MSE(reduction=red, name = 'custom_sharpe_ratio')
+            lf = CustomL2MSE(reduction=red, name = 'custom_sharpe_ratio')
         if selected_loss == 'custom_information_ratio': # loss = square(maximum(1 - y_true * y_pred, 0))
-            lf = tf.keras.losses.CustomL2MSE(reduction=red, name = 'custom_information_ratio')
+            lf = CustomL2MSE(reduction=red, name = 'custom_information_ratio')
         #################################################################################
         # Metrics
         #################################################################################
@@ -1229,7 +1229,7 @@ class CustomLossFunctionExample(tf.keras.losses.Loss):
 
 # 2: Custom L2 (Mean Square Error Function)
 # Loss function
-class CustomL2MSE(tf.keras.losses.Loss):
+class CustomL2MSE():
     # Option 2: Custom L2 Loss Function
     # Latex sum_{i=1}^{n}(y_{true}-y_{predicted})^{2} (MSE)
     def __init__(self, 
@@ -1245,7 +1245,7 @@ class CustomL2MSE(tf.keras.losses.Loss):
         return l2
 
 # 3: Custom Hedge Portfolio (HP)
-class CustomHedgePortfolioReturns(tf.keras.losses.Loss):
+class CustomHedgePortfolioReturns():
     def __init__(self,
         reduction=tf.keras.losses.Reduction.AUTO,
         name='custom_hedge_portfolio', **kwargs):
@@ -1262,7 +1262,7 @@ class CustomHedgePortfolioReturns(tf.keras.losses.Loss):
         return
 
 # 4: Custom Sharpe Ratio (SR)
-class CustomSharpeRatio(tf.keras.losses.Loss):
+class CustomSharpeRatio():
     # 
     def __init__(self,
         reduction=tf.keras.losses.Reduction.AUTO,
@@ -1276,7 +1276,7 @@ class CustomSharpeRatio(tf.keras.losses.Loss):
         return
 
 # 5: Custom Information Ratio (IR)
-class CustomInformationRatio(tf.keras.losses.Loss):
+class CustomInformationRatio():
     def __init__(self,
         reduction=tf.keras.losses.Reduction.AUTO,
         name='custom_information_ratio', **kwargs):
