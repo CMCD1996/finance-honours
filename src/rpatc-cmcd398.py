@@ -643,21 +643,23 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         # Configure the neural network layers
         print('Start: Configuration of Deep Network Layers')
         # Binary variables to control network construction
-        simple_config = False
-        sequential_model = True
+        simple_config = True
+        sequential_model = False
         # Simple configuration, only a handful of layers
         if simple_config:
             # Initial Layer
             x = tf.keras.layers.Dense(32, activation="relu")(all_features)
             # Dropout layer
             x = tf.keras.layers.Dropout(rate=0.5, noise_shape = None, seed = None)(x)
+            x = tf.keras.layers.Dense(64, activation = 'relu')(x)
+            x = tf.keras.layers.Dense(128, activation = 'sigmoid')(x)
             # Creates the output layer
             output = tf.keras.layers.Dense(1)(x)
             print('End: Configuration of Deep Network Layers')
             # Configure the model (https://www.tensorflow.org/api_docs/python/tf/keras/Model)
             model = tf.keras.Model(all_inputs, output)
-
-        if sequential_model:
+        # Deploy a sequential model
+        elif sequential_model:
             x = tf.keras.Sequential(
                 [   # Input layer
                     tf.keras.Input(shape = (188,)),
