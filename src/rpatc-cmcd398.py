@@ -763,6 +763,10 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
             from_logits=flt, reduction=red, name='sparse_categorical_crossentropy')
         if selected_loss == 'squared_hinge': # loss = square(maximum(1 - y_true * y_pred, 0))
             lf = tf.keras.losses.SquaredHinge(reduction=red, name='squared_hinge')
+        # Custom loss classes
+        if selected_loss == 'squared_hinge': # loss = square(maximum(1 - y_true * y_pred, 0))
+            lf = tf.keras.losses.CustomL2MSE()
+        CustomL2MSE
         #################################################################################
         # Metrics
         #################################################################################
@@ -896,6 +900,8 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         if 'Tp'in selected_metrics:
             metrics_list.append(tf.keras.metrics.TruePositives(
             thresholds=None, name=None, dtype=None))
+        # Custom Metrics
+
         #################################################################################
         # Loss weights
         #################################################################################
@@ -1206,9 +1212,10 @@ class CustomLossFunctionExample(tf.keras.losses.Loss):
 class CustomL2MSE(tf.keras.losses.Loss):
     # Option 2: Custom L2 Loss Function
     # Latex sum_{i=1}^{n}(y_{true}-y_{predicted})^{2} (MSE)
-    def __init__(self):
+    def __init__(self, name='custom_l2_mse', **kwargs):
         # Initialise the function
-        super().__init__()
+        super(CustomL2MSE,self).__init__(name=name, **kwargs)
+        # Must use y_true and y_pred
     def call(self,y_true,y_pred):
         # Note: tf.reduce_mean computes the mean of elements
         # across dimensions of a tensor
@@ -1217,10 +1224,10 @@ class CustomL2MSE(tf.keras.losses.Loss):
 
 # 3: Custom Hedge Portfolio (HP)
 class CustomHedgePortfolioReturns(tf.keras.losses.Loss):
-    def __init__(self):
+    def __init__(self, name='custom_hedge_portfolio', **kwargs):
         # Initialise the function
-        super().__init__()
-        # Define the call of the function
+        super(CustomHedgePortfolioReturns,self).__init__(name=name, **kwargs)
+        # Define the call of the function (Must use y_true and y_pred)
     def call(self,y_true,y_pred):
         # Function
         # f_(0)(X) = ((X^T(0)/V(X^T))^T)X^T(0)
@@ -1231,22 +1238,24 @@ class CustomHedgePortfolioReturns(tf.keras.losses.Loss):
         return
 
 # 4: Custom Sharpe Ratio (SR)
-class FinanceCustomFunctionPlaceholder4(tf.keras.losses.Loss):
+class CustomSharpeRatio(tf.keras.losses.Loss):
     # 
-    def __init__(self):
+    def __init__(self, name='custom_sharpe_ratio', **kwargs):
         # Initialise the function
-        super().__init__()
+        super(CustomSharpeRatio,self).__init__(name=name, **kwargs)
         # Define the call of the function
+        # Must use y_true and y_pred
     def call(self,y_true,y_pred):
         # Insert derivation here
         return
 
 # 5: Custom Information Ratio (IR)
-class FinanceCustomFunctionPlaceholder5(tf.keras.losses.Loss):
-    def __init__(self):
+class CustomInformationRatio(tf.keras.losses.Loss):
+    def __init__(self, name='custom_information_ratio', **kwargs):
         # Initialise the function
-        super().__init__()
+        super(CustomInformationRatio,self).__init__(name=name, **kwargs)
         # Define the call of the function
+        # Must use y_true and y_pred
     def call(self,y_true,y_pred):
         # Insert derivation here
         return
@@ -1258,7 +1267,7 @@ class FinanceCustomFunctionPlaceholder5(tf.keras.losses.Loss):
 class CustomHedgePortolfioMean(tf.keras.metrics.Metric):
     # Initialisation
     def __init__(self, num_classes, batch_size,
-                 name="hedge_portfolio_mean", **kwargs):
+                 name='hedge_portfolio_mean', **kwargs):
         super(CustomHedgePortolfioMean, self).__init__(name=name, **kwargs)
         self.batch_size = batch_size
         self.num_classes = num_classes    
@@ -1284,7 +1293,7 @@ class CustomHedgePortolfioMean(tf.keras.metrics.Metric):
 class CustomHedgePortolfioAlphas(tf.keras.metrics.Metric):
     # Initialisation
     def __init__(self, num_classes, batch_size,
-                 name="custom_l2_mse", **kwargs):
+                 name="hedge_portfolio_alphas", **kwargs):
         super(CustomHedgePortolfioAlphas, self).__init__(name=name, **kwargs)
         self.batch_size = batch_size
         self.num_classes = num_classes    
@@ -1306,9 +1315,54 @@ class CustomHedgePortolfioAlphas(tf.keras.metrics.Metric):
         return self.custom_hedge_portfolio_alphas
 
 # 3: Sharpe Ratio (SR = E[R - Rf]/SD Excess Return)
+class CustomSharpeRatio(tf.keras.metrics.Metric):
+    # Initialisation
+    def __init__(self, num_classes, batch_size,
+                 name='sharpe_ratio', **kwargs):
+        super(CustomSharpeRatio, self).__init__(name=name, **kwargs)
+        self.batch_size = batch_size
+        self.num_classes = num_classes    
+        self.custom_sharpe_ratio = self.add_weight(name="csr", initializer="zeros")
+    # Update State
+    def update_state(self, y_true, y_pred, sample_weight=None):
+        # Returns the index of the maximum values along the last axis in y_true (Last layer)   
+        y_true = K.argmax(y_true, axis=-1)
+        # Returns the index of the maximum values along the last axis in y_true (Last layer)
+        y_pred = K.argmax(y_pred, axis=-1)
+        # Flattens a tensor to reshape to a shape equal to the number of elements contained
+        # Removes all dimensions except for one.
+        y_true = K.flatten(y_true)
+        # Defines the metric for assignment
+        true_poss = K.sum(K.cast((K.equal(y_true, y_pred)), dtype=tf.float32))
+        self.custom_sharpe_ratio.assign_add(true_poss)
+    # Metric
+    def result(self):
+        return self.custom_sharpe_ratio
 
 # 4: Information Ratio (IR = [R - Rf]/SD[R-Rf])
-
+class CustomInformationRatio(tf.keras.metrics.Metric):
+    # Initialisation
+    def __init__(self, num_classes, batch_size,
+                 name='information_ratio', **kwargs):
+        super(CustomHedgePortolfioAlphas, self).__init__(name=name, **kwargs)
+        self.batch_size = batch_size
+        self.num_classes = num_classes    
+        self.custom_information_ratio = self.add_weight(name="cir", initializer="zeros")
+    # Update State
+    def update_state(self, y_true, y_pred, sample_weight=None):
+        # Returns the index of the maximum values along the last axis in y_true (Last layer)   
+        y_true = K.argmax(y_true, axis=-1)
+        # Returns the index of the maximum values along the last axis in y_true (Last layer)
+        y_pred = K.argmax(y_pred, axis=-1)
+        # Flattens a tensor to reshape to a shape equal to the number of elements contained
+        # Removes all dimensions except for one.
+        y_true = K.flatten(y_true)
+        # Defines the metric for assignment
+        true_poss = K.sum(K.cast((K.equal(y_true, y_pred)), dtype=tf.float32))
+        self.custom_information_ratio.assign_add(true_poss)
+    # Metric
+    def result(self):
+        return self.custom_information_ratio
 #################################################################################
 # Autodiff Testing
 #################################################################################
@@ -1330,9 +1384,13 @@ def loss_function_testing(custom_loss_function):
     """
     layer = tf.keras.layers.Dense(32, activation='relu')
     x = tf.constant([[1., 2., 3.]])
+    # Sets loss functions
+
+    # Set Metrics
     with tf.GradientTape() as tape:
         # Forward pass
         y = layer(x)
+
         loss = tf.reduce_mean(y**2)
     # Calculate gradients with respect to every trainable variable
     try:
@@ -1588,7 +1646,7 @@ binary_classification_losses = ['binary_crossentropy']
 multiclass_classfication_losses = ['categorical_crossentropy','sparse_categorical_crossentropy','poisson','kl_divergence']
 regression_losses = ['cosine_similarity','mean_absolute_error','mean_absolute_percentage_error','mean_squared_logarithmic_error','mean_squared_error','huber_loss']
 extra_losses = ['hinge','log_cosh','loss','squared_hinge']
-custom_losses = [] # List names here when created
+custom_losses = ['custom_l2_mse','custom_hedge_portfolio','custom_sharpe_ratio','custom_information_ratio'] # List names here when created
 losses = binary_classification_losses + multiclass_classfication_losses + regression_losses + extra_losses + custom_losses
 # Metrics (Functions used to judge model performance,similar to a loss function but results are not used when training a model)
 accuracy_metrics = ['accuracy','binary_accuracy','categorical_accuracy','top_k_categorical_accuracy','sparse_top_k_categorical_accuracy','sparse_categorical_accuracy']
@@ -1599,14 +1657,14 @@ classification_tf_pn = ['Auc','Fn','Fp','poisson','precision','precision_at_reca
          'recall','recall_at_precision','sensitivity_at_specificity','Tn','Tp']
 images_segementation_metrics = ['meaniou']
 hinge_metrics = ['categorical_hinge','squared_hinge','hinge']
-custom_metrics = [] # Add when create the metrics
+custom_metrics = ['hedge_portfolio_mean','hedge_portfolio_alphas','sharpe_ratio','information_ratio'] # Add when create the metrics
 metrics = accuracy_metrics + probabilistic_metrics + regression_metrics + classification_tf_pn + images_segementation_metrics + hinge_metrics + custom_metrics
 # Tensorflow congifuration
 optimisation_dictionary = {1:'SGD',2:'SGD',3:'SGD',4:'SGD',5:'SGD'}
-loss_function_dictionary = {1:'mean_squared_error',2:'mean_squared_error'}
-metrics_dictionary = {1:['mean_squared_error']}
+loss_function_dictionary = {1:'mean_squared_error',2:'custom_l2_mse',3:'custom_hedge_portfolio',4:'custom_sharpe_ratio',5:'custom_information_ratio'}
+metrics_dictionary = {1:['mean_squared_error'],2:['mean_squared_error']}
 # Selected Tensorflow Configuration
-tf_option = 1 # Change to 1,2,3,4,5 for configuration
+tf_option = 2 # Change to 1,2,3,4,5 for configuration
 selected_optimizer = optimisation_dictionary[tf_option]
 selected_loss = loss_function_dictionary[tf_option]
 selected_metrics = metrics_dictionary[tf_option]
