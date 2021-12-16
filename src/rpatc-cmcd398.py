@@ -1228,9 +1228,14 @@ class CustomLossFunctionExample(tf.keras.losses.Loss):
 # Call MSE Loss Function/Metric with SGD in build_tensorflow_model()
 
 # 2: Custom L2 (Mean Square Error Function)
+@tf.function # Decorate the function
 def customl2mse(y_true,y_pred):
-    l2 = tf.reduce_mean(tf.square(y_true,y_pred))
+    l2 = tf.math.reduce_mean(tf.math.square(y_true,y_pred))
     return l2
+
+@tf.function
+def custom_sharpe_ratio(y_true,y_pred):
+    loss = -tf.math.reduce_mean(y_true,y_pred) / tf.math.reduce_std(y_true,y_pred)
 
 # Loss function
 class CustomL2MSE():
@@ -1693,7 +1698,7 @@ optimisation_dictionary = {1:'SGD',2:'SGD',3:'SGD',4:'SGD',5:'SGD'}
 loss_function_dictionary = {1:'mean_squared_error',2:'custom_l2_mse',3:'custom_hedge_portfolio',4:'custom_sharpe_ratio',5:'custom_information_ratio'}
 metrics_dictionary = {1:['mean_squared_error'],2:['mean_squared_error']}
 # Selected Tensorflow Configuration
-tf_option = 1 # Change to 1,2,3,4,5 for configuration
+tf_option = 2 # Change to 1,2,3,4,5 for configuration
 selected_optimizer = optimisation_dictionary[tf_option]
 selected_loss = loss_function_dictionary[tf_option]
 selected_metrics = metrics_dictionary[tf_option]
