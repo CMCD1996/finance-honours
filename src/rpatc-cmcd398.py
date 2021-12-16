@@ -675,7 +675,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
             print(x.summary)
             # Trained set a sequential model
             model = tf.keras.Model(
-                inputs=x.inputs,
+                inputs=all_inputs,
                 outputs=[layer.output for layer in x.layers],
                 )
         else:
