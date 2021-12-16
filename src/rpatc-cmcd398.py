@@ -1233,10 +1233,9 @@ class CustomL2MSE():
     # Option 2: Custom L2 Loss Function
     # Latex sum_{i=1}^{n}(y_{true}-y_{predicted})^{2} (MSE)
     def __init__(self, 
-        reduction=tf.keras.losses.Reduction.AUTO,
         name='custom_l2_mse', **kwargs):
         # Initialise the function
-        super(CustomL2MSE,self).__init__(reduction=reduction,name=name, **kwargs)
+        super(CustomL2MSE,self).__init__(name=name, **kwargs)
         # Must use y_true and y_pred
     def call(self,y_true,y_pred):
         # Note: tf.reduce_mean computes the mean of elements
@@ -1264,10 +1263,10 @@ class CustomHedgePortfolioReturns():
 # 4: Custom Sharpe Ratio (SR)
 class CustomSharpeRatio():
     def __init__(self,
-        reduction=tf.keras.losses.Reduction.AUTO,
+        # reduction=tf.keras.losses.Reduction.AUTO,
         name='custom_sharpe_ratio', **kwargs):
         # Initialise the function
-        super(CustomSharpeRatio,self).__init__(reduction=reduction,name=name, **kwargs)
+        super(CustomSharpeRatio,self).__init__(name=name, **kwargs)
         # Define the call of the function
         # Must use y_true and y_pred
     def call(self,y_true,y_pred):
