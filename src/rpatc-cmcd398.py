@@ -1693,7 +1693,7 @@ optimisation_dictionary = {1:'SGD',2:'SGD',3:'SGD',4:'SGD',5:'SGD'}
 loss_function_dictionary = {1:'mean_squared_error',2:'custom_l2_mse',3:'custom_hedge_portfolio',4:'custom_sharpe_ratio',5:'custom_information_ratio'}
 metrics_dictionary = {1:['mean_squared_error'],2:['mean_squared_error']}
 # Selected Tensorflow Configuration
-tf_option = 2 # Change to 1,2,3,4,5 for configuration
+tf_option = 1 # Change to 1,2,3,4,5 for configuration
 selected_optimizer = optimisation_dictionary[tf_option]
 selected_loss = loss_function_dictionary[tf_option]
 selected_metrics = metrics_dictionary[tf_option]
