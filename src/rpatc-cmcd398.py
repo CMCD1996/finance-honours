@@ -671,7 +671,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
                 ],name = model_name
             )
             print('Sequential model Summary')
-            print(model.summary)
+            print(x.summary)
             # Trained set a sequential model
             model = tf.keras.Model(
                 inputs=x.inputs,
