@@ -1232,9 +1232,9 @@ class CustomLossFunctionExample(tf.keras.losses.Loss):
 class CustomL2MSE():
     # Option 2: Custom L2 Loss Function
     # Latex sum_{i=1}^{n}(y_{true}-y_{predicted})^{2} (MSE)
-    def __init__(self, **kwargs):
+    def __init__(self):
         # Initialise the function
-        super(CustomL2MSE,self).__init__(**kwargs)
+        super(CustomL2MSE,self).__init__()
         # Must use y_true and y_pred
     def call(self,y_true,y_pred):
         # Note: tf.reduce_mean computes the mean of elements
