@@ -611,22 +611,17 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
     if finance_configuration:
         # Note: The combination of optimizer. loss function and metric must be compatible
         # https://www.tensorflow.org/api_docs/python/tf/keras/layers/Dense
-        # Configure the neural network layers
-        print('Start: Configuration of Deep Network Layers')
-        simple_config = True
-        if simple_config:
-            x = tf.keras.layers.Dense(32, activation="relu")(all_features)
-            x = tf.keras.layers.Dropout(rate=0.5, noise_shape = None, seed = None)(x)
-        else:
-            x = tf.keras.layers.Dense(
-            units = 32, activation="relu", use_bias=True,
-            kernel_initializer='glorot_uniform',
-            bias_initializer='zeros', kernel_regularizer=None,
-            bias_regularizer=None, activity_regularizer=None, kernel_constraint=None,
-            bias_constraint=None)(all_features)
-            # List of activation functions
+        # Generalised Artificial Neural Network
+        # Input features (One per feature)
+        # Hidden Layers (1-5)
+        # Neurons per input layer (10-100)
+        # Output neurons (1 per prediction dimension)
+        # Hidden activations (Relum Tanh, Sigmoid)
+        # Output layer (sigmoid)
+
+        # List of activation functions:
             # 'relu' = Rectified linear unit activation
-            # 'sigmond' = Sigmoid activation function, sigmoid(x) = 1 / (1 + exp(-x)).
+            # 'sigmoid' = Sigmoid activation function, sigmoid(x) = 1 / (1 + exp(-x)).
             # 'softmax' = Softmax converts a vector of values to a probability distribution
             # 'softplus' = Softplus activation function, softplus(x) = log(exp(x) + 1)
             # 'softsign' = Softsign activation function, softsign(x) = x / (abs(x) + 1).
@@ -636,18 +631,65 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
             #   if x < 0: return scale * alpha * (exp(x) - 1)
             # 'elu' = The exponential linear unit (ELU) with alpha > 0 is: 
                 # x if x > 0 and alpha * (exp(x) - 1) if x < 0 
-            # Note: The ELU hyperparameter alpha controls the value to which an ELU saturates 
-            # for negative net inputs. ELUs diminish the vanishing gradient effect.
-            # https://www.tensorflow.org/api_docs/python/tf/keras/layers/Dropout
-            # Dropout layer to randomly set input units to zero with a deterministic rate
-            # during each step of training to help prevent overfitting. Note:
-            # inputs not set to zero are scaled by 1/(1-rate) so the sum of all inputs is unchanged.
+        # Note: The ELU hyperparameter alpha controls the value to which an ELU saturates 
+        # for negative net inputs. ELUs diminish the vanishing gradient effect.
+        # https://www.tensorflow.org/api_docs/python/tf/keras/layers/Dropout
+        # Dropout layer to randomly set input units to zero with a deterministic rate
+        # during each step of training to help prevent overfitting. Note:
+        # inputs not set to zero are scaled by 1/(1-rate) so the sum of all inputs is unchanged.
+
+        # Configure the neural network layers
+        print('Start: Configuration of Deep Network Layers')
+        # Binary variables to control network construction
+        simple_config = False
+        sequential_model = True
+        # Simple configuration, only a handful of layers
+        if simple_config:
+            # Initial Layer
+            x = tf.keras.layers.Dense(32, activation="relu")(all_features)
+            # Dropout layer
             x = tf.keras.layers.Dropout(rate=0.5, noise_shape = None, seed = None)(x)
-        # Creates the output layer
-        output = tf.keras.layers.Dense(1)(x)
-        print('End: Configuration of Deep Network Layers')
-        # Configure the model (https://www.tensorflow.org/api_docs/python/tf/keras/Model)
-        model = tf.keras.Model(all_inputs, output)
+            # Creates the output layer
+            output = tf.keras.layers.Dense(1)(x)
+            print('End: Configuration of Deep Network Layers')
+            # Configure the model (https://www.tensorflow.org/api_docs/python/tf/keras/Model)
+            model = tf.keras.Model(all_inputs, output)
+        if sequential_model:
+            x = tf.keras.Sequential(
+                [   # Input layer
+                    tf.keras.Input(shape = (len(all_features))),
+                    tf.keras.layers.Dense(32, activation = 'relu'),
+                    # Drop out layer
+                    tf.keras.layers.Dropout(rate=0.5, noise_shape = None, seed = None),
+                    # Hidden layers
+                    tf.keras.layers.Dense(64, activation = 'relu'),
+                    tf.keras.layers.Dense(128, activation = 'sigmoid'),
+                    # Output layers
+                    tf.keras.layers.Dense(1)
+                ],name = model_name
+            )
+            print('Sequential model Summary')
+            print(model.summary)
+            # Trained set a sequential model
+            model = tf.keras.Model(
+                inputs=x.inputs,
+                outputs=[layer.output for layer in x.layers],
+                )
+        else:
+            # Initial Layer
+            x = tf.keras.layers.Dense(
+            units = 32, activation="relu", use_bias=True,
+            kernel_initializer='glorot_uniform',
+            bias_initializer='zeros', kernel_regularizer=None,
+            bias_regularizer=None, activity_regularizer=None, kernel_constraint=None,
+            bias_constraint=None)(all_features)
+            # Dropout layer
+            x = tf.keras.layers.Dropout(rate=0.5, noise_shape = None, seed = None)(x)
+            # Creates the output layer
+            output = tf.keras.layers.Dense(1)(x)
+            print('End: Configuration of Deep Network Layers')
+            # Configure the model (https://www.tensorflow.org/api_docs/python/tf/keras/Model)
+            model = tf.keras.Model(all_inputs, output)
         # Initilises optimizer variables
         lr = 0.001
         eps =1e-07
@@ -1251,9 +1293,9 @@ class CustomHedgePortolfioMean(tf.keras.metrics.Metric):
         self.hedge_portflio_mean.assign_add(true_poss)
     # Metric
     def result(self):
-        return self.custom_metric
+        return self.hedge_portflio_mean
 
-# 2: HP Alphas in CAPM, FF3, FF5
+# 2: HP Alphas in CAPM, FF3, FF5 ()
 class CustomHedgePortolfioAlphas(tf.keras.metrics.Metric):
     # Initialisation
     def __init__(self, num_classes, batch_size,
@@ -1278,9 +1320,9 @@ class CustomHedgePortolfioAlphas(tf.keras.metrics.Metric):
     def result(self):
         return self.custom_hedge_portfolio_alphas
 
-# 3: Sharpe Ratio
+# 3: Sharpe Ratio (SR = E[R - Rf]/SD Excess Return)
 
-# 4: Information Ratio
+# 4: Information Ratio (IR = [R - Rf]/SD[R-Rf])
 
 #################################################################################
 # Autodiff Testing
@@ -1294,10 +1336,12 @@ class CustomHedgePortolfioAlphas(tf.keras.metrics.Metric):
 # (https://en.wikipedia.org/wiki/Automatic_differentiation)
 
 # Function to test loss functions and metrics using autodiff
-def loss_function_testing():
+def loss_function_testing(custom_loss_function):
     """ Uses tensorflow autodifferientiation functionality
         to confirm differientable nature and feasibility
-        of custom loss functions
+        of custom loss functions.
+        Note: code verbatim from tensorflow guide.
+        Merely for illustration purposes
     """
     layer = tf.keras.layers.Dense(2, activation='relu')
     x = tf.constant([[1., 2., 3.]])
@@ -1306,7 +1350,10 @@ def loss_function_testing():
         y = layer(x)
         loss = tf.reduce_mean(y**2)
     # Calculate gradients with respect to every trainable variable
-    grad = tape.gradient(loss, layer.trainable_variables)
+    try:
+        grad = tape.gradient(loss, layer.trainable_variables)
+    except:
+        print('Gradient Function Failed')
     # Print the outcomes of the simple model analysis
     for var, g in zip(layer.trainable_variables, grad):
         print(f'{var.name}, shape: {g.shape}')
@@ -1316,15 +1363,20 @@ def loss_function_testing():
 def autodiff_guide(example):
     """ Execute autodiff examples from Tensorflow resources.
         Used to help gain an understanding of different
-        functionalities
+        functionalities (Demonstration Purposes Only)
 
     Args:
         example (int): Example to implement
-                     : 1 - simple
+                     : 1 - 'simple'
                      : 2 - 'simple_tensor'
                      : 3 - 'simple_model'
                      : 4 - 'control_tape'
                      : 5 - 'control_tensor_tape'
+                     : 6 - 'stop_recording'
+                     : 7 - 'watch_multiple_variables'
+                     : 8 - 'higher_order_derivatives'
+                     : 9 - 'jacobian'
+                     : 10- 'hessian_newton'
 
     """
     # Uses the autodiff functionality to test custom gradients with gradient tape
@@ -1383,6 +1435,108 @@ def autodiff_guide(example):
         # dy = 2x * dx
         dy_dx = tape.gradient(y, x)
         print(dy_dx.numpy())
+    if example == 6:
+        # Sets the variables
+        x = tf.Variable(2.0)
+        y = tf.Variable(3.0)
+        # Starts the graident tape
+        with tf.GradientTape() as t:
+            x_sq = x * x
+            with t.stop_recording():
+                y_sq = y * y
+            z = x_sq + y_sq
+        # Compute the gradient
+        grad = t.gradient(z, {'x': x, 'y': y})
+        # Shows tape starting and stopping with the reporting
+        print('dz/dx:', grad['x'])  # 2*x => 4
+        print('dz/dy:', grad['y'])
+    if example == 7:
+        # Set the variables
+        x0 = tf.constant(0.0)
+        x1 = tf.constant(0.0)
+        # Establish gradient tape
+        with tf.GradientTape() as tape0, tf.GradientTape() as tape1:
+            tape0.watch(x0)
+            tape1.watch(x1)
+            # Establish sin & sigmoid functions
+            y0 = tf.math.sin(x0)
+            y1 = tf.nn.sigmoid(x1)
+            # Create combined function, tracking multiple components
+            y = y0 + y1
+            ys = tf.reduce_sum(y)
+    if example == 8:
+        # Higher order derivatives
+        x = tf.Variable(1.0)  # Create a Tensorflow variable initialized to 1.0
+        with tf.GradientTape() as t2:
+            with tf.GradientTape() as t1:
+                y = x * x * x
+        # Compute the gradient inside the outer `t2` context manager
+        # which means the gradient computation is differentiable as well.
+            dy_dx = t1.gradient(y, x)
+        d2y_dx2 = t2.gradient(dy_dx, x)
+        # Prints the result from the gradient outputs
+        print('dy_dx:', dy_dx.numpy())  # 3 * x**2 => 3.0
+        print('d2y_dx2:', d2y_dx2.numpy())  # 6 * x => 6.0
+    if example == 9:
+        # Jacobian Matrices
+        x = tf.random.normal([7, 5])
+        layer = tf.keras.layers.Dense(10, activation=tf.nn.relu)
+        # Shape of the gradient tape
+        with tf.GradientTape(persistent=True) as tape:
+            y = layer(x)
+        # Output Layer Shape
+        y.shape
+        # Shape of the kernal
+        layer.kernel.shape
+        # The shape of the Jacobian of the output with respect to the kernel
+        # is the combination of the two shapes
+        j = tape.jacobian(y, layer.kernel)
+        j.shape
+        # Summing over the targtes dimensions gives you the amount calculated
+        # a scaler gradient
+        g = tape.gradient(y, layer.kernel)
+        print('g.shape:', g.shape)
+        j_sum = tf.reduce_sum(j, axis=[0, 1])
+        delta = tf.reduce_max(abs(g - j_sum)).numpy()
+        assert delta < 1e-3
+        print('delta:', delta)
+    if example == 10:
+        # Construction of Simple Hessian Matrix 
+        # A Hessian Matrix is a square matrix of 2nd order PDEs of a scaler
+        # valued function, or scaler field, describing the local curvature of
+        # a multivariate function
+        x = tf.random.normal([7, 5])
+        layer1 = tf.keras.layers.Dense(8, activation=tf.nn.relu)
+        layer2 = tf.keras.layers.Dense(6, activation=tf.nn.relu)
+        with tf.GradientTape() as t2:
+            with tf.GradientTape() as t1:
+                x = layer1(x)
+                x = layer2(x)
+                loss = tf.reduce_mean(x**2)
+            g = t1.gradient(loss, layer1.kernel)
+        h = t2.jacobian(g, layer1.kernel)
+        print(f'layer.kernel.shape: {layer1.kernel.shape}')
+        print(f'h.shape: {h.shape}')
+        # Flatten axes into matrix and flatten to gradient vector
+        n_params = tf.reduce_prod(layer1.kernel.shape)
+        g_vec = tf.reshape(g, [n_params, 1])
+        h_mat = tf.reshape(h, [n_params, n_params])
+        # Define function to display hessian matrix
+        def imshow_zero_center(image, **kwargs):
+            lim = tf.reduce_max(abs(image))
+            plt.imshow(image, vmin=-lim, vmax=lim, cmap='seismic', **kwargs)
+            plt.colorbar()
+        # Shows the hessian matrix
+        imshow_zero_center(h_mat)
+        # Newton's Method Update Step
+        eps = 1e-3
+        eye_eps = tf.eye(h_mat.shape[0])*eps
+        # X(k+1) = X(k) - (∇²f(X(k)))^-1 @ ∇f(X(k))
+        # h_mat = ∇²f(X(k))
+        # g_vec = ∇f(X(k))
+        update = tf.linalg.solve(h_mat + eye_eps, g_vec)
+        # Reshape the update and apply it to the variable.
+        _ = layer1.kernel.assign_sub(tf.reshape(update, layer1.kernel.shape))
     return
 #################################################################################
 # Analytical/Calculus
@@ -1449,27 +1603,22 @@ binary_classification_losses = ['binary_crossentropy']
 multiclass_classfication_losses = ['categorical_crossentropy','sparse_categorical_crossentropy','poisson','kl_divergence']
 regression_losses = ['cosine_similarity','mean_absolute_error','mean_absolute_percentage_error','mean_squared_logarithmic_error','mean_squared_error','huber_loss']
 extra_losses = ['hinge','log_cosh','loss','squared_hinge']
-custom_losses = []
+custom_losses = [] # List names here when created
 losses = binary_classification_losses + multiclass_classfication_losses + regression_losses + extra_losses + custom_losses
-# Metrics
-binary_classification_metrics = [] 
-multiclass_classification_metrics = [] 
-regression_metrics = []
-extra_metrics = []
-custom_metrics = []
-metrics = binary_classification_metrics + multiclass_classification_metrics + regression_metrics + extra_metrics + custom_metrics
-metrics_all = ['Auc','accuracy','binary_accuracy','binary_crossentropy', 'categorical_accuracy',
-        'categorical_crossentropy','categorical_hinge','cosine_similarity','Fn','Fp','hinge',
-        'kullback_leibler_divergence','logcosh','mean','mean_absolute_error',
-        'mean_absolute_percentage_error','meaniou', 'mean_metric_wrapper',
-        'mean_relative_error','mean_squared_error', 'mean_squared_logarithmic_error',
-         'mean_tensor','metric','poisson','precision','precision_at_recall',
-         'recall','recall_at_precision','root_mean_squared_error','sensitivity_at_specificity',
-        'sparse_categorical_accuracy','sparse_top_k_categorical_accuracy','squared_hinge',
-        'sum','top_k_categorical_accuracy','Tn','Tp']
+# Metrics (Functions used to judge model performance,similar to a loss function but results are not used when training a model)
+accuracy_metrics = ['accuracy','binary_accuracy','categorical_accuracy','top_k_categorical_accuracy','sparse_top_k_categorical_accuracy','sparse_categorical_accuracy']
+probabilistic_metrics = ['binary_crossentropy', 'categorical_crossentropy','kullback_leibler_divergence'] 
+regression_metrics = ['root_mean_squared_error','mean_absolute_percentage_error', 'mean_metric_wrapper','sum',
+        'mean_relative_error','mean_squared_error', 'mean_squared_logarithmic_error','cosine_similarity','logcosh','mean','mean_absolute_error','mean_tensor','metric']
+classification_tf_pn = ['Auc','Fn','Fp','poisson','precision','precision_at_recall',
+         'recall','recall_at_precision','sensitivity_at_specificity','Tn','Tp']
+images_segementation_metrics = ['meaniou']
+hinge_metrics = ['categorical_hinge','squared_hinge','hinge']
+custom_metrics = [] # Add when create the metrics
+metrics = accuracy_metrics + probabilistic_metrics + regression_metrics + classification_tf_pn + images_segementation_metrics + hinge_metrics + custom_metrics
 # Tensorflow congifuration
 optimisation_dictionary = {1:'SGD',2:'SGD',3:'SGD',4:'SGD',5:'SGD'}
-loss_function_dictionary = {1:'mean_squared_error'}
+loss_function_dictionary = {1:'mean_squared_error',2:'mean_squared_error'}
 metrics_dictionary = {1:['mean_squared_error']}
 # Selected Tensorflow Configuration
 tf_option = 1 # Change to 1,2,3,4,5 for configuration
