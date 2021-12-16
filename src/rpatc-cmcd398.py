@@ -601,6 +601,8 @@ def encode_tensor_flow_features(train_df, val_df, test_df,target_column, numeric
         monitor_memory_usage(units = 3,cpu = True, gpu = True)
     # Concatenate all encoded layers
     all_features = tf.keras.layers.concatenate(encoded_features)
+    print('All Features')
+    print(all_features)
     print('Encoding: Successful')
     # Monitor memory usage
     monitor_memory_usage(units = 3,cpu = True, gpu = True)
