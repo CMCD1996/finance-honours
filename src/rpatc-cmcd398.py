@@ -656,10 +656,11 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
             print('End: Configuration of Deep Network Layers')
             # Configure the model (https://www.tensorflow.org/api_docs/python/tf/keras/Model)
             model = tf.keras.Model(all_inputs, output)
+
         if sequential_model:
             x = tf.keras.Sequential(
                 [   # Input layer
-                    tf.keras.Input(tensor = all_inputs),
+                    tf.keras.Input(shape = (188)),
                     tf.keras.layers.Dense(32, activation = 'relu'),
                     # Drop out layer
                     tf.keras.layers.Dropout(rate=0.5, noise_shape = None, seed = None),
