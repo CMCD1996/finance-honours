@@ -643,10 +643,9 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         # Configure the neural network layers
         print('Start: Configuration of Deep Network Layers')
         # Binary variables to control network construction
-        simple_config = True
-        sequential_model = False
+        complex_model = True
         # Simple configuration, only a handful of layers
-        if simple_config:
+        if complex_model:
             # Initial Layer
             x = tf.keras.layers.Dense(32, activation="relu")(all_features)
             # Dropout layer
@@ -658,28 +657,9 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
             print('End: Configuration of Deep Network Layers')
             # Configure the model (https://www.tensorflow.org/api_docs/python/tf/keras/Model)
             model = tf.keras.Model(all_inputs, output)
+            print('Model Summary')
+            print(model.summary)
         # Deploy a sequential model
-        elif sequential_model:
-            x = tf.keras.Sequential(
-                [   # Input layer
-                    tf.keras.Input(shape = (188,)),
-                    tf.keras.layers.Dense(32, activation = 'relu'),
-                    # Drop out layer
-                    tf.keras.layers.Dropout(rate=0.5, noise_shape = None, seed = None),
-                    # Hidden layers
-                    tf.keras.layers.Dense(64, activation = 'relu'),
-                    tf.keras.layers.Dense(128, activation = 'sigmoid'),
-                    # Output layers
-                    tf.keras.layers.Dense(1)
-                ],name = model_name
-            )
-            print('Sequential model Summary')
-            print(x.summary)
-            # Trained set a sequential model
-            model = tf.keras.Model(
-                inputs=all_inputs,
-                outputs=[layer.output for layer in x.layers],
-                )
         else:
             # Initial Layer
             x = tf.keras.layers.Dense(
@@ -1348,7 +1328,7 @@ def loss_function_testing(custom_loss_function):
         Note: code verbatim from tensorflow guide.
         Merely for illustration purposes
     """
-    layer = tf.keras.layers.Dense(2, activation='relu')
+    layer = tf.keras.layers.Dense(32, activation='relu')
     x = tf.constant([[1., 2., 3.]])
     with tf.GradientTape() as tape:
         # Forward pass
