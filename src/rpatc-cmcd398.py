@@ -1311,8 +1311,8 @@ def custom_sharpe_ratio(y_true,y_pred):
 # Note: This instance uses the true results as the benchmanr
 @tf.function
 def custom_information_ratio(y_true,y_pred):
-    loss = -1*((K.mean(y_pred) - K.mean(y_true))/K.std(y_pred - y_true))    
-
+    loss = -1*((K.mean(y_pred) - K.mean(y_true))/K.std(y_pred - y_true))
+    return loss    
 
 #################################################################################
 # Metrics
