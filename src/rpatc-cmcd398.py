@@ -1254,9 +1254,25 @@ def custom_hedge_portfolio_returns(y_true,y_pred):
     # Implments Equally Weighted Monotonic Weighting Function
     if equally_weighted:
         # Initialise equally-weighted array
-        weights = np.empty([sp_pred,1])
-        weights[0] = 1
-        weights[1] = -1
+        weights = np.linspace(1,-1,sp_pred)
+
+        # Alternative method of calculating weights
+        # weights = np.empty([sp_pred,1])
+        # weights[0] = 1
+        # weights[1] = -1
+        # # Sets remaining weights via a loop
+        # for i in range(len(weights)):
+        #     if i > 0:
+        #         weights[i] = weights[i-1] - 2/(len(weights)-1)
+
+        # Sorts the returns to descending_order
+        y_pred_sorted = tf.sort(y_pred,axis=-1,direction = 'DESCENDING')
+        y_true_sorted = tf.sort(y_true,axis=-1,direction = 'DESCENDING')
+        # Calculates weighted Tensors
+        weighted_returns_pred = tf.math.multiply(weights,y_pred_sorted)
+        weighted_returns_true = tf.math.multiply(weights,y_true)
+        # Calculates MSE equivalent between the hedge portfolios
+        loss = K.mean(K.square(weighted_returns_true - weighted_returns_pred))
     else:
         # Gets the mean of the top 10% of predicted returns
         long_mean_pred = K.mean(tf.math.top_k(y_pred,k = 0.1*sp_pred))
@@ -1284,57 +1300,19 @@ def custom_hedge_portfolio_returns(y_true,y_pred):
 # 4: Custom Sharpe Ratio (# Negative to maximise)
 @tf.function
 def custom_sharpe_ratio(y_true,y_pred):
-    loss = -1*(K.mean(y_pred)/K.std(y_pred))
+    # Finds Sharpe ratios of both true and predicted returns
+    sr_pred = -1*(K.mean(y_pred)/K.std(y_pred))
+    sr_true = -1*(K.mean(y_true)/K.std(y_true))
+    # Finds MSE between predited and true MSE
+    loss = K.mean(K.square(sr_true - sr_pred))
     return loss 
 
-# 5: Custom Information Ratio
+# 5: Custom Information Ratio (E(R) - E(BM))/SD(R-BM))
+# Note: This instance uses the true results as the benchmanr
 @tf.function
 def custom_information_ratio(y_true,y_pred):
-    loss = K.mean(K.square(y_true - y_pred)) # Placeholder
-    return loss
+    loss = -1*((K.mean(y_pred) - K.mean(y_true))/K.std(y_pred - y_true))    
 
-# 3: Custom Hedge Portfolio (HP) - To remove of delete
-class CustomHedgePortfolioReturns():
-    def __init__(self,
-        reduction=tf.keras.losses.Reduction.AUTO,
-        name='custom_hedge_portfolio', **kwargs):
-        # Initialise the function
-        super(CustomHedgePortfolioReturns,self).__init__(reduction=reduction,name=name, **kwargs)
-        # Define the call of the function (Must use y_true and y_pred)
-    def call(self,y_true,y_pred):
-        # Function
-        # f_(0)(X) = ((X^T(0)/V(X^T))^T)X^T(0)
-        # Derivitive of Function
-        # df_(0)(X)/d(0) = (1/((0^T)X1)(X)(X^T)(0)
-        #                + (1/((VX^T)(0))(X)(X^T)(0)
-        #                - (1/((0^T)(X)(V))**2)(0^T)(X)(X^T)(0)(X)(V)
-        return
-
-# 4: Custom Sharpe Ratio (SR) - To remove or delete
-class CustomSharpeRatio():
-    def __init__(self,
-        # reduction=tf.keras.losses.Reduction.AUTO,
-        name='custom_sharpe_ratio', **kwargs):
-        # Initialise the function
-        super(CustomSharpeRatio,self).__init__(name=name, **kwargs)
-        # Define the call of the function
-        # Must use y_true and y_pred
-    def call(self,y_true,y_pred):
-        # Insert derivation here
-        return
-
-# 5: Custom Information Ratio (IR) - To remove or delete
-class CustomInformationRatio():
-    def __init__(self,
-        reduction=tf.keras.losses.Reduction.AUTO,
-        name='custom_information_ratio', **kwargs):
-        # Initialise the function
-        super(CustomInformationRatio,self).__init__(reduction=reduction,name=name, **kwargs)
-        # Define the call of the function
-        # Must use y_true and y_pred
-    def call(self,y_true,y_pred):
-        # Insert derivation here
-        return
 
 #################################################################################
 # Metrics
