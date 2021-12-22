@@ -1700,7 +1700,7 @@ binary_classification_losses = ['binary_crossentropy']
 multiclass_classfication_losses = ['categorical_crossentropy','sparse_categorical_crossentropy','poisson','kl_divergence']
 regression_losses = ['cosine_similarity','mean_absolute_error','mean_absolute_percentage_error','mean_squared_logarithmic_error','mean_squared_error','huber_loss']
 extra_losses = ['hinge','log_cosh','loss','squared_hinge']
-custom_losses = ['custom_l2_mse','custom_hedge_portfolio','custom_sharpe_ratio','custom_information_ratio'] # List names here when created
+custom_losses = ['custom_l2_mse','custom_hedge_portfolio_returns','custom_sharpe_ratio','custom_information_ratio'] # List names here when created
 losses = binary_classification_losses + multiclass_classfication_losses + regression_losses + extra_losses + custom_losses
 # Metrics (Functions used to judge model performance,similar to a loss function but results are not used when training a model)
 accuracy_metrics = ['accuracy','binary_accuracy','categorical_accuracy','top_k_categorical_accuracy','sparse_top_k_categorical_accuracy','sparse_categorical_accuracy']
@@ -1715,7 +1715,7 @@ custom_metrics = ['hedge_portfolio_mean','hedge_portfolio_alphas','sharpe_ratio'
 metrics = accuracy_metrics + probabilistic_metrics + regression_metrics + classification_tf_pn + images_segementation_metrics + hinge_metrics + custom_metrics
 # Tensorflow congifuration
 optimisation_dictionary = {1:'SGD',2:'SGD',3:'SGD',4:'SGD',5:'SGD'}
-loss_function_dictionary = {1:'mean_squared_error',2:'custom_l2_mse',3:'custom_hedge_portfolio',4:'custom_sharpe_ratio',5:'custom_information_ratio'}
+loss_function_dictionary = {1:'mean_squared_error',2:'custom_l2_mse',3:'custom_hedge_portfolio_returns',4:'custom_sharpe_ratio',5:'custom_information_ratio'}
 metrics_dictionary = {1:['mean_squared_error'],2:['mean_squared_error'],3:['mean_squared_error'],4:['mean_squared_error'],5:['mean_squared_error']}
 # Selected Tensorflow Configuration
 tf_option = 4 # Change to 1,2,3,4,5 for configuration
