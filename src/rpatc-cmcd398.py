@@ -1212,6 +1212,8 @@ def project_analysis(data_vm_directory,list_of_columns,categorical_assignment,ta
 # f_(0)(X) = Target (e.g., Excess Returns)
 # V = All-Ones=Vector
 
+# Use Tensorlow backend functions
+
 # 0: Custom Example for reference
 # Loss Function (Class Example, not as efficient)
 class CustomLossFunctionExample(tf.keras.losses.Loss):
@@ -1236,7 +1238,47 @@ def custom_l2_mse(y_true,y_pred):
 # 3: Custom Hedge Portfolio Returns
 @tf.function
 def custom_hedge_portfolio_returns(y_true,y_pred):
-    loss = K.mean(K.square(y_true - y_pred)) # Placeholder
+    # Analytical Derivation
+        # f_(0)(X) = ((X^T(0)/V(X^T))^T)X^T(0)
+        # Derivitive of Function
+        # df_(0)(X)/d(0) = (1/((0^T)X1)(X)(X^T)(0)
+        #                + (1/((VX^T)(0))(X)(X^T)(0)
+        #                - (1/((0^T)(X)(V))**2)(0^T)(X)(X^T)(0)(X)(V)
+
+    # Empirical Derivation(s)
+    # Sets boolean to select weighting scheme
+    equally_weighted = False
+    # Sets up predicted value
+    # Get the shape of a tensor
+    sp_pred = y_pred.shape[0]
+    # Implments Equally Weighted Monotonic Weighting Function
+    if equally_weighted:
+        # Initialise equally-weighted array
+        weights = np.empty([sp_pred,1])
+        weights[0] = 1
+        weights[1] = -1
+    else:
+        # Gets the mean of the top 10% of predicted returns
+        long_mean_pred = K.mean(tf.math.top_k(y_pred,k = 0.1*sp_pred))
+        # Creates a negative
+        neg_y_pred = tf.math.scalar_mul(-1,y_pred)
+        # Gets the mean of the top 10% of predicted returns
+        short_mean_pred = -1*K.mean(tf.math.top_k(neg_y_pred,k = 0.1*sp_pred))
+        # Gets the value of the hedge portfolio
+        hedge_pred= long_mean_pred - short_mean_pred
+        # Sets up true value
+        # Get the shape of a tensor
+        sp_true = y_true.shape[0]
+        # Gets the mean of the top 10% of predicted returns
+        long_mean_true = K.mean(tf.math.top_k(y_true,k = 0.1*sp_true))
+        # Creates a negative
+        neg_y_true = tf.math.scalar_mul(-1,y_true)
+        # Gets the mean of the top 10% of predicted returns
+        short_mean_true = -1*K.mean(tf.math.top_k(neg_y_true,k = 0.1*sp_true))
+        # Gets the value of the hedge portfolio
+        hedge_true= long_mean_true - short_mean_true
+        # Calculate a MSE based on a hedge portfolio opposed to predicted returns
+        loss = K.mean(K.square(hedge_true - hedge_pred))
     return loss
 
 # 4: Custom Sharpe Ratio (# Negative to maximise)
