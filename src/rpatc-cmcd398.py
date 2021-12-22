@@ -766,7 +766,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         # Custom loss classes
         if selected_loss == 'custom_l2_mse': # loss = square(maximum(1 - y_true * y_pred, 0))
             lf = custom_l2_mse
-        if selected_loss == 'custom_hedge_portfolio': # loss = square(maximum(1 - y_true * y_pred, 0))
+        if selected_loss == 'custom_hedge_portfolio_returns': # loss = square(maximum(1 - y_true * y_pred, 0))
             lf = custom_hedge_portfolio_returns
         if selected_loss == 'custom_sharpe_ratio': # loss = square(maximum(1 - y_true * y_pred, 0))
             lf = custom_sharpe_ratio
