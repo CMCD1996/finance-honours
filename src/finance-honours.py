@@ -1343,16 +1343,27 @@ def multi_layer_loss(self):
             return model_loss
         return seq2seq_loss
 
-@tf.function
-# Utilisation of function closure to pass multiple  inputs into the function.      
-def custom_loss(layer):
-    # Create a loss function that adds the MSE loss to the mean of all squared activations of a specific layer
-    def loss(y_true,y_pred):
-        return K.mean(K.square(y_pred - y_true) + K.square(layer), axis=-1)
-    # Return a function
-    return loss
-
-
+# Note: Symbolic Tensors do not work in function calls as require eager tensors.
+# Subsequently, must create custom class with call function
+#  
+# Utilisation of function closure to pass multiple inputs into the function.  
+class custom_loss(tf.keras.losses.Loss):
+    def __init__(self,layer):
+        self.layer = layer
+        # Initialise the function
+        # super().__init__()
+    def call(self,y_true,y_pred):
+        mse = tf.reduce_mean(tf.square(y_true,y_pred))
+        rmse = tf.math.sqrt(mse)
+        return rmse / tf.reduce_mean(tf.square(y_true)) - 1
+        # return K.mean(K.square(y_pred - y_true) + K.square(layer), axis=-1)
+ 
+    # def custom_loss(layer):
+    #     # Create a loss function that adds the MSE loss to the mean of all squared activations of a specific layer
+    #     def loss(y_true,y_pred):
+    #         return K.mean(K.square(y_pred - y_true) + K.square(layer), axis=-1)
+    #     # Return a function
+    #     return loss
 
 #################################################################################
 # Metrics
