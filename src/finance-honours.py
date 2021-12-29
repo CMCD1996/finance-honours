@@ -1279,6 +1279,7 @@ def custom_hedge_portfolio_returns(y_true,y_pred):
         # Gets the mean of the top 10% of predicted returns
         print('sp_pred is ',type(sp_pred))
         print('y_pred is ',type(y_pred))
+
         long_mean_pred = K.mean(tf.math.top_k(y_pred,k = 0.1*sp_pred))
         # Creates a negative
         neg_y_pred = tf.math.scalar_mul(-1,y_pred)
@@ -1722,7 +1723,7 @@ optimisation_dictionary = {1:'SGD',2:'SGD',3:'SGD',4:'SGD',5:'SGD'}
 loss_function_dictionary = {1:'mean_squared_error',2:'custom_l2_mse',3:'custom_hedge_portfolio_returns',4:'custom_sharpe_ratio',5:'custom_information_ratio'}
 metrics_dictionary = {1:['mean_squared_error'],2:['mean_squared_error'],3:['mean_squared_error'],4:['mean_squared_error'],5:['mean_squared_error']}
 # Selected Tensorflow Configuration
-tf_option = 3 # Change to 1,2,3,4,5 for configuration
+tf_option = 2 # Change to 1,2,3,4,5 for configuration
 selected_optimizer = optimisation_dictionary[tf_option]
 selected_loss = loss_function_dictionary[tf_option]
 selected_metrics = metrics_dictionary[tf_option]
