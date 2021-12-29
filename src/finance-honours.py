@@ -1250,8 +1250,9 @@ def custom_hedge_portfolio_returns(y_true,y_pred):
     equally_weighted = False
     # Sets up predicted value
     # Get the shape of a tensor
-    print('y_pred is of shape: ',y_pred.shape)
-    sp_pred = y_pred.shape[0]
+    print('y_pred is of shape: ',y_true.shape)
+    print('y_pred is of type: ',type(y_true))
+    sp_pred = y_true.shape[0]
     print(sp_pred)
     # Implments Equally Weighted Monotonic Weighting Function
     if equally_weighted:
@@ -1723,7 +1724,7 @@ optimisation_dictionary = {1:'SGD',2:'SGD',3:'SGD',4:'SGD',5:'SGD'}
 loss_function_dictionary = {1:'mean_squared_error',2:'custom_l2_mse',3:'custom_hedge_portfolio_returns',4:'custom_sharpe_ratio',5:'custom_information_ratio'}
 metrics_dictionary = {1:['mean_squared_error'],2:['mean_squared_error'],3:['mean_squared_error'],4:['mean_squared_error'],5:['mean_squared_error']}
 # Selected Tensorflow Configuration
-tf_option = 2 # Change to 1,2,3,4,5 for configuration
+tf_option = 3 # Change to 1,2,3,4,5 for configuration
 selected_optimizer = optimisation_dictionary[tf_option]
 selected_loss = loss_function_dictionary[tf_option]
 selected_metrics = metrics_dictionary[tf_option]
