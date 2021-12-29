@@ -1251,6 +1251,7 @@ def custom_hedge_portfolio_returns(y_true,y_pred):
     # Sets up predicted value
     # Get the shape of a tensor
     sp_pred = y_pred.shape[0]
+    print(sp_pred)
     # Implments Equally Weighted Monotonic Weighting Function
     if equally_weighted:
         # Initialise equally-weighted array
@@ -1275,6 +1276,8 @@ def custom_hedge_portfolio_returns(y_true,y_pred):
         loss = K.mean(K.square(weighted_returns_true - weighted_returns_pred))
     else:
         # Gets the mean of the top 10% of predicted returns
+        print('sp_pred is ',type(sp_pred))
+        print('y_pred is ',type(y_pred))
         long_mean_pred = K.mean(tf.math.top_k(y_pred,k = 0.1*sp_pred))
         # Creates a negative
         neg_y_pred = tf.math.scalar_mul(-1,y_pred)
