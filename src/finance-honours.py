@@ -1250,6 +1250,7 @@ def custom_hedge_portfolio_returns(y_true,y_pred):
     equally_weighted = False
     # Sets up predicted value
     # Get the shape of a tensor
+    print('y_pred is of shape: ',y_pred.shape)
     sp_pred = y_pred.shape[0]
     print(sp_pred)
     # Implments Equally Weighted Monotonic Weighting Function
