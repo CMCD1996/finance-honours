@@ -1349,7 +1349,7 @@ def custom_information_ratio(y_true,y_pred):
 # Utilisation of function closure to pass multiple inputs into the function.  
 class custom_loss(tf.keras.losses.Loss):
     def __init__(self, layer = None, reduction = tf.keras.losses.Reduction.AUTO, name = 'custom_loss'):
-        super().__init__(layer = layer,reduction=reduction, name=name)
+        super().__init__(reduction=reduction, name=name)
         self.layer = layer
         # self.layer = layer
     def call(self,y_true,y_pred):
