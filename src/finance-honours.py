@@ -1351,7 +1351,7 @@ class custom_loss(tf.keras.losses.Loss):
     def __init__(self, reduction = tf.keras.losses.Reduction.AUTO, name = 'custom_loss'):
         super().__init__(reduction=reduction, name=name)
         # self.layer = layer
-    def call(y_true,y_pred):
+    def call(self,y_true,y_pred):
         mse = K.mean(K.square(y_true - y_pred))
         rmse = K.sqrt(mse)
         return (rmse / K.mean(K.square(y_true)) - 1)
