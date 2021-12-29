@@ -772,6 +772,10 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
             lf = custom_sharpe_ratio
         if selected_loss == 'custom_information_ratio': # loss = square(maximum(1 - y_true * y_pred, 0))
             lf = custom_information_ratio
+        if lf == 'multi_layer_loss':
+            lf = multi_layer_loss
+        if lf == 'custom_loss':
+            lf = custom_loss(layer = x)
         #################################################################################
         # Metrics
         #################################################################################
@@ -1251,14 +1255,13 @@ def custom_hedge_portfolio_returns(y_true,y_pred):
     # Sets up predicted value
     # Get the shape of a tensor
     print('y_pred is of shape: ',y_true.shape)
-    print('y_pred is of type: ',type(y_true))
+    print('y_true is of type: ',type(y_true))
     sp_pred = y_true.shape[0]
     print(sp_pred)
     # Implments Equally Weighted Monotonic Weighting Function
     if equally_weighted:
         # Initialise equally-weighted array
         weights = np.linspace(1,-1,sp_pred)
-
         # Alternative method of calculating weights
         # weights = np.empty([sp_pred,1])
         # weights[0] = 1
@@ -1273,7 +1276,7 @@ def custom_hedge_portfolio_returns(y_true,y_pred):
         y_true_sorted = tf.sort(y_true,axis=-1,direction = 'DESCENDING')
         # Calculates weighted Tensors
         weighted_returns_pred = tf.math.multiply(weights,y_pred_sorted)
-        weighted_returns_true = tf.math.multiply(weights,y_true)
+        weighted_returns_true = tf.math.multiply(weights,y_true_sorted)
         # Calculates MSE equivalent between the hedge portfolios
         loss = K.mean(K.square(weighted_returns_true - weighted_returns_pred))
     else:
@@ -1319,6 +1322,37 @@ def custom_sharpe_ratio(y_true,y_pred):
 def custom_information_ratio(y_true,y_pred):
     loss = -1*((K.mean(y_pred) - K.mean(y_true))/K.std(y_pred - y_true))
     return loss    
+
+@tf.function
+def multi_layer_loss(self):
+        """" Wrapper function which calculates auxiliary values for the complete loss function.
+         Returns a *function* which calculates the complete loss given only the input and target output """
+        # KL loss
+        kl_loss = self.calculate_kl_loss
+        # Reconstruction loss
+        md_loss_func = self.calculate_md_loss
+        # KL weight (to be used by total loss and by annealing scheduler)
+        self.kl_weight = K.variable(self.hps['kl_weight_start'], name='kl_weight')
+        kl_weight = self.kl_weight
+        def seq2seq_loss(y_true, y_pred):
+            """ Final loss calculation function to be passed to optimizer"""
+            # Reconstruction loss
+            md_loss = md_loss_func(y_true, y_pred)
+            # Full loss
+            model_loss = kl_weight*kl_loss() + md_loss
+            return model_loss
+        return seq2seq_loss
+
+@tf.function 
+# Utilisation of function closure to pass multipl  inputs into the function.      
+def custom_loss(layer):
+    # Create a loss function that adds the MSE loss to the mean of all squared activations of a specific layer
+    def loss(y_true,y_pred):
+        return K.mean(K.square(y_pred - y_true) + K.square(layer), axis=-1)
+    # Return a function
+    return loss
+
+
 
 #################################################################################
 # Metrics
@@ -1706,7 +1740,7 @@ binary_classification_losses = ['binary_crossentropy']
 multiclass_classfication_losses = ['categorical_crossentropy','sparse_categorical_crossentropy','poisson','kl_divergence']
 regression_losses = ['cosine_similarity','mean_absolute_error','mean_absolute_percentage_error','mean_squared_logarithmic_error','mean_squared_error','huber_loss']
 extra_losses = ['hinge','log_cosh','loss','squared_hinge']
-custom_losses = ['custom_l2_mse','custom_hedge_portfolio_returns','custom_sharpe_ratio','custom_information_ratio'] # List names here when created
+custom_losses = ['custom_l2_mse','custom_hedge_portfolio_returns','custom_sharpe_ratio','custom_information_ratio','custom_loss'] # List names here when created
 losses = binary_classification_losses + multiclass_classfication_losses + regression_losses + extra_losses + custom_losses
 # Metrics (Functions used to judge model performance,similar to a loss function but results are not used when training a model)
 accuracy_metrics = ['accuracy','binary_accuracy','categorical_accuracy','top_k_categorical_accuracy','sparse_top_k_categorical_accuracy','sparse_categorical_accuracy']
@@ -1720,14 +1754,16 @@ hinge_metrics = ['categorical_hinge','squared_hinge','hinge']
 custom_metrics = ['hedge_portfolio_mean','hedge_portfolio_alphas','sharpe_ratio','information_ratio'] # Add when create the metrics
 metrics = accuracy_metrics + probabilistic_metrics + regression_metrics + classification_tf_pn + images_segementation_metrics + hinge_metrics + custom_metrics
 # Tensorflow congifuration
-optimisation_dictionary = {1:'SGD',2:'SGD',3:'SGD',4:'SGD',5:'SGD'}
-loss_function_dictionary = {1:'mean_squared_error',2:'custom_l2_mse',3:'custom_hedge_portfolio_returns',4:'custom_sharpe_ratio',5:'custom_information_ratio'}
-metrics_dictionary = {1:['mean_squared_error'],2:['mean_squared_error'],3:['mean_squared_error'],4:['mean_squared_error'],5:['mean_squared_error']}
+optimisation_dictionary = {1:'SGD',2:'SGD',3:'SGD',4:'SGD',5:'SGD',6:'SGD'}
+loss_function_dictionary = {1:'mean_squared_error',2:'custom_l2_mse',3:'custom_hedge_portfolio_returns',4:'custom_sharpe_ratio',5:'custom_information_ratio',6:'custom_loss'}
+metrics_dictionary = {1:['mean_squared_error'],2:['mean_squared_error'],3:['mean_squared_error'],4:['mean_squared_error'],5:['mean_squared_error'],6:['mean_squared_error']}
 # Selected Tensorflow Configuration
-tf_option = 3 # Change to 1,2,3,4,5 for configuration
+#################################################################################
+tf_option = 6 # Change to 1,2,3,4,5 for configuration
 selected_optimizer = optimisation_dictionary[tf_option]
 selected_loss = loss_function_dictionary[tf_option]
 selected_metrics = metrics_dictionary[tf_option]
+#################################################################################
 # Strings
 model_name = 'finance-honours-test'
 data_source = 'data/combined_predictors_filtered_us.dta'
