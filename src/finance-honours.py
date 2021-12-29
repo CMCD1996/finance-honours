@@ -1323,33 +1323,33 @@ def custom_information_ratio(y_true,y_pred):
     loss = -1*((K.mean(y_pred) - K.mean(y_true))/K.std(y_pred - y_true))
     return loss    
 
-@tf.function
-def multi_layer_loss(self):
-        """" Wrapper function which calculates auxiliary values for the complete loss function.
-         Returns a *function* which calculates the complete loss given only the input and target output """
-        # KL loss
-        kl_loss = self.calculate_kl_loss
-        # Reconstruction loss
-        md_loss_func = self.calculate_md_loss
-        # KL weight (to be used by total loss and by annealing scheduler)
-        self.kl_weight = K.variable(self.hps['kl_weight_start'], name='kl_weight')
-        kl_weight = self.kl_weight
-        def seq2seq_loss(y_true, y_pred):
-            """ Final loss calculation function to be passed to optimizer"""
-            # Reconstruction loss
-            md_loss = md_loss_func(y_true, y_pred)
-            # Full loss
-            model_loss = kl_weight*kl_loss() + md_loss
-            return model_loss
-        return seq2seq_loss
+# @tf.function
+# def multi_layer_loss(self):
+#         """" Wrapper function which calculates auxiliary values for the complete loss function.
+#          Returns a *function* which calculates the complete loss given only the input and target output """
+#         # KL loss
+#         kl_loss = self.calculate_kl_loss
+#         # Reconstruction loss
+#         md_loss_func = self.calculate_md_loss
+#         # KL weight (to be used by total loss and by annealing scheduler)
+#         self.kl_weight = K.variable(self.hps['kl_weight_start'], name='kl_weight')
+#         kl_weight = self.kl_weight
+#         def seq2seq_loss(y_true, y_pred):
+#             """ Final loss calculation function to be passed to optimizer"""
+#             # Reconstruction loss
+#             md_loss = md_loss_func(y_true, y_pred)
+#             # Full loss
+#             model_loss = kl_weight*kl_loss() + md_loss
+#             return model_loss
+#         return seq2seq_loss
 
 # Note: Symbolic Tensors do not work in function calls as require eager tensors.
 # Subsequently, must create custom class with call function
 #  
 # Utilisation of function closure to pass multiple inputs into the function.  
 class custom_loss(tf.keras.losses.Loss):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, reduction = tf.keras.losses.Reduction.AUTO, name = 'custom_loss'):
+        super().__init__(reduction=reduction, name=name)
         # self.layer = layer
     def call(y_true,y_pred):
         mse = tf.reduce_mean(tf.square(y_true,y_pred))
