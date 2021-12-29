@@ -1,0 +1,2265 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.0 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{apa/global//global/global}
+    \entry{Amit2001493}{article}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,uniquepart=base,hash=8dc46f53ab5820a1ca3728971db45f51}{%
+           family={Amit},
+           familyi={A\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=d9d540d9febec6d7a12fad7435929a93}{%
+           family={Zott},
+           familyi={Z\bibinitperiod},
+           given={C.},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{9d76e69eb0b01df3cab8fda43f165b14}
+      \strng{fullhash}{9d76e69eb0b01df3cab8fda43f165b14}
+      \strng{bibnamehash}{9d76e69eb0b01df3cab8fda43f165b14}
+      \strng{authorbibnamehash}{9d76e69eb0b01df3cab8fda43f165b14}
+      \strng{authornamehash}{9d76e69eb0b01df3cab8fda43f165b14}
+      \strng{authorfullhash}{9d76e69eb0b01df3cab8fda43f165b14}
+      \field{sortinit}{A}
+      \field{sortinithash}{d77c7cdd82ff690d4c3ef13216f92f0b}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Strategic Management Journal}
+      \field{note}{cited By 2567}
+      \field{number}{6-7}
+      \field{title}{Value creation in e-business}
+      \field{volume}{22}
+      \field{year}{2001}
+      \field{pages}{493\bibrangedash 520}
+      \range{pages}{28}
+      \verb{doi}
+      \verb 10.1002/smj.187
+      \endverb
+      \verb{urlraw}
+      \verb https://www.scopus.com/inward/record.uri?eid=2-s2.0-0000355662&doi=10.1002%2fsmj.187&partnerID=40&md5=5646f20084318501affee5d24425b667
+      \endverb
+      \verb{url}
+      \verb https://www.scopus.com/inward/record.uri?eid=2-s2.0-0000355662&doi=10.1002%2fsmj.187&partnerID=40&md5=5646f20084318501affee5d24425b667
+      \endverb
+    \endentry
+    \entry{ang2018estimating}{article}{}
+      \name{author}{4}{}{%
+        {{uniquename=0,uniquepart=base,hash=fdb83eec8db55fcc1e2e23e3c32dc62f}{%
+           family={Ang},
+           familyi={A\bibinitperiod},
+           given={Andrew},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=7d73f6cd10cb3048e1f65db2ae26aec6}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Bingxu},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=e2476e0d18521d43de7df6010b968fb9}{%
+           family={Goetzmann},
+           familyi={G\bibinitperiod},
+           given={William\bibnamedelima N},
+           giveni={W\bibinitperiod\bibinitdelim N\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=3b3421369b1711afadac2ac17b96d34b}{%
+           family={Phalippou},
+           familyi={P\bibinitperiod},
+           given={Ludovic},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley Online Library}%
+      }
+      \strng{namehash}{bc83a598a48e22ca6ca9f66ffe499dea}
+      \strng{fullhash}{8c1b5da17c859491ce09e3f6044744a7}
+      \strng{bibnamehash}{8c1b5da17c859491ce09e3f6044744a7}
+      \strng{authorbibnamehash}{8c1b5da17c859491ce09e3f6044744a7}
+      \strng{authornamehash}{bc83a598a48e22ca6ca9f66ffe499dea}
+      \strng{authorfullhash}{8c1b5da17c859491ce09e3f6044744a7}
+      \field{sortinit}{A}
+      \field{sortinithash}{d77c7cdd82ff690d4c3ef13216f92f0b}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Journal of Finance}
+      \field{number}{4}
+      \field{title}{Estimating private equity returns from limited partner cash flows}
+      \field{volume}{73}
+      \field{year}{2018}
+      \field{pages}{1751\bibrangedash 1783}
+      \range{pages}{33}
+    \endentry
+    \entry{aurelien2017hands}{article}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=b9ef41b5f253b9e68202e6419fe33e44}{%
+           family={Aur{é}lien},
+           familyi={A\bibinitperiod},
+           given={G{é}ron},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{b9ef41b5f253b9e68202e6419fe33e44}
+      \strng{fullhash}{b9ef41b5f253b9e68202e6419fe33e44}
+      \strng{bibnamehash}{b9ef41b5f253b9e68202e6419fe33e44}
+      \strng{authorbibnamehash}{b9ef41b5f253b9e68202e6419fe33e44}
+      \strng{authornamehash}{b9ef41b5f253b9e68202e6419fe33e44}
+      \strng{authorfullhash}{b9ef41b5f253b9e68202e6419fe33e44}
+      \field{sortinit}{A}
+      \field{sortinithash}{d77c7cdd82ff690d4c3ef13216f92f0b}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Geron Aurelien}
+      \field{title}{Hands-on machine learning with scikit-learn \& tensorflow}
+      \field{year}{2017}
+    \endentry
+    \entry{axelson2013borrow}{article}{}
+      \name{author}{4}{}{%
+        {{uniquename=0,uniquepart=base,hash=3808f400e0a55a767ab6cecbb392956c}{%
+           family={Axelson},
+           familyi={A\bibinitperiod},
+           given={Ulf},
+           giveni={U\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=e85e0a7502186f73816fa0659af996fa}{%
+           family={Jenkinson},
+           familyi={J\bibinitperiod},
+           given={Tim},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=ca3373f93458ed7ccf7b004d3b306d4c}{%
+           family={Str{ö}mberg},
+           familyi={S\bibinitperiod},
+           given={Per},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=ceea5aacab9200d1efa4cf3af5f2b105}{%
+           family={Weisbach},
+           familyi={W\bibinitperiod},
+           given={Michael\bibnamedelima S},
+           giveni={M\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley Online Library}%
+      }
+      \strng{namehash}{efe3b5990b9a8994989a651d73ac0f80}
+      \strng{fullhash}{67f857486ba61f424cb64189b651ab2c}
+      \strng{bibnamehash}{67f857486ba61f424cb64189b651ab2c}
+      \strng{authorbibnamehash}{67f857486ba61f424cb64189b651ab2c}
+      \strng{authornamehash}{efe3b5990b9a8994989a651d73ac0f80}
+      \strng{authorfullhash}{67f857486ba61f424cb64189b651ab2c}
+      \field{sortinit}{A}
+      \field{sortinithash}{d77c7cdd82ff690d4c3ef13216f92f0b}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Journal of Finance}
+      \field{number}{6}
+      \field{title}{Borrow cheap, buy high? The determinants of leverage and pricing in buyouts}
+      \field{volume}{68}
+      \field{year}{2013}
+      \field{pages}{2223\bibrangedash 2267}
+      \range{pages}{45}
+    \endentry
+    \entry{BCG}{misc}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=50e4648f3bfd8d45c92d0b4b87e88de5}{%
+           family={BCG},
+           familyi={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{50e4648f3bfd8d45c92d0b4b87e88de5}
+      \strng{fullhash}{50e4648f3bfd8d45c92d0b4b87e88de5}
+      \strng{bibnamehash}{50e4648f3bfd8d45c92d0b4b87e88de5}
+      \strng{authorbibnamehash}{50e4648f3bfd8d45c92d0b4b87e88de5}
+      \strng{authornamehash}{50e4648f3bfd8d45c92d0b4b87e88de5}
+      \strng{authorfullhash}{50e4648f3bfd8d45c92d0b4b87e88de5}
+      \field{sortinit}{B}
+      \field{sortinithash}{276475738cc058478c1677046f857703}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Available at \url{https://www.bcg.com/industries/principal-investors-private-equity/creating-value-private-equity-advanced-data-analytics} (2021/06/05)}
+      \field{title}{Creating Value in Private Equity with Advanced Data and Analytics}
+      \field{year}{2019}
+    \endentry
+    \entry{bengtsson2011investor}{article}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,uniquepart=base,hash=04bcc5b7a3766ce266d827b8dd5b476e}{%
+           family={Bengtsson},
+           familyi={B\bibinitperiod},
+           given={Ola},
+           giveni={O\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=ba2442526daf7e9bd7039659662c9dd9}{%
+           family={Sensoy},
+           familyi={S\bibinitperiod},
+           given={Berk\bibnamedelima A},
+           giveni={B\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{efebfc2fc4046bf5216cc4d863ba638b}
+      \strng{fullhash}{efebfc2fc4046bf5216cc4d863ba638b}
+      \strng{bibnamehash}{efebfc2fc4046bf5216cc4d863ba638b}
+      \strng{authorbibnamehash}{efebfc2fc4046bf5216cc4d863ba638b}
+      \strng{authornamehash}{efebfc2fc4046bf5216cc4d863ba638b}
+      \strng{authorfullhash}{efebfc2fc4046bf5216cc4d863ba638b}
+      \field{sortinit}{B}
+      \field{sortinithash}{276475738cc058478c1677046f857703}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Financial Intermediation}
+      \field{number}{4}
+      \field{title}{Investor abilities and financial contracting: Evidence from venture capital}
+      \field{volume}{20}
+      \field{year}{2011}
+      \field{pages}{477\bibrangedash 502}
+      \range{pages}{26}
+    \endentry
+    \entry{bernstein2016impact}{article}{}
+      \name{author}{3}{}{%
+        {{uniquename=0,uniquepart=base,hash=71e2344f7ac347b570e98768bae5fd3f}{%
+           family={Bernstein},
+           familyi={B\bibinitperiod},
+           given={Shai},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=99e7de41cc9002d4dc5dc6e5d4402daf}{%
+           family={Giroud},
+           familyi={G\bibinitperiod},
+           given={Xavier},
+           giveni={X\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=44decc965ed7af2672bb05a1bf8663b2}{%
+           family={Townsend},
+           familyi={T\bibinitperiod},
+           given={Richard\bibnamedelima R},
+           giveni={R\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley Online Library}%
+      }
+      \strng{namehash}{bc024dc88b2bdb7e4576b73df1f26568}
+      \strng{fullhash}{e5e93e16cb2d85b2430ad405a75bc2e8}
+      \strng{bibnamehash}{e5e93e16cb2d85b2430ad405a75bc2e8}
+      \strng{authorbibnamehash}{e5e93e16cb2d85b2430ad405a75bc2e8}
+      \strng{authornamehash}{bc024dc88b2bdb7e4576b73df1f26568}
+      \strng{authorfullhash}{e5e93e16cb2d85b2430ad405a75bc2e8}
+      \field{extraname}{1}
+      \field{sortinit}{B}
+      \field{sortinithash}{276475738cc058478c1677046f857703}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Journal of Finance}
+      \field{number}{4}
+      \field{title}{The impact of venture capital monitoring}
+      \field{volume}{71}
+      \field{year}{2016}
+      \field{pages}{1591\bibrangedash 1622}
+      \range{pages}{32}
+    \endentry
+    \entry{bernstein2017attracting}{article}{}
+      \name{author}{3}{}{%
+        {{uniquename=0,uniquepart=base,hash=71e2344f7ac347b570e98768bae5fd3f}{%
+           family={Bernstein},
+           familyi={B\bibinitperiod},
+           given={Shai},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=07a1e08935528e6275c548739f067e58}{%
+           family={Korteweg},
+           familyi={K\bibinitperiod},
+           given={Arthur},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=8c4655a655bff7714c07e2136ae1c773}{%
+           family={Laws},
+           familyi={L\bibinitperiod},
+           given={Kevin},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley Online Library}%
+      }
+      \strng{namehash}{bc024dc88b2bdb7e4576b73df1f26568}
+      \strng{fullhash}{4c7e2ddbdb2e068426626d095884b95b}
+      \strng{bibnamehash}{4c7e2ddbdb2e068426626d095884b95b}
+      \strng{authorbibnamehash}{4c7e2ddbdb2e068426626d095884b95b}
+      \strng{authornamehash}{bc024dc88b2bdb7e4576b73df1f26568}
+      \strng{authorfullhash}{4c7e2ddbdb2e068426626d095884b95b}
+      \field{extraname}{2}
+      \field{sortinit}{B}
+      \field{sortinithash}{276475738cc058478c1677046f857703}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Journal of Finance}
+      \field{number}{2}
+      \field{title}{Attracting early-stage investors: Evidence from a randomized field experiment}
+      \field{volume}{72}
+      \field{year}{2017}
+      \field{pages}{509\bibrangedash 538}
+      \range{pages}{30}
+    \endentry
+    \entry{BLOCK2019329}{article}{}
+      \name{author}{4}{}{%
+        {{uniquename=0,uniquepart=base,hash=c7c49f9a1d559059d01cff55b59421e3}{%
+           family={Block},
+           familyi={B\bibinitperiod},
+           given={Joern},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=d390cf68200d07baa26b5a7a93e4d98f}{%
+           family={Fisch},
+           familyi={F\bibinitperiod},
+           given={Christian},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=2ce842de44b67ea5926cf5bb1a7673d8}{%
+           family={Vismara},
+           familyi={V\bibinitperiod},
+           given={Silvio},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=fa37a529e07072e57c5972b94ad0f0a9}{%
+           family={Andres},
+           familyi={A\bibinitperiod},
+           given={René},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{b6f00a1b9fd647cd692c8c9b24678ca1}
+      \strng{fullhash}{acbe2ec5cdcdf1887ca129e91faae931}
+      \strng{bibnamehash}{acbe2ec5cdcdf1887ca129e91faae931}
+      \strng{authorbibnamehash}{acbe2ec5cdcdf1887ca129e91faae931}
+      \strng{authornamehash}{b6f00a1b9fd647cd692c8c9b24678ca1}
+      \strng{authorfullhash}{acbe2ec5cdcdf1887ca129e91faae931}
+      \field{sortinit}{B}
+      \field{sortinithash}{276475738cc058478c1677046f857703}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We use an experimental conjoint analysis to investigate the investment criteria of 749 private equity investors, distinguishing between family offices, business angels, venture capital funds, growth equity funds, and leveraged buyout funds. Our results indicate that revenue growth is the most important investment criterion, followed by the value-added of product/service, the management team's track record, and profitability. Regarding differences across investor types, we find that family offices, growth equity funds, and leveraged buyout funds place a higher value on profitability as compared to business angels and venture capital funds. Venture capital funds, in turn, pay more attention to companies' revenue growth, business models, and current investors. With these results, our study contributes to the corporate finance literature by deepening our understanding of how different types of private equity investors make investment decisions.}
+      \field{issn}{0929-1199}
+      \field{journaltitle}{Journal of Corporate Finance}
+      \field{title}{Private equity investment criteria: An experimental conjoint analysis of venture capital, business angels, and family offices}
+      \field{volume}{58}
+      \field{year}{2019}
+      \field{pages}{329\bibrangedash 352}
+      \range{pages}{24}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.jcorpfin.2019.05.009
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0929119918307132
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0929119918307132
+      \endverb
+      \keyw{Venture capital,Business angels,Family offices,Investment criteria,Conjoint analysis}
+    \endentry
+    \entry{BBBS}{misc}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=208421fcbc090a62f099f85472ded9ba}{%
+           family={Bloomberg},
+           familyi={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{208421fcbc090a62f099f85472ded9ba}
+      \strng{fullhash}{208421fcbc090a62f099f85472ded9ba}
+      \strng{bibnamehash}{208421fcbc090a62f099f85472ded9ba}
+      \strng{authorbibnamehash}{208421fcbc090a62f099f85472ded9ba}
+      \strng{authornamehash}{208421fcbc090a62f099f85472ded9ba}
+      \strng{authorfullhash}{208421fcbc090a62f099f85472ded9ba}
+      \field{sortinit}{B}
+      \field{sortinithash}{276475738cc058478c1677046f857703}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Available at \url{https://www.bloomberg.com/news/articles/2020-12-15/blackstone-s-next-product-could-be-data-from-companies-it-buys} (2021/06/06)}
+      \field{title}{Blackstone’s Next Product May Be Data From Companies It Buys}
+      \field{year}{2020}
+    \endentry
+    \entry{BOTTAZZI2008488}{article}{}
+      \name{author}{3}{}{%
+        {{uniquename=0,uniquepart=base,hash=171a31ba1eefc95ca2f9964e394c3834}{%
+           family={Bottazzi},
+           familyi={B\bibinitperiod},
+           given={Laura},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=1896c30a613a53f5f6520b3d020ac74a}{%
+           family={{Da Rin}},
+           familyi={D\bibinitperiod},
+           given={Marco},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=7250744cfd3957bce833566f2fdcffaa}{%
+           family={Hellmann},
+           familyi={H\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{56d756db4d21250f28e71fd0255c333f}
+      \strng{fullhash}{624fa0b1218937eb4410749222e2595c}
+      \strng{bibnamehash}{624fa0b1218937eb4410749222e2595c}
+      \strng{authorbibnamehash}{624fa0b1218937eb4410749222e2595c}
+      \strng{authornamehash}{56d756db4d21250f28e71fd0255c333f}
+      \strng{authorfullhash}{624fa0b1218937eb4410749222e2595c}
+      \field{sortinit}{B}
+      \field{sortinithash}{276475738cc058478c1677046f857703}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{This paper examines the determinants and consequences of investor activism in venture capital. Using a hand-collected sample of European venture capital deals, it shows the importance of human capital. Venture capital firms with partners that have prior business experience are more active recruiting managers and directors, helping with fundraising, and interacting more frequently with their portfolio companies. Independent venture capital firms are also more active than ‘captive’ (bank-, corporate-, or government-owned) firms. After controlling for endogeneity, investor activism is shown to be positively related to the success of portfolio companies.}
+      \field{issn}{0304-405X}
+      \field{journaltitle}{Journal of Financial Economics}
+      \field{number}{3}
+      \field{title}{Who are the active investors?: Evidence from venture capital}
+      \field{volume}{89}
+      \field{year}{2008}
+      \field{pages}{488\bibrangedash 512}
+      \range{pages}{25}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.jfineco.2007.09.003
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0304405X08000974
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0304405X08000974
+      \endverb
+      \keyw{Financial intermediation,Venture capital,Investor activism,Human capital,Corporate governance}
+    \endentry
+    \entry{braun2017persistent}{article}{}
+      \name{author}{3}{}{%
+        {{uniquename=0,uniquepart=base,hash=7716e5f3ffe152a2cde022f819a55d13}{%
+           family={Braun},
+           familyi={B\bibinitperiod},
+           given={Reiner},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=e85e0a7502186f73816fa0659af996fa}{%
+           family={Jenkinson},
+           familyi={J\bibinitperiod},
+           given={Tim},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=05a2165a06bb94fead28cd9bffb0c0a8}{%
+           family={Stoff},
+           familyi={S\bibinitperiod},
+           given={Ingo},
+           giveni={I\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{339a55a6a043f798c44fe3b0de03adc1}
+      \strng{fullhash}{f326566eb502c56dd3b044669ccde9bd}
+      \strng{bibnamehash}{f326566eb502c56dd3b044669ccde9bd}
+      \strng{authorbibnamehash}{f326566eb502c56dd3b044669ccde9bd}
+      \strng{authornamehash}{339a55a6a043f798c44fe3b0de03adc1}
+      \strng{authorfullhash}{f326566eb502c56dd3b044669ccde9bd}
+      \field{sortinit}{B}
+      \field{sortinithash}{276475738cc058478c1677046f857703}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Financial Economics}
+      \field{number}{2}
+      \field{title}{How persistent is private equity performance? Evidence from deal-level data}
+      \field{volume}{123}
+      \field{year}{2017}
+      \field{pages}{273\bibrangedash 291}
+      \range{pages}{19}
+    \endentry
+    \entry{brav2008hedge}{article}{}
+      \name{author}{4}{}{%
+        {{uniquename=0,uniquepart=base,hash=5b1aa028b1fd809606ed862528043059}{%
+           family={Brav},
+           familyi={B\bibinitperiod},
+           given={Alon},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=e3dafe978a62db8ea9fec63a537b07dc}{%
+           family={Jiang},
+           familyi={J\bibinitperiod},
+           given={Wei},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=2a851c06739511872772b0765212ca10}{%
+           family={Partnoy},
+           familyi={P\bibinitperiod},
+           given={Frank},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=465f610f98854299765b09983492b33c}{%
+           family={Thomas},
+           familyi={T\bibinitperiod},
+           given={Randall},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley Online Library}%
+      }
+      \strng{namehash}{38afcd837b3b736c242ce293f420caac}
+      \strng{fullhash}{058a71a7a8dc3fb2f0047a0c324d2ec5}
+      \strng{bibnamehash}{058a71a7a8dc3fb2f0047a0c324d2ec5}
+      \strng{authorbibnamehash}{058a71a7a8dc3fb2f0047a0c324d2ec5}
+      \strng{authornamehash}{38afcd837b3b736c242ce293f420caac}
+      \strng{authorfullhash}{058a71a7a8dc3fb2f0047a0c324d2ec5}
+      \field{sortinit}{B}
+      \field{sortinithash}{276475738cc058478c1677046f857703}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Journal of Finance}
+      \field{number}{4}
+      \field{title}{Hedge fund activism, corporate governance, and firm performance}
+      \field{volume}{63}
+      \field{year}{2008}
+      \field{pages}{1729\bibrangedash 1775}
+      \range{pages}{47}
+    \endentry
+    \entry{brown2015different}{article}{}
+      \name{author}{5}{}{%
+        {{uniquename=0,uniquepart=base,hash=d5fdc6f2099d339727eb82e87c6ff841}{%
+           family={Brown},
+           familyi={B\bibinitperiod},
+           given={Gregory\bibnamedelima W},
+           giveni={G\bibinitperiod\bibinitdelim W\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=7cd25173784bb783922be34851eab5dc}{%
+           family={Harris},
+           familyi={H\bibinitperiod},
+           given={Robert\bibnamedelima S},
+           giveni={R\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=e85e0a7502186f73816fa0659af996fa}{%
+           family={Jenkinson},
+           familyi={J\bibinitperiod},
+           given={Tim},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=11122b0ade7615ce1f359141cffa2e3d}{%
+           family={Kaplan},
+           familyi={K\bibinitperiod},
+           given={Steven\bibnamedelima N},
+           giveni={S\bibinitperiod\bibinitdelim N\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=772d109f4a59a2052a40422af3714590}{%
+           family={Robinson},
+           familyi={R\bibinitperiod},
+           given={David\bibnamedelima T},
+           giveni={D\bibinitperiod\bibinitdelim T\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{3a0ee220769aa50f3f367f3f7b7dc754}
+      \strng{fullhash}{c1e118f7e251c97682d55eed0e471156}
+      \strng{bibnamehash}{c1e118f7e251c97682d55eed0e471156}
+      \strng{authorbibnamehash}{c1e118f7e251c97682d55eed0e471156}
+      \strng{authornamehash}{3a0ee220769aa50f3f367f3f7b7dc754}
+      \strng{authorfullhash}{c1e118f7e251c97682d55eed0e471156}
+      \field{sortinit}{B}
+      \field{sortinithash}{276475738cc058478c1677046f857703}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Available at SSRN 2706556}
+      \field{title}{What do different commercial data sets tell us about private equity performance?}
+      \field{year}{2015}
+    \endentry
+    \entry{cavagnaro2019measuring}{article}{}
+      \name{author}{4}{}{%
+        {{uniquename=0,uniquepart=base,hash=f51db6ea390519935cb388ccced4581a}{%
+           family={Cavagnaro},
+           familyi={C\bibinitperiod},
+           given={Daniel\bibnamedelima R},
+           giveni={D\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=ba2442526daf7e9bd7039659662c9dd9}{%
+           family={Sensoy},
+           familyi={S\bibinitperiod},
+           given={Berk\bibnamedelima A},
+           giveni={B\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=d4324242f7477ca3caf05f47431bf9e8}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Yingdi},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=ceea5aacab9200d1efa4cf3af5f2b105}{%
+           family={Weisbach},
+           familyi={W\bibinitperiod},
+           given={Michael\bibnamedelima S},
+           giveni={M\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley Online Library}%
+      }
+      \strng{namehash}{d63d2c2cde3ceb6c5e3b7404f7c9e8d6}
+      \strng{fullhash}{5a50ca281e304880c1d4913a3ae51ab4}
+      \strng{bibnamehash}{5a50ca281e304880c1d4913a3ae51ab4}
+      \strng{authorbibnamehash}{5a50ca281e304880c1d4913a3ae51ab4}
+      \strng{authornamehash}{d63d2c2cde3ceb6c5e3b7404f7c9e8d6}
+      \strng{authorfullhash}{5a50ca281e304880c1d4913a3ae51ab4}
+      \field{sortinit}{C}
+      \field{sortinithash}{963e9d84a3da2344e8833203de5aed05}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Journal of Finance}
+      \field{number}{6}
+      \field{title}{Measuring institutional investors’ skill at making private equity investments}
+      \field{volume}{74}
+      \field{year}{2019}
+      \field{pages}{3089\bibrangedash 3134}
+      \range{pages}{46}
+    \endentry
+    \entry{chemmanur2011does}{article}{}
+      \name{author}{3}{}{%
+        {{uniquename=0,uniquepart=base,hash=e3abe06075f68706cba0c519d3b2db29}{%
+           family={Chemmanur},
+           familyi={C\bibinitperiod},
+           given={Thomas\bibnamedelima J},
+           giveni={T\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=ad64e79a9260ad83a06e16b80215734c}{%
+           family={Krishnan},
+           familyi={K\bibinitperiod},
+           given={Karthik},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=43fbf1e91edd1e5007e9906e8b6c1512}{%
+           family={Nandy},
+           familyi={N\bibinitperiod},
+           given={Debarshi\bibnamedelima K},
+           giveni={D\bibinitperiod\bibinitdelim K\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Oxford University Press}%
+      }
+      \strng{namehash}{85bc343720ff6b5594319c7ce7380f1b}
+      \strng{fullhash}{47721734c2ec3d307aa262f27cb4314a}
+      \strng{bibnamehash}{47721734c2ec3d307aa262f27cb4314a}
+      \strng{authorbibnamehash}{47721734c2ec3d307aa262f27cb4314a}
+      \strng{authornamehash}{85bc343720ff6b5594319c7ce7380f1b}
+      \strng{authorfullhash}{47721734c2ec3d307aa262f27cb4314a}
+      \field{sortinit}{C}
+      \field{sortinithash}{963e9d84a3da2344e8833203de5aed05}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Review of Financial Studies}
+      \field{number}{12}
+      \field{title}{How does venture capital financing improve efficiency in private firms? A look beneath the surface}
+      \field{volume}{24}
+      \field{year}{2011}
+      \field{pages}{4037\bibrangedash 4090}
+      \range{pages}{54}
+    \endentry
+    \entry{CB}{misc}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=b9a091b616a48346d237ce057f2d06a8}{%
+           family={Crunchbase},
+           familyi={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{b9a091b616a48346d237ce057f2d06a8}
+      \strng{fullhash}{b9a091b616a48346d237ce057f2d06a8}
+      \strng{bibnamehash}{b9a091b616a48346d237ce057f2d06a8}
+      \strng{authorbibnamehash}{b9a091b616a48346d237ce057f2d06a8}
+      \strng{authornamehash}{b9a091b616a48346d237ce057f2d06a8}
+      \strng{authorfullhash}{b9a091b616a48346d237ce057f2d06a8}
+      \field{sortinit}{C}
+      \field{sortinithash}{963e9d84a3da2344e8833203de5aed05}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Available at \url{https://www.crunchbase.com/} (2021/06/06)}
+      \field{title}{Crunchbase}
+      \field{year}{2021}
+    \endentry
+    \entry{CURTIN2018153}{incollection}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=1b5b7224911e73853733c45c44afc78a}{%
+           family={Curtin},
+           familyi={C\bibinitperiod},
+           given={Kevin\bibnamedelima M.},
+           giveni={K\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=11a71515dc9e04ba5c1266f7ef5e357a}{%
+           family={Huang},
+           familyi={H\bibinitperiod},
+           given={Bo},
+           giveni={B\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Oxford}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{1b5b7224911e73853733c45c44afc78a}
+      \strng{fullhash}{1b5b7224911e73853733c45c44afc78a}
+      \strng{bibnamehash}{1b5b7224911e73853733c45c44afc78a}
+      \strng{authorbibnamehash}{1b5b7224911e73853733c45c44afc78a}
+      \strng{authornamehash}{1b5b7224911e73853733c45c44afc78a}
+      \strng{authorfullhash}{1b5b7224911e73853733c45c44afc78a}
+      \strng{editorbibnamehash}{11a71515dc9e04ba5c1266f7ef5e357a}
+      \strng{editornamehash}{11a71515dc9e04ba5c1266f7ef5e357a}
+      \strng{editorfullhash}{11a71515dc9e04ba5c1266f7ef5e357a}
+      \field{sortinit}{C}
+      \field{sortinithash}{963e9d84a3da2344e8833203de5aed05}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Network analysis holds a prominent place in geographic information systems (GIS), which is a reflection of the earliest GIS data models that were implemented, its broad usefulness across domain areas, and its potential for future development. A network is a fundamental representation of space which can accurately represent a wide range of relationships. There is a scientific foundation for network analysis in the mathematical subdisciplines of graph theory and topology, along with referencing schemes that allow for geographic locations to be specified by their positions on a network. Within GIS, analytical methods for network applications have been developed that allow one to describe and measure networks, associate network events spatially, locate facilities on networks, and examine movement across networks. The field of network spatial statistics is quickly developing ways to infer the significance of network events with regard to their spatial and spatio-temporal properties. Interest in network analysis in GIS is high within many applications areas including transportation planning, utilities management, environmental analysis, social network analysis, and many more. Network analysis in GIS is an active research area today and is likely to see significant development of new methods for the foreseeable future.}
+      \field{booktitle}{Comprehensive Geographic Information Systems}
+      \field{isbn}{978-0-12-804793-4}
+      \field{title}{1.12 - Network Analysis}
+      \field{year}{2018}
+      \field{pages}{153\bibrangedash 161}
+      \range{pages}{9}
+      \verb{doi}
+      \verb https://doi.org/10.1016/B978-0-12-409548-9.09599-3
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/B9780124095489095993
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/B9780124095489095993
+      \endverb
+      \keyw{Flows,Geocomputation,Geographic information systems (GIS),GIScience,Linear referencing,Migration,Network spatial statistics,Network theory,Quantitative methods,Research methods,Social networks,Spatial databases,Spatial modeling,Spatiotemporal network analysis,Transportation}
+    \endentry
+    \entry{EDGAR201795}{incollection}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,uniquepart=base,hash=edbc8d04c9efeff1da0fdcba06af7b2f}{%
+           family={Edgar},
+           familyi={E\bibinitperiod},
+           given={Thomas\bibnamedelima W.},
+           giveni={T\bibinitperiod\bibinitdelim W\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=8c8442a07baee748508c3a1f205c02b9}{%
+           family={Manz},
+           familyi={M\bibinitperiod},
+           given={David\bibnamedelima O.},
+           giveni={D\bibinitperiod\bibinitdelim O\bibinitperiod},
+           givenun=0}}%
+      }
+      \name{editor}{2}{}{%
+        {{hash=edbc8d04c9efeff1da0fdcba06af7b2f}{%
+           family={Edgar},
+           familyi={E\bibinitperiod},
+           given={Thomas\bibnamedelima W.},
+           giveni={T\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+        {{hash=8c8442a07baee748508c3a1f205c02b9}{%
+           family={Manz},
+           familyi={M\bibinitperiod},
+           given={David\bibnamedelima O.},
+           giveni={D\bibinitperiod\bibinitdelim O\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Syngress}%
+      }
+      \strng{namehash}{bca9bc3979b64b21ec297e1606b67350}
+      \strng{fullhash}{bca9bc3979b64b21ec297e1606b67350}
+      \strng{bibnamehash}{bca9bc3979b64b21ec297e1606b67350}
+      \strng{authorbibnamehash}{bca9bc3979b64b21ec297e1606b67350}
+      \strng{authornamehash}{bca9bc3979b64b21ec297e1606b67350}
+      \strng{authorfullhash}{bca9bc3979b64b21ec297e1606b67350}
+      \strng{editorbibnamehash}{bca9bc3979b64b21ec297e1606b67350}
+      \strng{editornamehash}{bca9bc3979b64b21ec297e1606b67350}
+      \strng{editorfullhash}{bca9bc3979b64b21ec297e1606b67350}
+      \field{sortinit}{E}
+      \field{sortinithash}{f615fb9c6fba11c6f962fb3fd599810e}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{This chapter discusses data collection as it relates to observational studies, focusing on exploratory studies—the collection, analysis, and interpretation of observations about known designs, systems, or models, or about abstract theories or subjects. The chapter introduces the different types of exploratory studies—ecological, longitudinal/cohort, cross-sectional, case-control—and cyber security examples of each are given. The form and use of gathered data is discussed along with the significance level. The chapter also explains analysis bias and introduces some of the most commonly used statistical tools for data analysis. The chapter ends by discussing the design and presentation of exploratory studies.}
+      \field{booktitle}{Research Methods for Cyber Security}
+      \field{isbn}{978-0-12-805349-2}
+      \field{title}{Chapter 4 - Exploratory Study}
+      \field{year}{2017}
+      \field{pages}{95\bibrangedash 130}
+      \range{pages}{36}
+      \verb{doi}
+      \verb https://doi.org/10.1016/B978-0-12-805349-2.00004-2
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/B9780128053492000042
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/B9780128053492000042
+      \endverb
+      \keyw{Analysis bias,exploratory study,qualitative research,quantitative research,systemic bias,sampling}
+    \endentry
+    \entry{ewens2015vc}{article}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,uniquepart=base,hash=bddd64bb609052a22e01864a8738d78f}{%
+           family={Ewens},
+           familyi={E\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=b1b15966045e5e54e0e6983feb3b1ffa}{%
+           family={Rhodes-Kropf},
+           familyi={R\bibinithyphendelim K\bibinitperiod},
+           given={Matthew},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley Online Library}%
+      }
+      \strng{namehash}{fca47b427e5480be4e7bdc0923ccd19d}
+      \strng{fullhash}{fca47b427e5480be4e7bdc0923ccd19d}
+      \strng{bibnamehash}{fca47b427e5480be4e7bdc0923ccd19d}
+      \strng{authorbibnamehash}{fca47b427e5480be4e7bdc0923ccd19d}
+      \strng{authornamehash}{fca47b427e5480be4e7bdc0923ccd19d}
+      \strng{authorfullhash}{fca47b427e5480be4e7bdc0923ccd19d}
+      \field{sortinit}{E}
+      \field{sortinithash}{f615fb9c6fba11c6f962fb3fd599810e}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Journal of Finance}
+      \field{number}{3}
+      \field{title}{Is a VC Partnership Greater than the Sum of its Partners?}
+      \field{volume}{70}
+      \field{year}{2015}
+      \field{pages}{1081\bibrangedash 1113}
+      \range{pages}{33}
+    \endentry
+    \entry{FAUDREE200315}{incollection}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=5f4f395c5cbb1d0706f79e29e90ff25c}{%
+           family={Faudree},
+           familyi={F\bibinitperiod},
+           given={Ralph},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=7f936ba7a00efb9cbc751c65eb2fd482}{%
+           family={Meyers},
+           familyi={M\bibinitperiod},
+           given={Robert\bibnamedelima A.},
+           giveni={R\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New York}%
+      }
+      \list{publisher}{1}{%
+        {Academic Press}%
+      }
+      \strng{namehash}{5f4f395c5cbb1d0706f79e29e90ff25c}
+      \strng{fullhash}{5f4f395c5cbb1d0706f79e29e90ff25c}
+      \strng{bibnamehash}{5f4f395c5cbb1d0706f79e29e90ff25c}
+      \strng{authorbibnamehash}{5f4f395c5cbb1d0706f79e29e90ff25c}
+      \strng{authornamehash}{5f4f395c5cbb1d0706f79e29e90ff25c}
+      \strng{authorfullhash}{5f4f395c5cbb1d0706f79e29e90ff25c}
+      \strng{editorbibnamehash}{7f936ba7a00efb9cbc751c65eb2fd482}
+      \strng{editornamehash}{7f936ba7a00efb9cbc751c65eb2fd482}
+      \strng{editorfullhash}{7f936ba7a00efb9cbc751c65eb2fd482}
+      \field{sortinit}{F}
+      \field{sortinithash}{669c706c6f1fbf3b5a83d26f1d9e9e72}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Encyclopedia of Physical Science and Technology (Third Edition)}
+      \field{edition}{Third Edition}
+      \field{isbn}{978-0-12-227410-7}
+      \field{title}{Graph Theory}
+      \field{year}{2003}
+      \field{pages}{15\bibrangedash 31}
+      \range{pages}{17}
+      \verb{doi}
+      \verb https://doi.org/10.1016/B0-12-227410-5/00296-9
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/B0122274105002969
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/B0122274105002969
+      \endverb
+    \endentry
+    \entry{VCEST}{article}{}
+      \name{author}{4}{}{%
+        {{uniquename=0,uniquepart=base,hash=96142a2bb175941b9acbe13084c21fc5}{%
+           family={Franke},
+           familyi={F\bibinitperiod},
+           given={Nikolaus},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=c4e29b5e505d473c64b734d533c8ec65}{%
+           family={Gruber},
+           familyi={G\bibinitperiod},
+           given={Marc},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=481329d68db8b5f928caa424df6b0fb1}{%
+           family={Harhoff},
+           familyi={H\bibinitperiod},
+           given={Dietmar},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=bd831cd12ee22cbc24b2dd9aec34565c}{%
+           family={Henkel},
+           familyi={H\bibinitperiod},
+           given={Joachim},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{91df6c41919c2416ca2728880b5d7fbc}
+      \strng{fullhash}{366f495fcc48cfde20cc08f644530113}
+      \strng{bibnamehash}{366f495fcc48cfde20cc08f644530113}
+      \strng{authorbibnamehash}{366f495fcc48cfde20cc08f644530113}
+      \strng{authornamehash}{91df6c41919c2416ca2728880b5d7fbc}
+      \strng{authorfullhash}{366f495fcc48cfde20cc08f644530113}
+      \field{sortinit}{F}
+      \field{sortinithash}{669c706c6f1fbf3b5a83d26f1d9e9e72}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The start–up team plays a key role in venture capitalists’ evaluations of venture proposals. Our findings go beyond existing research, first by providing a detailed exploration of VCs’ team evaluation criteria, and second by investigating the moderator variable of VC experience. Our results reveal utility trade–offs between team characteristics and thus provide answers to questions such as “What strength does it take to compensate for a weakness in characteristic A?” Moreover, our analysis reveals that novice VCs tend to focus on the qualifications of individual team members, while experienced VCs focus more on team cohesion. Data were obtained in a conjoint experiment with 51 professionals in VC firms and analyzed using discrete choice econometric models.}
+      \field{journaltitle}{Entrepreneurship Theory and Practice}
+      \field{number}{3}
+      \field{title}{Venture Capitalists’ Evaluations of Start–Up Teams: Trade–Offs, Knock–Out Criteria, and the Impact of VC Experience}
+      \field{volume}{32}
+      \field{year}{2008}
+      \field{pages}{459\bibrangedash 483}
+      \range{pages}{25}
+      \verb{doi}
+      \verb 10.1111/j.1540-6520.2008.00236.x
+      \endverb
+      \verb{eprint}
+      \verb https://doi.org/10.1111/j.1540-6520.2008.00236.x
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1111/j.1540-6520.2008.00236.x
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1111/j.1540-6520.2008.00236.x
+      \endverb
+    \endentry
+    \entry{gompers2016private}{article}{}
+      \name{author}{3}{}{%
+        {{uniquename=0,uniquepart=base,hash=39d117da82e504b011eacadc749a19b2}{%
+           family={Gompers},
+           familyi={G\bibinitperiod},
+           given={Paul},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=11122b0ade7615ce1f359141cffa2e3d}{%
+           family={Kaplan},
+           familyi={K\bibinitperiod},
+           given={Steven\bibnamedelima N},
+           giveni={S\bibinitperiod\bibinitdelim N\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=80abf34e78859401085dde3a545f26b6}{%
+           family={Mukharlyamov},
+           familyi={M\bibinitperiod},
+           given={Vladimir},
+           giveni={V\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{22ab6067172024d76ce339cc65e6377f}
+      \strng{fullhash}{0563fa325bf599152bbddb7687add5c9}
+      \strng{bibnamehash}{0563fa325bf599152bbddb7687add5c9}
+      \strng{authorbibnamehash}{0563fa325bf599152bbddb7687add5c9}
+      \strng{authornamehash}{22ab6067172024d76ce339cc65e6377f}
+      \strng{authorfullhash}{0563fa325bf599152bbddb7687add5c9}
+      \field{sortinit}{G}
+      \field{sortinithash}{5e8d2bf9d38de41b1528bd307546008f}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Financial Economics}
+      \field{number}{3}
+      \field{title}{What do private equity firms say they do?}
+      \field{volume}{121}
+      \field{year}{2016}
+      \field{pages}{449\bibrangedash 476}
+      \range{pages}{28}
+    \endentry
+    \entry{gompers2001venture}{article}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,uniquepart=base,hash=39d117da82e504b011eacadc749a19b2}{%
+           family={Gompers},
+           familyi={G\bibinitperiod},
+           given={Paul},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=2,uniquepart=given,hash=078bf6df74da740045b056463b7b785b}{%
+           family={Lerner},
+           familyi={L\bibinitperiod},
+           given={Josh},
+           giveni={J\bibinitperiod},
+           givenun=2}}%
+      }
+      \strng{namehash}{b7c9639b069e52f0f851301f4261eb50}
+      \strng{fullhash}{b7c9639b069e52f0f851301f4261eb50}
+      \strng{bibnamehash}{b7c9639b069e52f0f851301f4261eb50}
+      \strng{authorbibnamehash}{b7c9639b069e52f0f851301f4261eb50}
+      \strng{authornamehash}{b7c9639b069e52f0f851301f4261eb50}
+      \strng{authorfullhash}{b7c9639b069e52f0f851301f4261eb50}
+      \field{sortinit}{G}
+      \field{sortinithash}{5e8d2bf9d38de41b1528bd307546008f}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of economic perspectives}
+      \field{number}{2}
+      \field{title}{The venture capital revolution}
+      \field{volume}{15}
+      \field{year}{2001}
+      \field{pages}{145\bibrangedash 168}
+      \range{pages}{24}
+    \endentry
+    \entry{harris2014private}{article}{}
+      \name{author}{3}{}{%
+        {{uniquename=0,uniquepart=base,hash=7cd25173784bb783922be34851eab5dc}{%
+           family={Harris},
+           familyi={H\bibinitperiod},
+           given={Robert\bibnamedelima S},
+           giveni={R\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=e85e0a7502186f73816fa0659af996fa}{%
+           family={Jenkinson},
+           familyi={J\bibinitperiod},
+           given={Tim},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=11122b0ade7615ce1f359141cffa2e3d}{%
+           family={Kaplan},
+           familyi={K\bibinitperiod},
+           given={Steven\bibnamedelima N},
+           giveni={S\bibinitperiod\bibinitdelim N\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley Online Library}%
+      }
+      \strng{namehash}{a6eb315c11a9b89f07d1fa14deca0f33}
+      \strng{fullhash}{b26b58ba94a62b4f8c0121b0b09aea6f}
+      \strng{bibnamehash}{b26b58ba94a62b4f8c0121b0b09aea6f}
+      \strng{authorbibnamehash}{b26b58ba94a62b4f8c0121b0b09aea6f}
+      \strng{authornamehash}{a6eb315c11a9b89f07d1fa14deca0f33}
+      \strng{authorfullhash}{b26b58ba94a62b4f8c0121b0b09aea6f}
+      \field{sortinit}{H}
+      \field{sortinithash}{5f15a7bc777ad49ff15aa4d2831b1681}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Journal of Finance}
+      \field{number}{5}
+      \field{title}{Private equity performance: What do we know?}
+      \field{volume}{69}
+      \field{year}{2014}
+      \field{pages}{1851\bibrangedash 1882}
+      \range{pages}{32}
+    \endentry
+    \entry{hellmann2002venture}{article}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,uniquepart=base,hash=7250744cfd3957bce833566f2fdcffaa}{%
+           family={Hellmann},
+           familyi={H\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=fe02778a8368fd1bb53bee5ffc0dd318}{%
+           family={Puri},
+           familyi={P\bibinitperiod},
+           given={Manju},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley Online Library}%
+      }
+      \strng{namehash}{435f6cf49b67e33e5c20387aa7bddc58}
+      \strng{fullhash}{435f6cf49b67e33e5c20387aa7bddc58}
+      \strng{bibnamehash}{435f6cf49b67e33e5c20387aa7bddc58}
+      \strng{authorbibnamehash}{435f6cf49b67e33e5c20387aa7bddc58}
+      \strng{authornamehash}{435f6cf49b67e33e5c20387aa7bddc58}
+      \strng{authorfullhash}{435f6cf49b67e33e5c20387aa7bddc58}
+      \field{sortinit}{H}
+      \field{sortinithash}{5f15a7bc777ad49ff15aa4d2831b1681}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The journal of finance}
+      \field{number}{1}
+      \field{title}{Venture capital and the professionalization of start-up firms: Empirical evidence}
+      \field{volume}{57}
+      \field{year}{2002}
+      \field{pages}{169\bibrangedash 197}
+      \range{pages}{29}
+    \endentry
+    \entry{hellmann2013angels}{article}{}
+      \name{author}{3}{}{%
+        {{uniquename=0,uniquepart=base,hash=7250744cfd3957bce833566f2fdcffaa}{%
+           family={Hellmann},
+           familyi={H\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=6451933eebc33e86d88a0089d1c83503}{%
+           family={Schure},
+           familyi={S\bibinitperiod},
+           given={Paul},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=cfc54636994545363f7e0319a4d468fc}{%
+           family={Vo},
+           familyi={V\bibinitperiod},
+           given={Dan},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{8b44a561567673404e07c22d8ccb7774}
+      \strng{fullhash}{12782de1507add0b3c1fa4708decbde1}
+      \strng{bibnamehash}{12782de1507add0b3c1fa4708decbde1}
+      \strng{authorbibnamehash}{12782de1507add0b3c1fa4708decbde1}
+      \strng{authornamehash}{8b44a561567673404e07c22d8ccb7774}
+      \strng{authorfullhash}{12782de1507add0b3c1fa4708decbde1}
+      \field{sortinit}{H}
+      \field{sortinithash}{5f15a7bc777ad49ff15aa4d2831b1681}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{NBER Working paper}
+      \field{title}{Angels and venture capitalists: Complements or substitutes?}
+      \field{year}{2013}
+    \endentry
+    \entry{NLP}{misc}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=cbf44511d041dc6d1dd73cc0c033122c}{%
+           family={IBM},
+           familyi={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{fullhash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{bibnamehash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{authorbibnamehash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{authornamehash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{authorfullhash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \field{extraname}{1}
+      \field{sortinit}{I}
+      \field{sortinithash}{320bc8fe8101b9376f9f21cd507de0e8}
+      \field{extradate}{1}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Available at \url{https://www.ibm.com/cloud/learn/natural-language-processing} (2021/06/06)}
+      \field{title}{Natural Language Processing (NLP)}
+      \field{year}{2021}
+    \endentry
+    \entry{IBM}{misc}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=cbf44511d041dc6d1dd73cc0c033122c}{%
+           family={IBM},
+           familyi={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{fullhash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{bibnamehash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{authorbibnamehash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{authornamehash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{authorfullhash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \field{extraname}{2}
+      \field{sortinit}{I}
+      \field{sortinithash}{320bc8fe8101b9376f9f21cd507de0e8}
+      \field{extradate}{2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Available at \url{https://www.ibm.com/cloud/learn/data-science-introduction} (2021/06/05)}
+      \field{title}{What is Data Science?}
+      \field{year}{2021}
+    \endentry
+    \entry{iliev2020venturing}{article}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,uniquepart=base,hash=1a834aede7c2e08572029f01d9ecafaa}{%
+           family={Iliev},
+           familyi={I\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=b195db1d451c7c4954026a8bee8479cb}{%
+           family={Lowry},
+           familyi={L\bibinitperiod},
+           given={Michelle},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley Online Library}%
+      }
+      \strng{namehash}{c4dd898123d209da771b6bf69fb18240}
+      \strng{fullhash}{c4dd898123d209da771b6bf69fb18240}
+      \strng{bibnamehash}{c4dd898123d209da771b6bf69fb18240}
+      \strng{authorbibnamehash}{c4dd898123d209da771b6bf69fb18240}
+      \strng{authornamehash}{c4dd898123d209da771b6bf69fb18240}
+      \strng{authorfullhash}{c4dd898123d209da771b6bf69fb18240}
+      \field{sortinit}{I}
+      \field{sortinithash}{320bc8fe8101b9376f9f21cd507de0e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Journal of Finance}
+      \field{number}{3}
+      \field{title}{Venturing beyond the IPO: financing of newly public firms by venture capitalists}
+      \field{volume}{75}
+      \field{year}{2020}
+      \field{pages}{1527\bibrangedash 1577}
+      \range{pages}{51}
+    \endentry
+    \entry{CBI}{misc}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=8d3234c8bd30c52ab58b9a6311364e60}{%
+           family={Insights},
+           familyi={I\bibinitperiod},
+           given={CB},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{8d3234c8bd30c52ab58b9a6311364e60}
+      \strng{fullhash}{8d3234c8bd30c52ab58b9a6311364e60}
+      \strng{bibnamehash}{8d3234c8bd30c52ab58b9a6311364e60}
+      \strng{authorbibnamehash}{8d3234c8bd30c52ab58b9a6311364e60}
+      \strng{authornamehash}{8d3234c8bd30c52ab58b9a6311364e60}
+      \strng{authorfullhash}{8d3234c8bd30c52ab58b9a6311364e60}
+      \field{sortinit}{I}
+      \field{sortinithash}{320bc8fe8101b9376f9f21cd507de0e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Available at \url{https://www.cbinsights.com/} (2021/06/06)}
+      \field{title}{CB Insights}
+      \field{year}{2021}
+    \endentry
+    \entry{kaplan1989effects}{article}{}
+      \name{author}{1}{}{%
+        {{uniquename=1,uniquepart=given,hash=31eae518eb10e6d2368da95c4bb4b01b}{%
+           family={Kaplan},
+           familyi={K\bibinitperiod},
+           given={Steven},
+           giveni={S\bibinitperiod},
+           givenun=1}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{31eae518eb10e6d2368da95c4bb4b01b}
+      \strng{fullhash}{31eae518eb10e6d2368da95c4bb4b01b}
+      \strng{bibnamehash}{31eae518eb10e6d2368da95c4bb4b01b}
+      \strng{authorbibnamehash}{31eae518eb10e6d2368da95c4bb4b01b}
+      \strng{authornamehash}{31eae518eb10e6d2368da95c4bb4b01b}
+      \strng{authorfullhash}{31eae518eb10e6d2368da95c4bb4b01b}
+      \field{sortinit}{K}
+      \field{sortinithash}{9fd838a31ba64d981e8f44562bd33f89}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of financial economics}
+      \field{number}{2}
+      \field{title}{The effects of management buyouts on operating performance and value}
+      \field{volume}{24}
+      \field{year}{1989}
+      \field{pages}{217\bibrangedash 254}
+      \range{pages}{38}
+    \endentry
+    \entry{kaplan2016venture}{article}{}
+      \name{author}{2}{}{%
+        {{uniquename=1,uniquepart=given,hash=11122b0ade7615ce1f359141cffa2e3d}{%
+           family={Kaplan},
+           familyi={K\bibinitperiod},
+           given={Steven\bibnamedelima N},
+           giveni={S\bibinitperiod\bibinitdelim N\bibinitperiod},
+           givenun=1}}%
+        {{uniquename=2,uniquepart=given,hash=078bf6df74da740045b056463b7b785b}{%
+           family={Lerner},
+           familyi={L\bibinitperiod},
+           given={Josh},
+           giveni={J\bibinitperiod},
+           givenun=2}}%
+      }
+      \list{publisher}{1}{%
+        {University of Chicago Press}%
+      }
+      \strng{namehash}{8294d3afd45cbc6ba4615e29d0ffc06b}
+      \strng{fullhash}{8294d3afd45cbc6ba4615e29d0ffc06b}
+      \strng{bibnamehash}{8294d3afd45cbc6ba4615e29d0ffc06b}
+      \strng{authorbibnamehash}{8294d3afd45cbc6ba4615e29d0ffc06b}
+      \strng{authornamehash}{8294d3afd45cbc6ba4615e29d0ffc06b}
+      \strng{authorfullhash}{8294d3afd45cbc6ba4615e29d0ffc06b}
+      \field{sortinit}{K}
+      \field{sortinithash}{9fd838a31ba64d981e8f44562bd33f89}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Measuring entrepreneurial businesses: current knowledge and challenges}
+      \field{title}{Venture capital data: Opportunities and challenges}
+      \field{year}{2016}
+      \field{pages}{413\bibrangedash 431}
+      \range{pages}{19}
+    \endentry
+    \entry{kaplan2005private}{article}{}
+      \name{author}{2}{}{%
+        {{uniquename=1,uniquepart=given,hash=11122b0ade7615ce1f359141cffa2e3d}{%
+           family={Kaplan},
+           familyi={K\bibinitperiod},
+           given={Steven\bibnamedelima N},
+           giveni={S\bibinitperiod\bibinitdelim N\bibinitperiod},
+           givenun=1}}%
+        {{uniquename=0,uniquepart=base,hash=6fef22905d62024d45fe52823eb2c78d}{%
+           family={Schoar},
+           familyi={S\bibinitperiod},
+           given={Antoinette},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley Online Library}%
+      }
+      \strng{namehash}{047fd3214892db988c66a4dc5958c8ea}
+      \strng{fullhash}{047fd3214892db988c66a4dc5958c8ea}
+      \strng{bibnamehash}{047fd3214892db988c66a4dc5958c8ea}
+      \strng{authorbibnamehash}{047fd3214892db988c66a4dc5958c8ea}
+      \strng{authornamehash}{047fd3214892db988c66a4dc5958c8ea}
+      \strng{authorfullhash}{047fd3214892db988c66a4dc5958c8ea}
+      \field{sortinit}{K}
+      \field{sortinithash}{9fd838a31ba64d981e8f44562bd33f89}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The journal of finance}
+      \field{number}{4}
+      \field{title}{Private equity performance: Returns, persistence, and capital flows}
+      \field{volume}{60}
+      \field{year}{2005}
+      \field{pages}{1791\bibrangedash 1823}
+      \range{pages}{33}
+    \endentry
+    \entry{kaplan2015private}{article}{}
+      \name{author}{2}{}{%
+        {{uniquename=1,uniquepart=given,hash=11122b0ade7615ce1f359141cffa2e3d}{%
+           family={Kaplan},
+           familyi={K\bibinitperiod},
+           given={Steven\bibnamedelima N},
+           giveni={S\bibinitperiod\bibinitdelim N\bibinitperiod},
+           givenun=1}}%
+        {{uniquename=0,uniquepart=base,hash=ba2442526daf7e9bd7039659662c9dd9}{%
+           family={Sensoy},
+           familyi={S\bibinitperiod},
+           given={Berk\bibnamedelima A},
+           giveni={B\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Annual Reviews}%
+      }
+      \strng{namehash}{ac339864a920de2322fbd2c75c374285}
+      \strng{fullhash}{ac339864a920de2322fbd2c75c374285}
+      \strng{bibnamehash}{ac339864a920de2322fbd2c75c374285}
+      \strng{authorbibnamehash}{ac339864a920de2322fbd2c75c374285}
+      \strng{authornamehash}{ac339864a920de2322fbd2c75c374285}
+      \strng{authorfullhash}{ac339864a920de2322fbd2c75c374285}
+      \field{sortinit}{K}
+      \field{sortinithash}{9fd838a31ba64d981e8f44562bd33f89}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Annual Review of Financial Economics}
+      \field{title}{Private equity performance: A survey}
+      \field{volume}{7}
+      \field{year}{2015}
+      \field{pages}{597\bibrangedash 614}
+      \range{pages}{18}
+    \endentry
+    \entry{kaplan2001venture}{article}{}
+      \name{author}{2}{}{%
+        {{uniquename=1,uniquepart=given,hash=11122b0ade7615ce1f359141cffa2e3d}{%
+           family={Kaplan},
+           familyi={K\bibinitperiod},
+           given={Steven\bibnamedelima N},
+           giveni={S\bibinitperiod\bibinitdelim N\bibinitperiod},
+           givenun=1}}%
+        {{uniquename=0,uniquepart=base,hash=7b4d7e65583381f7b4e3526621f5d317}{%
+           family={Stromberg},
+           familyi={S\bibinitperiod},
+           given={Per},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{25a1dfb29bd0e5e7f532959df9475708}
+      \strng{fullhash}{25a1dfb29bd0e5e7f532959df9475708}
+      \strng{bibnamehash}{25a1dfb29bd0e5e7f532959df9475708}
+      \strng{authorbibnamehash}{25a1dfb29bd0e5e7f532959df9475708}
+      \strng{authornamehash}{25a1dfb29bd0e5e7f532959df9475708}
+      \strng{authorfullhash}{25a1dfb29bd0e5e7f532959df9475708}
+      \field{extraname}{1}
+      \field{sortinit}{K}
+      \field{sortinithash}{9fd838a31ba64d981e8f44562bd33f89}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{American Economic Review}
+      \field{number}{2}
+      \field{title}{Venture capitals as principals: contracting, screening, and monitoring}
+      \field{volume}{91}
+      \field{year}{2001}
+      \field{pages}{426\bibrangedash 430}
+      \range{pages}{5}
+    \endentry
+    \entry{kaplan2009leveraged}{article}{}
+      \name{author}{2}{}{%
+        {{uniquename=1,uniquepart=given,hash=11122b0ade7615ce1f359141cffa2e3d}{%
+           family={Kaplan},
+           familyi={K\bibinitperiod},
+           given={Steven\bibnamedelima N},
+           giveni={S\bibinitperiod\bibinitdelim N\bibinitperiod},
+           givenun=1}}%
+        {{uniquename=0,uniquepart=base,hash=7b4d7e65583381f7b4e3526621f5d317}{%
+           family={Stromberg},
+           familyi={S\bibinitperiod},
+           given={Per},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{25a1dfb29bd0e5e7f532959df9475708}
+      \strng{fullhash}{25a1dfb29bd0e5e7f532959df9475708}
+      \strng{bibnamehash}{25a1dfb29bd0e5e7f532959df9475708}
+      \strng{authorbibnamehash}{25a1dfb29bd0e5e7f532959df9475708}
+      \strng{authornamehash}{25a1dfb29bd0e5e7f532959df9475708}
+      \strng{authorfullhash}{25a1dfb29bd0e5e7f532959df9475708}
+      \field{extraname}{2}
+      \field{sortinit}{K}
+      \field{sortinithash}{9fd838a31ba64d981e8f44562bd33f89}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of economic perspectives}
+      \field{number}{1}
+      \field{title}{Leveraged buyouts and private equity}
+      \field{volume}{23}
+      \field{year}{2009}
+      \field{pages}{121\bibrangedash 46}
+      \range{pages}{26}
+    \endentry
+    \entry{kaplan2004characteristics}{article}{}
+      \name{author}{2}{}{%
+        {{uniquename=1,uniquepart=given,hash=11122b0ade7615ce1f359141cffa2e3d}{%
+           family={Kaplan},
+           familyi={K\bibinitperiod},
+           given={Steven\bibnamedelima N},
+           giveni={S\bibinitperiod\bibinitdelim N\bibinitperiod},
+           givenun=1}}%
+        {{uniquename=0,uniquepart=base,hash=073c58832cc912226142515b2deeb674}{%
+           family={Str{ö}mberg},
+           familyi={S\bibinitperiod},
+           given={Per\bibnamedelima ER},
+           giveni={P\bibinitperiod\bibinitdelim E\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley Online Library}%
+      }
+      \strng{namehash}{c29074c67aaac181e01b0340d55feab5}
+      \strng{fullhash}{c29074c67aaac181e01b0340d55feab5}
+      \strng{bibnamehash}{c29074c67aaac181e01b0340d55feab5}
+      \strng{authorbibnamehash}{c29074c67aaac181e01b0340d55feab5}
+      \strng{authornamehash}{c29074c67aaac181e01b0340d55feab5}
+      \strng{authorfullhash}{c29074c67aaac181e01b0340d55feab5}
+      \field{sortinit}{K}
+      \field{sortinithash}{9fd838a31ba64d981e8f44562bd33f89}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Journal of Finance}
+      \field{number}{5}
+      \field{title}{Characteristics, contracts, and actions: Evidence from venture capitalist analyses}
+      \field{volume}{59}
+      \field{year}{2004}
+      \field{pages}{2177\bibrangedash 2210}
+      \range{pages}{34}
+    \endentry
+    \entry{korteweg2016risk}{article}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,uniquepart=base,hash=07a1e08935528e6275c548739f067e58}{%
+           family={Korteweg},
+           familyi={K\bibinitperiod},
+           given={Arthur},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=3e3b96d363a3296b8845dc3004816b5a}{%
+           family={Nagel},
+           familyi={N\bibinitperiod},
+           given={Stefan},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley Online Library}%
+      }
+      \strng{namehash}{26a42b0aa78aa191c46d10b77443ffd0}
+      \strng{fullhash}{26a42b0aa78aa191c46d10b77443ffd0}
+      \strng{bibnamehash}{26a42b0aa78aa191c46d10b77443ffd0}
+      \strng{authorbibnamehash}{26a42b0aa78aa191c46d10b77443ffd0}
+      \strng{authornamehash}{26a42b0aa78aa191c46d10b77443ffd0}
+      \strng{authorfullhash}{26a42b0aa78aa191c46d10b77443ffd0}
+      \field{sortinit}{K}
+      \field{sortinithash}{9fd838a31ba64d981e8f44562bd33f89}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Journal of Finance}
+      \field{number}{3}
+      \field{title}{Risk-adjusting the returns to venture capital}
+      \field{volume}{71}
+      \field{year}{2016}
+      \field{pages}{1437\bibrangedash 1470}
+      \range{pages}{34}
+    \endentry
+    \entry{korteweg2017skill}{article}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,uniquepart=base,hash=07a1e08935528e6275c548739f067e58}{%
+           family={Korteweg},
+           familyi={K\bibinitperiod},
+           given={Arthur},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=e2eea5983b392b2d89e428dd19011a00}{%
+           family={Sorensen},
+           familyi={S\bibinitperiod},
+           given={Morten},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{afefec2aa8a91785ad713a987833a57c}
+      \strng{fullhash}{afefec2aa8a91785ad713a987833a57c}
+      \strng{bibnamehash}{afefec2aa8a91785ad713a987833a57c}
+      \strng{authorbibnamehash}{afefec2aa8a91785ad713a987833a57c}
+      \strng{authornamehash}{afefec2aa8a91785ad713a987833a57c}
+      \strng{authorfullhash}{afefec2aa8a91785ad713a987833a57c}
+      \field{sortinit}{K}
+      \field{sortinithash}{9fd838a31ba64d981e8f44562bd33f89}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Financial Economics}
+      \field{number}{3}
+      \field{title}{Skill and luck in private equity performance}
+      \field{volume}{124}
+      \field{year}{2017}
+      \field{pages}{535\bibrangedash 562}
+      \range{pages}{28}
+    \endentry
+    \entry{lerner2011long}{article}{}
+      \name{author}{3}{}{%
+        {{uniquename=0,uniquepart=base,hash=3068805ba2300b59ebcb8985974afdca}{%
+           family={Lerner},
+           familyi={L\bibinitperiod},
+           given={J},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=0599085db6d1a4a139ace2a747973bc2}{%
+           family={Sorensen},
+           familyi={S\bibinitperiod},
+           given={M},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=2f3b43ae88333b48802b801cd2b07954}{%
+           family={Str{ö}mberg},
+           familyi={S\bibinitperiod},
+           given={P},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{b4c2d791aaed98ce140c6d2f9a13f2ba}
+      \strng{fullhash}{f0f013fdb533abd8bf31c0f7242a8703}
+      \strng{bibnamehash}{f0f013fdb533abd8bf31c0f7242a8703}
+      \strng{authorbibnamehash}{f0f013fdb533abd8bf31c0f7242a8703}
+      \strng{authornamehash}{b4c2d791aaed98ce140c6d2f9a13f2ba}
+      \strng{authorfullhash}{f0f013fdb533abd8bf31c0f7242a8703}
+      \field{sortinit}{L}
+      \field{sortinithash}{2c7981aaabc885868aba60f0c09ee20f}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Finance}
+      \field{title}{The Long-run Impact of Private Equity: The Impact on Innovation}
+      \field{volume}{66}
+      \field{year}{2011}
+      \field{pages}{445\bibrangedash 78}
+      \range{pages}{34}
+    \endentry
+    \entry{lerner1995venture}{article}{}
+      \name{author}{1}{}{%
+        {{uniquename=2,uniquepart=given,hash=078bf6df74da740045b056463b7b785b}{%
+           family={Lerner},
+           familyi={L\bibinitperiod},
+           given={Josh},
+           giveni={J\bibinitperiod},
+           givenun=2}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley Online Library}%
+      }
+      \strng{namehash}{078bf6df74da740045b056463b7b785b}
+      \strng{fullhash}{078bf6df74da740045b056463b7b785b}
+      \strng{bibnamehash}{078bf6df74da740045b056463b7b785b}
+      \strng{authorbibnamehash}{078bf6df74da740045b056463b7b785b}
+      \strng{authornamehash}{078bf6df74da740045b056463b7b785b}
+      \strng{authorfullhash}{078bf6df74da740045b056463b7b785b}
+      \field{sortinit}{L}
+      \field{sortinithash}{2c7981aaabc885868aba60f0c09ee20f}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{the Journal of Finance}
+      \field{number}{1}
+      \field{title}{Venture capitalists and the oversight of private firms}
+      \field{volume}{50}
+      \field{year}{1995}
+      \field{pages}{301\bibrangedash 318}
+      \range{pages}{18}
+    \endentry
+    \entry{lerner2007smart}{article}{}
+      \name{author}{3}{}{%
+        {{uniquename=2,uniquepart=given,hash=078bf6df74da740045b056463b7b785b}{%
+           family={Lerner},
+           familyi={L\bibinitperiod},
+           given={Josh},
+           giveni={J\bibinitperiod},
+           givenun=2}}%
+        {{uniquename=0,uniquepart=base,hash=6fef22905d62024d45fe52823eb2c78d}{%
+           family={Schoar},
+           familyi={S\bibinitperiod},
+           given={Antoinette},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=8875df120ad2f09c6063b29d44e1fc73}{%
+           family={Wongsunwai},
+           familyi={W\bibinitperiod},
+           given={Wan},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley Online Library}%
+      }
+      \strng{namehash}{2cbd749ba0213f5372adb8c8614d9e62}
+      \strng{fullhash}{70c0e666dcfd3a6dad927b594e93b305}
+      \strng{bibnamehash}{70c0e666dcfd3a6dad927b594e93b305}
+      \strng{authorbibnamehash}{70c0e666dcfd3a6dad927b594e93b305}
+      \strng{authornamehash}{2cbd749ba0213f5372adb8c8614d9e62}
+      \strng{authorfullhash}{70c0e666dcfd3a6dad927b594e93b305}
+      \field{sortinit}{L}
+      \field{sortinithash}{2c7981aaabc885868aba60f0c09ee20f}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Journal of Finance}
+      \field{number}{2}
+      \field{title}{Smart institutions, foolish choices: The limited partner performance puzzle}
+      \field{volume}{62}
+      \field{year}{2007}
+      \field{pages}{731\bibrangedash 764}
+      \range{pages}{34}
+    \endentry
+    \entry{MM}{misc}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=74e4e43f1cb801e1709c73c676e2060d}{%
+           family={MergerMarket},
+           familyi={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{74e4e43f1cb801e1709c73c676e2060d}
+      \strng{fullhash}{74e4e43f1cb801e1709c73c676e2060d}
+      \strng{bibnamehash}{74e4e43f1cb801e1709c73c676e2060d}
+      \strng{authorbibnamehash}{74e4e43f1cb801e1709c73c676e2060d}
+      \strng{authornamehash}{74e4e43f1cb801e1709c73c676e2060d}
+      \strng{authorfullhash}{74e4e43f1cb801e1709c73c676e2060d}
+      \field{sortinit}{M}
+      \field{sortinithash}{cfd219b90152c06204fab207bc6c7cab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Available at \url{https://www.mergermarket.com/info/} (2021/06/06)}
+      \field{title}{MergerMarket}
+      \field{year}{2021}
+    \endentry
+    \entry{PAGLIA2014177}{article}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,uniquepart=base,hash=1177d47cd2f83a20f1638d8d44f7899c}{%
+           family={Paglia},
+           familyi={P\bibinitperiod},
+           given={John\bibnamedelima K.},
+           giveni={J\bibinitperiod\bibinitdelim K\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=dc9fdf631c87e7a28a7891a3894e8465}{%
+           family={Harjoto},
+           familyi={H\bibinitperiod},
+           given={Maretno\bibnamedelima A.},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{6145b5b494e6df5af3cb39d19c7c229a}
+      \strng{fullhash}{6145b5b494e6df5af3cb39d19c7c229a}
+      \strng{bibnamehash}{6145b5b494e6df5af3cb39d19c7c229a}
+      \strng{authorbibnamehash}{6145b5b494e6df5af3cb39d19c7c229a}
+      \strng{authornamehash}{6145b5b494e6df5af3cb39d19c7c229a}
+      \strng{authorfullhash}{6145b5b494e6df5af3cb39d19c7c229a}
+      \field{sortinit}{P}
+      \field{sortinithash}{8d51b3d5b78d75b54308d706b9bbe285}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We study the effects private equity (PE) and venture capital (VC) financing have on small and mid sized single entity business establishments from 1995 to 2009. We focus on single entity establishments to cleanly examine the impact of PE and VC financing on establishments’ organic growth. This study reveals that PE and VC financing have positive impacts on single entity business establishments’ net sales and employment growth. The impact of PE financing on establishments’ growth is slower and smaller than VC financing. However, we find that the benefit of PE financing lasts longer than VC financing. We also find that ethnic minority, female, and foreign business owners are less likely to receive PE and VC financing. Finally, we find evidence that although establishments with government contracts are more likely to receive PE and VC financing, those contracts fail to produce marginal post-funding growth and employment benefits.}
+      \field{issn}{0378-4266}
+      \field{journaltitle}{Journal of Banking \& Finance}
+      \field{title}{The effects of private equity and venture capital on sales and employment growth in small and medium-sized businesses}
+      \field{volume}{47}
+      \field{year}{2014}
+      \field{pages}{177\bibrangedash 197}
+      \range{pages}{21}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.jbankfin.2014.06.023
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0378426614002386
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0378426614002386
+      \endverb
+      \keyw{Private equity,Venture capital,Growth,Employment,Sales}
+    \endentry
+    \entry{phalippou2020inconvenient}{article}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=3b3421369b1711afadac2ac17b96d34b}{%
+           family={Phalippou},
+           familyi={P\bibinitperiod},
+           given={Ludovic},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Institutional Investor Journals Umbrella}%
+      }
+      \strng{namehash}{3b3421369b1711afadac2ac17b96d34b}
+      \strng{fullhash}{3b3421369b1711afadac2ac17b96d34b}
+      \strng{bibnamehash}{3b3421369b1711afadac2ac17b96d34b}
+      \strng{authorbibnamehash}{3b3421369b1711afadac2ac17b96d34b}
+      \strng{authornamehash}{3b3421369b1711afadac2ac17b96d34b}
+      \strng{authorfullhash}{3b3421369b1711afadac2ac17b96d34b}
+      \field{sortinit}{P}
+      \field{sortinithash}{8d51b3d5b78d75b54308d706b9bbe285}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Journal of Investing}
+      \field{number}{1}
+      \field{title}{An Inconvenient Fact: Private Equity Returns and the Billionaire Factory}
+      \field{volume}{30}
+      \field{year}{2020}
+      \field{pages}{11\bibrangedash 39}
+      \range{pages}{29}
+    \endentry
+    \entry{phalippou2009performance}{article}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,uniquepart=base,hash=3b3421369b1711afadac2ac17b96d34b}{%
+           family={Phalippou},
+           familyi={P\bibinitperiod},
+           given={Ludovic},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=9e5726f3e0bba6bd10de97f571171fea}{%
+           family={Gottschalg},
+           familyi={G\bibinitperiod},
+           given={Oliver},
+           giveni={O\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Oxford University Press}%
+      }
+      \strng{namehash}{e3bff88fbd29c2bf862bd8ba00f5c812}
+      \strng{fullhash}{e3bff88fbd29c2bf862bd8ba00f5c812}
+      \strng{bibnamehash}{e3bff88fbd29c2bf862bd8ba00f5c812}
+      \strng{authorbibnamehash}{e3bff88fbd29c2bf862bd8ba00f5c812}
+      \strng{authornamehash}{e3bff88fbd29c2bf862bd8ba00f5c812}
+      \strng{authorfullhash}{e3bff88fbd29c2bf862bd8ba00f5c812}
+      \field{sortinit}{P}
+      \field{sortinithash}{8d51b3d5b78d75b54308d706b9bbe285}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Review of Financial Studies}
+      \field{number}{4}
+      \field{title}{The performance of private equity funds}
+      \field{volume}{22}
+      \field{year}{2009}
+      \field{pages}{1747\bibrangedash 1776}
+      \range{pages}{30}
+    \endentry
+    \entry{PB}{misc}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=42b7060d7a112b017abbab535d1f2980}{%
+           family={PitchBook},
+           familyi={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{42b7060d7a112b017abbab535d1f2980}
+      \strng{fullhash}{42b7060d7a112b017abbab535d1f2980}
+      \strng{bibnamehash}{42b7060d7a112b017abbab535d1f2980}
+      \strng{authorbibnamehash}{42b7060d7a112b017abbab535d1f2980}
+      \strng{authornamehash}{42b7060d7a112b017abbab535d1f2980}
+      \strng{authorfullhash}{42b7060d7a112b017abbab535d1f2980}
+      \field{sortinit}{P}
+      \field{sortinithash}{8d51b3d5b78d75b54308d706b9bbe285}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Available at \url{https://pitchbook.com/} (2021/06/06)}
+      \field{title}{PitchBook}
+      \field{year}{2021}
+    \endentry
+    \entry{PQ}{misc}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=102f9de73985154dddb568ad0337d054}{%
+           family={Preqin},
+           familyi={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{102f9de73985154dddb568ad0337d054}
+      \strng{fullhash}{102f9de73985154dddb568ad0337d054}
+      \strng{bibnamehash}{102f9de73985154dddb568ad0337d054}
+      \strng{authorbibnamehash}{102f9de73985154dddb568ad0337d054}
+      \strng{authornamehash}{102f9de73985154dddb568ad0337d054}
+      \strng{authorfullhash}{102f9de73985154dddb568ad0337d054}
+      \field{sortinit}{P}
+      \field{sortinithash}{8d51b3d5b78d75b54308d706b9bbe285}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Available at \url{https://www.preqin.com/} (2021/06/06)}
+      \field{title}{Preqin}
+      \field{year}{2021}
+    \endentry
+    \entry{LCVC}{article}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,uniquepart=base,hash=fe02778a8368fd1bb53bee5ffc0dd318}{%
+           family={Puri},
+           familyi={P\bibinitperiod},
+           given={Manju},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=dfd8bc5a0ae422256cbc126e5c34181e}{%
+           family={Zarutskie},
+           familyi={Z\bibinitperiod},
+           given={Rebecca},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{d71cc5eee29e11537c2e89377e65cf6f}
+      \strng{fullhash}{d71cc5eee29e11537c2e89377e65cf6f}
+      \strng{bibnamehash}{d71cc5eee29e11537c2e89377e65cf6f}
+      \strng{authorbibnamehash}{d71cc5eee29e11537c2e89377e65cf6f}
+      \strng{authornamehash}{d71cc5eee29e11537c2e89377e65cf6f}
+      \strng{authorfullhash}{d71cc5eee29e11537c2e89377e65cf6f}
+      \field{sortinit}{P}
+      \field{sortinithash}{8d51b3d5b78d75b54308d706b9bbe285}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{ABSTRACT We use data over 25 years to understand the life cycle dynamics of VC- and non-VC-financed firms. We find successful and failed VC-financed firms achieve larger scale but are not more profitable at exit than matched non-VC-financed firms. Cumulative failure rates of VC-financed firms are lower, with the difference driven largely by lower failure rates in the initial years after receiving VC. Our results are not driven by VCs disguising failures as acquisitions or by certain types of VCs. The performance difference between VC- and non-VC-financed firms narrows in the post-internet bubble years, but does not disappear.}
+      \field{journaltitle}{The Journal of Finance}
+      \field{number}{6}
+      \field{title}{On the Life Cycle Dynamics of Venture-Capital- and Non-Venture-Capital-Financed Firms}
+      \field{volume}{67}
+      \field{year}{2012}
+      \field{pages}{2247\bibrangedash 2293}
+      \range{pages}{47}
+      \verb{doi}
+      \verb https://doi.org/10.1111/j.1540-6261.2012.01786.x
+      \endverb
+      \verb{eprint}
+      \verb https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1540-6261.2012.01786.x
+      \endverb
+      \verb{urlraw}
+      \verb https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1540-6261.2012.01786.x
+      \endverb
+      \verb{url}
+      \verb https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1540-6261.2012.01786.x
+      \endverb
+    \endentry
+    \entry{PYPL_Pop}{misc}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=68da608daec4950bcdec8a2691f5a0ef}{%
+           family={PYPL},
+           familyi={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{68da608daec4950bcdec8a2691f5a0ef}
+      \strng{fullhash}{68da608daec4950bcdec8a2691f5a0ef}
+      \strng{bibnamehash}{68da608daec4950bcdec8a2691f5a0ef}
+      \strng{authorbibnamehash}{68da608daec4950bcdec8a2691f5a0ef}
+      \strng{authornamehash}{68da608daec4950bcdec8a2691f5a0ef}
+      \strng{authorfullhash}{68da608daec4950bcdec8a2691f5a0ef}
+      \field{sortinit}{P}
+      \field{sortinithash}{8d51b3d5b78d75b54308d706b9bbe285}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Available at \url{http://pypl.github.io/PYPL.html} (2021/06/13)}
+      \field{title}{PYPL PopularitY of Programming Language}
+      \field{year}{2021}
+    \endentry
+    \entry{RIN2013573}{incollection}{}
+      \name{author}{3}{}{%
+        {{uniquename=0,uniquepart=base,hash=3c76ca0c4d57c4755747265347ef0fc3}{%
+           family={Rin},
+           familyi={R\bibinitperiod},
+           given={Marco\bibnamedelima Da},
+           giveni={M\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=7250744cfd3957bce833566f2fdcffaa}{%
+           family={Hellmann},
+           familyi={H\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=fe02778a8368fd1bb53bee5ffc0dd318}{%
+           family={Puri},
+           familyi={P\bibinitperiod},
+           given={Manju},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \name{editor}{3}{}{%
+        {{hash=5ad56aae5f8643fe375b7dde6ddfc601}{%
+           family={Constantinides},
+           familyi={C\bibinitperiod},
+           given={George\bibnamedelima M.},
+           giveni={G\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=93b1fec7d9df0610f4637578d0345eb9}{%
+           family={Harris},
+           familyi={H\bibinitperiod},
+           given={Milton},
+           giveni={M\bibinitperiod}}}%
+        {{hash=f7a28b9330451d3ed4d95e9ca290b65c}{%
+           family={Stulz},
+           familyi={S\bibinitperiod},
+           given={Rene\bibnamedelima M.},
+           giveni={R\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{ca040acf7a0929861d176ccce3771aeb}
+      \strng{fullhash}{c3374a63e35f1a83e847a46e4dc78ce1}
+      \strng{bibnamehash}{c3374a63e35f1a83e847a46e4dc78ce1}
+      \strng{authorbibnamehash}{c3374a63e35f1a83e847a46e4dc78ce1}
+      \strng{authornamehash}{ca040acf7a0929861d176ccce3771aeb}
+      \strng{authorfullhash}{c3374a63e35f1a83e847a46e4dc78ce1}
+      \strng{editorbibnamehash}{84d2168d4bedef0c783b355901a143f8}
+      \strng{editornamehash}{00f526f9eb505404a65f963d8a5f02dc}
+      \strng{editorfullhash}{84d2168d4bedef0c783b355901a143f8}
+      \field{sortinit}{R}
+      \field{sortinithash}{da6b42bd3ab22fee61abed031ee405f7}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{This survey reviews the growing body of academic work on venture capital. It lays out the major data sources used. It examines the work on venture capital investments in companies, looking at issues of selection, contracting, post-investment services, and exits. The survey considers recent work on organizational structures of venture capital firms, and the relationship between general and limited partners. It discusses the work on the returns to venture capital investments. It also examines public policies, and the role of venture capital in the economy at large.}
+      \field{issn}{1574-0102}
+      \field{series}{Handbook of the Economics of Finance}
+      \field{title}{Chapter 8 - A Survey of Venture Capital Research}
+      \field{volume}{2}
+      \field{year}{2013}
+      \field{pages}{573\bibrangedash 648}
+      \range{pages}{76}
+      \verb{doi}
+      \verb https://doi.org/10.1016/B978-0-44-453594-8.00008-2
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/B9780444535948000082
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/B9780444535948000082
+      \endverb
+      \keyw{Venture capital,private equity,alternative assets,IPOs,acquisitions,corporate venture capital,public policy,limited partners,institutional investors,syndication,innovation,venture capital returns}
+    \endentry
+    \entry{robinson2013private}{article}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,uniquepart=base,hash=772d109f4a59a2052a40422af3714590}{%
+           family={Robinson},
+           familyi={R\bibinitperiod},
+           given={David\bibnamedelima T},
+           giveni={D\bibinitperiod\bibinitdelim T\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=ba2442526daf7e9bd7039659662c9dd9}{%
+           family={Sensoy},
+           familyi={S\bibinitperiod},
+           given={Berk\bibnamedelima A},
+           giveni={B\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Society for Financial Studies}%
+      }
+      \strng{namehash}{ae5f3f0936a289130b9e4f4c5d79462a}
+      \strng{fullhash}{ae5f3f0936a289130b9e4f4c5d79462a}
+      \strng{bibnamehash}{ae5f3f0936a289130b9e4f4c5d79462a}
+      \strng{authorbibnamehash}{ae5f3f0936a289130b9e4f4c5d79462a}
+      \strng{authornamehash}{ae5f3f0936a289130b9e4f4c5d79462a}
+      \strng{authorfullhash}{ae5f3f0936a289130b9e4f4c5d79462a}
+      \field{sortinit}{R}
+      \field{sortinithash}{da6b42bd3ab22fee61abed031ee405f7}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Review of Financial Studies}
+      \field{number}{11}
+      \field{title}{Do private equity fund managers earn their fees? Compensation, ownership, and cash flow performance}
+      \field{volume}{26}
+      \field{year}{2013}
+      \field{pages}{2760\bibrangedash 2797}
+      \range{pages}{38}
+    \endentry
+    \entry{ross2021capitalvx}{article}{}
+      \name{author}{4}{}{%
+        {{uniquename=0,uniquepart=base,hash=2620025a23cdd806c069b1bf09b83cb0}{%
+           family={Ross},
+           familyi={R\bibinitperiod},
+           given={Greg},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=c10ea958b5ca178d7ee829dc1ca09bca}{%
+           family={Das},
+           familyi={D\bibinitperiod},
+           given={Sanjiv},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=188c1ae56353f7add42ceeaa9d590d46}{%
+           family={Sciro},
+           familyi={S\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=6e07c6a59d1b2042298a7452226a474f}{%
+           family={Raza},
+           familyi={R\bibinitperiod},
+           given={Hussain},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{a97681e27b28360f3396b315a95957a6}
+      \strng{fullhash}{a3ce067a65a87c97d42f8350b54993ac}
+      \strng{bibnamehash}{a3ce067a65a87c97d42f8350b54993ac}
+      \strng{authorbibnamehash}{a3ce067a65a87c97d42f8350b54993ac}
+      \strng{authornamehash}{a97681e27b28360f3396b315a95957a6}
+      \strng{authorfullhash}{a3ce067a65a87c97d42f8350b54993ac}
+      \field{sortinit}{R}
+      \field{sortinithash}{da6b42bd3ab22fee61abed031ee405f7}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Journal of Finance and Data Science}
+      \field{title}{CapitalVX: A Machine Learning Model for Startup Selection and Exit Prediction}
+      \field{year}{2021}
+    \endentry
+    \entry{Wilson}{article}{}
+      \name{author}{6}{}{%
+        {{uniquename=0,uniquepart=base,hash=fda30198609a1ab29a82b93d4e8f347b}{%
+           family={Wilson},
+           familyi={W\bibinitperiod},
+           given={Greg},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=0f88b724c9f070dbceda00a5027d25bb}{%
+           family={Bryan},
+           familyi={B\bibinitperiod},
+           given={Jennifer},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=a79fa4e0923b252a711a37310ed57253}{%
+           family={Cranston},
+           familyi={C\bibinitperiod},
+           given={Karen},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=43698c36b205bdd65e89df3e8a106621}{%
+           family={Kitzes},
+           familyi={K\bibinitperiod},
+           given={Justin},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=c2762ee15b6dc2e79652d82c31b89e21}{%
+           family={Nederbragt},
+           familyi={N\bibinitperiod},
+           given={Alexander},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=e06e0da7b10da5530e2ef9179016d5c6}{%
+           family={Teal},
+           familyi={T\bibinitperiod},
+           given={Tracy},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{4996f01033f1e72efe036963c2f02dac}
+      \strng{fullhash}{75807e39fca5cfc1160e51f571a2e73e}
+      \strng{bibnamehash}{75807e39fca5cfc1160e51f571a2e73e}
+      \strng{authorbibnamehash}{75807e39fca5cfc1160e51f571a2e73e}
+      \strng{authornamehash}{4996f01033f1e72efe036963c2f02dac}
+      \strng{authorfullhash}{75807e39fca5cfc1160e51f571a2e73e}
+      \field{sortinit}{W}
+      \field{sortinithash}{ecb89ff85896a47dc313960773ac311d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{PLOS Computational Biology}
+      \field{month}{08}
+      \field{title}{Good Enough Practices in Scientific Computing}
+      \field{volume}{13}
+      \field{year}{2016}
+      \verb{doi}
+      \verb 10.1371/journal.pcbi.1005510
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

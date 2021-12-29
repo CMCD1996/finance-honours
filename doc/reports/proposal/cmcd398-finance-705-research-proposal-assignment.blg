@@ -1,0 +1,20 @@
+[0] Config.pm:304> INFO - This is Biber 2.12
+[0] Config.pm:307> INFO - Logfile is 'cmcd398-finance-705-research-proposal-assignment.blg'
+[81] biber-darwin:315> INFO - === Mon Jun 14, 2021, 13:15:19
+[104] Biber.pm:371> INFO - Reading 'cmcd398-finance-705-research-proposal-assignment.bcf'
+[206] Biber.pm:889> INFO - Found 55 citekeys in bib section 0
+[219] Biber.pm:4093> INFO - Processing section 0
+[229] Biber.pm:4254> INFO - Looking for bibtex format file 'sources.bib' for section 0
+[232] bibtex.pm:1523> INFO - LaTeX decoding ...
+[312] bibtex.pm:1340> INFO - Found BibTeX data source 'sources.bib'
+[314] Utils.pm:193> WARN - Duplicate entry key: 'harris2014private' in file 'sources.bib', skipping ...
+[316] Utils.pm:193> WARN - Duplicate entry key: 'kaplan2004characteristics' in file 'sources.bib', skipping ...
+[594] Utils.pm:193> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/998hXBgXyz/sources.bib_90798.utf8, line 61, warning: 9 characters of junk seen at toplevel
+[594] Utils.pm:193> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/998hXBgXyz/sources.bib_90798.utf8, line 547, warning: 31 characters of junk seen at toplevel
+[680] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[680] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[680] Biber.pm:3921> INFO - Sorting list 'apa/global//global/global' of type 'entry' with template 'apa' and locale 'en-US'
+[680] Biber.pm:3927> INFO - No sort tailoring available for locale 'en-US'
+[733] bbl.pm:636> INFO - Writing 'cmcd398-finance-705-research-proposal-assignment.bbl' with encoding 'UTF-8'
+[770] bbl.pm:739> INFO - Output to cmcd398-finance-705-research-proposal-assignment.bbl
+[773] Biber.pm:110> INFO - WARNINGS: 4
