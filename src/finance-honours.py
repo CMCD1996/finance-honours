@@ -772,10 +772,10 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
             lf = custom_sharpe_ratio
         if selected_loss == 'custom_information_ratio': # loss = square(maximum(1 - y_true * y_pred, 0))
             lf = custom_information_ratio
-        if selected_loss == 'multi_layer_loss':
-            lf = multi_layer_loss
+        # if selected_loss == 'multi_layer_loss':
+        #     lf = multi_layer_loss
         if selected_loss == 'custom_loss':
-            lf = custom_loss
+            lf = custom_loss(reduction = red, name = 'custom_loss')
         #################################################################################
         # Metrics
         #################################################################################
