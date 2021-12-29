@@ -775,7 +775,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         if selected_loss == 'multi_layer_loss':
             lf = multi_layer_loss
         if selected_loss == 'custom_loss':
-            lf = custom_loss(layer = layer_3)
+            lf = custom_loss
         #################################################################################
         # Metrics
         #################################################################################
@@ -1348,9 +1348,9 @@ def multi_layer_loss(self):
 #  
 # Utilisation of function closure to pass multiple inputs into the function.  
 class custom_loss(tf.keras.losses.Loss):
-    def __init__(self,layer):
+    def __init__(self):
         super().__init__()
-        self.layer = layer
+        # self.layer = layer
     def call(self,y_true,y_pred):
         mse = tf.reduce_mean(tf.square(y_true,y_pred))
         rmse = tf.math.sqrt(mse)
