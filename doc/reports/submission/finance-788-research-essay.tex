@@ -252,10 +252,30 @@ The theory underlying Ordinary Least Squares informs the common practice in mini
 The mathematical tractability, in accordance with the aforementioned assumption, frame our thinking surrounding the derivation of custom loss functions.
 \subsubsection{Weaknesses in OLS: Return Predictability}
 \textbf{Include examples on the minimisation of sum of the square errors does not contribute to maximising returns}
-\subsection{Portfolio Formation: Hedge Portfolios}
-Our formation of hedge portfolios rely on monotonic functions.
+\subsection{Derivation of Loss Functions and Performance Metrics}
+Table \ref{hpt} provides an overview of 
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{||c|c|c|c||}
+			\hline
+			Variable & Description & $ MSE(y,\hat{y}) $ & $ HP(y,\hat{y}) $\\ [0.5ex]
+			\hline
+			&&&\\
+			$\theta$ & Estimation& $ \hat{\theta}_{MSE}$& $ \hat{\theta}_{HP}$ \\ [0.5ex]
+			& Training & & \\
+			\hline
+			&&&\\
+			$\lambda$ & Validation & $\hat{\lambda}_{MSE}$ & $\hat{\lambda}_{HP}$\\ [1.0ex]
+			\hline
+		\end{tabular}
+	\caption{Objective (MSE: Mean Square Error, HP: Hedge Portfolio)}
+	\label{hpt}
+\end{table}
+
+\subsection{Hedge Portfolios}
+Hedge portfolios rely on monotonic functions for optimisation purposes.
 These functions both preserve or reverse a given ordered set.
-We rank the cross-sections of portfolio returns using variations in monotonic functions to assign weights and form hedge portfolios.
+We rank the cross-section of one-month lead portfolio excess returns using monotonic functions depending on
 \begin{align}
 	R(y_{i,t})
 \end{align}
@@ -300,27 +320,8 @@ The argmax (\label{argmax}) requires to use partial derivative with respect to $
 	&+\frac{1}{\vec{1}X^\top \hat{\theta}} XX^\top \hat{\theta}\\
 	&-\frac{1}{(\hat{\theta}^\top X \vec{1})^{2}} \hat{\theta}^\top XX^\top \hat{\theta} X \vec{1}
 \end{align}
-Subsequently, this enables the derivation of objective functions ex-post transaction costs.
-\subsection{Optimisation of Hedge Portfolios}
-Table \ref{hpt} provides a simple 
-	\begin{table}[H]
-		\centering
-		\begin{tabular}{||c|c|c|c||}
-			\hline
-			Variable & Description & $ MSE(y,\hat{y}) $ & $ HP(y,\hat{y}) $\\ [0.5ex]
-			\hline
-			&&&\\
-			$\theta$ & Est/Train& $ \hat{\theta}_{MSE}$& $ \hat{\theta}_{HP}$ \\ [0.5ex]
-			\hline
-			&&&\\
-			$\lambda$ & Validation & $\hat{\lambda}_{MSE}$ & $\hat{\lambda}_{HP}$\\ [1.0ex]
-			\hline
-		\end{tabular}
-	\caption{Objective (MSE: Mean Square Error, HP: Hedge Portfolio)}
-	\label{hpt}
-\end{table}
-\newpage
 
+\newpage
 \section{Data}
 \textbf{Expand: Dataset implies, use this dataset (\cite{jensen2021there})}
 Hou et al., (\citeyear{hou2020replicating}) use an extensive data library to assess 452 anomalies across anomalies literature.
