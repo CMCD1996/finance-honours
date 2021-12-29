@@ -1,0 +1,52 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\contentsline {section}{\numberline {1}Abstract}{i}{section.1}% 
+\contentsline {section}{\numberline {2}Introduction}{1}{section.2}% 
+\contentsline {section}{\numberline {3}Literature Review}{2}{section.3}% 
+\contentsline {section}{\numberline {4}Hypotheses Development}{5}{section.4}% 
+\contentsline {subsection}{\numberline {4.1}Research Question}{5}{subsection.4.1}% 
+\contentsline {subsection}{\numberline {4.2}Hypotheses}{6}{subsection.4.2}% 
+\contentsline {section}{\numberline {5}Data}{6}{section.5}% 
+\contentsline {subsection}{\numberline {5.1}Variables: Inputs}{6}{subsection.5.1}% 
+\contentsline {subsubsection}{\numberline {5.1.1}Revenue Growth}{7}{subsubsection.5.1.1}% 
+\contentsline {subsubsection}{\numberline {5.1.2}Value-added (Product/Service)}{7}{subsubsection.5.1.2}% 
+\contentsline {subsubsection}{\numberline {5.1.3}Management Team Track Record}{8}{subsubsection.5.1.3}% 
+\contentsline {subsubsection}{\numberline {5.1.4}International Scalability}{8}{subsubsection.5.1.4}% 
+\contentsline {subsubsection}{\numberline {5.1.5}Profitability}{8}{subsubsection.5.1.5}% 
+\contentsline {subsubsection}{\numberline {5.1.6}Business Model}{8}{subsubsection.5.1.6}% 
+\contentsline {subsubsection}{\numberline {5.1.7}Current Investors}{9}{subsubsection.5.1.7}% 
+\contentsline {subsubsection}{\numberline {5.1.8}Year}{9}{subsubsection.5.1.8}% 
+\contentsline {subsection}{\numberline {5.2}Variable: Output(s)}{9}{subsection.5.2}% 
+\contentsline {subsection}{\numberline {5.3}Sources}{10}{subsection.5.3}% 
+\contentsline {subsubsection}{\numberline {5.3.1}PitchBook}{10}{subsubsection.5.3.1}% 
+\contentsline {subsection}{\numberline {5.4}Limitations: PitchBook}{11}{subsection.5.4}% 
+\contentsline {subsection}{\numberline {5.5}Alternative Data Sources}{12}{subsection.5.5}% 
+\contentsline {section}{\numberline {6}Methodology}{12}{section.6}% 
+\contentsline {subsection}{\numberline {6.1}Problem Scoping}{13}{subsection.6.1}% 
+\contentsline {subsubsection}{\numberline {6.1.1}Problem Framing}{13}{subsubsection.6.1.1}% 
+\contentsline {subsubsection}{\numberline {6.1.2}Performance Measure Selection}{13}{subsubsection.6.1.2}% 
+\contentsline {subsubsection}{\numberline {6.1.3}Checking Data Assumptions}{13}{subsubsection.6.1.3}% 
+\contentsline {subsection}{\numberline {6.2}Data Acquisition}{14}{subsection.6.2}% 
+\contentsline {subsection}{\numberline {6.3}Discovery \& Visualization}{14}{subsection.6.3}% 
+\contentsline {subsection}{\numberline {6.4}Data Preparation}{15}{subsection.6.4}% 
+\contentsline {subsection}{\numberline {6.5}Model Selection \& Training}{16}{subsection.6.5}% 
+\contentsline {subsubsection}{\numberline {6.5.1}Multi-nominal Logistic Regression (Softmax Regression)}{16}{subsubsection.6.5.1}% 
+\contentsline {subsubsection}{\numberline {6.5.2}Random Forests}{17}{subsubsection.6.5.2}% 
+\contentsline {subsubsection}{\numberline {6.5.3}Multi Layer Perceptron (MLP)}{18}{subsubsection.6.5.3}% 
+\contentsline {subsubsection}{\numberline {6.5.4}Evaluation}{19}{subsubsection.6.5.4}% 
+\contentsline {subsection}{\numberline {6.6}Model Tuning}{19}{subsection.6.6}% 
+\contentsline {subsection}{\numberline {6.7}Solution Presentation}{19}{subsection.6.7}% 
+\contentsline {section}{\numberline {7}Conclusions}{20}{section.7}% 
+\contentsline {subsection}{\numberline {7.1}Contributions}{20}{subsection.7.1}% 
+\contentsline {subsection}{\numberline {7.2}Future Research}{20}{subsection.7.2}% 
+\contentsline {subsection}{\numberline {7.3}Research Timetable}{20}{subsection.7.3}% 
+\contentsline {section}{\numberline {8}Appendix}{26}{section.8}% 
+\contentsline {subsection}{\numberline {8.1}Mathematics}{26}{subsection.8.1}% 
+\contentsline {subsubsection}{\numberline {8.1.1}Performance Measures}{26}{subsubsection.8.1.1}% 
+\contentsline {subsubsection}{\numberline {8.1.2}Multi-level Logistic Regression}{26}{subsubsection.8.1.2}% 
+\contentsline {subsubsection}{\numberline {8.1.3}Multi-nominal Logistic Regression (Softmax Regression)}{27}{subsubsection.8.1.3}% 
+\contentsline {subsubsection}{\numberline {8.1.4}Random Forests}{28}{subsubsection.8.1.4}% 
+\contentsline {subsubsection}{\numberline {8.1.5}Multi Layer Perceptron (MLP)}{29}{subsubsection.8.1.5}% 
+\contentsline {subsection}{\numberline {8.2}Technology}{29}{subsection.8.2}% 
+\contentsline {subsection}{\numberline {8.3}Case Studies}{30}{subsection.8.3}% 
+\contentsline {subsection}{\numberline {8.4}Investor Criteria, Attributes \& Variables}{31}{subsection.8.4}% 
+\contentsline {subsection}{\numberline {8.5}Research Timetable}{33}{subsection.8.5}% 
