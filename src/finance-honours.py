@@ -1343,7 +1343,8 @@ def multi_layer_loss(self):
             return model_loss
         return seq2seq_loss
 
-# Utilisation of function closure to pass multipl  inputs into the function.      
+@tf.function
+# Utilisation of function closure to pass multiple  inputs into the function.      
 def custom_loss(layer):
     # Create a loss function that adds the MSE loss to the mean of all squared activations of a specific layer
     def loss(y_true,y_pred):
