@@ -775,7 +775,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         # if selected_loss == 'multi_layer_loss':
         #     lf = multi_layer_loss
         if selected_loss == 'custom_loss':
-            lf = custom_loss(reduction = red, name = 'custom_loss')
+            lf = custom_loss(layer = layer_3, reduction = red, name = 'custom_loss')
         #################################################################################
         # Metrics
         #################################################################################
@@ -1348,14 +1348,16 @@ def custom_information_ratio(y_true,y_pred):
 #  
 # Utilisation of function closure to pass multiple inputs into the function.  
 class custom_loss(tf.keras.losses.Loss):
-    def __init__(self, reduction = tf.keras.losses.Reduction.AUTO, name = 'custom_loss'):
-        super().__init__(reduction=reduction, name=name)
+    def __init__(self, layer = None, reduction = tf.keras.losses.Reduction.AUTO, name = 'custom_loss'):
+        super().__init__(layer = layer,reduction=reduction, name=name,)
+        self.layer = layer
         # self.layer = layer
     def call(self,y_true,y_pred):
+        layer = self.layer
         mse = K.mean(K.square(y_true - y_pred))
         rmse = K.sqrt(mse)
-        return (rmse / K.mean(K.square(y_true)) - 1)
-        # return K.mean(K.square(y_pred - y_true) + K.square(layer), axis=-1)
+        # return (rmse / K.mean(K.square(y_true)) - 1)
+        return K.mean(K.square(y_pred - y_true) + K.square(layer), axis=-1)
  
     # def custom_loss(layer):
     #     # Create a loss function that adds the MSE loss to the mean of all squared activations of a specific layer
