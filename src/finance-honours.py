@@ -647,13 +647,13 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         # Simple configuration, only a handful of layers
         if complex_model:
             # Initial Layer
-            x = tf.keras.layers.Dense(32, activation="relu")(all_features)
+            layer_1 = tf.keras.layers.Dense(32, activation="relu")(all_features)
             # Dropout layer
-            x = tf.keras.layers.Dropout(rate=0.5, noise_shape = None, seed = None)(x)
-            x = tf.keras.layers.Dense(64, activation = 'relu')(x)
-            x = tf.keras.layers.Dense(128, activation = 'sigmoid')(x)
+            layer_2 = tf.keras.layers.Dropout(rate=0.5, noise_shape = None, seed = None)(layer_1)
+            layer_3 = tf.keras.layers.Dense(64, activation = 'relu')(layer_2)
+            layer_4 = tf.keras.layers.Dense(128, activation = 'sigmoid')(layer_3)
             # Creates the output layer
-            output = tf.keras.layers.Dense(1)(x)
+            output = tf.keras.layers.Dense(1)(layer_4)
             print('End: Configuration of Deep Network Layers')
             # Configure the model (https://www.tensorflow.org/api_docs/python/tf/keras/Model)
             model = tf.keras.Model(all_inputs, output)
@@ -775,7 +775,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         if selected_loss == 'multi_layer_loss':
             lf = multi_layer_loss
         if selected_loss == 'custom_loss':
-            lf = custom_loss(layer = x)
+            lf = custom_loss(layer = layer_3)
         #################################################################################
         # Metrics
         #################################################################################
