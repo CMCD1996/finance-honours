@@ -1352,9 +1352,9 @@ class custom_loss(tf.keras.losses.Loss):
         super().__init__(reduction=reduction, name=name)
         # self.layer = layer
     def call(y_true,y_pred):
-        mse = tf.reduce_mean(tf.square(y_true,y_pred))
-        rmse = tf.math.sqrt(mse)
-        return rmse / tf.reduce_mean(tf.square(y_true)) - 1
+        mse = K.mean(K.square(y_true - y_pred))
+        rmse = K.sqrt(mse)
+        return (rmse / K.mean(K.square(y_true)) - 1)
         # return K.mean(K.square(y_pred - y_true) + K.square(layer), axis=-1)
  
     # def custom_loss(layer):
