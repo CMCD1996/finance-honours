@@ -1727,7 +1727,7 @@ def ranking_function():
     plt.xlabel('Rank')
     plt.ylabel('Return (%)')
     plt.title('Ranking: Monotonic Functions')
-    plt.savefig('results/plots/monotonic-ranking.png')
+    plt.savefig('/home/connormcdowall/finance-honours/results/plots/monotonic-ranking.png')
     return
 #################################################################################
 # Variables
