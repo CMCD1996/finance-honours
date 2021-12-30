@@ -12,28 +12,40 @@
 \BOOKMARK [3][-]{subsubsection.4.3.2}{Properties of OLS Estimators}{subsection.4.3}% 12
 \BOOKMARK [3][-]{subsubsection.4.3.3}{The Gauss-Markov Theorem}{subsection.4.3}% 13
 \BOOKMARK [3][-]{subsubsection.4.3.4}{Weaknesses in OLS: Return Predictability}{subsection.4.3}% 14
-\BOOKMARK [2][-]{subsection.4.4}{Derivation of Loss Functions and Performance Metrics}{section.4}% 15
-\BOOKMARK [2][-]{subsection.4.5}{Portfolio Formation: Hedge Portfolios}{section.4}% 16
-\BOOKMARK [1][-]{section.5}{Data}{}% 17
-\BOOKMARK [2][-]{subsection.5.1}{Summary Statistics}{section.5}% 18
-\BOOKMARK [1][-]{section.6}{Methodology}{}% 19
-\BOOKMARK [2][-]{subsection.6.1}{Project organisation}{section.6}% 20
-\BOOKMARK [3][-]{subsubsection.6.1.1}{Version Control}{subsection.6.1}% 21
-\BOOKMARK [3][-]{subsubsection.6.1.2}{Folder Structure}{subsection.6.1}% 22
-\BOOKMARK [3][-]{subsubsection.6.1.3}{Python}{subsection.6.1}% 23
-\BOOKMARK [3][-]{subsubsection.6.1.4}{Package Management}{subsection.6.1}% 24
-\BOOKMARK [3][-]{subsubsection.6.1.5}{Excel}{subsection.6.1}% 25
-\BOOKMARK [3][-]{subsubsection.6.1.6}{IBM ILOG CPLEX Optimization}{subsection.6.1}% 26
-\BOOKMARK [3][-]{subsubsection.6.1.7}{IBM Watson Machine Learning Service}{subsection.6.1}% 27
-\BOOKMARK [3][-]{subsubsection.6.1.8}{PyPI}{subsection.6.1}% 28
-\BOOKMARK [3][-]{subsubsection.6.1.9}{Code Style}{subsection.6.1}% 29
-\BOOKMARK [3][-]{subsubsection.6.1.10}{Infrastructure}{subsection.6.1}% 30
-\BOOKMARK [2][-]{subsection.6.2}{Documentation}{section.6}% 31
-\BOOKMARK [3][-]{subsubsection.6.2.1}{Project updates}{subsection.6.2}% 32
-\BOOKMARK [3][-]{subsubsection.6.2.2}{Meeting minutes}{subsection.6.2}% 33
-\BOOKMARK [1][-]{section.7}{Results}{}% 34
-\BOOKMARK [1][-]{section.8}{Discussion}{}% 35
-\BOOKMARK [1][-]{section.9}{Conclusion}{}% 36
-\BOOKMARK [1][-]{section.10}{Appendix}{}% 37
-\BOOKMARK [2][-]{subsection.10.1}{Tables and Charts}{section.10}% 38
-\BOOKMARK [2][-]{subsection.10.2}{Meeting Minutes}{section.10}% 39
+\BOOKMARK [1][-]{section.5}{Methodology}{}% 15
+\BOOKMARK [2][-]{subsection.5.1}{Tensorflow}{section.5}% 16
+\BOOKMARK [2][-]{subsection.5.2}{Loss Functions}{section.5}% 17
+\BOOKMARK [3][-]{subsubsection.5.2.1}{Mean Square Error}{subsection.5.2}% 18
+\BOOKMARK [3][-]{subsubsection.5.2.2}{Custom Mean Square Error}{subsection.5.2}% 19
+\BOOKMARK [3][-]{subsubsection.5.2.3}{Hedge Portfolio Returns}{subsection.5.2}% 20
+\BOOKMARK [3][-]{subsubsection.5.2.4}{Sharpe Ratio}{subsection.5.2}% 21
+\BOOKMARK [2][-]{subsection.5.3}{Information Ratio}{section.5}% 22
+\BOOKMARK [2][-]{subsection.5.4}{Performance Metrics}{section.5}% 23
+\BOOKMARK [3][-]{subsubsection.5.4.1}{Hedge Portfolio Mean}{subsection.5.4}% 24
+\BOOKMARK [3][-]{subsubsection.5.4.2}{Hedge Portfolio Alphas \(CAPM, FF3, FF5\)}{subsection.5.4}% 25
+\BOOKMARK [3][-]{subsubsection.5.4.3}{Sharpe Ratio}{subsection.5.4}% 26
+\BOOKMARK [3][-]{subsubsection.5.4.4}{Information Ratio}{subsection.5.4}% 27
+\BOOKMARK [2][-]{subsection.5.5}{Hedge Portfolios}{section.5}% 28
+\BOOKMARK [1][-]{section.6}{Data}{}% 29
+\BOOKMARK [2][-]{subsection.6.1}{Summary Statistics}{section.6}% 30
+\BOOKMARK [1][-]{section.7}{Methodology}{}% 31
+\BOOKMARK [2][-]{subsection.7.1}{Project organisation}{section.7}% 32
+\BOOKMARK [3][-]{subsubsection.7.1.1}{Version Control}{subsection.7.1}% 33
+\BOOKMARK [3][-]{subsubsection.7.1.2}{Folder Structure}{subsection.7.1}% 34
+\BOOKMARK [3][-]{subsubsection.7.1.3}{Python}{subsection.7.1}% 35
+\BOOKMARK [3][-]{subsubsection.7.1.4}{Package Management}{subsection.7.1}% 36
+\BOOKMARK [3][-]{subsubsection.7.1.5}{Excel}{subsection.7.1}% 37
+\BOOKMARK [3][-]{subsubsection.7.1.6}{IBM ILOG CPLEX Optimization}{subsection.7.1}% 38
+\BOOKMARK [3][-]{subsubsection.7.1.7}{IBM Watson Machine Learning Service}{subsection.7.1}% 39
+\BOOKMARK [3][-]{subsubsection.7.1.8}{PyPI}{subsection.7.1}% 40
+\BOOKMARK [3][-]{subsubsection.7.1.9}{Code Style}{subsection.7.1}% 41
+\BOOKMARK [3][-]{subsubsection.7.1.10}{Infrastructure}{subsection.7.1}% 42
+\BOOKMARK [2][-]{subsection.7.2}{Documentation}{section.7}% 43
+\BOOKMARK [3][-]{subsubsection.7.2.1}{Project updates}{subsection.7.2}% 44
+\BOOKMARK [3][-]{subsubsection.7.2.2}{Meeting minutes}{subsection.7.2}% 45
+\BOOKMARK [1][-]{section.8}{Results}{}% 46
+\BOOKMARK [1][-]{section.9}{Discussion}{}% 47
+\BOOKMARK [1][-]{section.10}{Conclusion}{}% 48
+\BOOKMARK [1][-]{section.11}{Appendix}{}% 49
+\BOOKMARK [2][-]{subsection.11.1}{Tables and Charts}{section.11}% 50
+\BOOKMARK [2][-]{subsection.11.2}{Meeting Minutes}{section.11}% 51
