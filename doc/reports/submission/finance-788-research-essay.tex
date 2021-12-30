@@ -311,7 +311,7 @@ The analysis cross-section of one-month lead portfolio excess returns using mono
 	R(y_{i,t})
 \end{align}
 The ranking function (R($y_{i,t}$)) and thresholds (u,v) form subsets of long and short portfolios.
-Long (L) or Short (S) sets include exces returns conditioned on the associated monotonic ranking given a threshold, bound by the cardinality of the excess return vector ($|y|$).
+Long (L) or Short (S) sets include excess returns conditioned on the associated monotonic ranking given a threshold, bound by the cardinality of the excess return vector ($|y|$).
 The subsequent truth sets mathematically express aforementioned time-series hedge portfolios.
 \begin{align}
 	L &= \{ y_{i,t} | R(y_{i,t})\leq u\}\\
@@ -324,11 +324,13 @@ Equation \ref{htls} describes hedge portfolio lead excess returns ($H_t$) at a g
 \begin{align}
 	H_t &= \frac{1}{|L|}\sum_{i\epsilon L} y_{i,t} - \frac{1}{|S|}\sum_{i\epsilon S} y_{i,t} \label{htls}
 \end{align}
-Figure \ref{fig:mrf}) illustrates a basic example
+Figure \ref{fig:mrf}) illustrates an approximate linear monotonic ranking function with a sample of 100 uniformly distributed excess returns  between -10\% and 10\%.
+Boundary conditions u and v are set to 20 and 80 , respectively.
+Subsequently, excess returns above and below the green and blue dotted line belong to the long (L) and short (S) set, respectively. 
 \begin{figure}[H]
     \centering 
     \includegraphics[width=\textwidth]{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/monotonic-ranking}.png}
-    \caption{Visual Presentation of Equally Weighted Monotonic Ranking Function}
+    \caption{Approximate Linear Monotonic Ranking Function}
     \label{fig:mrf}
 \end{figure}
 First, we explore a ranking function with weights directly proportional to returns (\ref{w1})
