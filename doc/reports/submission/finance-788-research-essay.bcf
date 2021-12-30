@@ -2150,21 +2150,22 @@
     <bcf:citekey order="3">olsmf</bcf:citekey>
     <bcf:citekey order="4">hou2020replicating</bcf:citekey>
     <bcf:citekey order="5">jensen2021there</bcf:citekey>
-    <bcf:citekey order="6">J:10</bcf:citekey>
-    <bcf:citekey order="7">Google_Drive</bcf:citekey>
-    <bcf:citekey order="8">Git</bcf:citekey>
-    <bcf:citekey order="9">J:10</bcf:citekey>
-    <bcf:citekey order="10">IEA_WEM</bcf:citekey>
-    <bcf:citekey order="11">Python_Features</bcf:citekey>
-    <bcf:citekey order="12">PYPL_Pop</bcf:citekey>
-    <bcf:citekey order="13">Anaconda</bcf:citekey>
-    <bcf:citekey order="14">CBNF</bcf:citekey>
-    <bcf:citekey order="15">IBM_ILOG</bcf:citekey>
-    <bcf:citekey order="16">IPM</bcf:citekey>
-    <bcf:citekey order="17">Simplex</bcf:citekey>
-    <bcf:citekey order="18">IBM_AI</bcf:citekey>
-    <bcf:citekey order="19">IBM_WML</bcf:citekey>
-    <bcf:citekey order="20">PEP8</bcf:citekey>
+    <bcf:citekey order="6">fama2004capital</bcf:citekey>
+    <bcf:citekey order="7">J:10</bcf:citekey>
+    <bcf:citekey order="8">Google_Drive</bcf:citekey>
+    <bcf:citekey order="9">Git</bcf:citekey>
+    <bcf:citekey order="10">J:10</bcf:citekey>
+    <bcf:citekey order="11">IEA_WEM</bcf:citekey>
+    <bcf:citekey order="12">Python_Features</bcf:citekey>
+    <bcf:citekey order="13">PYPL_Pop</bcf:citekey>
+    <bcf:citekey order="14">Anaconda</bcf:citekey>
+    <bcf:citekey order="15">CBNF</bcf:citekey>
+    <bcf:citekey order="16">IBM_ILOG</bcf:citekey>
+    <bcf:citekey order="17">IPM</bcf:citekey>
+    <bcf:citekey order="18">Simplex</bcf:citekey>
+    <bcf:citekey order="19">IBM_AI</bcf:citekey>
+    <bcf:citekey order="20">IBM_WML</bcf:citekey>
+    <bcf:citekey order="21">PEP8</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="apa">

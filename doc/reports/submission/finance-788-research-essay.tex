@@ -2,12 +2,11 @@
 % !TEX encoding = UTF-8 Unicode
 % !BIB TS-program = biber
 % !BIB program = biber
-
 \documentclass[10pt]{article}
-
 %%% PAGE DIMENSIONS
 \usepackage[margin=2.54cm]{geometry}
-\geometry{a4paper} 
+\geometry{a4paper}
+%%% PACKAGES
 % \usepackage{caption}
 % \usepackage{subcaption}
 \usepackage{graphicx} % For better graphics
@@ -18,8 +17,6 @@
 \usepackage{siunitx}
 \usepackage{lscape} % Create landscape orientation for tables
 \usepackage{longtable}
-
-%%% PACKAGES
 \usepackage{booktabs} % for much better looking tables
 \usepackage{amsmath} % for better maths
 \usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
@@ -32,18 +29,14 @@
 \usepackage{cancel}
 \usepackage{color}
 \usepackage{listings}
-
-% Declare the argmax function
+% DECLARATIONS
 \DeclareMathOperator*{\argmax}{argmax} % thin space, limits underneath in displays
-
-% Create Listing Colours
+% STYLE FORMATTING
 \usepackage{xcolor}
-
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
-
 \lstdefinestyle{mystyle}{
     backgroundcolor=\color{backcolour},   
     commentstyle=\color{codegreen},
@@ -60,37 +53,38 @@
     showspaces=false,                
     showstringspaces=false,
     showtabs=false,                  
-    tabsize=2
-}
+    tabsize=2}
 \lstset{style=mystyle}
-
 \usepackage{multicol}
 \usepackage{float}
-
-% References
+% REFERENCES
 \usepackage[backend=biber,style = apa]{biblatex}
 \bibliography{sources}
-
 %%% HEADERS & FOOTERS
 \usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
 \setlength{\headheight}{15pt}
 \pagestyle{fancy} % options: empty , plain , fancy
-\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\renewcommand{\headrulewidth}{0pt} % customize the layout...
 \lhead{University of Auckland}\chead{Finance 788}\rhead{Connor McDowall}
 \lfoot{}\cfoot{\thepage}\rfoot{}
-
 %%% SECTION TITLE APPEARANCE
 \usepackage{sectsty}
-
-%%% ToC (table of contents) APPEARANCE
+%%% TABLE OF CONTENTS APPEARANCE
 \usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
 \usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
 \renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
 \renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
-
-%%% Hyperlinking 
+%%% HYPERLINKING
 \usepackage{hyperref}
+%%% DOCUMENT
 \begin{document}
+%%% NEW COMMANDS
+\newcommand{\listequationsname}{List of Equations}
+\newlistof{myequations}{equ}{\listequationsname}
+\newcommand{\myequations}[1]{%
+\addcontentsline{equ}{myequations}{\protect\numberline{\theequation}#1}\par}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+%%% TITLE PAGE
 \begin{titlepage}
 	\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for horizontal lines, change thickness here
 	
@@ -131,7 +125,6 @@
 	%----------------------------------------------------------------------------------------
 	
 	\vfill % Push the date up 1/4 of the remaining page
-	
 \end{titlepage}
 \newpage
 \section*{Abstract}
@@ -147,11 +140,12 @@
 \newpage
 \listoffigures
 \listoftables
+\listofmyequations
 \newpage
 \section{Introduction}
 \newpage
 \section{Literature Review}\label{LR}
-\textbf{Insert Literature Review}
+\textbf{Insert Literature Review - Very Brief, Only Double Spaced}
 \subsection{History of Asset Pricing Theory}
 
 \subsubsection{Optimisation Methodologies}
@@ -160,7 +154,6 @@ Convexity is an important concept in optimisation
 A couple of recent publications highlight the increased application of machine learning algorithms in financial contexts.
 \cite{corporate-culture}
 Gu et al (\citeyear{eapvml}) explore the comparative use of machine learning in empirical asset pricing.
-
 \section{Research Intent}
 \textbf{Insert Research Intent}
 \section{Theory}
@@ -172,55 +165,55 @@ We summarize the theory surrounding predictive modelling, loss functions, and op
 These functions train models by comparing predictions to realized observations using optimisation algorithms to minimize the loss function.
 We examine a linear model as our predictive model (\ref{lm}).
 Mean square error (\ref{mse}) and Gradient Descent (GD) are basic examples of a loss function and optimisation algorithm, respectively.
-\begin{align}
-	\hat{y} &= mx_i + b \label{lm}\\
-	f(y,(mx_{i} + b)) &= \frac{1}{n} \sum_{i=1}^{n}(y_i - (mx_{i} + b))^{2} \label{mse}
-\end{align}
+\begin{align*}
+	\hat{y} &= mx_i + b \numberthis \label{lm}\\
+	f(y,(mx_{i} + b)) &= \frac{1}{n} \sum_{i=1}^{n}(y_i - (mx_{i} + b))^{2} \numberthis \label{mse}
+\end{align*}
 Firstly, gradient descent takes the partial derivatives of the loss function, with the respect to the parameters in our predictive model.
 In our example, equations \ref{pdmsem} and \ref{pdmseb} are the partial derivatives for the mean square error loss function.
-\begin{align}
-	\frac{\partial f(y,(mx_{i} + b)}{ \partial m} &= \frac{1}{n} \sum_{i=1}^{n}-2x_{i}(y_i - (mx_{i} + b))^{2} \label{pdmsem}\\
-	\frac{\partial f(y,(mx_{i} + b)}{ \partial b} &= \frac{1}{n} \sum_{i=1}^{n}-2(y_i - (mx_{i} + b))^{2} \label{pdmseb}
-\end{align}
+\begin{align*}
+	\frac{\partial f(y,(mx_{i} + b)}{ \partial m} &= \frac{1}{n} \sum_{i=1}^{n}-2x_{i}(y_i - (mx_{i} + b))^{2} \numberthis \label{pdmsem}\\
+	\frac{\partial f(y,(mx_{i} + b)}{ \partial b} &= \frac{1}{n} \sum_{i=1}^{n}-2(y_i - (mx_{i} + b))^{2} \numberthis \label{pdmseb}
+\end{align*}
 Secondly, the algorithm explores epochs, using a learning rate to update parameters to move in the opposite directions of the partial derivatives until settling in a local minima.
 This extrema is the optimisation of the loss function, quantifying the accuracy of the predicative model.
 Ordinary Least Squares (OLS) regressions is an extension of the linear model prevalent in asset pricing.
 \subsection{Ordinary Least Squares (OLS)}\label{ols}
 The OLS regression is the most prominent statistical model in asset pricing theory.
-Rosenfeld \citeyear{olsmf} contributes an OLS summary.
-The composition of the true OLS model includes four components.
+Rosenfeld (\citeyear{olsmf}) summarises OLS.
+The composition of the true OLS (\ref{true-ols}) model includes four components.
 Firstly, \textbf{X}, an n x k matrix of k independent variables for n observations.
 Secondly, \textbf{y}, an n x 1 vector of observation on the dependent variable.
 Thirdly, \textbf{$\epsilon$}, an n x 1 vector of unexplained error.
 Lastly, $\theta$, a k x 1 vector of parameters to be estimated.
-\begin{align}
-	y &= X\theta + \epsilon
-\end{align}
+\begin{align*}
+	y &= X\theta + \epsilon \numberthis \label{true-ols}
+\end{align*}
 \subsubsection{Criteria for estimation}
 The criteria to obtain the parameter estimate ($\hat{\theta}$) relies on the minimisation of the sum of squared residuals (\ref{ssr}).
 We highlight the observed residuals (e) are distinct from unexplained disturbances ($\epsilon$).
 Equation \ref{res} derives residuals by taking the difference between observations based on parameter estimates.
-\begin{align}
-	\sum & e_i^2  \label{ssr}\\
-	e = y & - X \hat{\theta} \label{res}
-\end{align}
+\begin{align*}
+	\sum & e_i^2  \numberthis \label{ssr}\\
+	e = y & - X \hat{\theta} \numberthis \label{res}
+\end{align*}
 Expanding the quadratic $e^{T}e$ after substituting in equation \ref{res} leads to the alternative expression of the sum of squared residuals in equation \ref{ssrm}.
 Minimizing the sum of square residuals requires taking the partial derivative of equation \ref{ssrm} with respect to the estimated parameters (equation) using matrix differentiation (\ref{ssrmd}).
 It is imperative X has full rank where all vectors in the matrix are linearly independent, validating both the presence of a positive definite matrix and minimum.
-\begin{align}
-	e^{T}e &= y^{T}y - 2\hat{\theta}^{T}X^{T}y + \hat{\theta}^{T}X^{T}\hat{\theta}X \label{ssrm}\\
-	\frac{\partial e^{T}e}{\partial \hat{\theta}} &= - 2X^{T}y + 2X^{T}X\hat{\theta} =0 \label{ssrmd}
-\end{align}
+\begin{align*}
+	e^{T}e &= y^{T}y - 2\hat{\theta}^{T}X^{T}y + \hat{\theta}^{T}X^{T}\hat{\theta}X \numberthis \label{ssrm}\\
+	\frac{\partial e^{T}e}{\partial \hat{\theta}} &= - 2X^{T}y + 2X^{T}X\hat{\theta} =0 \numberthis \label{ssrmd}
+\end{align*}
 We find the expression for the Ordinary Least Squares (OLS) estimator (\ref{OLSD}) after rearranging equation \ref{ssrmd} to normal form, utilizing inverse matrices to form identity matrices, and simplifying.
-\begin{align}
+\begin{align*}
 	2X^{T}X\hat{\theta} &= 2X^{T}y \\
 	(X^{T}X)^{-1}(X^{T}X)\hat{\theta} &= (X^{T}X)^{-1}X^{T}y \\
 	I\hat{\theta} &= (X^{T}X)^{-1}X^{T}y \\
-	\hat{\theta} &= (X^{T}X)^{-1}(X^{T}y) \label{OLSD}\\
-\end{align}
+	\hat{\theta} &= (X^{T}X)^{-1}(X^{T}y) \numberthis \label{OLSD}\\
+\end{align*}
 Therefore, we can use the OLS estimator to make predictions with OLS (\ref{OLS}).
 \begin{align*}
-	\hat{y} &= X^{T} \hat{\theta} \label{OLS}
+	\hat{y} &= X^{T} \hat{\theta} \numberthis \label{OLS}
 \end{align*}
 \subsubsection{Properties of OLS Estimators}
 There are six key properties in addition to the satisfaction in minimizing the summation of squared residuals.
@@ -235,12 +228,12 @@ There are six key properties in addition to the satisfaction in minimizing the s
 \subsubsection{The Gauss-Markov Theorem}
 However, OLS makes Gauss-Markov assumptions about the true model to make inferences regarding $\beta$ from $\hat{\beta}$.
 The intention of the Gauss-Markov Theorem, conditional on the below assumptions, states the OLS estimator is the best linear, unbiased, and efficient estimator: 
-\begin{align}
+\begin{align*}
 	y &= x\beta + \epsilon\\
-	E[\epsilon|X] &= 0 \label{gma3}\\
-	E(\epsilon \epsilon^{T}|X) &= \Omega = \sigma^{2}I \label{gma4}\\
+	E[\epsilon|X] &= 0 \numberthis \label{gma3}\\
+	E(\epsilon \epsilon^{T}|X) &= \Omega = \sigma^{2}I \numberthis \label{gma4}\\
 	\epsilon &| X ~ N[0,\sigma^{T}I] \text{ (hypothesis testing)}
-\end{align}
+\end{align*}
 \begin{itemize}
 	\item X is an n x k matrix of full rank
 	\item X must be generated randomly, or fixed, by a mechanism uncorrelated to disturbances.
@@ -250,9 +243,9 @@ Equation \ref{gma4} captures homoskedasticity and no autocorrelation assumptions
 Additionally,
 The theory underlying Ordinary Least Squares informs the common practice in minimising of the sum of least squares when evaluating prediction performance.
 The mathematical tractability, in accordance with the aforementioned assumption, frame our thinking surrounding the derivation of custom loss functions.
-\subsubsection{Weaknesses in OLS: Return Predictability}
+\subsubsection{Research Intent}
+Minimisation of returns
 \textbf{Include examples on the minimisation of sum of the square errors does not contribute to maximising returns}
-
 \section{Data}
 Hou et al., (\citeyear{hou2020replicating}) use an extensive data library to assess 452 anomalies across anomalies literature.
 Their analysis informs which abnormalities drive the cross section of expected returns. 
@@ -300,27 +293,27 @@ Section \ref{sec:mlo} outlines advantages to Ordinary Least Squares.
 Subsequently, MSE serves as a baseline for loss function and performance metric comparisons.
 The following function (\ref{mself}) and partial derivative (\ref{pdmself}) describe Tensorflows's Mean Square Error implementation, both from in-built and custom contexts. 
 Python classes describe equation \ref{mself} to enable Tensorflow's automatic differentiation capabilities, approximating the partial derivatives of the loss function (\ref{pdmself}) with numerical methods.
-Please note the use of Hadamard exponentiation ($x^{\circ n}$).
-\begin{align}
-	f(y, X^{T} \hat{\theta}) &= \frac{\vec{1}}{\vec{1}^{T}\vec{1}} (y - X^{T}\hat{\theta})^{\circ 2} \label{mself}\\
-	\frac{\partial f(y, X^{T} \hat{\theta})}{ \partial \hat{\theta}} &= \frac{\vec{1}}{\vec{1}^{T}\vec{1}} -2(y-X{T} \hat{\theta})^{\circ 1} \label{pdmself}\\
-\end{align}
+Please note the use of Hadamard exponentiation ($x^{\circ n}$) as an element-wise operation.
+\begin{align*}
+	f(y, X^{T} \hat{\theta}) &= \frac{\vec{1}}{\vec{1}^{T}\vec{1}} (y - X^{T}\hat{\theta})^{\circ 2} \numberthis \label{mself}\\
+	\frac{\partial f(y, X^{T} \hat{\theta})}{ \partial \hat{\theta}} &= \frac{\vec{1}}{\vec{1}^{T}\vec{1}} (-2(y-X{T} \hat{\theta})^{\circ 1}) \numberthis \label{pdmself}\\
+\end{align*}
 \subsubsection{Hedge Portfolio}
-Hedge portfolios rely on monotonic ranking functions for optimisation as the monotonic nature preserves or reverses a given ordered set.
-The analysis cross-section of one-month lead portfolio excess returns using monotonic functions.
+Hedge portfolios rely on monotonic ranking functions for optimisation as their monotonic nature preserves or reverses a given ordered set.
+The analysis cross-section of one-month lead portfolio excess returns using monotonic functions 
 \begin{align}
-	R(y_{i,t})
+	R(y_{i,t}) \numberthis \label{ranking-function}
 \end{align}
 The ranking function (R($y_{i,t}$)) and thresholds (u,v) form subsets of long and short portfolios.
 Long (L) or Short (S) sets include excess returns conditioned on the associated monotonic ranking given a threshold, bound by the cardinality of the excess return vector ($|y|$).
 The subsequent truth sets mathematically express aforementioned time-series hedge portfolios.
-\begin{align}
+\begin{align*}
 	L &= \{ y_{i,t} | R(y_{i,t})\leq u\}\\
 	S &= \{ y_{i,t} | R(y_{i,t})\geq v\}\\
 	0 & < u \leq |y|\\
 	0 & < v \leq |y|\\
 	u & < v
-\end{align}
+\end{align*}
 Equation \ref{htls} describes hedge portfolio lead excess returns ($H_t$) at a given time (t).
 \begin{align}
 	H_t &= \frac{1}{|L|}\sum_{i\epsilon L} y_{i,t} - \frac{1}{|S|}\sum_{i\epsilon S} y_{i,t} \label{htls}
@@ -334,28 +327,35 @@ Subsequently, excess returns above (below) the green (blue) dotted line belong t
     \caption{Approximate Linear Monotonic Ranking Function}
     \label{fig:mrf}
 \end{figure}
-First, we explore a ranking function with weights directly proportional to returns (\ref{w1})
-to derive the below loss function (\ref{lf}).
-\begin{align}
-	R(\hat{y}) &= W \label{w1}\\
+The permutations in monotonic ranking functions, and subsequent hedge portfolios, are endless. 
+This research essay develops a monotonic ranking function proportionally weighting one month lead excess returns (\ref{w1}).
+Therefore, equation \ref{pwlf} defines the loss function.
+\begin{align*}
+	R(\hat{y}) &= W \numberthis \label{w1}\\
 	W&:= \frac{\hat{y}}{\vec{\textbf{1}}\hat{y}}\\
 	\hat{y} &= X^{T} \hat{\theta}\\
-	f_{\hat{\theta}}(X) &= (\frac{X^{T} \hat{\theta}}{\vec{\textbf{1}}X^{T} \hat{\theta}})^\top X^{T} \hat{\theta} \label{lf}\\
-\end{align}
-Section \ref{sec:mlo} explains the theory on predicative modelling, loss functions and optimisation algorithms.
-The ability to find partial derivatives (\ref{pdlf}) and argmax (\ref{argmax}) inform the practicality of this ranking function.
-\begin{align}
-	\frac{\partial f_{\hat{\theta}}(X)}{\partial \hat{\theta}} &= \frac{\partial ((\frac{X^{T} \hat{\theta}}{\vec{\textbf{1}}X^{T} \hat{\theta}})^\top X^{T} \hat{\theta})}{\partial \hat{\theta}} \label{pdlf}\\
-	\argmax_{\hat{\theta}} &: (\frac{X^{T} \hat{\theta}}{\vec{\textbf{1}}X^{T} \hat{\theta}})^\top X^{T} \hat{\theta} \label{argmax}
-\end{align}
-$\argmax_{\hat{\theta}}$ uses partial derivatives with respect to $\hat{\theta}$ to find the optimum scenario.
-\begin{align}
-	\frac{\partial (f_{\hat{\theta}}(X))}{\partial \hat{\theta}}  &= \frac{1}{(\hat{\theta}^\top X \vec{1})} X X^\top \hat{\theta} +\frac{1}{\vec{1}X^\top \hat{\theta}} XX^\top \hat{\theta} -\frac{1}{(\hat{\theta}^\top X \vec{1})^{2}} \hat{\theta}^\top XX^\top \hat{\theta} X \vec{1}
-\end{align}
+	f_{\hat{\theta}}(X) &= (\frac{X^{T} \hat{\theta}}{\vec{\textbf{1}}X^{T} \hat{\theta}})^\top X^{T} \hat{\theta} \numberthis \label{pwlf}
+\end{align*}
+The above loss function is differentiable using symbolic mathematic as shown in equation \ref{pdewlf}.
+\begin{align*}
+	\frac{\partial f_{\hat{\theta}}(X)}{\partial \hat{\theta}} &= \frac{\partial ((\frac{X^{T} \hat{\theta}}{\vec{\textbf{1}}X^{T} \hat{\theta}})^\top X^{T} \hat{\theta})}{\partial \hat{\theta}} \\
+	\frac{\partial (f_{\hat{\theta}}(X))}{\partial \hat{\theta}}  &= \frac{1}{(\hat{\theta}^\top X \vec{1})} X X^\top \hat{\theta} +\frac{1}{\vec{1}X^\top \hat{\theta}} XX^\top \hat{\theta} -\frac{1}{(\hat{\theta}^\top X \vec{1})^{2}} \hat{\theta}^\top XX^\top \hat{\theta} X \vec{1} \numberthis \label{pdewlf}
+\end{align*}
+The research intent inform
+\begin{align*}
+	\argmax_{\hat{\theta}} &: (\frac{X^{T} \hat{\theta}}{\vec{\textbf{1}}X^{T} \hat{\theta}})^\top X^{T} \hat{\theta} \numberthis \label{argmax}
+\end{align*}
+
+Hedge Portfolio Mean
+
+The Capital Asset Pricing Model (CAPM)
+
+Fama-French Three Factor Model (FF3)
+
+Fama-French Five Factor Model (FF5) continues to inform asset pricing E. Fama \& K. French produce \cite{fama2004capital}
 \subsubsection{Sharpe Ratio}
-\subsection{Information Ratio}
-\subsubsection{Hedge Portfolio Mean}
-\subsubsection{Hedge Portfolio Alphas (CAPM, FF3, FF5)}
+\subsubsection{Information Ratio}
+
 
 
 \newpage
