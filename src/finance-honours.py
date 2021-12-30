@@ -1729,6 +1729,8 @@ def ranking_function():
     print('Sum of weights', np.sum(weights))
     # Plots the functions
     plt.plot(returns,rank,'r.', base,rank, 'k.',returns,u, 'g--',returns,v, 'b--')
+    # Invert the y-axis
+    plt.gca().invert_yaxis()
     plt.legend('Returns','Baseline')
     plt.xlabel('Excess Return (y(i,t), %)')
     plt.ylabel('Rank (R(y(i,t)))')
