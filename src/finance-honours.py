@@ -1731,6 +1731,7 @@ def ranking_function():
     plt.plot(returns,rank,'r.', base,rank, 'k.',returns,u, 'g--',returns,v, 'b--')
     # Invert the y-axis
     plt.gca().invert_yaxis()
+    plt.gca().invert_xaxis()
     plt.legend('Returns','Baseline')
     plt.xlabel('Excess Return (y(i,t), %)')
     plt.ylabel('Rank (R(y(i,t)))')
