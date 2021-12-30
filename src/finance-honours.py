@@ -1713,7 +1713,7 @@ def ranking_function():
     base = np.zeros(num)
     ones = np.ones(num)
     # Creates rank array
-    rank = np.linspace(num,0,-1)
+    rank = np.linspace(num,1,num)
     # rank = np.array(list(range(1,len(returns)+ 1)))
     # Create weights
     weights  = returns/transpose(ones)
