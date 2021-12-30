@@ -1728,11 +1728,11 @@ def ranking_function():
     print('weights',weights)
     print('Sum of weights', np.sum(weights))
     # Plots the functions
-    plt.plot(rank,returns, 'r.', rank,base, 'k.',u,returns, 'g--',v,returns, 'b--')
+    plt.plot(returns,rank,'r.', base,rank, 'k.',returns,u, 'g--',returns,v, 'b--')
     plt.legend('Returns','Baseline')
-    plt.xlabel('Rank')
-    plt.ylabel('Return (%)')
-    plt.title('Ranking: Monotonic Functions')
+    plt.xlabel('Excess Return (y(i,t), %)')
+    plt.ylabel('Rank (R(y(i,t)))')
+    plt.title('Monotonic Ranking Function')
     plt.savefig('/home/connormcdowall/finance-honours/results/plots/monotonic-ranking.png')
     return
 #################################################################################
