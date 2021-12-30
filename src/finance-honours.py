@@ -1714,6 +1714,11 @@ def ranking_function():
     ones = np.ones(num)
     # Creates rank array
     rank = np.linspace(num,1,num)
+    # Sets thresholds
+    u = np.zeros((rank.shape))
+    u[:] = 20
+    v = np.zeros((rank.shape))
+    v[:] = 80
     # rank = np.array(list(range(1,len(returns)+ 1)))
     # Create weights
     weights  = returns/transpose(ones)
@@ -1723,7 +1728,7 @@ def ranking_function():
     print('weights',weights)
     print('Sum of weights', np.sum(weights))
     # Plots the functions
-    plt.plot(rank,returns, 'r.', rank,base, 'k.')
+    plt.plot(rank,returns, 'r.', rank,base, 'k.',u,returns, 'g--',v,returns, 'b--')
     plt.legend('Returns','Baseline')
     plt.xlabel('Rank')
     plt.ylabel('Return (%)')
