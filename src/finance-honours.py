@@ -1706,14 +1706,15 @@ def ranking_function():
     
     # Creates an ordered, random array of proxy returns (%)
     num = 100
-    returns_uniform =np.sort(np.arange(10,-10,-0.2))
+    returns_uniform =np.sort(np.arange(-10,10,-0.2))
     print('returns',returns_uniform)
     print('returns size',np.size(returns_uniform))
     returns = np.sort(np.random.uniform(low=-10.0, high=10.0, size=(num,)))
     base = np.zeros(num)
     ones = np.ones(num)
     # Creates rank array
-    rank = np.array(list(range(1,len(returns)+ 1)))/100
+    rank = np.linspace(num,0,-1)
+    # rank = np.array(list(range(1,len(returns)+ 1)))
     # Create weights
     weights  = returns/transpose(ones)
     print('weights',weights)
