@@ -1970,7 +1970,7 @@ example_autodiff = True
 test_loss_function = False
 # Analytical
 analytical = False
-rank_functions = False
+rank_functions = True
 # Research Proposal Analysis
 begin_analysis = False
 #################################################################################
@@ -2030,6 +2030,3 @@ if rank_functions:
 if begin_analysis:
     project_analysis(data_vm_directory, list_of_columns, categorical_assignment, target_column, chunk_size, resizing_options,
                      batch_size, model_name, selected_optimizer, selected_loss, selected_metrics, split_data=False, trial=True, sample=True)
-
-# See the formatting
-print('format')
