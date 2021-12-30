@@ -1706,14 +1706,14 @@ def ranking_function():
     
     # Creates an ordered, random array of proxy returns (%)
     num = 100
-    returns_uniform =np.sort(np.arange(-10,10,0.2))
+    returns_uniform =np.sort(np.arange(10,-10,-0.2))
     print('returns',returns_uniform)
     print('returns size',np.size(returns_uniform))
     returns = np.sort(np.random.uniform(low=-10.0, high=10.0, size=(num,)))
     base = np.zeros(num)
     ones = np.ones(num)
     # Creates rank array
-    rank = np.array(list(range(1,len(returns)+ 1)))
+    rank = np.array(list(range(1,len(returns)+ 1)))/100
     # Create weights
     weights  = returns/transpose(ones)
     print('weights',weights)
@@ -1721,8 +1721,6 @@ def ranking_function():
     weights  = weights*returns
     print('weights',weights)
     print('Sum of weights', np.sum(weights))
-    # Fit monotonic functions between curves
-
     # Plots the functions
     plt.plot(rank,returns, 'r.', rank,base, 'k.')
     plt.legend('Returns','Baseline')
@@ -1801,9 +1799,9 @@ example_autodiff = True
 test_loss_function = False
 # Analytical
 analytical = False
-rank_functions = False
+rank_functions = True
 # Research Proposal Analysis
-begin_analysis = True
+begin_analysis = False
 #################################################################################
 # Function Calls - Testing
 #################################################################################
