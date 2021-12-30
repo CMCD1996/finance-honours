@@ -1709,7 +1709,7 @@ def ranking_function():
     print('returns',returns_uniform)
     print('returns size',np.size(returns_uniform))
     returns = np.sort(np.random.uniform(low=-10.0, high=10.0, size=(num,)))
-    returns = returns[::-1].sort
+    # returns = returns[::-1].sort
     base = np.zeros(num)
     ones = np.ones(num)
     # Creates rank array
