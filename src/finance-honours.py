@@ -1703,7 +1703,6 @@ def ranking_function():
     Args:
         type ([type]): String for desired ranking functions
     """
-    
     # Creates an ordered, random array of proxy returns (%)
     num = 100
     returns_uniform =np.sort(np.arange(-10,10,-0.2))
