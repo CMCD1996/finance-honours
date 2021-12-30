@@ -1,40 +1,52 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
-\contentsline {section}{\numberline {1}Introduction}{6}{section.1}% 
-\contentsline {section}{\numberline {2}Literature Review}{7}{section.2}% 
-\contentsline {subsection}{\numberline {2.1}History of Asset Pricing Theory}{7}{subsection.2.1}% 
-\contentsline {subsubsection}{\numberline {2.1.1}Optimisation Methodologies}{7}{subsubsection.2.1.1}% 
-\contentsline {subsubsection}{\numberline {2.1.2}Machine Learning in Financial Contexts}{7}{subsubsection.2.1.2}% 
-\contentsline {section}{\numberline {3}Research Intent}{7}{section.3}% 
-\contentsline {section}{\numberline {4}Theory}{7}{section.4}% 
-\contentsline {subsection}{\numberline {4.1}Return predictability}{7}{subsection.4.1}% 
-\contentsline {subsection}{\numberline {4.2}Modelling, loss, and optimisation}{7}{subsection.4.2}% 
-\contentsline {subsection}{\numberline {4.3}Ordinary Least Squares (OLS)}{7}{subsection.4.3}% 
-\contentsline {subsubsection}{\numberline {4.3.1}Criteria for estimation}{8}{subsubsection.4.3.1}% 
-\contentsline {subsubsection}{\numberline {4.3.2}Properties of OLS Estimators}{8}{subsubsection.4.3.2}% 
-\contentsline {subsubsection}{\numberline {4.3.3}The Gauss-Markov Theorem}{8}{subsubsection.4.3.3}% 
-\contentsline {subsubsection}{\numberline {4.3.4}Weaknesses in OLS: Return Predictability}{9}{subsubsection.4.3.4}% 
-\contentsline {subsection}{\numberline {4.4}Derivation of Loss Functions and Performance Metrics}{9}{subsection.4.4}% 
-\contentsline {subsection}{\numberline {4.5}Portfolio Formation: Hedge Portfolios}{9}{subsection.4.5}% 
-\contentsline {section}{\numberline {5}Data}{12}{section.5}% 
-\contentsline {subsection}{\numberline {5.1}Summary Statistics}{12}{subsection.5.1}% 
-\contentsline {section}{\numberline {6}Methodology}{12}{section.6}% 
-\contentsline {subsection}{\numberline {6.1}Project organisation}{12}{subsection.6.1}% 
-\contentsline {subsubsection}{\numberline {6.1.1}Version Control}{12}{subsubsection.6.1.1}% 
-\contentsline {subsubsection}{\numberline {6.1.2}Folder Structure}{12}{subsubsection.6.1.2}% 
-\contentsline {subsubsection}{\numberline {6.1.3}Python}{13}{subsubsection.6.1.3}% 
-\contentsline {subsubsection}{\numberline {6.1.4}Package Management}{13}{subsubsection.6.1.4}% 
-\contentsline {subsubsection}{\numberline {6.1.5}Excel}{13}{subsubsection.6.1.5}% 
-\contentsline {subsubsection}{\numberline {6.1.6}IBM ILOG CPLEX Optimization}{14}{subsubsection.6.1.6}% 
-\contentsline {subsubsection}{\numberline {6.1.7}IBM Watson Machine Learning Service}{14}{subsubsection.6.1.7}% 
-\contentsline {subsubsection}{\numberline {6.1.8}PyPI}{14}{subsubsection.6.1.8}% 
-\contentsline {subsubsection}{\numberline {6.1.9}Code Style}{14}{subsubsection.6.1.9}% 
-\contentsline {subsubsection}{\numberline {6.1.10}Infrastructure}{15}{subsubsection.6.1.10}% 
-\contentsline {subsection}{\numberline {6.2}Documentation}{15}{subsection.6.2}% 
-\contentsline {subsubsection}{\numberline {6.2.1}Project updates}{15}{subsubsection.6.2.1}% 
-\contentsline {subsubsection}{\numberline {6.2.2}Meeting minutes}{15}{subsubsection.6.2.2}% 
-\contentsline {section}{\numberline {7}Results}{15}{section.7}% 
-\contentsline {section}{\numberline {8}Discussion}{15}{section.8}% 
-\contentsline {section}{\numberline {9}Conclusion}{15}{section.9}% 
-\contentsline {section}{\numberline {10}Appendix}{16}{section.10}% 
-\contentsline {subsection}{\numberline {10.1}Tables and Charts}{16}{subsection.10.1}% 
-\contentsline {subsection}{\numberline {10.2}Meeting Minutes}{31}{subsection.10.2}% 
+\contentsline {section}{\numberline {1}Introduction}{7}{section.1}% 
+\contentsline {section}{\numberline {2}Literature Review}{8}{section.2}% 
+\contentsline {subsection}{\numberline {2.1}History of Asset Pricing Theory}{8}{subsection.2.1}% 
+\contentsline {subsubsection}{\numberline {2.1.1}Optimisation Methodologies}{8}{subsubsection.2.1.1}% 
+\contentsline {subsubsection}{\numberline {2.1.2}Machine Learning in Financial Contexts}{8}{subsubsection.2.1.2}% 
+\contentsline {section}{\numberline {3}Research Intent}{8}{section.3}% 
+\contentsline {section}{\numberline {4}Theory}{8}{section.4}% 
+\contentsline {subsection}{\numberline {4.1}Return predictability}{8}{subsection.4.1}% 
+\contentsline {subsection}{\numberline {4.2}Modelling, loss, and optimisation}{8}{subsection.4.2}% 
+\contentsline {subsection}{\numberline {4.3}Ordinary Least Squares (OLS)}{8}{subsection.4.3}% 
+\contentsline {subsubsection}{\numberline {4.3.1}Criteria for estimation}{9}{subsubsection.4.3.1}% 
+\contentsline {subsubsection}{\numberline {4.3.2}Properties of OLS Estimators}{9}{subsubsection.4.3.2}% 
+\contentsline {subsubsection}{\numberline {4.3.3}The Gauss-Markov Theorem}{9}{subsubsection.4.3.3}% 
+\contentsline {subsubsection}{\numberline {4.3.4}Weaknesses in OLS: Return Predictability}{10}{subsubsection.4.3.4}% 
+\contentsline {section}{\numberline {5}Methodology}{10}{section.5}% 
+\contentsline {subsection}{\numberline {5.1}Tensorflow}{10}{subsection.5.1}% 
+\contentsline {subsection}{\numberline {5.2}Loss Functions}{10}{subsection.5.2}% 
+\contentsline {subsubsection}{\numberline {5.2.1}Mean Square Error}{10}{subsubsection.5.2.1}% 
+\contentsline {subsubsection}{\numberline {5.2.2}Custom Mean Square Error}{10}{subsubsection.5.2.2}% 
+\contentsline {subsubsection}{\numberline {5.2.3}Hedge Portfolio Returns}{10}{subsubsection.5.2.3}% 
+\contentsline {subsubsection}{\numberline {5.2.4}Sharpe Ratio}{10}{subsubsection.5.2.4}% 
+\contentsline {subsection}{\numberline {5.3}Information Ratio}{10}{subsection.5.3}% 
+\contentsline {subsection}{\numberline {5.4}Performance Metrics}{10}{subsection.5.4}% 
+\contentsline {subsubsection}{\numberline {5.4.1}Hedge Portfolio Mean}{10}{subsubsection.5.4.1}% 
+\contentsline {subsubsection}{\numberline {5.4.2}Hedge Portfolio Alphas (CAPM, FF3, FF5)}{10}{subsubsection.5.4.2}% 
+\contentsline {subsubsection}{\numberline {5.4.3}Sharpe Ratio}{10}{subsubsection.5.4.3}% 
+\contentsline {subsubsection}{\numberline {5.4.4}Information Ratio}{10}{subsubsection.5.4.4}% 
+\contentsline {subsection}{\numberline {5.5}Hedge Portfolios}{11}{subsection.5.5}% 
+\contentsline {section}{\numberline {6}Data}{13}{section.6}% 
+\contentsline {subsection}{\numberline {6.1}Summary Statistics}{13}{subsection.6.1}% 
+\contentsline {section}{\numberline {7}Methodology}{13}{section.7}% 
+\contentsline {subsection}{\numberline {7.1}Project organisation}{13}{subsection.7.1}% 
+\contentsline {subsubsection}{\numberline {7.1.1}Version Control}{13}{subsubsection.7.1.1}% 
+\contentsline {subsubsection}{\numberline {7.1.2}Folder Structure}{13}{subsubsection.7.1.2}% 
+\contentsline {subsubsection}{\numberline {7.1.3}Python}{14}{subsubsection.7.1.3}% 
+\contentsline {subsubsection}{\numberline {7.1.4}Package Management}{14}{subsubsection.7.1.4}% 
+\contentsline {subsubsection}{\numberline {7.1.5}Excel}{14}{subsubsection.7.1.5}% 
+\contentsline {subsubsection}{\numberline {7.1.6}IBM ILOG CPLEX Optimization}{15}{subsubsection.7.1.6}% 
+\contentsline {subsubsection}{\numberline {7.1.7}IBM Watson Machine Learning Service}{15}{subsubsection.7.1.7}% 
+\contentsline {subsubsection}{\numberline {7.1.8}PyPI}{15}{subsubsection.7.1.8}% 
+\contentsline {subsubsection}{\numberline {7.1.9}Code Style}{15}{subsubsection.7.1.9}% 
+\contentsline {subsubsection}{\numberline {7.1.10}Infrastructure}{16}{subsubsection.7.1.10}% 
+\contentsline {subsection}{\numberline {7.2}Documentation}{16}{subsection.7.2}% 
+\contentsline {subsubsection}{\numberline {7.2.1}Project updates}{16}{subsubsection.7.2.1}% 
+\contentsline {subsubsection}{\numberline {7.2.2}Meeting minutes}{16}{subsubsection.7.2.2}% 
+\contentsline {section}{\numberline {8}Results}{16}{section.8}% 
+\contentsline {section}{\numberline {9}Discussion}{16}{section.9}% 
+\contentsline {section}{\numberline {10}Conclusion}{16}{section.10}% 
+\contentsline {section}{\numberline {11}Appendix}{17}{section.11}% 
+\contentsline {subsection}{\numberline {11.1}Tables and Charts}{17}{subsection.11.1}% 
+\contentsline {subsection}{\numberline {11.2}Meeting Minutes}{32}{subsection.11.2}% 

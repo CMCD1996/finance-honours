@@ -252,8 +252,20 @@ The theory underlying Ordinary Least Squares informs the common practice in mini
 The mathematical tractability, in accordance with the aforementioned assumption, frame our thinking surrounding the derivation of custom loss functions.
 \subsubsection{Weaknesses in OLS: Return Predictability}
 \textbf{Include examples on the minimisation of sum of the square errors does not contribute to maximising returns}
-\subsection{Derivation of Loss Functions and Performance Metrics}
-Table \ref{hpt} provides an overview of 
+\section{Methodology}
+\subsection{Tensorflow}
+\subsection{Loss Functions}
+\subsubsection{Mean Square Error}
+\subsubsection{Custom Mean Square Error}
+\subsubsection{Hedge Portfolio Returns}
+\subsubsection{Sharpe Ratio}
+\subsection{Information Ratio}
+\subsection{Performance Metrics}
+\subsubsection{Hedge Portfolio Mean}
+\subsubsection{Hedge Portfolio Alphas (CAPM, FF3, FF5)}
+\subsubsection{Sharpe Ratio}
+\subsubsection{Information Ratio}
+Table \ref{hpt} emphasises the separation between training and validation datasets.
 	\begin{table}[H]
 		\centering
 		\begin{tabular}{||c|c|c|c||}
@@ -314,7 +326,7 @@ The ability to find partial derivatives (\ref{pdlf}) and argmax (\ref{argmax}) i
 	\frac{\partial f_{\hat{\theta}}(X)}{\partial \hat{\theta}} &= \frac{\partial ((\frac{X^{T} \hat{\theta}}{\vec{\textbf{1}}X^{T} \hat{\theta}})^\top X^{T} \hat{\theta})}{\partial \hat{\theta}} \label{pdlf}\\
 	\argmax_{\hat{\theta}} &: (\frac{X^{T} \hat{\theta}}{\vec{\textbf{1}}X^{T} \hat{\theta}})^\top X^{T} \hat{\theta} \label{argmax}
 \end{align}
-The argmax (\label{argmax}) requires to use partial derivative with respect to $\hat{\theta}$
+$\argmax_{\hat{\theta}}$ uses partial derivatives with respect to $\hat{\theta}$ to find the optimum scenario.
 \begin{align}
 	\frac{\partial (f_{\hat{\theta}}(X))}{\partial \hat{\theta}}  &= \frac{1}{(\hat{\theta}^\top X \vec{1})} X X^\top \hat{\theta}\\
 	&+\frac{1}{\vec{1}X^\top \hat{\theta}} XX^\top \hat{\theta}\\
