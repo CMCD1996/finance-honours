@@ -13,40 +13,42 @@
 \contentsline {subsubsection}{\numberline {4.3.2}Properties of OLS Estimators}{9}{subsubsection.4.3.2}% 
 \contentsline {subsubsection}{\numberline {4.3.3}The Gauss-Markov Theorem}{9}{subsubsection.4.3.3}% 
 \contentsline {subsubsection}{\numberline {4.3.4}Weaknesses in OLS: Return Predictability}{10}{subsubsection.4.3.4}% 
-\contentsline {section}{\numberline {5}Methodology}{10}{section.5}% 
-\contentsline {subsection}{\numberline {5.1}Tensorflow}{10}{subsection.5.1}% 
-\contentsline {subsection}{\numberline {5.2}Loss Functions}{10}{subsection.5.2}% 
-\contentsline {subsubsection}{\numberline {5.2.1}Mean Square Error}{10}{subsubsection.5.2.1}% 
-\contentsline {subsubsection}{\numberline {5.2.2}Custom Mean Square Error}{10}{subsubsection.5.2.2}% 
-\contentsline {subsubsection}{\numberline {5.2.3}Hedge Portfolio Returns}{10}{subsubsection.5.2.3}% 
-\contentsline {subsubsection}{\numberline {5.2.4}Sharpe Ratio}{10}{subsubsection.5.2.4}% 
-\contentsline {subsection}{\numberline {5.3}Information Ratio}{10}{subsection.5.3}% 
-\contentsline {subsection}{\numberline {5.4}Performance Metrics}{10}{subsection.5.4}% 
-\contentsline {subsubsection}{\numberline {5.4.1}Hedge Portfolio Mean}{10}{subsubsection.5.4.1}% 
-\contentsline {subsubsection}{\numberline {5.4.2}Hedge Portfolio Alphas (CAPM, FF3, FF5)}{10}{subsubsection.5.4.2}% 
-\contentsline {subsubsection}{\numberline {5.4.3}Sharpe Ratio}{10}{subsubsection.5.4.3}% 
-\contentsline {subsubsection}{\numberline {5.4.4}Information Ratio}{10}{subsubsection.5.4.4}% 
-\contentsline {subsection}{\numberline {5.5}Hedge Portfolios}{11}{subsection.5.5}% 
-\contentsline {section}{\numberline {6}Data}{13}{section.6}% 
-\contentsline {subsection}{\numberline {6.1}Summary Statistics}{13}{subsection.6.1}% 
-\contentsline {section}{\numberline {7}Methodology}{13}{section.7}% 
-\contentsline {subsection}{\numberline {7.1}Project organisation}{13}{subsection.7.1}% 
-\contentsline {subsubsection}{\numberline {7.1.1}Version Control}{13}{subsubsection.7.1.1}% 
-\contentsline {subsubsection}{\numberline {7.1.2}Folder Structure}{13}{subsubsection.7.1.2}% 
-\contentsline {subsubsection}{\numberline {7.1.3}Python}{14}{subsubsection.7.1.3}% 
-\contentsline {subsubsection}{\numberline {7.1.4}Package Management}{14}{subsubsection.7.1.4}% 
-\contentsline {subsubsection}{\numberline {7.1.5}Excel}{14}{subsubsection.7.1.5}% 
-\contentsline {subsubsection}{\numberline {7.1.6}IBM ILOG CPLEX Optimization}{15}{subsubsection.7.1.6}% 
-\contentsline {subsubsection}{\numberline {7.1.7}IBM Watson Machine Learning Service}{15}{subsubsection.7.1.7}% 
-\contentsline {subsubsection}{\numberline {7.1.8}PyPI}{15}{subsubsection.7.1.8}% 
-\contentsline {subsubsection}{\numberline {7.1.9}Code Style}{15}{subsubsection.7.1.9}% 
-\contentsline {subsubsection}{\numberline {7.1.10}Infrastructure}{16}{subsubsection.7.1.10}% 
-\contentsline {subsection}{\numberline {7.2}Documentation}{16}{subsection.7.2}% 
-\contentsline {subsubsection}{\numberline {7.2.1}Project updates}{16}{subsubsection.7.2.1}% 
-\contentsline {subsubsection}{\numberline {7.2.2}Meeting minutes}{16}{subsubsection.7.2.2}% 
-\contentsline {section}{\numberline {8}Results}{16}{section.8}% 
-\contentsline {section}{\numberline {9}Discussion}{16}{section.9}% 
-\contentsline {section}{\numberline {10}Conclusion}{16}{section.10}% 
-\contentsline {section}{\numberline {11}Appendix}{17}{section.11}% 
-\contentsline {subsection}{\numberline {11.1}Tables and Charts}{17}{subsection.11.1}% 
-\contentsline {subsection}{\numberline {11.2}Meeting Minutes}{32}{subsection.11.2}% 
+\contentsline {section}{\numberline {5}Data}{10}{section.5}% 
+\contentsline {subsection}{\numberline {5.1}Limitations}{11}{subsection.5.1}% 
+\contentsline {subsection}{\numberline {5.2}Summary Statistics}{11}{subsection.5.2}% 
+\contentsline {section}{\numberline {6}Methodology}{11}{section.6}% 
+\contentsline {subsection}{\numberline {6.1}Target Variable}{11}{subsection.6.1}% 
+\contentsline {subsection}{\numberline {6.2}Google Cloud Platform}{11}{subsection.6.2}% 
+\contentsline {subsection}{\numberline {6.3}Artificial Neural Networks}{11}{subsection.6.3}% 
+\contentsline {subsubsection}{\numberline {6.3.1}}{11}{subsubsection.6.3.1}% 
+\contentsline {subsubsection}{\numberline {6.3.2}Configuration}{11}{subsubsection.6.3.2}% 
+\contentsline {subsubsection}{\numberline {6.3.3}Limitations}{11}{subsubsection.6.3.3}% 
+\contentsline {subsection}{\numberline {6.4}Tensorflow}{11}{subsection.6.4}% 
+\contentsline {subsubsection}{\numberline {6.4.1}Automatic Differientiation}{11}{subsubsection.6.4.1}% 
+\contentsline {subsection}{\numberline {6.5}Loss Functions \& Performance Metrics}{11}{subsection.6.5}% 
+\contentsline {subsubsection}{\numberline {6.5.1}Mean Square Error (MSE)}{11}{subsubsection.6.5.1}% 
+\contentsline {subsubsection}{\numberline {6.5.2}Hedge Portfolio}{11}{subsubsection.6.5.2}% 
+\contentsline {subsubsection}{\numberline {6.5.3}Sharpe Ratio}{13}{subsubsection.6.5.3}% 
+\contentsline {subsection}{\numberline {6.6}Information Ratio}{13}{subsection.6.6}% 
+\contentsline {subsubsection}{\numberline {6.6.1}Hedge Portfolio Mean}{13}{subsubsection.6.6.1}% 
+\contentsline {subsubsection}{\numberline {6.6.2}Hedge Portfolio Alphas (CAPM, FF3, FF5)}{13}{subsubsection.6.6.2}% 
+\contentsline {subsection}{\numberline {6.7}Project organisation}{14}{subsection.6.7}% 
+\contentsline {subsubsection}{\numberline {6.7.1}Version Control}{14}{subsubsection.6.7.1}% 
+\contentsline {subsubsection}{\numberline {6.7.2}Folder Structure}{14}{subsubsection.6.7.2}% 
+\contentsline {subsubsection}{\numberline {6.7.3}Python}{14}{subsubsection.6.7.3}% 
+\contentsline {subsubsection}{\numberline {6.7.4}Package Management}{15}{subsubsection.6.7.4}% 
+\contentsline {subsubsection}{\numberline {6.7.5}Excel}{15}{subsubsection.6.7.5}% 
+\contentsline {subsubsection}{\numberline {6.7.6}IBM ILOG CPLEX Optimization}{15}{subsubsection.6.7.6}% 
+\contentsline {subsubsection}{\numberline {6.7.7}IBM Watson Machine Learning Service}{16}{subsubsection.6.7.7}% 
+\contentsline {subsubsection}{\numberline {6.7.8}PyPI}{16}{subsubsection.6.7.8}% 
+\contentsline {subsubsection}{\numberline {6.7.9}Code Style}{16}{subsubsection.6.7.9}% 
+\contentsline {subsubsection}{\numberline {6.7.10}Infrastructure}{16}{subsubsection.6.7.10}% 
+\contentsline {subsection}{\numberline {6.8}Documentation}{16}{subsection.6.8}% 
+\contentsline {subsubsection}{\numberline {6.8.1}Project updates}{16}{subsubsection.6.8.1}% 
+\contentsline {subsubsection}{\numberline {6.8.2}Meeting minutes}{17}{subsubsection.6.8.2}% 
+\contentsline {section}{\numberline {7}Results}{17}{section.7}% 
+\contentsline {section}{\numberline {8}Discussion}{17}{section.8}% 
+\contentsline {section}{\numberline {9}Conclusion}{17}{section.9}% 
+\contentsline {section}{\numberline {10}Appendix}{18}{section.10}% 
+\contentsline {subsection}{\numberline {10.1}Tables and Charts}{18}{subsection.10.1}% 
+\contentsline {subsection}{\numberline {10.2}Meeting Minutes}{19}{subsection.10.2}% 

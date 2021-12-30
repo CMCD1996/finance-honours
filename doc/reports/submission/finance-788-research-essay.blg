@@ -1,37 +1,37 @@
 [0] Config.pm:304> INFO - This is Biber 2.12
 [0] Config.pm:307> INFO - Logfile is 'finance-788-research-essay.blg'
-[35] biber-darwin:315> INFO - === Wed Dec 29, 2021, 15:13:14
-[65] Biber.pm:371> INFO - Reading 'finance-788-research-essay.bcf'
-[166] Biber.pm:889> INFO - Found 19 citekeys in bib section 0
-[183] Biber.pm:4093> INFO - Processing section 0
-[198] Biber.pm:4254> INFO - Looking for bibtex format file 'sources.bib' for section 0
-[201] bibtex.pm:1523> INFO - LaTeX decoding ...
-[289] bibtex.pm:1340> INFO - Found BibTeX data source 'sources.bib'
-[294] Utils.pm:193> WARN - Duplicate entry key: 'Google_Drive' in file 'sources.bib', skipping ...
-[680] Utils.pm:193> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/zQw76UdUPv/sources.bib_25368.utf8, line 28, warning: 17 characters of junk seen at toplevel
-[681] Utils.pm:193> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/zQw76UdUPv/sources.bib_25368.utf8, line 61, warning: 25 characters of junk seen at toplevel
-[681] Utils.pm:193> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/zQw76UdUPv/sources.bib_25368.utf8, line 93, warning: 1 characters of junk seen at toplevel
-[681] Utils.pm:193> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/zQw76UdUPv/sources.bib_25368.utf8, line 112, warning: 99 characters of junk seen at toplevel
-[681] Utils.pm:193> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/zQw76UdUPv/sources.bib_25368.utf8, line 154, warning: 15 characters of junk seen at toplevel
-[681] Utils.pm:193> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/zQw76UdUPv/sources.bib_25368.utf8, line 270, warning: 31 characters of junk seen at toplevel
-[681] Utils.pm:193> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/zQw76UdUPv/sources.bib_25368.utf8, line 281, warning: 34 characters of junk seen at toplevel
-[682] Utils.pm:193> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/zQw76UdUPv/sources.bib_25368.utf8, line 287, warning: 49 characters of junk seen at toplevel
-[682] Utils.pm:193> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/zQw76UdUPv/sources.bib_25368.utf8, line 293, warning: 33 characters of junk seen at toplevel
-[682] Utils.pm:193> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/zQw76UdUPv/sources.bib_25368.utf8, line 299, warning: 41 characters of junk seen at toplevel
-[682] Utils.pm:193> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/zQw76UdUPv/sources.bib_25368.utf8, line 305, warning: 38 characters of junk seen at toplevel
-[682] Utils.pm:193> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/zQw76UdUPv/sources.bib_25368.utf8, line 311, warning: 43 characters of junk seen at toplevel
-[682] Utils.pm:193> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/zQw76UdUPv/sources.bib_25368.utf8, line 347, warning: 9 characters of junk seen at toplevel
-[682] Utils.pm:193> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/zQw76UdUPv/sources.bib_25368.utf8, line 447, warning: 7 characters of junk seen at toplevel
-[682] Utils.pm:193> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/zQw76UdUPv/sources.bib_25368.utf8, line 463, warning: 14 characters of junk seen at toplevel
-[683] Utils.pm:193> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/zQw76UdUPv/sources.bib_25368.utf8, line 478, warning: 9 characters of junk seen at toplevel
-[683] Utils.pm:193> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/zQw76UdUPv/sources.bib_25368.utf8, line 485, warning: 9 characters of junk seen at toplevel
-[683] Utils.pm:193> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/zQw76UdUPv/sources.bib_25368.utf8, line 535, warning: 89 characters of junk seen at toplevel
-[683] Utils.pm:193> WARN - BibTeX subsystem: warning: comma(s) at end of name (removing)
-[683] Utils.pm:193> WARN - BibTeX subsystem: author, warning: comma(s) at end of name (removing)
-[905] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[905] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[960] Biber.pm:3921> INFO - Sorting list 'apa/global//global/global' of type 'entry' with template 'apa' and locale 'en-US'
-[961] Biber.pm:3927> INFO - No sort tailoring available for locale 'en-US'
-[1022] bbl.pm:636> INFO - Writing 'finance-788-research-essay.bbl' with encoding 'UTF-8'
-[1047] bbl.pm:739> INFO - Output to finance-788-research-essay.bbl
-[1047] Biber.pm:110> INFO - WARNINGS: 21
+[28] biber-darwin:315> INFO - === Thu Dec 30, 2021, 20:50:30
+[48] Biber.pm:371> INFO - Reading 'finance-788-research-essay.bcf'
+[124] Biber.pm:889> INFO - Found 19 citekeys in bib section 0
+[136] Biber.pm:4093> INFO - Processing section 0
+[146] Biber.pm:4254> INFO - Looking for bibtex format file 'sources.bib' for section 0
+[149] bibtex.pm:1523> INFO - LaTeX decoding ...
+[219] bibtex.pm:1340> INFO - Found BibTeX data source 'sources.bib'
+[225] Utils.pm:193> WARN - Duplicate entry key: 'Google_Drive' in file 'sources.bib', skipping ...
+[321] Utils.pm:193> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/3kYHl5zl4a/sources.bib_8603.utf8, line 28, warning: 17 characters of junk seen at toplevel
+[321] Utils.pm:193> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/3kYHl5zl4a/sources.bib_8603.utf8, line 61, warning: 25 characters of junk seen at toplevel
+[321] Utils.pm:193> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/3kYHl5zl4a/sources.bib_8603.utf8, line 93, warning: 1 characters of junk seen at toplevel
+[321] Utils.pm:193> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/3kYHl5zl4a/sources.bib_8603.utf8, line 112, warning: 99 characters of junk seen at toplevel
+[321] Utils.pm:193> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/3kYHl5zl4a/sources.bib_8603.utf8, line 154, warning: 15 characters of junk seen at toplevel
+[321] Utils.pm:193> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/3kYHl5zl4a/sources.bib_8603.utf8, line 270, warning: 31 characters of junk seen at toplevel
+[321] Utils.pm:193> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/3kYHl5zl4a/sources.bib_8603.utf8, line 281, warning: 34 characters of junk seen at toplevel
+[321] Utils.pm:193> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/3kYHl5zl4a/sources.bib_8603.utf8, line 287, warning: 49 characters of junk seen at toplevel
+[321] Utils.pm:193> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/3kYHl5zl4a/sources.bib_8603.utf8, line 293, warning: 33 characters of junk seen at toplevel
+[321] Utils.pm:193> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/3kYHl5zl4a/sources.bib_8603.utf8, line 299, warning: 41 characters of junk seen at toplevel
+[321] Utils.pm:193> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/3kYHl5zl4a/sources.bib_8603.utf8, line 305, warning: 38 characters of junk seen at toplevel
+[321] Utils.pm:193> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/3kYHl5zl4a/sources.bib_8603.utf8, line 311, warning: 43 characters of junk seen at toplevel
+[321] Utils.pm:193> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/3kYHl5zl4a/sources.bib_8603.utf8, line 347, warning: 9 characters of junk seen at toplevel
+[322] Utils.pm:193> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/3kYHl5zl4a/sources.bib_8603.utf8, line 447, warning: 7 characters of junk seen at toplevel
+[322] Utils.pm:193> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/3kYHl5zl4a/sources.bib_8603.utf8, line 463, warning: 14 characters of junk seen at toplevel
+[322] Utils.pm:193> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/3kYHl5zl4a/sources.bib_8603.utf8, line 478, warning: 9 characters of junk seen at toplevel
+[322] Utils.pm:193> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/3kYHl5zl4a/sources.bib_8603.utf8, line 485, warning: 9 characters of junk seen at toplevel
+[322] Utils.pm:193> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/3kYHl5zl4a/sources.bib_8603.utf8, line 535, warning: 89 characters of junk seen at toplevel
+[322] Utils.pm:193> WARN - BibTeX subsystem: warning: comma(s) at end of name (removing)
+[322] Utils.pm:193> WARN - BibTeX subsystem: author, warning: comma(s) at end of name (removing)
+[354] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[354] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[354] Biber.pm:3921> INFO - Sorting list 'apa/global//global/global' of type 'entry' with template 'apa' and locale 'en-US'
+[354] Biber.pm:3927> INFO - No sort tailoring available for locale 'en-US'
+[374] bbl.pm:636> INFO - Writing 'finance-788-research-essay.bbl' with encoding 'UTF-8'
+[386] bbl.pm:739> INFO - Output to finance-788-research-essay.bbl
+[387] Biber.pm:110> INFO - WARNINGS: 21
