@@ -83,7 +83,7 @@
       <file>finance-788-research-essay.bcf</file>
     </requires>
     <requires type="editable">
-      <file>sources.bib</file>
+      <file>finance-honours</file>
     </requires>
   </external>
 </requests>

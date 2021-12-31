@@ -2,7 +2,15 @@
 % !TEX encoding = UTF-8 Unicode
 % !BIB TS-program = biber
 % !BIB program = biber
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
 \documentclass[12pt]{article}
+% REFERENCES
+\usepackage[backend=biber,style = apa]{biblatex}
+\addbibresource{finance-honours.bib}
+% \addbibresource{sources.bib}
 %%% PAGE DIMENSIONS
 \usepackage[margin=2.54cm]{geometry}
 \usepackage{setspace}
@@ -59,9 +67,6 @@
 \lstset{style=mystyle}
 \usepackage{multicol}
 \usepackage{float}
-% REFERENCES
-\usepackage[backend=biber,style = apa]{biblatex}
-\bibliography{sources}
 %%% HEADERS & FOOTERS
 \usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
 \setlength{\headheight}{15pt}
@@ -385,11 +390,29 @@ Fama-French Three Factor Model (\ref{hff3}), and Fama-French Five Factor Model (
 The use of the Capital Asset Pricing Model (CAPM) persists, regardless of the identifiable shortcomings in market proxies and empirical failings invalidating use (\cite{fama2004capital}).
 Nonetheless, this research essay uses the model as a performance metric for comparative purposes.
 \begin{align*}
-	R_{i,t} - R_{f,t} &= \alpha_{i,t} + \beta_{i,t}(R_{M,t}-R_{f,t}) \numberthis \label{capm}
+	R_{i,t} - R_{f,t} &= \alpha_{i,t} + \beta_{i,t}^{1}(R_{M,t}-R_{f,t}) \numberthis \label{capm}
 \end{align*}
+where
+\begin{itemize}
+	\item $R_{i,t} - R_{f,t}$: Portfolio Excess Return for a given portfolio and time
+	\item $\alpha_{i,t}$: 
+	\item $\beta_{t}^{1}$: Market Risk Factor
+	\item \item $\beta_{t}^{1}$: Size Pricing Factor
+	\item \item $\beta_{t}^{2}$: Market Risk (sensitivity)
+	\item \item $\beta_{t}^{3}$: Market Risk (sensitivity)
+	\item \item $\beta_{t}^{4}$: Market Risk (sensitivity)
+	\item $(R_{M,t}-R_{f,t})$: Market Risk Premium
+	\item $SMB_{t}$: Size Premium (small minus big)
+	\item $HML_{t}$: Value Premium (high minus low)
+	\item $ $
+	\item $ $
+\end{itemize}
 E. Fama and K. French (\citeyear{eugene1992cross}) validate the explanatory power of size and value (book-to-market) factors
 in their ability to capture the cross-sectional variation in average stock returns, in association with market risk, size, leverage, book-to-market, and earnings-price ratios.
 This combination of factors is known as the Fama-French Three Factor Model (FF3). 
+\begin{align*}
+	R_{i,t} - R_{f,t} &= \alpha_{i,t} + \beta_{i,t}(R_{M,t}-R_{f,t})
+\end{align*}
 E. Fama and J. MacBeth developed the Fama-MacBeth regressions, a two-stage methodology to deriving factor prices.
 First,
 \begin{align*}
