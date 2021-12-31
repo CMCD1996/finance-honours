@@ -1,51 +1,57 @@
-\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
-\BOOKMARK [1][-]{section.2}{Literature Review}{}% 2
-\BOOKMARK [2][-]{subsection.2.1}{History of Asset Pricing Theory}{section.2}% 3
-\BOOKMARK [3][-]{subsubsection.2.1.1}{Optimisation Methodologies}{subsection.2.1}% 4
-\BOOKMARK [3][-]{subsubsection.2.1.2}{Machine Learning in Financial Contexts}{subsection.2.1}% 5
-\BOOKMARK [1][-]{section.3}{Research Intent}{}% 6
-\BOOKMARK [1][-]{section.4}{Theory}{}% 7
-\BOOKMARK [2][-]{subsection.4.1}{Return predictability}{section.4}% 8
-\BOOKMARK [2][-]{subsection.4.2}{Modelling, Loss, and Optimisation}{section.4}% 9
-\BOOKMARK [2][-]{subsection.4.3}{Ordinary Least Squares \(OLS\)}{section.4}% 10
-\BOOKMARK [3][-]{subsubsection.4.3.1}{Estimation Criteria}{subsection.4.3}% 11
-\BOOKMARK [3][-]{subsubsection.4.3.2}{Properties of OLS Estimators}{subsection.4.3}% 12
-\BOOKMARK [3][-]{subsubsection.4.3.3}{The Gauss-Markov Theorem}{subsection.4.3}% 13
-\BOOKMARK [3][-]{subsubsection.4.3.4}{Research Intent}{subsection.4.3}% 14
-\BOOKMARK [1][-]{section.5}{Data}{}% 15
-\BOOKMARK [2][-]{subsection.5.1}{Limitations}{section.5}% 16
-\BOOKMARK [2][-]{subsection.5.2}{Summary Statistics}{section.5}% 17
-\BOOKMARK [1][-]{section.6}{Methodology}{}% 18
-\BOOKMARK [2][-]{subsection.6.1}{Target Variable}{section.6}% 19
-\BOOKMARK [2][-]{subsection.6.2}{Google Cloud Platform}{section.6}% 20
-\BOOKMARK [2][-]{subsection.6.3}{Artificial Neural Networks}{section.6}% 21
-\BOOKMARK [3][-]{subsubsection.6.3.1}{}{subsection.6.3}% 22
-\BOOKMARK [3][-]{subsubsection.6.3.2}{Configuration}{subsection.6.3}% 23
-\BOOKMARK [3][-]{subsubsection.6.3.3}{Limitations}{subsection.6.3}% 24
-\BOOKMARK [2][-]{subsection.6.4}{Tensorflow}{section.6}% 25
-\BOOKMARK [3][-]{subsubsection.6.4.1}{Automatic Differientiation}{subsection.6.4}% 26
-\BOOKMARK [2][-]{subsection.6.5}{Loss Functions \046 Performance Metrics}{section.6}% 27
-\BOOKMARK [3][-]{subsubsection.6.5.1}{Mean Square Error \(MSE\)}{subsection.6.5}% 28
-\BOOKMARK [3][-]{subsubsection.6.5.2}{Hedge Portfolio}{subsection.6.5}% 29
-\BOOKMARK [3][-]{subsubsection.6.5.3}{Sharpe Ratio}{subsection.6.5}% 30
-\BOOKMARK [3][-]{subsubsection.6.5.4}{Information Ratio}{subsection.6.5}% 31
-\BOOKMARK [2][-]{subsection.6.6}{Reinforcement learning}{section.6}% 32
-\BOOKMARK [3][-]{subsubsection.6.6.1}{Dynamic Programming}{subsection.6.6}% 33
-\BOOKMARK [3][-]{subsubsection.6.6.2}{Bellman's Algorithm}{subsection.6.6}% 34
-\BOOKMARK [3][-]{subsubsection.6.6.3}{Q-Learning}{subsection.6.6}% 35
-\BOOKMARK [1][-]{section.7}{Results}{}% 36
-\BOOKMARK [1][-]{section.8}{Discussion}{}% 37
-\BOOKMARK [1][-]{section.9}{Contributions}{}% 38
-\BOOKMARK [1][-]{section.10}{Conclusion}{}% 39
-\BOOKMARK [1][-]{section.11}{Appendix}{}% 40
-\BOOKMARK [2][-]{subsection.11.1}{Tables and Charts}{section.11}% 41
-\BOOKMARK [2][-]{subsection.11.2}{Technical Details}{section.11}% 42
-\BOOKMARK [3][-]{subsubsection.11.2.1}{Organisation}{subsection.11.2}% 43
-\BOOKMARK [3][-]{subsubsection.11.2.2}{Version Control}{subsection.11.2}% 44
-\BOOKMARK [3][-]{subsubsection.11.2.3}{Directories}{subsection.11.2}% 45
-\BOOKMARK [3][-]{subsubsection.11.2.4}{Python}{subsection.11.2}% 46
-\BOOKMARK [3][-]{subsubsection.11.2.5}{Package Management}{subsection.11.2}% 47
-\BOOKMARK [3][-]{subsubsection.11.2.6}{Code Style}{subsection.11.2}% 48
-\BOOKMARK [3][-]{subsubsection.11.2.7}{Infrastructure}{subsection.11.2}% 49
-\BOOKMARK [3][-]{subsubsection.11.2.8}{Documentation}{subsection.11.2}% 50
-\BOOKMARK [2][-]{subsection.11.3}{Code}{section.11}% 51
+\BOOKMARK [1][-]{section.1}{Acknowledgements}{}% 1
+\BOOKMARK [1][-]{section.2}{Abstract}{}% 2
+\BOOKMARK [1][-]{section.3}{Introduction}{}% 3
+\BOOKMARK [1][-]{section.4}{Research Question\(s\)}{}% 4
+\BOOKMARK [1][-]{section.5}{Motivation\(s\)}{}% 5
+\BOOKMARK [1][-]{section.6}{Literature Review}{}% 6
+\BOOKMARK [2][-]{subsection.6.1}{Asset Pricing}{section.6}% 7
+\BOOKMARK [2][-]{subsection.6.2}{Machine Learning}{section.6}% 8
+\BOOKMARK [2][-]{subsection.6.3}{Machine Learning}{section.6}% 9
+\BOOKMARK [2][-]{subsection.6.4}{Data}{section.6}% 10
+\BOOKMARK [1][-]{section.7}{Theory}{}% 11
+\BOOKMARK [2][-]{subsection.7.1}{Modelling, Loss, and Optimisation}{section.7}% 12
+\BOOKMARK [2][-]{subsection.7.2}{Ordinary Least Squares \(OLS\)}{section.7}% 13
+\BOOKMARK [3][-]{subsubsection.7.2.1}{Estimation Criteria}{subsection.7.2}% 14
+\BOOKMARK [3][-]{subsubsection.7.2.2}{Properties of OLS Estimators}{subsection.7.2}% 15
+\BOOKMARK [3][-]{subsubsection.7.2.3}{The Gauss-Markov Theorem}{subsection.7.2}% 16
+\BOOKMARK [2][-]{subsection.7.3}{Artificial Neural Networks \(ANN\)}{section.7}% 17
+\BOOKMARK [3][-]{subsubsection.7.3.1}{Multi Layer Perceptron \(MLP\)}{subsection.7.3}% 18
+\BOOKMARK [2][-]{subsection.7.4}{Hypothesis}{section.7}% 19
+\BOOKMARK [1][-]{section.8}{Model}{}% 20
+\BOOKMARK [2][-]{subsection.8.1}{Configuration}{section.8}% 21
+\BOOKMARK [1][-]{section.9}{Methodology}{}% 22
+\BOOKMARK [2][-]{subsection.9.1}{Data}{section.9}% 23
+\BOOKMARK [2][-]{subsection.9.2}{Limitations}{section.9}% 24
+\BOOKMARK [2][-]{subsection.9.3}{Summary Statistics}{section.9}% 25
+\BOOKMARK [1][-]{section.10}{Methodology}{}% 26
+\BOOKMARK [2][-]{subsection.10.1}{Target Variable}{section.10}% 27
+\BOOKMARK [2][-]{subsection.10.2}{Google Cloud Platform}{section.10}% 28
+\BOOKMARK [3][-]{subsubsection.10.2.1}{Configuration}{subsection.10.2}% 29
+\BOOKMARK [3][-]{subsubsection.10.2.2}{Limitations}{subsection.10.2}% 30
+\BOOKMARK [2][-]{subsection.10.3}{Tensorflow}{section.10}% 31
+\BOOKMARK [3][-]{subsubsection.10.3.1}{Automatic Differientiation}{subsection.10.3}% 32
+\BOOKMARK [2][-]{subsection.10.4}{Loss Functions \046 Performance Metrics}{section.10}% 33
+\BOOKMARK [3][-]{subsubsection.10.4.1}{Mean Square Error \(MSE\)}{subsection.10.4}% 34
+\BOOKMARK [3][-]{subsubsection.10.4.2}{Hedge Portfolio}{subsection.10.4}% 35
+\BOOKMARK [3][-]{subsubsection.10.4.3}{Sharpe Ratio}{subsection.10.4}% 36
+\BOOKMARK [3][-]{subsubsection.10.4.4}{Information Ratio}{subsection.10.4}% 37
+\BOOKMARK [2][-]{subsection.10.5}{Reinforcement learning}{section.10}% 38
+\BOOKMARK [3][-]{subsubsection.10.5.1}{Dynamic Programming}{subsection.10.5}% 39
+\BOOKMARK [3][-]{subsubsection.10.5.2}{Bellman's Algorithm}{subsection.10.5}% 40
+\BOOKMARK [3][-]{subsubsection.10.5.3}{Q-Learning}{subsection.10.5}% 41
+\BOOKMARK [1][-]{section.11}{Results}{}% 42
+\BOOKMARK [1][-]{section.12}{Discussion}{}% 43
+\BOOKMARK [1][-]{section.13}{Contributions}{}% 44
+\BOOKMARK [1][-]{section.14}{Conclusion}{}% 45
+\BOOKMARK [1][-]{section.15}{Appendix}{}% 46
+\BOOKMARK [2][-]{subsection.15.1}{Tables and Charts}{section.15}% 47
+\BOOKMARK [2][-]{subsection.15.2}{Technical Details}{section.15}% 48
+\BOOKMARK [3][-]{subsubsection.15.2.1}{Organisation}{subsection.15.2}% 49
+\BOOKMARK [3][-]{subsubsection.15.2.2}{Version Control}{subsection.15.2}% 50
+\BOOKMARK [3][-]{subsubsection.15.2.3}{Directories}{subsection.15.2}% 51
+\BOOKMARK [3][-]{subsubsection.15.2.4}{Python}{subsection.15.2}% 52
+\BOOKMARK [3][-]{subsubsection.15.2.5}{Package Management}{subsection.15.2}% 53
+\BOOKMARK [3][-]{subsubsection.15.2.6}{Code Style}{subsection.15.2}% 54
+\BOOKMARK [3][-]{subsubsection.15.2.7}{Infrastructure}{subsection.15.2}% 55
+\BOOKMARK [3][-]{subsubsection.15.2.8}{Documentation}{subsection.15.2}% 56
+\BOOKMARK [2][-]{subsection.15.3}{Code}{section.15}% 57

@@ -2,9 +2,11 @@
 % !TEX encoding = UTF-8 Unicode
 % !BIB TS-program = biber
 % !BIB program = biber
-\documentclass[10pt]{article}
+\documentclass[12pt]{article}
 %%% PAGE DIMENSIONS
 \usepackage[margin=2.54cm]{geometry}
+\usepackage{setspace}
+\doublespacing
 \geometry{a4paper}
 %%% PACKAGES
 % \usepackage{caption}
@@ -104,7 +106,7 @@
 	
 	\HRule\\[0.5cm]
 	
-	{\huge\bfseries FINANCE 788: Research Essay}\\[0.4cm] % Title of your document
+	{\huge\bfseries Neural Networks: A New Frontier for Asset Pricing}\\[0.4cm] % Title of your document
 	
 	\HRule\\[0.5cm]
 	
@@ -112,8 +114,8 @@
 	%	Author(s)
 	%------------------------------------------------
 	
+	{\large\textit{A research essay presented in part fulfilment of the \\ requirements for the degree of Bachelor of Commerce \\ (Honours) in the Department of Accounting and Finance \\ at The University of Auckland}}\\[0.5cm]
 	{\large\textit{Author: Connor McDowall \\Supervisor: Dr Paul Geertsema}}\\
-	
 	%------------------------------------------------
 	%	Date
 	%------------------------------------------------
@@ -127,39 +129,34 @@
 	\vfill % Push the date up 1/4 of the remaining page
 \end{titlepage}
 \newpage
-\section*{Abstract}
-\newpage
-\section*{Acknowledgements}
-\begin{center}
-	\textbf{Paul Geertsema}
-\end{center}
-\newpage
-\section*{Declaration of Contribution}
-\newpage
 \tableofcontents
-\newpage
 \listoffigures
 \listoftables
 \listofmyequations
 \newpage
+\section{Acknowledgements}
+\begin{center}
+	\textbf{Paul Geertsema}
+\end{center}
+\newpage
+\section{Abstract}
+\newpage
 \section{Introduction}
 \newpage
+\section{Research Question(s)}
+\section{Motivation(s)}
 \section{Literature Review}\label{LR}
-\textbf{Insert Literature Review - Very Brief, Only Double Spaced}
-\subsection{History of Asset Pricing Theory}
-
-\subsubsection{Optimisation Methodologies}
-Convexity is an important concept in optimisation 
-\subsubsection{Machine Learning in Financial Contexts}
+Overview of literature in asset pricing (761/751), ML application, factor pricing - very brief, 12pt, double spaced,
+\subsection{Asset Pricing}
+\subsection{Machine Learning}
+Convexity is an important concept in optimisation
+Monotonic ranking
+\subsection{Machine Learning}
 A couple of recent publications highlight the increased application of machine learning algorithms in financial contexts.
 \cite{corporate-culture}
 Gu et al (\citeyear{eapvml}) explore the comparative use of machine learning in empirical asset pricing.
-\section{Research Intent}
-\textbf{Insert Research Intent}
+\subsection{Data}
 \section{Theory}
-\subsection{Return predictability}
-Return predictability underlies asset pricing theory. 
-\textbf{Insert}
 \subsection{Modelling, Loss, and Optimisation}\label{sec:mlo}
 We summarize the theory surrounding predictive modelling, loss functions, and optimisation algorithms.
 These functions train models by comparing predictions to realized observations using optimisation algorithms to minimize the loss function.
@@ -243,10 +240,44 @@ Equation \ref{gma4} captures homoskedasticity and no autocorrelation assumptions
 Additionally,
 The theory underlying Ordinary Least Squares informs the common practice in minimising of the sum of least squares when evaluating prediction performance.
 The mathematical tractability, in accordance with the aforementioned assumption, frame our thinking surrounding the derivation of custom loss functions.
-\subsubsection{Research Intent}
-Minimisation of returns
+\subsection{Artificial Neural Networks (ANN)}
+\subsubsection{Multi Layer Perceptron (MLP)}\label{mlp-math}
+Artificial Neural Nets (ANN) are versatile, powerful, and scalable.
+They sit at the heart of deep learning as frequently outperform other machine learning algorithms on large and complex problems.
+This research proposal suggests implementing two sets of multi-layer perceptron, a form of ANN, to predict investment decisions and exit opportunities from investment criteria.
+A linear threshold unit (LTU) feeds the weighted sum of input values ($z=\textbf{w}^{T} \cdot \textbf{x}$) into a step function ($h_{w}(\textbf{x})=step(z)$).
+A perceptron is a single layer of LTUs where each LTU is connected to every input.
+Perceptrons are suitable for classification as output the positive investment decision or exit opportunity if a threshold is met.
+Perceptrons utilize a training algorithm assessing the strength of connections between perceptrons while considering errors.
+A perceptron is fed one training instance at a time, making predictions for each instance.
+For every output LTU that produced a wrong prediction, it re-enforces the connection weights using the perception learning rule (\ref{mlp-plr}) from the inputs that would have contributed to the right prediction.
+A Multi Layer Perceptron is composed of one LTU input layer, multiple LTU hidden layers and an output LTU layer.
+The step functions in each LTU are replaced by a logistic or ReLU function ($\sigma(z)=\frac{1}{1+ exp(-z)}$ or $ReLU(z) = max(0,z)$ respectively) to enable gradient descent for optimisation.
+A shared softmax function replaces the individual activation functions in the output layer to enable exclusive classification.
+In this instance, the classification of investment decisions, or exit opportunties, from investment criteria.
+Tensorflow's DNNClassifier function facilitates the implementation of MLPs in this proposal.
+\begin{align}
+	w_{i,j}^{\text{next step}} &= w_{i,j} + \eta (\hat{y}_j - y_j)x_i \numberthis \label{mlp-plr}
+\end{align}
+Where
+\begin{itemize}
+	\item $w_{i,j}$ is the connection weights between the ith input neuron and the jth output neuron. 
+	\item $x_i$ is the ith input value of the current training instance.
+	\item $\hat{y}_{j}$ is the output of the jth output neuron for the current training instance.
+	\item $y_{j}$ is the output of the jth output neuron for the current training instance.
+	\item $\eta$ is the rate.
+\end{itemize}
+\subsection{Hypothesis}
 \textbf{Include examples on the minimisation of sum of the square errors does not contribute to maximising returns}
-\section{Data}
+\section{Model}
+\textbf{Insert model configuration}
+Example of the whole set
+\begin{align*}
+
+\end{align*}
+\subsection{Configuration}
+\section{Methodology}
+\subsection{Data}
 Hou et al., (\citeyear{hou2020replicating}) use an extensive data library to assess 452 anomalies across anomalies literature.
 Their analysis informs which abnormalities drive the cross section of expected returns. 
 Most abnormalities fail under current standards of empirical finance when using a single hurdle test of absolute t-stat greater or equal to 1.96.
@@ -263,8 +294,6 @@ The exhaustive nature and accessibility of the global dataset makes it well-suit
 \section{Methodology}
 \subsection{Target Variable}
 \subsection{Google Cloud Platform}
-\subsection{Artificial Neural Networks}
-\subsubsection{}
 \subsubsection{Configuration}
 \subsubsection{Limitations}
 \subsection{Tensorflow}
@@ -351,21 +380,43 @@ More sophisticated methods exist for maximisation such as reinforcement learning
 	\argmax_{\hat{\theta}} &: (\frac{X^{T} \hat{\theta}}{\vec{\textbf{1}}X^{T} \hat{\theta}})^\top X^{T} \hat{\theta} \numberthis \label{argmax}
 \end{align*}
 Conventional asset pricing methodologies persist in academic literature.
-The main contribution
-Hedge Portfolio Mean
-
-The Capital Asset Pricing Model (CAPM)
-
-Fama-French Three Factor Model (FF3)
-
+Subsequently, this research essay uses the Hedge Portfolio Mean (\ref{hm})), Capital Asset Pricing Model (\ref{hcapm}), 
+Fama-French Three Factor Model (\ref{hff3}), and Fama-French Five Factor Model (\ref{hff5}) as performance metrics for each loss function.
+The use of the Capital Asset Pricing Model (CAPM) persists, regardless of the identifiable shortcomings in market proxies and empirical failings invalidating use (\cite{fama2004capital}).
+Nonetheless, this research essay uses the model as a performance metric for comparative purposes.
+\begin{align*}
+	R_{i,t} - R_{f,t} &= \alpha_{i,t} + \beta_{i,t}(R_{M,t}-R_{f,t}) \numberthis \label{capm}
+\end{align*}
+E. Fama and K. French (\citeyear{eugene1992cross}) validate the explanatory power of size and value (book-to-market) factors
+in their ability to capture the cross-sectional variation in average stock returns, in association with market risk, size, leverage, book-to-market, and earnings-price ratios.
+This combination of factors is known as the Fama-French Three Factor Model (FF3). 
+E. Fama and J. MacBeth developed a two-step portfolio modelling approach
+\begin{align*}
+	H_{\mu} &=1 \numberthis \label{hm}\\
+	H_{CAPM} &= 1 \numberthis \label{hcapm}\\
+	H_{FF3} &= 1 \numberthis \label{hff3}\\
+	H_{FF5} &= 1 \numberthis \label{hff5}
+\end{align*}
 Fama-French Five Factor Model (FF5) continues to inform asset pricing E. Fama \& K. French produce \cite{fama2004capital}
 \subsubsection{Sharpe Ratio}
+Nobel Laurette William F. Sharpe (\citeyear{sharpe1994sharpe}) introduced the Sharpe Ratio (\ref{sr}) as a measure for risk-adjusted returns
+where $\mathop{\mathbb{E}} [R_a - R_f]$ is the expectation for excess returns and $\sigma(R_a)$ is the standard deviation of excess returns.
+\begin{align*}
+	SR &= \mathop{\mathbb{E}} \frac{[R_a - R_f]}{\sigma(R_a)} \numberthis \label{sr}\\
+	\sigma &= \sqrt{\sum_{i=1}^{n}}\frac{(R_a) - \bar{R_a})^2}{n}
+\end{align*}
+The matrix notation for the Sharpe Ratio loss function () follows:
+\begin{align*}
+	SR &= 1 \numberthis \label{srlf}
+	\partial SR
+\end{align*}
 \subsubsection{Information Ratio}
+The Information Ratio (IR) is an extension
+% Show the embedded class structure within this section.
 \subsection{Reinforcement learning} \label{rifml}
 \subsubsection{Dynamic Programming}
 \subsubsection{Bellman's Algorithm}
 \subsubsection{Q-Learning}
-
 \newpage
 \section{Results}
 \section{Discussion}
@@ -375,6 +426,7 @@ Fama-French Five Factor Model (FF5) continues to inform asset pricing E. Fama \&
 \begin{landscape}
 \section{Appendix}
 \subsection{Tables and Charts}
+% \setlength{\tabcolsep}{2pt}
 \begin{longtable}{|l|r|r|r|r|r|r|r|r|}
 \toprule
 {} &      count &          mean &           std &         min &           25\% &           50\% &           75\% &           max \\
@@ -906,7 +958,6 @@ dev                     &  2739928.0 &  3.998000e-01 &  4.994000e-01 &      0.00
 \label{table:ss}
 \end{longtable}
 \end{landscape}
-
 \subsection{Technical Details}
 \subsubsection{Organisation}
 This research essay uses data science best practise (\cite{J:10}).
