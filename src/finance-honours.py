@@ -1970,9 +1970,9 @@ example_autodiff = True
 test_loss_function = False
 # Analytical
 analytical = False
-rank_functions = True
+rank_functions = False
 # Research Proposal Analysis
-begin_analysis = False
+begin_analysis = True
 #################################################################################
 # Function Calls - Testing
 #################################################################################
