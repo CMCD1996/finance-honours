@@ -19,35 +19,6 @@
 
 \refsection{0}
   \datalist[entry]{apa/global//global/global}
-    \entry{IEA_WEM}{report}{}
-      \name{author}{1}{}{%
-        {{uniquename=0,uniquepart=base,hash=465b82815b27cd8a52e2be2cc108c330}{%
-           family={Agency},
-           familyi={A\bibinitperiod},
-           given={International\bibnamedelima Energy},
-           giveni={I\bibinitperiod\bibinitdelim E\bibinitperiod},
-           givenun=0}}%
-      }
-      \list{publisher}{1}{%
-        {International Energy Agency}%
-      }
-      \strng{namehash}{465b82815b27cd8a52e2be2cc108c330}
-      \strng{fullhash}{465b82815b27cd8a52e2be2cc108c330}
-      \strng{bibnamehash}{465b82815b27cd8a52e2be2cc108c330}
-      \strng{authorbibnamehash}{465b82815b27cd8a52e2be2cc108c330}
-      \strng{authornamehash}{465b82815b27cd8a52e2be2cc108c330}
-      \strng{authorfullhash}{465b82815b27cd8a52e2be2cc108c330}
-      \field{sortinit}{A}
-      \field{sortinithash}{d77c7cdd82ff690d4c3ef13216f92f0b}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{year}
-      \true{uniqueprimaryauthor}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{World Energy Model Documentation}
-      \field{type}{techreport}
-      \field{year}{2019}
-    \endentry
     \entry{Anaconda}{software}{}
       \name{author}{1}{}{%
         {{uniquename=0,uniquepart=base,hash=3d5945a4b3a932cac2494c0e5f6e12a6}{%
@@ -80,130 +51,41 @@
       \verb https://www.anaconda.com/
       \endverb
     \endentry
-    \entry{CBNF}{inbook}{}
-      \name{author}{1}{}{%
-        {{uniquename=0,uniquepart=base,hash=9282d63c7c5bda72aad9b39bc68fddeb}{%
-           family={Arenas},
-           familyi={A\bibinitperiod},
-           given={Marcelo},
-           giveni={M\bibinitperiod},
-           givenun=0}}%
-      }
-      \name{editor}{2}{}{%
-        {{hash=d0536558a000f6cc88d6f7fd6b28eb05}{%
-           family={LIU},
-           familyi={L\bibinitperiod},
-           given={LING},
-           giveni={L\bibinitperiod}}}%
-        {{hash=69fda614f260f289c54ed42205696a3b}{%
-           family={{Ö}ZSU},
-           familyi={Ö\bibinitperiod},
-           given={M.\bibnamedelimi TAMER},
-           giveni={M\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
-      }
-      \list{location}{1}{%
-        {Boston, MA}%
-      }
-      \list{publisher}{1}{%
-        {Springer US}%
-      }
-      \strng{namehash}{9282d63c7c5bda72aad9b39bc68fddeb}
-      \strng{fullhash}{9282d63c7c5bda72aad9b39bc68fddeb}
-      \strng{bibnamehash}{9282d63c7c5bda72aad9b39bc68fddeb}
-      \strng{authorbibnamehash}{9282d63c7c5bda72aad9b39bc68fddeb}
-      \strng{authornamehash}{9282d63c7c5bda72aad9b39bc68fddeb}
-      \strng{authorfullhash}{9282d63c7c5bda72aad9b39bc68fddeb}
-      \strng{editorbibnamehash}{36df0daa484f7b702755f9b33f067368}
-      \strng{editornamehash}{36df0daa484f7b702755f9b33f067368}
-      \strng{editorfullhash}{36df0daa484f7b702755f9b33f067368}
-      \field{sortinit}{A}
-      \field{sortinithash}{d77c7cdd82ff690d4c3ef13216f92f0b}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{year}
-      \true{uniqueprimaryauthor}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{booktitle}{Encyclopedia of Database Systems}
-      \field{isbn}{978-0-387-39940-9}
-      \field{title}{Boyce-Codd Normal Form}
-      \field{year}{2009}
-      \field{pages}{264\bibrangedash 265}
-      \range{pages}{2}
-      \verb{doi}
-      \verb 10.1007/978-0-387-39940-9_1245
-      \endverb
-      \verb{urlraw}
-      \verb https://doi.org/10.1007/978-0-387-39940-9_1245
-      \endverb
-      \verb{url}
-      \verb https://doi.org/10.1007/978-0-387-39940-9_1245
-      \endverb
-    \endentry
-    \entry{Simplex}{incollection}{}
+    \entry{fama2004capital}{article}{}
       \name{author}{2}{}{%
-        {{uniquename=0,uniquepart=base,hash=d49443e6b103030c2d6ef8ae355f90a5}{%
-           family={Bronson},
-           familyi={B\bibinitperiod},
-           given={Richard},
-           giveni={R\bibinitperiod},
+        {{uniquename=0,uniquepart=base,hash=cf1dad75742cba1f00261a0ee70e7ba2}{%
+           family={Fama},
+           familyi={F\bibinitperiod},
+           given={Eugene\bibnamedelima F},
+           giveni={E\bibinitperiod\bibinitdelim F\bibinitperiod},
            givenun=0}}%
-        {{uniquename=0,uniquepart=base,hash=598f020d12bef43310bec17745edf3a3}{%
-           family={Costa},
-           familyi={C\bibinitperiod},
-           given={Gabriel\bibnamedelima B.},
-           giveni={G\bibinitperiod\bibinitdelim B\bibinitperiod},
+        {{uniquename=0,uniquepart=base,hash=4ca55f4db61ae3245d066a218dca72c8}{%
+           family={French},
+           familyi={F\bibinitperiod},
+           given={Kenneth\bibnamedelima R},
+           giveni={K\bibinitperiod\bibinitdelim R\bibinitperiod},
            givenun=0}}%
       }
-      \name{editor}{2}{}{%
-        {{hash=d49443e6b103030c2d6ef8ae355f90a5}{%
-           family={Bronson},
-           familyi={B\bibinitperiod},
-           given={Richard},
-           giveni={R\bibinitperiod}}}%
-        {{hash=598f020d12bef43310bec17745edf3a3}{%
-           family={Costa},
-           familyi={C\bibinitperiod},
-           given={Gabriel\bibnamedelima B.},
-           giveni={G\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
-      }
-      \list{location}{1}{%
-        {Boston}%
-      }
-      \list{publisher}{1}{%
-        {Academic Press}%
-      }
-      \strng{namehash}{f66f4999a7d0f3b6e0ac2bf2c02db2ea}
-      \strng{fullhash}{f66f4999a7d0f3b6e0ac2bf2c02db2ea}
-      \strng{bibnamehash}{f66f4999a7d0f3b6e0ac2bf2c02db2ea}
-      \strng{authorbibnamehash}{f66f4999a7d0f3b6e0ac2bf2c02db2ea}
-      \strng{authornamehash}{f66f4999a7d0f3b6e0ac2bf2c02db2ea}
-      \strng{authorfullhash}{f66f4999a7d0f3b6e0ac2bf2c02db2ea}
-      \strng{editorbibnamehash}{f66f4999a7d0f3b6e0ac2bf2c02db2ea}
-      \strng{editornamehash}{f66f4999a7d0f3b6e0ac2bf2c02db2ea}
-      \strng{editorfullhash}{f66f4999a7d0f3b6e0ac2bf2c02db2ea}
-      \field{sortinit}{B}
-      \field{sortinithash}{276475738cc058478c1677046f857703}
+      \strng{namehash}{ac5c181ffbfa45c593cd5483bcb59bd3}
+      \strng{fullhash}{ac5c181ffbfa45c593cd5483bcb59bd3}
+      \strng{bibnamehash}{ac5c181ffbfa45c593cd5483bcb59bd3}
+      \strng{authorbibnamehash}{ac5c181ffbfa45c593cd5483bcb59bd3}
+      \strng{authornamehash}{ac5c181ffbfa45c593cd5483bcb59bd3}
+      \strng{authorfullhash}{ac5c181ffbfa45c593cd5483bcb59bd3}
+      \field{sortinit}{F}
+      \field{sortinithash}{669c706c6f1fbf3b5a83d26f1d9e9e72}
       \field{extradatescope}{labelyear}
       \field{labeldatesource}{year}
       \true{uniqueprimaryauthor}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{booktitle}{Matrix Methods (Third Edition)}
-      \field{edition}{Third Edition}
-      \field{isbn}{978-0-12-374427-2}
-      \field{title}{4 - An Introduction to Optimization}
-      \field{year}{2009}
-      \field{pages}{127\bibrangedash 148}
+      \field{journaltitle}{Journal of economic perspectives}
+      \field{number}{3}
+      \field{title}{The capital asset pricing model: Theory and evidence}
+      \field{volume}{18}
+      \field{year}{2004}
+      \field{pages}{25\bibrangedash 46}
       \range{pages}{22}
-      \verb{doi}
-      \verb https://doi.org/10.1016/B978-0-08-092225-6.50010-3
-      \endverb
-      \verb{urlraw}
-      \verb http://www.sciencedirect.com/science/article/pii/B9780080922256500103
-      \endverb
-      \verb{url}
-      \verb http://www.sciencedirect.com/science/article/pii/B9780080922256500103
-      \endverb
     \endentry
     \entry{Google_Drive}{software}{}
       \name{author}{1}{}{%
@@ -370,82 +252,6 @@
       \field{pages}{2019\bibrangedash 2133}
       \range{pages}{115}
     \endentry
-    \entry{IBM_AI}{misc}{}
-      \name{author}{1}{}{%
-        {{uniquename=0,uniquepart=base,hash=cbf44511d041dc6d1dd73cc0c033122c}{%
-           family={IBM},
-           familyi={I\bibinitperiod}}}%
-      }
-      \strng{namehash}{cbf44511d041dc6d1dd73cc0c033122c}
-      \strng{fullhash}{cbf44511d041dc6d1dd73cc0c033122c}
-      \strng{bibnamehash}{cbf44511d041dc6d1dd73cc0c033122c}
-      \strng{authorbibnamehash}{cbf44511d041dc6d1dd73cc0c033122c}
-      \strng{authornamehash}{cbf44511d041dc6d1dd73cc0c033122c}
-      \strng{authorfullhash}{cbf44511d041dc6d1dd73cc0c033122c}
-      \field{extraname}{1}
-      \field{sortinit}{I}
-      \field{sortinithash}{320bc8fe8101b9376f9f21cd507de0e8}
-      \field{extradate}{1}
-      \field{labeldatesource}{nodate}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{howpublished}{Available at \url{https://www.ibm.com/academic/home} (2020/08/09)}
-      \field{title}{IBM Academic Initiative)}
-    \endentry
-    \entry{IBM_WML}{misc}{}
-      \name{author}{1}{}{%
-        {{uniquename=0,uniquepart=base,hash=cbf44511d041dc6d1dd73cc0c033122c}{%
-           family={IBM},
-           familyi={I\bibinitperiod}}}%
-      }
-      \strng{namehash}{cbf44511d041dc6d1dd73cc0c033122c}
-      \strng{fullhash}{cbf44511d041dc6d1dd73cc0c033122c}
-      \strng{bibnamehash}{cbf44511d041dc6d1dd73cc0c033122c}
-      \strng{authorbibnamehash}{cbf44511d041dc6d1dd73cc0c033122c}
-      \strng{authornamehash}{cbf44511d041dc6d1dd73cc0c033122c}
-      \strng{authorfullhash}{cbf44511d041dc6d1dd73cc0c033122c}
-      \field{extraname}{2}
-      \field{sortinit}{I}
-      \field{sortinithash}{320bc8fe8101b9376f9f21cd507de0e8}
-      \field{extradate}{2}
-      \field{labeldatesource}{nodate}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{howpublished}{Available at \url{https://www.ibm.com/cloud/machine-learning} (2020/09/23)}
-      \field{title}{IBM Watson Machine Learning}
-    \endentry
-    \entry{IBM_ILOG}{software}{}
-      \name{author}{1}{}{%
-        {{uniquename=0,uniquepart=base,hash=57fbdf821504d53d10573c9c061cfbd7}{%
-           family={{International Business Machines Corporation}},
-           familyi={I\bibinitperiod}}}%
-      }
-      \strng{namehash}{57fbdf821504d53d10573c9c061cfbd7}
-      \strng{fullhash}{57fbdf821504d53d10573c9c061cfbd7}
-      \strng{bibnamehash}{57fbdf821504d53d10573c9c061cfbd7}
-      \strng{authorbibnamehash}{57fbdf821504d53d10573c9c061cfbd7}
-      \strng{authornamehash}{57fbdf821504d53d10573c9c061cfbd7}
-      \strng{authorfullhash}{57fbdf821504d53d10573c9c061cfbd7}
-      \field{sortinit}{I}
-      \field{sortinithash}{320bc8fe8101b9376f9f21cd507de0e8}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \true{uniqueprimaryauthor}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{day}{9}
-      \field{month}{8}
-      \field{title}{IBM ILOG CPLEX Optimization Studio}
-      \field{version}{12.10}
-      \field{year}{2020}
-      \field{dateera}{ce}
-      \verb{urlraw}
-      \verb https://www.ibm.com/nz-en/products/ilog-cplex-optimization-studio
-      \endverb
-      \verb{url}
-      \verb https://www.ibm.com/nz-en/products/ilog-cplex-optimization-studio
-      \endverb
-    \endentry
     \entry{jensen2021there}{report}{}
       \name{author}{3}{}{%
         {{uniquename=0,uniquepart=base,hash=86cbf2d45f5a3560f670f612c6fa9b5b}{%
@@ -582,75 +388,6 @@
       \verb https://git-scm.com/
       \endverb
     \endentry
-    \entry{Python_Features}{misc}{}
-      \name{author}{1}{}{%
-        {{uniquename=0,uniquepart=base,hash=87f8a6ab85c9ced3702b4ea641ad4bb5}{%
-           family={Medium},
-           familyi={M\bibinitperiod}}}%
-      }
-      \strng{namehash}{87f8a6ab85c9ced3702b4ea641ad4bb5}
-      \strng{fullhash}{87f8a6ab85c9ced3702b4ea641ad4bb5}
-      \strng{bibnamehash}{87f8a6ab85c9ced3702b4ea641ad4bb5}
-      \strng{authorbibnamehash}{87f8a6ab85c9ced3702b4ea641ad4bb5}
-      \strng{authornamehash}{87f8a6ab85c9ced3702b4ea641ad4bb5}
-      \strng{authorfullhash}{87f8a6ab85c9ced3702b4ea641ad4bb5}
-      \field{sortinit}{M}
-      \field{sortinithash}{cfd219b90152c06204fab207bc6c7cab}
-      \field{labeldatesource}{nodate}
-      \true{uniqueprimaryauthor}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{howpublished}{Available at \url{https://towardsdatascience.com/top-10-in-demand-programming-languages-to-learn-in-2020-4462eb7d8d3e} (2020/08/06)}
-      \field{title}{Top 10 In-Demand programming languages to learn in 2020}
-    \endentry
-    \entry{IPM}{article}{}
-      \name{author}{2}{}{%
-        {{uniquename=0,uniquepart=base,hash=f36630cf7f4f0b084b8dfb3f777e8639}{%
-           family={Potra},
-           familyi={P\bibinitperiod},
-           given={Florian\bibnamedelima A.},
-           giveni={F\bibinitperiod\bibinitdelim A\bibinitperiod},
-           givenun=0}}%
-        {{uniquename=0,uniquepart=base,hash=c49efb16d3fa7eef002cc3620d42ab8a}{%
-           family={Wright},
-           familyi={W\bibinitperiod},
-           given={Stephen\bibnamedelima J.},
-           giveni={S\bibinitperiod\bibinitdelim J\bibinitperiod},
-           givenun=0}}%
-      }
-      \strng{namehash}{5c9d37cd987fdffe57fea11cce436fdf}
-      \strng{fullhash}{5c9d37cd987fdffe57fea11cce436fdf}
-      \strng{bibnamehash}{5c9d37cd987fdffe57fea11cce436fdf}
-      \strng{authorbibnamehash}{5c9d37cd987fdffe57fea11cce436fdf}
-      \strng{authornamehash}{5c9d37cd987fdffe57fea11cce436fdf}
-      \strng{authorfullhash}{5c9d37cd987fdffe57fea11cce436fdf}
-      \field{sortinit}{P}
-      \field{sortinithash}{8d51b3d5b78d75b54308d706b9bbe285}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{year}
-      \true{uniqueprimaryauthor}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{The modern era of interior-point methods dates to 1984, when Karmarkar proposed his algorithm for linear programming. In the years since then, algorithms and software for linear programming have become quite sophisticated, while extensions to more general classes of problems, such as convex quadratic programming, semi-definite programming, and nonconvex and nonlinear problems, have reached varying levels of maturity. We review some of the key developments in the area, including comments on both the complexity theory and practical algorithms for linear programming, semi-definite programming, monotone linear complementarity, and convex programming over sets that can be characterized by self-concordant barrier functions.}
-      \field{issn}{0377-0427}
-      \field{journaltitle}{Journal of Computational and Applied Mathematics}
-      \field{note}{Numerical Analysis 2000. Vol. IV: Optimization and Nonlinear Equations}
-      \field{number}{1}
-      \field{title}{Interior-point methods}
-      \field{volume}{124}
-      \field{year}{2000}
-      \field{pages}{281\bibrangedash 302}
-      \range{pages}{22}
-      \verb{doi}
-      \verb https://doi.org/10.1016/S0377-0427(00)00433-7
-      \endverb
-      \verb{urlraw}
-      \verb http://www.sciencedirect.com/science/article/pii/S0377042700004337
-      \endverb
-      \verb{url}
-      \verb http://www.sciencedirect.com/science/article/pii/S0377042700004337
-      \endverb
-    \endentry
     \entry{PYPL_Pop}{misc}{}
       \name{author}{1}{}{%
         {{uniquename=0,uniquepart=base,hash=68da608daec4950bcdec8a2691f5a0ef}{%
@@ -665,12 +402,14 @@
       \strng{authorfullhash}{68da608daec4950bcdec8a2691f5a0ef}
       \field{sortinit}{P}
       \field{sortinithash}{8d51b3d5b78d75b54308d706b9bbe285}
-      \field{labeldatesource}{nodate}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
       \true{uniqueprimaryauthor}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{howpublished}{Available at \url{http://pypl.github.io/PYPL.html} (2020/08/06)}
+      \field{howpublished}{Available at \url{http://pypl.github.io/PYPL.html} (2021/12/31)}
       \field{title}{PYPL PopularitY of Programming Language}
+      \field{year}{2021}
     \endentry
     \entry{olsmf}{misc}{}
       \name{author}{1}{}{%
@@ -689,12 +428,14 @@
       \strng{authorfullhash}{05f57e118887fe6ca946d77689a2efaf}
       \field{sortinit}{R}
       \field{sortinithash}{da6b42bd3ab22fee61abed031ee405f7}
-      \field{labeldatesource}{nodate}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
       \true{uniqueprimaryauthor}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{Available at \url{https://web.stanford.edu/~mrosenfe/soc_meth_proj3/matrix_OLS_NYU_notes.pdf} (2021/08/18)}
       \field{title}{OLS in Matrix Form}
+      \field{year}{2021}
     \endentry
     \entry{J:10}{article}{}
       \name{author}{6}{}{%

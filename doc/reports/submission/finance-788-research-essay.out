@@ -6,12 +6,12 @@
 \BOOKMARK [1][-]{section.3}{Research Intent}{}% 6
 \BOOKMARK [1][-]{section.4}{Theory}{}% 7
 \BOOKMARK [2][-]{subsection.4.1}{Return predictability}{section.4}% 8
-\BOOKMARK [2][-]{subsection.4.2}{Modelling, loss, and optimisation}{section.4}% 9
+\BOOKMARK [2][-]{subsection.4.2}{Modelling, Loss, and Optimisation}{section.4}% 9
 \BOOKMARK [2][-]{subsection.4.3}{Ordinary Least Squares \(OLS\)}{section.4}% 10
-\BOOKMARK [3][-]{subsubsection.4.3.1}{Criteria for estimation}{subsection.4.3}% 11
+\BOOKMARK [3][-]{subsubsection.4.3.1}{Estimation Criteria}{subsection.4.3}% 11
 \BOOKMARK [3][-]{subsubsection.4.3.2}{Properties of OLS Estimators}{subsection.4.3}% 12
 \BOOKMARK [3][-]{subsubsection.4.3.3}{The Gauss-Markov Theorem}{subsection.4.3}% 13
-\BOOKMARK [3][-]{subsubsection.4.3.4}{Weaknesses in OLS: Return Predictability}{subsection.4.3}% 14
+\BOOKMARK [3][-]{subsubsection.4.3.4}{Research Intent}{subsection.4.3}% 14
 \BOOKMARK [1][-]{section.5}{Data}{}% 15
 \BOOKMARK [2][-]{subsection.5.1}{Limitations}{section.5}% 16
 \BOOKMARK [2][-]{subsection.5.2}{Summary Statistics}{section.5}% 17
@@ -28,26 +28,24 @@
 \BOOKMARK [3][-]{subsubsection.6.5.1}{Mean Square Error \(MSE\)}{subsection.6.5}% 28
 \BOOKMARK [3][-]{subsubsection.6.5.2}{Hedge Portfolio}{subsection.6.5}% 29
 \BOOKMARK [3][-]{subsubsection.6.5.3}{Sharpe Ratio}{subsection.6.5}% 30
-\BOOKMARK [2][-]{subsection.6.6}{Information Ratio}{section.6}% 31
-\BOOKMARK [3][-]{subsubsection.6.6.1}{Hedge Portfolio Mean}{subsection.6.6}% 32
-\BOOKMARK [3][-]{subsubsection.6.6.2}{Hedge Portfolio Alphas \(CAPM, FF3, FF5\)}{subsection.6.6}% 33
-\BOOKMARK [2][-]{subsection.6.7}{Project organisation}{section.6}% 34
-\BOOKMARK [3][-]{subsubsection.6.7.1}{Version Control}{subsection.6.7}% 35
-\BOOKMARK [3][-]{subsubsection.6.7.2}{Folder Structure}{subsection.6.7}% 36
-\BOOKMARK [3][-]{subsubsection.6.7.3}{Python}{subsection.6.7}% 37
-\BOOKMARK [3][-]{subsubsection.6.7.4}{Package Management}{subsection.6.7}% 38
-\BOOKMARK [3][-]{subsubsection.6.7.5}{Excel}{subsection.6.7}% 39
-\BOOKMARK [3][-]{subsubsection.6.7.6}{IBM ILOG CPLEX Optimization}{subsection.6.7}% 40
-\BOOKMARK [3][-]{subsubsection.6.7.7}{IBM Watson Machine Learning Service}{subsection.6.7}% 41
-\BOOKMARK [3][-]{subsubsection.6.7.8}{PyPI}{subsection.6.7}% 42
-\BOOKMARK [3][-]{subsubsection.6.7.9}{Code Style}{subsection.6.7}% 43
-\BOOKMARK [3][-]{subsubsection.6.7.10}{Infrastructure}{subsection.6.7}% 44
-\BOOKMARK [2][-]{subsection.6.8}{Documentation}{section.6}% 45
-\BOOKMARK [3][-]{subsubsection.6.8.1}{Project updates}{subsection.6.8}% 46
-\BOOKMARK [3][-]{subsubsection.6.8.2}{Meeting minutes}{subsection.6.8}% 47
-\BOOKMARK [1][-]{section.7}{Results}{}% 48
-\BOOKMARK [1][-]{section.8}{Discussion}{}% 49
-\BOOKMARK [1][-]{section.9}{Conclusion}{}% 50
-\BOOKMARK [1][-]{section.10}{Appendix}{}% 51
-\BOOKMARK [2][-]{subsection.10.1}{Tables and Charts}{section.10}% 52
-\BOOKMARK [2][-]{subsection.10.2}{Meeting Minutes}{section.10}% 53
+\BOOKMARK [3][-]{subsubsection.6.5.4}{Information Ratio}{subsection.6.5}% 31
+\BOOKMARK [2][-]{subsection.6.6}{Reinforcement learning}{section.6}% 32
+\BOOKMARK [3][-]{subsubsection.6.6.1}{Dynamic Programming}{subsection.6.6}% 33
+\BOOKMARK [3][-]{subsubsection.6.6.2}{Bellman's Algorithm}{subsection.6.6}% 34
+\BOOKMARK [3][-]{subsubsection.6.6.3}{Q-Learning}{subsection.6.6}% 35
+\BOOKMARK [1][-]{section.7}{Results}{}% 36
+\BOOKMARK [1][-]{section.8}{Discussion}{}% 37
+\BOOKMARK [1][-]{section.9}{Contributions}{}% 38
+\BOOKMARK [1][-]{section.10}{Conclusion}{}% 39
+\BOOKMARK [1][-]{section.11}{Appendix}{}% 40
+\BOOKMARK [2][-]{subsection.11.1}{Tables and Charts}{section.11}% 41
+\BOOKMARK [2][-]{subsection.11.2}{Technical Details}{section.11}% 42
+\BOOKMARK [3][-]{subsubsection.11.2.1}{Organisation}{subsection.11.2}% 43
+\BOOKMARK [3][-]{subsubsection.11.2.2}{Version Control}{subsection.11.2}% 44
+\BOOKMARK [3][-]{subsubsection.11.2.3}{Directories}{subsection.11.2}% 45
+\BOOKMARK [3][-]{subsubsection.11.2.4}{Python}{subsection.11.2}% 46
+\BOOKMARK [3][-]{subsubsection.11.2.5}{Package Management}{subsection.11.2}% 47
+\BOOKMARK [3][-]{subsubsection.11.2.6}{Code Style}{subsection.11.2}% 48
+\BOOKMARK [3][-]{subsubsection.11.2.7}{Infrastructure}{subsection.11.2}% 49
+\BOOKMARK [3][-]{subsubsection.11.2.8}{Documentation}{subsection.11.2}% 50
+\BOOKMARK [2][-]{subsection.11.3}{Code}{section.11}% 51
