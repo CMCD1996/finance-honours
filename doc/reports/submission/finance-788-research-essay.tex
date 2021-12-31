@@ -390,7 +390,8 @@ Nonetheless, this research essay uses the model as a performance metric for comp
 E. Fama and K. French (\citeyear{eugene1992cross}) validate the explanatory power of size and value (book-to-market) factors
 in their ability to capture the cross-sectional variation in average stock returns, in association with market risk, size, leverage, book-to-market, and earnings-price ratios.
 This combination of factors is known as the Fama-French Three Factor Model (FF3). 
-E. Fama and J. MacBeth developed a two-step portfolio modelling approach
+E. Fama and J. MacBeth developed the Fama-MacBeth regressions, a two-stage methodology to deriving factor prices.
+First,
 \begin{align*}
 	H_{\mu} &=1 \numberthis \label{hm}\\
 	H_{CAPM} &= 1 \numberthis \label{hcapm}\\
@@ -411,7 +412,11 @@ The matrix notation for the Sharpe Ratio loss function () follows:
 	\partial SR
 \end{align*}
 \subsubsection{Information Ratio}
-The Information Ratio (IR) is an extension
+The Information Ratio (IR) is another risk-return measure (\ref{ir}), evaluating the performance of a portfolio compared to a selected benchmark e.g., an exchange traded fund.
+$\mathop{\mathbb{E}} [R_a - R_b]$ is the excess return on the benchmark. $\sigma(R_a - R_b)$ is the standard deviation of the difference between the portfolio and benchmark known as the tracking error.
+\begin{align*}
+	IR &= \mathop{\mathbb{E}} \frac{[R_a - R_b]}{\sigma(R_a - R_b)} \numberthis \label{sr}\\
+\end{align*}
 % Show the embedded class structure within this section.
 \subsection{Reinforcement learning} \label{rifml}
 \subsubsection{Dynamic Programming}
@@ -426,7 +431,7 @@ The Information Ratio (IR) is an extension
 \begin{landscape}
 \section{Appendix}
 \subsection{Tables and Charts}
-% \setlength{\tabcolsep}{2pt}
+\setlength{\tabcolsep}{2pt}
 \begin{longtable}{|l|r|r|r|r|r|r|r|r|}
 \toprule
 {} &      count &          mean &           std &         min &           25\% &           50\% &           75\% &           max \\

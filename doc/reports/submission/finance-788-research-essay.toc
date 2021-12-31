@@ -46,13 +46,13 @@
 \contentsline {section}{\numberline {14}Conclusion}{19}{section.14}% 
 \contentsline {section}{\numberline {15}Appendix}{20}{section.15}% 
 \contentsline {subsection}{\numberline {15.1}Tables and Charts}{20}{subsection.15.1}% 
-\contentsline {subsection}{\numberline {15.2}Technical Details}{21}{subsection.15.2}% 
-\contentsline {subsubsection}{\numberline {15.2.1}Organisation}{21}{subsubsection.15.2.1}% 
-\contentsline {subsubsection}{\numberline {15.2.2}Version Control}{21}{subsubsection.15.2.2}% 
-\contentsline {subsubsection}{\numberline {15.2.3}Directories}{21}{subsubsection.15.2.3}% 
-\contentsline {subsubsection}{\numberline {15.2.4}Python}{22}{subsubsection.15.2.4}% 
-\contentsline {subsubsection}{\numberline {15.2.5}Package Management}{22}{subsubsection.15.2.5}% 
-\contentsline {subsubsection}{\numberline {15.2.6}Code Style}{23}{subsubsection.15.2.6}% 
-\contentsline {subsubsection}{\numberline {15.2.7}Infrastructure}{23}{subsubsection.15.2.7}% 
-\contentsline {subsubsection}{\numberline {15.2.8}Documentation}{23}{subsubsection.15.2.8}% 
-\contentsline {subsection}{\numberline {15.3}Code}{23}{subsection.15.3}% 
+\contentsline {subsection}{\numberline {15.2}Technical Details}{51}{subsection.15.2}% 
+\contentsline {subsubsection}{\numberline {15.2.1}Organisation}{51}{subsubsection.15.2.1}% 
+\contentsline {subsubsection}{\numberline {15.2.2}Version Control}{51}{subsubsection.15.2.2}% 
+\contentsline {subsubsection}{\numberline {15.2.3}Directories}{51}{subsubsection.15.2.3}% 
+\contentsline {subsubsection}{\numberline {15.2.4}Python}{52}{subsubsection.15.2.4}% 
+\contentsline {subsubsection}{\numberline {15.2.5}Package Management}{52}{subsubsection.15.2.5}% 
+\contentsline {subsubsection}{\numberline {15.2.6}Code Style}{53}{subsubsection.15.2.6}% 
+\contentsline {subsubsection}{\numberline {15.2.7}Infrastructure}{53}{subsubsection.15.2.7}% 
+\contentsline {subsubsection}{\numberline {15.2.8}Documentation}{53}{subsubsection.15.2.8}% 
+\contentsline {subsection}{\numberline {15.3}Code}{53}{subsection.15.3}% 
