@@ -2155,17 +2155,9 @@
     <bcf:citekey order="8">Google_Drive</bcf:citekey>
     <bcf:citekey order="9">Git</bcf:citekey>
     <bcf:citekey order="10">J:10</bcf:citekey>
-    <bcf:citekey order="11">IEA_WEM</bcf:citekey>
-    <bcf:citekey order="12">Python_Features</bcf:citekey>
-    <bcf:citekey order="13">PYPL_Pop</bcf:citekey>
-    <bcf:citekey order="14">Anaconda</bcf:citekey>
-    <bcf:citekey order="15">CBNF</bcf:citekey>
-    <bcf:citekey order="16">IBM_ILOG</bcf:citekey>
-    <bcf:citekey order="17">IPM</bcf:citekey>
-    <bcf:citekey order="18">Simplex</bcf:citekey>
-    <bcf:citekey order="19">IBM_AI</bcf:citekey>
-    <bcf:citekey order="20">IBM_WML</bcf:citekey>
-    <bcf:citekey order="21">PEP8</bcf:citekey>
+    <bcf:citekey order="11">PYPL_Pop</bcf:citekey>
+    <bcf:citekey order="12">Anaconda</bcf:citekey>
+    <bcf:citekey order="13">PEP8</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="apa">
