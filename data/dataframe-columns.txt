@@ -1,3 +1,4 @@
+beta_60m_x
 index
 size_grp
 permno
@@ -354,7 +355,6 @@ netis_mev_x
 fincf_mev_x
 aliq_mat_x
 eq_dur_x
-beta_60m_x
 ivol_capm_60m_x
 resff3_12_1_x
 resff3_6_1_x
