@@ -532,6 +532,22 @@ def create_feature_lists(list_of_columns, categorical_assignment):
     return numerical_features, categorical_features
 
 
+def shuffle_columns(df, column_name):
+    """Shuffles columns to front of the dataframe
+
+    Args:
+        df ([type]): [description]
+        column_name ([type]): [description]
+
+    Returns:
+        [type]: [description]
+    """
+    column_to_insert = df[column_name]
+    df.drop(labels=[column_name], axis=1, inplace=True)
+    df.insert(0, column_name, column_to_insert)
+    return df
+
+
 def create_tf_dataset(dataframe, target_column, shuffle=True, batch_size=32):
     """Set target variable and converts dataframe to tensorflow dataset
 
@@ -550,7 +566,11 @@ def create_tf_dataset(dataframe, target_column, shuffle=True, batch_size=32):
     print(df[target_column].head())
     # Returns the labels and drop columns from dataframe
     labels = df.pop(target_column)
-    print('Dataframe Before')
+    # List of columns to be shifted columns
+    shift_columns = ['beta_60m_x']
+    for col in shift_columns:
+        df = shuffle_columns(df, col)
+    print('Dataframe After')
     print(list(df.columns))
     df = {key: value[:, tf.newaxis] for key, value in dataframe.items()}
     print(df)
