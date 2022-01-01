@@ -1543,7 +1543,9 @@ class custom_loss(tf.keras.losses.Loss):
         rmse = K.sqrt(mse)
         # return (rmse / K.mean(K.square(y_true)) - 1)
         print('Testing passed into function by printing: ', layer)
-        return K.mean(K.square(y_pred - y_true))
+        #loss = K.mean(K.square(y_pred - y_true))
+        loss = -1*K.mean(K.square(y_pred - y_true))
+        return loss
 
     # def custom_loss(layer):
     #     # Create a loss function that adds the MSE loss to the mean of all squared activations of a specific layer
