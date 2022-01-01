@@ -2022,7 +2022,7 @@ metrics_dictionary = {1: ['mean_squared_error'], 2: ['mean_squared_error'], 3: [
                                                                                                                 'mean_relative_error', 'mean_squared_error', 'mean_squared_logarithmic_error', 'cosine_similarity', 'logcosh', 'mean', 'mean_absolute_error']}
 # Selected Tensorflow Configuration
 #################################################################################
-tf_option = 6  # Change to 1,2,3,4,5 for configuration
+tf_option = 7  # Change to 1,2,3,4,5,6,7 for configuration
 selected_optimizer = optimisation_dictionary[tf_option]
 selected_loss = loss_function_dictionary[tf_option]
 selected_metrics = metrics_dictionary[tf_option]
