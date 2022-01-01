@@ -851,8 +851,8 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         # if selected_loss == 'multi_layer_loss':
         #     lf = multi_layer_loss
         if selected_loss == 'custom_loss':
-            print('Shape of all_inputs is: ', tf.shape(all_inputs))
-            print('Size of all_inputs is: ', tf.size(all_inputs))
+            print('Prints the all_inputs tensor')
+            tf.print(all_inputs)
             lf = custom_loss(layer=all_inputs, reduction=red,
                              name='custom_loss')
         #################################################################################
@@ -1484,7 +1484,7 @@ class custom_loss(tf.keras.losses.Loss):
         mse = K.mean(K.square(y_true - y_pred))
         rmse = K.sqrt(mse)
         # return (rmse / K.mean(K.square(y_true)) - 1)
-        return K.mean(K.square(y_pred - y_true) + K.square(layer))
+        return K.mean(K.square(y_pred - y_true))
 
     # def custom_loss(layer):
     #     # Create a loss function that adds the MSE loss to the mean of all squared activations of a specific layer
