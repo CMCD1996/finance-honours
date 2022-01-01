@@ -545,9 +545,16 @@ def create_tf_dataset(dataframe, target_column, shuffle=True, batch_size=32):
         [type]: [description]
     """
     df = dataframe.copy()
+    print('Dataframe Before')
+    print(list(df.columns))
     print(df[target_column].head())
+    # Returns the labels and drop columns from dataframe
     labels = df.pop(target_column)
+    print('Dataframe Before')
+    print(list(df.columns))
     df = {key: value[:, tf.newaxis] for key, value in dataframe.items()}
+    print(df)
+    # Print dataframe to ensure order is preserved
     ds = tf.data.Dataset.from_tensor_slices((dict(df), labels))
     if shuffle:
         ds = ds.shuffle(buffer_size=len(dataframe))
