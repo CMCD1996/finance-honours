@@ -852,7 +852,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         # if selected_loss == 'multi_layer_loss':
         #     lf = multi_layer_loss
         if selected_loss == 'custom_loss':
-            lf = custom_loss(layer=all_inputs, reduction=red,
+            lf = custom_loss(layer='Successful', reduction=red,
                              name='custom_loss')
         #################################################################################
         # Metrics
@@ -1269,6 +1269,37 @@ def implement_test_data(dataframe, train, val, test, full_implementation=False):
     return
 
 
+def reinforement_learning(model, env, target_vec):
+    discount_factor = 0.95
+    eps = 0.5
+    eps_decay_factor = 0.999
+    num_episodes = 500
+
+    # Implements Q Leanring Approach
+    for i in range(num_episodes):
+        state = env.reset()
+        eps *= eps_decay_factor
+        done = False
+        while not done:
+            if np.random.random() < eps:
+                action = np.random.randint(0, env.action_space.n)
+            else:
+                action = np.argmax(
+                    model.predict(np.identity(env.observation_space.n)[state:state + 1]))
+            new_state, reward, done, _ = env.step(action)
+            target = reward + discount_factor * \
+                np.max(model.predict(np.identity(
+                    env.observation_space.n)[new_state:new_state + 1]))
+            target_vector = model.predict(
+                np.identity(env.observation_space.n)[state:state + 1])[0]
+            target_vector[action] = target
+            model.fit(
+                np.identity(env.observation_space.n)[state:state + 1],
+                target_vec.reshape(-1, env.action_space.n),
+                epochs=1, verbose=0)
+            state = new_state
+
+
 def project_analysis(data_vm_directory, list_of_columns, categorical_assignment, target_column, chunk_size, resizing_options, batch_size, model_name, selected_optimizer, selected_loss, selected_metrics, split_data=False, trial=False, sample=False):
     # Prints memory usage before analysis
     monitor_memory_usage(units=3, cpu=True, gpu=True)
@@ -1434,6 +1465,7 @@ def custom_sharpe_ratio(y_true, y_pred):
     sr_pred = -1*(K.mean(y_pred)/K.std(y_pred))
     sr_true = -1*(K.mean(y_true)/K.std(y_true))
     # Finds MSE between predited and true MSE
+
     loss = K.mean(K.square(sr_true - sr_pred))
     return loss
 
@@ -1483,8 +1515,7 @@ class custom_loss(tf.keras.losses.Loss):
         mse = K.mean(K.square(y_true - y_pred))
         rmse = K.sqrt(mse)
         # return (rmse / K.mean(K.square(y_true)) - 1)
-        K.print_tensor(y_pred, message='y predict is: ')
-        K.print_tensor(y_true, message='y true is: ')
+        print('Testing passed into function by printing: ', layer)
         return K.mean(K.square(y_pred - y_true))
 
     # def custom_loss(layer):
