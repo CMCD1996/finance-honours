@@ -30,6 +30,7 @@ import sklearn as skl  # Simple statistical models
 from sklearn.model_selection import train_test_split
 import tensorflow as tf  # Tensorflow (https://www.tensorflow.org/)
 from tensorflow.keras import layers
+from tensorflow.python.eager.def_function import run_functions_eagerly
 from tensorflow.python.ops.gen_array_ops import split  # Find combinations of lists
 # Keras backend functions to design custom metrics
 import tensorflow.keras.backend as K
@@ -851,8 +852,8 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         # if selected_loss == 'multi_layer_loss':
         #     lf = multi_layer_loss
         if selected_loss == 'custom_loss':
-            print('Prints the all_inputs tensor')
-            tf.print(all_inputs)
+            print('Prints the all_inputs tensor using a backend function')
+            K.print_tensor(all_inputs[0])
             lf = custom_loss(layer=all_inputs, reduction=red,
                              name='custom_loss')
         #################################################################################
