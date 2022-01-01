@@ -1,4 +1,12 @@
 #################################################################################
+# Information
+#################################################################################
+# Author; Connor Robert McDowall
+# Linux Terminal Call on Google Cloud Platform Virtual Machine Instance
+# 1) cd finance-honours
+# 2) cd src
+# 3) python cmcd398-finance-honours.py
+#################################################################################
 # Module Imports
 #################################################################################
 # System
@@ -1474,7 +1482,7 @@ class custom_loss(tf.keras.losses.Loss):
         mse = K.mean(K.square(y_true - y_pred))
         rmse = K.sqrt(mse)
         # return (rmse / K.mean(K.square(y_true)) - 1)
-        return K.mean(K.square(y_pred - y_true) + K.square(layer, axis=- 1))
+        return K.mean(K.square(y_pred - y_true) + K.square(layer))
 
     # def custom_loss(layer):
     #     # Create a loss function that adds the MSE loss to the mean of all squared activations of a specific layer
