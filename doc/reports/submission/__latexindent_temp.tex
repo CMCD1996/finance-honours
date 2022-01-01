@@ -5,7 +5,7 @@
 \documentclass[12pt]{article}
 % REFERENCES
 \usepackage[backend=biber,style = apa]{biblatex}
-\addbibresource{finance-honours.bib}
+\bibliography{finance-honours.bib}
 % \addbibresource{sources.bib}
 %%% PAGE DIMENSIONS
 \usepackage[margin=2.54cm]{geometry}
@@ -273,9 +273,6 @@ Where
 \section{Model}
 \textbf{Insert model configuration}
 Example of the whole set
-\begin{align*}
-
-\end{align*}
 \subsection{Configuration}
 \section{Methodology}
 \subsection{Data}
@@ -380,44 +377,61 @@ More sophisticated methods exist for maximisation such as reinforcement learning
 \begin{align*}
 	\argmax_{\hat{\theta}} &: (\frac{X^{T} \hat{\theta}}{\vec{\textbf{1}}X^{T} \hat{\theta}})^\top X^{T} \hat{\theta} \numberthis \label{argmax}
 \end{align*}
+\subsection{Conventional Asset Pricing Models}
 Conventional asset pricing methodologies persist in academic literature.
-Subsequently, this research essay uses the Hedge Portfolio Mean (\ref{hm})), Capital Asset Pricing Model (\ref{hcapm}), 
-Fama-French Three Factor Model (\ref{hff3}), and Fama-French Five Factor Model (\ref{hff5}) as performance metrics for each loss function.
 The use of the Capital Asset Pricing Model (CAPM) persists, regardless of the identifiable shortcomings in market proxies and empirical failings invalidating use (\cite{fama2004capital}).
 Nonetheless, this research essay uses the model as a performance metric for comparative purposes.
 \begin{align*}
 	R_{i,t} - R_{f,t} &= \alpha_{i,t} + \beta_{i,t}^{1}(R_{M,t}-R_{f,t}) \numberthis \label{capm}
 \end{align*}
-where
-\begin{itemize}
-	\item $R_{i,t} - R_{f,t}$: Portfolio Excess Return for a given portfolio and time
-	\item $\alpha_{i,t}$: 
-	\item $\beta_{t}^{1}$: Market Risk Factor
-	\item \item $\beta_{t}^{1}$: Size Pricing Factor
-	\item \item $\beta_{t}^{2}$: Market Risk (sensitivity)
-	\item \item $\beta_{t}^{3}$: Market Risk (sensitivity)
-	\item \item $\beta_{t}^{4}$: Market Risk (sensitivity)
-	\item $(R_{M,t}-R_{f,t})$: Market Risk Premium
-	\item $SMB_{t}$: Size Premium (small minus big)
-	\item $HML_{t}$: Value Premium (high minus low)
-	\item $ $
-	\item $ $
-\end{itemize}
 E. Fama and K. French (\citeyear{eugene1992cross}) validate the explanatory power of size and value (book-to-market) factors
 in their ability to capture the cross-sectional variation in average stock returns, in association with market risk, size, leverage, book-to-market, and earnings-price ratios.
-This combination of factors is known as the Fama-French Three Factor Model (FF3). 
+E. Fama and K. French further their analysis on the common characteristics between stocks and bonds (\cite{fama2021common})\footnote{Reprinted. Originally published in 1993}, 
+and add two additional factors to consider profitability and investment.
+The main combinations are the Fama French Three (FF3) (\ref{ff3}) and Five (FF5) (\ref{ff5}) models.
+E. Fama and K. French consider a momentum factor on international stock returns in subsequent years (\cite{fama2012size}).
+The omission of momentum from the models stand.
 \begin{align*}
-	R_{i,t} - R_{f,t} &= \alpha_{i,t} + \beta_{i,t}(R_{M,t}-R_{f,t})
+	R_{i,t} - R_{f,t} &= \alpha_{i,t} + \beta_{i,t}(R_{M,t}-R_{f,t}) \numberthis \label{ff3}\\
+	R_{i,t} - R_{f,t} &= \alpha_{i,t} + \beta_{i,t}(R_{M,t}-R_{f,t}) \numberthis \label{ff5}
 \end{align*}
-E. Fama and J. MacBeth developed the Fama-MacBeth regressions, a two-stage methodology to deriving factor prices.
-First,
+where
+\begin{itemize} 
+	\item $R_{i,t} - R_{f,t}$: Portfolio Excess Return on the market for a given portfolio and time, value-weighted using all incorporated US CRSP firms incorporated in the US, listed on the NYSE, AMEX, or NASDAQ.
+	\item $\alpha_{i,t}$: Jensen's alpha indicating mispricing in the asset.
+	\item $\beta_{t}^{1}$: Market Risk Factor (co-efficient)
+	\item $\beta_{t}^{1}$: Size Factor (co-efficient)
+	\item $\beta_{t}^{2}$: Value Factor (co-efficient)
+	\item $\beta_{t}^{2}$: Value Factor (co-efficient)
+	\item $\beta_{t}^{3}$: Profitability Factor (co-efficient)
+	\item $\beta_{t}^{4}$: Investment Factor (co-efficient)
+	\item $(R_{M,t}-R_{f,t})$: Market Risk Premium
+	\item $SMB_{t}$: Size Premium (small minus big) is the difference in average return between nine small stock and nine large value-weighted portfolios.
+	\item $HML_{t}$: Value Premium (high minus low) is the difference in average return between two value and two growth value-weighted portfolios.
+	\item $RMW_{t}$: Profitability Premium (robust minus weak) is the difference in average return between two robust operating profitability and two weak operating profitability value-weighted portfolios.
+	\item $CMA_{t}$: Investment Premium minus aggressive is the difference in average return on the two conservative and two aggressive investment portfolios
+\end{itemize}
+K. French continues to maintain FF3 and FF5 related datasets (\cite{french-personal})
+E. Fama, with J. MacBeth, developed the Fama-MacBeth regression (\cite{fama1973risk}) to estimate factor pricings
+The methodology is a two-stage estimation process for estimating factor loadings, and prices, for a given portfolio.
+The first step requires determining each asset's $\beta$ exposures by regressing each of n asset excess returns against m proposed \ref{fb1}.
+The second step determines the risk premium (factor pricing) for each asset by regressing all asset excess returns for each T period against previously estimated $\beta$s (\ref{fb2}).
+\begin{align*}
+	ER_{n,t} &= \alpha_{n} + \sum_{f=1}^{F} \beta_{n,F_{f}}F_{f,t} + \epsilon_{n,t} \numberthis \label{fb1} \space \forall n\epsilon\{1,...,N\}\\
+\end{align*}
+Where
+\begin{itemize}
+	\item 
+\end{itemize}
+\textbf{The matrix notation for these formulations follows:}
 \begin{align*}
 	H_{\mu} &=1 \numberthis \label{hm}\\
 	H_{CAPM} &= 1 \numberthis \label{hcapm}\\
 	H_{FF3} &= 1 \numberthis \label{hff3}\\
 	H_{FF5} &= 1 \numberthis \label{hff5}
 \end{align*}
-Fama-French Five Factor Model (FF5) continues to inform asset pricing E. Fama \& K. French produce \cite{fama2004capital}
+Subsequently, this research essay uses the Hedge Portfolio Mean (\ref{hpm})), Capital Asset Pricing Model (\ref{capm}), 
+Fama-French Three Factor Model (\ref{ff3}), and Fama-French Five Factor Model (\ref{ff5}) as performance metrics for each loss function.
 \subsubsection{Sharpe Ratio}
 Nobel Laurette William F. Sharpe (\citeyear{sharpe1994sharpe}) introduced the Sharpe Ratio (\ref{sr}) as a measure for risk-adjusted returns
 where $\mathop{\mathbb{E}} [R_a - R_f]$ is the expectation for excess returns and $\sigma(R_a)$ is the standard deviation of excess returns.
@@ -1060,7 +1074,7 @@ Application of auxiliary documentation methods are supplementary.
 All files, resources, and code is available for download from \href{https://github.com/CMCD1996/finance-honours}{Github}.
 The document listing function and class docstring is available for download \href{/Users/connor/Google Drive/Documents/Professional/Projects/Portfolio/downloads/wip.pdf}{here}.
 % Decide to include/exclude depending on size.
-Furthermore, the coding listings for this research essay follow.
+Furthermore, the coding listings for this research essay follow. Try update.
 % \lstinputlisting[language=Python]{cmcd398-finance-honours.py}
 \printbibliography
 \newpage

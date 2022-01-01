@@ -1,0 +1,117 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1}Acknowledgements}{4}{section.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2}Abstract}{5}{section.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3}Introduction}{6}{section.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4}Research Question(s)}{7}{section.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5}Motivation(s)}{7}{section.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6}Literature Review}{7}{section.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.1}Asset Pricing}{7}{subsection.6.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.2}Machine Learning}{7}{subsection.6.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.3}Machine Learning}{7}{subsection.6.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.4}Data}{7}{subsection.6.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7}Theory}{7}{section.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.1}Modelling, Loss, and Optimisation}{7}{subsection.7.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.2}Ordinary Least Squares (OLS)}{8}{subsection.7.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {7.2.1}Estimation Criteria}{9}{subsubsection.7.2.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {7.2.2}Properties of OLS Estimators}{10}{subsubsection.7.2.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {7.2.3}The Gauss-Markov Theorem}{10}{subsubsection.7.2.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.3}Artificial Neural Networks (ANN)}{11}{subsection.7.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {7.3.1}Multi Layer Perceptron (MLP)}{11}{subsubsection.7.3.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.4}Hypothesis}{12}{subsection.7.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {8}Model}{13}{section.8}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {8.1}Configuration}{13}{subsection.8.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {9}Methodology}{13}{section.9}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.1}Data}{13}{subsection.9.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.2}Limitations}{14}{subsection.9.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.3}Summary Statistics}{14}{subsection.9.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {10}Methodology}{14}{section.10}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {10.1}Target Variable}{14}{subsection.10.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {10.2}Google Cloud Platform}{14}{subsection.10.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {10.2.1}Configuration}{14}{subsubsection.10.2.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {10.2.2}Limitations}{14}{subsubsection.10.2.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {10.3}Tensorflow}{14}{subsection.10.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {10.3.1}Automatic Differientiation}{14}{subsubsection.10.3.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {10.4}Loss Functions \& Performance Metrics}{14}{subsection.10.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {10.4.1}Mean Square Error (MSE)}{14}{subsubsection.10.4.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {10.4.2}Hedge Portfolio}{15}{subsubsection.10.4.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {10.5}Conventional Asset Pricing Models}{17}{subsection.10.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {10.5.1}Sharpe Ratio}{20}{subsubsection.10.5.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {10.5.2}Information Ratio}{20}{subsubsection.10.5.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {10.6}Reinforcement learning}{21}{subsection.10.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {10.6.1}Dynamic Programming}{21}{subsubsection.10.6.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {10.6.2}Bellman's Algorithm}{21}{subsubsection.10.6.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {10.6.3}Q-Learning}{21}{subsubsection.10.6.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {11}Results}{22}{section.11}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {12}Discussion}{22}{section.12}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {13}Contributions}{22}{section.13}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {14}Conclusion}{22}{section.14}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {15}Appendix}{23}{section.15}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {15.1}Tables and Charts}{23}{subsection.15.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {15.2}Technical Details}{54}{subsection.15.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {15.2.1}Organisation}{54}{subsubsection.15.2.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {15.2.2}Version Control}{54}{subsubsection.15.2.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {15.2.3}Directories}{55}{subsubsection.15.2.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {15.2.4}Python}{55}{subsubsection.15.2.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {15.2.5}Package Management}{55}{subsubsection.15.2.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {15.2.6}Code Style}{56}{subsubsection.15.2.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {15.2.7}Infrastructure}{56}{subsubsection.15.2.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {15.2.8}Documentation}{56}{subsubsection.15.2.8}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {15.3}Code}{57}{subsection.15.3}%
