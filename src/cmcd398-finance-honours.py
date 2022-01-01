@@ -136,15 +136,25 @@ def configure_training_ui(project, api_token):
     # Define the custom class for the function
 
     class NeptuneCallback(Callback):
+        def __init__(self, run=None, base_namespace=None, batch=None, epoch=None):
+            self.run = run
+            self.base_namespace = base_namespace
+            self.batch = batch
+            self.epoch = epoch
+
         def on_batch_end(self, batch, logs=None):
+            batch = self.batch
+            run = self.run
             for metric_name, metric_value in logs.items():
                 run[f"{metric_name}"].log(metric_value)
 
         def on_epoch_end(self, epoch, logs=None):
+            epoch = self.epoch
             for metric_name, metric_value in logs.items():
                 run[f"{metric_name}"].log(metric_value)
     # Find the call back
-    neptune_cbk = NeptuneCallback(run=run, base_namespace='metrics')
+    neptune_cbk = NeptuneCallback(
+        run=run, base_namespace='metrics', batch=None, epoch=None)
     # Example to set paramters
     # run["JIRA"] = "NPT-952"
     # run["parameters"] = {"learning_rate": 0.001,
