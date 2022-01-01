@@ -852,8 +852,6 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         # if selected_loss == 'multi_layer_loss':
         #     lf = multi_layer_loss
         if selected_loss == 'custom_loss':
-            print('Prints the all_inputs tensor using a backend function')
-            K.print_tensor(all_inputs)
             lf = custom_loss(layer=all_inputs, reduction=red,
                              name='custom_loss')
         #################################################################################
@@ -1485,6 +1483,8 @@ class custom_loss(tf.keras.losses.Loss):
         mse = K.mean(K.square(y_true - y_pred))
         rmse = K.sqrt(mse)
         # return (rmse / K.mean(K.square(y_true)) - 1)
+        K.print_tensor(y_pred, message='y predict is: ')
+        K.print_tensor(y_true, message='y true is: ')
         return K.mean(K.square(y_pred - y_true))
 
     # def custom_loss(layer):
