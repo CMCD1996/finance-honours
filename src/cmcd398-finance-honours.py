@@ -879,7 +879,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         # if selected_loss == 'multi_layer_loss':
         #     lf = multi_layer_loss
         if selected_loss == 'custom_loss':
-            lf = custom_loss(layer='Successful', reduction=red,
+            lf = custom_loss(layer='Successful', type=0, reduction=red,
                              name='custom_loss')
         #################################################################################
         # Metrics
@@ -1075,6 +1075,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         # Compiler variables
         # Establishes the compiler
         print('Start: Model Compilation')
+        print('Metrics List', metrics_list)
         model.compile(
             optimizer=opt, loss=lf, metrics=metrics_list, loss_weights=lw,
             weighted_metrics=wm, run_eagerly=regly, steps_per_execution=spe)
@@ -1532,18 +1533,27 @@ def custom_information_ratio(y_true, y_pred):
 
 
 class custom_loss(tf.keras.losses.Loss):
-    def __init__(self, layer=None, reduction=tf.keras.losses.Reduction.AUTO, name='custom_loss'):
+    def __init__(self, layer=None, type=None, reduction=tf.keras.losses.Reduction.AUTO, name='custom_loss'):
         super().__init__(reduction=reduction, name=name)
         self.layer = layer
+        self.type = type
         # self.layer = layer
 
     def call(self, y_true, y_pred):
         layer = self.layer
-        mse = K.mean(K.square(y_true - y_pred))
-        rmse = K.sqrt(mse)
-        # return (rmse / K.mean(K.square(y_true)) - 1)
-        print('Testing passed into function by printing: ', layer)
-        loss = K.mean(K.square(y_pred - y_true))
+        type = self.type
+        # Uses booleans to set the loss function
+        # Mean Squared Error
+        if type == 0:
+            loss = K.mean(K.square(y_pred - y_true))
+        # Sharpe ratio
+        if type == 1:
+            sr_pred = -1*(K.mean(y_pred)/K.std(y_pred))
+            sr_true = -1*(K.mean(y_true)/K.std(y_true))
+            loss = K.mean(K.square(sr_true - sr_pred))
+        if type == 2:
+            loss = -1*((K.mean(y_pred) - K.mean(y_true)) /
+                       K.std(y_pred - y_true))
         return loss
 
     # def custom_loss(layer):
