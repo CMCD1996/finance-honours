@@ -2016,10 +2016,10 @@ metrics = accuracy_metrics + probabilistic_metrics + regression_metrics + \
 optimisation_dictionary = {1: 'SGD', 2: 'SGD',
                            3: 'SGD', 4: 'SGD', 5: 'SGD', 6: 'SGD', 7: 'SGD'}
 loss_function_dictionary = {1: 'mean_squared_error', 2: 'custom_l2_mse', 3: 'custom_hedge_portfolio_returns',
-                            4: 'custom_sharpe_ratio', 5: 'custom_information_ratio', 6: 'custom_loss', 7: 'custom_l2_mse'}
+                            4: 'custom_sharpe_ratio', 5: 'custom_information_ratio', 6: 'custom_loss', 7: 'custom_loss'}
 metrics_dictionary = {1: ['mean_squared_error'], 2: ['mean_squared_error'], 3: [
-    'mean_squared_error'], 4: ['mean_squared_error'], 5: ['mean_squared_error'], 6: ['mean_squared_error'], 7: ['root_mean_squared_error', 'mean_absolute_percentage_error', 'mean_metric_wrapper', 'sum',
-                                                                                                                'mean_relative_error', 'mean_squared_error', 'mean_squared_logarithmic_error', 'cosine_similarity', 'logcosh', 'mean', 'mean_absolute_error']}
+    'mean_squared_error'], 4: ['mean_squared_error'], 5: ['mean_squared_error'], 6: ['mean_squared_error'], 7: ['root_mean_squared_error',
+                                                                                                                'mean_relative_error', 'mean_squared_error', 'cosine_similarity', 'mean_absolute_error']}
 # Selected Tensorflow Configuration
 #################################################################################
 tf_option = 7  # Change to 1,2,3,4,5,6,7 for configuration
