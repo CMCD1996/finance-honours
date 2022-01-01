@@ -158,7 +158,7 @@ def partition_data(data_location, data_destination):
 
     Args:
         data_location (str): directory of dta file
-        data_destination (str): 
+        data_destination (str):
     """
 
     # Converts dta file to chunks
@@ -177,7 +177,7 @@ def partition_data(data_location, data_destination):
 
 
 def create_dataframes(csv_location, multi_csv):
-    """ Function to create 
+    """ Function to create
     """
     # Creates list of dataframes
     num_csvs = list(range(1, 29, 1))
@@ -429,7 +429,7 @@ def process_vm_dataset(data_vm_dta, size_of_chunks, resizing_options, save_stati
     following the classify structured data with feature columns tutorial
     """
     # Load the test and train datasets into dataframes in chunks
-    #df = pd.read_stata(data_vm_dta)
+    # df = pd.read_stata(data_vm_dta)
     subset = pd.read_stata(data_vm_dta, chunksize=size_of_chunks)
     df_full = pd.DataFrame()
     for df in subset:
@@ -843,7 +843,8 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         # if selected_loss == 'multi_layer_loss':
         #     lf = multi_layer_loss
         if selected_loss == 'custom_loss':
-            lf = custom_loss(layer=layer_3, reduction=red, name='custom_loss')
+            lf = custom_loss(layer=all_inputs, reduction=red,
+                             name='custom_loss')
         #################################################################################
         # Metrics
         #################################################################################
@@ -1473,7 +1474,7 @@ class custom_loss(tf.keras.losses.Loss):
         mse = K.mean(K.square(y_true - y_pred))
         rmse = K.sqrt(mse)
         # return (rmse / K.mean(K.square(y_true)) - 1)
-        return K.mean(K.square(y_pred - y_true) + K.square(layer), axis=-1)
+        return K.mean(K.square(y_pred - y_true) + K.square(layer, axis=- 1))
 
     # def custom_loss(layer):
     #     # Create a loss function that adds the MSE loss to the mean of all squared activations of a specific layer
