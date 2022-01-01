@@ -1137,10 +1137,15 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         workers = 1
         # Boolean. Used for generator or keras.utils.Sequence input only.
         use_multiprocessing = False
+        # Sets Neptune ai
+        project = "connormcdowall/finance-honours"
+        api_token = "eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vYXBwLm5lcHR1bmUuYWkiLCJhcGlfdXJsIjoiaHR0cHM6Ly9hcHAubmVwdHVuZS5haSIsImFwaV9rZXkiOiI4YzBmOTFlNS0zZTFiLTQyNDUtOGFjZi1jZGI0NDY4ZGVkOTQifQ=="
+        # Configures neptune ai
+        neptune_cbk = configure_training_ui(project, api_token)
         # Fit the model
         print('Start: Model Fitting')
         model.fit(x=x_train, batch_size=32, epochs=eps,
-                  verbose='auto', validation_data=val_dataset)
+                  verbose='auto', validation_data=val_dataset, callbacks=[neptune_cbk])
         # model.fit(x=x_train, batch_size=32, epochs=eps, verbose='auto',
         #     callbacks=None, validation_data=val_dataset, shuffle=True,
         #     class_weight=None, sample_weight=None, initial_epoch=0, steps_per_epoch=None,
