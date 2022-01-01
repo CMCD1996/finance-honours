@@ -851,7 +851,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         # if selected_loss == 'multi_layer_loss':
         #     lf = multi_layer_loss
         if selected_loss == 'custom_loss':
-            lf = custom_loss(layer=all_inputs, reduction=red,
+            lf = custom_loss(layer=all_features, reduction=red,
                              name='custom_loss')
         #################################################################################
         # Metrics
