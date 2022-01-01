@@ -853,7 +853,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         #     lf = multi_layer_loss
         if selected_loss == 'custom_loss':
             print('Prints the all_inputs tensor using a backend function')
-            K.print_tensor(all_inputs[0])
+            K.print_tensor(all_inputs)
             lf = custom_loss(layer=all_inputs, reduction=red,
                              name='custom_loss')
         #################################################################################
