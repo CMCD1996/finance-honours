@@ -1175,8 +1175,8 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         # with each key being the name of the metric. If False, they are returned as a list.
         # Model evaluation
         print('Start: Model Evaluation')
-        loss, metrics = model.evaluate(x_test, batch_size=None, verbose=verb, steps=None, callbacks=None,
-                                       max_queue_size=mqs, workers=1, use_multiprocessing=ump, return_dict=rd)
+        loss, metrics, *other_metrics = model.evaluate(x_test, batch_size=None, verbose=verb, steps=None, callbacks=None,
+                                                       max_queue_size=mqs, workers=1, use_multiprocessing=ump, return_dict=rd)
         #################################################################################
         print('End: Model Evaluation')
         print("Loss: ", loss)
@@ -1188,7 +1188,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         # Monitor memory usage
         monitor_memory_usage(units=3, cpu=True, gpu=True)
         # Return the model, loss and accuracy
-        return model, loss, metrics
+        return model, loss, metrics, other_metrics
     else:
         # Exemplar implementation prior to finance adaptation
         # Set up neural net layers
@@ -1376,8 +1376,8 @@ def project_analysis(data_vm_directory, list_of_columns, categorical_assignment,
         train_df, val_df, test_df, target_column, numerical_features, categorical_features, categorical_dictionary, size_of_batch=batch_size)
     # Note: Keep Stochastic Gradient Descent as Optimizer for completeness
     # Buids tensorflow model
-    model, loss, metrics = build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name,
-                                                   all_features, all_inputs, selected_optimizer, selected_loss, selected_metrics, finance_configuration=True)
+    model, loss, metrics, other_metrics = build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name,
+                                                                   all_features, all_inputs, selected_optimizer, selected_loss, selected_metrics, finance_configuration=True)
     return
 #################################################################################
 # Custom Loss Functions, Metrics and Autodiff Testing
