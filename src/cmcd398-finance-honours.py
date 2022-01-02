@@ -1055,10 +1055,22 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
             if selected_loss == 'squared_hinge':
                 lf = tf.keras.losses.SquaredHinge(
                     reduction=red, name='squared_hinge')
-            if selected_loss == 'custom_loss':
-                lf = custom_loss(layer='Successful', type=0, reduction=red,
-                                 name='custom_loss')
-
+            # Custom Losses
+            if selected_loss == 'custom_mse':
+                lf = custom_mse(extra_tensor=None, reduction=red,
+                                name='custom_mse')
+            if selected_loss == 'custom_hp':
+                lf = custom_hp(extra_tensor=None, reduction=red,
+                               name='custom_hp')
+            if selected_loss == 'custom_sharpe':
+                lf = custom_sharpe(extra_tensor=None, reduction=red,
+                                   name='custom_sharpe')
+            if selected_loss == 'custom_information':
+                lf = custom_information(extra_tensor=None, reduction=red,
+                                        name='custom_information')
+            if selected_loss == 'custom_treynor':
+                lf = custom_treynor(extra_tensor=None, reduction=red,
+                                    name='custom_treynor')
             #################################################################################
             # Compiler
             #################################################################################
@@ -1507,53 +1519,95 @@ def custom_information_ratio(y_true, y_pred):
 
 # Note: Symbolic Tensors do not work in function calls as require eager tensors.
 # Subsequently, must create custom class with call function
-#
 # Utilisation of function closure to pass multiple inputs into the function.
 
 
-class custom_loss(tf.keras.losses.Loss):
-    def __init__(self, layer=None, type=None, reduction=tf.keras.losses.Reduction.AUTO, name='custom_loss'):
+class custom_mse(tf.keras.losses.Loss):
+    def __init__(self, extra_tensor=None, reduction=tf.keras.losses.Reduction.AUTO, name='custom_mse'):
         super().__init__(reduction=reduction, name=name)
-        self.layer = layer
-        self.type = type
-        # self.layer = layer
+        self.extra_tensor = extra_tensor
 
     def call(self, y_true, y_pred):
-        layer = self.layer
-        type = self.type
-        sr_pred = -1*(K.mean(y_pred)/K.std(y_pred))
-        sr_true = -1*(K.mean(y_true)/K.std(y_true))
-        # Uses booleans to set the loss function
-        # Mean Squared Error
-        if type == 0:
-            loss = K.mean(K.square(y_pred - y_true))
-        # Sharpe ratio 1 (Maximise Prediction)
-        if type == 'max_predicted_sharpe_ratio':
-
-            loss = K.mean(K.square(sr_true - sr_pred))
-        # Sharpe ratio (Maximise Prediction)
-        if type == 'max_true_sharpe_ratio':
-            sr_pred = -1*(K.mean(y_pred)/K.std(y_pred))
-            sr_true = -1*(K.mean(y_true)/K.std(y_true))
-            loss = K.mean(K.square(sr_true - sr_pred))
-        # Sharpe Ratio (MSE)
-        if type == 'max_true_sharpe_ratio':
-            sr_pred = -1*(K.mean(y_pred)/K.std(y_pred))
-            sr_true = -1*(K.mean(y_true)/K.std(y_true))
-            loss = K.mean(K.square(sr_true - sr_pred))
-        # Information Ratio
-        if type == 2:
-            loss = -1*((K.mean(y_pred) - K.mean(y_true)) /
-                       K.std(y_pred - y_true))
-        # Treynor Ratio
-        if type == 3:
-            sr_pred = -1*(K.mean(y_pred)/K.std(y_pred))
-            sr_true = -1*(K.mean(y_true)/K.std(y_true))
-            loss = K.mean(K.square(sr_true - sr_pred))
-        # Hedge Portfolio
-        if type == 4:
-            loss = K.mean(K.square(sr_true - sr_pred))
+        extra_tensor = self.extra_tensor
+        loss = K.mean(K.square(y_pred - y_true))
         return loss
+
+
+class custom_hp(tf.keras.losses.Loss):
+    def __init__(self, extra_tensor=None, reduction=tf.keras.losses.Reduction.AUTO, name='custom_hp'):
+        super().__init__(reduction=reduction, name=name)
+        self.extra_tensor = extra_tensor
+
+    def call(self, y_true, y_pred):
+        extra_tensor = self.extra_tensor
+        loss = K.mean(K.square(y_pred - y_true))
+        return loss
+
+
+class custom_sharpe(tf.keras.losses.Loss):
+    def __init__(self, extra_tensor=None, reduction=tf.keras.losses.Reduction.AUTO, name='custom_sharpe'):
+        super().__init__(reduction=reduction, name=name)
+        self.extra_tensor = extra_tensor
+
+    def call(self, y_true, y_pred):
+        extra_tensor = self.extra_tensor
+        #sr_pred = -1*(K.mean(y_pred)/K.std(y_pred))
+        #sr_true = -1*(K.mean(y_true)/K.std(y_true))
+        #loss = K.mean(K.square(sr_true - sr_pred))
+        loss = K.mean(K.square(y_pred - y_true))
+        return loss
+
+
+class custom_information(tf.keras.losses.Loss):
+    def __init__(self, extra_tensor=None, reduction=tf.keras.losses.Reduction.AUTO, name='custom_information'):
+        super().__init__(reduction=reduction, name=name)
+        self.extra_tensor = extra_tensor
+
+    def call(self, y_true, y_pred):
+        extra_tensor = self.extra_tensor
+        loss = K.mean(K.square(y_pred - y_true))
+        return loss
+
+
+class custom_treynor(tf.keras.losses.Loss):
+    def __init__(self, extra_tensor=None, reduction=tf.keras.losses.Reduction.AUTO, name='custom_treynor'):
+        super().__init__(reduction=reduction, name=name)
+        self.extra_tensor = extra_tensor
+
+    def call(self, y_true, y_pred):
+        extra_tensor = self.extra_tensor
+        loss = K.mean(K.square(y_pred - y_true))
+        return loss
+        # # Uses booleans to set the loss function
+        # # Mean Squared Error
+        # if type == 0:
+        #     loss = K.mean(K.square(y_pred - y_true))
+        # # Sharpe ratio 1 (Maximise Prediction)
+        # if type == 'max_predicted_sharpe_ratio':
+
+        #     loss = K.mean(K.square(sr_true - sr_pred))
+        # # Sharpe ratio (Maximise Prediction)
+        # if type == 'max_true_sharpe_ratio':
+        #     sr_pred = -1*(K.mean(y_pred)/K.std(y_pred))
+        #     sr_true = -1*(K.mean(y_true)/K.std(y_true))
+        #     loss = K.mean(K.square(sr_true - sr_pred))
+        # # Sharpe Ratio (MSE)
+        # if type == 'max_true_sharpe_ratio':
+        #     sr_pred = -1*(K.mean(y_pred)/K.std(y_pred))
+        #     sr_true = -1*(K.mean(y_true)/K.std(y_true))
+        #     loss = K.mean(K.square(sr_true - sr_pred))
+        # # Information Ratio
+        # if type == 2:
+        #     loss = -1*((K.mean(y_pred) - K.mean(y_true)) /
+        #                K.std(y_pred - y_true))
+        # # Treynor Ratio
+        # if type == 3:
+        #     sr_pred = -1*(K.mean(y_pred)/K.std(y_pred))
+        #     sr_true = -1*(K.mean(y_true)/K.std(y_true))
+        #     loss = K.mean(K.square(sr_true - sr_pred))
+        # # Hedge Portfolio
+        # if type == 4:
+        #     loss = K.mean(K.square(sr_true - sr_pred))
 
     # def custom_loss(layer):
     #     # Create a loss function that adds the MSE loss to the mean of all squared activations of a specific layer
@@ -1914,8 +1968,8 @@ multiclass_classfication_losses = ['categorical_crossentropy',
 regression_losses = ['cosine_similarity', 'mean_absolute_error', 'mean_absolute_percentage_error',
                      'mean_squared_logarithmic_error', 'mean_squared_error', 'huber_loss']
 extra_losses = ['hinge', 'log_cosh', 'loss', 'squared_hinge']
-custom_losses = ['custom_l2_mse', 'custom_hedge_portfolio_returns', 'custom_sharpe_ratio',
-                 'custom_information_ratio', 'custom_loss']  # List names here when created
+custom_losses = ['custom_mse', 'custom_hp', 'custom_sharpe',
+                 'custom_information', 'custom_treynor']  # List names here when created
 losses = binary_classification_losses + multiclass_classfication_losses + \
     regression_losses + extra_losses + custom_losses
 # Metrics (Functions used to judge model performance,similar to a loss function but results are not used when training a model)
@@ -1936,7 +1990,7 @@ metrics = accuracy_metrics + probabilistic_metrics + regression_metrics + \
 # Tensorflow congifuration
 optimisation_dictionary = {1: 'SGD', 2: 'SGD',
                            3: 'SGD', 4: 'SGD', 5: 'SGD', 6: 'SGD', 7: 'SGD'}
-loss_function_dictionary = {1: ['mean_squared_error', 'custom_loss'], 2: 'custom_l2_mse', 3: 'custom_hedge_portfolio_returns',
+loss_function_dictionary = {1: ['mean_squared_error', 'custom_mse'], 2: 'custom_mse', 3: 'custom_hedge_portfolio_returns',
                             4: 'custom_sharpe_ratio', 5: 'custom_information_ratio', 6: 'custom_loss', 7: 'custom_loss'}
 metrics_dictionary = {1: ['mean_squared_error', 'cosine_similarity', 'mean_absolute_error', 'root_mean_squared_error'], 2: ['mean_squared_error'], 3: [
     'mean_squared_error'], 4: ['mean_squared_error'], 5: ['mean_squared_error'], 6: ['mean_squared_error'], 7: ['mean_squared_error', 'cosine_similarity', 'mean_absolute_error', 'root_mean_squared_error']}
