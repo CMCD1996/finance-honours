@@ -1993,7 +1993,7 @@ metrics = accuracy_metrics + probabilistic_metrics + regression_metrics + \
 # Tensorflow congifuration
 optimisation_dictionary = {1: 'SGD', 2: 'SGD',
                            3: 'SGD', 4: 'SGD', 5: 'SGD', 6: 'SGD', 7: 'SGD'}
-loss_function_dictionary = {1: ['mean_squared_error', 'custom_mse'], 2: 'custom_mse', 3: 'custom_hedge_portfolio_returns',
+loss_function_dictionary = {1: ['mean_squared_error', 'custom_mse'], 2: ['custom_mse'], 3: 'custom_hedge_portfolio_returns',
                             4: 'custom_sharpe_ratio', 5: 'custom_information_ratio', 6: 'custom_loss', 7: 'custom_loss'}
 metrics_dictionary = {1: ['mean_squared_error', 'cosine_similarity', 'mean_absolute_error', 'root_mean_squared_error'], 2: ['mean_squared_error', 'cosine_similarity', 'mean_absolute_error', 'root_mean_squared_error'], 3: [
     'mean_squared_error'], 4: ['mean_squared_error'], 5: ['mean_squared_error'], 6: ['mean_squared_error'], 7: ['mean_squared_error', 'cosine_similarity', 'mean_absolute_error', 'root_mean_squared_error']}
