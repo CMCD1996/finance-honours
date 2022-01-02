@@ -1509,26 +1509,6 @@ def custom_information_ratio(y_true, y_pred):
     loss = -1*((K.mean(y_pred) - K.mean(y_true))/K.std(y_pred - y_true))
     return loss
 
-# @tf.function
-# def multi_layer_loss(self):
-#         """" Wrapper function which calculates auxiliary values for the complete loss function.
-#          Returns a *function* which calculates the complete loss given only the input and target output """
-#         # KL loss
-#         kl_loss = self.calculate_kl_loss
-#         # Reconstruction loss
-#         md_loss_func = self.calculate_md_loss
-#         # KL weight (to be used by total loss and by annealing scheduler)
-#         self.kl_weight = K.variable(self.hps['kl_weight_start'], name='kl_weight')
-#         kl_weight = self.kl_weight
-#         def seq2seq_loss(y_true, y_pred):
-#             """ Final loss calculation function to be passed to optimizer"""
-#             # Reconstruction loss
-#             md_loss = md_loss_func(y_true, y_pred)
-#             # Full loss
-#             model_loss = kl_weight*kl_loss() + md_loss
-#             return model_loss
-#         return seq2seq_loss
-
 # Note: Symbolic Tensors do not work in function calls as require eager tensors.
 # Subsequently, must create custom class with call function
 #
@@ -1619,33 +1599,18 @@ class CustomMetric(tf.keras.metrics.Metric):
         return self.hedge_portflio_mean
 
 
-class CustomHedgePortolfioMean(tf.keras.metrics.Metric):
-    # Initialisation
-    def __init__(self, num_classes=None, batch_size=None,
-                 name='hedge_portfolio_mean', **kwargs):
-        super(CustomHedgePortolfioMean, self).__init__(name=name, **kwargs)
-        self.batch_size = batch_size
-        self.num_classes = num_classes
-        self.hedge_portflio_mean = self.add_weight(
-            name='hedge_portfolio_mean', initializer="zeros")
-        # Core componnent of the update state
-    # Update State
+# class CustomHedgePortolfioMean(tf.keras.metrics.Metric): (Example for fine-tuning metrics.)
+#     # Initialisation
+#     def __init__(self, num_classes=None, batch_size=None,
+#                  name='hedge_portfolio_mean', **kwargs):
+#         super(CustomHedgePortolfioMean, self).__init__(name=name, **kwargs)
+#         self.batch_size = batch_size
+#         self.num_classes = num_classes
+#         self.hedge_portflio_mean = self.add_weight(
+#             name='hedge_portfolio_mean', initializer="zeros")
+#         # Core componnent of the update state
+#     # Update State
 
-    def update_state(self, y_true, y_pred, sample_weight=None):
-        # Returns the index of the maximum values along the last axis in y_true (Last layer)
-        y_true = K.argmax(y_true, axis=-1)
-        # Returns the index of the maximum values along the last axis in y_true (Last layer)
-        y_pred = K.argmax(y_pred, axis=-1)
-        # Flattens a tensor to reshape to a shape equal to the number of elements contained
-        # Removes all dimensions except for one.
-        y_true = K.flatten(y_true)
-        # Defines the metric for assignment
-        true_poss = K.sum(K.cast((K.equal(y_true, y_pred)), dtype=tf.float32))
-        self.hedge_portflio_mean.assign_add(true_poss)
-    # Metric
-
-    def result(self):
-        return self.hedge_portflio_mean
 #################################################################################
 # Autodiff Testing
 #################################################################################
@@ -1978,8 +1943,7 @@ optimisation_dictionary = {1: 'SGD', 2: 'SGD',
 loss_function_dictionary = {1: 'mean_squared_error', 2: 'custom_l2_mse', 3: 'custom_hedge_portfolio_returns',
                             4: 'custom_sharpe_ratio', 5: 'custom_information_ratio', 6: 'custom_loss', 7: 'custom_loss'}
 metrics_dictionary = {1: ['mean_squared_error'], 2: ['mean_squared_error'], 3: [
-    'mean_squared_error'], 4: ['mean_squared_error'], 5: ['mean_squared_error'], 6: ['mean_squared_error'], 7: ['mean_squared_error',
-                                                                                                                'mean_relative_error', 'cosine_similarity', 'mean_absolute_error', 'root_mean_squared_error']}  # ,'root_mean_squared_error', 'mean_absolute_percentage_error', 'mean_metric_wrapper', 'sum',
+    'mean_squared_error'], 4: ['mean_squared_error'], 5: ['mean_squared_error'], 6: ['mean_squared_error'], 7: ['mean_squared_error', 'cosine_similarity', 'mean_absolute_error', 'root_mean_squared_error']}  # ,'root_mean_squared_error', 'mean_absolute_percentage_error', 'mean_metric_wrapper', 'sum',
 # 'mean_relative_error', 'mean_squared_error', 'mean_squared_logarithmic_error', 'cosine_similarity', 'logcosh', 'mean', 'mean_absolute_error', 'mean_tensor', 'metric'}
 # Selected Tensorflow Configuration
 #################################################################################
