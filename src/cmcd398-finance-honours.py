@@ -951,10 +951,14 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
             metrics_list.append(tf.keras.metrics.TruePositives(
                 thresholds=None, name=None, dtype=None))
         # Custom Metrics
-        if 'customMetric' in selected_metrics:
-            metrics_list.append(tf.keras.metrics.CustomHedgePortolfioMean(
-                num_classes=None, batch_size=None,
-                name='custom_metric'))
+        if 'custom_mse_metric' in selected_metrics:
+            metrics_list.append(custom_mse_metric)
+        if 'custom_sharpe_metric' in selected_metrics:
+            metrics_list.append(custom_sharpe_metric)
+        if 'custom_information_metric' in selected_metrics:
+            metrics_list.append(custom_information_metric)
+        if 'custom_hp_metric' in selected_metrics:
+            metrics_list.append(custom_hp_metric)
         #################################################################################
         # Loss weights
         #################################################################################
@@ -1505,27 +1509,6 @@ def custom_hedge_portfolio_returns(y_true, y_pred):
     return loss
 
 # 4: Custom Sharpe Ratio (# Negative to maximise)
-
-
-@tf.function
-def custom_sharpe_ratio(y_true, y_pred):
-    # Finds Sharpe ratios of both true and predicted returns
-    sr_pred = -1*(K.mean(y_pred)/K.std(y_pred))
-    sr_true = -1*(K.mean(y_true)/K.std(y_true))
-    # Finds MSE between predited and true MSE
-
-    loss = K.mean(K.square(sr_true - sr_pred))
-    return loss
-
-# 5: Custom Information Ratio (E(R) - E(BM))/SD(R-BM))
-# Note: This instance uses the true results as the benchmanr
-
-
-@tf.function
-def custom_information_ratio(y_true, y_pred):
-    loss = -1*((K.mean(y_pred) - K.mean(y_true))/K.std(y_pred - y_true))
-    return loss
-
 # Note: Symbolic Tensors do not work in function calls as require eager tensors.
 # Subsequently, must create custom class with call function
 # Utilisation of function closure to pass multiple inputs into the function.
@@ -1549,9 +1532,6 @@ class custom_hp(tf.keras.losses.Loss):
 
     def call(self, y_true, y_pred):
         extra_tensor = self.extra_tensor
-        # Flatten the tensors to 1D
-        y_true_flat = K.flatten(y_true)
-        y_pred_flat = K.flatten(y_pred)
         # Calculates sum over vector tensors
         y_true_sum = K.sum(y_true)
         y_pred_sum = K.sum(y_pred)
@@ -1564,10 +1544,7 @@ class custom_hp(tf.keras.losses.Loss):
         # Multiply by the weights
         y_true_loss = K.dot(y_true_transposed, y_true)
         y_pred_loss = K.dot(y_pred_transposed, y_pred)
-        # multiplied = tf.keras.layers.Multiply()([x1, x2])
         loss = -1*(y_pred_loss)
-        # loss = -1*(K.dot(K.transpose(tf.keras.layers.Lambda(lambda x: x /
-        #                                                    K.sum(K.flatten(y_pred)))(K.flatten(y_pred))), (K.flatten(y_pred))))
         return loss
 
 
@@ -1612,11 +1589,19 @@ class custom_hp_mse(tf.keras.losses.Loss):
 
     def call(self, y_true, y_pred):
         extra_tensor = self.extra_tensor
-        y_pred_loss = (K.dot(K.transpose(tf.keras.layers.Lambda(lambda x: x /
-                                                                K.sum(K.flatten(y_pred)))(K.flatten(y_pred))), (K.flatten(y_pred))))
-        y_true_loss = (K.dot(K.transpose(tf.keras.layers.Lambda(lambda x: x /
-                                                                K.sum(K.flatten(y_pred)))(K.flatten(y_pred))), (K.flatten(y_pred))))
-        loss = K.mean(K.square(y_pred_loss - y_true_loss))
+        # Calculates sum over vector tensors
+        y_true_sum = K.sum(y_true)
+        y_pred_sum = K.sum(y_pred)
+        #
+        y_true_weights = (y_true/y_true_sum)
+        y_pred_weights = (y_pred/y_pred_sum)
+        # Transpose the weights
+        y_true_transposed = K.transpose(y_true_weights)
+        y_pred_transposed = K.transpose(y_pred_weights)
+        # Multiply by the weights
+        y_true_loss = K.dot(y_true_transposed, y_true)
+        y_pred_loss = K.dot(y_pred_transposed, y_pred)
+        loss = K.mean(K.square(y_true_loss-y_pred_loss))
         return loss
 
 
@@ -1656,6 +1641,48 @@ class custom_information_mse(tf.keras.losses.Loss):
 # 1: HP Mean
 
 # Improve this function when necessary
+
+
+@tf.function
+def custom_mse_metric(y_pred, y_true):
+    metric = K.mean(K.square(y_pred - y_true))
+    return metric
+
+
+@tf.function
+def custom_hp_metric(y_true, y_pred):
+    y_true_sum = K.sum(y_true)
+    y_pred_sum = K.sum(y_pred)
+    # Calculate the weights
+    y_true_weights = (y_true/y_true_sum)
+    y_pred_weights = (y_pred/y_pred_sum)
+    # Transpose the weights
+    y_true_transposed = K.transpose(y_true_weights)
+    y_pred_transposed = K.transpose(y_pred_weights)
+    # Multiply by the weights
+    y_true_loss = K.dot(y_true_transposed, y_true)
+    y_pred_loss = K.dot(y_pred_transposed, y_pred)
+    mean = (y_pred_loss)
+    return mean
+
+
+@tf.function
+def custom_sharpe_metric(y_true, y_pred):
+    # Finds Sharpe ratios of both true and predicted returns
+    sr_pred = -1*(K.mean(y_pred)/K.std(y_pred))
+    sr_true = -1*(K.mean(y_true)/K.std(y_true))
+    # Finds MSE between predited and true MSE
+    loss = K.mean(K.square(sr_true - sr_pred))
+    return loss
+
+# 5: Custom Information Ratio (E(R) - E(BM))/SD(R-BM))
+# Note: This instance uses the true results as the benchmanr
+
+
+@tf.function
+def custom_information_metric(y_true, y_pred):
+    loss = -1*((K.mean(y_pred) - K.mean(y_true))/K.std(y_pred - y_true))
+    return loss
 
 
 class CustomSharpeMetric(tf.keras.metrics.Metric):
@@ -2018,17 +2045,17 @@ classification_tf_pn = ['Auc', 'Fn', 'Fp', 'poisson', 'precision', 'precision_at
                         'recall', 'recall_at_precision', 'sensitivity_at_specificity', 'Tn', 'Tp']
 images_segementation_metrics = ['meaniou']
 hinge_metrics = ['categorical_hinge', 'squared_hinge', 'hinge']
-custom_metrics = ['hedge_portfolio_mean', 'hedge_portfolio_alphas',
-                  'sharpe_ratio', 'information_ratio']  # Add when create the metrics
+custom_metrics = ['custom_mse_metric', 'custom_sharpe_metric',
+                  'custom_information_metric', 'custom_hp_metric']  # Add when create the metrics
 metrics = accuracy_metrics + probabilistic_metrics + regression_metrics + \
     classification_tf_pn + images_segementation_metrics + hinge_metrics + custom_metrics
 # Tensorflow congifuration
 optimisation_dictionary = {1: 'SGD', 2: 'SGD',
                            3: 'SGD'}
 loss_function_dictionary = {
-    1: ['mean_squared_error', 'custom_mse', 'custom_sharpe', 'custom_sharpe_mse', 'custom_information'], 2: ['custom_hp']}
+    1: ['mean_squared_error', 'custom_mse', 'custom_sharpe', 'custom_sharpe_mse', 'custom_information', 'custom_hp'], 2: ['mean_squared_error']}
 metrics_dictionary = {1: ['mean_squared_error', 'cosine_similarity', 'mean_absolute_error', 'root_mean_squared_error'], 2: [
-    'mean_squared_error', 'cosine_similarity', 'mean_absolute_error', 'root_mean_squared_error']}
+    'custom_mse_metric']}
 # Selected Tensorflow Configuration
 #################################################################################
 tf_option_array = [1, 2, 3, 4, 5]
