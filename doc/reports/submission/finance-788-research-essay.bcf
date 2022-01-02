@@ -2802,14 +2802,20 @@
     <bcf:citekey order="9">fama2012size</bcf:citekey>
     <bcf:citekey order="10">french-personal</bcf:citekey>
     <bcf:citekey order="11">fama1973risk</bcf:citekey>
-    <bcf:citekey order="12">sharpe1994sharpe</bcf:citekey>
-    <bcf:citekey order="13">J:10</bcf:citekey>
-    <bcf:citekey order="14">Google_Drive</bcf:citekey>
-    <bcf:citekey order="15">Git</bcf:citekey>
-    <bcf:citekey order="16">J:10</bcf:citekey>
-    <bcf:citekey order="17">PYPL_Pop</bcf:citekey>
-    <bcf:citekey order="18">Anaconda</bcf:citekey>
-    <bcf:citekey order="19">PEP8</bcf:citekey>
+    <bcf:citekey order="12">samuelson2016proof</bcf:citekey>
+    <bcf:citekey order="13">fama1995random</bcf:citekey>
+    <bcf:citekey order="14">fama1963mandelbrot</bcf:citekey>
+    <bcf:citekey order="15">fama1965behavior</bcf:citekey>
+    <bcf:citekey order="16">fama2021efficient</bcf:citekey>
+    <bcf:citekey order="17">jensen2021there</bcf:citekey>
+    <bcf:citekey order="18">sharpe1994sharpe</bcf:citekey>
+    <bcf:citekey order="19">J:10</bcf:citekey>
+    <bcf:citekey order="20">Google_Drive</bcf:citekey>
+    <bcf:citekey order="21">Git</bcf:citekey>
+    <bcf:citekey order="22">J:10</bcf:citekey>
+    <bcf:citekey order="23">PYPL_Pop</bcf:citekey>
+    <bcf:citekey order="24">Anaconda</bcf:citekey>
+    <bcf:citekey order="25">PEP8</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="apa">
