@@ -1549,12 +1549,25 @@ class custom_hp(tf.keras.losses.Loss):
 
     def call(self, y_true, y_pred):
         extra_tensor = self.extra_tensor
-        # Weights portfolio returns
+        # Flatten the tensors to 1D
         y_true_flat = K.flatten(y_true)
         y_pred_flat = K.flatten(y_pred)
-        # Creates weights for the tensor (Weighted Portfolio by Returns)
-        loss = -1*(K.dot(K.transpose(tf.keras.layers.Lambda(lambda x: x /
-                                                            K.sum(K.flatten(y_pred)))(K.flatten(y_pred))), (K.flatten(y_pred))))
+        # Calculates sum over vector tensors
+        y_true_sum = K.sum(y_true_flat)
+        y_pred_sum = K.sum(y_pred_flat)
+        #
+        y_true_weights = (y_true_flat/y_true_sum)
+        y_pred_weights = (y_pred_flat/y_pred_sum)
+        # Transpose the weights
+        y_true_transposed = K.transpose(y_true_weights)
+        y_pred_transposed = K.transpose(y_pred_weights)
+        # Multiply by the weights
+        y_true_loss = K.dot(y_true_transposed, y_true_flat)
+        y_pred_loss = K.dot(y_pred_transposed, y_pred_flat)
+        # multiplied = tf.keras.layers.Multiply()([x1, x2])
+        loss = -1*(y_pred_loss)
+        # loss = -1*(K.dot(K.transpose(tf.keras.layers.Lambda(lambda x: x /
+        #                                                    K.sum(K.flatten(y_pred)))(K.flatten(y_pred))), (K.flatten(y_pred))))
         return loss
 
 
