@@ -816,82 +816,6 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
             opt = tf.keras.optimizers.SGD(
                 learning_rate=lr, momentum=mom, nesterov=nes, name='SGD')
         #################################################################################
-        # Losses
-        #################################################################################
-        # Loss variables
-        red = 'auto'
-        flt = True
-        ls = 0.0
-        ax = -1
-        dta = 1.0
-        # Loss classes
-        if selected_loss == 'binary_crossentropy':
-            lf = tf.keras.losses.BinaryCrossentropy(
-                from_logits=flt, label_smoothing=ls, axis=ax, reduction=red, name='binary_crossentropy')
-        if selected_loss == 'categorical_crossentropy':
-            lf = tf.keras.losses.CategoricalCrossentropy(
-                from_logits=flt, label_smoothing=ls, axis=ax, reduction=red, name='categorical_crossentropy')
-        if selected_loss == 'cosine_similarity':
-            lf = tf.keras.losses.CosineSimilarity(
-                axis=-1, reduction=red, name='cosine_similarity')
-        if selected_loss == 'hinge':
-            lf = tf.keras.losses.Hinge(reduction=red, name='hinge')
-        if selected_loss == 'huber_loss':
-            lf = tf.keras.losses.Huber(
-                delta=dta, reduction=red, name='huber_loss')
-        # loss = y_true * log(y_true / y_pred)
-        if selected_loss == 'kl_divergence':
-            lf = tf.keras.losses.KLDivergence(
-                reduction=red, name='kl_divergence')
-        # logcosh = log((exp(x) + exp(-x))/2), where x is the error y_pred - y_true.
-        if selected_loss == 'log_cosh':
-            lf = tf.keras.losses.LogCosh(reduction=red, name='log_cosh')
-        if selected_loss == 'loss':
-            lf = tf.keras.losses.Loss(reduction=red, name=None)
-        # loss = abs(y_true - y_pred)
-        if selected_loss == 'mean_absolute_error':
-            lf = tf.keras.losses.MeanAbsoluteError(
-                reduction=red, name='mean_absolute_error')
-        # loss = 100 * abs(y_true - y_pred) / y_true
-        if selected_loss == 'mean_absolute_percentage_error':
-            lf = tf.keras.losses.MeanAbsolutePercentageError(
-                reduction=red, name='mean_absolute_percentage_error')
-        # loss = square(y_true - y_pred)
-        if selected_loss == 'mean_squared_error':
-            lf = tf.keras.losses.MeanSquaredError(
-                reduction=red, name='mean_squared_error')
-        # loss = square(log(y_true + 1.) - log(y_pred + 1.))
-        if selected_loss == 'mean_squared_logarithmic_error':
-            lf = tf.keras.losses.MeanSquaredLogarithmicError(
-                reduction=red, name='mean_squared_logarithmic_error')
-        if selected_loss == 'poisson':  # loss = y_pred - y_true * log(y_pred)
-            lf = tf.keras.losses.Poisson(reduction=red, name='poisson')
-        if selected_loss == 'sparse_categorical_crossentropy':
-            lf = tf.keras.losses.SparseCategoricalCrossentropy(
-                from_logits=flt, reduction=red, name='sparse_categorical_crossentropy')
-        # loss = square(maximum(1 - y_true * y_pred, 0))
-        if selected_loss == 'squared_hinge':
-            lf = tf.keras.losses.SquaredHinge(
-                reduction=red, name='squared_hinge')
-        # Custom loss classes
-        # # loss = square(maximum(1 - y_true * y_pred, 0))
-        # if selected_loss == 'custom_l2_mse':
-        #     lf = custom_l2_mse
-        # # loss = square(maximum(1 - y_true * y_pred, 0))
-        # if selected_loss == 'custom_hedge_portfolio_returns':
-        #     lf = custom_hedge_portfolio_returns
-        # # loss = square(maximum(1 - y_true * y_pred, 0))
-        # if selected_loss == 'custom_sharpe_ratio':
-        #     lf = custom_sharpe_ratio
-        # # loss = square(maximum(1 - y_true * y_pred, 0))
-        # if selected_loss == 'custom_information_ratio':
-        #     lf = custom_information_ratio
-        # # if selected_loss == 'multi_layer_loss':
-        # #     lf = multi_layer_loss
-        if selected_loss == 'custom_loss':
-            lf = custom_loss(layer='Successful', type=0, reduction=red,
-                             name='custom_loss')
-        #################################################################################
         # Metrics
         #################################################################################
         # Metric variables
@@ -1067,6 +991,69 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         # and Callback.on_batch_end methods will only be called every N batches
         # (i.e. before/after each tf.function execution).
         spe = None
+        #################################################################################
+        # Losses
+        #################################################################################
+
+        # Loss variables
+        red = 'auto'
+        flt = True
+        ls = 0.0
+        ax = -1
+        dta = 1.0
+        # Loss classes
+        if selected_loss == 'binary_crossentropy':
+            lf = tf.keras.losses.BinaryCrossentropy(
+                from_logits=flt, label_smoothing=ls, axis=ax, reduction=red, name='binary_crossentropy')
+        if selected_loss == 'categorical_crossentropy':
+            lf = tf.keras.losses.CategoricalCrossentropy(
+                from_logits=flt, label_smoothing=ls, axis=ax, reduction=red, name='categorical_crossentropy')
+        if selected_loss == 'cosine_similarity':
+            lf = tf.keras.losses.CosineSimilarity(
+                axis=-1, reduction=red, name='cosine_similarity')
+        if selected_loss == 'hinge':
+            lf = tf.keras.losses.Hinge(reduction=red, name='hinge')
+        if selected_loss == 'huber_loss':
+            lf = tf.keras.losses.Huber(
+                delta=dta, reduction=red, name='huber_loss')
+        # loss = y_true * log(y_true / y_pred)
+        if selected_loss == 'kl_divergence':
+            lf = tf.keras.losses.KLDivergence(
+                reduction=red, name='kl_divergence')
+        # logcosh = log((exp(x) + exp(-x))/2), where x is the error y_pred - y_true.
+        if selected_loss == 'log_cosh':
+            lf = tf.keras.losses.LogCosh(reduction=red, name='log_cosh')
+        if selected_loss == 'loss':
+            lf = tf.keras.losses.Loss(reduction=red, name=None)
+        # loss = abs(y_true - y_pred)
+        if selected_loss == 'mean_absolute_error':
+            lf = tf.keras.losses.MeanAbsoluteError(
+                reduction=red, name='mean_absolute_error')
+        # loss = 100 * abs(y_true - y_pred) / y_true
+        if selected_loss == 'mean_absolute_percentage_error':
+            lf = tf.keras.losses.MeanAbsolutePercentageError(
+                reduction=red, name='mean_absolute_percentage_error')
+        # loss = square(y_true - y_pred)
+        if selected_loss == 'mean_squared_error':
+            lf = tf.keras.losses.MeanSquaredError(
+                reduction=red, name='mean_squared_error')
+        # loss = square(log(y_true + 1.) - log(y_pred + 1.))
+        if selected_loss == 'mean_squared_logarithmic_error':
+            lf = tf.keras.losses.MeanSquaredLogarithmicError(
+                reduction=red, name='mean_squared_logarithmic_error')
+        if selected_loss == 'poisson':  # loss = y_pred - y_true * log(y_pred)
+            lf = tf.keras.losses.Poisson(reduction=red, name='poisson')
+        if selected_loss == 'sparse_categorical_crossentropy':
+            lf = tf.keras.losses.SparseCategoricalCrossentropy(
+                from_logits=flt, reduction=red, name='sparse_categorical_crossentropy')
+        # loss = square(maximum(1 - y_true * y_pred, 0))
+        if selected_loss == 'squared_hinge':
+            lf = tf.keras.losses.SquaredHinge(
+                reduction=red, name='squared_hinge')
+        if selected_loss == 'custom_loss':
+            lf = custom_loss(layer='Successful', type=0, reduction=red,
+                             name='custom_loss')
+
         #################################################################################
         # Compiler
         #################################################################################
@@ -1943,10 +1930,10 @@ optimisation_dictionary = {1: 'SGD', 2: 'SGD',
 loss_function_dictionary = {1: 'mean_squared_error', 2: 'custom_l2_mse', 3: 'custom_hedge_portfolio_returns',
                             4: 'custom_sharpe_ratio', 5: 'custom_information_ratio', 6: 'custom_loss', 7: 'custom_loss'}
 metrics_dictionary = {1: ['mean_squared_error'], 2: ['mean_squared_error'], 3: [
-    'mean_squared_error'], 4: ['mean_squared_error'], 5: ['mean_squared_error'], 6: ['mean_squared_error'], 7: ['mean_squared_error', 'cosine_similarity', 'mean_absolute_error', 'root_mean_squared_error']}  # ,'root_mean_squared_error', 'mean_absolute_percentage_error', 'mean_metric_wrapper', 'sum',
-# 'mean_relative_error', 'mean_squared_error', 'mean_squared_logarithmic_error', 'cosine_similarity', 'logcosh', 'mean', 'mean_absolute_error', 'mean_tensor', 'metric'}
+    'mean_squared_error'], 4: ['mean_squared_error'], 5: ['mean_squared_error'], 6: ['mean_squared_error'], 7: ['mean_squared_error', 'cosine_similarity', 'mean_absolute_error', 'root_mean_squared_error']}
 # Selected Tensorflow Configuration
 #################################################################################
+tf_option_array = [1, 2, 3, 4, 5]
 tf_option = 7  # Change to 1,2,3,4,5,6,7 for configuration
 selected_optimizer = optimisation_dictionary[tf_option]
 selected_loss = loss_function_dictionary[tf_option]
