@@ -1074,7 +1074,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
             if selected_loss == 'custom_hp_mse':
                 lf = custom_hp(extra_tensor=None, reduction=red,
                                name='custom_hp_mse')
-            if selected_loss == 'custom_sharpe':
+            if selected_loss == 'custom_sharpe_mse':
                 lf = custom_sharpe(extra_tensor=None, reduction=red,
                                    name='custom_sharpe_mse')
             if selected_loss == 'custom_information_mse':
