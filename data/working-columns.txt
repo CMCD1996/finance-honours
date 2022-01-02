@@ -1,3 +1,4 @@
+beta_60m_x
 index
 size_grp
 permno
@@ -122,7 +123,6 @@ ivol_capm_252d_x
 ivol_capm_21d_x
 ivol_hxz4_21d_x
 rvol_21d_x
-beta_60m_x
 betabab_1260d_x
 beta_dimson_21d_x
 turnover_126d_x
