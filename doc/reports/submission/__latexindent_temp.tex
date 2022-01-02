@@ -107,7 +107,7 @@
 	
 	\HRule\\[0.5cm]
 	
-	{\huge\bfseries Neural Networks: A New Frontier for Asset Pricing}\\[0.4cm] % Title of your document
+	{\huge\bfseries Finance 788: Research Essay}\\[0.4cm] % Title of your document
 	
 	\HRule\\[0.5cm]
 	
@@ -412,26 +412,53 @@ where
 	\item $CMA_{t}$: Investment Premium minus aggressive is the difference in average return on the two conservative and two aggressive investment portfolios
 \end{itemize}
 K. French continues to maintain FF3 and FF5 related datasets (\cite{french-personal})
-E. Fama, with J. MacBeth, developed the Fama-MacBeth regression (\cite{fama1973risk}) to estimate factor pricings
-The methodology is a two-stage estimation process for estimating factor loadings, and prices, for a given portfolio.
-The first step requires determining each asset's $\beta$ exposures by regressing each of n asset excess returns against m proposed \ref{fb1}.
-The second step determines the risk premium (factor pricing) for each asset by regressing all asset excess returns for each T period against previously estimated $\beta$s (\ref{fb2}).
+E. Fama, with J. MacBeth, developed the Fama-MacBeth regression (\cite{fama1973risk}) to estimate factor loadings and prices.
+The methodology is a two-stage estimation process, similar for estimating factor loadings, and prices, for a given portfolio.
+The first step requires determining each asset's $\beta$ exposures by regressing each of n asset returns against m proposed \ref{fb1}.
+The second step determines the risk premium (factor pricing) for each asset by regressing all asset returns for each of T periods against previously estimated $\beta$s (\ref{fb2}).
 \begin{align*}
-	ER_{n,t} &= \alpha_{n} + \sum_{f=1}^{F} \beta_{n,F_{f}}F_{f,t} + \epsilon_{n,t} \numberthis \label{fb1} \space \forall n\epsilon\{1,...,N\}\\
+	R_{n,t} &= \alpha_{n} + \sum_{f=1}^{F} \beta_{n,F_{f}}F_{f,t} + \epsilon_{n,t} \numberthis \label{fb1} \\
+	&\forall \text{  }n\epsilon\{1,...,N\}\\
+	R_{i,t} &= \gamma_{t,0} + \sum_{f=1}^{F} \gamma_{t,f}\hat{\beta_{i,F_{f}}} + \epsilon_{i,t} \numberthis \label{fb2} \\
+	&t\epsilon\{1,...,N\}
 \end{align*}
 Where
 \begin{itemize}
-	\item 
+	\item $R_{n,t}$: Return for an asset (n) at a time (t).
+	\item $\alpha_{n}$: Jensen's alpha for an asset (n) implying mispricing.
+	\item $\beta_{n,F_{f}}$: An asset's (n) exposure to a factor (f)
+	\item $\hat{\beta_{i,F_{f}}}$: Estimated factor loading for a factor (f) from regression of asset (i)
+	\item $F_{f,t}$: Risk factor (f) at a given time (t) e.g., SMB, HML etc.,
+	\item $\epsilon_{n,t}$: Residual for an asset at a time (t)
+	\item $\gamma_{t,f}$: Factor pricing for a factor (f)
 \end{itemize}
-\textbf{The matrix notation for these formulations follows:}
-\begin{align*}
-	H_{\mu} &=1 \numberthis \label{hm}\\
-	H_{CAPM} &= 1 \numberthis \label{hcapm}\\
-	H_{FF3} &= 1 \numberthis \label{hff3}\\
-	H_{FF5} &= 1 \numberthis \label{hff5}
-\end{align*}
-Subsequently, this research essay uses the Hedge Portfolio Mean (\ref{hpm})), Capital Asset Pricing Model (\ref{capm}), 
+The residuals of risk-return regressions and co-efficient 'fair game' observations are consistent with the efficient market hypothesis ((\cite{samuelson2016proof}), (\cite{fama1995random}), (\cite{fama1963mandelbrot}), (\cite{fama1965behavior}) (\cite{fama2021efficient})).
+Subsequently, this research essay uses the excess one month lead returns of the hedge portfolio (\ref{hpm})), Capital Asset Pricing Model (\ref{capm}), 
 Fama-French Three Factor Model (\ref{ff3}), and Fama-French Five Factor Model (\ref{ff5}) as performance metrics for each loss function.
+Table \ref{plfpe} outlines the proposed]performance metrics and loss functions.
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{||c|c||}
+			\hline
+			Performance Metric & Loss Function \\ [0.5ex]
+			\hline \hline
+			Hedge Portfolio Mean & Hedge Portfolio Excess Returns \\
+			\hline
+			Hedge Portfolio FF3& Sharpe Ratio \\
+			\hline
+			Hedge Portfolio FF5& Information Ratio\\
+			\hline
+			Sharpe Ratio & Validation\\ 
+			\hline
+			Information Ratio & Validation \\ 
+			\hline
+			Mean Square Error & Mean Square Error\\ [1.0ex]
+			\hline
+		\end{tabular}
+	\caption{Proposed Loss Functions and Performance Metrics}
+	\label{plfpe}
+\end{table}
+Hou et al (\citeyear{jensen2021there}) provide the required data to derive these performance metric and loss functions.
 \subsubsection{Sharpe Ratio}
 Nobel Laurette William F. Sharpe (\citeyear{sharpe1994sharpe}) introduced the Sharpe Ratio (\ref{sr}) as a measure for risk-adjusted returns
 where $\mathop{\mathbb{E}} [R_a - R_f]$ is the expectation for excess returns and $\sigma(R_a)$ is the standard deviation of excess returns.
@@ -450,6 +477,7 @@ $\mathop{\mathbb{E}} [R_a - R_b]$ is the excess return on the benchmark. $\sigma
 \begin{align*}
 	IR &= \mathop{\mathbb{E}} \frac{[R_a - R_b]}{\sigma(R_a - R_b)} \numberthis \label{ir}\\
 \end{align*}
+Both Sharpe and Information ratios supplement hedge portfolio-related loss functions and performance metrics.
 % Show the embedded class structure within this section.
 \subsection{Reinforcement learning} \label{rifml}
 \subsubsection{Dynamic Programming}
