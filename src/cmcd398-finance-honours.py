@@ -1377,7 +1377,7 @@ def project_analysis(data_vm_directory, list_of_columns, categorical_assignment,
     # Note: Keep Stochastic Gradient Descent as Optimizer for completeness
     # Buids tensorflow model
     model, loss, metrics, other_metrics = build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name,
-                                                                   all_features, all_inputs, selected_optimizer, selected_loss, selected_metrics, finance_configuration=True)
+                                                                  all_features, all_inputs, selected_optimizer, selected_loss, selected_metrics, finance_configuration=True)
     return
 #################################################################################
 # Custom Loss Functions, Metrics and Autodiff Testing
@@ -1978,7 +1978,8 @@ optimisation_dictionary = {1: 'SGD', 2: 'SGD',
 loss_function_dictionary = {1: 'mean_squared_error', 2: 'custom_l2_mse', 3: 'custom_hedge_portfolio_returns',
                             4: 'custom_sharpe_ratio', 5: 'custom_information_ratio', 6: 'custom_loss', 7: 'custom_loss'}
 metrics_dictionary = {1: ['mean_squared_error'], 2: ['mean_squared_error'], 3: [
-    'mean_squared_error'], 4: ['mean_squared_error'], 5: ['mean_squared_error'], 6: ['mean_squared_error'], 7: ['cosine_similarity', 'mean_squared_error']}  # ,'root_mean_squared_error', 'mean_absolute_percentage_error', 'mean_metric_wrapper', 'sum',
+    'mean_squared_error'], 4: ['mean_squared_error'], 5: ['mean_squared_error'], 6: ['mean_squared_error'], 7: ['mean_squared_error', 'sum',
+                                                                                                                'mean_relative_error', 'mean_squared_error', 'mean_squared_logarithmic_error', 'cosine_similarity', 'logcosh', 'mean', 'mean_absolute_error']}  # ,'root_mean_squared_error', 'mean_absolute_percentage_error', 'mean_metric_wrapper', 'sum',
 # 'mean_relative_error', 'mean_squared_error', 'mean_squared_logarithmic_error', 'cosine_similarity', 'logcosh', 'mean', 'mean_absolute_error', 'mean_tensor', 'metric'}
 # Selected Tensorflow Configuration
 #################################################################################
