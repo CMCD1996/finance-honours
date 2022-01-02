@@ -2013,7 +2013,7 @@ metrics = accuracy_metrics + probabilistic_metrics + regression_metrics + \
 optimisation_dictionary = {1: 'SGD', 2: 'SGD',
                            3: 'SGD'}
 loss_function_dictionary = {
-    1: ['mean_squared_error', 'custom_mse', 'custom_sharpe', 'custom_sharpe_mse'], 2: ['custom_information']}
+    1: ['mean_squared_error', 'custom_mse', 'custom_sharpe', 'custom_sharpe_mse', 'custom_information'], 2: ['custom_hp']}
 metrics_dictionary = {1: ['mean_squared_error', 'cosine_similarity', 'mean_absolute_error', 'root_mean_squared_error'], 2: [
     'mean_squared_error', 'cosine_similarity', 'mean_absolute_error', 'root_mean_squared_error']}
 # Selected Tensorflow Configuration
