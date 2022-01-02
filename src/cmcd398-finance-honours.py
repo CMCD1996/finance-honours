@@ -1071,6 +1071,15 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
             if selected_loss == 'custom_treynor':
                 lf = custom_treynor(extra_tensor=None, reduction=red,
                                     name='custom_treynor')
+            if selected_loss == 'custom_hp_mse':
+                lf = custom_hp(extra_tensor=None, reduction=red,
+                               name='custom_hp_mse')
+            if selected_loss == 'custom_sharpe':
+                lf = custom_sharpe(extra_tensor=None, reduction=red,
+                                   name='custom_sharpe_mse')
+            if selected_loss == 'custom_information_mse':
+                lf = custom_information(extra_tensor=None, reduction=red,
+                                        name='custom_information_mse')
             #################################################################################
             # Compiler
             #################################################################################
@@ -1544,8 +1553,8 @@ class custom_hp(tf.keras.losses.Loss):
         y_true_flat = K.flatten(y_true)
         y_pred_flat = K.flatten(y_pred)
         # Creates weights for the tensor (Weighted Portfolio by Returns)
-        loss = -K.dot(K.transpose(tf.keras.layers.Lambda(lambda x: x /
-                      K.sum(y_pred_flat))), y_pred_flat)
+        loss = -1*(K.dot(K.transpose(tf.keras.layers.Lambda(lambda x: x /
+                                                            K.sum(K.flatten(y_pred)))(K.flatten(y_pred))), (K.flatten(y_pred))))
         return loss
 
 
@@ -1581,36 +1590,45 @@ class custom_treynor(tf.keras.losses.Loss):
         extra_tensor = self.extra_tensor
         loss = K.mean(K.square(y_pred - y_true))
         return loss
-        # # Uses booleans to set the loss function
-        # # Mean Squared Error
-        # if type == 0:
-        #     loss = K.mean(K.square(y_pred - y_true))
-        # # Sharpe ratio 1 (Maximise Prediction)
-        # if type == 'max_predicted_sharpe_ratio':
 
-        #     loss = K.mean(K.square(sr_true - sr_pred))
-        # # Sharpe ratio (Maximise Prediction)
-        # if type == 'max_true_sharpe_ratio':
-        #     sr_pred = -1*(K.mean(y_pred)/K.std(y_pred))
-        #     sr_true = -1*(K.mean(y_true)/K.std(y_true))
-        #     loss = K.mean(K.square(sr_true - sr_pred))
-        # # Sharpe Ratio (MSE)
-        # if type == 'max_true_sharpe_ratio':
-        #     sr_pred = -1*(K.mean(y_pred)/K.std(y_pred))
-        #     sr_true = -1*(K.mean(y_true)/K.std(y_true))
-        #     loss = K.mean(K.square(sr_true - sr_pred))
-        # # Information Ratio
-        # if type == 2:
-        #     loss = -1*((K.mean(y_pred) - K.mean(y_true)) /
-        #                K.std(y_pred - y_true))
-        # # Treynor Ratio
-        # if type == 3:
-        #     sr_pred = -1*(K.mean(y_pred)/K.std(y_pred))
-        #     sr_true = -1*(K.mean(y_true)/K.std(y_true))
-        #     loss = K.mean(K.square(sr_true - sr_pred))
-        # # Hedge Portfolio
-        # if type == 4:
-        #     loss = K.mean(K.square(sr_true - sr_pred))
+
+class custom_hp_mse(tf.keras.losses.Loss):
+    def __init__(self, extra_tensor=None, reduction=tf.keras.losses.Reduction.AUTO, name='custom_hp_mse'):
+        super().__init__(reduction=reduction, name=name)
+        self.extra_tensor = extra_tensor
+
+    def call(self, y_true, y_pred):
+        extra_tensor = self.extra_tensor
+        y_pred_loss = (K.dot(K.transpose(tf.keras.layers.Lambda(lambda x: x /
+                                                                K.sum(K.flatten(y_pred)))(K.flatten(y_pred))), (K.flatten(y_pred))))
+        y_true_loss = (K.dot(K.transpose(tf.keras.layers.Lambda(lambda x: x /
+                                                                K.sum(K.flatten(y_pred)))(K.flatten(y_pred))), (K.flatten(y_pred))))
+        loss = K.mean(K.square(y_pred_loss - y_true_loss))
+        return loss
+
+
+class custom_sharpe_mse(tf.keras.losses.Loss):
+    def __init__(self, extra_tensor=None, reduction=tf.keras.losses.Reduction.AUTO, name='custom_sharpe_mse'):
+        super().__init__(reduction=reduction, name=name)
+        self.extra_tensor = extra_tensor
+
+    def call(self, y_true, y_pred):
+        extra_tensor = self.extra_tensor
+        sr_pred_loss = -1*(K.mean(y_pred)/K.std(y_pred))
+        sr_true_loss = -1*(K.mean(y_true)/K.std(y_true))
+        loss = K.mean(K.square(sr_pred_loss - sr_true_loss))
+        return loss
+
+
+class custom_information_mse(tf.keras.losses.Loss):
+    def __init__(self, extra_tensor=None, reduction=tf.keras.losses.Reduction.AUTO, name='custom_information_mse'):
+        super().__init__(reduction=reduction, name=name)
+        self.extra_tensor = extra_tensor
+
+    def call(self, y_true, y_pred):
+        extra_tensor = self.extra_tensor
+        loss = -1*((K.mean(y_pred) - K.mean(y_true))/K.std(y_pred - y_true))
+        return loss
 
     # def custom_loss(layer):
     #     # Create a loss function that adds the MSE loss to the mean of all squared activations of a specific layer
@@ -1972,7 +1990,8 @@ regression_losses = ['cosine_similarity', 'mean_absolute_error', 'mean_absolute_
                      'mean_squared_logarithmic_error', 'mean_squared_error', 'huber_loss']
 extra_losses = ['hinge', 'log_cosh', 'loss', 'squared_hinge']
 custom_losses = ['custom_mse', 'custom_hp', 'custom_sharpe',
-                 'custom_information', 'custom_treynor']  # List names here when created
+                 'custom_information', 'custom_treynor', 'custom_hp_mse', 'custom_sharpe_mse',
+                 'custom_information_mse']  # List names here when created
 losses = binary_classification_losses + multiclass_classfication_losses + \
     regression_losses + extra_losses + custom_losses
 # Metrics (Functions used to judge model performance,similar to a loss function but results are not used when training a model)
