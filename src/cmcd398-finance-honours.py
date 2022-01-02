@@ -2055,7 +2055,8 @@ optimisation_dictionary = {1: 'SGD', 2: 'SGD',
 loss_function_dictionary = {
     1: ['mean_squared_error', 'custom_mse', 'custom_sharpe', 'custom_sharpe_mse', 'custom_information', 'custom_hp'], 2: ['mean_squared_error']}
 metrics_dictionary = {1: ['mean_squared_error', 'cosine_similarity', 'mean_absolute_error', 'root_mean_squared_error'], 2: [
-    'custom_mse_metric']}
+    'custom_mse_metric', 'custom_sharpe_metric',
+    'custom_information_metric', 'custom_hp_metric']}
 # Selected Tensorflow Configuration
 #################################################################################
 tf_option_array = [1, 2, 3, 4, 5]
