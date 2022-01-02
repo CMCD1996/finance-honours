@@ -1540,7 +1540,12 @@ class custom_hp(tf.keras.losses.Loss):
 
     def call(self, y_true, y_pred):
         extra_tensor = self.extra_tensor
-        loss = K.mean(K.square(y_pred - y_true))
+        # Weights portfolio returns
+        y_true_flat = K.flatten(y_true)
+        y_pred_flat = K.flatten(y_pred)
+        # Creates weights for the tensor (Weighted Portfolio by Returns)
+        loss = -K.dot(K.transpose(tf.keras.layers.Lambda(lambda x: x /
+                      K.sum(y_pred_flat))), y_pred_flat)
         return loss
 
 
@@ -1551,11 +1556,9 @@ class custom_sharpe(tf.keras.losses.Loss):
 
     def call(self, y_true, y_pred):
         extra_tensor = self.extra_tensor
-        #sr_pred = -1*(K.mean(y_pred)/K.std(y_pred))
-        #sr_true = -1*(K.mean(y_true)/K.std(y_true))
-        #loss = K.mean(K.square(sr_true - sr_pred))
-        loss = K.mean(K.square(y_pred - y_true))
-        return loss
+        sr_pred = -1*(K.mean(y_pred)/K.std(y_pred))
+        sr_true = -1*(K.mean(y_true)/K.std(y_true))
+        return sr_pred
 
 
 class custom_information(tf.keras.losses.Loss):
@@ -1565,7 +1568,7 @@ class custom_information(tf.keras.losses.Loss):
 
     def call(self, y_true, y_pred):
         extra_tensor = self.extra_tensor
-        loss = K.mean(K.square(y_pred - y_true))
+        loss = -1*((K.mean(y_pred) - K.mean(y_true))/K.std(y_pred - y_true))
         return loss
 
 
@@ -1992,12 +1995,12 @@ optimisation_dictionary = {1: 'SGD', 2: 'SGD',
                            3: 'SGD', 4: 'SGD', 5: 'SGD', 6: 'SGD', 7: 'SGD'}
 loss_function_dictionary = {1: ['mean_squared_error', 'custom_mse'], 2: 'custom_mse', 3: 'custom_hedge_portfolio_returns',
                             4: 'custom_sharpe_ratio', 5: 'custom_information_ratio', 6: 'custom_loss', 7: 'custom_loss'}
-metrics_dictionary = {1: ['mean_squared_error', 'cosine_similarity', 'mean_absolute_error', 'root_mean_squared_error'], 2: ['mean_squared_error'], 3: [
+metrics_dictionary = {1: ['mean_squared_error', 'cosine_similarity', 'mean_absolute_error', 'root_mean_squared_error'], 2: ['mean_squared_error', 'cosine_similarity', 'mean_absolute_error', 'root_mean_squared_error'], 3: [
     'mean_squared_error'], 4: ['mean_squared_error'], 5: ['mean_squared_error'], 6: ['mean_squared_error'], 7: ['mean_squared_error', 'cosine_similarity', 'mean_absolute_error', 'root_mean_squared_error']}
 # Selected Tensorflow Configuration
 #################################################################################
 tf_option_array = [1, 2, 3, 4, 5]
-tf_option = 1  # Change to 1,2,3,4,5,6,7 for configuration
+tf_option = 2  # Change to 1,2,3,4,5,6,7 for configuration
 selected_optimizer = optimisation_dictionary[tf_option]
 selected_losses = loss_function_dictionary[tf_option]
 selected_metrics = metrics_dictionary[tf_option]
