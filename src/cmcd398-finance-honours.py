@@ -874,20 +874,20 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
             lf = tf.keras.losses.SquaredHinge(
                 reduction=red, name='squared_hinge')
         # Custom loss classes
-        # loss = square(maximum(1 - y_true * y_pred, 0))
-        if selected_loss == 'custom_l2_mse':
-            lf = custom_l2_mse
-        # loss = square(maximum(1 - y_true * y_pred, 0))
-        if selected_loss == 'custom_hedge_portfolio_returns':
-            lf = custom_hedge_portfolio_returns
-        # loss = square(maximum(1 - y_true * y_pred, 0))
-        if selected_loss == 'custom_sharpe_ratio':
-            lf = custom_sharpe_ratio
-        # loss = square(maximum(1 - y_true * y_pred, 0))
-        if selected_loss == 'custom_information_ratio':
-            lf = custom_information_ratio
-        # if selected_loss == 'multi_layer_loss':
-        #     lf = multi_layer_loss
+        # # loss = square(maximum(1 - y_true * y_pred, 0))
+        # if selected_loss == 'custom_l2_mse':
+        #     lf = custom_l2_mse
+        # # loss = square(maximum(1 - y_true * y_pred, 0))
+        # if selected_loss == 'custom_hedge_portfolio_returns':
+        #     lf = custom_hedge_portfolio_returns
+        # # loss = square(maximum(1 - y_true * y_pred, 0))
+        # if selected_loss == 'custom_sharpe_ratio':
+        #     lf = custom_sharpe_ratio
+        # # loss = square(maximum(1 - y_true * y_pred, 0))
+        # if selected_loss == 'custom_information_ratio':
+        #     lf = custom_information_ratio
+        # # if selected_loss == 'multi_layer_loss':
+        # #     lf = multi_layer_loss
         if selected_loss == 'custom_loss':
             lf = custom_loss(layer='Successful', type=0, reduction=red,
                              name='custom_loss')
@@ -1027,22 +1027,10 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
             metrics_list.append(tf.keras.metrics.TruePositives(
                 thresholds=None, name=None, dtype=None))
         # Custom Metrics
-        if 'hedge_portfolio_mean' in selected_metrics:
+        if 'customMetric' in selected_metrics:
             metrics_list.append(tf.keras.metrics.CustomHedgePortolfioMean(
                 num_classes=None, batch_size=None,
-                name='hedge_portfolio_mean'))
-        if 'hedge_portfolio_alphas' in selected_metrics:
-            metrics_list.append(tf.keras.metrics.CustomHedgePortolfioAlphas(
-                num_classes=None, batch_size=None,
-                name='hedge_portfolio_alphas'))
-        if 'sharpe_ratio' in selected_metrics:
-            metrics_list.append(tf.keras.metrics.CustomSharpeRatio(
-                num_classes=None, batch_size=None,
-                name='sharpe_ratio'))
-        if 'information_ratio' in selected_metrics:
-            metrics_list.append(tf.keras.metrics.CustomInformationRatio(
-                num_classes=None, batch_size=None,
-                name='information_ratio'))
+                name='custom_metric'))
         #################################################################################
         # Loss weights
         #################################################################################
@@ -1557,18 +1545,38 @@ class custom_loss(tf.keras.losses.Loss):
     def call(self, y_true, y_pred):
         layer = self.layer
         type = self.type
+        sr_pred = -1*(K.mean(y_pred)/K.std(y_pred))
+        sr_true = -1*(K.mean(y_true)/K.std(y_true))
         # Uses booleans to set the loss function
         # Mean Squared Error
         if type == 0:
             loss = K.mean(K.square(y_pred - y_true))
-        # Sharpe ratio
-        if type == 1:
+        # Sharpe ratio 1 (Maximise Prediction)
+        if type == 'max_predicted_sharpe_ratio':
+
+            loss = K.mean(K.square(sr_true - sr_pred))
+        # Sharpe ratio (Maximise Prediction)
+        if type == 'max_true_sharpe_ratio':
             sr_pred = -1*(K.mean(y_pred)/K.std(y_pred))
             sr_true = -1*(K.mean(y_true)/K.std(y_true))
             loss = K.mean(K.square(sr_true - sr_pred))
+        # Sharpe Ratio (MSE)
+        if type == 'max_true_sharpe_ratio':
+            sr_pred = -1*(K.mean(y_pred)/K.std(y_pred))
+            sr_true = -1*(K.mean(y_true)/K.std(y_true))
+            loss = K.mean(K.square(sr_true - sr_pred))
+        # Information Ratio
         if type == 2:
             loss = -1*((K.mean(y_pred) - K.mean(y_true)) /
                        K.std(y_pred - y_true))
+        # Treynor Ratio
+        if type == 3:
+            sr_pred = -1*(K.mean(y_pred)/K.std(y_pred))
+            sr_true = -1*(K.mean(y_true)/K.std(y_true))
+            loss = K.mean(K.square(sr_true - sr_pred))
+        # Hedge Portfolio
+        if type == 4:
+            loss = K.mean(K.square(sr_true - sr_pred))
         return loss
 
     # def custom_loss(layer):
@@ -1582,6 +1590,33 @@ class custom_loss(tf.keras.losses.Loss):
 # Metrics
 #################################################################################
 # 1: HP Mean
+
+# Improve this function when necessary
+
+
+class CustomMetric(tf.keras.metrics.Metric):
+    def __init__(self, num_classes=None, batch_size=None,
+                 name='hedge_portfolio_mean', **kwargs):
+        super().__init__(name=name, **kwargs)
+        self.batch_size = batch_size
+        self.num_classes = num_classes
+        self.hedge_portflio_mean = self.add_weight(
+            name=name, initializer="zeros")
+
+    def update_state(self, y_true, y_pred, sample_weight=None):
+        # Returns the index of the maximum values along the last axis in y_true (Last layer)
+        y_true = K.argmax(y_true, axis=-1)
+        # Returns the index of the maximum values along the last axis in y_true (Last layer)
+        y_pred = K.argmax(y_pred, axis=-1)
+        # Flattens a tensor to reshape to a shape equal to the number of elements contained
+        # Removes all dimensions except for one.
+        y_true = K.flatten(y_true)
+        # Defines the metric for assignment
+        true_poss = K.sum(K.cast((K.equal(y_true, y_pred)), dtype=tf.float32))
+        self.hedge_portflio_mean.assign_add(true_poss)
+
+    def result(self):
+        return self.hedge_portflio_mean
 
 
 class CustomHedgePortolfioMean(tf.keras.metrics.Metric):
@@ -1611,96 +1646,6 @@ class CustomHedgePortolfioMean(tf.keras.metrics.Metric):
 
     def result(self):
         return self.hedge_portflio_mean
-
-# 2: HP Alphas in CAPM, FF3, FF5 ()
-
-
-class CustomHedgePortolfioAlphas(tf.keras.metrics.Metric):
-    # Initialisation
-    def __init__(self, num_classes=None, batch_size=None,
-                 name='hedge_portfolio_alphas', **kwargs):
-        super(CustomHedgePortolfioAlphas, self).__init__(name=name, **kwargs)
-        self.batch_size = batch_size
-        self.num_classes = num_classes
-        self.custom_hedge_portfolio_alphas = self.add_weight(
-            name='hedge_portfolio_alphas', initializer="zeros")
-    # Update State
-
-    def update_state(self, y_true, y_pred, sample_weight=None):
-        # Returns the index of the maximum values along the last axis in y_true (Last layer)
-        y_true = K.argmax(y_true, axis=-1)
-        # Returns the index of the maximum values along the last axis in y_true (Last layer)
-        y_pred = K.argmax(y_pred, axis=-1)
-        # Flattens a tensor to reshape to a shape equal to the number of elements contained
-        # Removes all dimensions except for one.
-        y_true = K.flatten(y_true)
-        # Defines the metric for assignment
-        true_poss = K.sum(K.cast((K.equal(y_true, y_pred)), dtype=tf.float32))
-        self.custom_hedge_portfolio_alphas.assign_add(true_poss)
-    # Metric
-
-    def result(self):
-        return self.custom_hedge_portfolio_alphas
-
-# 3: Sharpe Ratio (SR = E[R - Rf]/SD Excess Return)
-
-
-class CustomSharpeRatio(tf.keras.metrics.Metric):
-    # Initialisation
-    def __init__(self, num_classes=None, batch_size=None,
-                 name='sharpe_ratio', **kwargs):
-        super(CustomSharpeRatio, self).__init__(name=name, **kwargs)
-        self.batch_size = batch_size
-        self.num_classes = num_classes
-        self.custom_sharpe_ratio = self.add_weight(
-            name="csr", initializer="zeros")
-    # Update State
-
-    def update_state(self, y_true, y_pred, sample_weight=None):
-        # Returns the index of the maximum values along the last axis in y_true (Last layer)
-        y_true = K.argmax(y_true, axis=-1)
-        # Returns the index of the maximum values along the last axis in y_true (Last layer)
-        y_pred = K.argmax(y_pred, axis=-1)
-        # Flattens a tensor to reshape to a shape equal to the number of elements contained
-        # Removes all dimensions except for one.
-        y_true = K.flatten(y_true)
-        # Defines the metric for assignment
-        true_poss = K.sum(K.cast((K.equal(y_true, y_pred)), dtype=tf.float32))
-        self.custom_sharpe_ratio.assign_add(true_poss)
-    # Metric
-
-    def result(self):
-        return self.custom_sharpe_ratio
-
-# 4: Information Ratio (IR = [R - Rf]/SD[R-Rf])
-
-
-class CustomInformationRatio(tf.keras.metrics.Metric):
-    # Initialisation
-    def __init__(self, num_classes=None, batch_size=None,
-                 name='information_ratio', **kwargs):
-        super(CustomHedgePortolfioAlphas, self).__init__(name=name, **kwargs)
-        self.batch_size = batch_size
-        self.num_classes = num_classes
-        self.custom_information_ratio = self.add_weight(
-            name="cir", initializer="zeros")
-    # Update State
-
-    def update_state(self, y_true, y_pred, sample_weight=None):
-        # Returns the index of the maximum values along the last axis in y_true (Last layer)
-        y_true = K.argmax(y_true, axis=-1)
-        # Returns the index of the maximum values along the last axis in y_true (Last layer)
-        y_pred = K.argmax(y_pred, axis=-1)
-        # Flattens a tensor to reshape to a shape equal to the number of elements contained
-        # Removes all dimensions except for one.
-        y_true = K.flatten(y_true)
-        # Defines the metric for assignment
-        true_poss = K.sum(K.cast((K.equal(y_true, y_pred)), dtype=tf.float32))
-        self.custom_information_ratio.assign_add(true_poss)
-    # Metric
-
-    def result(self):
-        return self.custom_information_ratio
 #################################################################################
 # Autodiff Testing
 #################################################################################
@@ -2033,7 +1978,7 @@ optimisation_dictionary = {1: 'SGD', 2: 'SGD',
 loss_function_dictionary = {1: 'mean_squared_error', 2: 'custom_l2_mse', 3: 'custom_hedge_portfolio_returns',
                             4: 'custom_sharpe_ratio', 5: 'custom_information_ratio', 6: 'custom_loss', 7: 'custom_loss'}
 metrics_dictionary = {1: ['mean_squared_error'], 2: ['mean_squared_error'], 3: [
-    'mean_squared_error'], 4: ['mean_squared_error'], 5: ['mean_squared_error'], 6: ['mean_squared_error'], 7: ['cosine_similarity']}  # ,'root_mean_squared_error', 'mean_absolute_percentage_error', 'mean_metric_wrapper', 'sum',
+    'mean_squared_error'], 4: ['mean_squared_error'], 5: ['mean_squared_error'], 6: ['mean_squared_error'], 7: ['cosine_similarity', 'mean_squared_error']}  # ,'root_mean_squared_error', 'mean_absolute_percentage_error', 'mean_metric_wrapper', 'sum',
 # 'mean_relative_error', 'mean_squared_error', 'mean_squared_logarithmic_error', 'cosine_similarity', 'logcosh', 'mean', 'mean_absolute_error', 'mean_tensor', 'metric'}
 # Selected Tensorflow Configuration
 #################################################################################
