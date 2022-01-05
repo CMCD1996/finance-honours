@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.12.31)  2 JAN 2022 19:56
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.12.31)  5 JAN 2022 14:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1202,7 +1202,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.53 ...umberline {10}Methodology}{14}{section.10}
+l.53 ...line {9.4}Limitations}{14}{subsection.9.4}
                                                   % [1] [2])
 \tf@toc=\write6
 \openout6 = `finance-788-research-essay.toc'.
@@ -1225,34 +1225,34 @@ Overfull \hbox (2.92308pt too wide) in paragraph at lines 222--223
  []
 
 [10] [11] [12] [13] [14] [15]
-</Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/monotonic-ranking.png, id=449, 462.528pt x 346.896pt>
+</Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/monotonic-ranking.png, id=459, 462.528pt x 346.896pt>
 File: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/monotonic-ranking.png Graphic file (type png)
 <use /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/monotonic-ranking.png>
-Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/monotonic-ranking.png  used on input line 353.
+Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/monotonic-ranking.png  used on input line 356.
 (pdftex.def)             Requested size: 452.96826pt x 339.74402pt.
- [16 </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/monotonic-ranking.png>] [17] [18] [19]
+ [16] [17 </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/monotonic-ranking.png>] [18] [19] [20]
 
-LaTeX Warning: Reference `hpm' on page 20 undefined on input line 436.
+LaTeX Warning: Reference `hpm' on page 21 undefined on input line 439.
 
-[20] [21] [22] [23]
-Overfull \hbox (3.06065pt too wide) in alignment at lines 496--500
+[21] [22] [23]
+Overfull \hbox (3.06065pt too wide) in alignment at lines 499--503
  [] [] [] [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.06065pt too wide) in alignment at lines 500--701
+Overfull \hbox (3.06065pt too wide) in alignment at lines 503--704
  [] [] [] [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.06065pt too wide) in alignment at lines 701--901
+Overfull \hbox (3.06065pt too wide) in alignment at lines 704--904
  [] [] [] [] [] [] [] [] [] 
  []
 
 [24
 
 ] [25] [26] [27] [28] [29] [30] [31] [32] [33] [34]
-Overfull \hbox (3.06065pt too wide) in alignment at lines 901--1025
+Overfull \hbox (3.06065pt too wide) in alignment at lines 904--1028
  [] [] [] [] [] [] [] [] [] 
  []
 
@@ -1263,24 +1263,24 @@ Overfull \hbox (3.06065pt too wide) in alignment at lines 901--1025
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `finance-788-research-essay.out' has not changed.
-(rerunfilecheck)             Checksum: D360B5B8A030219C55CF3900F25FDB9E;8129.
+(rerunfilecheck)             Checksum: BE31C9E65C6B3348907A18287F25DDB9;8423.
 Package logreq Info: Writing requests to 'finance-788-research-essay.run.xml'.
 \openout1 = `finance-788-research-essay.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 37384 strings out of 478353
- 744588 string characters out of 5848085
+ 37388 strings out of 478353
+ 744648 string characters out of 5848085
  1646575 words of memory out of 5000000
- 54750 multiletter control sequences out of 15000+600000
+ 54752 multiletter control sequences out of 15000+600000
  414453 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,14n,80p,1115b,4823s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on finance-788-research-essay.pdf (60 pages, 378432 bytes).
+Output written on finance-788-research-essay.pdf (60 pages, 378951 bytes).
 PDF statistics:
- 844 PDF objects out of 1000 (max. 8388607)
- 738 compressed objects within 8 object streams
- 188 named destinations out of 1000 (max. 500000)
- 482 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 854 PDF objects out of 1000 (max. 8388607)
+ 748 compressed objects within 8 object streams
+ 190 named destinations out of 1000 (max. 500000)
+ 498 words of extra memory for PDF output out of 10000 (max. 10000000)
 

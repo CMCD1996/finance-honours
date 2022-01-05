@@ -46,9 +46,13 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {9.1}Data}{13}{subsection.9.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.2}Limitations}{14}{subsection.9.2}%
+\contentsline {subsection}{\numberline {9.2}Tensorflow}{14}{subsection.9.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.3}Summary Statistics}{14}{subsection.9.3}%
+\contentsline {subsection}{\numberline {9.3}Automatic Differentiation}{14}{subsection.9.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.4}Limitations}{14}{subsection.9.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.5}Summary Statistics}{14}{subsection.9.5}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {10}Methodology}{14}{section.10}%
 \defcounter {refsection}{0}\relax 
@@ -66,15 +70,15 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {10.4}Loss Functions \& Performance Metrics}{14}{subsection.10.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {10.4.1}Mean Square Error (MSE)}{14}{subsubsection.10.4.1}%
+\contentsline {subsubsection}{\numberline {10.4.1}Mean Square Error (MSE)}{15}{subsubsection.10.4.1}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{\numberline {10.4.2}Hedge Portfolio}{15}{subsubsection.10.4.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {10.5}Conventional Asset Pricing Models}{17}{subsection.10.5}%
+\contentsline {subsection}{\numberline {10.5}Conventional Asset Pricing Models}{18}{subsection.10.5}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{\numberline {10.5.1}Sharpe Ratio}{21}{subsubsection.10.5.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {10.5.2}Information Ratio}{21}{subsubsection.10.5.2}%
+\contentsline {subsubsection}{\numberline {10.5.2}Information Ratio}{22}{subsubsection.10.5.2}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {10.6}Reinforcement learning}{22}{subsection.10.6}%
 \defcounter {refsection}{0}\relax 

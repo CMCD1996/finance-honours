@@ -1,12 +1,12 @@
 # Fdb version 3
-["biber finance-788-research-essay"] 1641025108 "finance-788-research-essay.bcf" "finance-788-research-essay.bbl" "finance-788-research-essay" 1641106564
-  "finance-788-research-essay.bcf" 1641106564 124799 a6a7fb45d9ea4b315681383dad921bff "pdflatex"
-  "finance-honours.bib" 1641024363 10800 0e993984a7ca3667e843670fd8f88568 ""
+["biber finance-788-research-essay"] 1641347830 "finance-788-research-essay.bcf" "finance-788-research-essay.bbl" "finance-788-research-essay" 1641347863
+  "finance-788-research-essay.bcf" 1641347863 124799 a6a7fb45d9ea4b315681383dad921bff "pdflatex"
+  "finance-honours.bib" 1641347829 11425 a6ba455bd576040321ff43b4ca0607a8 ""
   (generated)
   "finance-788-research-essay.bbl"
   "finance-788-research-essay.blg"
-["pdflatex"] 1641106561 "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/submission/finance-788-research-essay.tex" "finance-788-research-essay.pdf" "finance-788-research-essay" 1641106564
-  "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/submission/finance-788-research-essay.tex" 1641025181 114959 8885ea91df3efaa181a903b475b6d613 ""
+["pdflatex"] 1641347861 "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/submission/finance-788-research-essay.tex" "finance-788-research-essay.pdf" "finance-788-research-essay" 1641347863
+  "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/submission/finance-788-research-essay.tex" 1641347829 115109 f1d8f5fd6137474bbaf3f6e52d477391 ""
   "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/monotonic-ranking.png" 1640910140 26495 77684b5b8c4e19316f9961e37d54caaf ""
   "/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -230,15 +230,15 @@
   "/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1640947762 4374891 c8eaa50db59648610d53abf3959a7b8a ""
   "/usr/local/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1640947902 2820137 8a01174d86c6355935f4bd6f2dfaa23c ""
   "/usr/local/texlive/2021/texmf.cnf" 1616695596 577 4c1911a7228e554c6032256d3cf5567d ""
-  "finance-788-research-essay.aux" 1641106564 19633 38619b2e0a985c49264ddcc3e9fdbd0c "pdflatex"
-  "finance-788-research-essay.bbl" 1641025111 36291 66b08c90d0b9d37fec3aa79bc78f6b59 "biber finance-788-research-essay"
-  "finance-788-research-essay.equ" 1641106563 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "finance-788-research-essay.lof" 1641106564 271 9973fc29fb45260ece2f95fb3a7439ba "pdflatex"
-  "finance-788-research-essay.lot" 1641106564 575 4df69bc652405b0a9a62b4807426056d "pdflatex"
-  "finance-788-research-essay.out" 1641106564 8129 d360b5b8a030219c55cf3900f25fdb9e "pdflatex"
-  "finance-788-research-essay.run.xml" 1641106564 2586 43bd152b2b4d01e4708421212f746791 "pdflatex"
-  "finance-788-research-essay.tex" 1641025181 114959 8885ea91df3efaa181a903b475b6d613 ""
-  "finance-788-research-essay.toc" 1641106564 7046 1bb0eb30b1fac3922d814e5cb2ffa8d4 "pdflatex"
+  "finance-788-research-essay.aux" 1641347863 19988 257546be6f13ada7893c301ae9fea3a5 "pdflatex"
+  "finance-788-research-essay.bbl" 1641347855 36291 66b08c90d0b9d37fec3aa79bc78f6b59 "biber finance-788-research-essay"
+  "finance-788-research-essay.equ" 1641347862 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "finance-788-research-essay.lof" 1641347863 271 aeec9c51d5ae4cc5d68a824bd847cbb6 "pdflatex"
+  "finance-788-research-essay.lot" 1641347863 575 4df69bc652405b0a9a62b4807426056d "pdflatex"
+  "finance-788-research-essay.out" 1641347863 8423 be31c9e65c6b3348907a18287f25ddb9 "pdflatex"
+  "finance-788-research-essay.run.xml" 1641347863 2586 43bd152b2b4d01e4708421212f746791 "pdflatex"
+  "finance-788-research-essay.tex" 1641347829 115109 f1d8f5fd6137474bbaf3f6e52d477391 ""
+  "finance-788-research-essay.toc" 1641347863 7285 978629a8fd8d7d818ce476dbe503a49f "pdflatex"
   (generated)
   "finance-788-research-essay.aux"
   "finance-788-research-essay.bcf"
