@@ -97,6 +97,14 @@ def monitor_memory_usage(units, cpu=False, gpu=False):
 
 
 def reconfigure_gpu(restrict_tf, growth_memory):
+    """ Reconfigures GPU to either restrict the numner of GPU 
+        or enable allocated GPU to grow on use oppose to allocating
+        all memory
+
+    Args:
+        restrict_tf (bool): True/False to restrict number of GPUs
+        growth_memory (bool): True/False to enable contuous
+    """
     # Check the number of GPUs avaiable to Tensorflow and in use
     print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
     # Limit tf to a specfic set of GO devices
@@ -127,6 +135,16 @@ def reconfigure_gpu(restrict_tf, growth_memory):
 
 
 def configure_training_ui(project, api_token):
+    """ Configures Neptune.ai API, integrated with Github,
+    to record and monitor dashboard performance
+
+    Args:
+        project (str): Name of Neptune.ai project
+        api_token (str): API token to authenticate account
+
+    Returns:
+        var: Neptune callback configuration
+    """
     # Monitor Keras loss using callback
     # https://app.neptune.ai/common/tf-keras-integration/e/TFK-35541/dashboard/metrics-b11ccc73-9ac7-4126-be1a-cf9a3a4f9b74
     # Initialise neptune with credientials
@@ -155,17 +173,6 @@ def configure_training_ui(project, api_token):
     # Find the call back
     neptune_cbk = NeptuneCallback(
         run=run, base_namespace='metrics', batch=None, epoch=None)
-    # Example to set paramters
-    # run["JIRA"] = "NPT-952"
-    # run["parameters"] = {"learning_rate": 0.001,
-    #                     "optimizer": "Adam"}
-    # run["f1_score"] = 0.66
-    # Example in using in model callback
-    # model.fit(x_train, y_train,
-    #         validation_split=0.2,
-    #         epochs=10,
-    #         callbacks=[neptune_cbk])
-    # Returns Callback APIs
     return neptune_cbk
 #################################################################################
 # Data Processing
@@ -176,8 +183,8 @@ def partition_data(data_location, data_destination):
     """ Converts dta  format to a series of 100k line csvs
 
     Args:
-        data_location (str): directory of dta file
-        data_destination (str):
+        data_location (str): directory to source dta file
+        data_destination (str): directory to store csvs
     """
 
     # Converts dta file to chunks
@@ -196,7 +203,14 @@ def partition_data(data_location, data_destination):
 
 
 def create_dataframes(csv_location, multi_csv):
-    """ Function to create
+    """ Creates dataframes
+
+    Args:
+        csv_location (str): directory of csvs
+        multi_csv (bool): True/False for loading multiple csvs
+
+    Returns:
+        dataframe: Returns dataframe after convert the csv file
     """
     # Creates list of dataframes
     num_csvs = list(range(1, 29, 1))
@@ -215,7 +229,7 @@ def create_dataframes(csv_location, multi_csv):
             # Saves columns as list in txt file
             np.savetxt(r'/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/data/dataframe-columns.txt', df.columns, fmt='%s')
         # Save summary statistics to dataframe
-        data_stats = df.describe().round(4)
+        data_stats = df.describe().round(3)
         data_stats.T.to_latex('results/tables/subset-summary-statistics.txt')
         return df
         # Pre-process dataframe for suitability (Remove empty rows, columns etc.)
@@ -234,6 +248,11 @@ def create_dataframes(csv_location, multi_csv):
 
 
 def sass_access(dataframe):
+    """ Remote access to SAS functionalities
+
+    Args:
+        dataframe (dataframe): Data to convert to SAS datafile
+    """
     # Two files are accessed once for reference
     # sascfg_personal is a configuration file for accessing SAS Ondemand Academic Packages
     '/opt/anaconda3/lib/python3.7/site-packages/saspy'
@@ -360,6 +379,18 @@ def reduce_mem_usage(props):
 
 
 def resizing_dataframe(dataframe, resizing_options):
+    """ Resizes the dataframe to control number of factors
+    (fullset) or original ~178, remove mircro and nano size groups,
+    and optimise variable type by reducing float64 types to float32.
+
+    Args:
+        dataframe (df): Data in dataframe format
+        resizing_options (list): List of True/False statements
+        to control sizing statements. 
+
+    Returns:
+        df: Resized dataframe
+    """
     print(dataframe.head())
     # Remove both micro
     if resizing_options[0]:
@@ -408,13 +439,15 @@ def resizing_dataframe(dataframe, resizing_options):
 
 
 def split_vm_dataset(data_vm_directory, create_statistics, split_new_data, create_validation_set):
-    """ Creates summmary statistics from unprocessed dataset
+    """ Splits the dta dataset into training, testing, and validation sets
 
     Args:
-        data_vm_directory (str): Directory location of data stored on the VM instance.
+        data_vm_directory (str): Directory locating dta file (combined factors)
+        create_statistics (bool): True/False to create summary statistics
+        split_new_data (bool): True/False to split the data into training/testing
+        create_validation_set (bool): Treu/False (nested) to create validation set
     """
     # Create Dataframe from the entire dataset
-    # total_df = pd.read_stata(data_vm_directory + 'combined_predictors_filtered_us.dta')
     # Create summary statisitics for the entire dataset
     if create_statistics == True:
         # Read data into one dataframe on python
@@ -446,6 +479,16 @@ def split_vm_dataset(data_vm_directory, create_statistics, split_new_data, creat
 def process_vm_dataset(data_vm_dta, size_of_chunks, resizing_options, save_statistics=False, sample=False):
     """ This script processes the training and testing datasets for Tensorflow
     following the classify structured data with feature columns tutorial
+
+    Args:
+        data_vm_dta (str): Directory
+        size_of_chunks (int): Size of chunks e.g., 10000
+        resizing_options ([type]): [description]
+        save_statistics (bool, optional): Save Statistics. Defaults to False.
+        sample (bool, optional): Process a smaller set of memory. Defaults to False.
+
+    Returns:
+        [type]: [description]
     """
     # Load the test and train datasets into dataframes in chunks
     # df = pd.read_stata(data_vm_dta)
@@ -500,6 +543,11 @@ def process_vm_dataset(data_vm_dta, size_of_chunks, resizing_options, save_stati
     monitor_memory_usage(units=3, cpu=True, gpu=True)
     return df_full
 
+
+def fama_factors():
+    # Create fama factors for the dataset
+
+    return df
 #################################################################################
 # Machine Learning
 #################################################################################
@@ -527,6 +575,15 @@ def download_test_data():
 
 
 def create_feature_lists(list_of_columns, categorical_assignment):
+    """ Creates required feature lists of normalisation and encoding
+
+    Args:
+        list_of_columns ([type]): [description]
+        categorical_assignment ([type]): [description]
+
+    Returns:
+        [type]: [description]
+    """
     # Assignn variables
     categorical_features = []
     numerical_features = []
@@ -1201,7 +1258,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
             print("Metric Values: ", metrics)
             # Save the model
             model.save(
-                '/home/connormcdowall/finance-honours/results/model/tensorflow-models/'+model_name+'.pb')
+                '/home/connormcdowall/finance-honours/results/model/tensorflow-models/'+model_name + '-' + selected_loss+'.pb')
             # Monitor memory usage
             monitor_memory_usage(units=3, cpu=True, gpu=True)
             models.append(model)
@@ -1383,6 +1440,8 @@ def project_analysis(data_vm_directory, list_of_columns, categorical_assignment,
         test_df, test_discard_df = train_test_split(test_df, test_size=0.95)
         train_df, train_discard_df = train_test_split(train_df, test_size=0.95)
         val_df, val_discard_df = train_test_split(val_df, test_size=0.95)
+    # Adds additional factors to each of the dataset
+
     # Create feature lists for deep learning
     numerical_features, categorical_features = create_feature_lists(
         list_of_columns, categorical_assignment)
@@ -1440,73 +1499,6 @@ def custom_l2_mse(y_true, y_pred):
     return mse
 
 # 3: Custom Hedge Portfolio Returns
-
-
-@tf.function
-def custom_hedge_portfolio_returns(y_true, y_pred):
-    # Analytical Derivation
-    # f_(0)(X) = ((X^T(0)/V(X^T))^T)X^T(0)
-    # Derivitive of Function
-    # df_(0)(X)/d(0) = (1/((0^T)X1)(X)(X^T)(0)
-    #                + (1/((VX^T)(0))(X)(X^T)(0)
-    #                - (1/((0^T)(X)(V))**2)(0^T)(X)(X^T)(0)(X)(V)
-
-    # Empirical Derivation(s)
-    # Sets boolean to select weighting scheme
-    equally_weighted = False
-    # Sets up predicted value
-    # Get the shape of a tensor
-    print('y_pred is of shape: ', y_true.shape)
-    print('y_true is of type: ', type(y_true))
-    sp_pred = y_true.shape[0]
-    print(sp_pred)
-    # Implments Equally Weighted Monotonic Weighting Function
-    if equally_weighted:
-        # Initialise equally-weighted array
-        weights = np.linspace(1, -1, sp_pred)
-        # Alternative method of calculating weights
-        # weights = np.empty([sp_pred,1])
-        # weights[0] = 1
-        # weights[1] = -1
-        # # Sets remaining weights via a loop
-        # for i in range(len(weights)):
-        #     if i > 0:
-        #         weights[i] = weights[i-1] - 2/(len(weights)-1)
-
-        # Sorts the returns to descending_order
-        y_pred_sorted = tf.sort(y_pred, axis=-1, direction='DESCENDING')
-        y_true_sorted = tf.sort(y_true, axis=-1, direction='DESCENDING')
-        # Calculates weighted Tensors
-        weighted_returns_pred = tf.math.multiply(weights, y_pred_sorted)
-        weighted_returns_true = tf.math.multiply(weights, y_true_sorted)
-        # Calculates MSE equivalent between the hedge portfolios
-        loss = K.mean(K.square(weighted_returns_true - weighted_returns_pred))
-    else:
-        # Gets the mean of the top 10% of predicted returns
-        print('sp_pred is ', type(sp_pred))
-        print('y_pred is ', type(y_pred))
-
-        long_mean_pred = K.mean(tf.math.top_k(y_pred, k=0.1*sp_pred))
-        # Creates a negative
-        neg_y_pred = tf.math.scalar_mul(-1, y_pred)
-        # Gets the mean of the top 10% of predicted returns
-        short_mean_pred = -1*K.mean(tf.math.top_k(neg_y_pred, k=0.1*sp_pred))
-        # Gets the value of the hedge portfolio
-        hedge_pred = long_mean_pred - short_mean_pred
-        # Sets up true value
-        # Get the shape of a tensor
-        sp_true = y_true.shape[0]
-        # Gets the mean of the top 10% of predicted returns
-        long_mean_true = K.mean(tf.math.top_k(y_true, k=0.1*sp_true))
-        # Creates a negative
-        neg_y_true = tf.math.scalar_mul(-1, y_true)
-        # Gets the mean of the top 10% of predicted returns
-        short_mean_true = -1*K.mean(tf.math.top_k(neg_y_true, k=0.1*sp_true))
-        # Gets the value of the hedge portfolio
-        hedge_true = long_mean_true - short_mean_true
-        # Calculate a MSE based on a hedge portfolio opposed to predicted returns
-        loss = K.mean(K.square(hedge_true - hedge_pred))
-    return loss
 
 # 4: Custom Sharpe Ratio (# Negative to maximise)
 # Note: Symbolic Tensors do not work in function calls as require eager tensors.
@@ -1638,9 +1630,6 @@ class custom_information_mse(tf.keras.losses.Loss):
 #################################################################################
 # Metrics
 #################################################################################
-# 1: HP Mean
-
-# Improve this function when necessary
 
 
 @tf.function
@@ -1685,6 +1674,13 @@ def custom_information_metric(y_true, y_pred):
     return loss
 
 
+@tf.function
+def custom_capm_metric(factors):
+    def capm_metric(y_pred, y_true):
+        return K.mean(K.square(y_pred - y_true)) + K.mean(factors)
+    return capm_metric
+
+
 class CustomSharpeMetric(tf.keras.metrics.Metric):
     def __init__(self, num_classes=None, batch_size=None,
                  name='sharpe_ratio', **kwargs):
@@ -1708,19 +1704,6 @@ class CustomSharpeMetric(tf.keras.metrics.Metric):
 
     def result(self):
         return self.hedge_portflio_mean
-
-
-# class CustomHedgePortolfioMean(tf.keras.metrics.Metric): (Example for fine-tuning metrics.)
-#     # Initialisation
-#     def __init__(self, num_classes=None, batch_size=None,
-#                  name='hedge_portfolio_mean', **kwargs):
-#         super(CustomHedgePortolfioMean, self).__init__(name=name, **kwargs)
-#         self.batch_size = batch_size
-#         self.num_classes = num_classes
-#         self.hedge_portflio_mean = self.add_weight(
-#             name='hedge_portfolio_mean', initializer="zeros")
-#         # Core componnent of the update state
-#     # Update State
 
 #################################################################################
 # Autodiff Testing
@@ -1952,6 +1935,8 @@ def autodiff_guide(example):
 
 
 def analytical_analysis():
+    """ Tests symbolic math functionality
+    """
     # Test simple functionality
     print(sym.sqrt(8))
     theta, x = sym.symbols('O X')
@@ -2082,6 +2067,8 @@ split_vm_data = False
 process_vm_data = False
 use_sass = False
 need_dataframe = False
+prepare_factors = False
+prepare_factors = True
 # Tensorflow
 assign_features = False
 extract_test_data = False
@@ -2092,7 +2079,7 @@ test_loss_function = False
 analytical = False
 rank_functions = False
 # Research Proposal Analysis
-begin_analysis = True
+begin_analysis = False
 #################################################################################
 # Function Calls - Testing
 #################################################################################
@@ -2119,6 +2106,9 @@ if need_dataframe:
     print(data.head())
 if use_sass:
     sass_access(data)
+if prepare_factors:
+    print('Start: Prepare Factors')
+
 #################################################################################
 # Tensorflow
 #################################################################################
