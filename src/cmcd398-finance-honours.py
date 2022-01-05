@@ -1016,6 +1016,12 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
             metrics_list.append(custom_information_metric)
         if 'custom_hp_metric' in selected_metrics:
             metrics_list.append(custom_hp_metric)
+        if 'custom_capm_metric' in selected_metrics:
+            metrics_list.append(custom_mse_metric)
+        if 'custom_ff3_metric' in selected_metrics:
+            metrics_list.append(custom_mse_metric)
+        if 'custom_ff5_metric' in selected_metrics:
+            metrics_list.append(custom_mse_metric)
         #################################################################################
         # Loss weights
         #################################################################################
@@ -2108,7 +2114,9 @@ if use_sass:
     sass_access(data)
 if prepare_factors:
     print('Start: Prepare Factors')
-
+    data = pd.read_stata(data_vm_dta)
+    data = data['ret_exc_lead1m']
+    print(data.head())
 #################################################################################
 # Tensorflow
 #################################################################################
