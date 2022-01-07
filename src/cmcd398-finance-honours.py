@@ -1287,7 +1287,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
             print("Metric Values: ", metrics)
             # Save the model
             model.save(
-                '/home/connormcdowall/finance-honours/results/models/tensorflow/'+model_name + '-' + selected_loss+'.pb')
+                '/home/connormcdowall/finance-honours/results/models/tensorflow/'+model_name + '-' + selected_loss)
             # Monitor memory usage
             monitor_memory_usage(units=3, cpu=True, gpu=True)
             models.append(model)
@@ -2196,7 +2196,7 @@ if make_predictions:
     train_data = '/home/connormcdowall/finance-honours/data/dataframes/active_train.dta'
     test_data = '/home/connormcdowall/finance-honours/data/dataframes/active_test.dta'
     val_data = '/home/connormcdowall/finance-honours/data/dataframes/active_validation.dta'
-    testing_model = '/home/connormcdowall/finance-honours/results/models/tensorflow/finance-honours-test-mean_squared_error.pb'
+    testing_model = '/home/connormcdowall/finance-honours/results/models/tensorflow/finance-honours-test-mean_squared_error'
     features = []
     df = pd.read_stata(train_data)
     print('Making Predictions using saved models')
