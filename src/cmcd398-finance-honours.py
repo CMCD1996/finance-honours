@@ -480,7 +480,7 @@ def split_vm_dataset(data_vm_directory, create_statistics, split_new_data, creat
             print('Completed: Training Set')
             val_df.to_stata(data_vm_directory + 'val.dta')
             print('Completed: Validation Set')
-        else:
+        # else:
             #train_df.to_stata(data_vm_directory + 'train.dta')
             #print('Completed: Training Set')
         test_df.to_stata(data_vm_directory + 'test.dta')
