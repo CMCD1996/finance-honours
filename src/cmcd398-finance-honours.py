@@ -548,7 +548,7 @@ def save_df_statistics(df, frame_set, statistics_location, data_location):
     # Sets file paths
     description_file = statistics_location + '/' + frame_set + '-description.txt'
     information_file = statistics_location + '/' + frame_set + '-information.txt'
-    data_file = data_location + '/' + + 'active_' + frame_set + '.dta'
+    data_file = data_location + '/' + 'active_' + frame_set + '.dta'
     # Truncates/clears the datafiles
 
     # Saves a descrption of the dataframe
