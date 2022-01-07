@@ -1379,13 +1379,15 @@ def create_tensorflow_models(data_vm_directory, list_of_columns, categorical_ass
     return
 
 
-def make_tensorflow_predictions(model_name, dataframe, custom_objects, feature_names):
+def make_tensorflow_predictions(model_name, dataframe_location, custom_objects, feature_names):
     # Configurs custom objects
     # Loads model
     model = tf.keras.models.load_model(
         filepath=model_name, custom_objects=custom_objects)
+    # Loads the dictionary
+    df = pd.read_stata(dataframe_location)
     # Convert dataframe row to dictionary with column headers (section)
-    dataframe_dictionary = dataframe.to_dict(orient="records")
+    dataframe_dictionary = df.to_dict(orient="records")
     for row in dataframe_dictionary:
         print(row)
     # Creates the input for the prediction
@@ -2206,4 +2208,4 @@ if make_predictions:
     df = pd.read_stata(train_data)
     print('Making Predictions using saved models')
     make_tensorflow_predictions(
-        model_name=testing_model, dataframe=train_data, custom_objects=custom_tf_objects, feature_names=features)
+        model_name=testing_model, dataframe_location=train_data, custom_objects=custom_tf_objects, feature_names=features)
