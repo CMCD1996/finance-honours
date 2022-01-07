@@ -569,7 +569,7 @@ def save_df_statistics(df, frame_set, statistics_location, data_location):
     return
 
 
-def fama_factors(factor_location):
+def create_fama_factor_models(factor_location):
     # Create fama factors for the dataset
     factors_df = pd.read_csv(factor_location)
     print(df.head())
@@ -1322,6 +1322,81 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         return model, loss, accuracy
 
 
+def create_tensorflow_models(data_vm_directory, list_of_columns, categorical_assignment, target_column, chunk_size, resizing_options, batch_size, model_name, selected_optimizer, selected_losses, selected_metrics, split_data=False, trial=False, sample=False):
+    # Prints memory usage before analysis
+    monitor_memory_usage(units=3, cpu=True, gpu=True)
+    # Reset working textfile if resizing used for numerical encoding
+    # Clear the working file
+    file = open(
+        "/home/connormcdowall/finance-honours/data/working-columns.txt", "r+")
+    file.truncate(0)
+    file.close()
+    # Tranfer file lines
+    with open("/home/connormcdowall/finance-honours/data/dataframe-columns.txt", "r") as f1:
+        with open("/home/connormcdowall/finance-honours/data/working-columns.txt", "w") as f2:
+            for line in f1:
+                f2.write(line)
+    # Split the initial vm dataset
+    if split_data:
+        split_vm_dataset(data_vm_directory, create_statistics=False,
+                         split_new_data=True, create_validation_set=True)
+    # Creates the training, validation and testing dataframes
+    test_df = process_vm_dataset(data_vm_directory + 'test.dta', chunk_size,
+                                 resizing_options, save_statistics=False, sample=sample)
+    train_df = process_vm_dataset(data_vm_directory + 'train.dta',
+                                  chunk_size, resizing_options, save_statistics=False, sample=sample)
+    val_df = process_vm_dataset(data_vm_directory + 'val.dta', chunk_size,
+                                resizing_options, save_statistics=False, sample=sample)
+    # Use trial to test the dataframe when functions not as large
+    if trial:
+        # Trial run takes 5% of dataframe produced from processed vm datasets
+        test_df, test_discard_df = train_test_split(test_df, test_size=0.95)
+        train_df, train_discard_df = train_test_split(train_df, test_size=0.95)
+        val_df, val_discard_df = train_test_split(val_df, test_size=0.95)
+    # Saves descriptions, information, and datasets of the created dataframes
+    statistics_location = '/home/connormcdowall/finance-honours/results/statistics'
+    data_location = '/home/connormcdowall/finance-honours/data/dataframes'
+    save_df_statistics(test_df, 'test', statistics_location, data_location)
+    save_df_statistics(train_df, 'train', statistics_location, data_location)
+    save_df_statistics(val_df, 'validation',
+                       statistics_location, data_location)
+    # Create feature lists for deep learning
+    numerical_features, categorical_features = create_feature_lists(
+        list_of_columns, categorical_assignment)
+    # Creates the categorical dictonary (must specify the variables types of each)
+    categorical_dictionary = dict.fromkeys(categorical_features, 'string')
+    category_dtypes = {'size_grp': 'string', 'permno': 'int32', 'permco': 'int32', 'crsp_shrcd': 'int8',
+                       'crsp_exchcd': 'int8', 'adjfct': 'float64', 'sic': 'float64', 'ff49': 'float64'}
+    for key in category_dtypes:
+        categorical_dictionary[key] = category_dtypes[key]
+    # Encodes the tensorflow matrix
+    all_features, all_inputs, train_dataset, val_dataset, test_dataset = encode_tensor_flow_features(
+        train_df, val_df, test_df, target_column, numerical_features, categorical_features, categorical_dictionary, size_of_batch=batch_size)
+    # Note: Keep Stochastic Gradient Descent as Optimizer for completeness
+    # Buids tensorflow model
+    model, loss, metrics, other_metrics = build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name,
+                                                                  all_features, all_inputs, selected_optimizer, selected_losses, selected_metrics, finance_configuration=True)
+    return
+
+
+def make_tensorflow_predictions(model_name, dataframe, feature_names):
+    # Loads model
+    model = tf.keras.models.load_model(model_name)
+    # Convert dataframe row to dictionary with column headers (section)
+    dataframe_dictionary = dataframe.to_dict(orient="records")
+    for row in dataframe_dictionary:
+        print(row)
+    # Creates the input for the prediction
+    # input_dict = {name: tf.convert_to_tensor(
+    #    [value]) for name, value in row.items()}
+    # Makes the prediction
+    # predictions = model.predict(input_dict)
+    # Saves the predicted value to a dataframe
+
+    # Returns the prediction
+    return
+
+
 def perform_tensorflow_model_inference(model_name, sample):
     """ Perform evaluations from model (must be configured)
 
@@ -1437,62 +1512,6 @@ def reinforement_learning(model, env, target_vec):
                 target_vec.reshape(-1, env.action_space.n),
                 epochs=1, verbose=0)
             state = new_state
-
-
-def project_analysis(data_vm_directory, list_of_columns, categorical_assignment, target_column, chunk_size, resizing_options, batch_size, model_name, selected_optimizer, selected_losses, selected_metrics, split_data=False, trial=False, sample=False):
-    # Prints memory usage before analysis
-    monitor_memory_usage(units=3, cpu=True, gpu=True)
-    # Reset working textfile if resizing used for numerical encoding
-    # Clear the working file
-    file = open(
-        "/home/connormcdowall/finance-honours/data/working-columns.txt", "r+")
-    file.truncate(0)
-    file.close()
-    # Tranfer file lines
-    with open("/home/connormcdowall/finance-honours/data/dataframe-columns.txt", "r") as f1:
-        with open("/home/connormcdowall/finance-honours/data/working-columns.txt", "w") as f2:
-            for line in f1:
-                f2.write(line)
-    # Split the initial vm dataset
-    if split_data:
-        split_vm_dataset(data_vm_directory, create_statistics=False,
-                         split_new_data=True, create_validation_set=True)
-    # Creates the training, validation and testing dataframes
-    test_df = process_vm_dataset(data_vm_directory + 'test.dta', chunk_size,
-                                 resizing_options, save_statistics=False, sample=sample)
-    train_df = process_vm_dataset(data_vm_directory + 'train.dta',
-                                  chunk_size, resizing_options, save_statistics=False, sample=sample)
-    val_df = process_vm_dataset(data_vm_directory + 'val.dta', chunk_size,
-                                resizing_options, save_statistics=False, sample=sample)
-    # Use trial to test the dataframe when functions not as large
-    if trial:
-        # Trial run takes 5% of dataframe produced from processed vm datasets
-        test_df, test_discard_df = train_test_split(test_df, test_size=0.95)
-        train_df, train_discard_df = train_test_split(train_df, test_size=0.95)
-        val_df, val_discard_df = train_test_split(val_df, test_size=0.95)
-    # Saves descriptions, information, and datasets of the created dataframes
-    statistics_location = '/home/connormcdowall/finance-honours/results/statistics'
-    data_location = '/home/connormcdowall/finance-honours/data/dataframes'
-    save_df_statistics(test_df, 'test', statistics_location, data_location)
-    save_df_statistics(train_df, 'train', statistics_location, data_location)
-    save_df_statistics(val_df, 'validation',
-                       statistics_location, data_location)
-    # Create feature lists for deep learning
-    numerical_features, categorical_features = create_feature_lists(
-        list_of_columns, categorical_assignment)
-    # Creates the categorical dictonary (must specify the variables types of each)
-    categorical_dictionary = dict.fromkeys(categorical_features, 'string')
-    category_dtypes = {'size_grp': 'string', 'permno': 'int32', 'permco': 'int32', 'crsp_shrcd': 'int8',
-                       'crsp_exchcd': 'int8', 'adjfct': 'float64', 'sic': 'float64', 'ff49': 'float64'}
-    for key in category_dtypes:
-        categorical_dictionary[key] = category_dtypes[key]
-    # Encodes the tensorflow matrix
-    all_features, all_inputs, train_dataset, val_dataset, test_dataset = encode_tensor_flow_features(
-        train_df, val_df, test_df, target_column, numerical_features, categorical_features, categorical_dictionary, size_of_batch=batch_size)
-    # Note: Keep Stochastic Gradient Descent as Optimizer for completeness
-    # Buids tensorflow model
-    model, loss, metrics, other_metrics = build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name,
-                                                                  all_features, all_inputs, selected_optimizer, selected_losses, selected_metrics, finance_configuration=True)
     return
 #################################################################################
 # Custom Loss Functions, Metrics and Autodiff Testing
@@ -2107,13 +2126,14 @@ perform_regressions = False
 assign_features = False
 extract_test_data = False
 test_implementation = False
-example_autodiff = True
+example_autodiff = False
 test_loss_function = False
 # Analytical
 analytical = False
 rank_functions = False
 # Research Proposal Analysis
-begin_analysis = True
+create_models = False
+make_predictions = True
 #################################################################################
 # Function Calls - Testing
 #################################################################################
@@ -2136,13 +2156,10 @@ if process_vm_data:
     process_vm_dataset(data_vm_dta, save_statistics=False, sample=False)
 if need_dataframe:
     data = create_dataframes(csv_location, False)
-    print(data.info())
-    print(data.head())
 if use_sass:
     sass_access(data)
 if perform_regressions:
-    print('Start: Fama Factors')
-    fama_factors(factor_location)
+    create_fama_factor_models(factor_location)
 #################################################################################
 # Tensorflow
 #################################################################################
@@ -2169,8 +2186,19 @@ if analytical:
 if rank_functions:
     ranking_function()
 ##################################################################################
-# Function Call - Analysis
+# Model Building
 ##################################################################################
-if begin_analysis:
-    project_analysis(data_vm_directory, list_of_columns, categorical_assignment, target_column, chunk_size, resizing_options,
-                     batch_size, model_name, selected_optimizer, selected_losses, selected_metrics, split_data=False, trial=True, sample=True)
+if create_models:
+    create_tensorflow_models(data_vm_directory, list_of_columns, categorical_assignment, target_column, chunk_size, resizing_options,
+                             batch_size, model_name, selected_optimizer, selected_losses, selected_metrics, split_data=False, trial=True, sample=True)
+if make_predictions:
+    # Loads test data
+    train_data = '/home/connormcdowall/finance-honours/data/dataframes/active_train.dta'
+    test_data = '/home/connormcdowall/finance-honours/data/dataframes/active_test.dta'
+    val_data = '/home/connormcdowall/finance-honours/data/dataframes/active_validation.dta'
+    testing_model = '/home/connormcdowall/finance-honours/results/models/tensorflow/finance-honours-test-mean_squared_error.pb'
+    features = []
+    df = pd.read_stata(train_data)
+    print('Making Predictions using saved models')
+    make_tensorflow_predictions(
+        model_name=testing_model, dataframe=train_data, feature_names=features)
