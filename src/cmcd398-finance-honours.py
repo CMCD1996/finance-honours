@@ -228,8 +228,10 @@ def create_dataframes(csv_location, multi_csv):
             print('Dataframe Columns')
             print(df.columns)
             # Saves columns as list in txt file
-            np.savetxt(r'/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/data/dataframe-columns.txt', df.columns, fmt='%s')
+            np.savetxt(
+                r'/home/connormcdowall/finance-honours/data/raw-columns.txt', df.columns, fmt='%s')
         # Save summary statistics to dataframe
+        # Changing the script location
         data_stats = df.describe().round(3)
         data_stats.T.to_latex('results/tables/subset-summary-statistics.txt')
         return df
