@@ -12,6 +12,7 @@
 # System
 import psutil as ps  # Monitor CPU usage
 import nvidia_smi  # Monitor GPU usage
+import io  # Manipulate strings writing
 import os  # Change/manipulate operating systems
 import datetime as dt  # Manipulate datetime values
 import random as rd  # Random functionality
@@ -549,14 +550,21 @@ def save_df_statistics(df, frame_set, statistics_location, data_location):
     description_file = statistics_location + '/' + frame_set + '-description.txt'
     information_file = statistics_location + '/' + frame_set + '-information.txt'
     data_file = data_location + '/' + 'active_' + frame_set + '.dta'
-    # Truncates/clears the datafiles
-
+    # Truncates/clears the information datafiles
+    file = open(information_file, "r+")
+    file.truncate(0)
+    file.close()
     # Saves a descrption of the dataframe
     data_stats_1 = df.describe().round(3)
     data_stats_1.T.to_latex(description_file)
     # Saves the high level overview of the dataframe
-    data_stats_1 = df.info(verbose=False)
-    data_stats_1.T.to_latex(information_file)
+    data_stats_2 = df.info(verbose=False)
+    buffer = io.StringIO()
+    df.info(buf=buffer)
+    s = buffer.getvalue()
+    with open(information_file, "w", encoding="utf-8") as f:
+        f.write(s)
+    data_stats_2.T.to_latex(information_file)
     # Saves the dataframe to dta files for the regressions
     df.to_stata(data_file)
     return
