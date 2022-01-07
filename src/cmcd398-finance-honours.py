@@ -470,7 +470,6 @@ def split_vm_dataset(data_vm_directory, create_statistics, split_new_data, creat
             print(train_df['mth'])
             np.savetxt(r'/home/connormcdowall/finance-honours/data/raw-columns.txt',
                        train_df.columns, fmt='%s')
-            return
             test_df = test_df.append(chunk[chunk["test"] == 1])
         # Split training set into training and validation
         if create_validation_set == True:
@@ -2144,7 +2143,7 @@ factor_location = '/home/connormcdowall/finance-honours/data/factors.csv'
 sys_check = False
 # Data processing
 source_data = False
-split_vm_data = False
+split_vm_data = True
 process_vm_data = False
 use_sass = False
 need_dataframe = False
@@ -2157,7 +2156,7 @@ test_loss_function = False
 analytical = False
 rank_functions = False
 # Research Proposal Analysis
-create_models = True
+create_models = False
 make_predictions = False
 perform_regressions = False
 #################################################################################
