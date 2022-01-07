@@ -462,9 +462,8 @@ def split_vm_dataset(data_vm_directory, create_statistics, split_new_data, creat
         test_df = pd.DataFrame()
         total_df = pd.read_stata(
             data_vm_directory + 'combined_predictors_filtered_us.dta', chunksize=100000)
-        print('Dataset Columns: ', total_df.columns)
-        return
         for chunk in total_df:
+            train_df = train_df.append(chunk[chunk["train"] == 1])
             test_df = test_df.append(chunk[chunk["test"] == 1])
         # Split training set into training and validation
         if create_validation_set == True:
@@ -476,6 +475,10 @@ def split_vm_dataset(data_vm_directory, create_statistics, split_new_data, creat
         else:
             train_df.to_stata(data_vm_directory + 'train.dta')
         test_df.to_stata(data_vm_directory + 'test.dta')
+        print(train_df.columns)
+        # Saves columns as list in txt file
+        np.savetxt(r'/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/data/raw-columns.txt',
+                   train_df.columns, fmt='%s')
     return
 
 
