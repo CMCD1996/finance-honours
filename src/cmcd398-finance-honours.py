@@ -1287,7 +1287,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
             print("Metric Values: ", metrics)
             # Save the model
             model.save(
-                '/home/connormcdowall/finance-honours/results/model/tensorflow-models/'+model_name + '-' + selected_loss+'.pb')
+                '/home/connormcdowall/finance-honours/results/models/tensorflow/'+model_name + '-' + selected_loss+'.pb')
             # Monitor memory usage
             monitor_memory_usage(units=3, cpu=True, gpu=True)
             models.append(model)
@@ -2080,7 +2080,7 @@ metrics_dictionary = {1: ['mean_squared_error', 'cosine_similarity', 'mean_absol
 # Selected Tensorflow Configuration
 #################################################################################
 tf_option_array = [1, 2]  # 1 = Analysis, 2 = Testing
-tf_option = 2  # Change to 1,2,3,4,5,6,7 for configuration
+tf_option = 1  # Change to 1,2,3,4,5,6,7 for configuration
 selected_optimizer = optimisation_dictionary[tf_option]
 selected_losses = loss_function_dictionary[tf_option]
 selected_metrics = metrics_dictionary[tf_option]
