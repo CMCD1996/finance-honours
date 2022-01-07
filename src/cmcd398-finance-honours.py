@@ -462,6 +462,8 @@ def split_vm_dataset(data_vm_directory, create_statistics, split_new_data, creat
         test_df = pd.DataFrame()
         total_df = pd.read_stata(
             data_vm_directory + 'combined_predictors_filtered_us.dta', chunksize=100000)
+        print('Dataset Columns: ', total_df.columns)
+        return
         for chunk in total_df:
             test_df = test_df.append(chunk[chunk["test"] == 1])
         # Split training set into training and validation
@@ -1381,13 +1383,13 @@ def create_tensorflow_models(data_vm_directory, list_of_columns, categorical_ass
 
 
 def make_tensorflow_predictions(model_name, dataframe_location, custom_objects, feature_names):
-    # Configurs custom objects
+    # Initialises new dataframe
+    df_predictions = pd.Dataframe()
     # Loads model
     model = tf.keras.models.load_model(
         filepath=model_name, custom_objects=custom_objects)
     # Loads the dictionary
     df = pd.read_stata(dataframe_location)
-    print('Dataframe Columns: ', df.columns)
     # Convert dataframe row to dictionary with column headers (section)
     dataframe_dictionary = df.to_dict(orient="records")
     for row in dataframe_dictionary:
@@ -2132,7 +2134,7 @@ factor_location = '/home/connormcdowall/finance-honours/data/factors.csv'
 sys_check = False
 # Data processing
 source_data = False
-split_vm_data = False
+split_vm_data = True
 process_vm_data = False
 use_sass = False
 need_dataframe = False
@@ -2146,7 +2148,7 @@ analytical = False
 rank_functions = False
 # Research Proposal Analysis
 create_models = False
-make_predictions = True
+make_predictions = False
 perform_regressions = False
 #################################################################################
 # Function Calls - Testing
@@ -2164,7 +2166,7 @@ if source_data:
 # Source data from VM Instance
 if split_vm_data:
     split_vm_dataset(data_vm_directory, create_statistics=False,
-                     split_new_data=False, create_validation_set=False)
+                     split_new_data=True, create_validation_set=False)
 # Process vm data for Tensorflow
 if process_vm_data:
     process_vm_dataset(data_vm_dta, save_statistics=False, sample=False)
