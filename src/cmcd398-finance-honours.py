@@ -557,6 +557,7 @@ def save_df_statistics(df, frame_set, statistics_location, data_location):
     # Sets file paths
     description_file = statistics_location + '/' + frame_set + '-description.txt'
     information_file = statistics_location + '/' + frame_set + '-information.txt'
+    datatype_file = statistics_location + '/' + frame_set + '-datatypes.txt'
     data_file = data_location + '/' + 'active_' + frame_set + '.dta'
     # Truncates/clears the information datafiles
     file = open(information_file, "r+")
@@ -572,6 +573,8 @@ def save_df_statistics(df, frame_set, statistics_location, data_location):
     s = buffer.getvalue()
     with open(information_file, "w", encoding="utf-8") as f:
         f.write(s)
+    # Saves datatypes of the dataframe
+    np.savetxt(datatype_file, df.dtypes, fmt='%s')
     # Saves the dataframe to dta files for the regressions
     df.to_stata(data_file)
     return
@@ -1351,7 +1354,7 @@ def create_tensorflow_models(data_vm_directory, list_of_columns, categorical_ass
                          split_new_data=True, create_validation_set=True)
     # Creates the training, validation and testing dataframes
     test_df = process_vm_dataset(data_vm_directory + 'test.dta', chunk_size,
-                                 resizing_options, save_statistics=True, sample=sample)
+                                 resizing_options, save_statistics=False, sample=sample)
     train_df = process_vm_dataset(data_vm_directory + 'train.dta',
                                   chunk_size, resizing_options, save_statistics=False, sample=sample)
     val_df = process_vm_dataset(data_vm_directory + 'val.dta', chunk_size,
@@ -1369,6 +1372,7 @@ def create_tensorflow_models(data_vm_directory, list_of_columns, categorical_ass
     save_df_statistics(train_df, 'train', statistics_location, data_location)
     save_df_statistics(val_df, 'validation',
                        statistics_location, data_location)
+    return
     # Create feature lists for deep learning
     numerical_features, categorical_features = create_feature_lists(
         list_of_columns, categorical_assignment)
@@ -2140,7 +2144,7 @@ factor_location = '/home/connormcdowall/finance-honours/data/factors.csv'
 sys_check = False
 # Data processing
 source_data = False
-split_vm_data = True
+split_vm_data = False
 process_vm_data = False
 use_sass = False
 need_dataframe = False
@@ -2153,7 +2157,7 @@ test_loss_function = False
 analytical = False
 rank_functions = False
 # Research Proposal Analysis
-create_models = False
+create_models = True
 make_predictions = False
 perform_regressions = False
 #################################################################################
