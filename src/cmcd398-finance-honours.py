@@ -545,16 +545,20 @@ def process_vm_dataset(data_vm_dta, size_of_chunks, resizing_options, save_stati
 
 
 def save_df_statistics(df, frame_set, statistics_location, data_location):
+    # Sets file paths
+    description_file = statistics_location + '/' + frame_set + '-description.txt'
+    information_file = statistics_location + '/' + frame_set + '-information.txt'
+    data_file = data_location + '/' + + 'active_' + frame_set + '.dta'
+    # Truncates/clears the datafiles
+
     # Saves a descrption of the dataframe
     data_stats_1 = df.describe().round(3)
-    data_stats_1.T.to_latex(statistics_location + '/' +
-                            frame_set + '-description.txt')
+    data_stats_1.T.to_latex(description_file)
     # Saves the high level overview of the dataframe
     data_stats_1 = df.info(verbose=False)
-    data_stats_1.T.to_latex(statistics_location + '/' +
-                            frame_set + '-information.txt')
+    data_stats_1.T.to_latex(information_file)
     # Saves the dataframe to dta files for the regressions
-    df.to_stata(data_location + '/' + + 'active_' + frame_set + '.dta')
+    df.to_stata(data_file)
     return
 
 
@@ -1459,11 +1463,13 @@ def project_analysis(data_vm_directory, list_of_columns, categorical_assignment,
         test_df, test_discard_df = train_test_split(test_df, test_size=0.95)
         train_df, train_discard_df = train_test_split(train_df, test_size=0.95)
         val_df, val_discard_df = train_test_split(val_df, test_size=0.95)
-    # Saves the created dataframes
-    statistics_location = 'results/statistics'
-    data_location = 'data/dataframes'
+    # Saves descriptions, information, and datasets of the created dataframes
+    statistics_location = '/home/connormcdowall/finance-honours/results/statistics'
+    data_location = '/home/connormcdowall/finance-honours/data/dataframes'
     save_df_statistics(test_df, 'test', statistics_location, data_location)
-
+    save_df_statistics(train_df, 'train', statistics_location, data_location)
+    save_df_statistics(val_df, 'validation',
+                       statistics_location, data_location)
     # Create feature lists for deep learning
     numerical_features, categorical_features = create_feature_lists(
         list_of_columns, categorical_assignment)
@@ -2080,7 +2086,7 @@ data_vm_directory = '/home/connormcdowall/local-data/'
 data_vm_dta = '/home/connormcdowall/local-data/combined_predictors_filtered_us.dta'
 results_tables = '/home/connormcdowall/finance-honours/results/tables'
 list_of_columns = '/home/connormcdowall/finance-honours/data/working-columns.txt'
-factor_location = 'data/factors.csv'
+factor_location = '/home/connormcdowall/finance-honours/data/factors.csv'
 # Binary (Set to True or False depending on the functions to run)
 # System Checks
 sys_check = False
