@@ -1351,7 +1351,7 @@ def create_tensorflow_models(data_vm_directory, list_of_columns, categorical_ass
                          split_new_data=True, create_validation_set=True)
     # Creates the training, validation and testing dataframes
     test_df = process_vm_dataset(data_vm_directory + 'test.dta', chunk_size,
-                                 resizing_options, save_statistics=False, sample=sample)
+                                 resizing_options, save_statistics=True, sample=sample)
     train_df = process_vm_dataset(data_vm_directory + 'train.dta',
                                   chunk_size, resizing_options, save_statistics=False, sample=sample)
     val_df = process_vm_dataset(data_vm_directory + 'val.dta', chunk_size,
