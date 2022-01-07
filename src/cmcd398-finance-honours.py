@@ -2120,7 +2120,7 @@ custom_tf_objects = {'custom_mse_metric': custom_mse_metric, 'custom_hp_metric':
                      'custom_sharpe_metric': custom_sharpe_metric, 'custom_information_metric': custom_information_metric}
 #################################################################################
 # Strings
-model_name = 'finance-honours-test'
+model_name = 'cmcd398-finance-honours'
 data_source = 'data/combined_predictors_filtered_us.dta'
 csv_location = '/Volumes/Seagate/dataframes/'
 data_vm_directory = '/home/connormcdowall/local-data/'
