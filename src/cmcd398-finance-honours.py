@@ -1386,10 +1386,11 @@ def make_tensorflow_predictions(model_name, dataframe_location, custom_objects, 
         filepath=model_name, custom_objects=custom_objects)
     # Loads the dictionary
     df = pd.read_stata(dataframe_location)
+    print(df.head())
     # Convert dataframe row to dictionary with column headers (section)
-    dataframe_dictionary = df.to_dict(orient="records")
-    for row in dataframe_dictionary:
-        print(row)
+    # dataframe_dictionary = df.to_dict(orient="records")
+    # for row in dataframe_dictionary:
+    #     print(row)
     # Creates the input for the prediction
     # input_dict = {name: tf.convert_to_tensor(
     #    [value]) for name, value in row.items()}
