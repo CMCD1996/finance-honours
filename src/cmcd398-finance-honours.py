@@ -465,11 +465,7 @@ def split_vm_dataset(data_vm_directory, create_statistics, split_new_data, creat
         total_df = pd.read_stata(
             data_vm_directory + 'combined_predictors_filtered_us.dta', chunksize=100000)
         for chunk in total_df:
-            #train_df = train_df.append(chunk[chunk["train"] == 1])
-            # Saves columns as list in txt file
-            # print(train_df['mth'])
-            # np.savetxt(r'/home/connormcdowall/finance-honours/data/raw-columns.txt',
-            #           train_df.columns, fmt='%s')
+            train_df = train_df.append(chunk[chunk["train"] == 1])
             test_df = test_df.append(chunk[chunk["test"] == 1])
         # Split training set into training and validation
         if create_validation_set == True:
@@ -480,9 +476,10 @@ def split_vm_dataset(data_vm_directory, create_statistics, split_new_data, creat
             print('Completed: Training Set')
             val_df.to_stata(data_vm_directory + 'val.dta')
             print('Completed: Validation Set')
-        # else:
-            #train_df.to_stata(data_vm_directory + 'train.dta')
-            #print('Completed: Training Set')
+        else:
+            train_df.to_stata(data_vm_directory + 'train.dta')
+            print('Completed: Training Set')
+        print(test_df.info())
         test_df.to_stata(data_vm_directory + 'test.dta')
         print('Completed: Testing Set')
     return
