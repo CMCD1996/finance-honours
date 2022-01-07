@@ -1379,9 +1379,11 @@ def create_tensorflow_models(data_vm_directory, list_of_columns, categorical_ass
     return
 
 
-def make_tensorflow_predictions(model_name, dataframe, feature_names):
+def make_tensorflow_predictions(model_name, dataframe, custom_objects, feature_names):
+    # Configurs custom objects
     # Loads model
-    model = tf.keras.models.load_model(model_name)
+    model = tf.keras.models.load_model(
+        filepath=model_name, custom_objects=custom_objects)
     # Convert dataframe row to dictionary with column headers (section)
     dataframe_dictionary = dataframe.to_dict(orient="records")
     for row in dataframe_dictionary:
@@ -2103,6 +2105,9 @@ tf_option = 1  # Change to 1,2,3,4,5,6,7 for configuration
 selected_optimizer = optimisation_dictionary[tf_option]
 selected_losses = loss_function_dictionary[tf_option]
 selected_metrics = metrics_dictionary[tf_option]
+# Custom objects dictionary for importing models
+custom_tf_objects = {'custom_mse_metric': custom_mse_metric, 'custom_hp_metric': custom_hp_metric,
+                     'custom_sharpe_metric': custom_sharpe_metric, 'custom_information_metric': custom_information_metric}
 #################################################################################
 # Strings
 model_name = 'finance-honours-test'
@@ -2201,4 +2206,4 @@ if make_predictions:
     df = pd.read_stata(train_data)
     print('Making Predictions using saved models')
     make_tensorflow_predictions(
-        model_name=testing_model, dataframe=train_data, feature_names=features)
+        model_name=testing_model, dataframe=train_data, custom_objects=custom_tf_objects, feature_names=features)
