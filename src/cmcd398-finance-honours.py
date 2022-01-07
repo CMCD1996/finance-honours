@@ -798,6 +798,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         # Output layer (sigmoid)
 
         # List of activation functions:
+        # 'linear' = Linear activation function (final layer)
         # 'relu' = Rectified linear unit activation
         # 'sigmoid' = Sigmoid activation function, sigmoid(x) = 1 / (1 + exp(-x)).
         # 'softmax' = Softmax converts a vector of values to a probability distribution
@@ -829,7 +830,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
             layer_2 = tf.keras.layers.Dropout(
                 rate=0.5, noise_shape=None, seed=None)(layer_1)
             layer_3 = tf.keras.layers.Dense(64, activation='relu')(layer_2)
-            layer_4 = tf.keras.layers.Dense(128, activation='sigmoid')(layer_3)
+            layer_4 = tf.keras.layers.Dense(128, activation='linear')(layer_3)
             # Creates the output layer
             output = tf.keras.layers.Dense(1)(layer_4)
             print('End: Configuration of Deep Network Layers')
@@ -1394,6 +1395,7 @@ def make_tensorflow_predictions(model_name, dataframe_location, custom_objects, 
         input_dict = {name: tf.convert_to_tensor(
             [value]) for name, value in row.items()}
         predictions = model.predict(input_dict)
+
         print(predictions)
         return
     # Creates the input for the prediction
