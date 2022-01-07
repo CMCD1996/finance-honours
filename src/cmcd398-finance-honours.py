@@ -2169,7 +2169,7 @@ if source_data:
 # Source data from VM Instance
 if split_vm_data:
     split_vm_dataset(data_vm_directory, create_statistics=False,
-                     split_new_data=True, create_validation_set=False)
+                     split_new_data=True, create_validation_set=True)
 # Process vm data for Tensorflow
 if process_vm_data:
     process_vm_dataset(data_vm_dta, save_statistics=False, sample=False)
