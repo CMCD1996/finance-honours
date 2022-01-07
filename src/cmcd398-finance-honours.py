@@ -564,7 +564,6 @@ def save_df_statistics(df, frame_set, statistics_location, data_location):
     s = buffer.getvalue()
     with open(information_file, "w", encoding="utf-8") as f:
         f.write(s)
-    data_stats_2.T.to_latex(information_file)
     # Saves the dataframe to dta files for the regressions
     df.to_stata(data_file)
     return
