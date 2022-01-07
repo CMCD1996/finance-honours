@@ -2104,7 +2104,7 @@ metrics = accuracy_metrics + probabilistic_metrics + regression_metrics + \
 optimisation_dictionary = {1: 'SGD', 2: 'SGD',
                            3: 'SGD'}
 loss_function_dictionary = {
-    1: ['mean_squared_error', 'custom_mse', 'custom_sharpe', 'custom_sharpe_mse', 'custom_information', 'custom_hp''custom_hp_mse'], 2: ['mean_squared_error']}
+    1: ['mean_squared_error', 'custom_mse', 'custom_sharpe', 'custom_sharpe_mse', 'custom_information', 'custom_hp', 'custom_hp_mse'], 2: ['mean_squared_error']}
 metrics_dictionary = {1: ['mean_squared_error', 'cosine_similarity', 'mean_absolute_error', 'root_mean_squared_error', 'custom_mse_metric', 'custom_sharpe_metric',
                           'custom_information_metric', 'custom_hp_metric'], 2: ['mean_squared_error', 'cosine_similarity', 'mean_absolute_error', 'root_mean_squared_error', 'custom_mse_metric', 'custom_sharpe_metric',
                                                                                 'custom_information_metric', 'custom_hp_metric']}
@@ -2137,7 +2137,6 @@ split_vm_data = False
 process_vm_data = False
 use_sass = False
 need_dataframe = False
-perform_regressions = False
 assign_features = False
 extract_test_data = False
 test_implementation = False
@@ -2147,8 +2146,9 @@ test_loss_function = False
 analytical = False
 rank_functions = False
 # Research Proposal Analysis
-create_models = False
-make_predictions = True
+create_models = True
+make_predictions = False
+perform_regressions = False
 #################################################################################
 # Function Calls - Testing
 #################################################################################
@@ -2173,8 +2173,6 @@ if need_dataframe:
     data = create_dataframes(csv_location, False)
 if use_sass:
     sass_access(data)
-if perform_regressions:
-    create_fama_factor_models(factor_location)
 #################################################################################
 # Tensorflow
 #################################################################################
@@ -2217,3 +2215,5 @@ if make_predictions:
     print('Making Predictions using saved models')
     make_tensorflow_predictions(
         model_name=testing_model, dataframe_location=train_data, custom_objects=custom_tf_objects, feature_names=features)
+if perform_regressions:
+    create_fama_factor_models(factor_location)
