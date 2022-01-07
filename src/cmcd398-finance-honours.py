@@ -544,10 +544,26 @@ def process_vm_dataset(data_vm_dta, size_of_chunks, resizing_options, save_stati
     return df_full
 
 
-def fama_factors():
-    # Create fama factors for the dataset
+def save_df_statistics(df, frame_set, statistics_location, data_location):
+    # Saves a descrption of the dataframe
+    data_stats_1 = df.describe().round(3)
+    data_stats_1.T.to_latex(statistics_location + '/' +
+                            frame_set + '-description.txt')
+    # Saves the high level overview of the dataframe
+    data_stats_1 = df.info(verbose=False)
+    data_stats_1.T.to_latex(statistics_location + '/' +
+                            frame_set + '-information.txt')
+    # Saves the dataframe to dta files for the regressions
+    df.to_stata(data_location + '/' + + 'active_' + frame_set + '.dta')
+    return
 
+
+def fama_factors(factor_location):
+    # Create fama factors for the dataset
+    factors_df = pd.read_csv(factor_location)
+    print(df.head())
     return df
+
 #################################################################################
 # Machine Learning
 #################################################################################
@@ -1017,11 +1033,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         if 'custom_hp_metric' in selected_metrics:
             metrics_list.append(custom_hp_metric)
         if 'custom_capm_metric' in selected_metrics:
-            metrics_list.append(custom_mse_metric)
-        if 'custom_ff3_metric' in selected_metrics:
-            metrics_list.append(custom_mse_metric)
-        if 'custom_ff5_metric' in selected_metrics:
-            metrics_list.append(custom_mse_metric)
+            metrics_list.append(custom_mse_metric())
         #################################################################################
         # Loss weights
         #################################################################################
@@ -1313,8 +1325,9 @@ def perform_tensorflow_model_inference(model_name, sample):
     input_dict = {name: tf.convert_to_tensor(
         [value]) for name, value in sample.items()}
     predictions = reloaded_model.predict(input_dict)
-    prob = tf.nn.sigmoid(predictions[0])
-    return prob
+    print('Predction; ', predictions)
+    # prob = tf.nn.sigmoid(predictions[0])
+    return predictions
 
 
 def implement_test_data(dataframe, train, val, test, full_implementation=False):
@@ -1446,7 +1459,10 @@ def project_analysis(data_vm_directory, list_of_columns, categorical_assignment,
         test_df, test_discard_df = train_test_split(test_df, test_size=0.95)
         train_df, train_discard_df = train_test_split(train_df, test_size=0.95)
         val_df, val_discard_df = train_test_split(val_df, test_size=0.95)
-    # Adds additional factors to each of the dataset
+    # Saves the created dataframes
+    statistics_location = 'results/statistics'
+    data_location = 'data/dataframes'
+    save_df_statistics(test_df, 'test', statistics_location, data_location)
 
     # Create feature lists for deep learning
     numerical_features, categorical_features = create_feature_lists(
@@ -2064,6 +2080,7 @@ data_vm_directory = '/home/connormcdowall/local-data/'
 data_vm_dta = '/home/connormcdowall/local-data/combined_predictors_filtered_us.dta'
 results_tables = '/home/connormcdowall/finance-honours/results/tables'
 list_of_columns = '/home/connormcdowall/finance-honours/data/working-columns.txt'
+factor_location = 'data/factors.csv'
 # Binary (Set to True or False depending on the functions to run)
 # System Checks
 sys_check = False
@@ -2073,9 +2090,7 @@ split_vm_data = False
 process_vm_data = False
 use_sass = False
 need_dataframe = False
-prepare_factors = False
-prepare_factors = True
-# Tensorflow
+perform_regressions = False
 assign_features = False
 extract_test_data = False
 test_implementation = False
@@ -2085,7 +2100,7 @@ test_loss_function = False
 analytical = False
 rank_functions = False
 # Research Proposal Analysis
-begin_analysis = False
+begin_analysis = True
 #################################################################################
 # Function Calls - Testing
 #################################################################################
@@ -2112,11 +2127,9 @@ if need_dataframe:
     print(data.head())
 if use_sass:
     sass_access(data)
-if prepare_factors:
-    print('Start: Prepare Factors')
-    data = pd.read_stata(data_vm_dta)
-    data = data['ret_exc_lead1m']
-    print(data.head())
+if perform_regressions:
+    print('Start: Fama Factors')
+    fama_factors(factor_location)
 #################################################################################
 # Tensorflow
 #################################################################################
