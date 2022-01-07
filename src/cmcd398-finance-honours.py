@@ -2196,7 +2196,7 @@ if make_predictions:
     train_data = '/home/connormcdowall/finance-honours/data/dataframes/active_train.dta'
     test_data = '/home/connormcdowall/finance-honours/data/dataframes/active_test.dta'
     val_data = '/home/connormcdowall/finance-honours/data/dataframes/active_validation.dta'
-    testing_model = '/home/connormcdowall/finance-honours/results/models/tensorflow/finance-honours-test-mean_squared_error.pb/saved_model.pb'
+    testing_model = '/home/connormcdowall/finance-honours/results/models/tensorflow/finance-honours-test-mean_squared_error.pb'
     features = []
     df = pd.read_stata(train_data)
     print('Making Predictions using saved models')
