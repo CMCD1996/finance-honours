@@ -1,5 +1,6 @@
 beta_60m_x
 index
+mth
 size_grp
 permno
 permco
