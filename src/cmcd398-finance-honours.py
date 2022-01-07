@@ -98,7 +98,7 @@ def monitor_memory_usage(units, cpu=False, gpu=False):
 
 
 def reconfigure_gpu(restrict_tf, growth_memory):
-    """ Reconfigures GPU to either restrict the numner of GPU 
+    """ Reconfigures GPU to either restrict the numner of GPU
         or enable allocated GPU to grow on use oppose to allocating
         all memory
 
@@ -387,7 +387,7 @@ def resizing_dataframe(dataframe, resizing_options):
     Args:
         dataframe (df): Data in dataframe format
         resizing_options (list): List of True/False statements
-        to control sizing statements. 
+        to control sizing statements.
 
     Returns:
         df: Resized dataframe
@@ -1388,9 +1388,14 @@ def make_tensorflow_predictions(model_name, dataframe_location, custom_objects, 
     df = pd.read_stata(dataframe_location)
     print(df.head())
     # Convert dataframe row to dictionary with column headers (section)
-    # dataframe_dictionary = df.to_dict(orient="records")
-    # for row in dataframe_dictionary:
-    #     print(row)
+    dataframe_dictionary = df.to_dict(orient="records")
+    for row in dataframe_dictionary:
+        print(row)
+        input_dict = {name: tf.convert_to_tensor(
+            [value]) for name, value in row.items()}
+        predictions = model.predict(input_dict)
+        print(predictions)
+        return
     # Creates the input for the prediction
     # input_dict = {name: tf.convert_to_tensor(
     #    [value]) for name, value in row.items()}
