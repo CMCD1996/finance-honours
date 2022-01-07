@@ -468,7 +468,7 @@ def split_vm_dataset(data_vm_directory, create_statistics, split_new_data, creat
             train_df = train_df.append(chunk[chunk["train"] == 1])
             # Saves columns as list in txt file
             print(train_df.columns)
-            np.savetxt(r'/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/data/raw-columns.txt',
+            np.savetxt(r'/home/connormcdowall/finance-honours/data/raw-columns.txt',
                        train_df.columns, fmt='%s')
             test_df = test_df.append(chunk[chunk["test"] == 1])
         # Split training set into training and validation
@@ -2222,4 +2222,5 @@ if make_predictions:
     make_tensorflow_predictions(
         model_name=testing_model, dataframe_location=train_data, custom_objects=custom_tf_objects, feature_names=features)
 if perform_regressions:
+    print('Starting fama factor regressions')
     create_fama_factor_models(factor_location)
