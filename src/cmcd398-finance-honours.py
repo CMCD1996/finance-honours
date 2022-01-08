@@ -583,8 +583,8 @@ def save_df_statistics(df, frame_set, statistics_location, data_location):
 def create_fama_factor_models(factor_location):
     # Create fama factors for the dataset
     factors_df = pd.read_csv(factor_location)
-    print(df.head())
-    return df
+    print(factors_df.head())
+    return
 
 #################################################################################
 # Machine Learning
@@ -2144,7 +2144,7 @@ factor_location = '/home/connormcdowall/finance-honours/data/factors.csv'
 sys_check = False
 # Data processing
 source_data = False
-split_vm_data = True
+split_vm_data = False
 process_vm_data = False
 use_sass = False
 need_dataframe = False
@@ -2159,7 +2159,7 @@ rank_functions = False
 # Research Proposal Analysis
 create_models = False
 make_predictions = False
-perform_regressions = False
+perform_regressions = True
 #################################################################################
 # Function Calls - Testing
 #################################################################################
