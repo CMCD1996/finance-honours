@@ -522,7 +522,10 @@ def process_vm_dataset(data_vm_dta, size_of_chunks, resizing_options, save_stati
         # Gets unique list of size_grp
         size_grp_list = list(df['size_grp'].unique())
         # Removes the mth column/factor from the dataframe given datatime format
-        df['mth'] = pd.to_numeric(df['mth'], downcast='float')
+        # df['mth'] = pd.to_numeric(df['mth'], downcast='float')
+        # Converts month to integrer format
+        df['mth'] = int(str(df['mth'].year) + str(df['mth'].month))
+        print(df['mth'].head())
         df_full = df_full.append(df)
         # Prints memory usage after the process
         monitor_memory_usage(units=3, cpu=True, gpu=True)
@@ -578,6 +581,14 @@ def save_df_statistics(df, frame_set, statistics_location, data_location):
     # Saves the dataframe to dta files for the regressions
     df.to_stata(data_file)
     return
+
+
+def convert_datetime_to_int(dataframe, column_name):
+    # Creates new month column in dataframe
+    dataframe[column_name] = int(
+        str(dataframe[column_name].year) + str(dataframe[column_name].month))
+    print(dataframe[column_name].head())
+    return dataframe
 
 
 def create_fama_factor_models(factor_location):
@@ -2157,9 +2168,9 @@ test_loss_function = False
 analytical = False
 rank_functions = False
 # Research Proposal Analysis
-create_models = False
+create_models = True
 make_predictions = False
-perform_regressions = True
+perform_regressions = False
 #################################################################################
 # Function Calls - Testing
 #################################################################################
@@ -2227,5 +2238,6 @@ if make_predictions:
     make_tensorflow_predictions(
         model_name=testing_model, dataframe_location=train_data, custom_objects=custom_tf_objects, feature_names=features)
 if perform_regressions:
+
     print('Starting fama factor regressions')
     create_fama_factor_models(factor_location)
