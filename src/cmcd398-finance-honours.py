@@ -35,7 +35,7 @@ from tensorflow.python.eager.def_function import run_functions_eagerly
 from tensorflow.python.ops.gen_array_ops import split  # Find combinations of lists
 # Keras backend functions to design custom metrics
 import tensorflow.keras.backend as K
-import linearmodels as lp  # Ability to use PooledOLS
+import linearmodels as lm  # Ability to use PooledOLS
 from statsmodels.regression.rolling import RollingOLS  # Use factor loadings
 from keras.callbacks import Callback  # Logging training performance
 import neptune.new as neptune
@@ -606,17 +606,56 @@ def convert_datetime_to_int(dataframe, column_name):
     return dataframe
 
 
-def create_fama_factor_models(factor_location):
-    # Create fama factors for the dataset from K.French
+def create_fama_factor_models(factor_location, prediction_location, regression_dictionary):
+    # Reads in all the pandas dataframes
     factors_df = pd.read_csv(factor_location)
     print(factors_df.head())
-    # Uses linear models to perform CAPM regressions
+    regression_df = pd.read_stata(prediction_location)
+    hedge_returns = pd.DataFrame(columns=['mth', 'hedge_returns'])
+    # Creates portfolio returns via groupings
+    monthly_groups = regression_df.groupby("mth")
+    for month, sub_predictions in monthly_groups:
+        # Sort the predicted returns in the sub_predictiosn set
 
-    # Uses linear models to perform FF3 regression
+        # Find the top decile and bottom decile
 
-    # Uses linear models to perform FF4 (Carhart) regression
+        # Forms the hedge portfolio and sets to new row
+        new_row = {'mth': 1, 'hedge_returns': 1}
+        # Stores the hedge portfolio return for the month in another dataframe
 
-    # Uses linear model to perform FF5 regression
+    # Adds the factors to the regression dataframe via merge
+    regression_df.merge(factors_df, how='left', on='mth')
+    # Resets the index on both size_grp and mth
+    # etdata = data.set_index(['size_grp','mth'])
+    # Create fama factors for the dataset from K.French
+
+    # Merges all the datasets
+    data = pd.DataFrame()
+    # Creates panel dataframe
+    if regression_dictionary['capm'] == True:
+        # Uses linear models to perform CAPM regressions
+        capm_exog_vars = ["black", "hisp", "exper",
+                          "expersq", "married", "educ", "union", "year"]
+        capm_exog = sm.add_constant(data[capm_exog_vars])
+        capm = lm.FamaMacBeth()
+    if regression_dictionary['ff3'] == True:
+        # Uses linear models to perform FF3 regression
+        ff3_exog_vars = ["black", "hisp", "exper",
+                         "expersq", "married", "educ", "union", "year"]
+        ff3_exog = sm.add_constant(data[ff3_exog_vars])
+        ff3 = lm.FamaMacBeth()
+    if regression_dictionary['ff4'] == True:
+        # Uses linear models to perform FF4 (Carhart) regression
+        ff4_exog_vars = ["black", "hisp", "exper",
+                         "expersq", "married", "educ", "union", "year"]
+        ff4_exog = sm.add_constant(data[ff4_exog_vars])
+        ff4 = lm.FamaMacBeth()
+    if regression_dictionary['ff5'] == True:
+        # Uses linear model to perform FF5 regression
+        ff5_exog_vars = ["black", "hisp", "exper",
+                         "expersq", "married", "educ", "union", "year"]
+        ff5_exog = sm.add_constant(data[ff5_exog_vars])
+        ff5 = lm.FamaMacBeth()
     return
 
 #################################################################################
@@ -1424,9 +1463,10 @@ def create_tensorflow_models(data_vm_directory, list_of_columns, categorical_ass
     return
 
 
-def make_tensorflow_predictions(model_name, dataframe_location, custom_objects, feature_names):
+def make_tensorflow_predictions(model_name, dataframe_location, custom_objects, model_loss_function):
     # Initialises new dataframe
-    df_predictions = pd.DataFrame()
+    column_names = ['size_grp', "mth", "predict", 'ret_exc_lead1m']
+    df_predictions = pd.DataFrame(columns=column_names)
     # Loads model
     model = tf.keras.models.load_model(
         filepath=model_name, custom_objects=custom_objects)
@@ -1440,16 +1480,16 @@ def make_tensorflow_predictions(model_name, dataframe_location, custom_objects, 
             [value]) for name, value in row.items()}
         predictions = model.predict(input_dict)
         print(predictions[0])
-        return
-    # Creates the input for the prediction
-    # input_dict = {name: tf.convert_to_tensor(
-    #    [value]) for name, value in row.items()}
-    # Makes the prediction
-    # predictions = model.predict(input_dict)
-    # Saves the predicted value to a dataframe
-
-    # Returns the prediction
-    return
+        # Adds prediction value to prediction df
+        new_df_row = {'size_grp': row['size_grp'], "mth": row['mth'],
+                      "predict": predictions[0], 'ret_exc_lead1m': row['ret_exc_lead1m']}
+        df_predictions = df_predictions.append(new_df_row)
+    print(df_predictions.info(verbose=False))
+    print(df_predictions.head())
+    # Saves the model predictions to file
+    df_predictions.to_stata(
+        '/home/connormcdowall/finance-honours/results/predictions/' + model_loss_function + '.dta')
+    return df_predictions
 
 
 def perform_tensorflow_model_inference(model_name, sample):
@@ -2260,4 +2300,7 @@ if make_predictions:
         model_name=testing_model, dataframe_location=train_data, custom_objects=custom_tf_objects, feature_names=features)
 if perform_regressions:
     print('Starting fama factor regressions')
-    create_fama_factor_models(factor_location)
+    regression_dictionary = {'capm': True,
+                             'ff3': True, 'ff4': True, 'ff5': True}
+    create_fama_factor_models(factor_location, train_data,
+                              test_data, val_data, regression_dictionary, predictions)
