@@ -533,18 +533,9 @@ def process_vm_dataset(data_vm_dta, size_of_chunks, resizing_options, save_stati
                 month_str = '0'+str(month)
             else:
                 month_str = str(month)
-            mth_str = str(year) + month_str
+            mth_str = int(str(year) + month_str)
             print('Month (Str): ', mth_str)
         return
-        # df['year'] = df['mth'].dt.year
-        # df['month'] = df['mth'].dt.month
-        # print(df['year'].head())
-        # print(df['year'].dtype)
-        # print(df['month'].head())
-        # print(df['month'].dtype)
-        # df['mth'] = df['year'].values.astype(str)
-        # print(df['mth'].head())
-        # return
         df_full = df_full.append(df)
         # Prints memory usage after the process
         monitor_memory_usage(units=3, cpu=True, gpu=True)
