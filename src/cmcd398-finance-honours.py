@@ -539,6 +539,8 @@ def process_vm_dataset(data_vm_dta, size_of_chunks, resizing_options, save_stati
             new_mth = int(str(year) + month_str)
             # Sets new month value
             df.at[index, 'mth'] = new_mth
+        # Sets mth column to int type
+        df['mth'] = df['mth'].astype(int)
         print(df['mth'].head())
         return
         df_full = df_full.append(df)
