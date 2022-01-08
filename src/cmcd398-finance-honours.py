@@ -526,8 +526,9 @@ def process_vm_dataset(data_vm_dta, size_of_chunks, resizing_options, save_stati
         # Converts month to integrer format
         print(df['mth'].head())
         for index, row in df.iterrows():
-            year = row['mth']
-            month = row['mth']
+            datetime = row['mth']
+            year = datetime.year
+            month = datetime.month
             print('Year: ', year)
         return
         # df['year'] = df['mth'].dt.year
