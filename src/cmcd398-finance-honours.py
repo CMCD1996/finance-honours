@@ -523,7 +523,7 @@ def process_vm_dataset(data_vm_dta, size_of_chunks, resizing_options, save_stati
         size_grp_list = list(df['size_grp'].unique())
         # Removes the mth column/factor from the dataframe given datatime format
         # df['mth'] = pd.to_numeric(df['mth'], downcast='float')
-        # Converts month to integrer format
+        # Converts month to integrer format (Need for regressions with predictions)
         print(df['mth'].head())
         for index, row in df.iterrows():
             # Gets datetime value
