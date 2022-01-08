@@ -528,7 +528,9 @@ def process_vm_dataset(data_vm_dta, size_of_chunks, resizing_options, save_stati
         df['year'] = df['mth'].dt.year
         df['month'] = df['mth'].dt.month
         print(df['year'].head())
+        print(df['year'].dtype)
         print(df['month'].head())
+        print(df['month'].dtype)
         return
         df_full = df_full.append(df)
         # Prints memory usage after the process
