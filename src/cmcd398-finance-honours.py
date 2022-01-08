@@ -526,10 +526,19 @@ def process_vm_dataset(data_vm_dta, size_of_chunks, resizing_options, save_stati
         # Converts month to integrer format
         print(df['mth'].head())
         for index, row in df.iterrows():
-            year = row['mth'].dt.year
-            month = row['mth'].dt.month
-            print('Year: ', year, 'Month :', month)
+            year = row['mth']
+            month = row['mth']
+            print('Year: ', year)
         return
+        # df['year'] = df['mth'].dt.year
+        # df['month'] = df['mth'].dt.month
+        # print(df['year'].head())
+        # print(df['year'].dtype)
+        # print(df['month'].head())
+        # print(df['month'].dtype)
+        # df['mth'] = df['year'].values.astype(str)
+        # print(df['mth'].head())
+        # return
         df_full = df_full.append(df)
         # Prints memory usage after the process
         monitor_memory_usage(units=3, cpu=True, gpu=True)
