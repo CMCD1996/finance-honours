@@ -607,9 +607,16 @@ def convert_datetime_to_int(dataframe, column_name):
 
 
 def create_fama_factor_models(factor_location):
-    # Create fama factors for the dataset
+    # Create fama factors for the dataset from K.French
     factors_df = pd.read_csv(factor_location)
     print(factors_df.head())
+    # Uses linear models to perform CAPM regressions
+
+    # Uses linear models to perform FF3 regression
+
+    # Uses linear models to perform FF4 (Carhart) regression
+
+    # Uses linear model to perform FF5 regression
     return
 
 #################################################################################
@@ -2182,8 +2189,8 @@ test_loss_function = False
 analytical = False
 rank_functions = False
 # Research Proposal Analysis
-create_models = True
-make_predictions = False
+create_models = False
+make_predictions = True
 perform_regressions = False
 #################################################################################
 # Function Calls - Testing
@@ -2245,13 +2252,12 @@ if make_predictions:
     train_data = '/home/connormcdowall/finance-honours/data/dataframes/active_train.dta'
     test_data = '/home/connormcdowall/finance-honours/data/dataframes/active_test.dta'
     val_data = '/home/connormcdowall/finance-honours/data/dataframes/active_validation.dta'
-    testing_model = '/home/connormcdowall/finance-honours/results/models/tensorflow/finance-honours-test-mean_squared_error'
+    testing_model = '/home/connormcdowall/finance-honours/results/models/tensorflow/cmcd398-finance-honours-mean_squared_error'
     features = []
     df = pd.read_stata(train_data)
     print('Making Predictions using saved models')
     make_tensorflow_predictions(
         model_name=testing_model, dataframe_location=train_data, custom_objects=custom_tf_objects, feature_names=features)
 if perform_regressions:
-
     print('Starting fama factor regressions')
     create_fama_factor_models(factor_location)
