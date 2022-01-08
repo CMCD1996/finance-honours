@@ -526,15 +526,20 @@ def process_vm_dataset(data_vm_dta, size_of_chunks, resizing_options, save_stati
         # Converts month to integrer format
         print(df['mth'].head())
         for index, row in df.iterrows():
+            # Gets datetime value
             datetime = row['mth']
+            # Sets year and month values from datetime
             year = datetime.year
             month = datetime.month
             if month < 10:
                 month_str = '0'+str(month)
             else:
                 month_str = str(month)
-            mth_str = int(str(year) + month_str)
-            print('Month (Str): ', mth_str)
+            # Concatenates new value and converst to int
+            new_mth = int(str(year) + month_str)
+            # Sets new month value
+            df.at[index, 'mth'] = new_mth
+        print(df['mth'].head())
         return
         df_full = df_full.append(df)
         # Prints memory usage after the process
