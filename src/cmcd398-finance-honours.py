@@ -1426,7 +1426,7 @@ def create_tensorflow_models(data_vm_directory, list_of_columns, categorical_ass
 
 def make_tensorflow_predictions(model_name, dataframe_location, custom_objects, feature_names):
     # Initialises new dataframe
-    df_predictions = pd.Dataframe()
+    df_predictions = pd.DataFrame()
     # Loads model
     model = tf.keras.models.load_model(
         filepath=model_name, custom_objects=custom_objects)
