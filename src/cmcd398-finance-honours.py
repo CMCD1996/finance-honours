@@ -529,7 +529,7 @@ def process_vm_dataset(data_vm_dta, size_of_chunks, resizing_options, save_stati
             datetime = row['mth']
             year = datetime.year
             month = datetime.month
-            print('Year: ', year)
+            print('Month: ', month)
         return
         # df['year'] = df['mth'].dt.year
         # df['month'] = df['mth'].dt.month
