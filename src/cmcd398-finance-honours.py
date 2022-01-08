@@ -541,8 +541,6 @@ def process_vm_dataset(data_vm_dta, size_of_chunks, resizing_options, save_stati
             df.at[index, 'mth'] = new_mth
         # Sets mth column to int type
         df['mth'] = df['mth'].astype(int)
-        print(df['mth'].head())
-        return
         df_full = df_full.append(df)
         # Prints memory usage after the process
         monitor_memory_usage(units=3, cpu=True, gpu=True)
@@ -1400,7 +1398,6 @@ def create_tensorflow_models(data_vm_directory, list_of_columns, categorical_ass
     save_df_statistics(train_df, 'train', statistics_location, data_location)
     save_df_statistics(val_df, 'validation',
                        statistics_location, data_location)
-    return
     # Create feature lists for deep learning
     numerical_features, categorical_features = create_feature_lists(
         list_of_columns, categorical_assignment)
@@ -2150,7 +2147,7 @@ metrics_dictionary = {1: ['mean_squared_error', 'cosine_similarity', 'mean_absol
 # Selected Tensorflow Configuration
 #################################################################################
 tf_option_array = [1, 2]  # 1 = Analysis, 2 = Testing
-tf_option = 1  # Change to 1,2,3,4,5,6,7 for configuration
+tf_option = 2  # Change to 1,2,3,4,5,6,7 for configuration
 selected_optimizer = optimisation_dictionary[tf_option]
 selected_losses = loss_function_dictionary[tf_option]
 selected_metrics = metrics_dictionary[tf_option]
