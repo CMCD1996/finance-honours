@@ -525,7 +525,7 @@ def process_vm_dataset(data_vm_dta, size_of_chunks, resizing_options, save_stati
         # df['mth'] = pd.to_numeric(df['mth'], downcast='float')
         # Converts month to integrer format
         print(df['mth'].head())
-        for index, row in df['mth'].iterrows():
+        for index, row in df.iterrows():
             year = row['mth'].dt.year
             month = row['mth'].dt.month
             print('Year: ', year, 'Month :', month)
