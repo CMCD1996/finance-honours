@@ -2285,8 +2285,8 @@ test_loss_function = False
 analytical = False
 rank_functions = False
 # Research Proposal Analysis
-create_models = True
-make_predictions = False
+create_models = False
+make_predictions = True
 perform_regressions = False
 #################################################################################
 # Function Testing
