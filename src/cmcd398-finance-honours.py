@@ -626,21 +626,21 @@ def create_fama_factor_models(factor_location, prediction_location, prediction_n
     # permno is the permanent unique firm identifier
     # Reads in all the pandas dataframes
     factors_df = pd.read_csv(factor_location)
-    train_active_df = pd.read_stata(
-        '/home/connormcdowall/finance-honours/data/dataframes/active_train.dta')
-    test_active_df = pd.read_stata(
-        '/home/connormcdowall/finance-honours/data/dataframes/active_test.dta')
-    val_active_df = pd.read_stata(
-        '/home/connormcdowall/finance-honours/data/dataframes/active_validation.dta')
-    predict_active_df = pd.read_stata(
-        '/home/connormcdowall/finance-honours/data/dataframes/active_prediction.dta')
-    total = pd.DataFrame()
-    total = total.append(train_active_df)
-    total = total.append(test_active_df)
-    total = total.append(val_active_df)
-    total = total.append(predict_active_df)
-    regression_df = total
-    # regression_df = pd.read_stata(prediction_location)
+    # train_active_df = pd.read_stata(
+    #     '/home/connormcdowall/finance-honours/data/dataframes/active_train.dta')
+    # test_active_df = pd.read_stata(
+    #     '/home/connormcdowall/finance-honours/data/dataframes/active_test.dta')
+    # val_active_df = pd.read_stata(
+    #     '/home/connormcdowall/finance-honours/data/dataframes/active_validation.dta')
+    # predict_active_df = pd.read_stata(
+    #     '/home/connormcdowall/finance-honours/data/dataframes/active_prediction.dta')
+    # total = pd.DataFrame()
+    # total = total.append(train_active_df)
+    # total = total.append(test_active_df)
+    # total = total.append(val_active_df)
+    # total = total.append(predict_active_df)
+    # regression_df = total
+    regression_df = pd.read_stata(prediction_location)
     hedge_returns = pd.DataFrame(columns=['mth', 'hedge_returns'])
     # Creates portfolio returns via groupings
     monthly_groups = regression_df.groupby("mth")
