@@ -2305,8 +2305,8 @@ analytical = False
 rank_functions = False
 # Research Proposal Analysis
 create_models = False
-make_predictions = True
-perform_regressions = False
+make_predictions = False
+perform_regressions = True
 #################################################################################
 # Function Testing
 #################################################################################
@@ -2364,5 +2364,5 @@ if perform_regressions:
     print('Starting fama factor regressions')
     regression_dictionary = {'capm': True,
                              'ff3': True, 'ff4': True, 'ff5': True}
-    create_fama_factor_models(factor_location, train_data,
-                              test_data, val_data, regression_dictionary, predictions)
+    create_fama_factor_models(factor_location=factor_location, prediction_location=predictions_data,
+                              dependant_column='ret_exc_lead1m', regression_dictionary=regression_dictionary)
