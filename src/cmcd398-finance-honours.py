@@ -1500,8 +1500,11 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
         model_locations.append(model_filepath)
     # Loads the dictionary
     df = pd.read_stata(dataframe_location)
+    df = replace_nan(df, replacement_method=3)
     # Convert dataframe row to dictionary with column headers (section)
     dataframe_dictionary = df.to_dict(orient="records")
+    # Controls indexing for files
+    loss_index = 0
     # Starts fo loop to loop through every model
     for trained_model in model_locations:
         # Loads trained model
@@ -1509,8 +1512,6 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
             filepath=trained_model, custom_objects=custom_objects)
         # Resets df predictions dataframe
         df_predictions = pd.DataFrame(columns=column_names)
-
-        loss_index = 0
         count = 0  # DELETE
         # Makes predictions per row on the dataframe
         for row in dataframe_dictionary:
