@@ -732,12 +732,22 @@ def create_fama_factor_models(factor_location, prediction_location, prediction_n
     return
 
 
-def sort_data_chronilogically():
+def sort_data_chronologically(data_directory, set_top_500=False):
     """ resort data arranges the training sets
         Training: <199001
         Validation: 199101 -200012
         Testing: >200101
     """
+    # Initialise the sorted dataframes
+    train_sorted = pd.DataFrame()
+    val_sorted = pd.DataFrame()
+    test_sorted = pd.DataFrame()
+    dataframes = ['train.dta', 'test.dta', 'val.dta']
+    # Loads the
+    for dataframe in dataframes:
+        df = pd.read_strata(dataframe)
+        # Prints list of unique months
+        print(df['mth'].unique())
 
     return
 #################################################################################
@@ -2358,6 +2368,7 @@ model_name = 'cmcd398-finance-honours'
 data_source = 'data/combined_predictors_filtered_us.dta'
 csv_location = '/Volumes/Seagate/dataframes/'
 data_vm_directory = '/home/connormcdowall/local-data/'
+data_vm_directory
 data_vm_dta = '/home/connormcdowall/local-data/combined_predictors_filtered_us.dta'
 results_tables = '/home/connormcdowall/finance-honours/results/tables'
 list_of_columns = '/home/connormcdowall/finance-honours/data/working-columns.txt'
@@ -2385,12 +2396,13 @@ extract_test_data = False
 test_implementation = False
 example_autodiff = False
 test_loss_function = False
+chronologically_sort_data = True
 # Analytical
 analytical = False
 rank_functions = False
 # Research Proposal Analysis
 create_models = False
-make_predictions = True
+make_predictions = False
 perform_regressions = False
 #################################################################################
 # Function Testing
@@ -2413,6 +2425,8 @@ if need_dataframe:
     data = create_dataframes(csv_location, False)
 if use_sass:
     sass_access(data)
+if chronologically_sort_data:
+    sort_data_chronologically(data_vm_directory, set_top_500=False)
 #################################################################################
 # Tensorflow
 #################################################################################
