@@ -670,8 +670,9 @@ def create_fama_factor_models(factor_location, prediction_location, prediction_n
         # Uses linear models to perform CAPM regressions (Panel Regressions)
         capm_exog_vars = ['Mkt-RF']
         capm_exog = sm.add_constant(data[capm_exog_vars])
-        capm_fb = lm.PooledOLS(data[dependant_column], capm_exog).fit()
-        print(capm_fb.summary())
+        capm_fb = lm.PooledOLS(
+            data[dependant_column], capm_exog).fit(cov_type='robust')
+        print(capm_fb)
         # Uses stats models to perform standard linear regressions
         capm_hp_exog = sm.add_constant(hedge_returns[capm_exog_vars])
         capm_hp = sm.OLS(hedge_returns['hedge_returns'], capm_hp_exog).fit()
@@ -679,8 +680,9 @@ def create_fama_factor_models(factor_location, prediction_location, prediction_n
         # Uses linear models to perform FF3 regression (Panel Regressions)
         ff3_exog_vars = ['Mkt-RF', 'SMB', 'HML']
         ff3_exog = sm.add_constant(data[ff3_exog_vars])
-        ff3_fb = lm.PooledOLS(data[dependant_column], ff3_exog).fit()
-        print(ff3_fb.summary())
+        ff3_fb = lm.PooledOLS(data[dependant_column],
+                              ff3_exog).fit(cov_type='robust')
+        print(ff3_fb)
         # Uses stats models to perform standard linear regressions
         ff3_hp_exog = sm.add_constant(hedge_returns[ff3_exog_vars])
         ff3_hp = sm.OLS(hedge_returns['hedge_returns'], ff3_hp_exog).fit()
@@ -688,8 +690,9 @@ def create_fama_factor_models(factor_location, prediction_location, prediction_n
         # Uses linear models to perform FF4 (Carhart) regression (Panel Regressions)
         ff4_exog_vars = ['Mkt-RF', 'SMB', 'HML', 'RMW']
         ff4_exog = sm.add_constant(data[ff4_exog_vars])
-        ff4_fb = lm.PooledOLS(data[dependant_column], ff4_exog).fit()
-        print(ff4_fb.summary())
+        ff4_fb = lm.PooledOLS(data[dependant_column],
+                              ff4_exog).fit(cov_type='robust')
+        print(ff4_fb)
         # Uses stats models to perform standard linear regressions
         ff4_hp_exog = sm.add_constant(hedge_returns[ff4_exog_vars])
         ff4_hp = sm.OLS(hedge_returns['hedge_returns'], ff4_hp_exog).fit()
@@ -697,8 +700,9 @@ def create_fama_factor_models(factor_location, prediction_location, prediction_n
         # Uses linear model to perform FF5 regression (Panel Regressions)
         ff5_exog_vars = ['Mkt-RF', 'SMB', 'HML', 'RMW', 'CMA']
         ff5_exog = sm.add_constant(data[ff5_exog_vars])
-        ff5_fb = lm.PooledOLS(data[dependant_column], ff5_exog).fit()
-        print(ff5_fb.summary())
+        ff5_fb = lm.PooledOLS(data[dependant_column],
+                              ff5_exog).fit(cov_type='robust')
+        print(ff5_fb)
         # Uses stats models to perform standard linear regressions
         ff5_hp_exog = sm.add_constant(hedge_returns[ff5_exog_vars])
         ff5_hp = sm.OLS(hedge_returns['hedge_returns'], ff5_hp_exog).fit()
