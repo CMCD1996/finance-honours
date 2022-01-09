@@ -1493,22 +1493,24 @@ def create_tensorflow_models(data_vm_directory, list_of_columns, categorical_ass
 def make_tensorflow_predictions(model_name, model_directory, selected_losses, dataframe_location, custom_objects):
     # Initialises new dataframe
     column_names = ['size_grp', "mth", "predict", 'ret_exc_lead1m', 'permno']
-    df_predictions = pd.DataFrame(columns=column_names)
     model_locations = []
     # Sets model directory based on loss
     for loss in selected_losses:
         model_filepath = model_directory + '-' + loss
         model_locations.append(model_filepath)
+    # Loads the dictionary
+    df = pd.read_stata(dataframe_location)
+    # Convert dataframe row to dictionary with column headers (section)
+    dataframe_dictionary = df.to_dict(orient="records")
     # Starts fo loop to loop through every model
     for trained_model in model_locations:
         # Loads trained model
         model = tf.keras.models.load_model(
             filepath=trained_model, custom_objects=custom_objects)
-        # Loads the dictionary
-        df = pd.read_stata(dataframe_location)
-        # Convert dataframe row to dictionary with column headers (section)
-        dataframe_dictionary = df.to_dict(orient="records")
-        count = 0
+        # Resets df predictions dataframe
+        df_predictions = pd.DataFrame(columns=column_names)
+        count = 0  # DELETE
+        # Makes predictions per row on the dataframe
         for row in dataframe_dictionary:
             input_dict = {name: tf.convert_to_tensor(
                 [value]) for name, value in row.items()}
@@ -1519,7 +1521,7 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
             df_predictions = df_predictions.append(
                 new_df_row, ignore_index=True)
             count = count + 1
-            # Use the count to make sure the function is working properly
+            # Use the count to make sure the function is working properly (remove once tested)
             if count == 5:
                 break
         print(df_predictions.info(verbose=True))
