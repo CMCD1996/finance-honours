@@ -662,7 +662,7 @@ def create_fama_factor_models(factor_location, prediction_location, dependant_co
     regression_df = regression_df.merge(factors_df, how='inner', on='mth')
     # Resets the index on both size_grp and mth
     data = regression_df.set_index(['permno', 'mth'])
-    print(hedge_returns['hedge_return'])
+    print(hedge_returns['hedge_returns'])
     print(hedge_returns[['Mkt-RF', 'SMB', 'HML', 'RMW', 'CMA']])
     # Create fama factors for the dataset from K.French
     # Performs series of panel regressions with firm returns and standard regressions with hedge returns
