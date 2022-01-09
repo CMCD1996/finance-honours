@@ -626,7 +626,6 @@ def create_fama_factor_models(factor_location, prediction_location, dependant_co
     # permno is the permanent unique firm identifier
     # Reads in all the pandas dataframes
     factors_df = pd.read_csv(factor_location)
-    print(factors_df.head())
     regression_df = pd.read_stata(prediction_location)
     hedge_returns = pd.DataFrame(columns=['mth', 'hedge_returns'])
     # Creates portfolio returns via groupings
@@ -654,7 +653,9 @@ def create_fama_factor_models(factor_location, prediction_location, dependant_co
     # Prints head of portfolio returns
     print(hedge_returns.head())
     # Renames 'Date'  column to 'mth'
+    print(factors_df.info(verbose=True))
     factors_df.rename(columns={'Date': 'mth'}, inplace=True)
+    print(factors_df.info(verbose=True))
     # Merges hedge returns with factors
     hedge_returns.merge(factors_df, how='left', on='mth')
     # Adds the factors to the regression dataframe via merge
@@ -663,7 +664,6 @@ def create_fama_factor_models(factor_location, prediction_location, dependant_co
     data = regression_df.set_index(['permno', 'mth'])
     # Create fama factors for the dataset from K.French
     # Performs series of panel regressions with firm returns and standard regressions with hedge returns
-    print(data.head())
     print('Checking Factors Info')
     print(factors_df.info(verbose=True))
     print('Checking Regression Info')
