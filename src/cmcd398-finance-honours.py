@@ -665,9 +665,9 @@ def create_fama_factor_models(factor_location, prediction_location, dependant_co
     # Performs series of panel regressions with firm returns and standard regressions with hedge returns
     print(data.head())
     print('Checking Factors Info')
-    print(factors_df['mth'].info(verbose=True))
+    print(factors_df.info(verbose=True))
     print('Checking Regression Info')
-    print(data['mth'].info(verbose=True))
+    print(data.info(verbose=True))
     if regression_dictionary['capm'] == True:
         # Uses linear models to perform CAPM regressions (Panel Regressions)
         capm_exog_vars = ['Mkt-RF']
