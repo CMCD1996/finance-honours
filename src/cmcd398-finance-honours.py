@@ -654,12 +654,16 @@ def create_fama_factor_models(factor_location, prediction_location, dependant_co
     print(hedge_returns.head())
     # Renames 'Date'  column to 'mth'
     factors_df.rename(columns={'Date': 'mth'}, inplace=True)
+    # Convert mth dataframe column to the same dtype (float64)
+    regression_df['mth'] = regression_df['mth'].astype(np.float64)
+    factors_df['mth'] = factors_df['mth'].astype(np.float64)
+    hedge_returns['mth'] = hedge_returns['mth'].astype(np.float64)
     # Merges hedge returns with factors
-    hedge_returns.merge(factors_df, how='left', on='mth')
+    hedge_returns = hedge_returns.merge(factors_df, how='inner', on='mth')
     print("Hedge returns after merge")
     print(hedge_returns.info(verbose=True))
     # Adds the factors to the regression dataframe via merge
-    regression_df.merge(factors_df, how='left', on='mth')
+    regression_df = regression_df.merge(factors_df, how='inner', on='mth')
     print("Regression after merge")
     print(regression_df.info(verbose=True))
     # Resets the index on both size_grp and mth
