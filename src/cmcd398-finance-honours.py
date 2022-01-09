@@ -1509,6 +1509,8 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
             filepath=trained_model, custom_objects=custom_objects)
         # Resets df predictions dataframe
         df_predictions = pd.DataFrame(columns=column_names)
+
+        loss_index = 0
         count = 0  # DELETE
         # Makes predictions per row on the dataframe
         for row in dataframe_dictionary:
@@ -1528,7 +1530,8 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
         print(df_predictions.head())
         # Saves the model predictions to file (model_locations and selected losses alogn for these purposes)
         df_predictions.to_csv('/home/connormcdowall/finance-honours/results/predictions/' +
-                              model_name + '-' + selected_losses[model_locations.index[trained_model]] + '.csv')
+                              model_name + '-' + selected_losses[loss_index] + '.csv')
+        loss_index = loss_index + 1
     return
 
 
