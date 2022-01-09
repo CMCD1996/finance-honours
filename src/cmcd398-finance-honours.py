@@ -621,7 +621,7 @@ def convert_datetime_to_int(dataframe, column_name):
     return dataframe
 
 
-def create_fama_factor_models(factor_location, prediction_location, regression_dictionary):
+def create_fama_factor_models(factor_location, prediction_location, dependant_column, regression_dictionary):
     # Note: uses permo and mth to create multiple index for panel regressions
     # permno is the permanent unique firm identifier
     # Reads in all the pandas dataframes
@@ -633,21 +633,22 @@ def create_fama_factor_models(factor_location, prediction_location, regression_d
     monthly_groups = regression_df.groupby("mth")
     for month, subset_predictions in monthly_groups:
         # Sort the predicted returns in the sub_predictiosn set
-        subset_predictions.sort_values(by=['predictions'], ascending=False)
+        subset_predictions.sort_values(by=[dependant_column], ascending=False)
         # Reset the index of this dorted dataframe for forming the hedge portfolio
         subset_predictions.reset_index(drop=True)
         # Calculates decile 1 (Top 10%)
-        decile_length = len(subset_predictions['predictions'])/10
+        decile_length = len(subset_predictions[dependant_column])/10
         top_decile = range(0, (decile_length - 1))
         bottom_decile = range(9*decile_length, (10*decile_length-1))
         # Calculates Hedge Portfolio Return (Decile 1 - Decile 10)
-        top_decile_mean = df['predictions'].iloc[top_decile].mean(axis=0)
-        bottom_decile_mean = df['predictions'].iloc[bottom_decile].mean(axis=0)
+        top_decile_mean = df[dependant_column].iloc[top_decile].mean(axis=0)
+        bottom_decile_mean = df[dependant_column].iloc[bottom_decile].mean(
+            axis=0)
         hp_mean = top_decile_mean - bottom_decile_mean
         # Forms the hedge portfolio and sets to new row
         new_row = {'mth': month, 'hedge_returns': hp_mean}
         # Stores the hedge portfolio return for the month in another dataframe
-        hedge_returns = hedge_returns.append(new_row)
+        hedge_returns = hedge_returns.append(new_row, ignore_index=True)
     # Prints head of portfolio returns
     print(hedge_returns.head())
     # Merges hedge returns with factors
@@ -660,29 +661,42 @@ def create_fama_factor_models(factor_location, prediction_location, regression_d
     # Performs series of panel regressions with firm returns and standard regressions with hedge returns
     if regression_dictionary['capm'] == True:
         # Uses linear models to perform CAPM regressions (Panel Regressions)
-        capm_exog_vars = ["black", "hisp", "exper",
-                          "expersq", "married", "educ", "union", "year"]
+        capm_exog_vars = ['Mkt-RF']
         capm_exog = sm.add_constant(data[capm_exog_vars])
-        capm = lm.FamaMacBeth()
+        capm_fb = lm.FamaMacBeth(data[dependant_column], capm_exog).fit()
+        # Uses stats models to perform standard linear regressions
+        capm_hp_exog = sm.add_constant(hedge_returns[capm_exog_vars])
+        capm_hp = sm.OLS(hedge_returns[dependant_column], capm_hp_exog)
     if regression_dictionary['ff3'] == True:
         # Uses linear models to perform FF3 regression (Panel Regressions)
-        ff3_exog_vars = ["black", "hisp", "exper",
-                         "expersq", "married", "educ", "union", "year"]
+        ff3_exog_vars = ['Mkt-RF', 'SMB', 'HML']
         ff3_exog = sm.add_constant(data[ff3_exog_vars])
-        ff3 = lm.FamaMacBeth()
+        ff3_fb = lm.FamaMacBeth(data[dependant_column], ff3_exog).fit()
+        # Uses stats models to perform standard linear regressions
+        ff3_hp_exog = sm.add_constant(hedge_returns[ff3_exog_vars])
+        ff3_hp = sm.OLS(hedge_returns[dependant_column], ff3_hp_exog)
     if regression_dictionary['ff4'] == True:
         # Uses linear models to perform FF4 (Carhart) regression (Panel Regressions)
-        ff4_exog_vars = ["black", "hisp", "exper",
-                         "expersq", "married", "educ", "union", "year"]
+        ff4_exog_vars = ['Mkt-RF', 'SMB', 'HML', 'RMW']
         ff4_exog = sm.add_constant(data[ff4_exog_vars])
-        ff4 = lm.FamaMacBeth()
+        ff4_fb = lm.FamaMacBeth(data[dependant_column], ff4_exog).fit()
+        # Uses stats models to perform standard linear regressions
+        ff4_hp_exog = sm.add_constant(hedge_returns[ff4_exog_vars])
+        ff4_hp = sm.OLS(hedge_returns[dependant_column], ff4_hp_exog)
     if regression_dictionary['ff5'] == True:
         # Uses linear model to perform FF5 regression (Panel Regressions)
-        ff5_exog_vars = ["black", "hisp", "exper",
-                         "expersq", "married", "educ", "union", "year"]
+        ff5_exog_vars = ['Mkt-RF', 'SMB', 'HML', 'RMW', 'CMA']
         ff5_exog = sm.add_constant(data[ff5_exog_vars])
-        ff5 = lm.FamaMacBeth()
-
+        ff5_fb = lm.FamaMacBeth(data[dependant_column], ff5_exog)
+        # Uses stats models to perform standard linear regressions
+        ff5_hp_exog = sm.add_constant(hedge_returns[ff5_exog_vars])
+        ff5_hp = sm.OLS(hedge_returns[dependant_column], ff5_hp_exog)
+    # Creates tables for comparison using the stargazor package
+    ff_stargazer = Stargazer([capm_fb, ff3_fb, ff4_fb, ff5_fb])
+    hp_stargazer = Stargazer([capm_hp, ff3_hp, ff4_hp, ff5_hp])
+    # Converts the tables to latex
+    ff_stargazer.render_latex()
+    hp_stargazer.render_latex()
     return
 
 #################################################################################
@@ -1501,6 +1515,7 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
     # Loads the dictionary
     df = pd.read_stata(dataframe_location)
     df = replace_nan(df, replacement_method=3)
+    print('The length of the dataframe is: ', len(df['ret_exc_lead1m']))
     # Convert dataframe row to dictionary with column headers (section)
     dataframe_dictionary = df.to_dict(orient="records")
     # Controls indexing for files
@@ -1513,6 +1528,8 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
             filepath=trained_model, custom_objects=custom_objects)
         # Resets df predictions dataframe
         df_predictions = pd.DataFrame(columns=column_names)
+        # Initialises row count
+        row_count = 0
         # Makes predictions per row on the dataframe
         for row in dataframe_dictionary:
             input_dict = {name: tf.convert_to_tensor(
@@ -1523,6 +1540,9 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
                           "predict": np.asscalar(predictions[0]), 'ret_exc_lead1m': row['ret_exc_lead1m'], 'permno': row['permno']}
             df_predictions = df_predictions.append(
                 new_df_row, ignore_index=True)
+            row_count = row_count + 1
+            print('Completed row {} for {}.'.format(
+                row_count, selected_losses[loss_index]))
             # Use the count to make sure the function is working properly (remove once tested)
         print(df_predictions.info(verbose=True))
         print(df_predictions.head())
