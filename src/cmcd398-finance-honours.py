@@ -1499,7 +1499,7 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
         model_filepath = model_directory + '-' + loss
         model_locations.append(model_filepath)
     # Starts fo loop to loop through every model
-
+    # for trained_model in model_locations:
     # Loads model
     model = tf.keras.models.load_model(
         filepath=model_locations[0], custom_objects=custom_objects)
@@ -1507,8 +1507,8 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
     df = pd.read_stata(dataframe_location)
     # Convert dataframe row to dictionary with column headers (section)
     dataframe_dictionary = df.to_dict(orient="records")
+    count = 1
     for row in dataframe_dictionary:
-        print(row)
         input_dict = {name: tf.convert_to_tensor(
             [value]) for name, value in row.items()}
         predictions = model.predict(input_dict)
@@ -1520,9 +1520,12 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
         new_df_row = {'size_grp': row['size_grp'], "mth": row['mth'],
                       "predict": np.asscaler(predictions[0]), 'ret_exc_lead1m': row['ret_exc_lead1m'], 'permno': row['permno']}
         df_predictions = df_predictions.append(new_df_row, ignore_index=True)
-        print(df_predictions.info(verbose=True))
-        print(df_predictions.head())
-        return
+        count = count + 1
+        # Use the count to make sure the function is working properly
+        if count == 5:
+            break
+    print(df_predictions.info(verbose=True))
+    print(df_predictions.head())
     # Saves the model predictions to file
     df_predictions.to_stata('/home/connormcdowall/finance-honours/results/predictions/' +
                             model_name + '-' + selected_losses[0] + '.dta')
