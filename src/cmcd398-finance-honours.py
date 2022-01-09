@@ -2334,6 +2334,8 @@ if make_predictions:
     df = pd.read_stata(predictions_data)
     print('Predictions DataFrame')
     print(df.head())
+    print('Model Locations')
+    print(model_locations)
     print('Making Predictions using saved models')
     # make_tensorflow_predictions(
     # model_name=testing_model, dataframe_location=train_data, custom_objects=custom_tf_objects, feature_names=features)
