@@ -2277,7 +2277,7 @@ analytical = False
 rank_functions = False
 # Research Proposal Analysis
 create_models = False
-make_predictions = False
+make_predictions = True
 perform_regressions = False
 #################################################################################
 # Function Testing
@@ -2330,14 +2330,10 @@ if create_models:
                              batch_size, model_name, selected_optimizer, selected_losses, selected_metrics, split_data=False, trial=True, sample=True)
 if make_predictions:
     # Loads test data
-    train_data = '/home/connormcdowall/finance-honours/data/dataframes/active_train.dta'
-    test_data = '/home/connormcdowall/finance-honours/data/dataframes/active_test.dta'
-    val_data = '/home/connormcdowall/finance-honours/data/dataframes/active_validation.dta'
-    predictions_data = '/home/connormcdowall/finance-honours/data/dataframes/active_prediction.dta'
-    model_directory = '/home/connormcdowall/finance-honours/results/models/tensorflow/cmcd398-finance-honours-mean_squared_error'
     features = []
     df = pd.read_stata(predictions_data)
-    print(len(df['permno'].unique()))
+    print('Predictions DataFrame')
+    print(df.head())
     print('Making Predictions using saved models')
     # make_tensorflow_predictions(
     # model_name=testing_model, dataframe_location=train_data, custom_objects=custom_tf_objects, feature_names=features)
