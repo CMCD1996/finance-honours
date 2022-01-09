@@ -1507,7 +1507,7 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
     df = pd.read_stata(dataframe_location)
     # Convert dataframe row to dictionary with column headers (section)
     dataframe_dictionary = df.to_dict(orient="records")
-    count = 1
+    count = 0
     for row in dataframe_dictionary:
         input_dict = {name: tf.convert_to_tensor(
             [value]) for name, value in row.items()}
@@ -1527,8 +1527,8 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
     print(df_predictions.info(verbose=True))
     print(df_predictions.head())
     # Saves the model predictions to file
-    df_predictions.to_stata('/home/connormcdowall/finance-honours/results/predictions/' +
-                            model_name + '-' + selected_losses[0] + '.dta')
+    df_predictions.to_csv('/home/connormcdowall/finance-honours/results/predictions/' +
+                          model_name + '-' + selected_losses[0] + '.csv')
     return
 
 
