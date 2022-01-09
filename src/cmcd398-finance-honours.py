@@ -1581,6 +1581,7 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
                       hp_mse_df_predictions]
     # Initialises row count
     row_count = 0
+    count = 0
     # Makes predictions per row on the dataframe
     for row in dataframe_dictionary:
         # Suspect the this convert to tensor function is time intensive
@@ -1602,6 +1603,7 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
                        information_predictions[0],
                        hp_predictions[0],
                        hp_mse_predictions[0]]
+        count = count + 1
         for i in range(len(predictions)):
             # Adds prediction value to prediction df
             new_df_row = {'size_grp': row['size_grp'], "mth": int(row['mth']),
@@ -1611,6 +1613,8 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
         row_count = row_count + 1
         print('Completed row {} for all Loss functions.'.format(row_count))
         # Use the count to make sure the function is working properly (remove once tested)
+        if count == 5:
+            break
     for j in range(len(df_predictions)):
         print(df_predictions[j].info(verbose=True))
         print(df_predictions[j].head())
