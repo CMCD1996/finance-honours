@@ -503,7 +503,12 @@ def process_vm_dataset(data_vm_dta, size_of_chunks, resizing_options, save_stati
     # df = pd.read_stata(data_vm_dta)
     subset = pd.read_stata(data_vm_dta, chunksize=size_of_chunks)
     df_full = pd.DataFrame()
+    predict_df = pd.DataFrame()
+    # Uses loop count to create a prediction set
+    loop_count = 0
     for df in subset:
+        # Adds one to loop count
+        loop_count = loop_count + 1
         print('Number of instances: ', len(df))
         print('Excess Return')
         print(df['ret_exc'])
@@ -541,15 +546,25 @@ def process_vm_dataset(data_vm_dta, size_of_chunks, resizing_options, save_stati
             df.at[index, 'mth'] = new_mth
         # Sets mth column to int type
         df['mth'] = df['mth'].astype(int)
-        df_full = df_full.append(df)
+        # Sets the second subset to a prediction set (only valide when using a sample)
+        if loop_count == 1:
+            df_full = df_full.append(df)
+        else:
+            predict_df = predict_df.append(df)
         # Prints memory usage after the process
         monitor_memory_usage(units=3, cpu=True, gpu=True)
-        if sample:
-            # Process nan options in the dataframe
+        if sample and loop_count == 2:
+            # Process nan options in the dataframes
             df_full = replace_nan(df_full, replacement_method=3)
-            # Resizes the dataframe base on memory options
+            predict_df = replace_nan(predict_df, replacement_method=3)
+            # Resizes the dataframes based on memory options
             df_full = resizing_dataframe(
                 dataframe=df_full, resizing_options=resizing_options)
+            predict_df = resizing_dataframe(
+                dataframe=predict_df, resizing_options=resizing_options)
+            # Saves the prediction dataframe to file
+            predict_df.to_stata(
+                '/home/connormcdowall/finance-honours/data/dataframes/active_prediction.dta')
             # Print size and shape of dataframe
             print('The dataframe has {} entries with {} rows and {} columns.'.format(
                 df_full.size, df_full.shape[0], df_full.shape[1]))
@@ -607,6 +622,8 @@ def convert_datetime_to_int(dataframe, column_name):
 
 
 def create_fama_factor_models(factor_location, prediction_location, regression_dictionary):
+    # Note: uses permo and mth to create multiple index for panel regressions
+    # permno is the permanent unique firm identifier
     # Reads in all the pandas dataframes
     factors_df = pd.read_csv(factor_location)
     print(factors_df.head())
@@ -614,44 +631,53 @@ def create_fama_factor_models(factor_location, prediction_location, regression_d
     hedge_returns = pd.DataFrame(columns=['mth', 'hedge_returns'])
     # Creates portfolio returns via groupings
     monthly_groups = regression_df.groupby("mth")
-    for month, sub_predictions in monthly_groups:
+    for month, subset_predictions in monthly_groups:
         # Sort the predicted returns in the sub_predictiosn set
-
-        # Find the top decile and bottom decile
-
+        subset_predictions.sort_values(by=['predictions'], ascending=False)
+        # Reset the index of this dorted dataframe for forming the hedge portfolio
+        subset_predictions.reset_index(drop=True)
+        # Calculates decile 1 (Top 10%)
+        decile_length = len(subset_predictions['predictions'])/10
+        top_decile = range(0, (decile_length - 1))
+        bottom_decile = range(9*decile_length, (10*decile_length-1))
+        # Calculates Hedge Portfolio Return (Decile 1 - Decile 10)
+        top_decile_mean = df['predictions'].iloc[top_decile].mean(axis=0)
+        bottom_decile_mean = df['predictions'].iloc[bottom_decile].mean(axis=0)
+        hp_mean = top_decile_mean - bottom_decile_mean
         # Forms the hedge portfolio and sets to new row
-        new_row = {'mth': 1, 'hedge_returns': 1}
+        new_row = {'mth': month, 'hedge_returns': hp_mean}
         # Stores the hedge portfolio return for the month in another dataframe
-
+        hedge_returns = hedge_returns.append(new_row)
+    # Prints head of portfolio returns
+    print(hedge_returns.head())
+    # Merges hedge returns with factors
+    hedge_returns.merge(factors_df, how='left', on='mth')
     # Adds the factors to the regression dataframe via merge
     regression_df.merge(factors_df, how='left', on='mth')
     # Resets the index on both size_grp and mth
-    # etdata = data.set_index(['size_grp','mth'])
+    data = regression_df.set_index(['permno', 'mth'])
     # Create fama factors for the dataset from K.French
-
-    # Merges all the datasets
-    data = pd.DataFrame()
-    # Creates panel dataframe
+    # Performs series of panel regressions with firm returns and standard regressions with hedge returns
     if regression_dictionary['capm'] == True:
-        # Uses linear models to perform CAPM regressions
+        # Uses linear models to perform CAPM regressions (Panel Regressions)
         capm_exog_vars = ["black", "hisp", "exper",
                           "expersq", "married", "educ", "union", "year"]
         capm_exog = sm.add_constant(data[capm_exog_vars])
         capm = lm.FamaMacBeth()
     if regression_dictionary['ff3'] == True:
-        # Uses linear models to perform FF3 regression
+        # Uses linear models to perform FF3 regression (Panel Regressions)
         ff3_exog_vars = ["black", "hisp", "exper",
                          "expersq", "married", "educ", "union", "year"]
         ff3_exog = sm.add_constant(data[ff3_exog_vars])
         ff3 = lm.FamaMacBeth()
     if regression_dictionary['ff4'] == True:
-        # Uses linear models to perform FF4 (Carhart) regression
+        # Uses linear models to perform FF4 (Carhart) regression (Panel Regressions)
         ff4_exog_vars = ["black", "hisp", "exper",
                          "expersq", "married", "educ", "union", "year"]
         ff4_exog = sm.add_constant(data[ff4_exog_vars])
         ff4 = lm.FamaMacBeth()
     if regression_dictionary['ff5'] == True:
-        # Uses linear model to perform FF5 regression
+        # Uses linear model to perform FF5 regression (Panel Regressions)
         ff5_exog_vars = ["black", "hisp", "exper",
                          "expersq", "married", "educ", "union", "year"]
         ff5_exog = sm.add_constant(data[ff5_exog_vars])
@@ -1466,7 +1492,7 @@ def create_tensorflow_models(data_vm_directory, list_of_columns, categorical_ass
 
 def make_tensorflow_predictions(model_name, dataframe_location, custom_objects, model_loss_function):
     # Initialises new dataframe
-    column_names = ['size_grp', "mth", "predict", 'ret_exc_lead1m']
+    column_names = ['size_grp', "mth", "predict", 'ret_exc_lead1m', 'permno']
     df_predictions = pd.DataFrame(columns=column_names)
     # Loads model
     model = tf.keras.models.load_model(
@@ -1483,7 +1509,7 @@ def make_tensorflow_predictions(model_name, dataframe_location, custom_objects, 
         print(predictions[0])
         # Adds prediction value to prediction df
         new_df_row = {'size_grp': row['size_grp'], "mth": row['mth'],
-                      "predict": predictions[0], 'ret_exc_lead1m': row['ret_exc_lead1m']}
+                      "predict": predictions[0], 'ret_exc_lead1m': row['ret_exc_lead1m'], 'permno': row['permno']}
         df_predictions = df_predictions.append(new_df_row)
     print(df_predictions.info(verbose=False))
     print(df_predictions.head())
@@ -2195,7 +2221,7 @@ metrics_dictionary = {1: ['mean_squared_error', 'cosine_similarity', 'mean_absol
 # Selected Tensorflow Configuration
 #################################################################################
 tf_option_array = [1, 2]  # 1 = Analysis, 2 = Testing
-tf_option = 2  # Change to 1,2,3,4,5,6,7 for configuration
+tf_option = 1  # Change to 1,2,3,4,5,6,7 for configuration
 selected_optimizer = optimisation_dictionary[tf_option]
 selected_losses = loss_function_dictionary[tf_option]
 selected_metrics = metrics_dictionary[tf_option]
@@ -2230,8 +2256,8 @@ test_loss_function = False
 analytical = False
 rank_functions = False
 # Research Proposal Analysis
-create_models = False
-make_predictions = True
+create_models = True
+make_predictions = False
 perform_regressions = False
 #################################################################################
 # Function Calls - Testing
