@@ -650,8 +650,6 @@ def create_fama_factor_models(factor_location, prediction_location, dependant_co
         new_row = {'mth': int(month), 'hedge_returns': hp_mean}
         # Stores the hedge portfolio return for the month in another dataframe
         hedge_returns = hedge_returns.append(new_row, ignore_index=True)
-    # Prints head of portfolio returns
-    print(hedge_returns.head())
     # Renames 'Date'  column to 'mth'
     factors_df.rename(columns={'Date': 'mth'}, inplace=True)
     # Convert mth dataframe column to the same dtype (float64)
@@ -660,20 +658,14 @@ def create_fama_factor_models(factor_location, prediction_location, dependant_co
     hedge_returns['mth'] = hedge_returns['mth'].astype(np.float64)
     # Merges hedge returns with factors
     hedge_returns = hedge_returns.merge(factors_df, how='inner', on='mth')
-    print("Hedge returns after merge")
-    print(hedge_returns.info(verbose=True))
     # Adds the factors to the regression dataframe via merge
     regression_df = regression_df.merge(factors_df, how='inner', on='mth')
-    print("Regression after merge")
-    print(regression_df.info(verbose=True))
     # Resets the index on both size_grp and mth
     data = regression_df.set_index(['permno', 'mth'])
+    print(hedge_returns['hedge_return'])
+    print(hedge_returns[['Mkt-RF', 'SMB', 'HML', 'RMW', 'CMA']])
     # Create fama factors for the dataset from K.French
     # Performs series of panel regressions with firm returns and standard regressions with hedge returns
-    print('Checking Factors Info')
-    print(factors_df.info(verbose=True))
-    print('Checking Regression Info')
-    print(data.info(verbose=True))
     if regression_dictionary['capm'] == True:
         # Uses linear models to perform CAPM regressions (Panel Regressions)
         capm_exog_vars = ['Mkt-RF']
@@ -682,7 +674,6 @@ def create_fama_factor_models(factor_location, prediction_location, dependant_co
         # Uses stats models to perform standard linear regressions
         capm_hp_exog = sm.add_constant(hedge_returns[capm_exog_vars])
         capm_hp = sm.OLS(hedge_returns['hedge_returns'], capm_hp_exog)
-        print(capm_hp)
     if regression_dictionary['ff3'] == True:
         # Uses linear models to perform FF3 regression (Panel Regressions)
         ff3_exog_vars = ['Mkt-RF', 'SMB', 'HML']
@@ -691,7 +682,6 @@ def create_fama_factor_models(factor_location, prediction_location, dependant_co
         # Uses stats models to perform standard linear regressions
         ff3_hp_exog = sm.add_constant(hedge_returns[ff3_exog_vars])
         ff3_hp = sm.OLS(hedge_returns['hedge_returns'], ff3_hp_exog).fit()
-        print(ff3_hp)
     if regression_dictionary['ff4'] == True:
         # Uses linear models to perform FF4 (Carhart) regression (Panel Regressions)
         ff4_exog_vars = ['Mkt-RF', 'SMB', 'HML', 'RMW']
@@ -700,7 +690,6 @@ def create_fama_factor_models(factor_location, prediction_location, dependant_co
         # Uses stats models to perform standard linear regressions
         ff4_hp_exog = sm.add_constant(hedge_returns[ff4_exog_vars])
         ff4_hp = sm.OLS(hedge_returns['hedge_returns'], ff4_hp_exog).fit()
-        print(ff4_hp)
     if regression_dictionary['ff5'] == True:
         # Uses linear model to perform FF5 regression (Panel Regressions)
         ff5_exog_vars = ['Mkt-RF', 'SMB', 'HML', 'RMW', 'CMA']
@@ -709,7 +698,6 @@ def create_fama_factor_models(factor_location, prediction_location, dependant_co
         # Uses stats models to perform standard linear regressions
         ff5_hp_exog = sm.add_constant(hedge_returns[ff5_exog_vars])
         ff5_hp = sm.OLS(hedge_returns['hedge_returns'], ff5_hp_exog).fit()
-        print(ff5_hp)
     # Creates tables for comparison using the stargazor package
     # ff_stargazer = Stargazer([capm_fb, ff3_fb, ff4_fb, ff5_fb])
     hp_stargazer = Stargazer([capm_hp, ff3_hp, ff4_hp, ff5_hp])
