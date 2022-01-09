@@ -626,7 +626,21 @@ def create_fama_factor_models(factor_location, prediction_location, prediction_n
     # permno is the permanent unique firm identifier
     # Reads in all the pandas dataframes
     factors_df = pd.read_csv(factor_location)
-    regression_df = pd.read_stata(prediction_location)
+    train_active_df = pd.read_stata(
+        '/home/connormcdowall/finance-honours/data/dataframes/active_train.dta')
+    test_active_df = pd.read_stata(
+        '/home/connormcdowall/finance-honours/data/dataframes/active_test.dta')
+    val_active_df = pd.read_stata(
+        '/home/connormcdowall/finance-honours/data/dataframes/active_validation.dta')
+    predict_active_df = pd.read_stata(
+        '/home/connormcdowall/finance-honours/data/dataframes/active_prediction.dta')
+    total = pd.DataFrame()
+    total = total.append(train_active_df)
+    total = total.append(test_active_df)
+    total = total.append(val_active_df)
+    total = total.append(predict_active_df)
+    regression_df = total
+    # regression_df = pd.read_stata(prediction_location)
     hedge_returns = pd.DataFrame(columns=['mth', 'hedge_returns'])
     # Creates portfolio returns via groupings
     monthly_groups = regression_df.groupby("mth")
@@ -669,8 +683,8 @@ def create_fama_factor_models(factor_location, prediction_location, prediction_n
     if regression_dictionary['capm'] == True:
         # Uses linear models to perform CAPM regressions (Panel Regressions)
         capm_exog_vars = ['Mkt-RF']
-        # capm_exog = sm.add_constant(data[capm_exog_vars])
-        # capm_fb = lm.FamaMacBeth(data[dependant_column], capm_exog).fit()
+        capm_exog = sm.add_constant(data[capm_exog_vars])
+        capm_fb = lm.FamaMacBeth(data[dependant_column], capm_exog).fit()
         # Uses stats models to perform standard linear regressions
         capm_hp_exog = sm.add_constant(hedge_returns[capm_exog_vars])
         capm_hp = sm.OLS(hedge_returns['hedge_returns'], capm_hp_exog).fit()
@@ -2279,6 +2293,8 @@ selected_metrics = metrics_dictionary[tf_option]
 # Custom objects dictionary for importing models (Both metrics and losses)
 custom_tf_objects = {'custom_mse_metric': custom_mse_metric, 'custom_hp_metric': custom_hp_metric,
                      'custom_sharpe_metric': custom_sharpe_metric, 'custom_information_metric': custom_information_metric, 'custom_mse': custom_mse, 'custom_sharpe': custom_sharpe, 'custom_sharpe_mse': custom_sharpe_mse, 'custom_information': custom_information, 'custom_hp': custom_hp, 'custom_hp_mse': custom_hp_mse}
+# Truth dictionary to inform the type of regressions perform
+regression_dictionary = {'capm': True, 'ff3': True, 'ff4': True, 'ff5': True}
 #################################################################################
 # Strings
 #################################################################################
@@ -2375,7 +2391,5 @@ if make_predictions:
                                 dataframe_location=predictions_data, custom_objects=custom_tf_objects)
 if perform_regressions:
     print('Starting fama factor regressions')
-    regression_dictionary = {'capm': True,
-                             'ff3': True, 'ff4': True, 'ff5': True}
     create_fama_factor_models(factor_location=factor_location, prediction_location=predictions_data, prediction_name='excess-returns',
                               dependant_column='ret_exc_lead1m', regression_dictionary=regression_dictionary)
