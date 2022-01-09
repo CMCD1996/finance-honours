@@ -746,6 +746,7 @@ def sort_data_chronologically(data_directory, set_top_500=False):
     # Loads the
     for dataframe in dataframes:
         df = pd.read_stata(data_directory + dataframe)
+        df = resizing_dataframe(df, resizing_options=[False, False, True])
         # Prints list of unique months
         print(sorted(df['mth'].unique()))
 
