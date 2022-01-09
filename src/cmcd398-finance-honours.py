@@ -707,7 +707,7 @@ def create_fama_factor_models(factor_location, prediction_location, dependant_co
     hp_stargazer = Stargazer([capm_hp, ff3_hp, ff4_hp, ff5_hp])
     # Converts the tables to latex
     # ff_stargazer.render_latex()
-    hp_stargazer.render_latex()
+    print(hp_stargazer.render_latex())
     return
 
 #################################################################################
