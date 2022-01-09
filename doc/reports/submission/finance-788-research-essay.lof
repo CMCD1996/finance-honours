@@ -1,3 +1,17 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \defcounter {refsection}{0}\relax 
 \contentsline {figure}{\numberline {1}{\ignorespaces Approximate Linear Monotonic Ranking Function\relax }}{17}{figure.caption.40}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {2}{\ignorespaces Mean Square Error Model (Tensorflow) Loss Function Performance\relax }}{23}{figure.caption.66}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3}{\ignorespaces Mean Square Error Loss Function Model Performance\relax }}{23}{figure.caption.67}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4}{\ignorespaces Sharpe Ratio Loss Function Model Performance\relax }}{24}{figure.caption.68}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5}{\ignorespaces Sharpe Ratio (MSE) Loss Function Model Performance\relax }}{24}{figure.caption.69}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {6}{\ignorespaces Information Ratio Loss Function Model Performance\relax }}{25}{figure.caption.70}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {7}{\ignorespaces Hedge Portfolio Loss Function Model Performance\relax }}{25}{figure.caption.71}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {8}{\ignorespaces Hedge Portfolio (MSE) Loss Function Model Performance\relax }}{26}{figure.caption.72}%

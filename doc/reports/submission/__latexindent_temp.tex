@@ -16,6 +16,8 @@
 % \usepackage{caption}
 % \usepackage{subcaption}
 \usepackage{graphicx} % For better graphics
+% Sets graphics paths
+\graphicspath{ {/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots}{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance} }
 \usepackage{grffile}
 \usepackage{pdfpages} % To insert pdfs into the library
 \usepackage{tikz}
@@ -488,6 +490,51 @@ Both Sharpe and Information ratios supplement hedge portfolio-related loss funct
 \subsubsection{Q-Learning}
 \newpage
 \section{Results}
+\subsection{Model Performance}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{mean-square-error-tensorflow.png}
+    \caption{Mean Square Error Model (Tensorflow) Loss Function Performance}
+    \label{fig:mse-tf-performance}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{mean-square-error.png}
+    \caption{Mean Square Error Loss Function Model Performance}
+    \label{fig:mse-performance}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{sharpe.png}
+    \caption{Sharpe Ratio Loss Function Model Performance}
+    \label{fig:sr-performance}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{sharpe-mse.png}
+    \caption{Sharpe Ratio (MSE) Loss Function Model Performance}
+    \label{fig:sr-mse-performance}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{information.png}
+    \caption{Information Ratio Loss Function Model Performance}
+    \label{fig:ir-performance}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{hedge-portfolio.png}
+    \caption{Hedge Portfolio Loss Function Model Performance}
+    \label{fig:hp-performance}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{hedge-portfolio-mse.png}
+    \caption{Hedge Portfolio (MSE) Loss Function Model Performance}
+    \label{fig:hp-mse-performance}
+\end{figure}
+\subsection{Regression Analysis}
+\subsection{Hedge Portfolio Performance}
 \section{Discussion}
 \section{Contributions}
 \section{Conclusion}

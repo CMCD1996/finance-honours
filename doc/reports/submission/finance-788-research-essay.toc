@@ -90,32 +90,38 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {11}Results}{23}{section.11}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {12}Discussion}{23}{section.12}%
+\contentsline {subsection}{\numberline {11.1}Model Performance}{23}{subsection.11.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {13}Contributions}{23}{section.13}%
+\contentsline {subsection}{\numberline {11.2}Regression Analysis}{26}{subsection.11.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {14}Conclusion}{23}{section.14}%
+\contentsline {subsection}{\numberline {11.3}Hedge Portfolio Performance}{26}{subsection.11.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {15}Appendix}{24}{section.15}%
+\contentsline {section}{\numberline {12}Discussion}{26}{section.12}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {15.1}Tables and Charts}{24}{subsection.15.1}%
+\contentsline {section}{\numberline {13}Contributions}{26}{section.13}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {15.2}Technical Details}{55}{subsection.15.2}%
+\contentsline {section}{\numberline {14}Conclusion}{26}{section.14}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {15.2.1}Organisation}{55}{subsubsection.15.2.1}%
+\contentsline {section}{\numberline {15}Appendix}{27}{section.15}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {15.2.2}Version Control}{55}{subsubsection.15.2.2}%
+\contentsline {subsection}{\numberline {15.1}Tables and Charts}{27}{subsection.15.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {15.2.3}Directories}{56}{subsubsection.15.2.3}%
+\contentsline {subsection}{\numberline {15.2}Technical Details}{58}{subsection.15.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {15.2.4}Python}{56}{subsubsection.15.2.4}%
+\contentsline {subsubsection}{\numberline {15.2.1}Organisation}{58}{subsubsection.15.2.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {15.2.5}Package Management}{56}{subsubsection.15.2.5}%
+\contentsline {subsubsection}{\numberline {15.2.2}Version Control}{58}{subsubsection.15.2.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {15.2.6}Code Style}{57}{subsubsection.15.2.6}%
+\contentsline {subsubsection}{\numberline {15.2.3}Directories}{59}{subsubsection.15.2.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {15.2.7}Infrastructure}{57}{subsubsection.15.2.7}%
+\contentsline {subsubsection}{\numberline {15.2.4}Python}{59}{subsubsection.15.2.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {15.2.8}Documentation}{57}{subsubsection.15.2.8}%
+\contentsline {subsubsection}{\numberline {15.2.5}Package Management}{59}{subsubsection.15.2.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {15.3}Code}{58}{subsection.15.3}%
+\contentsline {subsubsection}{\numberline {15.2.6}Code Style}{60}{subsubsection.15.2.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {15.2.7}Infrastructure}{60}{subsubsection.15.2.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {15.2.8}Documentation}{60}{subsubsection.15.2.8}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {15.3}Code}{61}{subsection.15.3}%
