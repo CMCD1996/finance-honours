@@ -747,7 +747,7 @@ def sort_data_chronologically(data_directory, set_top_500=False):
     for dataframe in dataframes:
         df = pd.read_stata(data_directory + dataframe)
         # Prints list of unique months
-        print(df['mth'].unique())
+        print(sorted(df['mth'].unique()))
 
     return
 #################################################################################
