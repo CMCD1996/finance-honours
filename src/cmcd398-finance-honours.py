@@ -1546,40 +1546,78 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
     print('The length of the dataframe is: ', len(df['ret_exc_lead1m']))
     # Convert dataframe row to dictionary with column headers (section)
     dataframe_dictionary = df.to_dict(orient="records")
-    # Controls indexing for files
-    loss_index = 0
     # Starts fo loop to loop through every model
-    for trained_model in model_locations:
-        print('Starting: ', selected_losses[loss_index])
-        # Loads trained model
-        model = tf.keras.models.load_model(
-            filepath=trained_model, custom_objects=custom_objects)
-        # Resets df predictions dataframe
-        df_predictions = pd.DataFrame(columns=column_names)
-        # Initialises row count
-        row_count = 0
-        # Makes predictions per row on the dataframe
-        for row in dataframe_dictionary:
-            input_dict = {name: tf.convert_to_tensor(
-                [value]) for name, value in row.items()}
-            predictions = model.predict(input_dict)
+    print('Starting: Loss Function Predictions')
+    # Loads all models
+    mse_model = tf.keras.models.load_model(
+        filepath=model_locations[0], custom_objects=custom_objects)
+    mse_tf_model = tf.keras.models.load_model(
+        filepath=model_locations[1], custom_objects=custom_objects)
+    sharpe_model = tf.keras.models.load_model(
+        filepath=model_locations[2], custom_objects=custom_objects)
+    sharpe_mse_model = tf.keras.models.load_model(
+        filepath=model_locations[3], custom_objects=custom_objects)
+    information_model = tf.keras.models.load_model(
+        filepath=model_locations[4], custom_objects=custom_objects)
+    hp_model = tf.keras.models.load_model(
+        filepath=model_locations[5], custom_objects=custom_objects)
+    hp_mse_model = tf.keras.models.load_model(
+        filepath=model_locations[6], custom_objects=custom_objects)
+    # Resets df predictions dataframe
+    mse_df_predictions = pd.DataFrame(columns=column_names)
+    mse_tf_df_predictions = pd.DataFrame(columns=column_names)
+    sharpe_df_predictions = pd.DataFrame(columns=column_names)
+    sharpe_mse_df_predictions = pd.DataFrame(columns=column_names)
+    information_df_predictions = pd.DataFrame(columns=column_names)
+    hp_df_predictions = pd.DataFrame(columns=column_names)
+    hp_mse_df_predictions = pd.DataFrame(columns=column_names)
+    # Stores dataframes in an array
+    df_predictions = [mse_df_predictions,
+                      mse_tf_df_predictions,
+                      sharpe_df_predictions,
+                      sharpe_mse_df_predictions,
+                      information_df_predictions,
+                      hp_df_predictions,
+                      hp_mse_df_predictions]
+    # Initialises row count
+    row_count = 0
+    # Makes predictions per row on the dataframe
+    for row in dataframe_dictionary:
+        # Suspect the this convert to tensor function is time intensive
+        input_dict = {name: tf.convert_to_tensor(
+            [value]) for name, value in row.items()}
+        # Makes the model predictions
+        mse_predictions = mse_model.predict(input_dict)
+        mse_tf_predictions = mse_tf_model.predict(input_dict)
+        sharpe_predictions = sharpe_model.predict(input_dict)
+        sharpe_mse_predictions = sharpe_mse_model.predict(input_dict)
+        information_predictions = information_model.predict(input_dict)
+        hp_predictions = hp_model.predict(input_dict)
+        hp_mse_predictions = hp_mse_model.predict(input_dict)
+        # Stores predictions in an array
+        predictions = [mse_predictions[0],
+                       mse_tf_predictions[0],
+                       sharpe_predictions[0],
+                       sharpe_mse_predictions[0],
+                       information_predictions[0],
+                       hp_predictions[0],
+                       hp_mse_predictions[0]]
+        for i in range(len(predictions)):
             # Adds prediction value to prediction df
             new_df_row = {'size_grp': row['size_grp'], "mth": int(row['mth']),
-                          "predict": np.asscalar(predictions[0]), 'ret_exc_lead1m': row['ret_exc_lead1m'], 'permno': row['permno']}
-            df_predictions = df_predictions.append(
+                          "predict": np.asscalar(predictions[i]), 'ret_exc_lead1m': row['ret_exc_lead1m'], 'permno': row['permno']}
+            df_predictions[i] = df_predictions.append(
                 new_df_row, ignore_index=True)
-            row_count = row_count + 1
-            print('Completed row {} for {}.'.format(
-                row_count, selected_losses[loss_index]))
-            # Use the count to make sure the function is working properly (remove once tested)
-        print(df_predictions.info(verbose=True))
-        print(df_predictions.head())
-        # Saves the model predictions to file (model_locations and selected losses alogn for these purposes)
-        df_predictions.to_csv('/home/connormcdowall/finance-honours/results/predictions/' +
-                              model_name + '-' + selected_losses[loss_index] + '.csv')
-        print('Completed: ', selected_losses[loss_index])
-        # Appends to loss index to inform change trained model
-        loss_index = loss_index + 1
+        row_count = row_count + 1
+        print('Completed row {} for all Loss functions.'.format(row_count))
+        # Use the count to make sure the function is working properly (remove once tested)
+    for j in range(len(df_predictions)):
+        print(df_predictions[j].info(verbose=True))
+        print(df_predictions[j].head())
+    # Saves the model predictions to file (model_locations and selected losses alogn for these purposes)
+        df_predictions[j].to_csv('/home/connormcdowall/finance-honours/results/predictions/' +
+                                 model_name + '-' + selected_losses[j] + '.csv')
+    print('Completed: Loss Function Predictions')
     return
 
 
