@@ -1512,7 +1512,6 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
             filepath=trained_model, custom_objects=custom_objects)
         # Resets df predictions dataframe
         df_predictions = pd.DataFrame(columns=column_names)
-        count = 0  # DELETE
         # Makes predictions per row on the dataframe
         for row in dataframe_dictionary:
             input_dict = {name: tf.convert_to_tensor(
@@ -1523,10 +1522,7 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
                           "predict": np.asscalar(predictions[0]), 'ret_exc_lead1m': row['ret_exc_lead1m'], 'permno': row['permno']}
             df_predictions = df_predictions.append(
                 new_df_row, ignore_index=True)
-            count = count + 1
             # Use the count to make sure the function is working properly (remove once tested)
-            if count == 5:
-                break
         print(df_predictions.info(verbose=True))
         print(df_predictions.head())
         # Saves the model predictions to file (model_locations and selected losses alogn for these purposes)
