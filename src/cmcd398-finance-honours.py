@@ -2296,7 +2296,7 @@ if make_predictions:
     testing_model = '/home/connormcdowall/finance-honours/results/models/tensorflow/cmcd398-finance-honours-mean_squared_error'
     features = []
     df = pd.read_stata(train_data)
-    print(df['permno'].unique())
+    print(len(df['permno'].unique()))
     print('Making Predictions using saved models')
     # make_tensorflow_predictions(
     # model_name=testing_model, dataframe_location=train_data, custom_objects=custom_tf_objects, feature_names=features)
