@@ -684,7 +684,7 @@ def create_fama_factor_models(factor_location, prediction_location, prediction_n
         # Uses linear models to perform CAPM regressions (Panel Regressions)
         capm_exog_vars = ['Mkt-RF']
         capm_exog = sm.add_constant(data[capm_exog_vars])
-        capm_fb = lm.FamaMacBeth(data[dependant_column], capm_exog).fit()
+        capm_fb = lm.LinearFactorModel(data[dependant_column], capm_exog).fit()
         # Uses stats models to perform standard linear regressions
         capm_hp_exog = sm.add_constant(hedge_returns[capm_exog_vars])
         capm_hp = sm.OLS(hedge_returns['hedge_returns'], capm_hp_exog).fit()
