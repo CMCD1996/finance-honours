@@ -1606,7 +1606,7 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
             # Adds prediction value to prediction df
             new_df_row = {'size_grp': row['size_grp'], "mth": int(row['mth']),
                           "predict": np.asscalar(predictions[i]), 'ret_exc_lead1m': row['ret_exc_lead1m'], 'permno': row['permno']}
-            df_predictions[i] = df_predictions.append(
+            df_predictions[i] = df_predictions[i].append(
                 new_df_row, ignore_index=True)
         row_count = row_count + 1
         print('Completed row {} for all Loss functions.'.format(row_count))
