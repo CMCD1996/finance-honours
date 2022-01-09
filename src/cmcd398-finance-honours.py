@@ -647,7 +647,7 @@ def create_fama_factor_models(factor_location, prediction_location, dependant_co
             axis=0)
         hp_mean = top_decile_mean - bottom_decile_mean
         # Forms the hedge portfolio and sets to new row
-        new_row = {'mth': month, 'hedge_returns': hp_mean}
+        new_row = {'mth': int(month), 'hedge_returns': hp_mean}
         # Stores the hedge portfolio return for the month in another dataframe
         hedge_returns = hedge_returns.append(new_row, ignore_index=True)
     # Prints head of portfolio returns
@@ -656,8 +656,11 @@ def create_fama_factor_models(factor_location, prediction_location, dependant_co
     factors_df.rename(columns={'Date': 'mth'}, inplace=True)
     # Merges hedge returns with factors
     hedge_returns.merge(factors_df, how='left', on='mth')
+    print("Hedge returns after merge")
+    print(hedge_returns.info(verbose=True))
     # Adds the factors to the regression dataframe via merge
     regression_df.merge(factors_df, how='left', on='mth')
+    print("Regression after merge")
     print(regression_df.info(verbose=True))
     # Resets the index on both size_grp and mth
     data = regression_df.set_index(['permno', 'mth'])
