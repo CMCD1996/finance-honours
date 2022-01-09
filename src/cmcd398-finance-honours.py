@@ -677,40 +677,40 @@ def create_fama_factor_models(factor_location, prediction_location, dependant_co
     if regression_dictionary['capm'] == True:
         # Uses linear models to perform CAPM regressions (Panel Regressions)
         capm_exog_vars = ['Mkt-RF']
-        capm_exog = sm.add_constant(data[capm_exog_vars])
-        capm_fb = lm.FamaMacBeth(data[dependant_column], capm_exog).fit()
+        # capm_exog = sm.add_constant(data[capm_exog_vars])
+        # capm_fb = lm.FamaMacBeth(data[dependant_column], capm_exog).fit()
         # Uses stats models to perform standard linear regressions
         capm_hp_exog = sm.add_constant(hedge_returns[capm_exog_vars])
         capm_hp = sm.OLS(hedge_returns[dependant_column], capm_hp_exog)
     if regression_dictionary['ff3'] == True:
         # Uses linear models to perform FF3 regression (Panel Regressions)
         ff3_exog_vars = ['Mkt-RF', 'SMB', 'HML']
-        ff3_exog = sm.add_constant(data[ff3_exog_vars])
-        ff3_fb = lm.FamaMacBeth(data[dependant_column], ff3_exog).fit()
+        # ff3_exog = sm.add_constant(data[ff3_exog_vars])
+        # ff3_fb = lm.FamaMacBeth(data[dependant_column], ff3_exog).fit()
         # Uses stats models to perform standard linear regressions
         ff3_hp_exog = sm.add_constant(hedge_returns[ff3_exog_vars])
         ff3_hp = sm.OLS(hedge_returns[dependant_column], ff3_hp_exog).fit()
     if regression_dictionary['ff4'] == True:
         # Uses linear models to perform FF4 (Carhart) regression (Panel Regressions)
         ff4_exog_vars = ['Mkt-RF', 'SMB', 'HML', 'RMW']
-        ff4_exog = sm.add_constant(data[ff4_exog_vars])
-        ff4_fb = lm.FamaMacBeth(data[dependant_column], ff4_exog).fit()
+        # ff4_exog = sm.add_constant(data[ff4_exog_vars])
+        # ff4_fb = lm.FamaMacBeth(data[dependant_column], ff4_exog).fit()
         # Uses stats models to perform standard linear regressions
         ff4_hp_exog = sm.add_constant(hedge_returns[ff4_exog_vars])
         ff4_hp = sm.OLS(hedge_returns[dependant_column], ff4_hp_exog).fit()
     if regression_dictionary['ff5'] == True:
         # Uses linear model to perform FF5 regression (Panel Regressions)
         ff5_exog_vars = ['Mkt-RF', 'SMB', 'HML', 'RMW', 'CMA']
-        ff5_exog = sm.add_constant(data[ff5_exog_vars])
-        ff5_fb = lm.FamaMacBeth(data[dependant_column], ff5_exog).fit()
+        # ff5_exog = sm.add_constant(data[ff5_exog_vars])
+        # ff5_fb = lm.FamaMacBeth(data[dependant_column], ff5_exog).fit()
         # Uses stats models to perform standard linear regressions
         ff5_hp_exog = sm.add_constant(hedge_returns[ff5_exog_vars])
         ff5_hp = sm.OLS(hedge_returns[dependant_column], ff5_hp_exog).fit()
     # Creates tables for comparison using the stargazor package
-    ff_stargazer = Stargazer([capm_fb, ff3_fb, ff4_fb, ff5_fb])
+    # ff_stargazer = Stargazer([capm_fb, ff3_fb, ff4_fb, ff5_fb])
     hp_stargazer = Stargazer([capm_hp, ff3_hp, ff4_hp, ff5_hp])
     # Converts the tables to latex
-    ff_stargazer.render_latex()
+    # ff_stargazer.render_latex()
     hp_stargazer.render_latex()
     return
 
