@@ -1515,13 +1515,13 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
         print(predictions)
         print('First element in predictions')
         print(predictions[0])
-        return
         # Adds prediction value to prediction df
         new_df_row = {'size_grp': row['size_grp'], "mth": row['mth'],
                       "predict": predictions[0], 'ret_exc_lead1m': row['ret_exc_lead1m'], 'permno': row['permno']}
         df_predictions = df_predictions.append(new_df_row)
     print(df_predictions.info(verbose=False))
     print(df_predictions.head())
+    return
     # Saves the model predictions to file
     df_predictions.to_stata('/home/connormcdowall/finance-honours/results/predictions/' +
                             model_name + '-' + selected_losses[0] + '.dta')
