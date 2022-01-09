@@ -656,6 +656,7 @@ def create_fama_factor_models(factor_location, prediction_location, regression_d
                          "expersq", "married", "educ", "union", "year"]
         ff5_exog = sm.add_constant(data[ff5_exog_vars])
         ff5 = lm.FamaMacBeth()
+
     return
 
 #################################################################################
@@ -2295,7 +2296,7 @@ if make_predictions:
     testing_model = '/home/connormcdowall/finance-honours/results/models/tensorflow/cmcd398-finance-honours-mean_squared_error'
     features = []
     df = pd.read_stata(train_data)
-    print(df['crsp_shrcd'].unique())
+    print(df['size_grp'].unique())
     print('Making Predictions using saved models')
     # make_tensorflow_predictions(
     # model_name=testing_model, dataframe_location=train_data, custom_objects=custom_tf_objects, feature_names=features)
