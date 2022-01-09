@@ -653,6 +653,8 @@ def create_fama_factor_models(factor_location, prediction_location, dependant_co
         hedge_returns = hedge_returns.append(new_row, ignore_index=True)
     # Prints head of portfolio returns
     print(hedge_returns.head())
+    # Renames 'Date'  column to 'mth'
+    factors_df.rename(columns={'Date': 'mth'}, inplace=True)
     # Merges hedge returns with factors
     hedge_returns.merge(factors_df, how='left', on='mth')
     # Adds the factors to the regression dataframe via merge
