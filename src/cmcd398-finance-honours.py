@@ -653,13 +653,12 @@ def create_fama_factor_models(factor_location, prediction_location, dependant_co
     # Prints head of portfolio returns
     print(hedge_returns.head())
     # Renames 'Date'  column to 'mth'
-    print(factors_df.info(verbose=True))
     factors_df.rename(columns={'Date': 'mth'}, inplace=True)
-    print(factors_df.info(verbose=True))
     # Merges hedge returns with factors
     hedge_returns.merge(factors_df, how='left', on='mth')
     # Adds the factors to the regression dataframe via merge
     regression_df.merge(factors_df, how='left', on='mth')
+    print(regression_df.info(verbose=True))
     # Resets the index on both size_grp and mth
     data = regression_df.set_index(['permno', 'mth'])
     # Create fama factors for the dataset from K.French
