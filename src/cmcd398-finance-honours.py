@@ -1507,6 +1507,7 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
     loss_index = 0
     # Starts fo loop to loop through every model
     for trained_model in model_locations:
+        print('Starting: ', selected_losses[loss_index])
         # Loads trained model
         model = tf.keras.models.load_model(
             filepath=trained_model, custom_objects=custom_objects)
@@ -1528,6 +1529,8 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
         # Saves the model predictions to file (model_locations and selected losses alogn for these purposes)
         df_predictions.to_csv('/home/connormcdowall/finance-honours/results/predictions/' +
                               model_name + '-' + selected_losses[loss_index] + '.csv')
+        print('Completed: ', selected_losses[loss_index])
+        # Appends to loss index to inform change trained model
         loss_index = loss_index + 1
     return
 
