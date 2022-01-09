@@ -1515,7 +1515,7 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
         print('All predictions')
         print(predictions)
         print('First element in predictions')
-        print(predictions[0])
+        print(predictions[0, 0])
         # Adds prediction value to prediction df
         new_df_row = {'size_grp': row['size_grp'], "mth": row['mth'],
                       "predict": predictions[0], 'ret_exc_lead1m': row['ret_exc_lead1m'], 'permno': row['permno']}
