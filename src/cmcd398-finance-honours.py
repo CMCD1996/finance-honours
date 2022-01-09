@@ -674,6 +674,7 @@ def create_fama_factor_models(factor_location, prediction_location, dependant_co
         # Uses stats models to perform standard linear regressions
         capm_hp_exog = sm.add_constant(hedge_returns[capm_exog_vars])
         capm_hp = sm.OLS(hedge_returns['hedge_returns'], capm_hp_exog).fit()
+        print(capm_hp.summary())
     if regression_dictionary['ff3'] == True:
         # Uses linear models to perform FF3 regression (Panel Regressions)
         ff3_exog_vars = ['Mkt-RF', 'SMB', 'HML']
@@ -682,6 +683,7 @@ def create_fama_factor_models(factor_location, prediction_location, dependant_co
         # Uses stats models to perform standard linear regressions
         ff3_hp_exog = sm.add_constant(hedge_returns[ff3_exog_vars])
         ff3_hp = sm.OLS(hedge_returns['hedge_returns'], ff3_hp_exog).fit()
+        print(ff3_hp.summary())
     if regression_dictionary['ff4'] == True:
         # Uses linear models to perform FF4 (Carhart) regression (Panel Regressions)
         ff4_exog_vars = ['Mkt-RF', 'SMB', 'HML', 'RMW']
@@ -690,6 +692,7 @@ def create_fama_factor_models(factor_location, prediction_location, dependant_co
         # Uses stats models to perform standard linear regressions
         ff4_hp_exog = sm.add_constant(hedge_returns[ff4_exog_vars])
         ff4_hp = sm.OLS(hedge_returns['hedge_returns'], ff4_hp_exog).fit()
+        print(ff4_hp.summary())
     if regression_dictionary['ff5'] == True:
         # Uses linear model to perform FF5 regression (Panel Regressions)
         ff5_exog_vars = ['Mkt-RF', 'SMB', 'HML', 'RMW', 'CMA']
@@ -698,6 +701,7 @@ def create_fama_factor_models(factor_location, prediction_location, dependant_co
         # Uses stats models to perform standard linear regressions
         ff5_hp_exog = sm.add_constant(hedge_returns[ff5_exog_vars])
         ff5_hp = sm.OLS(hedge_returns['hedge_returns'], ff5_hp_exog).fit()
+        print(ff5_hp.summary())
     # Creates tables for comparison using the stargazor package
     # ff_stargazer = Stargazer([capm_fb, ff3_fb, ff4_fb, ff5_fb])
     hp_stargazer = Stargazer([capm_hp, ff3_hp, ff4_hp, ff5_hp])
