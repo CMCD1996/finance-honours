@@ -940,9 +940,9 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
             layer_2 = tf.keras.layers.Dropout(
                 rate=0.5, noise_shape=None, seed=None)(layer_1)
             layer_3 = tf.keras.layers.Dense(64, activation='relu')(layer_2)
-            layer_4 = tf.keras.layers.Dense(128, activation='linear')(layer_3)
+            layer_4 = tf.keras.layers.Dense(128, activation='relu')(layer_3)
             # Creates the output layer
-            output = tf.keras.layers.Dense(1)(layer_4)
+            output = tf.keras.layers.Dense(1, activation='linear')(layer_4)
             print('End: Configuration of Deep Network Layers')
             # Configure the model (https://www.tensorflow.org/api_docs/python/tf/keras/Model)
             model = tf.keras.Model(all_inputs, output)
@@ -2285,8 +2285,8 @@ test_loss_function = False
 analytical = False
 rank_functions = False
 # Research Proposal Analysis
-create_models = False
-make_predictions = True
+create_models = True
+make_predictions = False
 perform_regressions = False
 #################################################################################
 # Function Testing
