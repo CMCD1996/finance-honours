@@ -2218,6 +2218,7 @@ loss_function_dictionary = {
 metrics_dictionary = {1: ['mean_squared_error', 'cosine_similarity', 'mean_absolute_error', 'root_mean_squared_error', 'custom_mse_metric', 'custom_sharpe_metric',
                           'custom_information_metric', 'custom_hp_metric'], 2: ['mean_squared_error', 'cosine_similarity', 'mean_absolute_error', 'root_mean_squared_error', 'custom_mse_metric', 'custom_sharpe_metric',
                                                                                 'custom_information_metric', 'custom_hp_metric']}
+#################################################################################
 # Selected Tensorflow Configuration
 #################################################################################
 tf_option_array = [1, 2]  # 1 = Analysis, 2 = Testing
@@ -2230,6 +2231,8 @@ custom_tf_objects = {'custom_mse_metric': custom_mse_metric, 'custom_hp_metric':
                      'custom_sharpe_metric': custom_sharpe_metric, 'custom_information_metric': custom_information_metric}
 #################################################################################
 # Strings
+#################################################################################
+# Subsequent directories for creating tensorflow models
 model_name = 'cmcd398-finance-honours'
 data_source = 'data/combined_predictors_filtered_us.dta'
 csv_location = '/Volumes/Seagate/dataframes/'
@@ -2237,8 +2240,25 @@ data_vm_directory = '/home/connormcdowall/local-data/'
 data_vm_dta = '/home/connormcdowall/local-data/combined_predictors_filtered_us.dta'
 results_tables = '/home/connormcdowall/finance-honours/results/tables'
 list_of_columns = '/home/connormcdowall/finance-honours/data/working-columns.txt'
+# Subsequent directories for making predictions
+train_data = '/home/connormcdowall/finance-honours/data/dataframes/active_train.dta'
+test_data = '/home/connormcdowall/finance-honours/data/dataframes/active_test.dta'
+val_data = '/home/connormcdowall/finance-honours/data/dataframes/active_validation.dta'
+predictions_data = '/home/connormcdowall/finance-honours/data/dataframes/active_prediction.dta'
+model_directory = '/home/connormcdowall/finance-honours/results/models/tensorflow/cmcd398-finance-honours'
+# Subsequent directories for making regressions
 factor_location = '/home/connormcdowall/finance-honours/data/factors.csv'
-# Binary (Set to True or False depending on the functions to run)
+#################################################################################
+# Arrays
+#################################################################################
+model_locations = []
+for loss in selected_losses:
+    model_filepath = model_directory + '-' + loss
+    model_locations.append(model_filepath)
+print(model_locations)
+#################################################################################
+# Truth Variables (Set to True or False depending on the functions to run)
+#################################################################################
 # System Checks
 sys_check = False
 # Data processing
@@ -2256,11 +2276,11 @@ test_loss_function = False
 analytical = False
 rank_functions = False
 # Research Proposal Analysis
-create_models = True
+create_models = False
 make_predictions = False
 perform_regressions = False
 #################################################################################
-# Function Calls - Testing
+# Function Testing
 #################################################################################
 # System Checks
 #################################################################################
@@ -2269,14 +2289,11 @@ if sys_check:
 #################################################################################
 # Data processing
 #################################################################################
-# Source data from local drive
 if source_data:
     partition_data(data_source, csv_location)
-# Source data from VM Instance
 if split_vm_data:
     split_vm_dataset(data_vm_directory, create_statistics=False,
                      split_new_data=True, create_validation_set=False)
-# Process vm data for Tensorflow
 if process_vm_data:
     process_vm_dataset(data_vm_dta, save_statistics=False, sample=False)
 if need_dataframe:
@@ -2301,11 +2318,8 @@ if test_loss_function:
 #################################################################################
 # Analytical
 #################################################################################
-# Analytical function
-# Do analytical function
 if analytical:
     analytical_analysis()
-# Creates monotonic ranking function plots
 if rank_functions:
     ranking_function()
 ##################################################################################
@@ -2319,9 +2333,10 @@ if make_predictions:
     train_data = '/home/connormcdowall/finance-honours/data/dataframes/active_train.dta'
     test_data = '/home/connormcdowall/finance-honours/data/dataframes/active_test.dta'
     val_data = '/home/connormcdowall/finance-honours/data/dataframes/active_validation.dta'
-    testing_model = '/home/connormcdowall/finance-honours/results/models/tensorflow/cmcd398-finance-honours-mean_squared_error'
+    predictions_data = '/home/connormcdowall/finance-honours/data/dataframes/active_prediction.dta'
+    model_directory = '/home/connormcdowall/finance-honours/results/models/tensorflow/cmcd398-finance-honours-mean_squared_error'
     features = []
-    df = pd.read_stata(train_data)
+    df = pd.read_stata(predictions_data)
     print(len(df['permno'].unique()))
     print('Making Predictions using saved models')
     # make_tensorflow_predictions(
