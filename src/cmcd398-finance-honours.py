@@ -638,11 +638,13 @@ def create_fama_factor_models(factor_location, prediction_location, dependant_co
         subset_predictions.reset_index(drop=True)
         # Calculates decile 1 (Top 10%)
         decile_length = len(subset_predictions[dependant_column])/10
-        top_decile = range(0, (decile_length - 1))
-        bottom_decile = range(9*decile_length, (10*decile_length-1))
+        top_decile = range(0, (int(decile_length - 1)))
+        bottom_decile = range((int(9*decile_length)),
+                              (int(10*decile_length-1)))
         # Calculates Hedge Portfolio Return (Decile 1 - Decile 10)
-        top_decile_mean = df[dependant_column].iloc[top_decile].mean(axis=0)
-        bottom_decile_mean = df[dependant_column].iloc[bottom_decile].mean(
+        top_decile_mean = subset_predictions[dependant_column].iloc[top_decile].mean(
+            axis=0)
+        bottom_decile_mean = subset_predictions[dependant_column].iloc[bottom_decile].mean(
             axis=0)
         hp_mean = top_decile_mean - bottom_decile_mean
         # Forms the hedge portfolio and sets to new row
