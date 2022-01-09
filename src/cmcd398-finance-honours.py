@@ -673,7 +673,7 @@ def create_fama_factor_models(factor_location, prediction_location, dependant_co
         # capm_fb = lm.FamaMacBeth(data[dependant_column], capm_exog).fit()
         # Uses stats models to perform standard linear regressions
         capm_hp_exog = sm.add_constant(hedge_returns[capm_exog_vars])
-        capm_hp = sm.OLS(hedge_returns['hedge_returns'], capm_hp_exog)
+        capm_hp = sm.OLS(hedge_returns['hedge_returns'], capm_hp_exog).fit()
     if regression_dictionary['ff3'] == True:
         # Uses linear models to perform FF3 regression (Panel Regressions)
         ff3_exog_vars = ['Mkt-RF', 'SMB', 'HML']
