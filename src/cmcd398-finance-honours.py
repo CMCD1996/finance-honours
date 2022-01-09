@@ -621,7 +621,7 @@ def convert_datetime_to_int(dataframe, column_name):
     return dataframe
 
 
-def create_fama_factor_models(factor_location, prediction_location, dependant_column, regression_dictionary):
+def create_fama_factor_models(factor_location, prediction_location, prediction_name, dependant_column, regression_dictionary):
     # Note: uses permo and mth to create multiple index for panel regressions
     # permno is the permanent unique firm identifier
     # Reads in all the pandas dataframes
@@ -707,7 +707,10 @@ def create_fama_factor_models(factor_location, prediction_location, dependant_co
     hp_stargazer = Stargazer([capm_hp, ff3_hp, ff4_hp, ff5_hp])
     # Converts the tables to latex
     # ff_stargazer.render_latex()
-    print(hp_stargazer.render_latex())
+    with open('/home/connormcdowall/finance-honours/results/tables/hedge-portfolio-ols/' + prediction_name + '.txt', 'w') as f:
+        # Deletes existing text
+        f.truncate(0)
+        print(hp_stargazer.render_latex(), file=f)
     return
 
 #################################################################################
