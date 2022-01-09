@@ -1517,7 +1517,7 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
         print('First element in predictions')
         print(predictions[0, 0])
         # Adds prediction value to prediction df
-        new_df_row = {'size_grp': row['size_grp'], "mth": row['mth'],
+        new_df_row = {'size_grp': row['size_grp'], "mth": int(row['mth']),
                       "predict": np.asscalar(predictions[0]), 'ret_exc_lead1m': row['ret_exc_lead1m'], 'permno': row['permno']}
         df_predictions = df_predictions.append(new_df_row, ignore_index=True)
         count = count + 1
