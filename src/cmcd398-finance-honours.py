@@ -2242,9 +2242,9 @@ tf_option = 1  # Change to 1,2,3,4,5,6,7 for configuration
 selected_optimizer = optimisation_dictionary[tf_option]
 selected_losses = loss_function_dictionary[tf_option]
 selected_metrics = metrics_dictionary[tf_option]
-# Custom objects dictionary for importing models
+# Custom objects dictionary for importing models (Both metrics and losses)
 custom_tf_objects = {'custom_mse_metric': custom_mse_metric, 'custom_hp_metric': custom_hp_metric,
-                     'custom_sharpe_metric': custom_sharpe_metric, 'custom_information_metric': custom_information_metric}
+                     'custom_sharpe_metric': custom_sharpe_metric, 'custom_information_metric': custom_information_metric, 'custom_mse': custom_mse, 'custom_sharpe': custom_sharpe, 'custom_sharpe_mse': custom_sharpe_mse, 'custom_information': custom_information, 'custom_hp': custom_hp, 'custom_hp_mse': custom_hp_mse}
 #################################################################################
 # Strings
 #################################################################################
