@@ -1490,13 +1490,18 @@ def create_tensorflow_models(data_vm_directory, list_of_columns, categorical_ass
     return
 
 
-def make_tensorflow_predictions(model_name, dataframe_location, custom_objects, model_loss_function):
+def make_tensorflow_predictions(model_name, model_directory, selected_losses, dataframe_location, custom_objects):
     # Initialises new dataframe
     column_names = ['size_grp', "mth", "predict", 'ret_exc_lead1m', 'permno']
     df_predictions = pd.DataFrame(columns=column_names)
+    model_locations = []
+    for loss in selected_losses:
+        model_filepath = model_directory + '-' + loss
+        model_locations.append(model_filepath)
+    print(model_locations)
     # Loads model
     model = tf.keras.models.load_model(
-        filepath=model_name, custom_objects=custom_objects)
+        filepath=model_locations[0], custom_objects=custom_objects)
     # Loads the dictionary
     df = pd.read_stata(dataframe_location)
     # Convert dataframe row to dictionary with column headers (section)
@@ -1506,7 +1511,11 @@ def make_tensorflow_predictions(model_name, dataframe_location, custom_objects, 
         input_dict = {name: tf.convert_to_tensor(
             [value]) for name, value in row.items()}
         predictions = model.predict(input_dict)
+        print('All predictions')
+        print(predictions)
+        print('First element in predictions')
         print(predictions[0])
+        return
         # Adds prediction value to prediction df
         new_df_row = {'size_grp': row['size_grp'], "mth": row['mth'],
                       "predict": predictions[0], 'ret_exc_lead1m': row['ret_exc_lead1m'], 'permno': row['permno']}
@@ -1514,9 +1523,9 @@ def make_tensorflow_predictions(model_name, dataframe_location, custom_objects, 
     print(df_predictions.info(verbose=False))
     print(df_predictions.head())
     # Saves the model predictions to file
-    df_predictions.to_stata(
-        '/home/connormcdowall/finance-honours/results/predictions/' + model_loss_function + '.dta')
-    return df_predictions
+    df_predictions.to_stata('/home/connormcdowall/finance-honours/results/predictions/' +
+                            model_name + '-' + selected_losses[0] + '.dta')
+    return
 
 
 def perform_tensorflow_model_inference(model_name, sample):
@@ -2249,14 +2258,6 @@ model_directory = '/home/connormcdowall/finance-honours/results/models/tensorflo
 # Subsequent directories for making regressions
 factor_location = '/home/connormcdowall/finance-honours/data/factors.csv'
 #################################################################################
-# Arrays
-#################################################################################
-model_locations = []
-for loss in selected_losses:
-    model_filepath = model_directory + '-' + loss
-    model_locations.append(model_filepath)
-print(model_locations)
-#################################################################################
 # Truth Variables (Set to True or False depending on the functions to run)
 #################################################################################
 # System Checks
@@ -2329,16 +2330,8 @@ if create_models:
     create_tensorflow_models(data_vm_directory, list_of_columns, categorical_assignment, target_column, chunk_size, resizing_options,
                              batch_size, model_name, selected_optimizer, selected_losses, selected_metrics, split_data=False, trial=True, sample=True)
 if make_predictions:
-    # Loads test data
-    features = []
-    df = pd.read_stata(predictions_data)
-    print('Predictions DataFrame')
-    print(df.head())
-    print('Model Locations')
-    print(model_locations)
-    print('Making Predictions using saved models')
-    # make_tensorflow_predictions(
-    # model_name=testing_model, dataframe_location=train_data, custom_objects=custom_tf_objects, feature_names=features)
+    make_tensorflow_predictions(model_name=model_name, model_directory=model_directory, selected_losses=selected_losses,
+                                dataframe_location=predictions_data, custom_objects=custom_tf_objects)
 if perform_regressions:
     predictions = []
     print('Starting fama factor regressions')
