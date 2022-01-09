@@ -2295,10 +2295,12 @@ if make_predictions:
     testing_model = '/home/connormcdowall/finance-honours/results/models/tensorflow/cmcd398-finance-honours-mean_squared_error'
     features = []
     df = pd.read_stata(train_data)
+    print(df['crsp_shrcd'].unique())
     print('Making Predictions using saved models')
-    make_tensorflow_predictions(
-        model_name=testing_model, dataframe_location=train_data, custom_objects=custom_tf_objects, feature_names=features)
+    # make_tensorflow_predictions(
+    # model_name=testing_model, dataframe_location=train_data, custom_objects=custom_tf_objects, feature_names=features)
 if perform_regressions:
+    predictions = []
     print('Starting fama factor regressions')
     regression_dictionary = {'capm': True,
                              'ff3': True, 'ff4': True, 'ff5': True}
