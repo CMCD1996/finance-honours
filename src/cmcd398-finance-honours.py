@@ -2335,8 +2335,8 @@ analytical = False
 rank_functions = False
 # Research Proposal Analysis
 create_models = False
-make_predictions = False
-perform_regressions = True
+make_predictions = True
+perform_regressions = False
 #################################################################################
 # Function Testing
 #################################################################################
@@ -2390,6 +2390,5 @@ if make_predictions:
     make_tensorflow_predictions(model_name=model_name, model_directory=model_directory, selected_losses=selected_losses,
                                 dataframe_location=predictions_data, custom_objects=custom_tf_objects)
 if perform_regressions:
-    print('Starting fama factor regressions')
     create_fama_factor_models(factor_location=factor_location, prediction_location=predictions_data, prediction_name='excess-returns',
                               dependant_column='ret_exc_lead1m', regression_dictionary=regression_dictionary)
