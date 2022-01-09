@@ -672,7 +672,10 @@ def create_fama_factor_models(factor_location, prediction_location, prediction_n
         capm_exog = sm.add_constant(data[capm_exog_vars])
         capm_fb = lm.PooledOLS(
             data[dependant_column], capm_exog).fit(cov_type='robust')
-        print(capm_fb)
+        with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/' + prediction_name + '-capm.txt', 'w') as f:
+            f.truncate(0)
+            print(capm_fb.summary.as_latex())
+            f.close()
         # Uses stats models to perform standard linear regressions
         capm_hp_exog = sm.add_constant(hedge_returns[capm_exog_vars])
         capm_hp = sm.OLS(hedge_returns['hedge_returns'], capm_hp_exog).fit()
@@ -682,7 +685,10 @@ def create_fama_factor_models(factor_location, prediction_location, prediction_n
         ff3_exog = sm.add_constant(data[ff3_exog_vars])
         ff3_fb = lm.PooledOLS(data[dependant_column],
                               ff3_exog).fit(cov_type='robust')
-        print(ff3_fb)
+        with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/' + prediction_name + '-ff3.txt', 'w') as f:
+            f.truncate(0)
+            print(ff3_fb.summary.as_latex())
+            f.close()
         # Uses stats models to perform standard linear regressions
         ff3_hp_exog = sm.add_constant(hedge_returns[ff3_exog_vars])
         ff3_hp = sm.OLS(hedge_returns['hedge_returns'], ff3_hp_exog).fit()
@@ -692,6 +698,10 @@ def create_fama_factor_models(factor_location, prediction_location, prediction_n
         ff4_exog = sm.add_constant(data[ff4_exog_vars])
         ff4_fb = lm.PooledOLS(data[dependant_column],
                               ff4_exog).fit(cov_type='robust')
+        with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/' + prediction_name + '-ff4.txt', 'w') as f:
+            f.truncate(0)
+            print(ff4_fb.summary.as_latex())
+            f.close()
         print(ff4_fb)
         # Uses stats models to perform standard linear regressions
         ff4_hp_exog = sm.add_constant(hedge_returns[ff4_exog_vars])
@@ -702,19 +712,15 @@ def create_fama_factor_models(factor_location, prediction_location, prediction_n
         ff5_exog = sm.add_constant(data[ff5_exog_vars])
         ff5_fb = lm.PooledOLS(data[dependant_column],
                               ff5_exog).fit(cov_type='robust')
-        print(ff5_fb)
+        with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/' + prediction_name + '-ff5.txt', 'w') as f:
+            f.truncate(0)
+            print(ff5_fb.summary.as_latex())
+            f.close()
         # Uses stats models to perform standard linear regressions
         ff5_hp_exog = sm.add_constant(hedge_returns[ff5_exog_vars])
         ff5_hp = sm.OLS(hedge_returns['hedge_returns'], ff5_hp_exog).fit()
     # Creates tables for comparison using the stargazor package
-    ff_stargazer = Stargazer([capm_fb, ff3_fb, ff4_fb, ff5_fb])
     hp_stargazer = Stargazer([capm_hp, ff3_hp, ff4_hp, ff5_hp])
-    # Converts the tables to latex
-    with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/' + prediction_name + '.txt', 'w') as f:
-        # Deletes existing text
-        f.truncate(0)
-        print(ff_stargazer.render_latex(), file=f)
-    # ff_stargazer.render_latex()
     with open('/home/connormcdowall/finance-honours/results/tables/hedge-portfolio-ols/' + prediction_name + '.txt', 'w') as f:
         # Deletes existing text
         f.truncate(0)
