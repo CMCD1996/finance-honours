@@ -674,7 +674,7 @@ def create_fama_factor_models(factor_location, prediction_location, prediction_n
             data[dependant_column], capm_exog).fit(cov_type='robust')
         with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/' + prediction_name + '-capm.txt', 'w') as f:
             f.truncate(0)
-            print(capm_fb.summary.as_latex())
+            print(capm_fb.summary.as_latex(), file=f)
             f.close()
         # Uses stats models to perform standard linear regressions
         capm_hp_exog = sm.add_constant(hedge_returns[capm_exog_vars])
@@ -687,7 +687,7 @@ def create_fama_factor_models(factor_location, prediction_location, prediction_n
                               ff3_exog).fit(cov_type='robust')
         with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/' + prediction_name + '-ff3.txt', 'w') as f:
             f.truncate(0)
-            print(ff3_fb.summary.as_latex())
+            print(ff3_fb.summary.as_latex(), file=f)
             f.close()
         # Uses stats models to perform standard linear regressions
         ff3_hp_exog = sm.add_constant(hedge_returns[ff3_exog_vars])
@@ -700,7 +700,7 @@ def create_fama_factor_models(factor_location, prediction_location, prediction_n
                               ff4_exog).fit(cov_type='robust')
         with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/' + prediction_name + '-ff4.txt', 'w') as f:
             f.truncate(0)
-            print(ff4_fb.summary.as_latex())
+            print(ff4_fb.summary.as_latex(), file=f)
             f.close()
         print(ff4_fb)
         # Uses stats models to perform standard linear regressions
@@ -714,7 +714,7 @@ def create_fama_factor_models(factor_location, prediction_location, prediction_n
                               ff5_exog).fit(cov_type='robust')
         with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/' + prediction_name + '-ff5.txt', 'w') as f:
             f.truncate(0)
-            print(ff5_fb.summary.as_latex())
+            print(ff5_fb.summary.as_latex(), file=f)
             f.close()
         # Uses stats models to perform standard linear regressions
         ff5_hp_exog = sm.add_constant(hedge_returns[ff5_exog_vars])
