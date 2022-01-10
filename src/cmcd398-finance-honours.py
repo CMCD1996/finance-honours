@@ -828,11 +828,6 @@ def sort_data_chronologically(data_directory, size_of_chunks, set_top_500=False)
     print('Testing')
     print(test_chronological.info(verbose=True))
     print(sorted(test_chronological['mth'].unique()))
-    train_chronological = train_chronological.drop(
-        columns=['index'])
-    val_chronological = val_chronological.drop(columns=['index'])
-    test_chronological = test_chronological.drop(
-        columns=['index'])
     # Saves the chronological files to file
     train_chronological.to_stata(data_directory + 'active_train.dta')
     val_chronological.to_stata(data_directory + 'active_val.dta')
@@ -2549,7 +2544,7 @@ if rank_functions:
 ##################################################################################
 if create_models:
     create_tensorflow_models(data_vm_directory, list_of_columns, categorical_assignment, target_column, chunk_size, resizing_options,
-                             batch_size, model_name, selected_optimizer, selected_losses, selected_metrics, split_data=False, trial=True, sample=True)
+                             batch_size, model_name, selected_optimizer, selected_losses, selected_metrics, split_data=False, trial=False, sample=False)
 if make_predictions:
     make_tensorflow_predictions(model_name=model_name, model_directory=model_directory, selected_losses=selected_losses,
                                 dataframe_location=predictions_data, custom_objects=custom_tf_objects)
