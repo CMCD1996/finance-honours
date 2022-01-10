@@ -456,7 +456,7 @@ def create_original_list_of_columns(dataframe):
         if column in cols:
             extract_columns.append(column)
     # Extract the old columns
-    dataframe = dataframe[extract_columns]
+    # dataframe = dataframe[extract_columns]
     # Rewrite new working file for numerical encoding
     file = open(
         "/home/connormcdowall/finance-honours/data/working-columns.txt", "r+")
@@ -467,7 +467,7 @@ def create_original_list_of_columns(dataframe):
     for element in extract_columns:
         textfile.write(element + "\n")
     textfile.close()
-    return dataframe
+    return
 
 
 def split_vm_dataset(data_vm_directory, create_statistics, split_new_data, create_validation_set):
@@ -1621,18 +1621,11 @@ def create_tensorflow_models(data_vm_directory, list_of_columns, categorical_ass
     file.truncate(0)
     file.close()
     # Set boolean to control which dataset
-    smaller_factors = True
-    if smaller_factors:
-        with open("/home/connormcdowall/finance-honours/data/178-factors.txt", "r") as f1:
-            with open("/home/connormcdowall/finance-honours/data/working-columns.txt", "w") as f2:
-                for line in f1:
-                    f2.write(line)
-    else:
-        # Tranfer file lines
-        with open("/home/connormcdowall/finance-honours/data/dataframe-columns.txt", "r") as f1:
-            with open("/home/connormcdowall/finance-honours/data/working-columns.txt", "w") as f2:
-                for line in f1:
-                    f2.write(line)
+    # Tranfer file lines
+    with open("/home/connormcdowall/finance-honours/data/dataframe-columns.txt", "r") as f1:
+        with open("/home/connormcdowall/finance-honours/data/working-columns.txt", "w") as f2:
+            for line in f1:
+                f2.write(line)
     # Split the initial vm dataset
     if split_data:
         split_vm_dataset(data_vm_directory, create_statistics=False,
@@ -1649,6 +1642,8 @@ def create_tensorflow_models(data_vm_directory, list_of_columns, categorical_ass
         test_df = pd.read_stata(data_vm_directory + 'active_test.dta')
         print('Testing Set')
         print(test_df.head())
+        print('Dataframe Columns')
+        print(train_df.columns)
     else:
         test_df = process_vm_dataset(data_vm_directory + 'test.dta', chunk_size,
                                      resizing_options, save_statistics=False, sample=sample)
@@ -1656,6 +1651,10 @@ def create_tensorflow_models(data_vm_directory, list_of_columns, categorical_ass
                                       chunk_size, resizing_options, save_statistics=False, sample=sample)
         val_df = process_vm_dataset(data_vm_directory + 'val.dta', chunk_size,
                                     resizing_options, save_statistics=False, sample=sample)
+    # Recreate smaller factors list
+    small_factors = True
+    if small_factors:
+        create_original_list_of_columns(train_df)
     # Use trial to test the dataframe when functions not as large
     if trial:
         # Trial run takes 5% of dataframe produced from processed vm datasets
