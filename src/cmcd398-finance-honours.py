@@ -621,70 +621,160 @@ def convert_datetime_to_int(dataframe, column_name):
     return dataframe
 
 
-def create_fama_factor_models(factor_location, prediction_location, regression_dictionary):
+def create_fama_factor_models(factor_location, prediction_location, prediction_name, dependant_column, regression_dictionary):
     # Note: uses permo and mth to create multiple index for panel regressions
     # permno is the permanent unique firm identifier
     # Reads in all the pandas dataframes
     factors_df = pd.read_csv(factor_location)
-    print(factors_df.head())
     regression_df = pd.read_stata(prediction_location)
     hedge_returns = pd.DataFrame(columns=['mth', 'hedge_returns'])
     # Creates portfolio returns via groupings
     monthly_groups = regression_df.groupby("mth")
     for month, subset_predictions in monthly_groups:
         # Sort the predicted returns in the sub_predictiosn set
-        subset_predictions.sort_values(by=['predictions'], ascending=False)
+        subset_predictions.sort_values(by=[dependant_column], ascending=False)
         # Reset the index of this dorted dataframe for forming the hedge portfolio
         subset_predictions.reset_index(drop=True)
         # Calculates decile 1 (Top 10%)
-        decile_length = len(subset_predictions['predictions'])/10
-        top_decile = range(0, (decile_length - 1))
-        bottom_decile = range(9*decile_length, (10*decile_length-1))
+        decile_length = len(subset_predictions[dependant_column])/10
+        top_decile = range(0, (int(decile_length - 1)))
+        bottom_decile = range((int(9*decile_length)),
+                              (int(10*decile_length-1)))
         # Calculates Hedge Portfolio Return (Decile 1 - Decile 10)
-        top_decile_mean = df['predictions'].iloc[top_decile].mean(axis=0)
-        bottom_decile_mean = df['predictions'].iloc[bottom_decile].mean(axis=0)
+        top_decile_mean = subset_predictions[dependant_column].iloc[top_decile].mean(
+            axis=0)
+        bottom_decile_mean = subset_predictions[dependant_column].iloc[bottom_decile].mean(
+            axis=0)
         hp_mean = top_decile_mean - bottom_decile_mean
         # Forms the hedge portfolio and sets to new row
-        new_row = {'mth': month, 'hedge_returns': hp_mean}
+        new_row = {'mth': int(month), 'hedge_returns': hp_mean}
         # Stores the hedge portfolio return for the month in another dataframe
-        hedge_returns = hedge_returns.append(new_row)
-    # Prints head of portfolio returns
-    print(hedge_returns.head())
+        hedge_returns = hedge_returns.append(new_row, ignore_index=True)
+    # Renames 'Date'  column to 'mth'
+    factors_df.rename(columns={'Date': 'mth'}, inplace=True)
+    # Convert mth dataframe column to the same dtype (float64)
+    regression_df['mth'] = regression_df['mth'].astype(np.float64)
+    factors_df['mth'] = factors_df['mth'].astype(np.float64)
+    hedge_returns['mth'] = hedge_returns['mth'].astype(np.float64)
     # Merges hedge returns with factors
-    hedge_returns.merge(factors_df, how='left', on='mth')
+    hedge_returns = hedge_returns.merge(factors_df, how='inner', on='mth')
     # Adds the factors to the regression dataframe via merge
-    regression_df.merge(factors_df, how='left', on='mth')
+    regression_df = regression_df.merge(factors_df, how='inner', on='mth')
     # Resets the index on both size_grp and mth
     data = regression_df.set_index(['permno', 'mth'])
+    print(hedge_returns['hedge_returns'])
+    print(hedge_returns[['Mkt-RF', 'SMB', 'HML', 'RMW', 'CMA']])
     # Create fama factors for the dataset from K.French
     # Performs series of panel regressions with firm returns and standard regressions with hedge returns
     if regression_dictionary['capm'] == True:
         # Uses linear models to perform CAPM regressions (Panel Regressions)
-        capm_exog_vars = ["black", "hisp", "exper",
-                          "expersq", "married", "educ", "union", "year"]
+        capm_exog_vars = ['Mkt-RF']
         capm_exog = sm.add_constant(data[capm_exog_vars])
-        capm = lm.FamaMacBeth()
+        capm_fb = lm.PooledOLS(
+            data[dependant_column], capm_exog).fit(cov_type='robust')
+        with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/' + prediction_name + '-capm.txt', 'w') as f:
+            f.truncate(0)
+            print(capm_fb.summary.as_latex(), file=f)
+            f.close()
+        # Uses stats models to perform standard linear regressions
+        capm_hp_exog = sm.add_constant(hedge_returns[capm_exog_vars])
+        capm_hp = sm.OLS(hedge_returns['hedge_returns'], capm_hp_exog).fit(
+            cov_type='HAC', cov_kwds={'maxlags': 6})
     if regression_dictionary['ff3'] == True:
         # Uses linear models to perform FF3 regression (Panel Regressions)
-        ff3_exog_vars = ["black", "hisp", "exper",
-                         "expersq", "married", "educ", "union", "year"]
+        ff3_exog_vars = ['Mkt-RF', 'SMB', 'HML']
         ff3_exog = sm.add_constant(data[ff3_exog_vars])
-        ff3 = lm.FamaMacBeth()
+        ff3_fb = lm.PooledOLS(data[dependant_column],
+                              ff3_exog).fit(cov_type='robust')
+        with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/' + prediction_name + '-ff3.txt', 'w') as f:
+            f.truncate(0)
+            print(ff3_fb.summary.as_latex(), file=f)
+            f.close()
+        # Uses stats models to perform standard linear regressions
+        ff3_hp_exog = sm.add_constant(hedge_returns[ff3_exog_vars])
+        ff3_hp = sm.OLS(hedge_returns['hedge_returns'], ff3_hp_exog).fit(
+            cov_type='HAC', cov_kwds={'maxlags': 6})
     if regression_dictionary['ff4'] == True:
         # Uses linear models to perform FF4 (Carhart) regression (Panel Regressions)
-        ff4_exog_vars = ["black", "hisp", "exper",
-                         "expersq", "married", "educ", "union", "year"]
+        ff4_exog_vars = ['Mkt-RF', 'SMB', 'HML', 'RMW']
         ff4_exog = sm.add_constant(data[ff4_exog_vars])
-        ff4 = lm.FamaMacBeth()
+        ff4_fb = lm.PooledOLS(data[dependant_column],
+                              ff4_exog).fit(cov_type='robust')
+        with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/' + prediction_name + '-ff4.txt', 'w') as f:
+            f.truncate(0)
+            print(ff4_fb.summary.as_latex(), file=f)
+            f.close()
+        print(ff4_fb)
+        # Uses stats models to perform standard linear regressions
+        ff4_hp_exog = sm.add_constant(hedge_returns[ff4_exog_vars])
+        ff4_hp = sm.OLS(hedge_returns['hedge_returns'], ff4_hp_exog).fit(
+            cov_type='HAC', cov_kwds={'maxlags': 6})
     if regression_dictionary['ff5'] == True:
         # Uses linear model to perform FF5 regression (Panel Regressions)
-        ff5_exog_vars = ["black", "hisp", "exper",
-                         "expersq", "married", "educ", "union", "year"]
+        ff5_exog_vars = ['Mkt-RF', 'SMB', 'HML', 'RMW', 'CMA']
         ff5_exog = sm.add_constant(data[ff5_exog_vars])
-        ff5 = lm.FamaMacBeth()
-
+        ff5_fb = lm.PooledOLS(data[dependant_column],
+                              ff5_exog).fit(cov_type='robust')
+        with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/' + prediction_name + '-ff5.txt', 'w') as f:
+            f.truncate(0)
+            print(ff5_fb.summary.as_latex(), file=f)
+            f.close()
+        # Uses stats models to perform standard linear regressions
+        ff5_hp_exog = sm.add_constant(hedge_returns[ff5_exog_vars])
+        ff5_hp = sm.OLS(hedge_returns['hedge_returns'], ff5_hp_exog).fit(
+            cov_type='HAC', cov_kwds={'maxlags': 6})
+    # Creates tables for comparison using the stargazor package
+    hp_stargazer = Stargazer([capm_hp, ff3_hp, ff4_hp, ff5_hp])
+    with open('/home/connormcdowall/finance-honours/results/tables/hedge-portfolio-ols/' + prediction_name + '.txt', 'w') as f:
+        # Deletes existing text
+        f.truncate(0)
+        print(hp_stargazer.render_latex(), file=f)
     return
 
+
+def sort_data_chronologically(data_directory, set_top_500=False):
+    """ resort data arranges the training sets
+        Training: <199001
+        Validation: 199101 -200012
+        Testing: >200101
+    """
+    # Initialise the sorted dataframes
+    train_sorted = pd.DataFrame()
+    val_sorted = pd.DataFrame()
+    test_sorted = pd.DataFrame()
+    dataframes = ['train.dta', 'test.dta', 'val.dta']
+    # Loads the
+    for dataframe in dataframes:
+        df = pd.read_stata(data_directory + dataframe)
+        # Monitor memeory usage
+        monitor_memory_usage(units=3, cpu=True, gpu=True)
+        # Converts mth from datetime to int
+        for index, row in df.iterrows():
+            # Gets datetime value
+            datetime = row['mth']
+            # Sets year and month values from datetime
+            year = datetime.year
+            month = datetime.month
+            if month < 10:
+                month_str = '0'+str(month)
+            else:
+                month_str = str(month)
+            # Concatenates new value and converst to int
+            new_mth = int(str(year) + month_str)
+            # Sets new month value
+            df.at[index, 'mth'] = new_mth
+        # Sets mth column to int type
+        df['mth'] = df['mth'].astype(int)
+        # Monitor memeory usage
+        monitor_memory_usage(units=3, cpu=True, gpu=True)
+        # Removes nans
+        df = replace_nan(df, replacement_method=3)
+        # Resizes the dataframe
+        df = resizing_dataframe(df, resizing_options=[False, False, True])
+        # Prints list of unique months
+        print(sorted(df['mth'].unique()))
+
+    return
 #################################################################################
 # Machine Learning
 #################################################################################
@@ -1501,37 +1591,85 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
     # Loads the dictionary
     df = pd.read_stata(dataframe_location)
     df = replace_nan(df, replacement_method=3)
+    print('The length of the dataframe is: ', len(df['ret_exc_lead1m']))
     # Convert dataframe row to dictionary with column headers (section)
     dataframe_dictionary = df.to_dict(orient="records")
-    # Controls indexing for files
-    loss_index = 0
     # Starts fo loop to loop through every model
-    for trained_model in model_locations:
-        print('Starting: ', selected_losses[loss_index])
-        # Loads trained model
-        model = tf.keras.models.load_model(
-            filepath=trained_model, custom_objects=custom_objects)
-        # Resets df predictions dataframe
-        df_predictions = pd.DataFrame(columns=column_names)
-        # Makes predictions per row on the dataframe
-        for row in dataframe_dictionary:
-            input_dict = {name: tf.convert_to_tensor(
-                [value]) for name, value in row.items()}
-            predictions = model.predict(input_dict)
+    print('Starting: Loss Function Predictions')
+    # Loads all models
+    mse_model = tf.keras.models.load_model(
+        filepath=model_locations[0], custom_objects=custom_objects)
+    mse_tf_model = tf.keras.models.load_model(
+        filepath=model_locations[1], custom_objects=custom_objects)
+    sharpe_model = tf.keras.models.load_model(
+        filepath=model_locations[2], custom_objects=custom_objects)
+    sharpe_mse_model = tf.keras.models.load_model(
+        filepath=model_locations[3], custom_objects=custom_objects)
+    information_model = tf.keras.models.load_model(
+        filepath=model_locations[4], custom_objects=custom_objects)
+    hp_model = tf.keras.models.load_model(
+        filepath=model_locations[5], custom_objects=custom_objects)
+    hp_mse_model = tf.keras.models.load_model(
+        filepath=model_locations[6], custom_objects=custom_objects)
+    # Resets df predictions dataframe
+    mse_df_predictions = pd.DataFrame(columns=column_names)
+    mse_tf_df_predictions = pd.DataFrame(columns=column_names)
+    sharpe_df_predictions = pd.DataFrame(columns=column_names)
+    sharpe_mse_df_predictions = pd.DataFrame(columns=column_names)
+    information_df_predictions = pd.DataFrame(columns=column_names)
+    hp_df_predictions = pd.DataFrame(columns=column_names)
+    hp_mse_df_predictions = pd.DataFrame(columns=column_names)
+    # Stores dataframes in an array
+    df_predictions = [mse_df_predictions,
+                      mse_tf_df_predictions,
+                      sharpe_df_predictions,
+                      sharpe_mse_df_predictions,
+                      information_df_predictions,
+                      hp_df_predictions,
+                      hp_mse_df_predictions]
+    # Initialises row count
+    row_count = 0
+    count = 0
+    # Makes predictions per row on the dataframe
+    for row in dataframe_dictionary:
+        # Suspect the this convert to tensor function is time intensive
+        input_dict = {name: tf.convert_to_tensor(
+            [value]) for name, value in row.items()}
+        # Makes the model predictions
+        mse_predictions = mse_model.predict(input_dict)
+        mse_tf_predictions = mse_tf_model.predict(input_dict)
+        sharpe_predictions = sharpe_model.predict(input_dict)
+        sharpe_mse_predictions = sharpe_mse_model.predict(input_dict)
+        information_predictions = information_model.predict(input_dict)
+        hp_predictions = hp_model.predict(input_dict)
+        hp_mse_predictions = hp_mse_model.predict(input_dict)
+        # Stores predictions in an array
+        predictions = [mse_predictions[0],
+                       mse_tf_predictions[0],
+                       sharpe_predictions[0],
+                       sharpe_mse_predictions[0],
+                       information_predictions[0],
+                       hp_predictions[0],
+                       hp_mse_predictions[0]]
+        count = count + 1
+        for i in range(len(predictions)):
             # Adds prediction value to prediction df
             new_df_row = {'size_grp': row['size_grp'], "mth": int(row['mth']),
-                          "predict": np.asscalar(predictions[0]), 'ret_exc_lead1m': row['ret_exc_lead1m'], 'permno': row['permno']}
-            df_predictions = df_predictions.append(
+                          "predict": np.asscalar(predictions[i]), 'ret_exc_lead1m': row['ret_exc_lead1m'], 'permno': row['permno']}
+            df_predictions[i] = df_predictions[i].append(
                 new_df_row, ignore_index=True)
-            # Use the count to make sure the function is working properly (remove once tested)
-        print(df_predictions.info(verbose=True))
-        print(df_predictions.head())
-        # Saves the model predictions to file (model_locations and selected losses alogn for these purposes)
-        df_predictions.to_csv('/home/connormcdowall/finance-honours/results/predictions/' +
-                              model_name + '-' + selected_losses[loss_index] + '.csv')
-        print('Completed: ', selected_losses[loss_index])
-        # Appends to loss index to inform change trained model
-        loss_index = loss_index + 1
+        row_count = row_count + 1
+        print('Completed row {} for all Loss functions.'.format(row_count))
+        # Use the count to make sure the function is working properly (remove once tested)
+        # if count == 5:
+        #     break
+    for j in range(len(df_predictions)):
+        print(df_predictions[j].info(verbose=True))
+        print(df_predictions[j].head())
+    # Saves the model predictions to file (model_locations and selected losses alogn for these purposes)
+        df_predictions[j].to_csv('/home/connormcdowall/finance-honours/results/predictions/' +
+                                 model_name + '-' + selected_losses[j] + '.csv')
+    print('Completed: Loss Function Predictions')
     return
 
 
@@ -2245,6 +2383,8 @@ selected_metrics = metrics_dictionary[tf_option]
 # Custom objects dictionary for importing models (Both metrics and losses)
 custom_tf_objects = {'custom_mse_metric': custom_mse_metric, 'custom_hp_metric': custom_hp_metric,
                      'custom_sharpe_metric': custom_sharpe_metric, 'custom_information_metric': custom_information_metric, 'custom_mse': custom_mse, 'custom_sharpe': custom_sharpe, 'custom_sharpe_mse': custom_sharpe_mse, 'custom_information': custom_information, 'custom_hp': custom_hp, 'custom_hp_mse': custom_hp_mse}
+# Truth dictionary to inform the type of regressions perform
+regression_dictionary = {'capm': True, 'ff3': True, 'ff4': True, 'ff5': True}
 #################################################################################
 # Strings
 #################################################################################
@@ -2253,6 +2393,7 @@ model_name = 'cmcd398-finance-honours'
 data_source = 'data/combined_predictors_filtered_us.dta'
 csv_location = '/Volumes/Seagate/dataframes/'
 data_vm_directory = '/home/connormcdowall/local-data/'
+data_vm_directory
 data_vm_dta = '/home/connormcdowall/local-data/combined_predictors_filtered_us.dta'
 results_tables = '/home/connormcdowall/finance-honours/results/tables'
 list_of_columns = '/home/connormcdowall/finance-honours/data/working-columns.txt'
@@ -2280,12 +2421,13 @@ extract_test_data = False
 test_implementation = False
 example_autodiff = False
 test_loss_function = False
+chronologically_sort_data = True
 # Analytical
 analytical = False
 rank_functions = False
 # Research Proposal Analysis
 create_models = False
-make_predictions = True
+make_predictions = False
 perform_regressions = False
 #################################################################################
 # Function Testing
@@ -2308,6 +2450,8 @@ if need_dataframe:
     data = create_dataframes(csv_location, False)
 if use_sass:
     sass_access(data)
+if chronologically_sort_data:
+    sort_data_chronologically(data_vm_directory, set_top_500=False)
 #################################################################################
 # Tensorflow
 #################################################################################
@@ -2340,9 +2484,5 @@ if make_predictions:
     make_tensorflow_predictions(model_name=model_name, model_directory=model_directory, selected_losses=selected_losses,
                                 dataframe_location=predictions_data, custom_objects=custom_tf_objects)
 if perform_regressions:
-    predictions = []
-    print('Starting fama factor regressions')
-    regression_dictionary = {'capm': True,
-                             'ff3': True, 'ff4': True, 'ff5': True}
-    create_fama_factor_models(factor_location, train_data,
-                              test_data, val_data, regression_dictionary, predictions)
+    create_fama_factor_models(factor_location=factor_location, prediction_location=predictions_data, prediction_name='excess-returns',
+                              dependant_column='ret_exc_lead1m', regression_dictionary=regression_dictionary)
