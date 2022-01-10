@@ -793,9 +793,12 @@ def sort_data_chronologically(data_directory, size_of_chunks, set_top_500=False)
         val_subset = df[(df["mth"] > 198912) & (df["mth"] <= 199912)]
         test_subset = df[(df["mth"] > 199912)]
         print('Saving DataFrames')
-        train_chronological = train_chronological.append(train_subset)
-        val_chronological = val_chronological.append(val_subset)
-        test_chronological = test_chronological.append(test_subset)
+        train_chronological = train_chronological.append(
+            train_subset, ignore_index=True)
+        val_chronological = val_chronological.append(
+            val_subset, ignore_index=True)
+        test_chronological = test_chronological.append(
+            test_subset, ignore_index=True)
     # Prints the new dataframes
     print('Training')
     print(train_chronological.info(verbose=False))
