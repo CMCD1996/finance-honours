@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.12.31)  10 JAN 2022 13:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.12.31)  10 JAN 2022 19:39
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1085,11 +1085,11 @@ Package: blx-case-expl3 2020/12/31 v3.16 expl3 case changing code for biblatex
 \openout3 = `finance-788-research-essay.bcf'.
 
 Package biblatex Info: Trying to load bibliographic data...
-Package biblatex Info: ... file 'finance-788-research-essay.bbl' not found.
-
-No file finance-788-research-essay.bbl.
+Package biblatex Info: ... file 'finance-788-research-essay.bbl' found.
+ (./finance-788-research-essay.bbl)
 Package biblatex Info: Reference section=0 on input line 85.
 Package biblatex Info: Reference segment=0 on input line 85.
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -1178,6 +1178,7 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 85.
 LaTeX Info: Redefining \pageref on input line 85.
 LaTeX Info: Redefining \nameref on input line 85.
+ (./finance-788-research-essay.out) (./finance-788-research-essay.out)
 \@outlinefile=\write5
 \openout5 = `finance-788-research-essay.out'.
 
@@ -1190,389 +1191,134 @@ LaTeX Info: Redefining \nameref on input line 85.
 \cftafterequtitleskip=\skip148
  [1
 
-{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./finance-788-research-essay.toc
+LaTeX Font Info:    Trying to load font information for U+msa on input line 3.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 3.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.53 ...line {9.4}Limitations}{15}{subsection.9.4}
+                                                  % [1] [2])
 \tf@toc=\write6
 \openout6 = `finance-788-research-essay.toc'.
 
+ (./finance-788-research-essay.lof)
 \tf@lof=\write7
 \openout7 = `finance-788-research-essay.lof'.
 
+ (./finance-788-research-essay.lot)
 \tf@lot=\write8
 \openout8 = `finance-788-research-essay.lot'.
 
-
-
-Package hyperref Warning: old equ file detected, not used; run LaTeX again.
-
+ (./finance-788-research-essay.equ)
 \tf@equ=\write9
 \openout9 = `finance-788-research-essay.equ'.
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.139 \newpage
-               [1] [2] [3] [4]
-
-LaTeX Warning: Citation 'corporate-culture' on page 5 undefined on input line 159.
-
-
-LaTeX Warning: Citation 'eapvml' on page 5 undefined on input line 160.
-
-
-LaTeX Warning: Reference `lm' on page 5 undefined on input line 166.
-
-
-LaTeX Warning: Reference `mse' on page 5 undefined on input line 167.
-
-LaTeX Font Info:    Trying to load font information for U+msa on input line 168.
-(/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 168.
- (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [5]
-
-LaTeX Warning: Reference `pdmsem' on page 6 undefined on input line 173.
-
-
-LaTeX Warning: Reference `pdmseb' on page 6 undefined on input line 173.
-
-
-LaTeX Warning: Citation 'olsmf' on page 6 undefined on input line 183.
-
-
-LaTeX Warning: Reference `true-ols' on page 6 undefined on input line 184.
-
-
-LaTeX Warning: Reference `ssr' on page 6 undefined on input line 193.
-
-
-LaTeX Warning: Reference `res' on page 6 undefined on input line 195.
-
-[6]
-
-LaTeX Warning: Reference `res' on page 7 undefined on input line 200.
-
-
-LaTeX Warning: Reference `ssrm' on page 7 undefined on input line 200.
-
-
-LaTeX Warning: Reference `ssrm' on page 7 undefined on input line 201.
-
-
-LaTeX Warning: Reference `ssrmd' on page 7 undefined on input line 201.
-
-
-LaTeX Warning: Reference `OLSD' on page 7 undefined on input line 207.
-
-
-LaTeX Warning: Reference `ssrmd' on page 7 undefined on input line 207.
-
-
-LaTeX Warning: Reference `OLS' on page 7 undefined on input line 214.
-
-[7]
+ [3] [4] [5] [6] [7] [8] [9] [10]
 Overfull \hbox (2.92308pt too wide) in paragraph at lines 224--225
 []\OT1/cmr/m/n/12 The re-gres-sion hy-per-plane passes through the means of ob-served val-ues i.e., $[][] =
  []
 
-[8]
-
-LaTeX Warning: Reference `gma3' on page 9 undefined on input line 241.
-
-
-LaTeX Warning: Reference `gma4' on page 9 undefined on input line 242.
-
-
-LaTeX Warning: Reference `mlp-plr' on page 9 undefined on input line 256.
-
-[9] [10]
-
-LaTeX Warning: Citation 'hou2020replicating' on page 11 undefined on input line 281.
-
-
-LaTeX Warning: Citation 'jensen2021there' on page 11 undefined on input line 288.
-
-[11]
-
-LaTeX Warning: Reference `hpt' on page 12 undefined on input line 305.
-
-
-LaTeX Warning: Reference `sec:mlo' on page 12 undefined on input line 324.
-
-
-LaTeX Warning: Reference `mself' on page 12 undefined on input line 326.
-
-
-LaTeX Warning: Reference `pdmself' on page 12 undefined on input line 326.
-
-
-LaTeX Warning: Reference `mself' on page 12 undefined on input line 327.
-
-
-LaTeX Warning: Reference `pdmself' on page 12 undefined on input line 327.
-
-[12] [13]
-
-LaTeX Warning: Reference `htls' on page 14 undefined on input line 349.
-
-
-LaTeX Warning: Reference `fig:mrf' on page 14 undefined on input line 353.
-
-</Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/monotonic-ranking.png, id=144, 462.528pt x 346.896pt>
+[11] [12] [13] [14] [15] [16]
+</Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/monotonic-ranking.png, id=497, 462.528pt x 346.896pt>
 File: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/monotonic-ranking.png Graphic file (type png)
 <use /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/monotonic-ranking.png>
-Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/monotonic-ranking.png  used on input line 358.
+Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/monotonic-ranking.png  used on input line 363.
 (pdftex.def)             Requested size: 452.96826pt x 339.74402pt.
-[14]
+ [17] [18 </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/monotonic-ranking.png>] [19] [20] [21]
 
-LaTeX Warning: Reference `w1' on page 15 undefined on input line 363.
+LaTeX Warning: Reference `hpm' on page 22 undefined on input line 446.
 
-
-LaTeX Warning: Reference `pwlf' on page 15 undefined on input line 364.
-
-
-LaTeX Warning: Reference `pdewlf' on page 15 undefined on input line 371.
-
-[15 </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/monotonic-ranking.png>]
-
-LaTeX Warning: Reference `sec:mlo' on page 16 undefined on input line 377.
-
-
-LaTeX Warning: Reference `argmax' on page 16 undefined on input line 379.
-
-
-LaTeX Warning: Reference `rifml' on page 16 undefined on input line 381.
-
-
-LaTeX Warning: Citation 'fama2004capital' on page 16 undefined on input line 387.
-
-
-LaTeX Warning: Citation 'eugene1992cross' on page 16 undefined on input line 392.
-
-
-LaTeX Warning: Citation 'fama2021common' on page 16 undefined on input line 394.
-
-
-LaTeX Warning: Reference `ff3' on page 16 undefined on input line 396.
-
-
-LaTeX Warning: Reference `ff5' on page 16 undefined on input line 396.
-
-
-LaTeX Warning: Citation 'fama2012size' on page 16 undefined on input line 397.
-
-[16] [17]
-
-LaTeX Warning: Citation 'french-personal' on page 18 undefined on input line 419.
-
-
-LaTeX Warning: Citation 'fama1973risk' on page 18 undefined on input line 420.
-
-
-LaTeX Warning: Reference `fb1' on page 18 undefined on input line 422.
-
-
-LaTeX Warning: Reference `fb2' on page 18 undefined on input line 423.
-
-[18]
-
-LaTeX Warning: Citation 'samuelson2016proof' on page 19 undefined on input line 440.
-
-
-LaTeX Warning: Citation 'fama1995random' on page 19 undefined on input line 440.
-
-
-LaTeX Warning: Citation 'fama1963mandelbrot' on page 19 undefined on input line 440.
-
-
-LaTeX Warning: Citation 'fama1965behavior' on page 19 undefined on input line 440.
-
-
-LaTeX Warning: Citation 'fama2021efficient' on page 19 undefined on input line 440.
-
-
-LaTeX Warning: Reference `hpm' on page 19 undefined on input line 441.
-
-
-LaTeX Warning: Reference `capm' on page 19 undefined on input line 441.
-
-
-LaTeX Warning: Reference `ff3' on page 19 undefined on input line 442.
-
-
-LaTeX Warning: Reference `ff5' on page 19 undefined on input line 442.
-
-
-LaTeX Warning: Reference `plfpe' on page 19 undefined on input line 443.
-
-
-Overfull \hbox (2.39043pt too wide) in paragraph at lines 440--465
-\OT1/cmr/m/n/12 tent with the ef-fi-cient mar-ket hy-poth-e-sis (([]), ([]),
- []
-
-
-LaTeX Warning: Citation 'jensen2021there' on page 19 undefined on input line 466.
-
-
-LaTeX Warning: Citation 'sharpe1994sharpe' on page 19 undefined on input line 468.
-
-
-LaTeX Warning: Reference `sr' on page 19 undefined on input line 468.
-
-[19]
-
-LaTeX Warning: Reference `ir' on page 20 undefined on input line 480.
-
-[20]
-
-LaTeX Warning: Citation 'hlavac2018stargazer' on page 21 undefined on input line 493.
-
-</Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-square-error-tensorflow.png, id=204, 1927.2pt x 1084.05pt>
+[22] [23]
+</Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-square-error-tensorflow.png, id=591, 1927.2pt x 1084.05pt>
 File: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-square-error-tensorflow.png Graphic file (type png)
 <use /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-square-error-tensorflow.png>
-Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-square-error-tensorflow.png  used on input line 497.
+Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-square-error-tensorflow.png  used on input line 502.
 (pdftex.def)             Requested size: 452.96826pt x 254.78487pt.
-</Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-square-error.png, id=205, 1927.2pt x 1084.05pt>
+</Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-square-error.png, id=592, 1927.2pt x 1084.05pt>
 File: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-square-error.png Graphic file (type png)
 <use /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-square-error.png>
-Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-square-error.png  used on input line 503.
+Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-square-error.png  used on input line 508.
 (pdftex.def)             Requested size: 452.96826pt x 254.78487pt.
-</Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/sharpe.png, id=206, 1927.2pt x 1084.05pt>
+</Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/sharpe.png, id=593, 1927.2pt x 1084.05pt>
 File: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/sharpe.png Graphic file (type png)
 <use /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/sharpe.png>
-Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/sharpe.png  used on input line 509.
+Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/sharpe.png  used on input line 514.
 (pdftex.def)             Requested size: 452.96826pt x 254.78487pt.
-</Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/sharpe-mse.png, id=207, 1927.2pt x 1084.05pt>
+</Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/sharpe-mse.png, id=594, 1927.2pt x 1084.05pt>
 File: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/sharpe-mse.png Graphic file (type png)
 <use /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/sharpe-mse.png>
-Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/sharpe-mse.png  used on input line 515.
+Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/sharpe-mse.png  used on input line 520.
 (pdftex.def)             Requested size: 452.96826pt x 254.78487pt.
-[21 </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-square-error-tensorflow.png> </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-square-error.png>]
-</Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/information.png, id=218, 1927.2pt x 1084.05pt>
+ [24 </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-square-error-tensorflow.png> </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-square-error.png>]
+</Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/information.png, id=603, 1927.2pt x 1084.05pt>
 File: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/information.png Graphic file (type png)
 <use /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/information.png>
-Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/information.png  used on input line 521.
+Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/information.png  used on input line 526.
 (pdftex.def)             Requested size: 452.96826pt x 254.78487pt.
-</Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/hedge-portfolio.png, id=219, 1927.2pt x 1084.05pt>
+</Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/hedge-portfolio.png, id=604, 1927.2pt x 1084.05pt>
 File: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/hedge-portfolio.png Graphic file (type png)
 <use /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/hedge-portfolio.png>
-Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/hedge-portfolio.png  used on input line 527.
+Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/hedge-portfolio.png  used on input line 532.
 (pdftex.def)             Requested size: 452.96826pt x 254.78487pt.
- [22 </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/sharpe.png> </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/sharpe-mse.png>]
-</Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/hedge-portfolio-mse.png, id=228, 1927.2pt x 1084.05pt>
+ [25 </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/sharpe.png> </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/sharpe-mse.png>]
+</Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/hedge-portfolio-mse.png, id=611, 1927.2pt x 1084.05pt>
 File: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/hedge-portfolio-mse.png Graphic file (type png)
 <use /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/hedge-portfolio-mse.png>
-Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/hedge-portfolio-mse.png  used on input line 533.
+Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/hedge-portfolio-mse.png  used on input line 538.
 (pdftex.def)             Requested size: 452.96826pt x 254.78487pt.
- [23 </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/information.png> </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/hedge-portfolio.png>]
-/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/submission/finance-788-research-essay.tex:538: Missing $ inserted.
-<inserted text> 
-                $
-l.538 PooledOLS replaces Fama_
-                              macBeth in this instance.
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/submission/finance-788-research-essay.tex:539: Missing $ inserted.
-<inserted text> 
-                $
-l.539 \subsection
-                 {Hedge Portfolio Performance}
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-[24 </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/hedge-portfolio-mse.png>]
-Overfull \hbox (3.06065pt too wide) in alignment at lines 754--954
+ [26 </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/information.png> </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/hedge-portfolio.png>] [27 </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/hedge-portfolio-mse.png>]
+Overfull \hbox (3.06065pt too wide) in alignment at lines 554--558
  [] [] [] [] [] [] [] [] [] 
  []
 
-[25
 
-] [26] [27] [28] [29] [30] [31] [32] [33] [34] [35]
-Overfull \hbox (3.06065pt too wide) in alignment at lines 954--1078
+Overfull \hbox (3.06065pt too wide) in alignment at lines 558--759
  [] [] [] [] [] [] [] [] [] 
  []
 
-[36] [37] [38] [39] [40] [41] [42] [43] [44] [45] [46] [47]
 
-Package longtable Warning: Column widths have changed
-(longtable)                in table 3 on input line 1078.
+Overfull \hbox (3.06065pt too wide) in alignment at lines 759--959
+ [] [] [] [] [] [] [] [] [] 
+ []
 
-[48] [49] [50] [51] [52] [53] [54] [55]
+[28
 
-LaTeX Warning: Citation 'J:10' on page 56 undefined on input line 1082.
+] [29] [30] [31] [32] [33] [34] [35] [36] [37] [38]
+Overfull \hbox (3.06065pt too wide) in alignment at lines 959--1083
+ [] [] [] [] [] [] [] [] [] 
+ []
 
+[39] [40] [41] [42] [43] [44] [45] [46] [47] [48] [49] [50] [51] [52] [53] [54] [55] [56] [57] [58] [59
 
-LaTeX Warning: Citation 'Google_Drive' on page 56 undefined on input line 1085.
-
-
-LaTeX Warning: Citation 'Git' on page 56 undefined on input line 1086.
-
-
-LaTeX Warning: Citation 'J:10' on page 56 undefined on input line 1105.
-
-[56
-
-]
-
-LaTeX Warning: Citation 'PYPL_Pop' on page 57 undefined on input line 1123.
-
-
-LaTeX Warning: Citation 'Anaconda' on page 57 undefined on input line 1127.
-
-
-LaTeX Warning: Citation 'PEP8' on page 57 undefined on input line 1134.
-
-[57]
-
-LaTeX Warning: Reference `Version Control' on page 58 undefined on input line 1151.
-
-
-LaTeX Warning: Empty bibliography on input line 1160.
-
-[58]
-
-Package longtable Warning: Table widths have changed. Rerun LaTeX.
-
-(./finance-788-research-essay.aux)
+] [60] [61] [62] [63] (./finance-788-research-essay.aux)
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `finance-788-research-essay.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `finance-788-research-essay.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  AC4FBA841D324EAB0A32B69C59EFE5B2;9083.
-
-Package biblatex Warning: Please (re)run Biber on the file:
-(biblatex)                finance-788-research-essay
-(biblatex)                and rerun LaTeX afterwards.
-
+Package rerunfilecheck Info: File `finance-788-research-essay.out' has not changed.
+(rerunfilecheck)             Checksum: AC4FBA841D324EAB0A32B69C59EFE5B2;9083.
 Package logreq Info: Writing requests to 'finance-788-research-essay.run.xml'.
 \openout1 = `finance-788-research-essay.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 37175 strings out of 478353
- 744297 string characters out of 5848085
- 1642890 words of memory out of 5000000
- 54582 multiletter control sequences out of 15000+600000
- 414106 words of font info for 67 fonts, out of 8000000 for 9000
+ 37479 strings out of 478353
+ 752063 string characters out of 5848085
+ 1647478 words of memory out of 5000000
+ 54818 multiletter control sequences out of 15000+600000
+ 414453 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,14n,80p,876b,4823s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 84i,14n,80p,1115b,4823s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on finance-788-research-essay.pdf (59 pages, 1571293 bytes).
+Output written on finance-788-research-essay.pdf (64 pages, 1590302 bytes).
 PDF statistics:
- 522 PDF objects out of 1000 (max. 8388607)
- 406 compressed objects within 5 object streams
- 176 named destinations out of 1000 (max. 500000)
- 53 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 924 PDF objects out of 1000 (max. 8388607)
+ 800 compressed objects within 8 object streams
+ 206 named destinations out of 1000 (max. 500000)
+ 565 words of extra memory for PDF output out of 10000 (max. 10000000)
 
