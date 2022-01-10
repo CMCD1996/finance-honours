@@ -805,12 +805,9 @@ def sort_data_chronologically(data_directory, size_of_chunks, set_top_500=False)
         test_chronological = test_chronological.append(
             test_subset, ignore_index=True)
     # Drops the Level_0 column
-    train_chronological = train_chronological.drop(
-        ['level_0'], axis=1, inplace=True)
-    val_chronological = val_chronological.drop(
-        ['level_0'], axis=1, inplace=True)
-    test_chronological = test_chronological.drop(
-        ['level_0'], axis=1, inplace=True)
+    train_chronological = train_chronological.drop(columns=['level_0'])
+    val_chronological = val_chronological.drop(columns=['level_0'])
+    test_chronological = test_chronological.drop(columns=['level_0'])
     # Prints the new dataframes
     print('Training')
     print(train_chronological.info(verbose=False))
