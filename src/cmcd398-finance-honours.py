@@ -814,10 +814,10 @@ def sort_data_chronologically(data_directory, size_of_chunks, set_top_500=False)
                 [test_chronological, test_subset], ignore_index=True)
     # Drops the Level_0 column
     train_chronological = train_chronological.drop(
-        columns=['level_0'], inplace=True)
-    val_chronological = val_chronological.drop(columns=['level_0'],inplace=True)
+        columns=['level_0'])
+    val_chronological = val_chronological.drop(columns=['level_0'])
     test_chronological = test_chronological.drop(
-        columns=['level_0'], inplace=True)
+        columns=['level_0'])
     # Prints the new dataframes
     print('Training')
     print(train_chronological.info(verbose=True))
@@ -829,13 +829,10 @@ def sort_data_chronologically(data_directory, size_of_chunks, set_top_500=False)
     print(test_chronological.info(verbose=True))
     print(sorted(test_chronological['mth'].unique()))
     train_chronological = train_chronological.drop(
-        columns=['index'], inplace=True)
-    val_chronological = val_chronological.drop(columns=['index'], inplace=True)
+        columns=['index'])
+    val_chronological = val_chronological.drop(columns=['index'])
     test_chronological = test_chronological.drop(
-        columns=['index'], inplace=True)
-    print(train_chronological.columns)
-    print(val_chronological.columns)
-    print(test_chronological.columns)
+        columns=['index'])
     # Saves the chronological files to file
     train_chronological.to_stata(data_directory + 'active_train.dta')
     val_chronological.to_stata(data_directory + 'active_val.dta')
