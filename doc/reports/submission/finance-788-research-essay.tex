@@ -144,11 +144,13 @@
 \newpage
 \section{Abstract}
 \newpage
-\section{Introduction}
+\section{Introduction (3 Pages)}
 \newpage
 \section{Research Question(s)}
+\textbf{Can neural networks, optimizsed to maximise financial metrics (e.g., Hedge Portfolio Excess Return, Sharpe Ratio etc.,) outperform conventional loss minimisation optimisation strategies,
+when predicting excess returns in individual equities and equity hedge portfolios?}
 \section{Motivation(s)}
-\section{Literature Review}\label{LR}
+\section{Literature Review (3 pages)}\label{LR}
 Overview of literature in asset pricing (761/751), ML application, factor pricing - very brief, 12pt, double spaced,
 \subsection{Asset Pricing}
 \subsection{Machine Learning}
@@ -158,9 +160,107 @@ Monotonic ranking
 A couple of recent publications highlight the increased application of machine learning algorithms in financial contexts.
 \cite{corporate-culture}
 Gu et al (\citeyear{eapvml}) explore the comparative use of machine learning in empirical asset pricing.
-\subsection{Data}
-\section{Theory}
-\subsection{Modelling, Loss, and Optimisation}\label{sec:mlo}
+\subsection{Hypothesis}
+\textbf{Include examples on the minimisation of sum of the square errors does not contribute to maximising returns}
+\newpage
+\section{Methodology}
+The required methodology to construct the methods to build, develop, and deploy neural networks with custom objective functions.
+\subsection{Data}\label{data}
+Hou et al., (\citeyear{hou2020replicating}) use an extensive data library to assess 452 anomalies across anomalies literature.
+Their analysis informs which abnormalities drive the cross section of expected returns. 
+Most abnormalities fail under current standards of empirical finance when using a single hurdle test of absolute t-stat greater or equal to 1.96.
+Firstly, the paper finds economic fundamentals take precedence over trading frictions in explanatory power, statistical and economic significance.
+Secondly, micro-caps account for anomalies disproportionately, leading to NYSE breakpoints, value-weighted returns in both portfolio sorts and cross-sectional regressions with weighted least squares. 
+Lastly, arguments in improving anomalies literature credibility follow a closer alignment to economic theory as the field persists to be statistical in nature.
+Overall, capital market efficiency is higher than expected.
+Jensen et al., \citeyear{jensen2021there} use the above dataset to explore hierarchical bayesian models of alphas emphasising the joint behaviours of factors, 
+and provide an alternative multiple testing adjustment, more powerful than common methods.
+Jensen et al., adapt the global dataset to focus only on one-month holding periods for all factors, only include most recent accounting data (quarterly or annually) and add 15 new factors.
+The authors provide documentation and web-based resources on \href{https://github.com/bkelly-lab/ReplicationCrisis}{GitHub} to reconstruct an updated dataset from Wharton Research Data Services (WRDS) using SAS Studio.
+The dataset is exhaustive as illustrated by the both the summary statistics in \ref{dss} and Global Factor Data Documentation in the author's GitHub repository \footnote[1]{View summary statistics and  in tandem for comprehension}
+Identifier variables (e.g., size group), Accounting variables (e.g., COGS), accounting characteristics (e.g., change in net working capital, solvency ratios etc.), market variables (e.g., share price, excess return), market characteristics (e.g., market equity, 60 month CAPM $\beta$), 
+and detailed characteristics (e.g., equity duration, Altman Z-Score) and Foreign Exchange Conversion Rates feature in the dataset's composition.
+The complete global dataset has 406 characteristics, a superset of the original 153 in Jensen et al., with 2,739,928 firm-year observations, across 524 features, from January 1st 1961 to December 31st 2020.
+Subsequently, the complete dataset has 1.435 billion data points. \textbf{One month lead excess returns} is the designated target variables for prediction as will inform the construction of hedge portfolio to
+assess relative performance between different optimisation functionalities.
+The exhaustive nature and accessibility of the global dataset makes it well-suited for exploring optimisation functions, maximising renown financial metrics, in deep neural-networks.
+\subsection{Infrastructure}
+The essay necessitates substantial software development, infrastructure, and technological configuration to undertake analysis. 
+Google Cloud Platform Cloud Storage buckets manage large datasets.
+The deployment of Google Cloud Engine Compute Engine Virtual Machine (VM) Instances, optimised for machine learning, build, train, and evaluate deep neural networks.
+Cryptographic network protocols, mostly secure shells, establish remote connectivity between local and remote infrastructure to communicate and execute commands.
+Version control technologies, primarily Git and GitHub, manage and develop methods for analysis with the programming of approximately 40 methods, classes, and functions.
+\subsection{Data Processing}
+Analysis requires data preprocessing to form training, validation, and testing subsets fro the neural network. 
+The initial training, testing, and validation sets comprise of \textbf{1031516}, \textbf{706908 }, and \textbf{1001504} global equity firm-year observations across 524 features, respectively.
+The division of subsets is chronological with firm-year observations [1961-1990), [1990-2000), [2000-2020] for training, validation, and testing, respectively.
+However, the computational complexity exceeds resources available at the time of analysis.
+Subsequently, training sets require further preprocessing in addition to reconfiguring infrastructure.
+Further preprocessing includes: Reducing the number of factors from Jensen et al., (\citeyear{jensen2021there}) to approximately the same number of features (160) Hou et al., (\citeyear{hou2020replicating}) use to explore portfolio replication.
+The replacement of NaN values in a feature columns with the median value of the respective column to retain observations.
+The removal of firm-year observations with Micro or Nano size grouping designations, non-overlapping, value weighted by market capitalisation on the New York Stock Exchange (NYSE)). 
+Mega, Large, and Small remain, reflecting equities with market capitalisations greater than the 80th, 50th, and 20th percentile of all NYSE stocks, respectively.
+Micro equities reside between the 1st and 20th percentiles, with Nano between below the 1st percentile. The rational for their exclusion is Mega, Large, and Small equities account for the majority of stock market returns (80\%). 
+Hypothetically, their omission will not materially influence results. 
+Furthermore, the reduction in numerical feature precision from float64 to float32 effectively halves memory usage. 
+The training, testing, and validation sets comprise of \textbf{532218}, \textbf{294581}, and \textbf{531461} global equity firm-year observations across 160 features after above revisions, respectively.
+Subsequently, the revised dataset has 217.321,600 data points, suitable to use in analysis.
+Memory monitoring methods accompany the aforementioned preprocessing adjustments, monitoring CPU and GPU utilisation, reconfiguring GPU's, and configuring application programming interfaces for monitoring modelling performance.
+\subsection{Feature Encoding}
+Deep neural networks require tensors as inputs for fitting, training, and evaluating data to make predictions.
+A tensor is a mathematical object describing the physical properties of an object. In other words, multilinear relationships between sets of algebraic objects related in vector set.
+Transformation laws govern tensors. Therefore, a tensor is considered an n dimensional arrays in conjunction with associated transformation laws.
+The dataset must take the form of a tensor for analysis.
+Essentially, every value for every feature must be encoded to take a numerical form.
+A feature matrix is correct term for the dataset in this application.
+Firstly, the labelling of target variable is necessary for training, validating, and testing the model.
+Secondly, a shuffling of columns and instances in feature matrix promotes better training as accommodates randomness.
+This analysis sacrifices shuffling the training set due to memory issues.
+Lastly, an encoding process encodes both categorical and numerical feature columns.
+The revised dataset includes eight categorical variables:
+\begin{enumerate}
+	\item \textbf{size\_group}: The aforementioned size grouping in \ref{data}
+	\item \textbf{permno}: Permanent unique firm identifier from CRSP
+	\item \textbf{permco}: Permanent unique issue identifier from CRSP
+	\item \textbf{crsp\_shrcd}: CRSP share code
+	\item \textbf{crsp\_exchcd}: Compustat stock exchange code
+	\item \textbf{sic}: Firm SIC industry
+	\item \textbf{ff49}: Classification of stocks in 49 industry groups based on SIC codes and the methodology in F.Fama \& K.French \citeyear{fama1997industry} with the addition of the software industry.
+	\item \textbf{adjfct}: Share Adjustment Factor
+\end{enumerate}
+Categorical encoding transforms the set of instances for a features into a series of binary variables.
+These may be one-hot encoded, and/or stored in sparse tensors, depending on input and desired application.
+The remaining variables are numerical where a normalization normalizes each feature to zero mean and unit variance.
+\subsection{Neural Network Configuration}
+\subsubsection{Multi Layer Perceptron (MLP)}\label{mlp-math}
+Artificial Neural Nets (ANN) are versatile, powerful, and scalable.
+They frequently outperform other machine learning algorithms on large and complex problems.
+Linear threshold units (LTU) compose neural networks.
+A linear threshold unit (LTU) feeds the weighted sum of input values ($z=\textbf{w}^{T} \cdot \textbf{x}$) into a step function ($h_{w}(\textbf{x})=step(z)$).
+A perceptron is a single layer of LTUs connected to every input.
+Perceptrons are suitable for both regression and classification tasks.
+Perceptrons utilize a training algorithm assessing the strength of connections between perceptrons while considering errors.
+A perceptron is fed one training instance at a time, making predictions for each instance.
+For every output LTU that produced a wrong prediction, it re-enforces the connection weights using the perception learning rule (\ref{mlp-plr}) from the inputs that would have contributed to the right prediction.
+One LTU input layer, multiple LTU hidden layers, and an output LTU layer create an Multi Layer Perceptron (MLP).
+The step functions in each LTU are replaced by a logistic or ReLU function ($\sigma(z)=\frac{1}{1+ exp(-z)}$ or $ReLU(z) = max(0,z)$ respectively) to enable gradient descent for optimisation.
+A shared activatition function replaces the individual activation functions in the output layer to enable exclusive classification or regression.
+\begin{align}
+	w_{i,j}^{\text{next step}} &= w_{i,j} + \eta (\hat{y}_j - y_j)x_i \numberthis \label{mlp-plr}
+\end{align}
+Where
+\begin{itemize}
+	\item $w_{i,j}$ is the connection weights between the ith input neuron and the jth output neuron. 
+	\item $x_i$ is the ith input value of the current training instance.
+	\item $\hat{y}_{j}$ is the output of the jth output neuron for the current training instance.
+	\item $y_{j}$ is the output of the jth output neuron for the current training instance.
+	\item $\eta$ is the rate.
+\end{itemize}
+The architecture for analysis is a large MLP.
+\subsubsection{Model Configuration}
+\textbf{10 epochs, 207 runs per epochs.}
+\subsection{Loss Functions \& Performance Metrics}
+\subsubsection{Modelling, Loss, and Optimisation}\label{sec:mlo}
 We summarize the theory surrounding predictive modelling, loss functions, and optimisation algorithms.
 These functions train models by comparing predictions to realized observations using optimisation algorithms to minimize the loss function.
 We examine a linear model as our predictive model (\ref{lm}).
@@ -178,134 +278,20 @@ In our example, equations \ref{pdmsem} and \ref{pdmseb} are the partial derivati
 Secondly, the algorithm explores epochs, using a learning rate to update parameters to move in the opposite directions of the partial derivatives until settling in a local minima.
 This extrema is the optimisation of the loss function, quantifying the accuracy of the predicative model.
 Ordinary Least Squares (OLS) regressions is an extension of the linear model prevalent in asset pricing.
-\subsection{Ordinary Least Squares (OLS)}\label{ols}
-The OLS regression is the most prominent statistical model in asset pricing theory.
-Rosenfeld (\citeyear{olsmf}) summarises OLS.
-The composition of the true OLS (\ref{true-ols}) model includes four components.
-Firstly, \textbf{X}, an n x k matrix of k independent variables for n observations.
-Secondly, \textbf{y}, an n x 1 vector of observation on the dependent variable.
-Thirdly, \textbf{$\epsilon$}, an n x 1 vector of unexplained error.
-Lastly, $\theta$, a k x 1 vector of parameters to be estimated.
-\begin{align*}
-	y &= X\theta + \epsilon \numberthis \label{true-ols}
-\end{align*}
-\subsubsection{Estimation Criteria}
-The criteria to obtain the parameter estimate ($\hat{\theta}$) relies on the minimisation of the sum of squared residuals (\ref{ssr}).
-We highlight the observed residuals (e) are distinct from unexplained disturbances ($\epsilon$).
-Equation \ref{res} derives residuals by taking the difference between observations based on parameter estimates.
-\begin{align*}
-	\sum & e_i^2  \numberthis \label{ssr}\\
-	e = y & - X \hat{\theta} \numberthis \label{res}
-\end{align*}
-Expanding the quadratic $e^{T}e$ after substituting in equation \ref{res} leads to the alternative expression of the sum of squared residuals in equation \ref{ssrm}.
-Minimizing the sum of square residuals requires taking the partial derivative of equation \ref{ssrm} with respect to the estimated parameters (equation) using matrix differentiation (\ref{ssrmd}).
-It is imperative X has full rank where all vectors in the matrix are linearly independent, validating both the presence of a positive definite matrix and minimum.
-\begin{align*}
-	e^{T}e &= y^{T}y - 2\hat{\theta}^{T}X^{T}y + \hat{\theta}^{T}X^{T}\hat{\theta}X \numberthis \label{ssrm}\\
-	\frac{\partial e^{T}e}{\partial \hat{\theta}} &= - 2X^{T}y + 2X^{T}X\hat{\theta} =0 \numberthis \label{ssrmd}
-\end{align*}
-We find the expression for the Ordinary Least Squares (OLS) estimator (\ref{OLSD}) after rearranging equation \ref{ssrmd} to normal form, utilizing inverse matrices to form identity matrices, and simplifying.
-\begin{align*}
-	2X^{T}X\hat{\theta} &= 2X^{T}y \\
-	(X^{T}X)^{-1}(X^{T}X)\hat{\theta} &= (X^{T}X)^{-1}X^{T}y \\
-	I\hat{\theta} &= (X^{T}X)^{-1}X^{T}y \\
-	\hat{\theta} &= (X^{T}X)^{-1}(X^{T}y) \numberthis \label{OLSD}\\
-\end{align*}
-Therefore, we can use the OLS estimator to make predictions with OLS (\ref{OLS}).
-\begin{align*}
-	\hat{y} &= X^{T} \hat{\theta} \numberthis \label{OLS}
-\end{align*}
-\subsubsection{Properties of OLS Estimators}
-There are six key properties in addition to the satisfaction in minimizing the summation of squared residuals.
-\begin{enumerate}
-	\item The residuals are uncorrelated with the observed values of X i.e., $X^{T}e=0$.
-	\item The sum of the residuals is zero i.e., $\sum e_i=0$.
-	\item The sample mean of the residuals is zero i.e., $\bar{e} = \frac{\sum e_i}{n} = 0$.
-	\item The regression hyperplane passes through the means of observed values i.e., $\frac{e} = \frac{y - X\theta}{n} = 0$. Since $\bar{e} = 0$ assumed, it is implied $\bar{y}=\bar{x}\bar{\theta}$.
-	\item The residuals are uncorrelated with the predicted y i.e., $\hat{y} = X\hat{\theta}$, $\hat{y}^{T}e = (X\hat{\beta})^{T}e = b^{T}X^{T}e = 0$ 
-	\item The mean of $\hat{y}$ for the sample will equal the mean of the y.
-\end{enumerate}
-\subsubsection{The Gauss-Markov Theorem}
-However, OLS makes Gauss-Markov assumptions about the true model to make inferences regarding $\beta$ from $\hat{\beta}$.
-The intention of the Gauss-Markov Theorem, conditional on the below assumptions, states the OLS estimator is the best linear, unbiased, and efficient estimator: 
-\begin{align*}
-	y &= x\beta + \epsilon\\
-	E[\epsilon|X] &= 0 \numberthis \label{gma3}\\
-	E(\epsilon \epsilon^{T}|X) &= \Omega = \sigma^{2}I \numberthis \label{gma4}\\
-	\epsilon &| X ~ N[0,\sigma^{T}I] \text{ (hypothesis testing)}
-\end{align*}
-\begin{itemize}
-	\item X is an n x k matrix of full rank
-	\item X must be generated randomly, or fixed, by a mechanism uncorrelated to disturbances.
-\end{itemize}
-Equation \ref{gma3} implies $E(y) = X\beta$ as no observations of the independent variables convey any information about the expected values of the disturbances.
-Equation \ref{gma4} captures homoskedasticity and no autocorrelation assumptions.
-Additionally,
-The theory underlying Ordinary Least Squares informs the common practice in minimising of the sum of least squares when evaluating prediction performance.
+The mathematical rigor and suitability  of the OLS estimator section \ref{ols}.
+The theory underlying OLS informs the common practice in minimising of the sum of least squares when evaluating prediction performance.
 The mathematical tractability, in accordance with the aforementioned assumption, frame our thinking surrounding the derivation of custom loss functions.
-\subsection{Artificial Neural Networks (ANN)}
-\subsubsection{Multi Layer Perceptron (MLP)}\label{mlp-math}
-Artificial Neural Nets (ANN) are versatile, powerful, and scalable.
-They sit at the heart of deep learning as frequently outperform other machine learning algorithms on large and complex problems.
-This research proposal suggests implementing two sets of multi-layer perceptron, a form of ANN, to predict investment decisions and exit opportunities from investment criteria.
-A linear threshold unit (LTU) feeds the weighted sum of input values ($z=\textbf{w}^{T} \cdot \textbf{x}$) into a step function ($h_{w}(\textbf{x})=step(z)$).
-A perceptron is a single layer of LTUs where each LTU is connected to every input.
-Perceptrons are suitable for classification as output the positive investment decision or exit opportunity if a threshold is met.
-Perceptrons utilize a training algorithm assessing the strength of connections between perceptrons while considering errors.
-A perceptron is fed one training instance at a time, making predictions for each instance.
-For every output LTU that produced a wrong prediction, it re-enforces the connection weights using the perception learning rule (\ref{mlp-plr}) from the inputs that would have contributed to the right prediction.
-A Multi Layer Perceptron is composed of one LTU input layer, multiple LTU hidden layers and an output LTU layer.
-The step functions in each LTU are replaced by a logistic or ReLU function ($\sigma(z)=\frac{1}{1+ exp(-z)}$ or $ReLU(z) = max(0,z)$ respectively) to enable gradient descent for optimisation.
-A shared softmax function replaces the individual activation functions in the output layer to enable exclusive classification.
-In this instance, the classification of investment decisions, or exit opportunties, from investment criteria.
-Tensorflow's DNNClassifier function facilitates the implementation of MLPs in this proposal.
-\begin{align}
-	w_{i,j}^{\text{next step}} &= w_{i,j} + \eta (\hat{y}_j - y_j)x_i \numberthis \label{mlp-plr}
-\end{align}
-Where
-\begin{itemize}
-	\item $w_{i,j}$ is the connection weights between the ith input neuron and the jth output neuron. 
-	\item $x_i$ is the ith input value of the current training instance.
-	\item $\hat{y}_{j}$ is the output of the jth output neuron for the current training instance.
-	\item $y_{j}$ is the output of the jth output neuron for the current training instance.
-	\item $\eta$ is the rate.
-\end{itemize}
-\subsection{Hypothesis}
-\textbf{Include examples on the minimisation of sum of the square errors does not contribute to maximising returns}
-\section{Model}
-\textbf{Insert model configuration}
-Example of the whole set
-\subsection{Configuration}
-\section{Methodology}
-\subsection{Data}
-Hou et al., (\citeyear{hou2020replicating}) use an extensive data library to assess 452 anomalies across anomalies literature.
-Their analysis informs which abnormalities drive the cross section of expected returns. 
-Most abnormalities fail under current standards of empirical finance when using a single hurdle test of absolute t-stat greater or equal to 1.96.
-Firstly, the paper finds economic fundamentals take precedence over trading frictions in explanatory power, statistical and economic significance.
-Secondly, micro-caps account for anomalies disproportionately, leading to NYSE breakpoints, value-weighted returns in both portfolio sorts and cross-sectional regressions with weighted least squares. 
-Lastly, arguments in improving anomalies literature credibility follow a closer alignment to economic theory as the field persists to be statistical in nature.
-Overall, capital market efficiency is higher than expected.
-Jensen et al., \citeyear{jensen2021there} use the above dataset to explore hierarchial bayesian models of alphas emphasising the joint behaviours of factors, 
-and provide an alternative multiple testing adjustment, more powerful than common methods.
-Jensen et al., adapt the global dataset to focus only on one-month holding periods for all factors, only include most recent accounting data (quarterly or annually) and add 15 new factors.
-The exhaustive nature and accessibility of the global dataset makes it well-suited for exploring optimisation functions in neural-network construction.
-\subsection{Tensorflow}
-\subsection{Automatic Differentiation}
-Tensorflow's ability to execute automatic differentiation informs this research essay.
-\subsection{Limitations}
-\subsection{Summary Statistics}
-\section{Methodology}
-This research implements the subsequent methodology.
-\begin{itemize}
-	\item 
-\end{itemize}
-\subsection{Target Variable}
-The selected target variable is one month lead excess returns ('ret\_exc\_lead1m') from the factor replication dataset
-\subsection{Google Cloud Platform}
-\subsubsection{Configuration}
-\subsubsection{Limitations}
-\subsection{Tensorflow}
-\subsubsection{Automatic Differientiation}
+\subsubsection{Automatic Differentiation}
+\subsubsection{Loss \& Metric Definition}
+\subsection{Hedge Portfolio Construction}
+\subsection{Regression Analysis}
+\newpage
+\section{Limitations}
+Further research will rely on addressing several limitation.
+\subsection{Lack of Computational Resources}
+The lack of resources to explore the entire dataset within reasonable timeframes, and at reasonable costs.
+The most material inhibitions are the inability to explore all 524 factors for all size groupings, the reducing in level of precision for numerical features, 
+the ability to shuffle training sets at lengths greater than or equal to the input sets  
 \subsection{Loss Functions \& Performance Metrics}
 Table \ref{hpt} emphasises the separation between training and validation datasets.
 	\begin{table}[H]
@@ -549,7 +535,143 @@ PooledOLS replaces Fama MacBeth in this instance.
 \newpage
 \begin{landscape}
 \section{Appendix}
-\subsection{Tables and Charts}
+\subsection{Ordinary Least Squares (OLS)}\label{ols}
+The OLS regression is the most prominent statistical model in asset pricing theory.
+Rosenfeld (\citeyear{olsmf}) summarises OLS.
+The composition of the true OLS (\ref{true-ols}) model includes four components.
+Firstly, \textbf{X}, an n x k matrix of k independent variables for n observations.
+Secondly, \textbf{y}, an n x 1 vector of observation on the dependent variable.
+Thirdly, \textbf{$\epsilon$}, an n x 1 vector of unexplained error.
+Lastly, $\theta$, a k x 1 vector of parameters to be estimated.
+\begin{align*}
+	y &= X\theta + \epsilon \numberthis \label{true-ols}
+\end{align*}
+\subsubsection{Estimation Criteria}
+The criteria to obtain the parameter estimate ($\hat{\theta}$) relies on the minimisation of the sum of squared residuals (\ref{ssr}).
+We highlight the observed residuals (e) are distinct from unexplained disturbances ($\epsilon$).
+Equation \ref{res} derives residuals by taking the difference between observations based on parameter estimates.
+\begin{align*}
+	\sum & e_i^2  \numberthis \label{ssr}\\
+	e = y & - X \hat{\theta} \numberthis \label{res}
+\end{align*}
+Expanding the quadratic $e^{T}e$ after substituting in equation \ref{res} leads to the alternative expression of the sum of squared residuals in equation \ref{ssrm}.
+Minimizing the sum of square residuals requires taking the partial derivative of equation \ref{ssrm} with respect to the estimated parameters (equation) using matrix differentiation (\ref{ssrmd}).
+It is imperative X has full rank where all vectors in the matrix are linearly independent, validating both the presence of a positive definite matrix and minimum.
+\begin{align*}
+	e^{T}e &= y^{T}y - 2\hat{\theta}^{T}X^{T}y + \hat{\theta}^{T}X^{T}\hat{\theta}X \numberthis \label{ssrm}\\
+	\frac{\partial e^{T}e}{\partial \hat{\theta}} &= - 2X^{T}y + 2X^{T}X\hat{\theta} =0 \numberthis \label{ssrmd}
+\end{align*}
+We find the expression for the Ordinary Least Squares (OLS) estimator (\ref{OLSD}) after rearranging equation \ref{ssrmd} to normal form, utilizing inverse matrices to form identity matrices, and simplifying.
+\begin{align*}
+	2X^{T}X\hat{\theta} &= 2X^{T}y \\
+	(X^{T}X)^{-1}(X^{T}X)\hat{\theta} &= (X^{T}X)^{-1}X^{T}y \\
+	I\hat{\theta} &= (X^{T}X)^{-1}X^{T}y \\
+	\hat{\theta} &= (X^{T}X)^{-1}(X^{T}y) \numberthis \label{OLSD}\\
+\end{align*}
+Therefore, we can use the OLS estimator to make predictions with OLS (\ref{OLS}).
+\begin{align*}
+	\hat{y} &= X^{T} \hat{\theta} \numberthis \label{OLS}
+\end{align*}
+\subsubsection{Properties of OLS Estimators}
+There are six key properties in addition to the satisfaction in minimizing the summation of squared residuals.
+\begin{enumerate}
+	\item The residuals are uncorrelated with the observed values of X i.e., $X^{T}e=0$.
+	\item The sum of the residuals is zero i.e., $\sum e_i=0$.
+	\item The sample mean of the residuals is zero i.e., $\bar{e} = \frac{\sum e_i}{n} = 0$.
+	\item The regression hyperplane passes through the means of observed values i.e., $\frac{e} = \frac{y - X\theta}{n} = 0$. Since $\bar{e} = 0$ assumed, it is implied $\bar{y}=\bar{x}\bar{\theta}$.
+	\item The residuals are uncorrelated with the predicted y i.e., $\hat{y} = X\hat{\theta}$, $\hat{y}^{T}e = (X\hat{\beta})^{T}e = b^{T}X^{T}e = 0$ 
+	\item The mean of $\hat{y}$ for the sample will equal the mean of the y.
+\end{enumerate}
+\subsubsection{The Gauss-Markov Theorem}
+However, OLS makes Gauss-Markov assumptions about the true model to make inferences regarding $\beta$ from $\hat{\beta}$.
+The intention of the Gauss-Markov Theorem, conditional on the below assumptions, states the OLS estimator is the best linear, unbiased, and efficient estimator: 
+\begin{align*}
+	y &= x\beta + \epsilon\\
+	E[\epsilon|X] &= 0 \numberthis \label{gma3}\\
+	E(\epsilon \epsilon^{T}|X) &= \Omega = \sigma^{2}I \numberthis \label{gma4}\\
+	\epsilon &| X ~ N[0,\sigma^{T}I] \text{ (hypothesis testing)}
+\end{align*}
+\begin{itemize}
+	\item X is an n x k matrix of full rank
+	\item X must be generated randomly, or fixed, by a mechanism uncorrelated to disturbances.
+\end{itemize}
+Equation \ref{gma3} implies $E(y) = X\beta$ as no observations of the independent variables convey any information about the expected values of the disturbances.
+Equation \ref{gma4} captures homoskedasticity and no autocorrelation assumptions.
+\subsection{Technical Details}
+\subsubsection{Organisation}
+This research essay uses data science best practise (\cite{J:10}).
+Data and results saved regularly and reproducible. 
+Data retention in all forms receives high levels of attention. 
+Project files synchonises continuously to Google Drive (\cite{Google_Drive}). 
+Git (\cite{Git}) manages version control protocols for source code, data, documents, and results.
+Git stores a complete history of versions using Git hashes. 
+These hashes are strings unique to each state of the publicly available finance-honours repository\footnote[1]{https://github.com/CMCD1996/finance-honours}. 
+Git hashes enable discretisation of finance-honours development, enabling the accessibility and recollection of all previous states given a unique git hash. 
+This functionality enables reproducibility, error correction, and the ability to revert to previous models.
+
+\subsubsection{Version Control}\label{Version Control}
+Git, hosted by GitHub, provides a comprehensive set of version control technologies and range of benefits.
+Firstly, Git enables collaborative functionalities. 
+The master version of a project is accessible for all who have access to the repository. 
+Each contributor can create custom copies of branches through pull requests on the master branch. 
+Contributors can commit changes to custom branches and push these changes to the master branch through push requests. 
+Product managers can review push requests, approving valid requests for integrating changes to the master branch. 
+Collaborative efforts are possible with commit messages describing contributions from each contributor. 
+This research essay has only one contributor, rendering collaborative functionalities redundant in this instance.
+Git ensures the storage of code, work, and author histories.
+The descriptive nature of commit logs ensures journal accuracy.
+
+\subsubsection{Directories}
+This research essay follows directory structure recommendations from Wilson et al (\citeyear{J:10}). 
+Organisation is crucial as the modelling of artificial neural networks involves integrating a range of optimisation models, data files and documents.  
+Directory management is most efficient and comprehensive. 
+\textbf{finance-honours} is the root directory containing the following sub directories: bin, data, doc, src, and results.  
+The \textbf{bin} sub directory contains external scripts and compiled programmes. 
+The \textbf{data} sub directory contains all raw data associated with the project. 
+The \textbf{doc} sub directory stores user guides, academic resources, research reports and project deliverables.
+The \textbf{results} sub directory contains the outputs from project analysis.
+The \textbf{src} sub directory stores the source code for preparing datasets, partitioning sets of geographies with varying granularities.
+All files were continuously backed up using Google Drive and Git.
+
+\subsubsection{Python}\label{python}
+Python 3.9.7 is the primary programming language for this research essay. 
+The language is omnipresent, widespread in software development. 
+Python's language design makes the language highly productive and simple to use. 
+Python can hand off computationally straining tasks to C/C++ using supporting first-class integration capabilities.
+The language also has a very active and supportive community.
+Python is the most popular coding language on the planet defined by the PYPL PopularitY of Programming Language Index. 
+As at December 2021, Python has 30.21\% of all language tutorial search instances on Google (\cite{PYPL_Pop}).
+ Python's dynamic, low cost, and open source nature makes programming quick.
+
+\subsubsection{Package Management}
+The Anaconda package management platform for Python (\cite{Anaconda}) is the chosen coding environment.
+Anaconda is a well defined, free platform, with known versions of python packages such as matplotlib, numpy, and pip.
+The use of this environment ensures reproducibility and consistency across infrastructure.
+Pip is the default package manager for Python, included in the Anaconda package. 
+Pip manages package installation and updates.
+
+\subsubsection{Code Style} \label{CS}
+The PEP8 style for Python Code is formatting style for development code \cite{PEP8}. 
+Yapf, a formatter maintained by Google, manages formatting.
+Standardised formatting is important as makes supports readability, optimisation, and consistency.
+Docstrings and rigourous commenting are important in documentation. 
+A docstring is a Python inline comment describing function use, inputs, and outputs.
+An unique docstring belongs to each Python class and function. 
+The Google style docstring is most appropriate because of it's readability, writing ease, and consistency with Google's Style Guide.
+The parsing of yapf docstrings enables automated documentation generators to create docstring documents describing functions and classes.
+
+\subsubsection{Infrastructure}
+This research essay deploys variations in artificial neural networks of changing size and complexity.
+Analysis either took place locally, or remotely, depending on the computational requirements for the particular analysis.
+An Apple MacBook Pro 13 Inch 2019 with 8 GB 2133 MHz LPDDR3 memory and 1.4 GHz Quad-Core Intel Core i5 processor handles simple tasks locally.
+A Virtual Machine Instance on the Google Cloud Platform \textbf{Insert specification before submission} handles complex tasks remotely.
+
+\subsubsection{Documentation}
+The research essay documentation keeps an accurate record of key design decisions.
+Commit histories (\ref{Version Control}) is the most important form of documentation.
+Application of auxiliary documentation methods are supplementary.
+
+\subsection{Dataset Summary Statistics}\label{dss}
 \setlength{\tabcolsep}{2pt}
 \begin{longtable}{|l|r|r|r|r|r|r|r|r|}
 \toprule
@@ -1082,79 +1204,6 @@ dev                     &  2739928.0 &  3.998000e-01 &  4.994000e-01 &      0.00
 \label{table:ss}
 \end{longtable}
 \end{landscape}
-\subsection{Technical Details}
-\subsubsection{Organisation}
-This research essay uses data science best practise (\cite{J:10}).
-Data and results saved regularly and reproducible. 
-Data retention in all forms receives high levels of attention. 
-Project files synchonises continuously to Google Drive (\cite{Google_Drive}). 
-Git (\cite{Git}) manages version control protocols for source code, data, documents, and results.
-Git stores a complete history of versions using Git hashes. 
-These hashes are strings unique to each state of the publicly available finance-honours repository\footnote[1]{https://github.com/CMCD1996/finance-honours}. 
-Git hashes enable discretisation of finance-honours development, enabling the accessibility and recollection of all previous states given a unique git hash. 
-This functionality enables reproducibility, error correction, and the ability to revert to previous models.
-
-\subsubsection{Version Control}\label{Version Control}
-Git, hosted by GitHub, provides a comprehensive set of version control technologies and range of benefits.
-Firstly, Git enables collaborative functionalities. 
-The master version of a project is accessible for all who have access to the repository. 
-Each contributor can create custom copies of branches through pull requests on the master branch. 
-Contributors can commit changes to custom branches and push these changes to the master branch through push requests. 
-Product managers can review push requests, approving valid requests for integrating changes to the master branch. 
-Collaborative efforts are possible with commit messages describing contributions from each contributor. 
-This research essay has only one contributor, rendering collaborative functionalities redundant in this instance.
-Git ensures the storage of code, work, and author histories.
-The descriptive nature of commit logs ensures journal accuracy.
-
-\subsubsection{Directories}
-This research essay follows directory structure recommendations from Wilson et al (\citeyear{J:10}). 
-Organisation is crucial as the modelling of artificial neural networks involves integrating a range of optimisation models, data files and documents.  
-Directory management is most efficient and comprehensive. 
-\textbf{finance-honours} is the root directory containing the following sub directories: bin, data, doc, src, and results.  
-The \textbf{bin} sub directory contains external scripts and compiled programmes. 
-The \textbf{data} sub directory contains all raw data associated with the project. 
-The \textbf{doc} sub directory stores user guides, academic resources, research reports and project deliverables.
-The \textbf{results} sub directory contains the outputs from project analysis.
-The \textbf{src} sub directory stores the source code for preparing datasets, partitioning sets of geographies with varying granularities.
-All files were continuously backed up using Google Drive and Git.
-
-\subsubsection{Python}\label{python}
-Python 3.9.7 is the primary programming language for this research essay. 
-The language is omnipresent, widespread in software development. 
-Python's language design makes the language highly productive and simple to use. 
-Python can hand off computationally straining tasks to C/C++ using supporting first-class integration capabilities.
-The language also has a very active and supportive community.
-Python is the most popular coding language on the planet defined by the PYPL PopularitY of Programming Language Index. 
-As at December 2021, Python has 30.21\% of all language tutorial search instances on Google (\cite{PYPL_Pop}).
- Python's dynamic, low cost, and open source nature makes programming quick.
-
-\subsubsection{Package Management}
-The Anaconda package management platform for Python (\cite{Anaconda}) is the chosen coding environment.
-Anaconda is a well defined, free platform, with known versions of python packages such as matplotlib, numpy, and pip.
-The use of this environment ensures reproducibility and consistency across infrastructure.
-Pip is the default package manager for Python, included in the Anaconda package. 
-Pip manages package installation and updates.
-
-\subsubsection{Code Style} \label{CS}
-The PEP8 style for Python Code is formatting style for development code \cite{PEP8}. 
-Yapf, a formatter maintained by Google, manages formatting.
-Standardised formatting is important as makes supports readability, optimisation, and consistency.
-Docstrings and rigourous commenting are important in documentation. 
-A docstring is a Python inline comment describing function use, inputs, and outputs.
-An unique docstring belongs to each Python class and function. 
-The Google style docstring is most appropriate because of it's readability, writing ease, and consistency with Google's Style Guide.
-The parsing of yapf docstrings enables automated documentation generators to create docstring documents describing functions and classes.
-
-\subsubsection{Infrastructure}
-This research essay deploys variations in artificial neural networks of changing size and complexity.
-Analysis either took place locally, or remotely, depending on the computational requirements for the particular analysis.
-An Apple MacBook Pro 13 Inch 2019 with 8 GB 2133 MHz LPDDR3 memory and 1.4 GHz Quad-Core Intel Core i5 processor handles simple tasks locally.
-A Virtual Machine Instance on the Google Cloud Platform \textbf{Insert specification before submission} handles complex tasks remotely.
-
-\subsubsection{Documentation}
-The research essay documentation keeps an accurate record of key design decisions.
-Commit histories (\ref{Version Control}) is the most important form of documentation.
-Application of auxiliary documentation methods are supplementary.
 
 \subsection{Code}
 All files, resources, and code is available for download from \href{https://github.com/CMCD1996/finance-honours}{Github}.

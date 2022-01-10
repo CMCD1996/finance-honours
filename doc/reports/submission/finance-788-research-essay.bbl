@@ -218,6 +218,46 @@
       \field{title}{Efficient capital markets II}
       \field{year}{2021}
     \endentry
+    \entry{fama1997industry}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=cf1dad75742cba1f00261a0ee70e7ba2}{%
+           family={Fama},
+           familyi={F\bibinitperiod},
+           given={Eugene\bibnamedelima F},
+           giveni={E\bibinitperiod\bibinitdelim F\bibinitperiod},
+           givenun=0}}%
+        {{un=1,uniquepart=given,hash=4ca55f4db61ae3245d066a218dca72c8}{%
+           family={French},
+           familyi={F\bibinitperiod},
+           given={Kenneth\bibnamedelima R},
+           giveni={K\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=1}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{ac5c181ffbfa45c593cd5483bcb59bd3}
+      \strng{fullhash}{ac5c181ffbfa45c593cd5483bcb59bd3}
+      \strng{bibnamehash}{ac5c181ffbfa45c593cd5483bcb59bd3}
+      \strng{authorbibnamehash}{ac5c181ffbfa45c593cd5483bcb59bd3}
+      \strng{authornamehash}{ac5c181ffbfa45c593cd5483bcb59bd3}
+      \strng{authorfullhash}{ac5c181ffbfa45c593cd5483bcb59bd3}
+      \field{extraname}{1}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of financial economics}
+      \field{number}{2}
+      \field{title}{Industry costs of equity}
+      \field{volume}{43}
+      \field{year}{1997}
+      \field{pages}{153\bibrangedash 193}
+      \range{pages}{41}
+    \endentry
     \entry{fama2004capital}{article}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=cf1dad75742cba1f00261a0ee70e7ba2}{%
@@ -239,7 +279,7 @@
       \strng{authorbibnamehash}{ac5c181ffbfa45c593cd5483bcb59bd3}
       \strng{authornamehash}{ac5c181ffbfa45c593cd5483bcb59bd3}
       \strng{authorfullhash}{ac5c181ffbfa45c593cd5483bcb59bd3}
-      \field{extraname}{1}
+      \field{extraname}{2}
       \field{sortinit}{F}
       \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
       \field{extradatescope}{labelyear}
@@ -279,7 +319,7 @@
       \strng{authorbibnamehash}{ac5c181ffbfa45c593cd5483bcb59bd3}
       \strng{authornamehash}{ac5c181ffbfa45c593cd5483bcb59bd3}
       \strng{authorfullhash}{ac5c181ffbfa45c593cd5483bcb59bd3}
-      \field{extraname}{2}
+      \field{extraname}{3}
       \field{sortinit}{F}
       \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
       \field{extradatescope}{labelyear}
@@ -319,7 +359,7 @@
       \strng{authorbibnamehash}{ac5c181ffbfa45c593cd5483bcb59bd3}
       \strng{authornamehash}{ac5c181ffbfa45c593cd5483bcb59bd3}
       \strng{authorfullhash}{ac5c181ffbfa45c593cd5483bcb59bd3}
-      \field{extraname}{3}
+      \field{extraname}{4}
       \field{sortinit}{F}
       \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
       \field{extradatescope}{labelyear}
