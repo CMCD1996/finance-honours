@@ -782,11 +782,10 @@ def sort_data_chronologically(data_directory, size_of_chunks, set_top_500=False)
     #     # Saves the formatted dataframe to file
     #     df_full.to_stata(data_directory + 'sorted_' + dataframe)
     # Inititalises new chronological dataframes
-    train_chronological = pd.DataFrame()
-    val_chronological = pd.DataFrame()
-    test_chronological = pd.DataFrame()
+    first_loop = True
     for dataframe in dataframes:
         df = pd.read_stata(data_directory + 'sorted_' + dataframe)
+        column_names = df.columns
         print(df.head())
         monitor_memory_usage(units=3, cpu=True, gpu=True)
         train_subset = df[(df["mth"] <= 198912)]
@@ -798,12 +797,21 @@ def sort_data_chronologically(data_directory, size_of_chunks, set_top_500=False)
         test_subset = df[(df["mth"] > 199912)]
         print('Testing Subset')
         print(test_subset.head())
-        train_chronological = train_chronological.append(
-            train_subset, ignore_index=True)
-        val_chronological = val_chronological.append(
-            val_subset, ignore_index=True)
-        test_chronological = test_chronological.append(
-            test_subset, ignore_index=True)
+        # Concatenate dataframes while ignoring the appendix
+        if first_loop == True:
+            train_chronological = pd.DataFrame(
+                train_subset, columns=column_names)
+            val_chronological = pd.DataFrame(val_subset, columns=column_names)
+            test_chronological = pd.DataFrame(
+                test_subset, columns=column_names)
+            first_loop = False
+        else:
+            train_chronological = pd.concat(
+                [train_chronological, train_subset], ignore_index=True)
+            val_chronological = pd.concat(
+                [val_chronological, val_subset], ignore_index=True)
+            test_chronological = pd.concat(
+                [test_chronological, test_subset], ignore_index=True)
     # Drops the Level_0 column
     train_chronological = train_chronological.drop(columns=['level_0'])
     val_chronological = val_chronological.drop(columns=['level_0'])
