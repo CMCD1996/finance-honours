@@ -790,9 +790,14 @@ def sort_data_chronologically(data_directory, size_of_chunks, set_top_500=False)
         print(df.head())
         monitor_memory_usage(units=3, cpu=True, gpu=True)
         train_subset = df[(df["mth"] <= 198912)]
+        print('Training Subset')
+        print(train_subset.head())
         val_subset = df[(df["mth"] > 198912) & (df["mth"] <= 199912)]
+        print('Validation Subset')
+        print(val_subset.head())
         test_subset = df[(df["mth"] > 199912)]
-        print('Saving DataFrames')
+        print('Testing Subset')
+        print(test_subset.head())
         train_chronological = train_chronological.append(
             train_subset, ignore_index=True)
         val_chronological = val_chronological.append(
