@@ -1001,7 +1001,7 @@ def encode_tensor_flow_features(train_df, val_df, test_df, target_column, numeri
     """
     # Creates the dataset
     train_dataset = create_tf_dataset(
-        train_df, target_column, shuffle=False, batch_size=size_of_batch)
+        train_df, target_column, shuffle=True, batch_size=size_of_batch)
     val_dataset = create_tf_dataset(
         val_df, target_column, shuffle=False, batch_size=size_of_batch)
     test_dataset = create_tf_dataset(
@@ -1665,6 +1665,10 @@ def create_tensorflow_models(data_vm_directory, list_of_columns, categorical_ass
     train_df = train_df.drop(columns=['level_0'])
     val_df = val_df.drop(columns=['level_0'])
     test_df = test_df.drop(columns=['level_0'])
+    # Replace any NaNs in the dataset
+    train_df = replace_nan(train_df, replacement_method=3)
+    val_df = replace_nan(val_df, replacement_method=3)
+    test_df = replace_nan(test_df, replacement_method=3)
     # Saves descriptions, information, and datasets of the created dataframes
     statistics_location = '/home/connormcdowall/finance-honours/results/statistics'
     data_location = '/home/connormcdowall/finance-honours/data/dataframes'
@@ -2479,7 +2483,7 @@ metrics = accuracy_metrics + probabilistic_metrics + regression_metrics + \
 optimisation_dictionary = {1: 'SGD', 2: 'SGD',
                            3: 'SGD'}
 loss_function_dictionary = {
-    1: ['mean_squared_error', 'custom_mse', 'custom_sharpe', 'custom_sharpe_mse', 'custom_information', 'custom_hp', 'custom_hp_mse'], 2: ['mean_squared_error']}
+    1: ['mean_squared_error', 'custom_mse', 'custom_sharpe', 'custom_sharpe_mse', 'custom_information', 'custom_hp', 'custom_hp_mse'], 2: ['custom_hp', 'custom_hp_mse']}
 metrics_dictionary = {1: ['mean_squared_error', 'cosine_similarity', 'mean_absolute_error', 'root_mean_squared_error', 'custom_mse_metric', 'custom_sharpe_metric',
                           'custom_information_metric', 'custom_hp_metric'], 2: ['mean_squared_error', 'cosine_similarity', 'mean_absolute_error', 'root_mean_squared_error', 'custom_mse_metric', 'custom_sharpe_metric',
                                                                                 'custom_information_metric', 'custom_hp_metric']}
@@ -2487,7 +2491,7 @@ metrics_dictionary = {1: ['mean_squared_error', 'cosine_similarity', 'mean_absol
 # Selected Tensorflow Configuration
 #################################################################################
 tf_option_array = [1, 2]  # 1 = Analysis, 2 = Testing
-tf_option = 1  # Change to 1,2,3,4,5,6,7 for configuration
+tf_option = 2  # Change to 1,2,3,4,5,6,7 for configuration
 selected_optimizer = optimisation_dictionary[tf_option]
 selected_losses = loss_function_dictionary[tf_option]
 selected_metrics = metrics_dictionary[tf_option]
