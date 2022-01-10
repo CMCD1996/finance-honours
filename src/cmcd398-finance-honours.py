@@ -1604,8 +1604,14 @@ def create_tensorflow_models(data_vm_directory, list_of_columns, categorical_ass
     use_chronological_data = True
     if use_chronological_data:
         train_df = pd.read_stata(data_vm_directory + 'active_train.dta')
-        train_df = pd.read_stata(data_vm_directory + 'active_val.dta')
-        train_df = pd.read_stata(data_vm_directory + 'active_test.dta')
+        print('Training Set')
+        print(train_df.head())
+        val_df = pd.read_stata(data_vm_directory + 'active_val.dta')
+        print('Validation Set')
+        print(val_df.head())
+        test_df = pd.read_stata(data_vm_directory + 'active_test.dta')
+        print('Testing Set')
+        print(test_df.head())
     else:
         test_df = process_vm_dataset(data_vm_directory + 'test.dta', chunk_size,
                                      resizing_options, save_statistics=False, sample=sample)
@@ -2486,12 +2492,12 @@ extract_test_data = False
 test_implementation = False
 example_autodiff = False
 test_loss_function = False
-chronologically_sort_data = True
+chronologically_sort_data = False
 # Analytical
 analytical = False
 rank_functions = False
 # Research Proposal Analysis
-create_models = False
+create_models = True
 make_predictions = False
 perform_regressions = False
 #################################################################################
