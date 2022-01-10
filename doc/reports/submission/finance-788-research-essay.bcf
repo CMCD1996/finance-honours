@@ -2809,13 +2809,14 @@
     <bcf:citekey order="16">fama2021efficient</bcf:citekey>
     <bcf:citekey order="17">jensen2021there</bcf:citekey>
     <bcf:citekey order="18">sharpe1994sharpe</bcf:citekey>
-    <bcf:citekey order="19">J:10</bcf:citekey>
-    <bcf:citekey order="20">Google_Drive</bcf:citekey>
-    <bcf:citekey order="21">Git</bcf:citekey>
-    <bcf:citekey order="22">J:10</bcf:citekey>
-    <bcf:citekey order="23">PYPL_Pop</bcf:citekey>
-    <bcf:citekey order="24">Anaconda</bcf:citekey>
-    <bcf:citekey order="25">PEP8</bcf:citekey>
+    <bcf:citekey order="19">hlavac2018stargazer</bcf:citekey>
+    <bcf:citekey order="20">J:10</bcf:citekey>
+    <bcf:citekey order="21">Google_Drive</bcf:citekey>
+    <bcf:citekey order="22">Git</bcf:citekey>
+    <bcf:citekey order="23">J:10</bcf:citekey>
+    <bcf:citekey order="24">PYPL_Pop</bcf:citekey>
+    <bcf:citekey order="25">Anaconda</bcf:citekey>
+    <bcf:citekey order="26">PEP8</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="apa">
