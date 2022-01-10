@@ -746,6 +746,8 @@ def sort_data_chronologically(data_directory, set_top_500=False):
     # Loads the
     for dataframe in dataframes:
         df = pd.read_stata(data_directory + dataframe)
+        # Monitor memeory usage
+        monitor_memory_usage(units=3, cpu=True, gpu=True)
         # Converts mth from datetime to int
         for index, row in df.iterrows():
             # Gets datetime value
@@ -763,6 +765,8 @@ def sort_data_chronologically(data_directory, set_top_500=False):
             df.at[index, 'mth'] = new_mth
         # Sets mth column to int type
         df['mth'] = df['mth'].astype(int)
+        # Monitor memeory usage
+        monitor_memory_usage(units=3, cpu=True, gpu=True)
         # Removes nans
         df = replace_nan(df, replacement_method=3)
         # Resizes the dataframe
