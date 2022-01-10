@@ -733,54 +733,55 @@ def create_fama_factor_models(factor_location, prediction_location, prediction_n
 
 
 def sort_data_chronologically(data_directory, size_of_chunks, set_top_500=False):
-    """ resort data arranges the training sets
+    """Processes the dataset to the following chronilogical order
         Training: Before 1990 [1861,1989]
         Validation: Between 1990 and 1999 [1990,1999]
         Testing: After 2000 [2000,2021]
+
+    Args:
+        data_directory (str): Directory of stored data on the virtual instance
+        size_of_chunks (int): Chunk_size for reading pandas dataframes
+        set_top_500 (bool, optional): Select top 500 equities. Defaults to False.
     """
-    # Initialise the sorted dataframes
-    train_sorted = pd.DataFrame()
-    val_sorted = pd.DataFrame()
-    test_sorted = pd.DataFrame()
     dataframes = ['train.dta', 'test.dta', 'val.dta']
-    # # Each dataframe in turn
-    # for dataframe in dataframes:
-    #     subset = pd.read_stata(data_directory + dataframe,
-    #                            chunksize=size_of_chunks)
-    #     # Create new dataframe
-    #     df_full = pd.DataFrame()
-    #     for df in subset:
-    #         # Monitor memeory usage
-    #         monitor_memory_usage(units=3, cpu=True, gpu=True)
-    #         # Converts mth from datetime to int
-    #         for index, row in df.iterrows():
-    #             # Gets datetime value
-    #             datetime = row['mth']
-    #             # Sets year and month values from datetime
-    #             year = datetime.year
-    #             month = datetime.month
-    #             if month < 10:
-    #                 month_str = '0'+str(month)
-    #             else:
-    #                 month_str = str(month)
-    #             # Concatenates new value and converst to int
-    #             new_mth = int(str(year) + month_str)
-    #             # Sets new month value
-    #             df.at[index, 'mth'] = new_mth
-    #         # Sets mth column to int type
-    #         df['mth'] = df['mth'].astype(int)
-    #         # Monitor memeory usage
-    #         monitor_memory_usage(units=3, cpu=True, gpu=True)
-    #         # Removes nans
-    #         df = replace_nan(df, replacement_method=3)
-    #         # Resizes the dataframe
-    #         df = resizing_dataframe(df, resizing_options=[False, False, True])
-    #         df_full = df_full.append(df)
-    #         # Prints list of unique months
-    #         print(df_full.info(verbose=True))
-    #         print(sorted(df_full['mth'].unique()))
-    #     # Saves the formatted dataframe to file
-    #     df_full.to_stata(data_directory + 'sorted_' + dataframe)
+    # Each dataframe in turn
+    for dataframe in dataframes:
+        subset = pd.read_stata(data_directory + dataframe,
+                               chunksize=size_of_chunks)
+        # Create new dataframe
+        df_full = pd.DataFrame()
+        for df in subset:
+            # Monitor memeory usage
+            monitor_memory_usage(units=3, cpu=True, gpu=True)
+            # Converts mth from datetime to int
+            for index, row in df.iterrows():
+                # Gets datetime value
+                datetime = row['mth']
+                # Sets year and month values from datetime
+                year = datetime.year
+                month = datetime.month
+                if month < 10:
+                    month_str = '0'+str(month)
+                else:
+                    month_str = str(month)
+                # Concatenates new value and converst to int
+                new_mth = int(str(year) + month_str)
+                # Sets new month value
+                df.at[index, 'mth'] = new_mth
+            # Sets mth column to int type
+            df['mth'] = df['mth'].astype(int)
+            # Monitor memeory usage
+            monitor_memory_usage(units=3, cpu=True, gpu=True)
+            # Removes nans
+            df = replace_nan(df, replacement_method=3)
+            # Resizes the dataframe
+            df = resizing_dataframe(df, resizing_options=[False, False, True])
+            df_full = df_full.append(df)
+            # Prints list of unique months
+            print(df_full.info(verbose=True))
+            print(sorted(df_full['mth'].unique()))
+        # Saves the formatted dataframe to file
+        df_full.to_stata(data_directory + 'sorted_' + dataframe)
     # Inititalises new chronological dataframes
     first_loop = True
     for dataframe in dataframes:
