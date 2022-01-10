@@ -813,19 +813,29 @@ def sort_data_chronologically(data_directory, size_of_chunks, set_top_500=False)
             test_chronological = pd.concat(
                 [test_chronological, test_subset], ignore_index=True)
     # Drops the Level_0 column
-    train_chronological = train_chronological.drop(columns=['level_0'])
-    val_chronological = val_chronological.drop(columns=['level_0'])
-    test_chronological = test_chronological.drop(columns=['level_0'])
+    train_chronological = train_chronological.drop(
+        columns=['level_0'], inplace=True)
+    val_chronological = val_chronological.drop(columns=['level_0']inplace=True)
+    test_chronological = test_chronological.drop(
+        columns=['level_0'], inplace=True)
     # Prints the new dataframes
     print('Training')
-    print(train_chronological.info(verbose=False))
+    print(train_chronological.info(verbose=True))
     print(sorted(train_chronological['mth'].unique()))
     print('Validation')
-    print(val_chronological.info(verbose=False))
+    print(val_chronological.info(verbose=True))
     print(sorted(val_chronological['mth'].unique()))
     print('Testing')
-    print(test_chronological.info(verbose=False))
+    print(test_chronological.info(verbose=True))
     print(sorted(test_chronological['mth'].unique()))
+    train_chronological = train_chronological.drop(
+        columns=['index'], inplace=True)
+    val_chronological = val_chronological.drop(columns=['index'], inplace=True)
+    test_chronological = test_chronological.drop(
+        columns=['index'], inplace=True)
+    print(train_chronological.columns)
+    print(val_chronological.columns)
+    print(test_chronological.columns)
     # Saves the chronological files to file
     train_chronological.to_stata(data_directory + 'active_train.dta')
     val_chronological.to_stata(data_directory + 'active_val.dta')
@@ -1598,12 +1608,18 @@ def create_tensorflow_models(data_vm_directory, list_of_columns, categorical_ass
         split_vm_dataset(data_vm_directory, create_statistics=False,
                          split_new_data=True, create_validation_set=True)
     # Creates the training, validation and testing dataframes
-    test_df = process_vm_dataset(data_vm_directory + 'test.dta', chunk_size,
-                                 resizing_options, save_statistics=False, sample=sample)
-    train_df = process_vm_dataset(data_vm_directory + 'train.dta',
-                                  chunk_size, resizing_options, save_statistics=False, sample=sample)
-    val_df = process_vm_dataset(data_vm_directory + 'val.dta', chunk_size,
-                                resizing_options, save_statistics=False, sample=sample)
+    use_chronological_data = True
+    if use_chronological_data:
+        train_df = pd.read_stata(data_vm_directory + 'active_train.dta')
+        train_df = pd.read_stata(data_vm_directory + 'active_val.dta')
+        train_df = pd.read_stata(data_vm_directory + 'active_test.dta')
+    else:
+        test_df = process_vm_dataset(data_vm_directory + 'test.dta', chunk_size,
+                                     resizing_options, save_statistics=False, sample=sample)
+        train_df = process_vm_dataset(data_vm_directory + 'train.dta',
+                                      chunk_size, resizing_options, save_statistics=False, sample=sample)
+        val_df = process_vm_dataset(data_vm_directory + 'val.dta', chunk_size,
+                                    resizing_options, save_statistics=False, sample=sample)
     # Use trial to test the dataframe when functions not as large
     if trial:
         # Trial run takes 5% of dataframe produced from processed vm datasets
