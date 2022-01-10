@@ -815,7 +815,7 @@ def sort_data_chronologically(data_directory, size_of_chunks, set_top_500=False)
     # Drops the Level_0 column
     train_chronological = train_chronological.drop(
         columns=['level_0'], inplace=True)
-    val_chronological = val_chronological.drop(columns=['level_0']inplace=True)
+    val_chronological = val_chronological.drop(columns=['level_0'],inplace=True)
     test_chronological = test_chronological.drop(
         columns=['level_0'], inplace=True)
     # Prints the new dataframes
