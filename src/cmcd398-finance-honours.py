@@ -1625,6 +1625,10 @@ def create_tensorflow_models(data_vm_directory, list_of_columns, categorical_ass
         test_df, test_discard_df = train_test_split(test_df, test_size=0.95)
         train_df, train_discard_df = train_test_split(train_df, test_size=0.95)
         val_df, val_discard_df = train_test_split(val_df, test_size=0.95)
+    # Drop level_0 again from the datasets
+    train_df = train_df.drop(columns=['level_0'])
+    val_df = val_df.drop(columns=['level_0'])
+    test_df = test_df.drop(columns=['level_0'])
     # Saves descriptions, information, and datasets of the created dataframes
     statistics_location = '/home/connormcdowall/finance-honours/results/statistics'
     data_location = '/home/connormcdowall/finance-honours/data/dataframes'
