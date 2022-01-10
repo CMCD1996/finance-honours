@@ -972,7 +972,7 @@ def encode_tensor_flow_features(train_df, val_df, test_df, target_column, numeri
     """
     # Creates the dataset
     train_dataset = create_tf_dataset(
-        train_df, target_column, shuffle=True, batch_size=size_of_batch)
+        train_df, target_column, shuffle=False, batch_size=size_of_batch)
     val_dataset = create_tf_dataset(
         val_df, target_column, shuffle=False, batch_size=size_of_batch)
     test_dataset = create_tf_dataset(
