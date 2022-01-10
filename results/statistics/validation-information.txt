@@ -1,5 +1,5 @@
 <class 'pandas.core.frame.DataFrame'>
-Int64Index: 706908 entries, 0 to 706907
-Columns: 524 entries, index to dev
-dtypes: float32(507), float64(1), int16(1), int32(4), int8(10), object(1)
-memory usage: 1.4+ GB
+Int64Index: 294581 entries, 0 to 294580
+Columns: 160 entries, beta_60m_x to qmj_safety_x
+dtypes: float32(148), int16(1), int32(4), int8(6), object(1)
+memory usage: 177.6+ MB

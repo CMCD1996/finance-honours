@@ -440,7 +440,6 @@ def resizing_dataframe(dataframe, resizing_options):
         monitor_memory_usage(units=3, cpu=True, gpu=True)
     return dataframe
 
-
 def create_original_list_of_columns(dataframe):
     new_columns = []
     list_of_columns = '/home/connormcdowall/finance-honours/data/178-factors.txt'
