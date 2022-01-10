@@ -746,6 +746,26 @@ def sort_data_chronologically(data_directory, set_top_500=False):
     # Loads the
     for dataframe in dataframes:
         df = pd.read_stata(data_directory + dataframe)
+        # Converts mth from datetime to int
+        for index, row in df.iterrows():
+            # Gets datetime value
+            datetime = row['mth']
+            # Sets year and month values from datetime
+            year = datetime.year
+            month = datetime.month
+            if month < 10:
+                month_str = '0'+str(month)
+            else:
+                month_str = str(month)
+            # Concatenates new value and converst to int
+            new_mth = int(str(year) + month_str)
+            # Sets new month value
+            df.at[index, 'mth'] = new_mth
+        # Sets mth column to int type
+        df['mth'] = df['mth'].astype(int)
+        # Removes nans
+        df = replace_nan(df, replacement_method=3)
+        # Resizes the dataframe
         df = resizing_dataframe(df, resizing_options=[False, False, True])
         # Prints list of unique months
         print(sorted(df['mth'].unique()))
