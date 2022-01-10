@@ -609,7 +609,7 @@ def save_df_statistics(df, frame_set, statistics_location, data_location):
     # Saves datatypes of the dataframe
     np.savetxt(datatype_file, df.dtypes, fmt='%s')
     # Saves the dataframe to dta files for the regressions
-    df.to_stata(data_file)
+    # df.to_stata(data_file)
     return
 
 
@@ -930,7 +930,7 @@ def create_tf_dataset(dataframe, target_column, shuffle=True, batch_size=32):
     # Print dataframe to ensure order is preserved
     ds = tf.data.Dataset.from_tensor_slices((dict(df), labels))
     if shuffle:
-        ds = ds.shuffle(buffer_size=(len(dataframe)/10))
+        ds = ds.shuffle(buffer_size=(int(len(dataframe)/10)))
     ds = ds.batch(batch_size)
     ds = ds.prefetch(batch_size)
     print('Create Dataset: Successful')
