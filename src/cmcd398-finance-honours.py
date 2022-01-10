@@ -787,6 +787,7 @@ def sort_data_chronologically(data_directory, size_of_chunks, set_top_500=False)
     test_chronological = pd.DataFrame()
     for dataframe in dataframes:
         df = pd.read_stata(data_directory + 'sorted_' + dataframe)
+        print(df.head())
         monitor_memory_usage(units=3, cpu=True, gpu=True)
         train_subset = df[(df["mth"] <= 198912)]
         val_subset = df[(df["mth"] > 198912) & (df["mth"] <= 199912)]
