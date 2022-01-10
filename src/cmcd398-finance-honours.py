@@ -774,8 +774,8 @@ def sort_data_chronologically(data_directory, size_of_chunks, set_top_500=False)
             monitor_memory_usage(units=3, cpu=True, gpu=True)
             # Removes nans
             df = replace_nan(df, replacement_method=3)
-            # Resizes the dataframe
-            df = resizing_dataframe(df, resizing_options=[False, False, True])
+            # Resizes the dataframe (Resize dataframe)
+            df = resizing_dataframe(df, resizing_options=[True, True, True])
             df_full = df_full.append(df)
             # Prints list of unique months
             print(df_full.info(verbose=True))
@@ -2496,12 +2496,12 @@ extract_test_data = False
 test_implementation = False
 example_autodiff = False
 test_loss_function = False
-chronologically_sort_data = False
+chronologically_sort_data = True
 # Analytical
 analytical = False
 rank_functions = False
 # Research Proposal Analysis
-create_models = True
+create_models = False
 make_predictions = False
 perform_regressions = False
 #################################################################################
