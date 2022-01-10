@@ -743,7 +743,7 @@ def sort_data_chronologically(data_directory, size_of_chunks, set_top_500=False)
     val_sorted = pd.DataFrame()
     test_sorted = pd.DataFrame()
     dataframes = ['train.dta', 'test.dta', 'val.dta']
-    # Loads the
+    # Each dataframe in turn
     for dataframe in dataframes:
         subset = pd.read_stata(data_directory + dataframe,
                                chunksize=size_of_chunks)
@@ -779,7 +779,34 @@ def sort_data_chronologically(data_directory, size_of_chunks, set_top_500=False)
             # Prints list of unique months
             print(df_full.info(verbose=True))
             print(sorted(df_full['mth'].unique()))
-
+        # Saves the formatted dataframe to file
+        df_full.to_stata(data_directory + 'sorted_' + dataframe)
+    # Inititalises new chronological dataframes
+    train_chronological = pd.DataFrame()
+    val_chronological = pd.DataFrame()
+    test_chronological = pd.DataFrame()
+    for dataframe in dataframes:
+        df = pd.read_stata(data_directory + 'sorted_' + dataframe)
+        train_subset = df[(df["mth"] <= 198912)]
+        val_subset = df[(df["mth"] > 198912) and (df["mth"] <= 199912)]
+        test_subset = df[(df["mth"] > 199912)]
+        train_chronological = train_chronological.append(train_subset)
+        val_chronological = val_chronological.append(val_subset)
+        test_chronological = test_chronological.append(test_subset)
+    # Prints the new dataframes
+    print('Training')
+    print(train_chronological.info(verbose=False))
+    print(sorted(train_chronological['mth'].unique()))
+    print('Validation')
+    print(val_chronological.info(verbose=False))
+    print(sorted(val_chronological['mth'].unique()))
+    print('Testing')
+    print(test_chronological.info(verbose=False))
+    print(sorted(test_chronological['mth'].unique()))
+    # Saves the chronological files to file
+    train_chronological.to_stata(data_directory + 'active_train.dta')
+    val_chronological.to_stata(data_directory + 'active_val.dta')
+    test_chronological.to_stata(data_directory + 'active_test.dta')
     return
 #################################################################################
 # Machine Learning
