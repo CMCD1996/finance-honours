@@ -1001,7 +1001,7 @@ def encode_tensor_flow_features(train_df, val_df, test_df, target_column, numeri
     """
     # Creates the dataset
     train_dataset = create_tf_dataset(
-        train_df, target_column, shuffle=True, batch_size=size_of_batch)
+        train_df, target_column, shuffle=False, batch_size=size_of_batch)
     val_dataset = create_tf_dataset(
         val_df, target_column, shuffle=False, batch_size=size_of_batch)
     test_dataset = create_tf_dataset(
@@ -1669,6 +1669,9 @@ def create_tensorflow_models(data_vm_directory, list_of_columns, categorical_ass
     train_df = replace_nan(train_df, replacement_method=3)
     val_df = replace_nan(val_df, replacement_method=3)
     test_df = replace_nan(test_df, replacement_method=3)
+    print('NaNs in Training Set: ', train_df.isna().sum().sum())
+    print('NaNs in Validation Set: ', val_df.isna().sum().sum())
+    print('NaNs in Testing Set: ', test_df.isna().sum().sum())
     # Saves descriptions, information, and datasets of the created dataframes
     statistics_location = '/home/connormcdowall/finance-honours/results/statistics'
     data_location = '/home/connormcdowall/finance-honours/data/dataframes'
