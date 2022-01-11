@@ -1735,6 +1735,7 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
     # Loads the dictionary
     df = pd.read_stata(dataframe_location)
     df = replace_nan(df, replacement_method=3)
+    # Displays key dataframe information
     print('Dataframe Information')
     print(df.head())
     print(df.info(verbose=False))
@@ -1785,6 +1786,17 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
     row_count = 0
     count = 0
     check = 0
+    # Make predictions from the entire dataframe at once
+    all_predictions = True
+    if all_predictions:
+        # Converts dataframe to dataset
+        ds = create_tf_dataset(
+            df, target_column='ret_exc_lead1m', shuffle=False, batch_size=256)
+        predictions = mse_tf_model(ds, training=False)
+        print('Completed: Mean Square Error - Tensorflow')
+        print(predictions)
+        return
+    # Convert
     # Makes predictions per row on the dataframe
     print('Start to make predictions per row')
     for row in dataframe_dictionary:
