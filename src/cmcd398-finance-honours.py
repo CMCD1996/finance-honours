@@ -866,6 +866,23 @@ def sort_data_chronologically(data_directory, size_of_chunks, set_top_500=False)
     val_chronological.to_stata(data_directory + 'active_val.dta')
     test_chronological.to_stata(data_directory + 'active_test.dta')
     return
+
+
+def convert_txt_to_tex(input_txt, output_tex):
+    texdoc = []  # a list of string representing the latex document in python
+    with open(input_txt, 'r') as fin:
+        lines = fin.readlines()
+        for line in lines:
+            print(line)
+            texdoc.append(line)
+    fin.close()
+    print(texdoc)
+    # write back the new document
+    with open(output_tex, 'w') as fout:
+        for i in range(len(texdoc)):
+            fout.write(texdoc[i])
+    fout.close()
+    return
 #################################################################################
 # Machine Learning
 #################################################################################
@@ -2617,13 +2634,14 @@ test_implementation = False
 example_autodiff = False
 test_loss_function = False
 chronologically_sort_data = False
+convert_text = True
 # Analytical
 analytical = False
 rank_functions = False
 # Research Proposal Analysis
 create_models = False
 make_predictions = False
-perform_regressions = True
+perform_regressions = False
 #################################################################################
 # Function Testing
 #################################################################################
@@ -2648,6 +2666,10 @@ if use_sass:
 if chronologically_sort_data:
     sort_data_chronologically(
         data_vm_directory, size_of_chunks=chunk_size, set_top_500=False)
+if convert_text:
+    input_txt = '/home/connormcdowall/finance-honours/results/tables/hedge-portfolio-ols/cmcd398-finance-honours-mean_squared_error.txt'
+    output_tex = '/home/connormcdowall/finance-honours/results/tex/cmcd398-finance-honours-mean_squared_error.tex'
+    convert_txt_to_tex(input_txt, output_tex)
 #################################################################################
 # Tensorflow
 #################################################################################
