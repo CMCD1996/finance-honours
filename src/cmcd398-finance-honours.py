@@ -2706,7 +2706,7 @@ if chronologically_sort_data:
         data_vm_directory, size_of_chunks=chunk_size, set_top_500=False)
 if convert_text:
     execute_conversion_options(model_name, selected_losses,
-                               hp_ols=False, pooled_ols=False, true_excess_returns=False)
+                               hp_ols=True, pooled_ols=True, true_excess_returns=True)
 #################################################################################
 # Tensorflow
 #################################################################################
