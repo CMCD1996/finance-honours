@@ -574,17 +574,7 @@ Both Sharpe and Information ratios supplement hedge portfolio-related loss funct
     \label{fig:hp-performance}
 \end{figure}
 \subsection{Hedge Portfolio Performance}
-\lstinputlisting[caption=myfile.txt]{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tables/hedge-portfolio-ols/cmcd398-finance-honours-mean_squared_error.txt}
-\newread\file
-\openin\file={/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tables/hedge-portfolio-ols/cmcd398-finance-honours-mean_squared_error}.txt
-\newwrite\fileo
-\immediate\openout\fileo=ss.txt
-\loop\unless\ifeof\file
-\read\file to\fileline 
-\immediate\write\fileo{\fileline}   
-\repeat
-\closeout\fileo
-\closein\file
+\input{}
 \subsection{Regression Analysis}
 PooledOLS replaces Fama MacBeth in this instance.
 
