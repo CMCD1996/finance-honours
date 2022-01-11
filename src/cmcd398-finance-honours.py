@@ -1799,15 +1799,14 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
             predictions = models[i].predict(ds)
             print('Completed: Mean Square Error - Tensorflow')
             print(predictions)
-            print(len(predictions))
-            print('The total number of predictions is {}.'.format(row_count))
+            print('The total number of predictions is {}.'.format(len(predictions)))
             # Creates new dataframe at once
             scaler_predictions = []
             for column in column_names:
                 if column == 'predict':
                     # Assigns the predictions
-                    for i in range(len(predictions)):
-                        scaler_predictions.append(np.asscalar(predictions[i]))
+                    for j in range(len(predictions)):
+                        scaler_predictions.append(np.asscalar(predictions[j]))
                     df_predictions[i][column] = scaler_predictions
                 else:
                     df_predictions[i][column] = df[column].to_list()
