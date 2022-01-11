@@ -916,7 +916,7 @@ def execute_conversion_options(model_name, selected_losses, hp_ols=False, pooled
         if pooled_ols:
             for factor in factor_models:
                 fp_in = base_directory_in + 'pooled-ols/' + \
-                    factor + '/' + model_name + '-' + loss + '.txt'
+                    factor + '/' + model_name + '-' + loss + '-' + factor + '.txt'
                 fp_out = base_directory_out + model_name + '-' + loss + '-' + factor + '.tex'
                 convert_txt_to_tex(
                     fp_in, fp_out, replace_text=True, replacement_text=replacement_text)
