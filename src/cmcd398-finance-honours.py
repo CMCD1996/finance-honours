@@ -1804,9 +1804,7 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
             if column == 'predict':
                 # Assigns the predictions
                 for i in range(len(predictions)):
-                    print(predictions[i])
                     scaler_predictions.append(np.asscalar(predictions[i]))
-                    print(scaler_predictions[i])
                 mse_df_predictions[column] = scaler_predictions
             else:
                 mse_df_predictions[column] = df[column].to_list()
