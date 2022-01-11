@@ -1735,6 +1735,7 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
     # Loads the dictionary
     df = pd.read_stata(dataframe_location)
     df = replace_nan(df, replacement_method=3)
+    # Displays key dataframe information
     print('Dataframe Information')
     print(df.head())
     print(df.info(verbose=False))
@@ -1763,6 +1764,8 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
     hp_model = tf.keras.models.load_model(
         filepath=model_locations[5], custom_objects=custom_objects)
     print('Loaded: Hedge Portfolio')
+    models = [mse_tf_model, mse_model, sharpe_model,
+              sharpe_mse_model, information_model, hp_model]
     # hp_mse_model = tf.keras.models.load_model(
     # filepath=model_locations[6], custom_objects=custom_objects)
     # Resets df predictions dataframe
@@ -1785,7 +1788,36 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
     row_count = 0
     count = 0
     check = 0
-    # Makes predictions per row on the dataframe
+    # Make predictions from the entire dataframe at once
+    all_predictions = True
+    if all_predictions:
+        # Converts dataframe to dataset
+        ds = create_tf_dataset(
+            df, target_column='ret_exc_lead1m', shuffle=False, batch_size=256)
+        print('Completed: Creating Dataset')
+        for i in range(len(models)):
+            predictions = models[i].predict(ds)
+            print('Completed: Mean Square Error - Tensorflow')
+            print(predictions)
+            print(len(predictions))
+            print('The total number of predictions is {}.'.format(row_count))
+            # Creates new dataframe at once
+            scaler_predictions = []
+            for column in column_names:
+                if column == 'predict':
+                    # Assigns the predictions
+                    for i in range(len(predictions)):
+                        scaler_predictions.append(np.asscalar(predictions[i]))
+                    df_predictions[i][column] = scaler_predictions
+                else:
+                    df_predictions[i][column] = df[column].to_list()
+            print('New Dataframe')
+            print(mse_df_predictions.head())
+            # Saves the model to file
+            df_predictions[i].to_csv('/home/connormcdowall/finance-honours/results/predictions/' +
+                                     model_name + '-' + selected_losses[i] + '.csv')
+        return
+    # Makes predictions per row on the dataframe (Computationally and temporally expensive)
     print('Start to make predictions per row')
     for row in dataframe_dictionary:
         # Suspect the this convert to tensor function is time intensive
