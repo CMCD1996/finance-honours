@@ -73,11 +73,11 @@
 \definecolor{inputcolour}{RGB}{155,177,218}
 \definecolor{outputcolour}{RGB}{245,164,191}
 \usetikzlibrary{shapes.geometric, arrows}
-\tikzstyle{hiddenlayer} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, text width = 3cm, draw=black, fill=hiddenlayercolour]
-\tikzstyle{inputlayer} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm, text centered, text width = 3cm, draw=black, fill=inputlayercolour]
-\tikzstyle{outputlayer} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm, text centered, text width = 3cm, draw=black, fill=outputlayercolour]
-\tikzstyle{inputs} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, text width = 3cm, draw=black, fill=inputcolour]
-\tikzstyle{predict} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, text width = 3cm, draw=black, fill=outputcolour]
+\tikzstyle{hiddenlayer} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, text width = 5cm, draw=black, fill=hiddenlayercolour]
+\tikzstyle{inputlayer} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm, text centered, text width = 5cm, draw=black, fill=inputlayercolour]
+\tikzstyle{outputlayer} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm, text centered, text width = 5cm, draw=black, fill=outputlayercolour]
+\tikzstyle{inputs} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm, text centered, text width = 5cm, draw=black, fill=inputlayercolour]
+\tikzstyle{predict} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, text width = 5cm, draw=black, fill=outputcolour]
 \tikzstyle{arrow} = [thick,->,>=stealth]
 %%% HEADERS & FOOTERS
 \usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
@@ -287,23 +287,24 @@ Figure \ref{fig:neural-network} visualises the topography of a standard neural n
 \end{figure}
 The dots and lines represent nodes and connections between nodes, respectively.
 The architecture of the network is derivative of the model's intended use.
+The set of
 Figure \ref{fig:neural-network-configuration} illustrates 
 \begin{figure}[H]
 	\centering
 	\begin{tikzpicture}[node distance=2cm]
-	\node (in) [inputs] {\textbf{Input} \\ (Features: 189)};
-	\node (hidden1) [inputlayer, below of=in, yshift=-1cm] {\textbf{Dense I} \\ Nodes: 32 \\ \text{$h_{w}(\textbf{x})$} = RELU(z) (\ref{relu-activation-function})};
-	\node (hidden2) [hiddenlayer, below of=hidden1, yshift=-1cm] {\textbf{Dropout I} \\ Nodes: 32};
-	\node (hidden3) [hiddenlayer, below of=hidden2, yshift=-1cm] {\textbf{Dense II} \\ Nodes: 64};
-	\node (hidden4) [hiddenlayer, below of=hidden3, yshift=-1cm] {\textbf{Dense III} \\ Nodes: 128};
-	\node (output) [outputlayer, below of=hidden4, yshift=-1cm] {\textbf{Dense IV} \\ Nodes: 1};
+	\node (in) [inputs] {\textbf{$N_{(0,a)}$: Input} \\ (Features: 189)};
+	\node (hidden1) [hiddenlayer, below of=in, yshift=-1cm] {\textbf{$N_{(1,b)}$: Dense I} \\ Nodes: 32 \\ \text{$h_{w}(\textbf{x})$} = RELU(z) (\ref{relu-activation-function})};
+	\node (hidden2) [hiddenlayer, below of=hidden1, yshift=-1.5cm] {\textbf{$N_{(2,c)}$: Dropout I} \\ Nodes: 32 \\ Dropout Rate = 50\%};
+	\node (hidden3) [hiddenlayer, below of=hidden2, yshift=-1.5cm] {\textbf{$N_{(3,d)}$: Dense II} \\ Nodes: 64 \\ \text{$h_{w}(\textbf{x})$} = RELU(z) (\ref{relu-activation-function})};
+	\node (hidden4) [hiddenlayer, below of=hidden3, yshift=-1.5cm] {\textbf{$N_{(4,e)}$: Dense III} \\ Nodes: 128 \\ \text{$h_{w}(\textbf{x})$} = RELU(z) (\ref{relu-activation-function})};
+	\node (output) [outputlayer, below of=hidden4, yshift=-1.5cm] {\textbf{$N_{(5,f)}$: Dense IV} \\ Nodes: 1 \\ \text{$h_{w}(\textbf{x})$} = Linear(z) (\ref{linear-activation-function})};
 	\node (predict) [predict, below of=output, yshift=-1cm] {\textbf{Prediction}};
-	\draw [arrow] (in) -- node[anchor=west] {yes} (hidden1);
-	\draw [arrow] (hidden1) -- node[anchor=west] {\text{$h_{w}(\textbf{x})$} = RELU(z) (\ref{relu-activation-function})} (hidden2);
-	\draw [arrow] (hidden2) -- node[anchor=west] {Dropout Rate = 50\%} (hidden3);
-	\draw [arrow] (hidden3) -- node[anchor=west] {\text{$h_{w}(\textbf{x})$} = RELU(z) (\ref{relu-activation-function})} (hidden4);
-	\draw [arrow] (hidden4) -- node[anchor=west] {\text{$h_{w}(\textbf{x})$} = RELU(z) (\ref{relu-activation-function})} (output);
-	\draw [arrow] (output) -- node[anchor=west] {\text{$h_{w}(\textbf{x})$} = RELU(z) (\ref{relu-activation-function})} (predict);
+	\draw [arrow] (in) -- node[anchor=west] {\text{$w_{i}x_{i}$}} (hidden1);
+	\draw [arrow] (hidden1) -- node[anchor=west] {\text{$w_{i}x_{i}$}} (hidden2);
+	\draw [arrow] (hidden2) -- node[anchor=west] {\text{$w_{i}x_{i}$}} (hidden3);
+	\draw [arrow] (hidden3) -- node[anchor=west] {\text{$w_{i}x_{i}$}} (hidden4);
+	\draw [arrow] (hidden4) -- node[anchor=west] {\text{$w_{i}x_{i}$}} (output);
+	\draw [arrow] (output) -- node[anchor=west] {} (predict);
 	\end{tikzpicture}
 	\caption{Neural Network Configuration}
     \label{fig:neural-network-configuration}
