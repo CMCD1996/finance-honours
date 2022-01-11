@@ -31,6 +31,7 @@
 \usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
 \usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
 \usepackage[framed,numbered]{matlab-prettifier} % enable inserting matlab code.
+\usepackage{tikz} % Package for drawing flow diagrams
 \usepackage[parfill]{parskip}
 %\addtolength{\jot}{1em}
 \usepackage{amssymb}
@@ -65,6 +66,19 @@
 \lstset{style=mystyle}
 \usepackage{multicol}
 \usepackage{float}
+%%% FLOW DIAGRAM STYLE
+\definecolor{inputlayercolour}{RGB}{39,97,243}
+\definecolor{hiddenlayercolour}{RGB}{14,190,183}
+\definecolor{outputlayercolour}{RGB}{146,182,255}
+\definecolor{inputcolour}{RGB}{155,177,218}
+\definecolor{outputcolour}{RGB}{245,164,191}
+\usetikzlibrary{shapes.geometric, arrows}
+\tikzstyle{hiddenlayer} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, text width = 3cm, draw=black, fill=hiddenlayercolour]
+\tikzstyle{inputlayer} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm, text centered, text width = 3cm, draw=black, fill=inputlayercolour]
+\tikzstyle{outputlayer} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm, text centered, text width = 3cm, draw=black, fill=outputlayercolour]
+\tikzstyle{inputs} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, text width = 3cm, draw=black, fill=inputcolour]
+\tikzstyle{predict} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, text width = 3cm, draw=black, fill=outputcolour]
+\tikzstyle{arrow} = [thick,->,>=stealth]
 %%% HEADERS & FOOTERS
 \usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
 \setlength{\headheight}{15pt}
@@ -236,18 +250,24 @@ The remaining variables are numerical where a normalization normalizes each feat
 Artificial Neural Nets (ANN) are versatile, powerful, and scalable.
 They frequently outperform other machine learning algorithms on large and complex problems.
 Linear threshold units (LTU) compose neural networks.
-A linear threshold unit (LTU) feeds the weighted sum of input values ($z=\textbf{w}^{T} \cdot \textbf{x}$) into a step function ($h_{w}(\textbf{x})=step(z)$).
+A linear threshold unit (LTU) feeds the weighted sum of input values (\ref{w-sum}) into a step function (\ref{activation-function}).
 A perceptron is a single layer of LTUs connected to every input.
 Perceptrons are suitable for both regression and classification tasks.
 Perceptrons utilize a training algorithm assessing the strength of connections between perceptrons while considering errors.
 A perceptron is fed one training instance at a time, making predictions for each instance.
 For every output LTU that produced a wrong prediction, it re-enforces the connection weights using the perception learning rule (\ref{mlp-plr}) from the inputs that would have contributed to the right prediction.
 One LTU input layer, multiple LTU hidden layers, and an output LTU layer create an Multi Layer Perceptron (MLP).
-The step functions in each LTU are replaced by a logistic or ReLU function ($\sigma(z)=\frac{1}{1+ exp(-z)}$ or $ReLU(z) = max(0,z)$ respectively) to enable gradient descent for optimisation.
+The step functions in each LTU are replaced by a logistic (\ref{ogistic-activation-function}) or ReLU function (\ref{relu-activation-function}) to enable gradient descent for optimisation.
 A shared activatition function replaces the individual activation functions in the output layer to enable exclusive classification or regression.
-\begin{align}
+The linear activation function (\ref{linear-activation-function}) is most suitable output layer activation function for regression task as predict values between ($-\infty,\infty$) directly, suitable for evaluating excess returns. 
+\begin{align*}
+	z&=\textbf{w}^{T} \cdot \textbf{x} \numberthis \label{w-sum]}\\
+	h_{w}(\textbf{x})&=step(z) \numberthis \label{activation-function}\\
+	\sigma(z)&=\frac{1}{1+ exp(-z)} \numberthis \label{logistic-activation-function} \\
+	ReLU(z) &= max(0,z) \numberthis \label{relu-activation-function} \\
+	Linear(z) &= z \numberthis \label{linear-activation-function} \\
 	w_{i,j}^{\text{next step}} &= w_{i,j} + \eta (\hat{y}_j - y_j)x_i \numberthis \label{mlp-plr}
-\end{align}
+\end{align*}
 Where
 \begin{itemize}
 	\item $w_{i,j}$ is the connection weights between the ith input neuron and the jth output neuron. 
@@ -258,6 +278,36 @@ Where
 \end{itemize}
 The architecture for analysis is a large MLP.
 \subsubsection{Model Configuration}
+Figure \ref{fig:neural-network} visualises the topography of a standard neural network.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/images/neural-network}.png}
+    \caption{Standard Neural Network Topography (Source: IBM)}
+    \label{fig:neural-network}
+\end{figure}
+The dots and lines represent nodes and connections between nodes, respectively.
+The architecture of the network is derivative of the model's intended use.
+Figure \ref{fig:neural-network-configuration} illustrates 
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[node distance=2cm]
+	\node (in) [inputs] {\textbf{Input} \\ (Features: 189)};
+	\node (hidden1) [inputlayer, below of=in, yshift=-1cm] {\textbf{Dense I} \\ Nodes: 32 \\ \text{$h_{w}(\textbf{x})$} = RELU(z) (\ref{relu-activation-function})};
+	\node (hidden2) [hiddenlayer, below of=hidden1, yshift=-1cm] {\textbf{Dropout I} \\ Nodes: 32};
+	\node (hidden3) [hiddenlayer, below of=hidden2, yshift=-1cm] {\textbf{Dense II} \\ Nodes: 64};
+	\node (hidden4) [hiddenlayer, below of=hidden3, yshift=-1cm] {\textbf{Dense III} \\ Nodes: 128};
+	\node (output) [outputlayer, below of=hidden4, yshift=-1cm] {\textbf{Dense IV} \\ Nodes: 1};
+	\node (predict) [predict, below of=output, yshift=-1cm] {\textbf{Prediction}};
+	\draw [arrow] (in) -- node[anchor=west] {yes} (hidden1);
+	\draw [arrow] (hidden1) -- node[anchor=west] {\text{$h_{w}(\textbf{x})$} = RELU(z) (\ref{relu-activation-function})} (hidden2);
+	\draw [arrow] (hidden2) -- node[anchor=west] {Dropout Rate = 50\%} (hidden3);
+	\draw [arrow] (hidden3) -- node[anchor=west] {\text{$h_{w}(\textbf{x})$} = RELU(z) (\ref{relu-activation-function})} (hidden4);
+	\draw [arrow] (hidden4) -- node[anchor=west] {\text{$h_{w}(\textbf{x})$} = RELU(z) (\ref{relu-activation-function})} (output);
+	\draw [arrow] (output) -- node[anchor=west] {\text{$h_{w}(\textbf{x})$} = RELU(z) (\ref{relu-activation-function})} (predict);
+	\end{tikzpicture}
+	\caption{Neural Network Configuration}
+    \label{fig:neural-network-configuration}
+\end{figure}
 \textbf{10 epochs, 207 runs per epochs.}
 \subsection{Loss Functions \& Performance Metrics}
 \subsubsection{Modelling, Loss, and Optimisation}\label{sec:mlo}
@@ -486,44 +536,38 @@ Both Sharpe and Information ratios supplement hedge portfolio-related loss funct
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{mean-square-error-tensorflow.png}
-    \caption{Mean Square Error Model (Tensorflow) Loss Function Performance}
+    \caption{Mean Square Error Model (Tensorflow)}
     \label{fig:mse-tf-performance}
 \end{figure}
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{mean-square-error.png}
-    \caption{Mean Square Error Loss Function Model Performance}
+    \caption{Mean Square Error Loss Function}
     \label{fig:mse-performance}
 \end{figure}
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{sharpe.png}
-    \caption{Sharpe Ratio Loss Function Model Performance}
+    \caption{Sharpe Ratio Loss Function}
     \label{fig:sr-performance}
 \end{figure}
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{sharpe-mse.png}
-    \caption{Sharpe Ratio (MSE) Loss Function Model Performance}
+    \caption{Sharpe Ratio (MSE) Loss Function}
     \label{fig:sr-mse-performance}
 \end{figure}
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{information.png}
-    \caption{Information Ratio Loss Function Model Performance}
+    \caption{Information Ratio Loss Function}
     \label{fig:ir-performance}
 \end{figure}
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{hedge-portfolio.png}
-    \caption{Hedge Portfolio Loss Function Model Performance}
+    \caption{Hedge Portfolio Loss Function}
     \label{fig:hp-performance}
-\end{figure}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{hedge-portfolio-mse.png}
-    \caption{Hedge Portfolio (MSE) Loss Function Model Performance}
-    \label{fig:hp-mse-performance}
 \end{figure}
 \subsection{Regression Analysis}
 PooledOLS replaces Fama MacBeth in this instance.
