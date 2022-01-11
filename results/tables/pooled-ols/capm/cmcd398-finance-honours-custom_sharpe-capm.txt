@@ -1,0 +1,30 @@
+\begin{center}
+\begin{tabular}{lclc}
+\toprule
+\textbf{Dep. Variable:}    &      predict       & \textbf{  R-squared:         }   &      0.0005      \\
+\textbf{Estimator:}        &     PooledOLS      & \textbf{  R-squared (Between):}  &     -0.0182      \\
+\textbf{No. Observations:} &       531461       & \textbf{  R-squared (Within):}   &      0.0022      \\
+\textbf{Date:}             &  Tue, Jan 11 2022  & \textbf{  R-squared (Overall):}  &      0.0005      \\
+\textbf{Time:}             &      08:58:46      & \textbf{  Log-likelihood     }   &    -4.309e+06    \\
+\textbf{Cov. Estimator:}   &       Robust       & \textbf{                     }   &                  \\
+\textbf{}                  &                    & \textbf{  F-statistic:       }   &      251.19      \\
+\textbf{Entities:}         &        7282        & \textbf{  P-value            }   &      0.0000      \\
+\textbf{Avg Obs:}          &       72.983       & \textbf{  Distribution:      }   &   F(1,531459)    \\
+\textbf{Min Obs:}          &       1.0000       & \textbf{                     }   &                  \\
+\textbf{Max Obs:}          &       252.00       & \textbf{  F-statistic (robust):} &      224.05      \\
+\textbf{}                  &                    & \textbf{  P-value            }   &      0.0000      \\
+\textbf{Time periods:}     &        252         & \textbf{  Distribution:      }   &   F(1,531459)    \\
+\textbf{Avg Obs:}          &       2109.0       & \textbf{                     }   &                  \\
+\textbf{Min Obs:}          &       1869.0       & \textbf{                     }   &                  \\
+\textbf{Max Obs:}          &       3400.0       & \textbf{                     }   &                  \\
+\bottomrule
+\end{tabular}
+\begin{tabular}{lcccccc}
+                & \textbf{Parameter} & \textbf{Std. Err.} & \textbf{T-stat} & \textbf{P-value} & \textbf{Lower CI} & \textbf{Upper CI}  \\
+\midrule
+\textbf{const}  &       515.46       &       1.1181       &      461.03     &      0.0000      &       513.26      &       517.65       \\
+\textbf{Mkt-RF} &       3.7710       &       0.2519       &      14.968     &      0.0000      &       3.2773      &       4.2648       \\
+\bottomrule
+\end{tabular}
+%\caption{PooledOLS Estimation Summary}
+\end{center}
