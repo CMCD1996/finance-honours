@@ -294,7 +294,7 @@ Figure \ref{fig:neural-network-configuration} illustrates
 	\centering
 	\begin{tikzpicture}[node distance=2cm]
 	\node (in) [inputs] {\textbf{$N_{(0,a)}$: Input} \\ (Features: 189)};
-	\node (hidden1) [hiddenlayer, below of=in, yshift=-1cm] {\textbf{$N_{(1,b)}$: Dense I} \\ Nodes: 32 \\ \text{$h_{w}(\textbf{x})$} = RELU(z) (\ref{relu-activation-function})};
+	\node (hidden1) [hiddenlayer, below of=in, yshift=-1cm] {\textbf{Dense I} \\ \text{$N_{(1,b)}$}:  \\ \text{$h_{w}(\textbf{x})$} = RELU(z) (\ref{relu-activation-function})};
 	\node (hidden2) [hiddenlayer, below of=hidden1, yshift=-1.5cm] {\textbf{$N_{(2,c)}$: Dropout I} \\ Nodes: 32 \\ Dropout Rate = 50\%};
 	\node (hidden3) [hiddenlayer, below of=hidden2, yshift=-1.5cm] {\textbf{$N_{(3,d)}$: Dense II} \\ Nodes: 64 \\ \text{$h_{w}(\textbf{x})$} = RELU(z) (\ref{relu-activation-function})};
 	\node (hidden4) [hiddenlayer, below of=hidden3, yshift=-1.5cm] {\textbf{$N_{(4,e)}$: Dense III} \\ Nodes: 128 \\ \text{$h_{w}(\textbf{x})$} = RELU(z) (\ref{relu-activation-function})};
@@ -534,6 +534,7 @@ Both Sharpe and Information ratios supplement hedge portfolio-related loss funct
 \subsubsection{Q-Learning}
 \newpage
 \section{Results}
+\subsection{Performance Matrix}
 \cite{hlavac2018stargazer} enables the tables in the regression analysis.
 \subsection{Model Performance}
 \begin{figure}[H]
@@ -572,15 +573,17 @@ Both Sharpe and Information ratios supplement hedge portfolio-related loss funct
     \caption{Hedge Portfolio Loss Function}
     \label{fig:hp-performance}
 \end{figure}
+\subsection{Hedge Portfolio Performance}
+\input{}
 \subsection{Regression Analysis}
 PooledOLS replaces Fama MacBeth in this instance.
-\subsection{Hedge Portfolio Performance}
+
+
 \subsubsection{Baseline Dataset}
 \section{Discussion}
 \section{Contributions}
 \section{Conclusion}
 \newpage
-\begin{landscape}
 \section{Appendix}
 \subsection{Ordinary Least Squares (OLS)}\label{ols}
 The OLS regression is the most prominent statistical model in asset pricing theory.
@@ -718,6 +721,7 @@ The research essay documentation keeps an accurate record of key design decision
 Commit histories (\ref{Version Control}) is the most important form of documentation.
 Application of auxiliary documentation methods are supplementary.
 
+\begin{landscape}
 \subsection{Dataset Summary Statistics}\label{dss}
 \setlength{\tabcolsep}{2pt}
 \begin{longtable}{|l|r|r|r|r|r|r|r|r|}
