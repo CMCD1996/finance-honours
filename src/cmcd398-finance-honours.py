@@ -882,6 +882,22 @@ def convert_txt_to_tex(fp_in, fp_out, replace_text=False, replacement_text=None)
             print(line)
             if replace_text:
                 try:
+                    line = line.replace('(1)', 'CAPM')
+                except:
+                    pass
+                try:
+                    line = line.replace('(2)', 'FF3')
+                except:
+                    pass
+                try:
+                    line = line.replace('(3)', 'FF4')
+                except:
+                    pass
+                try:
+                    line = line.replace('(4)', 'FF5')
+                except:
+                    pass
+                try:
                     texdoc.append(line.replace(
                         'Dependent variable', replacement_text))
                 except:
@@ -903,10 +919,15 @@ def execute_conversion_options(model_name, selected_losses, hp_ols=False, pooled
     base_directory_in = '/home/connormcdowall/finance-honours/results/tables/'
     base_directory_out = '/home/connormcdowall/finance-honours/results/tex/'
     factor_models = ['capm', 'ff3', 'ff4', 'ff5']
+    replacement_set_losses = ['mean squared error', 'custom mse',
+                              'custom sharpe', 'custom sharpe mse', 'custom information', 'custom hp']
+    replace_count = 0
     if true_excess_returns:
         selected_losses.append('realised-excess-returns')
+        replacement_set_losses.append('realised excess returns')
     for loss in selected_losses:
-        replacement_text = 'One Month Lead Excess Portfolio Return using ' + loss
+        replacement_text = 'One Month Lead Excess Portfolio Return using ' + \
+            replacement_set_losses[replace_count]
         if hp_ols:
             fp_in = base_directory_in + 'hedge-portfolio-ols/' + \
                 model_name + '-' + loss + '.txt'
@@ -920,6 +941,7 @@ def execute_conversion_options(model_name, selected_losses, hp_ols=False, pooled
                 fp_out = base_directory_out + model_name + '-' + loss + '-' + factor + '.tex'
                 convert_txt_to_tex(
                     fp_in, fp_out, replace_text=True, replacement_text=replacement_text)
+        replace_count = replace_count + 1
     return
 #################################################################################
 # Machine Learning
