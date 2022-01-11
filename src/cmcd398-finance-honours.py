@@ -2680,5 +2680,5 @@ if make_predictions:
     make_tensorflow_predictions(model_name=model_name, model_directory=model_directory, selected_losses=selected_losses,
                                 dataframe_location=predictions_data, custom_objects=custom_tf_objects)
 if perform_regressions:
-    create_fama_factor_models(model_name=model_name, selected_losses=selected_losses, factor_location=factor_location, prediction_location=predictions_location, prediction_name='excess-returns',
+    create_fama_factor_models(model_name=model_name, selected_losses=selected_losses, factor_location=factor_location, prediction_location=predictions_location,
                               dependant_column='predict', regression_dictionary=regression_dictionary)
