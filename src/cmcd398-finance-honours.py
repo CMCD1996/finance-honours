@@ -638,7 +638,7 @@ def save_df_statistics(df, frame_set, statistics_location, data_location):
     # Saves datatypes of the dataframe
     np.savetxt(datatype_file, df.dtypes, fmt='%s')
     # Saves the dataframe to dta files for the regressions
-    # df.to_stata(data_file)
+    df.to_stata(data_file)
     return
 
 
@@ -1009,9 +1009,9 @@ def encode_tensor_flow_features(train_df, val_df, test_df, target_column, numeri
 
     # Display a set of batches
     [(train_features, label_batch)] = train_dataset.take(1)
-    print('Every feature:', list(train_features.keys()))
-    print('A batch of size groups:', train_features['size_grp'])
-    print('A batch of targets:', label_batch)
+    # print('Every feature:', list(train_features.keys()))
+    # print('A batch of size groups:', train_features['size_grp'])
+    # print('A batch of targets:', label_batch)
 
     # Initilise input and encoded feature arrays
     all_inputs = []
@@ -1069,6 +1069,28 @@ def encode_tensor_flow_features(train_df, val_df, test_df, target_column, numeri
     print('Encoding: Successful')
     # Monitor memory usage
     monitor_memory_usage(units=3, cpu=True, gpu=True)
+    # Try saving tensorflow dataset
+    try:
+        # Load with
+        filepath = '/home/connormcdowall/finance-honours/data/tf-datasets/'
+        tf.data.experimental.save(train_dataset, filepath + 'train')
+        tf.data.experimental.save(val_dataset, filepath + 'val')
+        tf.data.experimental.save(test_dataset, filepath + 'test')
+    except:
+        print('Dataset could not be saved')
+    try:
+        # Save encoded features
+        filepath = '/home/connormcdowall/finance-honours/data/tf-datasets/encoded-features.npy'
+        np.save(filepath, all_features, allow_pickle=True)
+    except:
+        print('Encoded columns could not be saved')
+    try:
+        # Save all inputs
+        filepath = '/home/connormcdowall/finance-honours/data/tf-datasets/all-inputs.npy'
+        np.save(filepath, all_inputs, allow_pickle=True)
+    except:
+        print('Encoded columns could not be saved')
+
     return all_features, all_inputs, train_dataset, val_dataset, test_dataset
 
 
@@ -1676,9 +1698,9 @@ def create_tensorflow_models(data_vm_directory, list_of_columns, categorical_ass
     statistics_location = '/home/connormcdowall/finance-honours/results/statistics'
     data_location = '/home/connormcdowall/finance-honours/data/dataframes'
     save_df_statistics(test_df, 'test', statistics_location, data_location)
-    save_df_statistics(train_df, 'train', statistics_location, data_location)
-    save_df_statistics(val_df, 'validation',
-                       statistics_location, data_location)
+    # save_df_statistics(train_df, 'train', statistics_location, data_location)
+    # save_df_statistics(val_df, 'validation',statistics_location, data_location)
+    return
     # Create feature lists for deep learning
     numerical_features, categorical_features = create_feature_lists(
         list_of_columns, categorical_assignment)
@@ -1689,8 +1711,12 @@ def create_tensorflow_models(data_vm_directory, list_of_columns, categorical_ass
     for key in category_dtypes:
         categorical_dictionary[key] = category_dtypes[key]
     # Encodes the tensorflow matrix
-    all_features, all_inputs, train_dataset, val_dataset, test_dataset = encode_tensor_flow_features(
-        train_df, val_df, test_df, target_column, numerical_features, categorical_features, categorical_dictionary, size_of_batch=batch_size)
+    require_encoding = True
+    if require_encoding:
+        all_features, all_inputs, train_dataset, val_dataset, test_dataset = encode_tensor_flow_features(
+            train_df, val_df, test_df, target_column, numerical_features, categorical_features, categorical_dictionary, size_of_batch=batch_size)
+    else:
+        print('Loads datasets and encoded features from file')
     # Note: Keep Stochastic Gradient Descent as Optimizer for completeness
     # Buids tensorflow model
     model, loss, metrics, other_metrics = build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name,
@@ -1709,6 +1735,9 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
     # Loads the dictionary
     df = pd.read_stata(dataframe_location)
     df = replace_nan(df, replacement_method=3)
+    print('Dataframe Information')
+    print(df.head())
+    print(df.info(verbose=False))
     print('The length of the dataframe is: ', len(df['ret_exc_lead1m']))
     # Convert dataframe row to dictionary with column headers (section)
     dataframe_dictionary = df.to_dict(orient="records")
@@ -1727,8 +1756,8 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
         filepath=model_locations[4], custom_objects=custom_objects)
     hp_model = tf.keras.models.load_model(
         filepath=model_locations[5], custom_objects=custom_objects)
-    hp_mse_model = tf.keras.models.load_model(
-        filepath=model_locations[6], custom_objects=custom_objects)
+    # hp_mse_model = tf.keras.models.load_model(
+    # filepath=model_locations[6], custom_objects=custom_objects)
     # Resets df predictions dataframe
     mse_df_predictions = pd.DataFrame(columns=column_names)
     mse_tf_df_predictions = pd.DataFrame(columns=column_names)
@@ -1736,15 +1765,14 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
     sharpe_mse_df_predictions = pd.DataFrame(columns=column_names)
     information_df_predictions = pd.DataFrame(columns=column_names)
     hp_df_predictions = pd.DataFrame(columns=column_names)
-    hp_mse_df_predictions = pd.DataFrame(columns=column_names)
+    # hp_mse_df_predictions = pd.DataFrame(columns=column_names)
     # Stores dataframes in an array
     df_predictions = [mse_df_predictions,
                       mse_tf_df_predictions,
                       sharpe_df_predictions,
                       sharpe_mse_df_predictions,
                       information_df_predictions,
-                      hp_df_predictions,
-                      hp_mse_df_predictions]
+                      hp_df_predictions]
     # Initialises row count
     row_count = 0
     count = 0
@@ -1760,15 +1788,14 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
         sharpe_mse_predictions = sharpe_mse_model.predict(input_dict)
         information_predictions = information_model.predict(input_dict)
         hp_predictions = hp_model.predict(input_dict)
-        hp_mse_predictions = hp_mse_model.predict(input_dict)
+        # hp_mse_predictions = hp_mse_model.predict(input_dict)
         # Stores predictions in an array
         predictions = [mse_predictions[0],
                        mse_tf_predictions[0],
                        sharpe_predictions[0],
                        sharpe_mse_predictions[0],
                        information_predictions[0],
-                       hp_predictions[0],
-                       hp_mse_predictions[0]]
+                       hp_predictions[0]]
         count = count + 1
         for i in range(len(predictions)):
             # Adds prediction value to prediction df
@@ -2486,7 +2513,7 @@ metrics = accuracy_metrics + probabilistic_metrics + regression_metrics + \
 optimisation_dictionary = {1: 'SGD', 2: 'SGD',
                            3: 'SGD'}
 loss_function_dictionary = {
-    1: ['mean_squared_error', 'custom_mse', 'custom_sharpe', 'custom_sharpe_mse', 'custom_information', 'custom_hp', 'custom_hp_mse'], 2: ['custom_hp', 'custom_hp_mse']}
+    1: ['mean_squared_error', 'custom_mse', 'custom_sharpe', 'custom_sharpe_mse', 'custom_information', 'custom_hp'], 2: ['custom_hp', 'custom_hp_mse']}
 metrics_dictionary = {1: ['mean_squared_error', 'cosine_similarity', 'mean_absolute_error', 'root_mean_squared_error', 'custom_mse_metric', 'custom_sharpe_metric',
                           'custom_information_metric', 'custom_hp_metric'], 2: ['mean_squared_error', 'cosine_similarity', 'mean_absolute_error', 'root_mean_squared_error', 'custom_mse_metric', 'custom_sharpe_metric',
                                                                                 'custom_information_metric', 'custom_hp_metric']}
@@ -2494,7 +2521,7 @@ metrics_dictionary = {1: ['mean_squared_error', 'cosine_similarity', 'mean_absol
 # Selected Tensorflow Configuration
 #################################################################################
 tf_option_array = [1, 2]  # 1 = Analysis, 2 = Testing
-tf_option = 2  # Change to 1,2,3,4,5,6,7 for configuration
+tf_option = 1  # Change to 1,2,3,4,5,6,7 for configuration
 selected_optimizer = optimisation_dictionary[tf_option]
 selected_losses = loss_function_dictionary[tf_option]
 selected_metrics = metrics_dictionary[tf_option]
@@ -2519,7 +2546,7 @@ list_of_columns = '/home/connormcdowall/finance-honours/data/working-columns.txt
 train_data = '/home/connormcdowall/finance-honours/data/dataframes/active_train.dta'
 test_data = '/home/connormcdowall/finance-honours/data/dataframes/active_test.dta'
 val_data = '/home/connormcdowall/finance-honours/data/dataframes/active_validation.dta'
-predictions_data = '/home/connormcdowall/finance-honours/data/dataframes/active_prediction.dta'
+predictions_data = '/home/connormcdowall/finance-honours/data/dataframes/active_test.dta'
 model_directory = '/home/connormcdowall/finance-honours/results/models/tensorflow/cmcd398-finance-honours'
 # Subsequent directories for making regressions
 factor_location = '/home/connormcdowall/finance-honours/data/factors.csv'
@@ -2544,8 +2571,8 @@ chronologically_sort_data = False
 analytical = False
 rank_functions = False
 # Research Proposal Analysis
-create_models = True
-make_predictions = False
+create_models = False
+make_predictions = True
 perform_regressions = False
 #################################################################################
 # Function Testing
