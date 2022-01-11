@@ -705,7 +705,7 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             # Uses linear models to perform CAPM regressions (Panel Regressions)
             capm_exog_vars = ['Mkt-RF']
             capm_exog = sm.add_constant(data[capm_exog_vars])
-            capm_fb = lm.PooledOLS(
+            capm_fb = lm.FamaMacBeth(
                 data[dependant_column], capm_exog).fit(cov_type='robust')
             with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/capm/' + model_name + '-' + loss + '-capm.txt', 'w') as f:
                 f.truncate(0)
@@ -719,8 +719,8 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             # Uses linear models to perform FF3 regression (Panel Regressions)
             ff3_exog_vars = ['Mkt-RF', 'SMB', 'HML']
             ff3_exog = sm.add_constant(data[ff3_exog_vars])
-            ff3_fb = lm.PooledOLS(data[dependant_column],
-                                  ff3_exog).fit(cov_type='robust')
+            ff3_fb = lm.FamaMacBeth(data[dependant_column],
+                                    ff3_exog).fit(cov_type='robust')
             with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/ff3/' + model_name + '-' + loss + '-ff3.txt', 'w') as f:
                 f.truncate(0)
                 print(ff3_fb.summary.as_latex(), file=f)
@@ -733,8 +733,8 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             # Uses linear models to perform FF4 (Carhart) regression (Panel Regressions)
             ff4_exog_vars = ['Mkt-RF', 'SMB', 'HML', 'RMW']
             ff4_exog = sm.add_constant(data[ff4_exog_vars])
-            ff4_fb = lm.PooledOLS(data[dependant_column],
-                                  ff4_exog).fit(cov_type='robust')
+            ff4_fb = lm.FamaMacBeth(data[dependant_column],
+                                    ff4_exog).fit(cov_type='robust')
             with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/ff4/' + model_name + '-' + loss + '-ff4.txt', 'w') as f:
                 f.truncate(0)
                 print(ff4_fb.summary.as_latex(), file=f)
@@ -748,8 +748,8 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             # Uses linear model to perform FF5 regression (Panel Regressions)
             ff5_exog_vars = ['Mkt-RF', 'SMB', 'HML', 'RMW', 'CMA']
             ff5_exog = sm.add_constant(data[ff5_exog_vars])
-            ff5_fb = lm.PooledOLS(data[dependant_column],
-                                  ff5_exog).fit(cov_type='robust')
+            ff5_fb = lm.FamaMacBeth(data[dependant_column],
+                                    ff5_exog).fit(cov_type='robust')
             with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/ff5/' + model_name + '-' + loss + '-ff5.txt', 'w') as f:
                 f.truncate(0)
                 print(ff5_fb.summary.as_latex(), file=f)
@@ -2694,14 +2694,14 @@ test_implementation = False
 example_autodiff = False
 test_loss_function = False
 chronologically_sort_data = False
-convert_text = True
+convert_text = False
 # Analytical
 analytical = False
 rank_functions = False
 # Research Proposal Analysis
 create_models = False
 make_predictions = False
-perform_regressions = False
+perform_regressions = True
 #################################################################################
 # Function Testing
 #################################################################################
@@ -2762,4 +2762,4 @@ if make_predictions:
                                 dataframe_location=predictions_data, custom_objects=custom_tf_objects)
 if perform_regressions:
     create_fama_factor_models(model_name=model_name, selected_losses=selected_losses, factor_location=factor_location, prediction_location=predictions_location,
-                              dependant_column=dependant_column, regression_dictionary=regression_dictionary, realised_returns=True)
+                              dependant_column=dependant_column, regression_dictionary=regression_dictionary, realised_returns=False)
