@@ -1793,7 +1793,7 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
         ds = create_tf_dataset(
             df, target_column='ret_exc_lead1m', shuffle=False, batch_size=256)
         print('Completed: Creating Dataset')
-        predictions = mse_tf_model(ds, training=False)
+        predictions = mse_tf_model.predict(ds)
         print('Completed: Mean Square Error - Tensorflow')
         print(predictions)
         return
