@@ -1744,6 +1744,7 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
     # Starts fo loop to loop through every model
     print('Starting: Loss Function Predictions')
     # Loads all models
+    print('Loading Tensorflow Models')
     mse_model = tf.keras.models.load_model(
         filepath=model_locations[0], custom_objects=custom_objects)
     mse_tf_model = tf.keras.models.load_model(
@@ -1759,6 +1760,7 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
     # hp_mse_model = tf.keras.models.load_model(
     # filepath=model_locations[6], custom_objects=custom_objects)
     # Resets df predictions dataframe
+    print('Setting Prediction Dataframe')
     mse_df_predictions = pd.DataFrame(columns=column_names)
     mse_tf_df_predictions = pd.DataFrame(columns=column_names)
     sharpe_df_predictions = pd.DataFrame(columns=column_names)
@@ -1777,6 +1779,7 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
     row_count = 0
     count = 0
     # Makes predictions per row on the dataframe
+    print('Start to make predictions per row')
     for row in dataframe_dictionary:
         # Suspect the this convert to tensor function is time intensive
         input_dict = {name: tf.convert_to_tensor(
