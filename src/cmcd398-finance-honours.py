@@ -1799,12 +1799,17 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
         print(len(predictions))
         print('The total number of predictions is {}.'.format(row_count))
         # Creates new dataframe at once
+        scaler_predictions = []
         for column in column_names:
             if column == 'predict':
                 # Assigns the predictions
-                mse_df_predictions[column] = np.asscalar(predictions[:])
+                for i in range(len(predictions)):
+                    print(predictions[i])
+                    scaler_predictions.append(np.asscalar(predictions[i]))
+                    print(scaler_predictions[i])
+                mse_df_predictions[column] = scaler_predictions
             else:
-                mse_df_predictions[column] = df[column]
+                mse_df_predictions[column] = df[column].to_list()
         print('New Dataframe')
         print(mse_df_predictions.head())
         return
