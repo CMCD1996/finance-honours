@@ -1698,8 +1698,9 @@ def create_tensorflow_models(data_vm_directory, list_of_columns, categorical_ass
     statistics_location = '/home/connormcdowall/finance-honours/results/statistics'
     data_location = '/home/connormcdowall/finance-honours/data/dataframes'
     save_df_statistics(test_df, 'test', statistics_location, data_location)
-    # save_df_statistics(train_df, 'train', statistics_location, data_location)
-    # save_df_statistics(val_df, 'validation',statistics_location, data_location)
+    save_df_statistics(train_df, 'train', statistics_location, data_location)
+    save_df_statistics(val_df, 'validation',
+                       statistics_location, data_location)
     return
     # Create feature lists for deep learning
     numerical_features, categorical_features = create_feature_lists(
