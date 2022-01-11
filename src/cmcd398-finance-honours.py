@@ -650,7 +650,7 @@ def convert_datetime_to_int(dataframe, column_name):
     return dataframe
 
 
-def create_fama_factor_models(model_name, selected_losses, factor_location, prediction_location, dependant_column, regression_dictionary):
+def create_fama_factor_models(model_name, selected_losses, factor_location, prediction_location, dependant_column, regression_dictionary, realised_returns=False):
     # Note: uses permo and mth to create multiple index for panel regressions
     # permno is the permanent unique firm identifier
     # Reads in all the pandas dataframes
@@ -658,6 +658,9 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
     for loss in selected_losses:
         regression_df = pd.read_csv(
             prediction_location + model_name + '-' + loss + '.csv')
+        if realised_returns:
+            loss = 'realised-excess-returns'
+            dependant_column = 'ret_exc_lead1m'
         hedge_returns = pd.DataFrame(columns=['mth', 'hedge_returns'])
         # Creates portfolio returns via groupings
         monthly_groups = regression_df.groupby("mth")
@@ -761,6 +764,8 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             # Deletes existing text
             f.truncate(0)
             print(hp_stargazer.render_latex(), file=f)
+        if realised_returns:
+            return
     return
 
 
@@ -868,20 +873,53 @@ def sort_data_chronologically(data_directory, size_of_chunks, set_top_500=False)
     return
 
 
-def convert_txt_to_tex(input_txt, output_tex):
+def convert_txt_to_tex(fp_in, fp_out, replace_text=False, replacement_text=None):
     texdoc = []  # a list of string representing the latex document in python
-    with open(input_txt, 'r') as fin:
+    # Set base directory
+    with open(fp_in, 'r') as fin:
         lines = fin.readlines()
         for line in lines:
             print(line)
-            texdoc.append(line)
+            if replace_text:
+                try:
+                    texdoc.append(line.replace(
+                        'Dependent variable', replacement_text))
+                except:
+                    pass
+            else:
+                texdoc.append(line)
     fin.close()
     print(texdoc)
     # write back the new document
-    with open(output_tex, 'w') as fout:
+    with open(fp_out, 'w') as fout:
+        fout.truncate(0)
         for i in range(len(texdoc)):
             fout.write(texdoc[i])
     fout.close()
+    return
+
+
+def execute_conversion_options(model_name, selected_losses, hp_ols=False, pooled_ols=False, true_excess_returns=False):
+    base_directory_in = '/home/connormcdowall/finance-honours/results/tables/'
+    base_directory_out = '/home/connormcdowall/finance-honours/results/tex/'
+    factor_models = ['capm', 'ff3', 'ff4', 'ff5']
+    if true_excess_returns:
+        selected_losses.append('realised-excess-returns')
+    for loss in selected_losses:
+        replacement_text = 'One Month Lead Excess Portfolio Return using ' + loss
+        if hp_ols:
+            fp_in = base_directory_in + 'hedge-portfolio-ols/' + \
+                model_name + '-' + loss + '.txt'
+            fp_out = base_directory_out + model_name + '-' + loss + '.tex'
+            convert_txt_to_tex(fp_in, fp_out, replace_text=True,
+                               replacement_text=replacement_text)
+        if pooled_ols:
+            for factor in factor_models:
+                fp_in = base_directory_in + 'pooled-ols/' + factor + \
+                    '/' + model_name + '-' + loss + '-' + factor + '.txt'
+                fp_out = base_directory_out + model_name + '-' + loss + '-' + factor + '.tex'
+                convert_txt_to_tex(
+                    fp_in, fp_out, replace_text=True, replacement_text=replacement_text)
     return
 #################################################################################
 # Machine Learning
@@ -2604,7 +2642,6 @@ model_name = 'cmcd398-finance-honours'
 data_source = 'data/combined_predictors_filtered_us.dta'
 csv_location = '/Volumes/Seagate/dataframes/'
 data_vm_directory = '/home/connormcdowall/local-data/'
-data_vm_directory
 data_vm_dta = '/home/connormcdowall/local-data/combined_predictors_filtered_us.dta'
 results_tables = '/home/connormcdowall/finance-honours/results/tables'
 list_of_columns = '/home/connormcdowall/finance-honours/data/working-columns.txt'
@@ -2617,6 +2654,7 @@ model_directory = '/home/connormcdowall/finance-honours/results/models/tensorflo
 # Subsequent directories for making regressions
 factor_location = '/home/connormcdowall/finance-honours/data/factors.csv'
 predictions_location = '/home/connormcdowall/finance-honours/results/predictions/'
+dependant_column = 'predict'
 #################################################################################
 # Truth Variables (Set to True or False depending on the functions to run)
 #################################################################################
@@ -2667,9 +2705,8 @@ if chronologically_sort_data:
     sort_data_chronologically(
         data_vm_directory, size_of_chunks=chunk_size, set_top_500=False)
 if convert_text:
-    input_txt = '/home/connormcdowall/finance-honours/results/tables/hedge-portfolio-ols/cmcd398-finance-honours-mean_squared_error.txt'
-    output_tex = '/home/connormcdowall/finance-honours/results/tex/cmcd398-finance-honours-mean_squared_error.tex'
-    convert_txt_to_tex(input_txt, output_tex)
+    execute_conversion_options(model_name, selected_losses,
+                               hp_ols=True, pooled_ols=True, true_excess_returns=True)
 #################################################################################
 # Tensorflow
 #################################################################################
@@ -2703,4 +2740,4 @@ if make_predictions:
                                 dataframe_location=predictions_data, custom_objects=custom_tf_objects)
 if perform_regressions:
     create_fama_factor_models(model_name=model_name, selected_losses=selected_losses, factor_location=factor_location, prediction_location=predictions_location,
-                              dependant_column='predict', regression_dictionary=regression_dictionary)
+                              dependant_column=dependant_column, regression_dictionary=regression_dictionary, realised_returns=True)
