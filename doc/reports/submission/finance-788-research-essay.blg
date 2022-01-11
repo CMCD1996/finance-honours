@@ -1,22 +1,22 @@
 [0] Config.pm:311> INFO - This is Biber 2.16
 [0] Config.pm:314> INFO - Logfile is 'finance-788-research-essay.blg'
-[92] biber-darwin:340> INFO - === Tue Jan 11, 2022, 02:30:02
-[116] Biber.pm:415> INFO - Reading 'finance-788-research-essay.bcf'
-[232] Biber.pm:952> INFO - Found 25 citekeys in bib section 0
-[251] Biber.pm:4340> INFO - Processing section 0
-[266] Biber.pm:4531> INFO - Looking for bibtex format file 'finance-honours.bib' for section 0
-[269] bibtex.pm:1689> INFO - LaTeX decoding ...
-[312] bibtex.pm:1494> INFO - Found BibTeX data source 'finance-honours.bib'
-[478] Utils.pm:395> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/biber_tmp_3zQo/681028049f1e1896b2220fc783d77e32_8586.utf8, line 6, warning: 16 characters of junk seen at toplevel
-[478] Utils.pm:395> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/biber_tmp_3zQo/681028049f1e1896b2220fc783d77e32_8586.utf8, line 51, warning: 13 characters of junk seen at toplevel
-[478] Utils.pm:395> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/biber_tmp_3zQo/681028049f1e1896b2220fc783d77e32_8586.utf8, line 173, warning: 12 characters of junk seen at toplevel
-[478] Utils.pm:395> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/biber_tmp_3zQo/681028049f1e1896b2220fc783d77e32_8586.utf8, line 196, warning: 5 characters of junk seen at toplevel
-[478] Utils.pm:395> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/biber_tmp_3zQo/681028049f1e1896b2220fc783d77e32_8586.utf8, line 216, warning: 10 characters of junk seen at toplevel
-[479] Utils.pm:395> WARN - BibTeX subsystem: warning: comma(s) at end of name (removing)
-[532] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[533] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[533] Biber.pm:4168> INFO - Sorting list 'apa/global//global/global' of type 'entry' with template 'apa' and locale 'en-US'
-[533] Biber.pm:4174> INFO - No sort tailoring available for locale 'en-US'
-[565] bbl.pm:654> INFO - Writing 'finance-788-research-essay.bbl' with encoding 'UTF-8'
-[583] bbl.pm:757> INFO - Output to finance-788-research-essay.bbl
-[584] Biber.pm:128> INFO - WARNINGS: 6
+[117] biber-darwin:340> INFO - === Tue Jan 11, 2022, 15:20:47
+[143] Biber.pm:415> INFO - Reading 'finance-788-research-essay.bcf'
+[268] Biber.pm:952> INFO - Found 25 citekeys in bib section 0
+[289] Biber.pm:4340> INFO - Processing section 0
+[304] Biber.pm:4531> INFO - Looking for bibtex format file 'finance-honours.bib' for section 0
+[307] bibtex.pm:1689> INFO - LaTeX decoding ...
+[351] bibtex.pm:1494> INFO - Found BibTeX data source 'finance-honours.bib'
+[492] Utils.pm:395> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/biber_tmp_cRbp/681028049f1e1896b2220fc783d77e32_6970.utf8, line 6, warning: 16 characters of junk seen at toplevel
+[492] Utils.pm:395> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/biber_tmp_cRbp/681028049f1e1896b2220fc783d77e32_6970.utf8, line 51, warning: 13 characters of junk seen at toplevel
+[493] Utils.pm:395> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/biber_tmp_cRbp/681028049f1e1896b2220fc783d77e32_6970.utf8, line 173, warning: 12 characters of junk seen at toplevel
+[493] Utils.pm:395> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/biber_tmp_cRbp/681028049f1e1896b2220fc783d77e32_6970.utf8, line 196, warning: 5 characters of junk seen at toplevel
+[493] Utils.pm:395> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/biber_tmp_cRbp/681028049f1e1896b2220fc783d77e32_6970.utf8, line 216, warning: 10 characters of junk seen at toplevel
+[493] Utils.pm:395> WARN - BibTeX subsystem: warning: comma(s) at end of name (removing)
+[549] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[549] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[549] Biber.pm:4168> INFO - Sorting list 'apa/global//global/global' of type 'entry' with template 'apa' and locale 'en-US'
+[549] Biber.pm:4174> INFO - No sort tailoring available for locale 'en-US'
+[581] bbl.pm:654> INFO - Writing 'finance-788-research-essay.bbl' with encoding 'UTF-8'
+[599] bbl.pm:757> INFO - Output to finance-788-research-essay.bbl
+[599] Biber.pm:128> INFO - WARNINGS: 6
