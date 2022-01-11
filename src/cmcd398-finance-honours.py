@@ -1814,8 +1814,6 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
                 new_df_row, ignore_index=True)
         row_count = row_count + 1
         print('Completed row {} for all Loss functions.'.format(row_count))
-        if row_count == 50:
-            break
         # Use the count to make sure the function is working properly (remove once tested)
         # if count == 5:
         #     break
