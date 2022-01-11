@@ -1701,7 +1701,6 @@ def create_tensorflow_models(data_vm_directory, list_of_columns, categorical_ass
     save_df_statistics(train_df, 'train', statistics_location, data_location)
     save_df_statistics(val_df, 'validation',
                        statistics_location, data_location)
-    return
     # Create feature lists for deep learning
     numerical_features, categorical_features = create_feature_lists(
         list_of_columns, categorical_assignment)
@@ -2572,8 +2571,8 @@ chronologically_sort_data = False
 analytical = False
 rank_functions = False
 # Research Proposal Analysis
-create_models = True
-make_predictions = False
+create_models = False
+make_predictions = True
 perform_regressions = False
 #################################################################################
 # Function Testing
