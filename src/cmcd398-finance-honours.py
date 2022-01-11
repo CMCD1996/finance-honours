@@ -1814,6 +1814,8 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
                 new_df_row, ignore_index=True)
         row_count = row_count + 1
         print('Completed row {} for all Loss functions.'.format(row_count))
+        if row_count == 50:
+            break
         # Use the count to make sure the function is working properly (remove once tested)
         # if count == 5:
         #     break
@@ -1821,7 +1823,7 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
         print(df_predictions[j].info(verbose=True))
         print(df_predictions[j].head())
     # Saves the model predictions to file (model_locations and selected losses alogn for these purposes)
-        df_predictions[j].to_csv('/home/connormcdowall/finance-honours/results/predictions/' +
+        df_predictions[j].to_csv('/home/connormcdowall/local-data/' +
                                  model_name + '-' + selected_losses[j] + '.csv')
     print('Completed: Loss Function Predictions')
     return
