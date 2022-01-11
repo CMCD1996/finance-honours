@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.12.31)  12 JAN 2022 01:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.12.31)  12 JAN 2022 01:33
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -789,6 +789,8 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 )) (/usr/local/texlive/2021/texmf-dist/tex/latex/cancel/cancel.sty
 Package: cancel 2013/04/12 v2.2 Cancel math terms
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/docmute/docmute.sty
+Package: docmute 2012/03/22 v1.4 Input stand-alone documents
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/tools/multicol.sty
 Package: multicol 2021/10/28 v1.9b multicolumn formatting (FMi)
 \c@tracingmulticols=\count475
@@ -958,6 +960,11 @@ Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
 Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/auxhook/auxhook.sty
 Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+
+
+Package auxhook Warning: Cannot patch \document,
+(auxhook)                using \AtBeginDocument instead.
+
 )
 \@linkdim=\dimen316
 \Hy@linkcounter=\count486
@@ -1034,28 +1041,28 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 )
 \@quotelevel=\count496
 \@quotereset=\count497
-Package translations Info: No language package found. I am going to use `english' as default language. on input line 99.
+Package translations Info: No language package found. I am going to use `english' as default language. on input line 100.
  (./finance-788-research-essay.aux)
 \openout1 = `finance-788-research-essay.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 99.
-LaTeX Font Info:    ... okay on input line 99.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 99.
-LaTeX Font Info:    ... okay on input line 99.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 99.
-LaTeX Font Info:    ... okay on input line 99.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 99.
-LaTeX Font Info:    ... okay on input line 99.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 99.
-LaTeX Font Info:    ... okay on input line 99.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 99.
-LaTeX Font Info:    ... okay on input line 99.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 99.
-LaTeX Font Info:    ... okay on input line 99.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 99.
-LaTeX Font Info:    ... okay on input line 99.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 99.
-LaTeX Font Info:    ... okay on input line 99.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
 Package biblatex Info: Trying to load language 'english' -> 'english-apa'...
 Package biblatex Info: ... file 'english-apa.lbx' found.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex-apa/english-apa.lbx
@@ -1097,8 +1104,8 @@ Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'finance-788-research-essay.bbl' not found.
 
 No file finance-788-research-essay.bbl.
-Package biblatex Info: Reference section=0 on input line 99.
-Package biblatex Info: Reference segment=0 on input line 99.
+Package biblatex Info: Reference section=0 on input line 100.
+Package biblatex Info: Reference segment=0 on input line 100.
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -1166,7 +1173,7 @@ LaTeX hooks Warning: Generic hook
 (/usr/local/texlive/2021/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl
 File: translations-basic-dictionary-english.trsl (english translation file `translations-basic-dictionary')
 )
-Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 99.
+Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 100.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: float package is loaded.
@@ -1174,7 +1181,7 @@ Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \c@lstlisting=\count504
-Package hyperref Info: Link coloring OFF on input line 99.
+Package hyperref Info: Link coloring OFF on input line 100.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
  (/usr/local/texlive/2021/texmf-dist/tex/latex/refcount/refcount.sty
@@ -1184,17 +1191,18 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count505
 )
-LaTeX Info: Redefining \ref on input line 99.
-LaTeX Info: Redefining \pageref on input line 99.
-LaTeX Info: Redefining \nameref on input line 99.
+LaTeX Info: Redefining \ref on input line 100.
+LaTeX Info: Redefining \pageref on input line 100.
+LaTeX Info: Redefining \nameref on input line 100.
 \@outlinefile=\write5
 \openout5 = `finance-788-research-essay.out'.
 
-\c@myequations=\count506
+\docmute@nestinglevel=\count506
+\c@myequations=\count507
 \cftbeforemyequationsskip=\skip144
 \cftmyequationsindent=\skip145
 \cftmyequationsnumwidth=\skip146
-\c@equdepth=\count507
+\c@equdepth=\count508
 \cftbeforeequtitleskip=\skip147
 \cftafterequtitleskip=\skip148
  [1
@@ -1219,116 +1227,110 @@ Package hyperref Warning: old equ file detected, not used; run LaTeX again.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.153 \newpage
+l.154 \newpage
                [1] [2] [3] [4]
 
-LaTeX Warning: Citation 'corporate-culture' on page 5 undefined on input line 175.
+LaTeX Warning: Citation 'corporate-culture' on page 5 undefined on input line 176.
 
 
-LaTeX Warning: Citation 'eapvml' on page 5 undefined on input line 176.
+LaTeX Warning: Citation 'eapvml' on page 5 undefined on input line 177.
 
 [5]
 
-LaTeX Warning: Citation 'hou2020replicating' on page 6 undefined on input line 183.
+LaTeX Warning: Citation 'hou2020replicating' on page 6 undefined on input line 184.
 
 
-LaTeX Warning: Citation 'jensen2021there' on page 6 undefined on input line 190.
+LaTeX Warning: Citation 'jensen2021there' on page 6 undefined on input line 191.
 
 
-LaTeX Warning: Reference `dss' on page 6 undefined on input line 194.
+LaTeX Warning: Reference `dss' on page 6 undefined on input line 195.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 194.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 195.
 (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 194.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 195.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [6]
 
-LaTeX Warning: Citation 'jensen2021there' on page 7 undefined on input line 213.
+LaTeX Warning: Citation 'jensen2021there' on page 7 undefined on input line 214.
 
 
-LaTeX Warning: Citation 'hou2020replicating' on page 7 undefined on input line 213.
+LaTeX Warning: Citation 'hou2020replicating' on page 7 undefined on input line 214.
 
 [7]
 
-LaTeX Warning: Reference `data' on page 8 undefined on input line 236.
+LaTeX Warning: Reference `data' on page 8 undefined on input line 237.
 
 
-LaTeX Warning: Citation 'fama1997industry' on page 8 undefined on input line 242.
+LaTeX Warning: Citation 'fama1997industry' on page 8 undefined on input line 243.
 
 
-LaTeX Warning: Reference `w-sum' on page 8 undefined on input line 253.
+LaTeX Warning: Reference `w-sum' on page 8 undefined on input line 254.
 
 
-LaTeX Warning: Reference `activation-function' on page 8 undefined on input line 253.
+LaTeX Warning: Reference `activation-function' on page 8 undefined on input line 254.
 
 
-LaTeX Warning: Reference `mlp-plr' on page 8 undefined on input line 258.
+LaTeX Warning: Reference `mlp-plr' on page 8 undefined on input line 259.
 
 
-LaTeX Warning: Reference `ogistic-activation-function' on page 8 undefined on input line 260.
+LaTeX Warning: Reference `ogistic-activation-function' on page 8 undefined on input line 261.
 
 
-LaTeX Warning: Reference `relu-activation-function' on page 8 undefined on input line 260.
+LaTeX Warning: Reference `relu-activation-function' on page 8 undefined on input line 261.
 
 
-LaTeX Warning: Reference `linear-activation-function' on page 8 undefined on input line 262.
+LaTeX Warning: Reference `linear-activation-function' on page 8 undefined on input line 263.
 
 [8]
 
-LaTeX Warning: Reference `fig:neural-network' on page 9 undefined on input line 281.
+LaTeX Warning: Reference `fig:neural-network' on page 9 undefined on input line 282.
 
 </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/images/neural-network.png, id=86, 1313.90875pt x 933.4875pt>
 File: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/images/neural-network.png Graphic file (type png)
 <use /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/images/neural-network.png>
-Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/images/neural-network.png  used on input line 284.
+Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/images/neural-network.png  used on input line 285.
 (pdftex.def)             Requested size: 339.7262pt x 241.3621pt.
 [9] [10 </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/images/neural-network.png>]
 
-LaTeX Warning: Reference `fig:neural-network-configuration' on page 11 undefined on input line 292.
+LaTeX Warning: Reference `fig:neural-network-configuration' on page 11 undefined on input line 293.
 
 
-LaTeX Warning: Reference `relu-activation-function' on page 11 undefined on input line 297.
-
-
-LaTeX Warning: Reference `relu-activation-function' on page 11 undefined on input line 299.
+LaTeX Warning: Reference `relu-activation-function' on page 11 undefined on input line 298.
 
 
 LaTeX Warning: Reference `relu-activation-function' on page 11 undefined on input line 300.
 
 
-LaTeX Warning: Reference `linear-activation-function' on page 11 undefined on input line 301.
+LaTeX Warning: Reference `relu-activation-function' on page 11 undefined on input line 301.
+
+
+LaTeX Warning: Reference `linear-activation-function' on page 11 undefined on input line 302.
 
 [11]
 
-LaTeX Warning: Reference `lm' on page 12 undefined on input line 319.
+LaTeX Warning: Reference `lm' on page 12 undefined on input line 320.
 
 
-LaTeX Warning: Reference `mse' on page 12 undefined on input line 320.
+LaTeX Warning: Reference `mse' on page 12 undefined on input line 321.
 
 
-LaTeX Warning: Reference `pdmsem' on page 12 undefined on input line 326.
+LaTeX Warning: Reference `pdmsem' on page 12 undefined on input line 327.
 
 
-LaTeX Warning: Reference `pdmseb' on page 12 undefined on input line 326.
+LaTeX Warning: Reference `pdmseb' on page 12 undefined on input line 327.
 
 
-LaTeX Warning: Reference `ols' on page 12 undefined on input line 334.
+LaTeX Warning: Reference `ols' on page 12 undefined on input line 335.
 
 [12]
 
-LaTeX Warning: Reference `hpt' on page 13 undefined on input line 349.
+LaTeX Warning: Reference `hpt' on page 13 undefined on input line 350.
 
 
-LaTeX Warning: Reference `sec:mlo' on page 13 undefined on input line 368.
-
-
-LaTeX Warning: Reference `mself' on page 13 undefined on input line 370.
-
-
-LaTeX Warning: Reference `pdmself' on page 13 undefined on input line 370.
+LaTeX Warning: Reference `sec:mlo' on page 13 undefined on input line 369.
 
 
 LaTeX Warning: Reference `mself' on page 13 undefined on input line 371.
@@ -1336,147 +1338,153 @@ LaTeX Warning: Reference `mself' on page 13 undefined on input line 371.
 
 LaTeX Warning: Reference `pdmself' on page 13 undefined on input line 371.
 
+
+LaTeX Warning: Reference `mself' on page 13 undefined on input line 372.
+
+
+LaTeX Warning: Reference `pdmself' on page 13 undefined on input line 372.
+
 [13]
 
-LaTeX Warning: Reference `htls' on page 14 undefined on input line 393.
+LaTeX Warning: Reference `htls' on page 14 undefined on input line 394.
 
 
-LaTeX Warning: Reference `fig:mrf' on page 14 undefined on input line 397.
+LaTeX Warning: Reference `fig:mrf' on page 14 undefined on input line 398.
 
 </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/monotonic-ranking.png, id=142, 462.528pt x 346.896pt>
 File: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/monotonic-ranking.png Graphic file (type png)
 <use /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/monotonic-ranking.png>
-Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/monotonic-ranking.png  used on input line 402.
+Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/monotonic-ranking.png  used on input line 403.
 (pdftex.def)             Requested size: 452.96826pt x 339.74402pt.
 [14]
 
-LaTeX Warning: Reference `w1' on page 15 undefined on input line 407.
+LaTeX Warning: Reference `w1' on page 15 undefined on input line 408.
 
 
-LaTeX Warning: Reference `pwlf' on page 15 undefined on input line 408.
+LaTeX Warning: Reference `pwlf' on page 15 undefined on input line 409.
 
 
-LaTeX Warning: Reference `pdewlf' on page 15 undefined on input line 415.
+LaTeX Warning: Reference `pdewlf' on page 15 undefined on input line 416.
 
 
-LaTeX Warning: Reference `sec:mlo' on page 15 undefined on input line 421.
+LaTeX Warning: Reference `sec:mlo' on page 15 undefined on input line 422.
 
 
-LaTeX Warning: Reference `argmax' on page 15 undefined on input line 423.
+LaTeX Warning: Reference `argmax' on page 15 undefined on input line 424.
 
 
-LaTeX Warning: Reference `rifml' on page 15 undefined on input line 425.
+LaTeX Warning: Reference `rifml' on page 15 undefined on input line 426.
 
 [15 </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/monotonic-ranking.png>]
 
-LaTeX Warning: Citation 'fama2004capital' on page 16 undefined on input line 431.
+LaTeX Warning: Citation 'fama2004capital' on page 16 undefined on input line 432.
 
 
-LaTeX Warning: Citation 'eugene1992cross' on page 16 undefined on input line 436.
+LaTeX Warning: Citation 'eugene1992cross' on page 16 undefined on input line 437.
 
 
-LaTeX Warning: Citation 'fama2021common' on page 16 undefined on input line 438.
+LaTeX Warning: Citation 'fama2021common' on page 16 undefined on input line 439.
 
 
-LaTeX Warning: Reference `ff3' on page 16 undefined on input line 440.
+LaTeX Warning: Reference `ff3' on page 16 undefined on input line 441.
 
 
-LaTeX Warning: Reference `ff5' on page 16 undefined on input line 440.
+LaTeX Warning: Reference `ff5' on page 16 undefined on input line 441.
 
 
-LaTeX Warning: Citation 'fama2012size' on page 16 undefined on input line 441.
+LaTeX Warning: Citation 'fama2012size' on page 16 undefined on input line 442.
 
 [16]
 
-LaTeX Warning: Citation 'french-personal' on page 17 undefined on input line 463.
+LaTeX Warning: Citation 'french-personal' on page 17 undefined on input line 464.
 
 
-LaTeX Warning: Citation 'fama1973risk' on page 17 undefined on input line 464.
+LaTeX Warning: Citation 'fama1973risk' on page 17 undefined on input line 465.
 
 
-LaTeX Warning: Reference `fb1' on page 17 undefined on input line 466.
+LaTeX Warning: Reference `fb1' on page 17 undefined on input line 467.
 
 
-LaTeX Warning: Reference `fb2' on page 17 undefined on input line 467.
+LaTeX Warning: Reference `fb2' on page 17 undefined on input line 468.
 
 [17]
 
-LaTeX Warning: Citation 'samuelson2016proof' on page 18 undefined on input line 484.
+LaTeX Warning: Citation 'samuelson2016proof' on page 18 undefined on input line 485.
 
 
-LaTeX Warning: Citation 'fama1995random' on page 18 undefined on input line 484.
+LaTeX Warning: Citation 'fama1995random' on page 18 undefined on input line 485.
 
 
-LaTeX Warning: Citation 'fama1963mandelbrot' on page 18 undefined on input line 484.
+LaTeX Warning: Citation 'fama1963mandelbrot' on page 18 undefined on input line 485.
 
 
-LaTeX Warning: Citation 'fama1965behavior' on page 18 undefined on input line 484.
+LaTeX Warning: Citation 'fama1965behavior' on page 18 undefined on input line 485.
 
 
-LaTeX Warning: Citation 'fama2021efficient' on page 18 undefined on input line 484.
+LaTeX Warning: Citation 'fama2021efficient' on page 18 undefined on input line 485.
 
 
-LaTeX Warning: Reference `hpm' on page 18 undefined on input line 485.
+LaTeX Warning: Reference `hpm' on page 18 undefined on input line 486.
 
 
-LaTeX Warning: Reference `capm' on page 18 undefined on input line 485.
+LaTeX Warning: Reference `capm' on page 18 undefined on input line 486.
 
 
-LaTeX Warning: Reference `ff3' on page 18 undefined on input line 486.
+LaTeX Warning: Reference `ff3' on page 18 undefined on input line 487.
 
 
-LaTeX Warning: Reference `ff5' on page 18 undefined on input line 486.
+LaTeX Warning: Reference `ff5' on page 18 undefined on input line 487.
 
 
-LaTeX Warning: Reference `plfpe' on page 18 undefined on input line 487.
+LaTeX Warning: Reference `plfpe' on page 18 undefined on input line 488.
 
 
-LaTeX Warning: Citation 'jensen2021there' on page 18 undefined on input line 510.
+LaTeX Warning: Citation 'jensen2021there' on page 18 undefined on input line 511.
 
 
-LaTeX Warning: Citation 'sharpe1994sharpe' on page 18 undefined on input line 512.
+LaTeX Warning: Citation 'sharpe1994sharpe' on page 18 undefined on input line 513.
 
 
-LaTeX Warning: Reference `sr' on page 18 undefined on input line 512.
+LaTeX Warning: Reference `sr' on page 18 undefined on input line 513.
 
 [18]
 
-LaTeX Warning: Reference `ir' on page 19 undefined on input line 524.
+LaTeX Warning: Reference `ir' on page 19 undefined on input line 525.
 
 [19]
 
-LaTeX Warning: Citation 'hlavac2018stargazer' on page 20 undefined on input line 538.
+LaTeX Warning: Citation 'hlavac2018stargazer' on page 20 undefined on input line 539.
 
 </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-square-error-tensorflow.png, id=198, 1865.97125pt x 803.0pt>
 File: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-square-error-tensorflow.png Graphic file (type png)
 <use /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-square-error-tensorflow.png>
-Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-square-error-tensorflow.png  used on input line 542.
+Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-square-error-tensorflow.png  used on input line 543.
 (pdftex.def)             Requested size: 452.96826pt x 194.92943pt.
 </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-square-error.png, id=199, 1860.9525pt x 800.9925pt>
 File: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-square-error.png Graphic file (type png)
 <use /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-square-error.png>
-Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-square-error.png  used on input line 548.
+Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-square-error.png  used on input line 549.
 (pdftex.def)             Requested size: 452.96826pt x 194.96767pt.
 </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/sharpe.png, id=200, 1861.95625pt x 801.99625pt>
 File: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/sharpe.png Graphic file (type png)
 <use /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/sharpe.png>
-Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/sharpe.png  used on input line 554.
+Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/sharpe.png  used on input line 555.
 (pdftex.def)             Requested size: 452.96826pt x 195.10184pt.
 </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/sharpe-mse.png, id=201, 1865.97125pt x 803.0pt>
 File: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/sharpe-mse.png Graphic file (type png)
 <use /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/sharpe-mse.png>
-Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/sharpe-mse.png  used on input line 560.
+Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/sharpe-mse.png  used on input line 561.
 (pdftex.def)             Requested size: 452.96826pt x 194.92943pt.
 [20 </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-square-error-tensorflow.png> </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-square-error.png>]
 </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/information.png, id=213, 1863.96375pt x 800.9925pt>
 File: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/information.png Graphic file (type png)
 <use /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/information.png>
-Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/information.png  used on input line 566.
+Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/information.png  used on input line 567.
 (pdftex.def)             Requested size: 452.96826pt x 194.64989pt.
 </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/hedge-portfolio.png, id=214, 1862.96pt x 803.0pt>
 File: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/hedge-portfolio.png Graphic file (type png)
 <use /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/hedge-portfolio.png>
-Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/hedge-portfolio.png  used on input line 572.
+Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/hedge-portfolio.png  used on input line 573.
 (pdftex.def)             Requested size: 452.96826pt x 195.23575pt.
  [21 </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/sharpe.png> </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/sharpe-mse.png> </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/information.png>] (/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-mean_squared_error.tex
 /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-mean_squared_error.tex:5: Missing $ inserted.
@@ -1527,82 +1535,82 @@ Overfull \hbox (136.78302pt too wide) in paragraph at lines 2--31
 
 ) [22 </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/hedge-portfolio.png>] [23]
 
-LaTeX Warning: Citation 'olsmf' on page 24 undefined on input line 590.
+LaTeX Warning: Citation 'olsmf' on page 24 undefined on input line 605.
 
 
-LaTeX Warning: Reference `true-ols' on page 24 undefined on input line 591.
+LaTeX Warning: Reference `true-ols' on page 24 undefined on input line 606.
 
 
-LaTeX Warning: Reference `ssr' on page 24 undefined on input line 600.
+LaTeX Warning: Reference `ssr' on page 24 undefined on input line 615.
 
 
-LaTeX Warning: Reference `res' on page 24 undefined on input line 602.
+LaTeX Warning: Reference `res' on page 24 undefined on input line 617.
 
 
-LaTeX Warning: Reference `res' on page 24 undefined on input line 607.
+LaTeX Warning: Reference `res' on page 24 undefined on input line 622.
 
 
-LaTeX Warning: Reference `ssrm' on page 24 undefined on input line 607.
+LaTeX Warning: Reference `ssrm' on page 24 undefined on input line 622.
 
 
-LaTeX Warning: Reference `ssrm' on page 24 undefined on input line 608.
+LaTeX Warning: Reference `ssrm' on page 24 undefined on input line 623.
 
 
-LaTeX Warning: Reference `ssrmd' on page 24 undefined on input line 608.
+LaTeX Warning: Reference `ssrmd' on page 24 undefined on input line 623.
 
 
-LaTeX Warning: Reference `OLSD' on page 24 undefined on input line 614.
+LaTeX Warning: Reference `OLSD' on page 24 undefined on input line 629.
 
 
-LaTeX Warning: Reference `ssrmd' on page 24 undefined on input line 614.
+LaTeX Warning: Reference `ssrmd' on page 24 undefined on input line 629.
 
 [24]
 
-LaTeX Warning: Reference `OLS' on page 25 undefined on input line 621.
+LaTeX Warning: Reference `OLS' on page 25 undefined on input line 636.
 
 [25]
 
-LaTeX Warning: Reference `gma3' on page 26 undefined on input line 648.
+LaTeX Warning: Reference `gma3' on page 26 undefined on input line 663.
 
 
-LaTeX Warning: Reference `gma4' on page 26 undefined on input line 649.
+LaTeX Warning: Reference `gma4' on page 26 undefined on input line 664.
 
 
-LaTeX Warning: Citation 'J:10' on page 26 undefined on input line 652.
+LaTeX Warning: Citation 'J:10' on page 26 undefined on input line 667.
 
 
-LaTeX Warning: Citation 'Google_Drive' on page 26 undefined on input line 655.
+LaTeX Warning: Citation 'Google_Drive' on page 26 undefined on input line 670.
 
 
-LaTeX Warning: Citation 'Git' on page 26 undefined on input line 656.
+LaTeX Warning: Citation 'Git' on page 26 undefined on input line 671.
 
 [26]
 
-LaTeX Warning: Citation 'J:10' on page 27 undefined on input line 675.
+LaTeX Warning: Citation 'J:10' on page 27 undefined on input line 690.
 
 
-LaTeX Warning: Citation 'PYPL_Pop' on page 27 undefined on input line 693.
+LaTeX Warning: Citation 'PYPL_Pop' on page 27 undefined on input line 708.
 
 
-LaTeX Warning: Citation 'Anaconda' on page 27 undefined on input line 697.
+LaTeX Warning: Citation 'Anaconda' on page 27 undefined on input line 712.
 
 
-LaTeX Warning: Citation 'PEP8' on page 27 undefined on input line 704.
+LaTeX Warning: Citation 'PEP8' on page 27 undefined on input line 719.
 
 [27]
 
-LaTeX Warning: Reference `Version Control' on page 28 undefined on input line 721.
+LaTeX Warning: Reference `Version Control' on page 28 undefined on input line 736.
 
 [28] [29
 
 ] [30] [31] [32] [33] [34] [35] [36] [37] [38] [39] [40] [41] [42] [43] [44] [45] [46] [47]
 
 Package longtable Warning: Column widths have changed
-(longtable)                in table 3 on input line 1256.
+(longtable)                in table 3 on input line 1271.
 
 [48] [49] [50] [51] [52] [53]
 
-LaTeX Warning: Empty bibliography on input line 1265.
+LaTeX Warning: Empty bibliography on input line 1280.
 
 [54
 
@@ -1624,7 +1632,7 @@ Package rerunfilecheck Warning: File `finance-788-research-essay.out' has change
 
 Package rerunfilecheck Info: Checksums for `finance-788-research-essay.out':
 (rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  019851C3863B85EE957B9EB0CEF566C7;9380.
+(rerunfilecheck)             After:  D8ABE2804977EBD778852C874D9E81F0;10564.
 
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                finance-788-research-essay
@@ -1635,18 +1643,18 @@ Package logreq Info: Writing requests to 'finance-788-research-essay.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 38390 strings out of 478353
- 776103 string characters out of 5848085
- 1675754 words of memory out of 5000000
- 55769 multiletter control sequences out of 15000+600000
+ 38429 strings out of 478353
+ 777100 string characters out of 5848085
+ 1675976 words of memory out of 5000000
+ 55797 multiletter control sequences out of 15000+600000
  412903 words of font info for 62 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,14n,80p,876b,4823s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on finance-788-research-essay.pdf (55 pages, 1708109 bytes).
+Output written on finance-788-research-essay.pdf (55 pages, 1708853 bytes).
 PDF statistics:
- 538 PDF objects out of 1000 (max. 8388607)
- 420 compressed objects within 5 object streams
- 185 named destinations out of 1000 (max. 500000)
+ 546 PDF objects out of 1000 (max. 8388607)
+ 428 compressed objects within 5 object streams
+ 192 named destinations out of 1000 (max. 500000)
  53 words of extra memory for PDF output out of 10000 (max. 10000000)
 

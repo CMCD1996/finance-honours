@@ -80,7 +80,21 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {9.3}Hedge Portfolio Performance}{22}{subsection.9.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.4}Regression Analysis}{22}{subsection.9.4}%
+\contentsline {subsubsection}{\numberline {9.3.1}Realised Excess Returns}{22}{subsubsection.9.3.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {9.3.2}Mean Square Error (Tensorflow)}{22}{subsubsection.9.3.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {9.3.3}Mean Square Error}{23}{subsubsection.9.3.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {9.3.4}Hedge Portfolio}{23}{subsubsection.9.3.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {9.3.5}Sharpe Ratio}{23}{subsubsection.9.3.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {9.3.6}Sharpe Ratio (MSE)}{23}{subsubsection.9.3.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {9.3.7}Information Ratio}{23}{subsubsection.9.3.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.4}Regression Analysis}{23}{subsection.9.4}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{\numberline {9.4.1}Baseline Dataset}{23}{subsubsection.9.4.1}%
 \defcounter {refsection}{0}\relax 
