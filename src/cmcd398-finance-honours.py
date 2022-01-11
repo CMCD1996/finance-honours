@@ -1784,6 +1784,7 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
     # Initialises row count
     row_count = 0
     count = 0
+    check = 0
     # Makes predictions per row on the dataframe
     print('Start to make predictions per row')
     for row in dataframe_dictionary:
@@ -1815,14 +1816,17 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
         row_count = row_count + 1
         print('Completed row {} for all Loss functions.'.format(row_count))
         # Use the count to make sure the function is working properly (remove once tested)
-        # if count == 5:
-        #     break
-    for j in range(len(df_predictions)):
-        print(df_predictions[j].info(verbose=True))
-        print(df_predictions[j].head())
-    # Saves the model predictions to file (model_locations and selected losses alogn for these purposes)
-        df_predictions[j].to_csv('/home/connormcdowall/local-data/' +
-                                 model_name + '-' + selected_losses[j] + '.csv')
+        # Sets up incremental saving given the size of the dataframe
+        checkpoints = [1000,5000,10000,50000,100000,200000,300000,400000,500000,len(df)]
+        if row_count == checkpoints[check]: 
+            print('Saving {} predictions for all models.'.format(checkpoints[check])) 
+            for j in range(len(df_predictions)):
+                print(df_predictions[j].info(verbose=True))
+                print(df_predictions[j].head())
+            # Saves the model predictions to file (model_locations and selected losses alogn for these purposes)
+                df_predictions[j].to_csv('/home/connormcdowall/local-data/' +
+                                        model_name + '-' + selected_losses[j] + '.csv')
+            check = check + 1
     print('Completed: Loss Function Predictions')
     return
 
