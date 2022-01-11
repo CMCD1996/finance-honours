@@ -300,11 +300,11 @@ Figure \ref{fig:neural-network-configuration} illustrates
 	\node (hidden4) [hiddenlayer, below of=hidden3, yshift=-1.5cm] {\textbf{$N_{(4,e)}$: Dense III} \\ Nodes: 128 \\ \text{$h_{w}(\textbf{x})$} = RELU(z) (\ref{relu-activation-function})};
 	\node (output) [outputlayer, below of=hidden4, yshift=-1.5cm] {\textbf{$N_{(5,f)}$: Dense IV} \\ Nodes: 1 \\ \text{$h_{w}(\textbf{x})$} = Linear(z) (\ref{linear-activation-function})};
 	\node (predict) [predict, below of=output, yshift=-1cm] {\textbf{Prediction}};
-	\draw [arrow] (in) -- node[anchor=west] {\text{$\sum_{a = 1}^{189} w_{(i)}x_{i}$}} (hidden1);
-	\draw [arrow] (hidden1) -- node[anchor=west] {\text{$\sum_{a = 1}^{189}w_{(i)}y_{(i)}$}} (hidden2);
-	\draw [arrow] (hidden2) -- node[anchor=west] {\text{$\sum_{a = 1}^{189}w_{i}x_{i}$}} (hidden3);
-	\draw [arrow] (hidden3) -- node[anchor=west] {\text{$\sum_{a = 1}^{189}w_{i}x_{i}$}} (hidden4);
-	\draw [arrow] (hidden4) -- node[anchor=west] {\text{$\sum_{a = 1}^{189}w_{i}x_{i}$}} (output);
+	\draw [arrow] (in) -- node[anchor=west] {\text{$\sum_{a = 1}^{189} w_{(0,a,b)}x_{(i)}$}} (hidden1);
+	\draw [arrow] (hidden1) -- node[anchor=west] {\text{$\sum_{b = 1}^{189}w_{(1,i)}y_{(i)}$}} (hidden2);
+	\draw [arrow] (hidden2) -- node[anchor=west] {\text{$\sum_{c = 1}^{189}w_{(2,i)}x_{(i)}$}} (hidden3);
+	\draw [arrow] (hidden3) -- node[anchor=west] {\text{$\sum_{d = 1}^{189}w_{(3,i)}x_{(i)}$}} (hidden4);
+	\draw [arrow] (hidden4) -- node[anchor=west] {\text{$\sum_{e = 1}^{189}w_{(4,i)}x_{(i)}$}} (output);
 	\draw [arrow] (output) -- node[anchor=west] {} (predict);
 	\end{tikzpicture}
 	\caption{Neural Network Configuration}
