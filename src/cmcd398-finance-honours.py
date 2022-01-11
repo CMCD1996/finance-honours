@@ -1735,6 +1735,9 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
     # Loads the dictionary
     df = pd.read_stata(dataframe_location)
     df = replace_nan(df, replacement_method=3)
+    print('Dataframe Information')
+    print(df.head())
+    print(df.info(verbose=False))
     print('The length of the dataframe is: ', len(df['ret_exc_lead1m']))
     # Convert dataframe row to dictionary with column headers (section)
     dataframe_dictionary = df.to_dict(orient="records")
@@ -2543,7 +2546,7 @@ list_of_columns = '/home/connormcdowall/finance-honours/data/working-columns.txt
 train_data = '/home/connormcdowall/finance-honours/data/dataframes/active_train.dta'
 test_data = '/home/connormcdowall/finance-honours/data/dataframes/active_test.dta'
 val_data = '/home/connormcdowall/finance-honours/data/dataframes/active_validation.dta'
-predictions_data = '/home/connormcdowall/finance-honours/data/dataframes/active_prediction.dta'
+predictions_data = '/home/connormcdowall/finance-honours/data/dataframes/active_test.dta'
 model_directory = '/home/connormcdowall/finance-honours/results/models/tensorflow/cmcd398-finance-honours'
 # Subsequent directories for making regressions
 factor_location = '/home/connormcdowall/finance-honours/data/factors.csv'
@@ -2568,8 +2571,8 @@ chronologically_sort_data = False
 analytical = False
 rank_functions = False
 # Research Proposal Analysis
-create_models = True
-make_predictions = False
+create_models = False
+make_predictions = True
 perform_regressions = False
 #################################################################################
 # Function Testing
