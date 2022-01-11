@@ -924,6 +924,7 @@ def execute_conversion_options(model_name, selected_losses, hp_ols=False, pooled
     replace_count = 0
     if true_excess_returns:
         selected_losses.append('realised-excess-returns')
+        replacement_set_losses.append('realised excess returns')
     for loss in selected_losses:
         replacement_text = 'One Month Lead Excess Portfolio Return using ' + \
             replacement_set_losses[replace_count]
