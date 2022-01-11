@@ -1744,19 +1744,25 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
     # Starts fo loop to loop through every model
     print('Starting: Loss Function Predictions')
     # Loads all models
-    print('Loading Tensorflow Models')
-    mse_model = tf.keras.models.load_model(
-        filepath=model_locations[0], custom_objects=custom_objects)
+    print('Loading Tensorflow Models...')
     mse_tf_model = tf.keras.models.load_model(
+        filepath=model_locations[0], custom_objects=custom_objects)
+    print('Loaded: Mean Square Error (Tensorflow)')
+    mse_model = tf.keras.models.load_model(
         filepath=model_locations[1], custom_objects=custom_objects)
+    print('Loaded: Mean Square Error')
     sharpe_model = tf.keras.models.load_model(
         filepath=model_locations[2], custom_objects=custom_objects)
+    print('Loaded: Sharpe Ratio')
     sharpe_mse_model = tf.keras.models.load_model(
         filepath=model_locations[3], custom_objects=custom_objects)
+    print('Loaded: Sharpe Ratio (MSE)')
     information_model = tf.keras.models.load_model(
         filepath=model_locations[4], custom_objects=custom_objects)
+    print('Loaded: Information Ratio')
     hp_model = tf.keras.models.load_model(
         filepath=model_locations[5], custom_objects=custom_objects)
+    print('Loaded: Hedge Portfolio')
     # hp_mse_model = tf.keras.models.load_model(
     # filepath=model_locations[6], custom_objects=custom_objects)
     # Resets df predictions dataframe
