@@ -1796,6 +1796,7 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
         predictions = mse_tf_model.predict(ds)
         print('Completed: Mean Square Error - Tensorflow')
         print(predictions)
+        print(len(predictions))
         return
     # Convert
     # Makes predictions per row on the dataframe
