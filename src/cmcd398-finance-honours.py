@@ -1797,6 +1797,16 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
         print('Completed: Mean Square Error - Tensorflow')
         print(predictions)
         print(len(predictions))
+        print('The total number of predictions is {}.'.format(row_count))
+        # Creates new dataframe at once
+        for column in column_names:
+            if column == 'predict':
+                # Assigns the predictions
+                mse_df_predictions[column] = np.asscalar(predictions[:])
+            else:
+                mse_df_predictions[column] = df[column]
+        print('New Dataframe')
+        print(mse_df_predictions.head())
         return
     # Convert
     # Makes predictions per row on the dataframe
