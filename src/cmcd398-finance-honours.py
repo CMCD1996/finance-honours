@@ -2572,8 +2572,8 @@ chronologically_sort_data = False
 analytical = False
 rank_functions = False
 # Research Proposal Analysis
-create_models = False
-make_predictions = True
+create_models = True
+make_predictions = False
 perform_regressions = False
 #################################################################################
 # Function Testing
