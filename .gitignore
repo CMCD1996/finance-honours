@@ -1,2 +1,5 @@
 data/combined_predictors_filtered_us.zip
 data/combined_predictors_filtered_us.dta
+data/dataframes/active_test.dta
+data/dataframes/active_train.dta
+data/dataframes/active_validation.dta
