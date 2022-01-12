@@ -675,34 +675,33 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
         monthly_groups = regression_df.groupby("mth")
         for month, subset_predictions in monthly_groups:
             # Sort the predicted returns in the sub_predictiosn set
-            print('Subset of predictions before')
-            print(subset_predictions.head())
-            print(subset_predictions.tail())
+            # print('Subset of predictions before')
+            # print(subset_predictions.head())
+            # print(subset_predictions.tail())
             subset_predictions.sort_values(
                 by=[dependant_column], ascending=False, inplace=True)
             # Reset the index of this dorted dataframe for forming the hedge portfolio
-            subset_predictions.reset_index(drop=True)
-            print('Subset of predictions after')
-            print(subset_predictions.head())
-            print(subset_predictions.tail())
+            subset_predictions.reset_index(drop=True, inplace=True)
+            # print('Subset of predictions after')
+            # print(subset_predictions.head())
+            # print(subset_predictions.tail())
             # Calculates decile 1 (Top 10%)
             decile_length = len(subset_predictions[dependant_column])/10
-            print('decile_length: ', decile_length)
+            # print('decile_length: ', decile_length)
             top_decile = range(0, (int(decile_length - 1)))
             bottom_decile = range((int(9*decile_length)),
                                   (int(10*decile_length-1)))
-            print('top_decile_length: ', top_decile)
-            print('bottom_decile_length: ', bottom_decile)
+            # print('top_decile_length: ', top_decile)
+            # print('bottom_decile_length: ', bottom_decile)
             # Calculates Hedge Portfolio Return (Decile 1 - Decile 10)
             top_decile_mean = subset_predictions[dependant_column].iloc[top_decile].mean(
                 axis=0)
             bottom_decile_mean = subset_predictions[dependant_column].iloc[bottom_decile].mean(
                 axis=0)
-            print('top_decile_mean: ', top_decile_mean)
-            print('bottom_decile_mean: ', bottom_decile_mean)
+            # print('top_decile_mean: ', top_decile_mean)
+            # print('bottom_decile_mean: ', bottom_decile_mean)
             hp_mean = top_decile_mean - bottom_decile_mean
-            print('hp_mean: ', hp_mean)
-            return
+            # print('hp_mean: ', hp_mean)
             # Forms the hedge portfolio and sets to new row
             new_row = {'mth': int(month), 'hedge_returns': hp_mean}
             # Stores the hedge portfolio return for the month in another dataframe
