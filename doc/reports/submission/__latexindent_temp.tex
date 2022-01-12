@@ -230,20 +230,24 @@ However, use of cloud computing does not resolve all resource constraints.
 The most material inhibitions are the inability to explore all 406 factors for all size groupings, the reduction in level of precision for numerical features, and
 the ability to shuffle training sets at lengths greater than or equal to the input sets when training neural networks.
 However, the reasons necessitating factor reduction and size grouping exclusion stated in section \ref{data-processing} superseed resource constraints.}
-Section \ref{technical} elaborates further these cloud centric computational approaches.
+Section \ref{technical} elaborates on cloud centric computational approaches and further technologies.
 
 \subsection{Neural Networks}
 \subsubsection{Normalisation \& Feature Encoding}
 Deep neural networks require tensors as inputs for fitting, training, and evaluating data to make predictions.
-A tensor is a mathematical object describing the physical properties of an object. In other words, multilinear relationships between sets of algebraic objects related in vector set.
-Transformation laws govern tensors. Therefore, a tensor is considered an n dimensional arrays in conjunction with associated transformation laws.
-The dataset must take the form of a tensor for analysis.
-Essentially, every value for every feature must be encoded to take a numerical form.
-A feature matrix is correct term for the dataset in this application.
-Firstly, the labelling of target variable is necessary for training, validating, and testing the model.
-Secondly, a shuffling of columns and instances in feature matrix promotes better training as accommodates randomness.
-This analysis sacrifices shuffling the training set due to memory issues.
-Lastly, an encoding process encodes both categorical and numerical feature columns.
+A tensor is a mathematical object describing the physical properties of an object with multilinear relationships between sets of algebraic objects related in vector space.
+Furthermore, transformation laws govern tensors. 
+Therefore, a tensor is considered an n dimensional array in conjunction with associated transformation laws.
+The dataset, also known as the feature matrix (\textbf{X}), must take the form of a tensor.
+The enumeration of a tensor conversion process follows:
+\begin{enumerate} 
+\item Identify target variable(s) for fitting, validation, and prediction.
+\item Shuffle instances in feature matrix to promotes better training by accommodating randomness.
+\item Normalise each numerical feature to zero mean and unit variance
+\item Encode each categorical feature  \footnote{}
+\item Convert both normalised and encoded features to an input tensor layer (one per feature) with aggregations feature designations
+\item Concatenate all input tensor layers 
+\end{enumerate}
 The revised dataset includes eight categorical variables:
 \begin{enumerate}
 	\item \textbf{size\_group}: The aforementioned size grouping in \ref{data}
@@ -258,10 +262,9 @@ The revised dataset includes eight categorical variables:
 Categorical encoding transforms the set of instances for a features into a series of binary variables.
 These may be one-hot encoded, and/or stored in sparse tensors, depending on input and desired application.
 The remaining variables are numerical where a normalization normalizes each feature to zero mean and unit variance.
-\subsection{Neural Network Configuration}
+\subsection{Neural Network Architecture} \label{nn-architecture}
 \subsubsection{Multi Layer Perceptron (MLP)}\label{mlp-math}
-Artificial Neural Nets (ANN) are versatile, powerful, and scalable.
-They frequently outperform other machine learning algorithms on large and complex problems.
+Artificial Neural Nets (ANN) frequently outperform other machine learning algorithms on large and complex problems.
 Linear threshold units (LTU) compose neural networks.
 A linear threshold unit (LTU) feeds the weighted sum of input values (\ref{w-sum}) into a step function (\ref{activation-function}).
 A perceptron is a single layer of LTUs connected to every input.
