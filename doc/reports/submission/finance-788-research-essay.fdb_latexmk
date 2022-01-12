@@ -1,12 +1,13 @@
 # Fdb version 3
-["biber finance-788-research-essay"] 0 "finance-788-research-essay.bcf" "finance-788-research-essay.bbl" "finance-788-research-essay" 0
-  "finance-788-research-essay.bcf" 0 -1 0 "pdflatex"
+["biber finance-788-research-essay"] 1641964371 "finance-788-research-essay.bcf" "finance-788-research-essay.bbl" "finance-788-research-essay" 1641964389
+  "finance-788-research-essay.bcf" 1641964389 125039 cbfb08862519c9e26ae6c61aff052301 "pdflatex"
+  "finance-honours.bib" 1641821392 12062 45c11b1c1ef1ee893209f2f4a8655bab ""
   (generated)
   "finance-788-research-essay.bbl"
   "finance-788-research-essay.blg"
-["pdflatex"] 1641964152 "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/submission/finance-788-research-essay.tex" "finance-788-research-essay.pdf" "finance-788-research-essay" 1641964152
+["pdflatex"] 1641964385 "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/submission/finance-788-research-essay.tex" "finance-788-research-essay.pdf" "finance-788-research-essay" 1641964389
   "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/images/neural-network.png" 1641855127 598293 fa6ca47736b16b1c972221539611baac ""
-  "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/submission/finance-788-research-essay.tex" 1641964129 110242 8d1faf0a77671c871f5aff921abd6df7 ""
+  "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/submission/finance-788-research-essay.tex" 1641964369 110256 4999e2530cffb296bdacb8b90183be2d ""
   "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/hedge-portfolio.png" 1641860812 191599 18e23269845a62a0273e349a90c58494 ""
   "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/information.png" 1641856070 189031 a607489dfa1df3d9b0d1ce2af14f9687 ""
   "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-square-error-tensorflow.png" 1641855441 185409 b591e56a8d7edcdbda3d41fb2b734596 ""
@@ -241,12 +242,15 @@
   "/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1640947762 4374891 c8eaa50db59648610d53abf3959a7b8a ""
   "/usr/local/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1640947902 2820137 8a01174d86c6355935f4bd6f2dfaa23c ""
   "/usr/local/texlive/2021/texmf.cnf" 1616695596 577 4c1911a7228e554c6032256d3cf5567d ""
-  "finance-788-research-essay.aux" 1641964152 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
-  "finance-788-research-essay.bbl" 0 -1 0 "biber finance-788-research-essay"
-  "finance-788-research-essay.equ" 0 -1 0 "pdflatex"
-  "finance-788-research-essay.out" 0 -1 0 "pdflatex"
-  "finance-788-research-essay.run.xml" 0 -1 0 "pdflatex"
-  "finance-788-research-essay.tex" 1641964129 110242 8d1faf0a77671c871f5aff921abd6df7 ""
+  "finance-788-research-essay.aux" 1641964389 24996 311e1e7b8c94f8a8ed51bcd628fae493 "pdflatex"
+  "finance-788-research-essay.bbl" 1641964373 39050 57597246e5794bf3a87579d8ceea4a95 "biber finance-788-research-essay"
+  "finance-788-research-essay.equ" 1641964386 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "finance-788-research-essay.lof" 1641964389 1508 f3df83ca693d551f6b41101a12898289 "pdflatex"
+  "finance-788-research-essay.lot" 1641964389 575 0584f6e99a7dbda4148b0e9ccb05cf8a "pdflatex"
+  "finance-788-research-essay.out" 1641964389 10432 061ca8e8c264e927ca201604d30ee552 "pdflatex"
+  "finance-788-research-essay.run.xml" 1641964389 2586 43bd152b2b4d01e4708421212f746791 "pdflatex"
+  "finance-788-research-essay.tex" 1641964369 110256 4999e2530cffb296bdacb8b90183be2d ""
+  "finance-788-research-essay.toc" 1641964389 8340 fefda8b1ebedf40afe58c3de2ba0cef4 "pdflatex"
   (generated)
   "finance-788-research-essay.aux"
   "finance-788-research-essay.bcf"
