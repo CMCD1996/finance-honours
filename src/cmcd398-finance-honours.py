@@ -2697,14 +2697,15 @@ test_implementation = False
 example_autodiff = False
 test_loss_function = False
 chronologically_sort_data = False
-convert_text = False
 # Analytical
 analytical = False
 rank_functions = False
-# Research Proposal Analysis
+# Model Building
 create_models = False
 make_predictions = False
 perform_regressions = True
+# Output
+convert_text = True
 #################################################################################
 # Function Testing
 #################################################################################
