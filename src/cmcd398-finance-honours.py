@@ -803,14 +803,19 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
     metrics_df['Loss Function'] = selected_losses
     metrics_df['Hedge Portfolio Sharpe Ratio'] = hp_sharpes
     metrics_df['Hedge Portfolio Treynor'] = hp_treynors
-    with open('/home/connormcdowall/finance-honours/results/tables/metrics/' + model_name + '-metrics.txt', 'w') as f:
+    # Only extract the most relevant factors
+    truncate = True
+    if truncate:
+        metrics_df = metrics_df[(metrics_df['Loss Function'] == 'mean_square_error') | (
+            metrics_df['Loss Function'] == 'custom_mse') | (metrics_df['Loss Function'] == 'custom_hp')]
+    with open('/home/connormcdowall/finance-honours/results/tables/metrics/' + model_name + '-calcualtions-metrics.txt', 'w') as f:
         # Deletes existing text
         f.truncate(0)
         print(metrics_df.to_latex(index=False), file=f)
         f.close()
     # Create new sharelatex regression columns
     hp_metric_stargazer = Stargazer(hp_regressions)
-    with open('/home/connormcdowall/finance-honours/results/tables/metrics/' + model_name + '-metrics.txt', 'w') as f:
+    with open('/home/connormcdowall/finance-honours/results/tables/metrics/' + model_name + '-regression-metrics.txt', 'w') as f:
         # Deletes existing text
         f.truncate(0)
         print(hp_metric_stargazer.render_latex(), file=f)
