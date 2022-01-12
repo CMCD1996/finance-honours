@@ -132,7 +132,7 @@
 	%	Author(s)
 	%------------------------------------------------
 	
-	{\large\textit{A research essay presented in part fulfilment of the \\ requirements for the degree of Bachelor of Commerce \\ (Honours) in the Department of Accounting and Finance \\ at The University of Auckland}}\\[0.5cm]
+	{\large\textit{A research essay presented in part fulfillment of the \\ requirements for the degree of Bachelor of Commerce \\ (Honours) in the Department of Accounting and Finance \\ at The University of Auckland}}\\[0.5cm]
 	{\large\textit{Author: Connor McDowall \\Supervisor: Dr Paul Geertsema}}\\
 	%------------------------------------------------
 	%	Date
@@ -159,24 +159,31 @@
 \newpage
 \section{Abstract}
 \newpage
-\section{Introduction (3 Pages)}
+\section{Introduction (3 pages)}
 \newpage
-\section{Research Question(s)}
-\textbf{Can neural networks, optimizsed to maximise financial metrics (e.g., Hedge Portfolio Excess Return, Sharpe Ratio etc.,) outperform conventional loss minimisation optimisation strategies,
-when predicting excess returns in individual equities and equity hedge portfolios?}
-\section{Motivation(s)}
-\section{Literature Review (3 pages)}\label{LR}
-Overview of literature in asset pricing (761/751), ML application, factor pricing - very brief, 12pt, double spaced,
+\section{Literature (3 pages)}\label{LR}
+Overview of literature in asset pricing (761/751), ML application, factor pricing - very brief, 12pt, double spaced
 \subsection{Asset Pricing}
 \subsection{Machine Learning}
 Convexity is an important concept in optimisation
 Monotonic ranking
+\subsection{Optimisation}
+\newpage
+\section{Motivation}
+\section{Research Question}
+\textbf{Can neural networks, optimizsed to maximise financial metrics (e.g., Hedge Portfolio Excess Return, Sharpe Ratio etc.,) outperform conventional loss minimisation optimisation strategies,
+when predicting excess returns in individual equities and equity hedge portfolios?}
+\subsection{Hypotheses}
+\section{Literature Review (3 pages)}
+\subsection{Asset Pricing}
+\subsection{Optimisation}
+\begin{itemize}
+	\item Convexity
+	\item Monotonic Ranking Function
 \subsection{Machine Learning}
 A couple of recent publications highlight the increased application of machine learning algorithms in financial contexts.
 \cite{corporate-culture}
 Gu et al (\citeyear{eapvml}) explore the comparative use of machine learning in empirical asset pricing.
-\subsection{Hypothesis}
-\textbf{Include examples on the minimisation of sum of the square errors does not contribute to maximising returns}
 \newpage
 \section{Methodology}
 The required methodology to construct the methods to build, develop, and deploy neural networks with custom objective functions.
@@ -313,14 +320,13 @@ Figure \ref{fig:neural-network-configuration} illustrates the configuration for 
 \end{figure}
 \newpage
 \textbf{10 epochs, 207 runs per epochs.}
-\section{Brief Description of Remaining Methods}
+\subsection{Brief Description of Remaining Methods}
 \begin{itemize}
 	\item Use stochastic gradient descent, train model with 10 epochs (2709 runs per epoch) for each of the six loss functions (tensorflow mse, custom mse, sharpe ratio, sharpe ratio mse, hedge portfolio mse, information ratio). Validate with validation set and evaluate with testign set.
 	\item Make predictions using entire testing set for each model. Merge predictions with fama french factors on month
 	\item Perform newy west regressing hedge portfolio returns on fama factors. Predictions grouped by month. hedge formed by mean of top decile - mean of bottom decile creating hedge return for the month.
 	\item Second set of regressions does a panel regression  accounting Heteroskedasticity Robust Covariance as Fama MacBeth did not execute due to rank deficiencies.
 \end{itemize}
-\section{Work in Progress}
 \subsection{Loss Functions \& Performance Metrics}
 \subsubsection{Modelling, Loss, and Optimisation}\label{sec:mlo}
 We summarize the theory surrounding predictive modelling, loss functions, and optimisation algorithms.
@@ -347,13 +353,7 @@ The mathematical tractability, in accordance with the aforementioned assumption,
 \subsubsection{Loss \& Metric Definition}
 \subsection{Hedge Portfolio Construction}
 \subsection{Regression Analysis}
-\newpage
-\section{Limitations}
-Further research will rely on addressing several limitation.
-\subsection{Lack of Computational Resources}
-The lack of resources to explore the entire dataset within reasonable timeframes, and at reasonable costs.
-The most material inhibitions are the inability to explore all 524 factors for all size groupings, the reducing in level of precision for numerical features, 
-the ability to shuffle training sets at lengths greater than or equal to the input sets  
+\newpage 
 \subsection{Loss Functions \& Performance Metrics}
 Table \ref{hpt} emphasises the separation between training and validation datasets.
 	\begin{table}[H]
@@ -540,36 +540,32 @@ Both Sharpe and Information ratios supplement hedge portfolio-related loss funct
 \newpage
 \section{Results}
 \subsection{Performance Matrix}
+
 \cite{hlavac2018stargazer} enables the tables in the regression analysis.
 \newpage
 \begin{landscape}
 \subsection{Model Accuracy}
-\subsection{Hedge Portfolio Performance}
-\subsubsection{Mean Square Error (Tensorflow)}
-\input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-mean\_squared\_error}.tex}
-\newpage
-\subsubsection{Mean Square Error}
-\input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom\_mse}.tex}
-\newpage
-\subsubsection{Hedge Portfolio}
-\input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom\_hp}.tex}
-\newpage
-\subsubsection{Sharpe Ratio}
-\input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom\_sharpe}.tex}
-\newpage
-\subsubsection{Sharpe Ratio (MSE)}
-\input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom\_sharpe\_mse}.tex}
-\newpage
-\subsubsection{Information Ratio}
-\input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom\_information}.tex}
-\newpage
-\end{landscape}
+\subsubsection{Model Loss}
 Fama MacBeth Regressions using individual securities.
 PooledOLS replaces Fama MacBeth in this instance.
-\subsection{Individual Panel Regressions}
+\subsection{Hedge Portfolio Performance}
+\subsubsection{Inbuilt Mean Square Error}
+\newpage
+\subsubsection{Custom Mean Square Error}
+\newpage
+\subsubsection{Custom Hedge Portfolio}
+\newpage
+\end{landscape}
 \section{Discussion}
-\section{Contributions}
 \section{Conclusion}
+\subsection{Contributions}
+\subsection{Further Research}
+\subsection{Limitations}
+Further research will rely on addressing several limitation.
+\subsubsection{Resources}
+The lack of resources to explore the entire dataset within reasonable timeframes, and at reasonable costs.
+The most material inhibitions are the inability to explore all 400 factors for all size groupings, the reduction in level of precision for numerical features, and
+the ability to shuffle training sets at lengths greater than or equal to the input sets.
 \newpage
 \printbibliography
 \newpage
@@ -675,7 +671,6 @@ Equation \ref{gma4} captures homoskedasticity and no autocorrelation assumptions
 \end{figure}
 \newpage
 \subsection{Pooled Ordinary Least Square Regressions}
-
 \subsection{Technical Details}
 \subsubsection{Organisation}
 This research essay uses data science best practise (\cite{J:10}).
