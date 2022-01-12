@@ -1,0 +1,30 @@
+\begin{center}
+\begin{tabular}{lclc}
+\toprule
+\textbf{Dep. Variable:}    &      predict       & \textbf{  R-squared:         }   &      0.0021      \\
+\textbf{Estimator:}        &     PooledOLS      & \textbf{  R-squared (Between):}  &      0.0046      \\
+\textbf{No. Observations:} &       531461       & \textbf{  R-squared (Within):}   &      0.0055      \\
+\textbf{Date:}             &  Wed, Jan 12 2022  & \textbf{  R-squared (Overall):}  &      0.0021      \\
+\textbf{Time:}             &      03:43:04      & \textbf{  Log-likelihood     }   &    -4.012e+06    \\
+\textbf{Cov. Estimator:}   &     Clustered      & \textbf{                     }   &                  \\
+\textbf{}                  &                    & \textbf{  F-statistic:       }   &      1104.3      \\
+\textbf{Entities:}         &        7282        & \textbf{  P-value            }   &      0.0000      \\
+\textbf{Avg Obs:}          &       72.983       & \textbf{  Distribution:      }   &   F(1,531459)    \\
+\textbf{Min Obs:}          &       1.0000       & \textbf{                     }   &                  \\
+\textbf{Max Obs:}          &       252.00       & \textbf{  F-statistic (robust):} &      25.669      \\
+\textbf{}                  &                    & \textbf{  P-value            }   &      0.0000      \\
+\textbf{Time periods:}     &        252         & \textbf{  Distribution:      }   &   F(1,531459)    \\
+\textbf{Avg Obs:}          &       2109.0       & \textbf{                     }   &                  \\
+\textbf{Min Obs:}          &       1869.0       & \textbf{                     }   &                  \\
+\textbf{Max Obs:}          &       3400.0       & \textbf{                     }   &                  \\
+\bottomrule
+\end{tabular}
+\begin{tabular}{lcccccc}
+                          & \textbf{Parameter} & \textbf{Std. Err.} & \textbf{T-stat} & \textbf{P-value} & \textbf{Lower CI} & \textbf{Upper CI}  \\
+\midrule
+\textbf{const}            &      -1.4734       &       7.2338       &     -0.2037     &      0.8386      &      -15.651      &       12.705       \\
+\textbf{ret\_exc\_lead1m} &       152.62       &       30.123       &      5.0665     &      0.0000      &       93.576      &       211.66       \\
+\bottomrule
+\end{tabular}
+%\caption{PooledOLS Estimation Summary}
+\end{center}
