@@ -663,6 +663,7 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
     hp_sharpes = []
     hp_treynors = []
     hp_regressions = []
+    predictability_regressions = []
     for loss in selected_losses:
         regression_df = pd.read_csv(
             prediction_location + model_name + '-' + loss + '.csv')
@@ -714,6 +715,11 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             f.truncate(0)
             print(fb.summary.as_latex(), file=f)
             f.close()
+        # Uses stats models to perform standard linear regressions
+        predict_regress = sm.OLS(data['ret_exc_lead1m'], exog).fit(
+            cov_type='HAC', cov_kwds={'maxlags': 6})
+        if loss in ['mean_squared_error', 'custom_mse', 'custom_hp']:
+            predictability_regressions.append(predict_regress)
         print(hedge_returns['hedge_returns'])
         print(hedge_returns[['Mkt-RF', 'SMB', 'HML', 'RMW', 'CMA']])
         # Create fama factors for the dataset from K.French
@@ -823,7 +829,7 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
         print(metrics_df.to_latex(index=False), file=f)
         f.close()
     # Create new sharelatex regression columns
-    hp_metric_stargazer = Stargazer(hp_regressions)
+    hp_metric_stargazer = Stargazer(predictability_regressions)
     with open('/home/connormcdowall/finance-honours/results/tables/metrics/' + model_name + '-regression-metrics.txt', 'w') as f:
         # Deletes existing text
         f.truncate(0)
@@ -1014,8 +1020,14 @@ def execute_conversion_options(model_name, selected_losses, hp_ols=False, pooled
         replace_count = replace_count + 1
     # Get the metrics file
     fp_in = base_directory_in + 'metrics/' + \
-        model_name + '-' + loss + '-metrics.txt'
-    fp_out = base_directory_out + model_name + '-' + loss + '-metrics.tex'
+        model_name + '-calculations-metrics.txt'
+    fp_out = base_directory_out + model_name + '-calculations-metrics.tex'
+    convert_txt_to_tex(fp_in, fp_out, replace_text=False,
+                       replacement_text=replacement_text)
+    # Get the regression summary
+    fp_in = base_directory_in + 'metrics/' + \
+        model_name + '--regression-metrics.txt'
+    fp_out = base_directory_out + model_name + '--regression-metrics.tex'
     convert_txt_to_tex(fp_in, fp_out, replace_text=False,
                        replacement_text=replacement_text)
     return
