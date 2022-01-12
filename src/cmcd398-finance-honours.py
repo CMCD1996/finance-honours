@@ -768,11 +768,15 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             ff5_hp = sm.OLS(hedge_returns['hedge_returns'], ff5_hp_exog).fit(
                 cov_type='HAC', cov_kwds={'maxlags': 6})
         # Extract the metrics from loss function
-        hp_mean = hedge_returns['hedge_returns'].mean(axis=0)
-        hp_sharpe_ratio = (hedge_returns['hedge_returns'].mean(
-            axis=0)/hedge_returns['hedge_returns'].std(axis=0))
-        hp_teynor = (hedge_returns['hedge_returns'].mean(
+        hp_mean = hedge_returns[['hedge_returns']].mean(axis=0)
+        print('Hedge Portfolio Mean for {} is {}'.format(loss, hp_mean))
+        hp_sharpe_ratio = (hedge_returns[['hedge_returns']].mean(
+            axis=0)/hedge_returns[['hedge_returns']].std(axis=0))
+        print('Hedge Portfolio Sharpe Ratio for {} is {}'.format(
+            loss, hp_sharpe_ratio))
+        hp_teynor = (hedge_returns[['hedge_returns']].mean(
             axis=0) / capm_hp.params[1])
+        print('Hedge Portfolio treynor for {} is {}'.format(loss, hp_teynor))
         hp_means = hp_means.append(hp_mean)
         hp_sharpes = hp_sharpes.append(hp_sharpe_ratio)
         hp_treynors = hp_treynors.append(hp_teynor)
