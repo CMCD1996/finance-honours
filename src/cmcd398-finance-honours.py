@@ -658,6 +658,11 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
     # Divide factors in dataframe by 100 to convert to decimals from percentages
     factors_df[['Mkt-RF', 'SMB', 'HML', 'RMW', 'CMA']
                ] = factors_df[['Mkt-RF', 'SMB', 'HML', 'RMW', 'CMA']].div(100)
+    # Creates arrays for metric storage
+    hp_means = []
+    hp_sharpes = []
+    hp_treynors = []
+    hp_regressions = []
     for loss in selected_losses:
         regression_df = pd.read_csv(
             prediction_location + model_name + '-' + loss + '.csv')
@@ -704,6 +709,7 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
         print(hedge_returns[['Mkt-RF', 'SMB', 'HML', 'RMW', 'CMA']])
         # Create fama factors for the dataset from K.French
         # Performs series of panel regressions with firm returns and standard regressions with hedge returns
+        # Get standard statistics
         if regression_dictionary['capm'] == True:
             # Uses linear models to perform CAPM regressions (Panel Regressions)
             capm_exog_vars = ['Mkt-RF']
@@ -761,14 +767,52 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             ff5_hp_exog = sm.add_constant(hedge_returns[ff5_exog_vars])
             ff5_hp = sm.OLS(hedge_returns['hedge_returns'], ff5_hp_exog).fit(
                 cov_type='HAC', cov_kwds={'maxlags': 6})
+            # Extract the metrics from loss function
+        try:
+            hp_mean = hedge_returns['hedge_returns'].mean(axis=0)
+            hp_sharpe_ratio = (hedge_returns['hedge_returns'].mean(
+                axis=0)/hedge_returns['hedge_returns'].std(axis=0))
+            hp_teynor = (hedge_returns['hedge_returns'].mean(
+                axis=0) / capm_hp.params[1])
+            hp_means = hp_means.append(hp_mean)
+            hp_sharpe_ratios = hp_sharpe_ratios.append(hp_sharpe_ratio)
+            hp_teynors = hp_teynors.append(hp_teynor)
+        except:
+            print('Failed: Could not calculate metrics for {} function'.format(loss))
+        try:
+            hp_regress = sm.OLS(hedge_returns['hedge_returns'], hedge_returns['hedge_returns']).fit(
+                cov_type='HAC', cov_kwds={'maxlags': 6})
+            hp_regressions = hp_regressions.append(hp_regress)
+        except:
+            print(
+                'Failed: Could not use regression to find mean {} function'.format(loss))
         # Creates tables for comparison using the stargazor package
         hp_stargazer = Stargazer([capm_hp, ff3_hp, ff4_hp, ff5_hp])
         with open('/home/connormcdowall/finance-honours/results/tables/hedge-portfolio-ols/' + model_name + '-' + loss + '.txt', 'w') as f:
             # Deletes existing text
             f.truncate(0)
             print(hp_stargazer.render_latex(), file=f)
+    # Uses stargazer and arrays
         if realised_returns:
             return
+    # Creates metrics dataframes and saves to latex variable
+    metrics_df_cols = ['Loss Function', 'Hedge Portfolio Mean',
+                       'Hedge Portfolio Sharpe Ratio', 'Hedge Portfolio Treynor']
+    metrics_df = pd.DataFrame(columns=metrics_df_cols)
+    metrics_df[['Loss Function', 'Hedge Portfolio Mean', 'Hedge Portfolio Sharpe Ratio',
+                'Hedge Portfolio Treynor']] = [selected_losses, hp_means, hp_sharpe_ratios, hp_teynors]
+    with open('/home/connormcdowall/finance-honours/results/tables/metrics/' + model_name + '-metrics.txt', 'w') as f:
+        # Deletes existing text
+        f.truncate(0)
+        print(metrics_df.to_latex(index=False), file=f)
+        f.close()
+    # Create new sharelatex regression columns
+    hp_metric_stargazer = Stargazer(hp_regressions)
+    with open('/home/connormcdowall/finance-honours/results/tables/metrics/' + model_name + '-metrics.txt', 'w') as f:
+        # Deletes existing text
+        f.truncate(0)
+        print(hp_metric_stargazer.render_latex(), file=f)
+        f.close()
     return
 
 
