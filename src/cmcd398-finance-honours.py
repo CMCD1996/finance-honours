@@ -708,7 +708,8 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
         data = regression_df.set_index(['permno', 'mth'])
         # Do Panel Regressions to determine model predictability
         exog_vars = ['predict']
-        exog = sm.add_constant(data[exog_vars])
+        # exog = sm.add_constant(data[exog_vars])
+        exog = data[exog_vars]
         fb = lm.PooledOLS(data['ret_exc_lead1m'], exog).fit(
             cov_type='clustered', cluster_entity=True, cluster_time=True)
         with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/accuracy/' + model_name + '-' + loss + '.txt', 'w') as f:
