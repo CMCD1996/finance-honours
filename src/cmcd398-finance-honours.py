@@ -785,7 +785,7 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
         print('Hedge portfolio means are: ', hp_treynors)
         hp_regress = sm.OLS(hedge_returns['hedge_returns'], hedge_returns['hedge_returns']).fit(
             cov_type='HAC', cov_kwds={'maxlags': 6})
-        hp_regressions = hp_regressions.append(hp_regress)
+        hp_regressions.append(hp_regress)
         # Creates tables for comparison using the stargazor package
         hp_stargazer = Stargazer([capm_hp, ff3_hp, ff4_hp, ff5_hp])
         with open('/home/connormcdowall/finance-honours/results/tables/hedge-portfolio-ols/' + model_name + '-' + loss + '.txt', 'w') as f:
@@ -799,8 +799,10 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
     metrics_df_cols = ['Loss Function', 'Hedge Portfolio Mean',
                        'Hedge Portfolio Sharpe Ratio', 'Hedge Portfolio Treynor']
     metrics_df = pd.DataFrame(columns=metrics_df_cols)
-    metrics_df[['Loss Function', 'Hedge Portfolio Mean', 'Hedge Portfolio Sharpe Ratio',
-                'Hedge Portfolio Treynor']] = [selected_losses, hp_means, hp_sharpe_ratios, hp_teynors]
+    metrics_df['Hedge Portfolio Mean'] = hp_means, hp_sharpes, hp_treynors
+    metrics_df['Loss Function'] = selected_losses
+    metrics_df['Hedge Portfolio Sharpe Ratio'] = hp_sharpes
+    metrics_df['Hedge Portfolio Treynor'] = hp_treynors
     with open('/home/connormcdowall/finance-honours/results/tables/metrics/' + model_name + '-metrics.txt', 'w') as f:
         # Deletes existing text
         f.truncate(0)
