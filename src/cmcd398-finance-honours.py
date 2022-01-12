@@ -660,7 +660,6 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
                ] = factors_df[['Mkt-RF', 'SMB', 'HML', 'RMW', 'CMA']].div(100)
     # Creates arrays for metric storage
     hp_means = []
-    hp_cr = []
     hp_sharpes = []
     hp_treynors = []
     hp_regressions = []
@@ -706,6 +705,15 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
         regression_df = regression_df.merge(factors_df, how='inner', on='mth')
         # Resets the index on both size_grp and mth
         data = regression_df.set_index(['permno', 'mth'])
+        # Do Panel Regressions to determine model predictability
+        exog_vars = ['ret_exc_lead1m']
+        exog = sm.add_constant(data[exog_vars])
+        fb = lm.PooledOLS(data['predict'], exog).fit(
+            cov_type='clustered', cluster_entity=True, cluster_time=True)
+        with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/accuracy/' + model_name + '-' + loss + '-.txt', 'w') as f:
+            f.truncate(0)
+            print(fb.summary.as_latex(), file=f)
+            f.close()
         print(hedge_returns['hedge_returns'])
         print(hedge_returns[['Mkt-RF', 'SMB', 'HML', 'RMW', 'CMA']])
         # Create fama factors for the dataset from K.French
