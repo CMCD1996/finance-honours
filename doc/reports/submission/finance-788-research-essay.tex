@@ -68,7 +68,7 @@
 \usepackage{multicol}
 \usepackage{float}
 %%% FLOW DIAGRAM STYLE
-\definecolor{inputlayercolour}{RGB}{39,97,243}
+\definecolor{inputlayercolour}{RGB}{88,129,243}
 \definecolor{hiddenlayercolour}{RGB}{14,190,183}
 \definecolor{outputlayercolour}{RGB}{146,182,255}
 \definecolor{inputcolour}{RGB}{155,177,218}
@@ -147,17 +147,17 @@
 	\vfill % Push the date up 1/4 of the remaining page
 \end{titlepage}
 \newpage
-\tableofcontents
-\listoffigures
-\listoftables
-\listofmyequations
-\newpage
-\section{Acknowledgements}
+\section*{Acknowledgements}
 \begin{center}
 	\textbf{Paul Geertsema}
 \end{center}
 \newpage
-\section{Abstract}
+\section*{Abstract}
+\newpage
+\tableofcontents
+\listoffigures
+\listoftables
+\listofmyequations
 \newpage
 \section{Introduction (3 pages)}
 \newpage
@@ -189,6 +189,7 @@ Gu et al (\citeyear{eapvml}) explore the comparative use of machine learning in 
 \section{Methodology}
 The required methodology to construct the methods to build, develop, and deploy neural networks with custom objective functions.
 \subsection{Data}\label{data}
+\subsubsection{Global Factors Dataset}
 Hou et al., (\citeyear{hou2020replicating}) use an extensive data library to assess 452 anomalies across anomalies literature.
 Their analysis informs which abnormalities drive the cross section of expected returns. 
 Most abnormalities fail under current standards of empirical finance when using a single hurdle test of absolute t-stat greater or equal to 1.96.
@@ -199,37 +200,40 @@ Overall, capital market efficiency is higher than expected.
 Jensen et al., \citeyear{jensen2021there} use the above dataset to explore hierarchical bayesian models of alphas emphasising the joint behaviours of factors, 
 and provide an alternative multiple testing adjustment, more powerful than common methods.
 Jensen et al., adapt the global dataset to focus only on one-month holding periods for all factors, only include most recent accounting data (quarterly or annually) and add 15 new factors.
-The authors provide documentation and web-based resources on \href{https://github.com/bkelly-lab/ReplicationCrisis}{GitHub} to reconstruct an updated dataset from Wharton Research Data Services (WRDS) using SAS Studio.
-The dataset is exhaustive as illustrated by the both the summary statistics in \ref{dss} and Global Factor Data Documentation in the author's GitHub repository \footnote[1]{View summary statistics and  in tandem for comprehension}
-Identifier variables (e.g., size group), Accounting variables (e.g., COGS), accounting characteristics (e.g., change in net working capital, solvency ratios etc.), market variables (e.g., share price, excess return), market characteristics (e.g., market equity, 60 month CAPM $\beta$), 
-and detailed characteristics (e.g., equity duration, Altman Z-Score) and Foreign Exchange Conversion Rates feature in the dataset's composition.
-The complete global dataset has 406 characteristics, a superset of the original 153 in Jensen et al., with 2,739,928 firm-year observations, across 524 features, from January 1st 1961 to December 31st 2020.
-Subsequently, the complete dataset has 1.435 billion data points. \textbf{One month lead excess returns} is the designated target variables for prediction as will inform the construction of hedge portfolio to
-assess relative performance between different optimisation functionalities.
+Section \ref{dss} describes factor composition, resources for data acquisition, and summary statistics.
+The complete global dataset has 406 characteristics, a superset of the original 153 in Jensen et al., with 2,739,928 firm-year observations, from January 1st 1961 to December 31st 2020.
+Subsequently, the complete dataset has 1.112 billion data points. \textbf{One month lead excess returns} is the designated target variable for prediction as will inform the construction of hedge portfolios to
+assess relative performance between optimisation functionalities.
 The exhaustive nature and accessibility of the global dataset makes it well-suited for exploring optimisation functions, maximising renown financial metrics, in deep neural-networks.
-\subsection{Infrastructure}
-The essay necessitates substantial software development, infrastructure, and technological configuration to undertake analysis. 
-Google Cloud Platform Cloud Storage buckets manage large datasets.
-The deployment of Google Cloud Engine Compute Engine Virtual Machine (VM) Instances, optimised for machine learning, build, train, and evaluate deep neural networks.
-Cryptographic network protocols, mostly secure shells, establish remote connectivity between local and remote infrastructure to communicate and execute commands.
-Version control technologies, primarily Git and GitHub, manage and develop methods for analysis with the programming of approximately 40 methods, classes, and functions.
-\subsection{Data Processing}
-Analysis requires data preprocessing to form training, validation, and testing subsets fro the neural network. 
-The initial training, testing, and validation sets comprise of \textbf{1031516}, \textbf{706908 }, and \textbf{1001504} global equity firm-year observations across 524 features, respectively.
+
+\subsubsection{Processing} \label{data-processing}
+Neural networks demand the partitioning of the dataset into training, validation, and testing subsets.
+The initial training, testing, and validation sets consist of \textbf{1031516}, \textbf{706908}, and \textbf{1001504} global equity firm-year observations across 406 features, respectively.
 The division of subsets is chronological with firm-year observations [1961-1990), [1990-2000), [2000-2020] for training, validation, and testing, respectively.
-However, the computational complexity exceeds resources available at the time of analysis.
-Subsequently, training sets require further preprocessing in addition to reconfiguring infrastructure.
-Further preprocessing includes: Reducing the number of factors from Jensen et al., (\citeyear{jensen2021there}) to approximately the same number of features (160) Hou et al., (\citeyear{hou2020replicating}) use to explore portfolio replication.
-The replacement of NaN values in a feature columns with the median value of the respective column to retain observations.
-The removal of firm-year observations with Micro or Nano size grouping designations, non-overlapping, value weighted by market capitalisation on the New York Stock Exchange (NYSE)). 
-Mega, Large, and Small remain, reflecting equities with market capitalisations greater than the 80th, 50th, and 20th percentile of all NYSE stocks, respectively.
-Micro equities reside between the 1st and 20th percentiles, with Nano between below the 1st percentile. The rational for their exclusion is Mega, Large, and Small equities account for the majority of stock market returns (80\%). 
-Hypothetically, their omission will not materially influence results. 
-Furthermore, the reduction in numerical feature precision from float64 to float32 effectively halves memory usage. 
+Two reasons rationalise the reduction in the number of factors from 406 in the Jensen et al., (\citeyear{jensen2021there}) superset to 153, and the removal of firm-year observations with Micro or Nano size grouping
+\footnote{Mega, Large, and Small remain, reflecting equities with market capitalisations greater than the 80th, 50th, and 20th percentile of all NYSE stocks, respectively.
+Micro equities reside between the 1st and 20th percentiles, with Nano between below the 1st percentile. The percentiles are non-overlapping and value weighted by market capitalisation on the New York Stock Exchange (NYSE).}
+designations. Firstly, the retention of equities between 20th to 100th percentiles appeals to economic significance. 
+The composition of aggregate market capitalisation is mostly from their contribution. 
+Additionally, their higher liquidity increases the likelihood of analyst coverage and portfolio inclusion. 
+Secondly, factor reduction appeals to parsimony in aligning explanatory variables to prior studies.
 The training, testing, and validation sets consist of \textbf{532218}, \textbf{294581}, and \textbf{531461} global equity firm-year observations across 160 features after above revisions, respectively.
-Subsequently, the revised dataset has 217.321,600 data points, suitable to use in analysis.
-Memory monitoring methods accompany the aforementioned preprocessing adjustments, monitoring CPU and GPU utilisation, reconfiguring GPU's, and configuring application programming interfaces for monitoring modelling performance.
-\subsection{Feature Encoding}
+Subsequently, the revised dataset has 217,321,600 data points.
+Tables \ref{table:ss-train}, \ref{table:ss-test}, and \ref{table:ss-val} in section \ref{dss:ss} describe summary statistics and factor retention after subset revision. 
+
+\subsection{Cloud Infrastructure}
+Cloud-centric computational products execute data processing and analysis.
+Google Cloud Platform Cloud Storage buckets and Compute Engine virtual machine (VM) instances manage large datasets and build, train, and evaluate deep neural networks, respectively.
+Cryptographic network protocols, mostly secure shells, establish remote connectivity between local and remote infrastructure to communicate and execute commands.
+However, use of cloud computing does not resolve all resource constraints. 
+\footnote{Resource constraints inhibit exploration of the entire dataset within reasonable timeframes at reasonable costs.
+The most material inhibitions are the inability to explore all 406 factors for all size groupings, the reduction in level of precision for numerical features, and
+the ability to shuffle training sets at lengths greater than or equal to the input sets when training neural networks.
+However, the reasons necessitating factor reduction and size grouping exclusion stated in section \ref{data-processing} superseed resource constraints.}
+Section \ref{technical} elaborates further these cloud centric computational approaches.
+
+\subsection{Neural Networks}
+\subsubsection{Normalisation \& Feature Encoding}
 Deep neural networks require tensors as inputs for fitting, training, and evaluating data to make predictions.
 A tensor is a mathematical object describing the physical properties of an object. In other words, multilinear relationships between sets of algebraic objects related in vector set.
 Transformation laws govern tensors. Therefore, a tensor is considered an n dimensional arrays in conjunction with associated transformation laws.
@@ -287,7 +291,7 @@ Where
 \end{itemize}
 The architecture for analysis is a large MLP.
 \subsubsection{Model Configuration}
-Figure \ref{fig:neural-network} visualises the topography of a standard neural network.
+Figure \ref{fig:neural-network} visualises a standard neural network topography
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.75\textwidth]{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/images/neural-network}.png}
@@ -295,25 +299,25 @@ Figure \ref{fig:neural-network} visualises the topography of a standard neural n
     \label{fig:neural-network}
 \end{figure}
 The dots and lines represent nodes and connections between nodes, respectively.
-The architecture of the network is derivative of the model's intended use.
+The architecture of the network is derivative of intended use.
 The set of
-\newpage
 Figure \ref{fig:neural-network-configuration} illustrates the configuration for this project (work in prgoress).
+\newpage
 \begin{figure}[H]
 	\centering
 	\begin{tikzpicture}[node distance=2cm]
-	\node (in) [inputs] {\textbf{$N_{(0,a)}$: Input} \\ (Features: 189)};
-	\node (hidden1) [hiddenlayer, below of=in, yshift=-1cm] {\textbf{Dense I} \\ \text{$N_{(1,b)}$}:  \\ \text{$h_{w}(\textbf{x})$} = RELU(z) (\ref{relu-activation-function})};
-	\node (hidden2) [hiddenlayer, below of=hidden1, yshift=-1.5cm] {\textbf{$N_{(2,c)}$: Dropout I} \\ Nodes: 32 \\ Dropout Rate = 50\%};
-	\node (hidden3) [hiddenlayer, below of=hidden2, yshift=-1.5cm] {\textbf{$N_{(3,d)}$: Dense II} \\ Nodes: 64 \\ \text{$h_{w}(\textbf{x})$} = RELU(z) (\ref{relu-activation-function})};
-	\node (hidden4) [hiddenlayer, below of=hidden3, yshift=-1.5cm] {\textbf{$N_{(4,e)}$: Dense III} \\ Nodes: 128 \\ \text{$h_{w}(\textbf{x})$} = RELU(z) (\ref{relu-activation-function})};
-	\node (output) [outputlayer, below of=hidden4, yshift=-1.5cm] {\textbf{$N_{(5,f)}$: Dense IV} \\ Nodes: 1 \\ \text{$h_{w}(\textbf{x})$} = Linear(z) (\ref{linear-activation-function})};
-	\node (predict) [predict, below of=output, yshift=-1cm] {\textbf{Prediction}};
-	\draw [arrow] (in) -- node[anchor=west] {\text{$\sum_{a = 1}^{189} w_{(0,a,b)}x_{(i)}$}} (hidden1);
-	\draw [arrow] (hidden1) -- node[anchor=west] {\text{$\sum_{b = 1}^{189}w_{(1,i)}y_{(i)}$}} (hidden2);
-	\draw [arrow] (hidden2) -- node[anchor=west] {\text{$\sum_{c = 1}^{189}w_{(2,i)}x_{(i)}$}} (hidden3);
-	\draw [arrow] (hidden3) -- node[anchor=west] {\text{$\sum_{d = 1}^{189}w_{(3,i)}x_{(i)}$}} (hidden4);
-	\draw [arrow] (hidden4) -- node[anchor=west] {\text{$\sum_{e = 1}^{189}w_{(4,i)}x_{(i)}$}} (output);
+	\node (in) [inputs] {\textbf{Input} \\ \text{$N_{(0,a)}$: \textbf{$a$ $\epsilon \{1,...,189 \}$}}: \\ (Features: 189)};
+	\node (hidden1) [hiddenlayer, below of=in, yshift=-1.5cm] {\textbf{Dense I} \\ \text{$N_{(1,b)}$: \textbf{$b$ $\epsilon \{1,...,32 \}$}} \\ \textbf{g} = RELU(\textbf{z})};
+	\node (hidden2) [hiddenlayer, below of=hidden1, yshift=-1.5cm] {\textbf{Dropout I} \\ \text{$N_{(2,c)}$: \textbf{$c$ $\epsilon \{1,...,32 \}$}}\\ \textbf{h} =  Dropout(\textbf{y,r=0.5})};
+	\node (hidden3) [hiddenlayer, below of=hidden2, yshift=-1.5cm] {\textbf{Dense II} \\ \text{$N_{(3,d)}$: \textbf{$d$ $\epsilon \{1,...,64 \}$}} \\ \textbf{i} = RELU(\textbf{v})};
+	\node (hidden4) [hiddenlayer, below of=hidden3, yshift=-1.5cm] {\textbf{Dense III} \\ \text{$N_{(4,e)}$: \textbf{$e$ $\epsilon \{1,...,128 \}$}} \\ \textbf{j} = RELU(\textbf{u})};
+	\node (output) [outputlayer, below of=hidden4, yshift=-1.5cm] {\textbf{Dense IV} \\ \text{$N_{(5,f)}$: \textbf{$f$ $\epsilon \{1\}$}} \\ \textbf{k} = Linear(\textbf{t})};
+	\node (predict) [predict, below of=output, yshift=-1cm] {\textbf{$Prediction_{k}$}};
+	\draw [arrow] (in) -- node[anchor=west] {\textbf{z} = \text{$\sum_{a = 1}^{189} w_{(0,a,b)}x_{(0,a,b)}$} \text{$\forall$ b}} (hidden1);
+	\draw [arrow] (hidden1) -- node[anchor=west] {\textbf{y} = \text{$\sum_{b = 1}^{32} w_{(1,b,c)}g_{(1,b,c)}$} \text{$\forall$ c}} (hidden2);
+	\draw [arrow] (hidden2) -- node[anchor=west] {\textbf{v} = \text{$\sum_{c = 1}^{32} w_{(2,c,d)}h_{(2,c,d)}$} \text{$\forall$ d}} (hidden3);
+	\draw [arrow] (hidden3) -- node[anchor=west] {\textbf{u} = \text{$\sum_{d = 1}^{64} w_{(3,d,e)}i_{(3,d,e)}$} \text{$\forall$ e}} (hidden4);
+	\draw [arrow] (hidden4) -- node[anchor=west] {\textbf{t} = \text{$\sum_{e = 1}^{128} w_{(4,e,f)}j_{(4,e,f)}$} \text{$\forall$ f}} (output);
 	\draw [arrow] (output) -- node[anchor=west] {} (predict);
 	\end{tikzpicture}
 	\caption{Neural Network Configuration}
@@ -347,7 +351,7 @@ In our example, equations \ref{pdmsem} and \ref{pdmseb} are the partial derivati
 Secondly, the algorithm explores epochs, using a learning rate to update parameters to move in the opposite directions of the partial derivatives until settling in a local minima.
 This extrema is the optimisation of the loss function, quantifying the accuracy of the predicative model.
 Ordinary Least Squares (OLS) regressions is an extension of the linear model prevalent in asset pricing.
-The mathematical rigor and suitability  of the OLS estimator section \ref{ols}.
+The mathematical rigor and suitability of the OLS estimator section \ref{ols}.
 The theory underlying OLS informs the common practice in minimising of the sum of least squares when evaluating prediction performance.
 The mathematical tractability, in accordance with the aforementioned assumption, frame our thinking surrounding the derivation of custom loss functions.
 \subsubsection{Automatic Differentiation}
@@ -544,29 +548,25 @@ Both Sharpe and Information ratios supplement hedge portfolio-related loss funct
 \input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-calculations-metrics}.tex}
 \cite{hlavac2018stargazer} enables the tables in the regression analysis.
 \newpage
-\begin{landscape}
 \subsection{Model Accuracy}
 \subsubsection{Model Loss}
 Table X illustrates the performance of each model during training, validation, and testing.
-
-Table X informs the accruracy of predictions 
+Table \ref{test-model-predict} informs the accruracy of predictions 
 \input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-regression-metrics}.tex}
 Fama MacBeth Regressions using individual securities.
 PooledOLS replaces Fama MacBeth in this instance.
 \subsection{Hedge Portfolio Performance}
+
 \subsubsection{Inbuilt Mean Square Error}
-\newpage
 \subsubsection{Custom Mean Square Error}
-\newpage
 \subsubsection{Custom Hedge Portfolio}
 \newpage
-\end{landscape}
 \section{Discussion}
 \section{Conclusion}
 \subsection{Contributions}
 \subsection{Further Research}
 \subsection{Limitations}
-Further research will rely on addressing several limitation.
+Further research will rely on addressing severals limitation.
 \subsubsection{Resources}
 The lack of resources to explore the entire dataset within reasonable timeframes, and at reasonable costs.
 The most material inhibitions are the inability to explore all 400 factors for all size groupings, the reduction in level of precision for numerical features, and
@@ -682,7 +682,7 @@ Equation \ref{gma4} captures homoskedasticity and no autocorrelation assumptions
 \input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse-accuracy}.tex}
 \subsubsection{Custom Hedge Portfolio}
 \input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_hp-accuracy}.tex}
-\subsection{Technical Details}
+\subsection{Technical Details}\label{technical}
 \subsubsection{Organisation}
 This research essay uses data science best practise (\cite{J:10}).
 Data and results saved regularly and reproducible. 
@@ -696,6 +696,7 @@ This functionality enables reproducibility, error correction, and the ability to
 
 \subsubsection{Version Control}\label{Version Control}
 Git, hosted by GitHub, provides a comprehensive set of version control technologies and range of benefits.
+These technologies manage version control for the the programming of approximately 40 methods, classes, and functions.
 Firstly, Git enables collaborative functionalities. 
 The master version of a project is accessible for all who have access to the repository. 
 Each contributor can create custom copies of branches through pull requests on the master branch. 
@@ -755,9 +756,29 @@ A Virtual Machine Instance on the Google Cloud Platform \textbf{Insert specifica
 The research essay documentation keeps an accurate record of key design decisions.
 Commit histories (\ref{Version Control}) is the most important form of documentation.
 Application of auxiliary documentation methods are supplementary.
-
+\subsection{Code} \label{code}
+All files, resources, and code is available for download from \href{https://github.com/CMCD1996/finance-honours}{Github}.
+The document listing function and class docstring is available for download \href{/Users/connor/Google Drive/Documents/Professional/Projects/Portfolio/downloads/wip.pdf}{here}.
+% Decide to include/exclude depending on size.
+Furthermore, the coding listings for this research essay follow. Try update.
+% \lstinputlisting[language=Python]{cmcd398-finance-honours.py}
+\subsection{Data} \label{dss}
+\subsubsection{Composition \& Sources}
+The authors provide documentation and web-based resources on \href{https://github.com/bkelly-lab/ReplicationCrisis}{GitHub} to reconstruct an updated dataset from Wharton Research Data Services (WRDS) using SAS Studio.
+Identifier variables (e.g., size group), Accounting variables (e.g., COGS), accounting characteristics (e.g., change in net working capital, solvency ratios etc.), market variables (e.g., share price, excess return), market characteristics (e.g., market equity, 60 month CAPM $\beta$), 
+and detailed characteristics (e.g., equity duration, Altman Z-Score) and Foreign Exchange Conversion Rates feature in the dataset's composition.
+\subsubsection{Data Processing} \label{data-processing}
+However, the computational complexity exceeds resources available at the time of analysis.
+The replacement of NaN values in a feature columns with the median value of the respective column to retain observations.
+Subsequently, training sets require further preprocessing in addition to reconfiguring infrastructure.
+Furthermore, the reduction in numerical feature precision from float64 to float32 effectively halves memory usage. 
+Memory monitoring methods accompany the aforementioned preprocessing adjustments, monitoring CPU and GPU utilisation, reconfiguring GPU's, and configuring application programming interfaces for monitoring modelling performance.
+\subsubsection{Summary Statistics} \label{dss:ss}
+The dataset is exhaustive as illustrated by the both summary statistics and Global Factor Data Documentation in the author's GitHub repository.
+Table \ref{table:ss} describes summary statistics for the entire global factor dataset.
+Tables \ref{table:ss-train}, \ref{table:ss-val}, and \ref{table:ss-test} list summary statistics for revised training, validation, and testing sets, respectively.
+\newpage
 \begin{landscape}
-\subsection{Dataset Summary Statistics}\label{dss}
 \singlespacing
 \setlength{\tabcolsep}{2pt}
 \begin{longtable}{|l|r|r|r|r|r|r|r|r|}
@@ -1162,16 +1183,523 @@ qmj\_prof\_x              &  2502382.0 &  9.110000e-02 &  9.846000e-01 &     -1.
 qmj\_growth\_x            &  1825622.0 &  3.610000e-02 &  9.739000e-01 &     -1.7018 & -7.911000e-01 &  4.900000e-02 &  8.716000e-01 &  1.702100e+00 \\
 qmj\_safety\_x            &  2579701.0 &  8.730000e-02 &  9.713000e-01 &     -1.7012 & -7.189000e-01 &  1.215000e-01 &  9.239000e-01 &  1.708800e+00 \\
 \bottomrule
-\caption{Summary Statistics}
+\caption{Complete Global Factor Dataset Summary Statistics}
 \label{table:ss}
 \end{longtable}
-\end{landscape}
-\doublespacing
-\subsection{Code}
-All files, resources, and code is available for download from \href{https://github.com/CMCD1996/finance-honours}{Github}.
-The document listing function and class docstring is available for download \href{/Users/connor/Google Drive/Documents/Professional/Projects/Portfolio/downloads/wip.pdf}{here}.
-% Decide to include/exclude depending on size.
-Furthermore, the coding listings for this research essay follow. Try update.
-% \lstinputlisting[language=Python]{cmcd398-finance-honours.py}
+
 \newpage
+
+\setlength{\tabcolsep}{2pt}
+\begin{longtable}{|l|r|r|r|r|r|r|r|r|}
+\toprule
+{} &      count &          mean &           std &         min &           25\% &           50\% &           75\% &           max \\
+\midrule
+\endhead
+beta\_60m\_x             &  532218.0 &  1.171000e+00 &  4.530000e-01 &      -0.350 &        0.886 &        1.149 &  1.393000e+00 &  3.389000e+00 \\
+index                  &  532218.0 &  8.806473e+05 &  4.668442e+05 &     651.000 &   528652.250 &   821568.500 &  1.220481e+06 &  2.733106e+06 \\
+mth                    &  532218.0 &  1.976878e+05 &  8.005020e+02 &  196101.000 &   197103.000 &   197711.000 &  1.984030e+05 &  1.989120e+05 \\
+permno                 &  532218.0 &  3.638201e+04 &  1.839758e+04 &   10006.000 &    21573.000 &    32302.000 &  4.972900e+04 &  9.322000e+04 \\
+permco                 &  532218.0 &  1.740521e+04 &  8.516931e+03 &       4.000 &     8611.000 &    21173.000 &  2.289400e+04 &  5.628500e+04 \\
+crsp\_shrcd             &  532218.0 &  1.066100e+01 &  5.230000e-01 &      10.000 &       10.000 &       11.000 &  1.100000e+01 &  1.200000e+01 \\
+crsp\_exchcd            &  532218.0 &  1.509000e+00 &  8.170000e-01 &       1.000 &        1.000 &        1.000 &  2.000000e+00 &  3.000000e+00 \\
+sic                    &  532218.0 &  4.147325e+03 &  1.685914e+03 &     100.000 &     2899.000 &     3721.000 &  5.311000e+03 &  9.511000e+03 \\
+ff49                   &  532218.0 &  2.874800e+01 &  1.327400e+01 &       1.000 &       18.000 &       31.000 &  4.100000e+01 &  4.900000e+01 \\
+adjfct                 &  532218.0 &  6.901000e+00 &  2.505700e+01 &       0.000 &        1.000 &        2.000 &  4.000000e+00 &  1.215000e+03 \\
+shares                 &  532218.0 &  1.992800e+01 &  4.235100e+01 &       0.212 &        4.200 &        8.553 &  1.963800e+01 &  1.426344e+03 \\
+me                     &  532218.0 &  6.983350e+02 &  2.292746e+03 &      17.030 &       94.162 &      196.351 &  5.360830e+02 &  1.020223e+05 \\
+me\_company             &  532218.0 &  7.058630e+02 &  2.338138e+03 &      17.030 &       94.471 &      197.355 &  5.383670e+02 &  1.020223e+05 \\
+prc                    &  532218.0 &  3.142100e+01 &  5.300700e+01 &       0.422 &       17.375 &       26.000 &  3.775000e+01 &  8.675000e+03 \\
+prc\_local              &  532218.0 &  3.142100e+01 &  5.300700e+01 &       0.422 &       17.375 &       26.000 &  3.775000e+01 &  8.675000e+03 \\
+dolvol                 &  532218.0 &  2.686159e+07 &  1.110126e+08 &       0.000 &  1586250.000 &  4175525.000 &  1.458036e+07 &  9.027815e+09 \\
+ret                    &  532218.0 &  1.700000e-02 &  1.090000e-01 &      -0.761 &       -0.043 &        0.008 &  6.800000e-02 &  3.185000e+00 \\
+ret\_local              &  532218.0 &  1.700000e-02 &  1.090000e-01 &      -0.761 &       -0.043 &        0.008 &  6.800000e-02 &  3.185000e+00 \\
+ret\_exc                &  532218.0 &  1.100000e-02 &  1.090000e-01 &      -0.771 &       -0.049 &        0.003 &  6.200000e-02 &  3.180000e+00 \\
+ret\_lag\_dif            &  532218.0 &  1.000000e+00 &  0.000000e+00 &       1.000 &        1.000 &        1.000 &  1.000000e+00 &  1.000000e+00 \\
+ret\_exc\_lead1m         &  532218.0 &  5.000000e-03 &  1.060000e-01 &      -1.005 &       -0.052 &        0.000 &  5.800000e-02 &  2.472000e+00 \\
+niq\_su\_x               &  532218.0 &  3.200000e-02 &  1.438000e+00 &     -15.807 &       -0.293 &        0.033 &  4.670000e-01 &  1.642400e+01 \\
+ret\_6\_1\_x              &  532218.0 &  8.100000e-02 &  2.470000e-01 &      -0.811 &       -0.057 &        0.039 &  1.860000e-01 &  2.811000e+00 \\
+ret\_12\_1\_x             &  532218.0 &  1.810000e-01 &  4.100000e-01 &      -0.859 &       -0.043 &        0.095 &  3.260000e-01 &  6.188000e+00 \\
+saleq\_su\_x             &  532218.0 &  2.610000e-01 &  1.384000e+00 &     -11.313 &       -0.177 &        0.192 &  7.030000e-01 &  3.358800e+01 \\
+tax\_gr1a\_x             &  532218.0 &  6.000000e-03 &  2.200000e-02 &      -0.153 &       -0.001 &        0.003 &  1.200000e-02 &  1.500000e-01 \\
+ni\_inc8q\_x             &  532218.0 &  3.814000e+00 &  2.800000e+00 &       0.000 &        3.000 &        3.000 &  7.000000e+00 &  8.000000e+00 \\
+prc\_highprc\_252d\_x     &  532218.0 &  8.310000e-01 &  1.410000e-01 &       0.116 &        0.766 &        0.853 &  9.380000e-01 &  1.000000e+00 \\
+resff3\_6\_1\_x           &  532218.0 & -4.200000e-02 &  5.010000e-01 &      -2.954 &       -0.282 &       -0.019 &  2.320000e-01 &  1.926000e+00 \\
+resff3\_12\_1\_x          &  532218.0 & -1.800000e-02 &  2.550000e-01 &      -1.155 &       -0.161 &       -0.007 &  1.370000e-01 &  7.900000e-01 \\
+be\_me\_x                &  532218.0 &  8.110000e-01 &  5.520000e-01 &       0.012 &        0.448 &        0.724 &  1.022000e+00 &  1.009700e+01 \\
+debt\_me\_x              &  532218.0 &  7.170000e-01 &  1.271000e+00 &       0.000 &        0.123 &        0.332 &  7.470000e-01 &  2.510800e+01 \\
+at\_me\_x                &  532218.0 &  2.978000e+00 &  5.266000e+00 &       0.037 &        0.831 &        1.482 &  2.495000e+00 &  5.293000e+01 \\
+ret\_60\_12\_x            &  532218.0 &  9.080000e-01 &  1.395000e+00 &      -0.939 &        0.286 &        0.550 &  1.046000e+00 &  2.063600e+01 \\
+ni\_me\_x                &  532218.0 &  8.300000e-02 &  9.300000e-02 &      -4.344 &        0.054 &        0.074 &  1.150000e-01 &  8.570000e-01 \\
+fcf\_me\_x               &  532218.0 & -1.330000e-01 &  3.110000e-01 &      -6.788 &       -0.149 &       -0.070 & -1.600000e-02 &  2.322000e+00 \\
+div12m\_me\_x            &  532218.0 &  3.200000e-02 &  2.500000e-02 &       0.000 &        0.013 &        0.028 &  4.600000e-02 &  1.750000e-01 \\
+eqpo\_me\_x              &  532218.0 &  3.300000e-02 &  3.900000e-02 &      -0.000 &        0.019 &        0.020 &  3.600000e-02 &  6.870000e-01 \\
+eqnpo\_me\_x             &  532218.0 &  1.300000e-02 &  6.100000e-02 &      -1.569 &        0.010 &        0.010 &  2.700000e-02 &  5.800000e-01 \\
+sale\_gr3\_x             &  532218.0 &  5.970000e-01 &  1.045000e+00 &      -0.983 &        0.250 &        0.396 &  6.210000e-01 &  2.835500e+01 \\
+sale\_gr1\_x             &  532218.0 &  1.680000e-01 &  2.990000e-01 &      -0.911 &        0.061 &        0.121 &  2.020000e-01 &  8.495000e+00 \\
+ebitda\_mev\_x           &  532218.0 &  1.650000e-01 &  1.360000e-01 &      -2.840 &        0.109 &        0.143 &  1.960000e-01 &  2.712000e+00 \\
+sale\_me\_x              &  532218.0 &  2.020000e+00 &  2.490000e+00 &       0.000 &        0.786 &        1.518 &  2.269000e+00 &  6.705800e+01 \\
+ocf\_me\_x               &  532218.0 &  1.500000e-02 &  2.220000e-01 &      -4.015 &       -0.020 &        0.020 &  8.100000e-02 &  2.748000e+00 \\
+intrinsic\_value\_x      &  532218.0 &  4.197170e+02 &  8.801200e+02 &       0.099 &       65.828 &      113.423 &  3.517070e+02 &  9.626163e+03 \\
+bev\_mev\_x              &  532218.0 &  7.700000e-01 &  4.030000e-01 &       0.009 &        0.505 &        0.773 &  9.770000e-01 &  5.615000e+00 \\
+netdebt\_me\_x           &  532218.0 &  4.110000e-01 &  1.070000e+00 &      -3.343 &        0.016 &        0.201 &  5.340000e-01 &  2.390300e+01 \\
+eq\_dur\_x               &  532218.0 &  1.460200e+01 &  2.748000e+00 &       0.286 &       13.409 &       14.948 &  1.632600e+01 &  3.766200e+01 \\
+capex\_abn\_x            &  532218.0 &  3.600000e-02 &  5.400000e-01 &      -1.139 &       -0.142 &       -0.061 &  9.300000e-02 &  9.084000e+00 \\
+at\_gr1\_x               &  532218.0 &  1.790000e-01 &  3.130000e-01 &      -0.588 &        0.058 &        0.108 &  1.900000e-01 &  6.247000e+00 \\
+ppeinv\_gr1a\_x          &  532218.0 &  1.200000e-01 &  1.630000e-01 &      -0.566 &        0.058 &        0.088 &  1.370000e-01 &  2.396000e+00 \\
+noa\_at\_x               &  532218.0 &  7.700000e-01 &  2.170000e-01 &      -0.206 &        0.701 &        0.758 &  8.310000e-01 &  3.512000e+00 \\
+noa\_gr1a\_x             &  532218.0 &  1.000000e-01 &  1.790000e-01 &      -0.585 &        0.036 &        0.068 &  1.120000e-01 &  3.209000e+00 \\
+lnoa\_gr1a\_x            &  532218.0 &  2.800000e-02 &  4.300000e-02 &      -0.345 &        0.014 &        0.018 &  3.200000e-02 &  4.360000e-01 \\
+capx\_gr1\_x             &  532218.0 &  3.080000e-01 &  1.049000e+00 &      -1.263 &       -0.024 &        0.135 &  3.410000e-01 &  3.425000e+01 \\
+capx\_gr2\_x             &  532218.0 &  6.110000e-01 &  1.740000e+00 &      -1.324 &        0.069 &        0.278 &  5.800000e-01 &  4.400000e+01 \\
+capx\_gr3\_x             &  532218.0 &  8.810000e-01 &  2.349000e+00 &      -1.209 &        0.190 &        0.405 &  7.490000e-01 &  5.162800e+01 \\
+chcsho\_12m\_x           &  532218.0 &  3.300000e-02 &  1.100000e-01 &      -0.270 &        0.000 &        0.002 &  2.000000e-02 &  1.928000e+00 \\
+eqnpo\_12m\_x            &  532218.0 &  7.000000e-03 &  9.200000e-02 &      -0.976 &       -0.000 &        0.021 &  4.500000e-02 &  4.740000e-01 \\
+debt\_gr3\_x             &  532218.0 &  1.250000e+00 &  5.505000e+00 &      -1.000 &        0.099 &        0.318 &  7.220000e-01 &  1.709550e+02 \\
+inv\_gr1\_x              &  532218.0 &  1.780000e-01 &  4.590000e-01 &      -1.000 &        0.032 &        0.106 &  1.960000e-01 &  8.957000e+00 \\
+inv\_gr1a\_x             &  532218.0 &  1.800000e-02 &  4.400000e-02 &      -0.353 &        0.000 &        0.008 &  2.700000e-02 &  2.980000e-01 \\
+oaccruals\_at\_x         &  532218.0 &  6.800000e-02 &  9.900000e-02 &      -1.094 &        0.031 &        0.055 &  9.600000e-02 &  6.720000e-01 \\
+taccruals\_at\_x         &  532218.0 &  4.600000e-02 &  8.300000e-02 &      -1.068 &        0.024 &        0.038 &  6.400000e-02 &  7.950000e-01 \\
+cowc\_gr1a\_x            &  532218.0 &  2.300000e-02 &  5.700000e-02 &      -0.546 &        0.001 &        0.018 &  3.600000e-02 &  4.190000e-01 \\
+coa\_gr1a\_x             &  532218.0 &  4.500000e-02 &  7.000000e-02 &      -0.618 &        0.015 &        0.036 &  6.000000e-02 &  4.920000e-01 \\
+col\_gr1a\_x             &  532218.0 &  2.100000e-02 &  4.100000e-02 &      -0.372 &        0.005 &        0.017 &  3.200000e-02 &  3.650000e-01 \\
+nncoa\_gr1a\_x           &  532218.0 &  4.600000e-02 &  7.400000e-02 &      -0.951 &        0.017 &        0.031 &  6.200000e-02 &  5.960000e-01 \\
+ncoa\_gr1a\_x            &  532218.0 &  5.400000e-02 &  7.700000e-02 &      -0.965 &        0.022 &        0.037 &  7.200000e-02 &  5.770000e-01 \\
+ncol\_gr1a\_x            &  532218.0 &  7.000000e-03 &  1.700000e-02 &      -0.180 &        0.001 &        0.003 &  1.000000e-02 &  1.700000e-01 \\
+nfna\_gr1a\_x            &  532218.0 & -2.100000e-02 &  9.400000e-02 &      -0.807 &       -0.049 &       -0.008 &  1.000000e-02 &  7.900000e-01 \\
+lti\_gr1a\_x             &  532218.0 &  5.000000e-03 &  3.000000e-02 &      -0.496 &        0.000 &        0.000 &  0.000000e+00 &  3.480000e-01 \\
+fnl\_gr1a\_x             &  532218.0 &  2.700000e-02 &  8.600000e-02 &      -0.726 &       -0.005 &        0.008 &  4.900000e-02 &  6.180000e-01 \\
+be\_gr1a\_x              &  532218.0 &  5.700000e-02 &  7.900000e-02 &      -0.977 &        0.022 &        0.045 &  7.500000e-02 &  7.450000e-01 \\
+oaccruals\_ni\_x         &  532218.0 &  1.258000e+00 &  4.084000e+00 &     -32.889 &        0.431 &        0.794 &  1.390000e+00 &  8.515800e+01 \\
+taccruals\_ni\_x         &  532218.0 &  6.240000e-01 &  2.539000e+00 &     -84.700 &        0.425 &        0.640 &  8.670000e-01 &  4.606200e+01 \\
+netis\_at\_x             &  532218.0 &  2.000000e-02 &  9.400000e-02 &      -0.939 &        0.001 &        0.007 &  1.900000e-02 &  1.385000e+00 \\
+eqnetis\_at\_x           &  532218.0 &  1.100000e-02 &  6.000000e-02 &      -0.201 &        0.000 &        0.000 &  2.000000e-03 &  1.283000e+00 \\
+dbnetis\_at\_x           &  532218.0 &  1.700000e-02 &  8.400000e-02 &      -0.933 &       -0.008 &        0.000 &  4.000000e-02 &  6.460000e-01 \\
+niq\_be\_x               &  532218.0 &  3.200000e-02 &  3.600000e-02 &      -1.486 &        0.029 &        0.030 &  3.900000e-02 &  3.710000e-01 \\
+niq\_be\_chg1\_x          &  532218.0 & -1.000000e-03 &  3.500000e-02 &      -1.288 &       -0.001 &       -0.000 &  1.000000e-03 &  8.180000e-01 \\
+niq\_at\_x               &  532218.0 &  1.500000e-02 &  1.600000e-02 &      -0.401 &        0.012 &        0.013 &  1.900000e-02 &  1.470000e-01 \\
+niq\_at\_chg1\_x          &  532218.0 & -0.000000e+00 &  1.300000e-02 &      -0.279 &       -0.000 &       -0.000 &  0.000000e+00 &  3.050000e-01 \\
+ebit\_bev\_x             &  532218.0 &  2.100000e-01 &  2.350000e-01 &      -7.292 &        0.118 &        0.153 &  2.450000e-01 &  2.122000e+00 \\
+ebit\_sale\_x            &  532218.0 &  1.260000e-01 &  2.260000e-01 &     -17.327 &        0.077 &        0.103 &  1.770000e-01 &  5.410000e-01 \\
+sale\_bev\_x             &  532218.0 &  2.096000e+00 &  1.939000e+00 &       0.000 &        1.145 &        1.796 &  2.305000e+00 &  2.035900e+01 \\
+at\_turnover\_x          &  532218.0 &  1.283000e+00 &  9.470000e-01 &       0.000 &        0.654 &        1.253 &  1.600000e+00 &  9.298000e+00 \\
+gp\_at\_x                &  532218.0 &  3.330000e-01 &  2.380000e-01 &      -1.266 &        0.156 &        0.313 &  4.450000e-01 &  1.350000e+00 \\
+gp\_atl1\_x              &  532218.0 &  3.940000e-01 &  2.990000e-01 &      -1.629 &        0.179 &        0.360 &  5.150000e-01 &  2.081000e+00 \\
+ope\_be\_x               &  532218.0 &  2.690000e-01 &  1.900000e-01 &      -5.541 &        0.213 &        0.245 &  3.270000e-01 &  1.636000e+00 \\
+ope\_bel1\_x             &  532218.0 &  3.220000e-01 &  2.540000e-01 &      -4.721 &        0.240 &        0.277 &  3.740000e-01 &  3.210000e+00 \\
+op\_at\_x                &  532218.0 &  1.550000e-01 &  9.900000e-02 &      -1.233 &        0.107 &        0.140 &  2.010000e-01 &  5.210000e-01 \\
+op\_atl1\_x              &  532218.0 &  1.830000e-01 &  1.300000e-01 &      -1.902 &        0.121 &        0.159 &  2.320000e-01 &  9.190000e-01 \\
+cop\_at\_x               &  532218.0 &  1.010000e-01 &  1.210000e-01 &      -1.188 &        0.065 &        0.098 &  1.490000e-01 &  8.660000e-01 \\
+cop\_atl1\_x             &  532218.0 &  1.010000e-01 &  1.800000e-01 &      -3.468 &        0.074 &        0.107 &  1.620000e-01 &  8.260000e-01 \\
+f\_score\_x              &  532218.0 &  4.987000e+00 &  1.462000e+00 &       0.000 &        4.000 &        5.000 &  6.000000e+00 &  9.000000e+00 \\
+o\_score\_x              &  532218.0 & -2.600000e+00 &  1.428000e+00 &      -8.827 &       -3.333 &       -2.108 & -2.063000e+00 &  1.890400e+01 \\
+z\_score\_x              &  532218.0 &  4.292000e+00 &  3.950000e+00 &      -4.581 &        2.871 &        3.583 &  4.396000e+00 &  1.279700e+02 \\
+pi\_nix\_x               &  532218.0 &  1.711000e+00 &  4.590000e-01 &       0.188 &        1.526 &        1.726 &  1.887000e+00 &  8.722000e+00 \\
+at\_be\_x                &  532218.0 &  3.303000e+00 &  4.371000e+00 &       1.000 &        1.592 &        1.971 &  2.618000e+00 &  4.812300e+01 \\
+saleq\_gr1\_x            &  532218.0 &  1.670000e-01 &  3.690000e-01 &      -0.986 &        0.066 &        0.117 &  1.900000e-01 &  1.273600e+01 \\
+opex\_at\_x              &  532218.0 &  1.020000e+00 &  8.020000e-01 &       0.030 &        0.473 &        1.019 &  1.282000e+00 &  7.158000e+00 \\
+emp\_gr1\_x              &  532218.0 &  6.200000e-02 &  1.610000e-01 &      -1.301 &        0.006 &        0.043 &  8.400000e-02 &  1.483000e+00 \\
+age\_x                  &  532218.0 &  2.681630e+02 &  1.779190e+02 &       1.000 &      129.000 &      234.000 &  3.870000e+02 &  7.680000e+02 \\
+dsale\_dinv\_x           &  532218.0 & -9.000000e-03 &  3.880000e-01 &      -5.274 &       -0.051 &        0.016 &  8.300000e-02 &  3.661000e+00 \\
+dsale\_drec\_x           &  532218.0 & -2.200000e-02 &  3.390000e-01 &      -6.314 &       -0.079 &       -0.002 &  6.700000e-02 &  3.915000e+00 \\
+dgp\_dsale\_x            &  532218.0 &  2.300000e-02 &  3.430000e-01 &      -3.695 &       -0.045 &        0.001 &  5.100000e-02 &  1.201100e+01 \\
+dsale\_dsga\_x           &  532218.0 & -1.000000e-03 &  1.860000e-01 &      -2.225 &       -0.034 &       -0.006 &  2.500000e-02 &  3.436000e+00 \\
+sale\_emp\_gr1\_x         &  532218.0 &  8.900000e-02 &  1.970000e-01 &      -0.812 &        0.029 &        0.074 &  1.220000e-01 &  6.027000e+00 \\
+tangibility\_x          &  532218.0 &  6.880000e-01 &  1.050000e-01 &       0.137 &        0.650 &        0.685 &  7.300000e-01 &  1.389000e+00 \\
+kz\_index\_x             &  532218.0 & -3.152000e+00 &  7.543000e+00 &    -121.722 &       -3.120 &       -1.111 & -5.090000e-01 &  1.529200e+01 \\
+cash\_at\_x              &  532218.0 &  9.400000e-02 &  1.010000e-01 &       0.000 &        0.031 &        0.062 &  1.180000e-01 &  8.810000e-01 \\
+ni\_ar1\_x               &  532218.0 &  2.880000e-01 &  4.890000e-01 &      -2.015 &        0.080 &        0.243 &  4.840000e-01 &  3.490000e+00 \\
+ni\_ivol\_x              &  532218.0 &  1.500000e-02 &  2.000000e-02 &       0.000 &        0.006 &        0.013 &  1.500000e-02 &  6.330000e-01 \\
+earnings\_variability\_x &  532218.0 &  3.330000e-01 &  2.800000e-01 &       0.024 &        0.181 &        0.269 &  3.420000e-01 &  3.436000e+00 \\
+aliq\_at\_x              &  532218.0 &  7.560000e-01 &  2.310000e-01 &       0.240 &        0.666 &        0.727 &  7.750000e-01 &  5.901000e+00 \\
+aliq\_mat\_x             &  532218.0 &  5.760000e-01 &  2.150000e-01 &       0.041 &        0.477 &        0.586 &  6.460000e-01 &  3.973000e+00 \\
+seas\_1\_1an\_x           &  532218.0 &  1.500000e-02 &  1.020000e-01 &      -0.591 &       -0.041 &        0.008 &  6.300000e-02 &  1.250000e+00 \\
+seas\_1\_1na\_x           &  532218.0 &  1.600000e-02 &  2.700000e-02 &      -0.141 &        0.005 &        0.013 &  2.500000e-02 &  2.410000e-01 \\
+seas\_2\_5an\_x           &  532218.0 &  1.500000e-02 &  4.400000e-02 &      -0.252 &       -0.002 &        0.012 &  2.900000e-02 &  5.730000e-01 \\
+ivol\_ff3\_21d\_x         &  532218.0 &  1.800000e-02 &  9.000000e-03 &       0.004 &        0.012 &        0.016 &  2.100000e-02 &  1.330000e-01 \\
+ivol\_capm\_252d\_x       &  532218.0 &  2.000000e-02 &  8.000000e-03 &       0.007 &        0.014 &        0.019 &  2.300000e-02 &  1.030000e-01 \\
+ivol\_capm\_21d\_x        &  532218.0 &  1.800000e-02 &  9.000000e-03 &       0.004 &        0.012 &        0.017 &  2.200000e-02 &  1.340000e-01 \\
+ivol\_hxz4\_21d\_x        &  532218.0 &  1.900000e-02 &  8.000000e-03 &       0.005 &        0.013 &        0.020 &  2.000000e-02 &  1.290000e-01 \\
+rvol\_21d\_x             &  532218.0 &  2.000000e-02 &  1.100000e-02 &       0.004 &        0.013 &        0.019 &  2.400000e-02 &  1.560000e-01 \\
+betabab\_1260d\_x        &  532218.0 &  1.152000e+00 &  4.620000e-01 &       0.106 &        0.874 &        1.109 &  1.340000e+00 &  4.226000e+00 \\
+beta\_dimson\_21d\_x      &  532218.0 &  9.880000e-01 &  1.424000e+00 &     -19.371 &        0.274 &        0.848 &  1.630000e+00 &  2.341700e+01 \\
+turnover\_126d\_x        &  532218.0 &  2.000000e-03 &  2.000000e-03 &       0.000 &        0.001 &        0.001 &  2.000000e-03 &  1.500000e-02 \\
+turnover\_var\_126d\_x    &  532218.0 &  1.131000e+00 &  5.060000e-01 &       0.344 &        0.813 &        1.059 &  1.254000e+00 &  6.403000e+00 \\
+dolvol\_126d\_x          &  532218.0 &  1.040906e+06 &  2.747060e+06 &     175.564 &    85266.781 &   208631.680 &  6.878182e+05 &  2.997359e+07 \\
+dolvol\_var\_126d\_x      &  532218.0 &  1.160000e+00 &  5.200000e-01 &       0.363 &        0.834 &        1.090 &  1.288000e+00 &  6.326000e+00 \\
+ami\_126d\_x             &  532218.0 &  3.380000e-01 &  1.263000e+00 &       0.000 &        0.033 &        0.128 &  3.250000e-01 &  2.019330e+02 \\
+zero\_trades\_21d\_x      &  532218.0 &  3.070000e-01 &  1.367000e+00 &       0.000 &        0.002 &        0.005 &  7.000000e-03 &  2.009700e+01 \\
+zero\_trades\_126d\_x     &  532218.0 &  3.050000e-01 &  1.240000e+00 &       0.000 &        0.003 &        0.006 &  8.000000e-03 &  1.904100e+01 \\
+zero\_trades\_252d\_x     &  532218.0 &  3.050000e-01 &  1.201000e+00 &       0.000 &        0.003 &        0.006 &  9.000000e-03 &  1.861000e+01 \\
+rmax1\_21d\_x            &  532218.0 &  4.600000e-02 &  3.100000e-02 &       0.006 &        0.026 &        0.040 &  5.500000e-02 &  4.290000e-01 \\
+rskew\_21d\_x            &  532218.0 &  2.520000e-01 &  7.770000e-01 &      -2.611 &       -0.195 &        0.247 &  6.720000e-01 &  3.177000e+00 \\
+iskew\_capm\_21d\_x       &  532218.0 &  2.350000e-01 &  7.530000e-01 &      -2.841 &       -0.202 &        0.227 &  6.370000e-01 &  3.099000e+00 \\
+iskew\_ff3\_21d\_x        &  532218.0 &  1.930000e-01 &  6.900000e-01 &      -2.111 &       -0.212 &        0.186 &  5.650000e-01 &  2.802000e+00 \\
+iskew\_hxz4\_21d\_x       &  532218.0 &  1.690000e-01 &  6.030000e-01 &      -2.064 &       -0.115 &        0.165 &  4.170000e-01 &  2.680000e+00 \\
+coskew\_21d\_x           &  532218.0 & -1.700000e-02 &  3.000000e-01 &      -1.437 &       -0.206 &       -0.026 &  1.660000e-01 &  1.300000e+00 \\
+ret\_1\_0\_x              &  532218.0 &  1.600000e-02 &  1.040000e-01 &      -0.606 &       -0.041 &        0.008 &  6.500000e-02 &  1.167000e+00 \\
+betadown\_252d\_x        &  532218.0 &  1.050000e+00 &  6.690000e-01 &      -3.043 &        0.615 &        0.938 &  1.373000e+00 &  5.248000e+00 \\
+bidaskhl\_21d\_x         &  532218.0 &  7.000000e-03 &  5.000000e-03 &       0.001 &        0.004 &        0.006 &  8.000000e-03 &  2.540000e-01 \\
+ret\_3\_1\_x              &  532218.0 &  3.200000e-02 &  1.480000e-01 &      -0.717 &       -0.049 &        0.014 &  1.030000e-01 &  1.556000e+00 \\
+ret\_9\_1\_x              &  532218.0 &  1.310000e-01 &  3.340000e-01 &      -0.836 &       -0.054 &        0.066 &  2.600000e-01 &  4.818000e+00 \\
+ret\_12\_7\_x             &  532218.0 &  7.700000e-02 &  2.420000e-01 &      -0.779 &       -0.055 &        0.041 &  1.770000e-01 &  2.934000e+00 \\
+corr\_1260d\_x           &  532218.0 &  4.190000e-01 &  9.900000e-02 &       0.040 &        0.376 &        0.389 &  4.820000e-01 &  7.180000e-01 \\
+rmax5\_21d\_x            &  532218.0 &  2.700000e-02 &  1.500000e-02 &       0.003 &        0.016 &        0.024 &  3.200000e-02 &  2.040000e-01 \\
+rmax5\_rvol\_21d\_x       &  532218.0 &  1.246000e+00 &  4.630000e-01 &       0.141 &        0.933 &        1.193 &  1.486000e+00 &  3.492000e+00 \\
+ni\_be\_x                &  532218.0 &  1.210000e-01 &  1.370000e-01 &      -7.189 &        0.098 &        0.116 &  1.570000e-01 &  6.490000e-01 \\
+ocf\_at\_x               &  532218.0 &  1.200000e-02 &  1.070000e-01 &      -1.358 &       -0.022 &        0.015 &  6.500000e-02 &  5.980000e-01 \\
+ocf\_at\_chg1\_x          &  532218.0 & -3.000000e-03 &  1.240000e-01 &      -1.078 &       -0.038 &       -0.001 &  3.100000e-02 &  1.153000e+00 \\
+mispricing\_perf\_x      &  532218.0 &  5.500000e-01 &  1.990000e-01 &       0.010 &        0.413 &        0.555 &  6.980000e-01 &  9.880000e-01 \\
+mispricing\_mgmt\_x      &  532218.0 &  4.850000e-01 &  1.800000e-01 &       0.015 &        0.376 &        0.503 &  6.060000e-01 &  9.430000e-01 \\
+qmj\_x                  &  532218.0 &  1.900000e-01 &  8.050000e-01 &      -1.703 &       -0.249 &        0.127 &  7.640000e-01 &  1.701000e+00 \\
+qmj\_prof\_x             &  532218.0 &  1.690000e-01 &  8.830000e-01 &      -1.704 &       -0.471 &        0.124 &  8.850000e-01 &  1.699000e+00 \\
+qmj\_growth\_x           &  532218.0 &  5.500000e-02 &  7.940000e-01 &      -1.701 &       -0.429 &        0.043 &  5.710000e-01 &  1.702000e+00 \\
+qmj\_safety\_x           &  532218.0 &  2.720000e-01 &  8.670000e-01 &      -1.701 &       -0.336 &        0.270 &  9.970000e-01 &  1.705000e+00 \\
+\bottomrule
+\caption{Revised Global Factor Dataset Summary Statistics: Training Set}
+\label{table:ss-train}
+\end{longtable}
+
+\newpage
+
+\setlength{\tabcolsep}{2pt}
+\begin{longtable}{|l|r|r|r|r|r|r|r|r|}
+\toprule
+{} &      count &          mean &           std &         min &           25\% &           50\% &           75\% &           max \\
+\midrule
+\endhead
+beta\_60m\_x             &  294581.0 &  1.096000e+00 &  5.200000e-01 &      -1.747 &  8.060000e-01 &  1.075000e+00 &  1.300000e+00 &  3.873000e+00 \\
+index                  &  294581.0 &  1.362950e+06 &  6.892364e+05 &    1202.000 &  7.803110e+05 &  1.500595e+06 &  1.905059e+06 &  2.733128e+06 \\
+mth                    &  294581.0 &  1.994940e+05 &  2.842530e+02 &  199001.000 &  1.992120e+05 &  1.995080e+05 &  1.997110e+05 &  1.999120e+05 \\
+permno                 &  294581.0 &  5.554521e+04 &  2.573578e+04 &   10010.000 &  3.027700e+04 &  6.277000e+04 &  7.797600e+04 &  9.322000e+04 \\
+permco                 &  294581.0 &  1.494868e+04 &  8.865682e+03 &       4.000 &  7.662000e+03 &  1.419100e+04 &  2.128600e+04 &  5.701800e+04 \\
+crsp\_shrcd             &  294581.0 &  1.105000e+01 &  2.420000e-01 &      10.000 &  1.100000e+01 &  1.100000e+01 &  1.100000e+01 &  1.200000e+01 \\
+crsp\_exchcd            &  294581.0 &  1.860000e+00 &  9.660000e-01 &       1.000 &  1.000000e+00 &  1.000000e+00 &  3.000000e+00 &  3.000000e+00 \\
+sic                    &  294581.0 &  4.670888e+03 &  1.847487e+03 &     100.000 &  3.330000e+03 &  4.813000e+03 &  6.153000e+03 &  9.997000e+03 \\
+ff49                   &  294581.0 &  3.098800e+01 &  1.313100e+01 &       1.000 &  2.100000e+01 &  3.400000e+01 &  4.300000e+01 &  4.900000e+01 \\
+adjfct                 &  294581.0 &  2.352000e+00 &  4.866000e+00 &       0.000 &  1.000000e+00 &  1.000000e+00 &  2.000000e+00 &  2.880000e+02 \\
+shares                 &  294581.0 &  6.768500e+01 &  1.581650e+02 &       0.542 &  1.463600e+01 &  2.761800e+01 &  6.018400e+01 &  5.160025e+03 \\
+me                     &  294581.0 &  2.685416e+03 &  1.012770e+04 &      62.992 &  2.917890e+02 &  6.017040e+02 &  1.685533e+03 &  6.024329e+05 \\
+me\_company             &  294581.0 &  2.745729e+03 &  1.033108e+04 &      62.992 &  2.934430e+02 &  6.080760e+02 &  1.703233e+03 &  6.024329e+05 \\
+prc                    &  294581.0 &  4.176600e+01 &  7.262160e+02 &       0.172 &  1.700000e+01 &  2.525000e+01 &  3.687500e+01 &  7.830500e+04 \\
+prc\_local              &  294581.0 &  4.176600e+01 &  7.262160e+02 &       0.172 &  1.700000e+01 &  2.525000e+01 &  3.687500e+01 &  7.830500e+04 \\
+dolvol                 &  294581.0 &  1.878977e+08 &  7.930779e+08 &       0.000 &  1.077097e+07 &  3.501225e+07 &  1.211556e+08 &  8.464558e+10 \\
+ret                    &  294581.0 &  2.400000e-02 &  1.420000e-01 &      -0.982 & -4.600000e-02 &  1.200000e-02 &  7.900000e-02 &  9.374000e+00 \\
+ret\_local              &  294581.0 &  2.400000e-02 &  1.420000e-01 &      -0.982 & -4.600000e-02 &  1.200000e-02 &  7.900000e-02 &  9.374000e+00 \\
+ret\_exc                &  294581.0 &  2.000000e-02 &  1.420000e-01 &      -0.986 & -5.000000e-02 &  8.000000e-03 &  7.500000e-02 &  9.370000e+00 \\
+ret\_lag\_dif            &  294581.0 &  1.000000e+00 &  0.000000e+00 &       1.000 &  1.000000e+00 &  1.000000e+00 &  1.000000e+00 &  1.000000e+00 \\
+ret\_exc\_lead1m         &  294581.0 &  1.000000e-02 &  1.340000e-01 &      -0.998 & -5.600000e-02 &  5.000000e-03 &  6.900000e-02 &  6.404000e+00 \\
+niq\_su\_x               &  294581.0 & -9.000000e-02 &  1.850000e+00 &     -17.871 & -4.600000e-01 &  3.000000e-03 &  5.610000e-01 &  5.228000e+00 \\
+ret\_6\_1\_x              &  294581.0 &  1.000000e-01 &  3.090000e-01 &      -0.838 & -5.900000e-02 &  4.700000e-02 &  2.060000e-01 &  3.244000e+00 \\
+ret\_12\_1\_x             &  294581.0 &  2.220000e-01 &  5.210000e-01 &      -0.907 & -3.200000e-02 &  9.900000e-02 &  3.560000e-01 &  5.633000e+00 \\
+saleq\_su\_x             &  294581.0 &  2.490000e-01 &  1.562000e+00 &      -4.939 & -5.680000e-01 &  1.380000e-01 &  9.630000e-01 &  8.854000e+00 \\
+tax\_gr1a\_x             &  294581.0 &  5.000000e-03 &  2.200000e-02 &      -0.132 & -1.000000e-03 &  2.000000e-03 &  1.100000e-02 &  1.170000e-01 \\
+ni\_inc8q\_x             &  294581.0 &  3.200000e+00 &  3.102000e+00 &       0.000 &  0.000000e+00 &  2.000000e+00 &  7.000000e+00 &  8.000000e+00 \\
+prc\_highprc\_252d\_x     &  294581.0 &  8.250000e-01 &  1.580000e-01 &       0.074 &  7.520000e-01 &  8.630000e-01 &  9.490000e-01 &  1.000000e+00 \\
+resff3\_6\_1\_x           &  294581.0 & -3.500000e-02 &  4.830000e-01 &      -2.692 & -2.600000e-01 & -2.500000e-02 &  2.170000e-01 &  1.705000e+00 \\
+resff3\_12\_1\_x          &  294581.0 & -1.500000e-02 &  2.450000e-01 &      -0.946 & -1.480000e-01 & -1.300000e-02 &  1.260000e-01 &  7.460000e-01 \\
+be\_me\_x                &  294581.0 &  5.250000e-01 &  4.100000e-01 &       0.006 &  2.500000e-01 &  4.460000e-01 &  6.950000e-01 &  1.020500e+01 \\
+debt\_me\_x              &  294581.0 &  5.460000e-01 &  1.217000e+00 &       0.000 &  3.700000e-02 &  2.120000e-01 &  5.900000e-01 &  5.045200e+01 \\
+at\_me\_x                &  294581.0 &  2.217000e+00 &  4.123000e+00 &       0.009 &  4.800000e-01 &  1.022000e+00 &  2.134000e+00 &  1.278460e+02 \\
+ret\_60\_12\_x            &  294581.0 &  8.620000e-01 &  1.375000e+00 &      -0.964 &  2.690000e-01 &  3.870000e-01 &  9.770000e-01 &  1.328900e+01 \\
+ni\_me\_x                &  294581.0 &  3.500000e-02 &  1.150000e-01 &      -8.106 &  2.000000e-02 &  4.700000e-02 &  7.200000e-02 &  4.830000e-01 \\
+fcf\_me\_x               &  294581.0 &  5.000000e-03 &  1.600000e-01 &      -5.425 & -2.000000e-02 &  1.600000e-02 &  4.900000e-02 &  2.588000e+00 \\
+div12m\_me\_x            &  294581.0 &  1.400000e-02 &  1.900000e-02 &       0.000 &  0.000000e+00 &  6.000000e-03 &  2.300000e-02 &  2.000000e-01 \\
+eqpo\_me\_x              &  294581.0 &  2.600000e-02 &  4.200000e-02 &      -0.001 &  0.000000e+00 &  1.200000e-02 &  3.300000e-02 &  7.260000e-01 \\
+eqnpo\_me\_x             &  294581.0 & -2.000000e-03 &  8.400000e-02 &      -1.644 & -4.000000e-03 &  5.000000e-03 &  2.700000e-02 &  6.710000e-01 \\
+sale\_gr3\_x             &  294581.0 &  8.400000e-01 &  2.577000e+00 &      -0.988 &  1.720000e-01 &  3.570000e-01 &  6.530000e-01 &  5.854700e+01 \\
+sale\_gr1\_x             &  294581.0 &  2.460000e-01 &  6.080000e-01 &      -0.895 &  3.300000e-02 &  1.160000e-01 &  2.550000e-01 &  1.088600e+01 \\
+ebitda\_mev\_x           &  294581.0 &  1.100000e-01 &  9.900000e-02 &      -1.984 &  6.400000e-02 &  1.050000e-01 &  1.450000e-01 &  1.386000e+00 \\
+sale\_me\_x              &  294581.0 &  1.201000e+00 &  1.595000e+00 &       0.000 &  3.790000e-01 &  7.530000e-01 &  1.424000e+00 &  5.494600e+01 \\
+ocf\_me\_x               &  294581.0 &  7.700000e-02 &  1.570000e-01 &      -3.829 &  2.400000e-02 &  6.800000e-02 &  1.190000e-01 &  3.793000e+00 \\
+intrinsic\_value\_x      &  294581.0 &  1.027543e+03 &  2.258605e+03 &       0.141 &  1.283670e+02 &  2.713090e+02 &  7.443850e+02 &  2.371766e+04 \\
+bev\_mev\_x              &  294581.0 &  5.360000e-01 &  3.550000e-01 &       0.001 &  2.680000e-01 &  5.140000e-01 &  7.610000e-01 &  6.841000e+00 \\
+netdebt\_me\_x           &  294581.0 &  3.810000e-01 &  1.060000e+00 &      -2.464 & -3.000000e-02 &  1.210000e-01 &  4.720000e-01 &  4.390200e+01 \\
+eq\_dur\_x               &  294581.0 &  1.648500e+01 &  2.528000e+00 &       1.790 &  1.538700e+01 &  1.673400e+01 &  1.760300e+01 &  5.375100e+01 \\
+capex\_abn\_x            &  294581.0 &  6.200000e-02 &  6.730000e-01 &      -1.147 & -1.480000e-01 & -8.000000e-02 &  1.250000e-01 &  9.274000e+00 \\
+at\_gr1\_x               &  294581.0 &  3.000000e-01 &  7.580000e-01 &      -0.663 &  3.100000e-02 &  1.060000e-01 &  2.690000e-01 &  1.121900e+01 \\
+ppeinv\_gr1a\_x          &  294581.0 &  1.150000e-01 &  2.250000e-01 &      -0.533 &  3.300000e-02 &  5.800000e-02 &  1.290000e-01 &  2.601000e+00 \\
+noa\_at\_x               &  294581.0 &  7.040000e-01 &  4.150000e-01 &      -0.509 &  5.610000e-01 &  6.720000e-01 &  8.010000e-01 &  4.641000e+00 \\
+noa\_gr1a\_x             &  294581.0 &  1.380000e-01 &  3.540000e-01 &      -0.612 &  1.100000e-02 &  5.200000e-02 &  1.450000e-01 &  4.058000e+00 \\
+lnoa\_gr1a\_x            &  294581.0 &  3.000000e-02 &  7.000000e-02 &      -0.351 &  7.000000e-03 &  1.200000e-02 &  3.400000e-02 &  5.060000e-01 \\
+capx\_gr1\_x             &  294581.0 &  4.830000e-01 &  1.638000e+00 &      -1.337 & -4.900000e-02 &  1.380000e-01 &  4.700000e-01 &  3.033300e+01 \\
+capx\_gr2\_x             &  294581.0 &  1.010000e+00 &  3.574000e+00 &      -1.428 &  3.200000e-02 &  2.730000e-01 &  7.390000e-01 &  6.113600e+01 \\
+capx\_gr3\_x             &  294581.0 &  1.387000e+00 &  5.155000e+00 &      -1.199 &  1.450000e-01 &  3.660000e-01 &  8.780000e-01 &  1.076800e+02 \\
+chcsho\_12m\_x           &  294581.0 &  6.800000e-02 &  2.060000e-01 &      -0.245 &  0.000000e+00 &  9.000000e-03 &  4.300000e-02 &  2.658000e+00 \\
+eqnpo\_12m\_x            &  294581.0 & -3.500000e-02 &  1.480000e-01 &      -1.255 & -3.300000e-02 & -2.000000e-03 &  2.700000e-02 &  4.210000e-01 \\
+debt\_gr3\_x             &  294581.0 &  2.550000e+00 &  1.542700e+01 &      -1.000 & -3.300000e-02 &  1.920000e-01 &  7.310000e-01 &  3.188620e+02 \\
+inv\_gr1\_x              &  294581.0 &  2.290000e-01 &  8.790000e-01 &      -1.000 & -4.000000e-03 &  9.000000e-02 &  2.020000e-01 &  1.302400e+01 \\
+inv\_gr1a\_x             &  294581.0 &  1.100000e-02 &  4.100000e-02 &      -0.357 & -0.000000e+00 &  0.000000e+00 &  1.500000e-02 &  2.630000e-01 \\
+oaccruals\_at\_x         &  294581.0 & -3.400000e-02 &  9.600000e-02 &      -0.935 & -6.800000e-02 & -3.800000e-02 &  2.000000e-03 &  5.230000e-01 \\
+taccruals\_at\_x         &  294581.0 & -5.100000e-02 &  1.640000e-01 &      -1.432 & -9.400000e-02 & -4.300000e-02 &  9.000000e-03 &  9.610000e-01 \\
+cowc\_gr1a\_x            &  294581.0 &  1.400000e-02 &  6.700000e-02 &      -0.605 & -8.000000e-03 &  8.000000e-03 &  3.300000e-02 &  4.170000e-01 \\
+coa\_gr1a\_x             &  294581.0 &  3.900000e-02 &  8.300000e-02 &      -0.791 &  4.000000e-03 &  2.200000e-02 &  6.200000e-02 &  4.540000e-01 \\
+col\_gr1a\_x             &  294581.0 &  2.400000e-02 &  5.300000e-02 &      -0.471 &  3.000000e-03 &  1.500000e-02 &  3.800000e-02 &  3.440000e-01 \\
+nncoa\_gr1a\_x           &  294581.0 &  5.400000e-02 &  1.210000e-01 &      -1.080 &  7.000000e-03 &  2.700000e-02 &  8.000000e-02 &  6.480000e-01 \\
+ncoa\_gr1a\_x            &  294581.0 &  6.400000e-02 &  1.250000e-01 &      -0.943 &  1.200000e-02 &  3.300000e-02 &  9.400000e-02 &  6.630000e-01 \\
+ncol\_gr1a\_x            &  294581.0 &  8.000000e-03 &  2.900000e-02 &      -0.224 & -0.000000e+00 &  2.000000e-03 &  1.100000e-02 &  2.190000e-01 \\
+nfna\_gr1a\_x            &  294581.0 & -1.700000e-02 &  1.370000e-01 &      -0.983 & -5.000000e-02 &  0.000000e+00 &  2.000000e-02 &  9.650000e-01 \\
+lti\_gr1a\_x             &  294581.0 &  9.000000e-03 &  4.200000e-02 &      -0.360 &  0.000000e+00 &  0.000000e+00 &  1.000000e-03 &  2.940000e-01 \\
+fnl\_gr1a\_x             &  294581.0 &  2.400000e-02 &  1.260000e-01 &      -0.831 & -1.200000e-02 &  0.000000e+00 &  4.900000e-02 &  9.140000e-01 \\
+be\_gr1a\_x              &  294581.0 &  6.900000e-02 &  1.440000e-01 &      -1.017 &  9.000000e-03 &  3.600000e-02 &  9.700000e-02 &  7.940000e-01 \\
+oaccruals\_ni\_x         &  294581.0 & -1.254000e+00 &  4.986000e+00 &     -60.944 & -1.275000e+00 & -5.450000e-01 &  2.200000e-02 &  3.908000e+01 \\
+taccruals\_ni\_x         &  294581.0 & -2.223000e+00 &  8.905000e+00 &    -112.262 & -1.845000e+00 & -6.590000e-01 &  1.330000e-01 &  3.405000e+01 \\
+netis\_at\_x             &  294581.0 &  1.700000e-02 &  2.100000e-01 &      -1.171 & -3.900000e-02 & -1.000000e-03 &  3.500000e-02 &  1.489000e+00 \\
+eqnetis\_at\_x           &  294581.0 &  4.400000e-02 &  1.550000e-01 &      -0.216 & -0.000000e+00 &  1.000000e-03 &  1.300000e-02 &  1.389000e+00 \\
+dbnetis\_at\_x           &  294581.0 & -2.400000e-02 &  1.460000e-01 &      -1.135 & -4.200000e-02 & -3.000000e-03 &  1.500000e-02 &  6.040000e-01 \\
+niq\_be\_x               &  294581.0 &  2.400000e-02 &  9.700000e-02 &      -1.913 &  1.500000e-02 &  3.000000e-02 &  4.900000e-02 &  4.290000e-01 \\
+niq\_be\_chg1\_x          &  294581.0 & -5.000000e-03 &  9.600000e-02 &      -1.766 & -9.000000e-03 & -1.000000e-03 &  6.000000e-03 &  9.390000e-01 \\
+niq\_at\_x               &  294581.0 &  9.000000e-03 &  4.200000e-02 &      -0.555 &  3.000000e-03 &  1.100000e-02 &  2.300000e-02 &  1.120000e-01 \\
+niq\_at\_chg1\_x          &  294581.0 & -0.000000e+00 &  3.500000e-02 &      -0.349 & -4.000000e-03 & -0.000000e+00 &  3.000000e-03 &  4.710000e-01 \\
+ebit\_bev\_x             &  294581.0 &  1.310000e-01 &  8.300000e-01 &     -16.386 &  9.500000e-02 &  1.520000e-01 &  2.550000e-01 &  2.332000e+00 \\
+ebit\_sale\_x            &  294581.0 & -1.000000e-02 &  1.335000e+00 &     -32.364 &  6.200000e-02 &  1.110000e-01 &  1.940000e-01 &  5.370000e-01 \\
+sale\_bev\_x             &  294581.0 &  2.200000e+00 &  2.665000e+00 &       0.000 &  8.240000e-01 &  1.530000e+00 &  2.507000e+00 &  2.745100e+01 \\
+at\_turnover\_x          &  294581.0 &  1.044000e+00 &  8.280000e-01 &       0.000 &  4.160000e-01 &  9.120000e-01 &  1.411000e+00 &  4.719000e+00 \\
+gp\_at\_x                &  294581.0 &  3.160000e-01 &  2.760000e-01 &      -0.853 &  1.120000e-01 &  2.570000e-01 &  4.710000e-01 &  1.412000e+00 \\
+gp\_atl1\_x              &  294581.0 &  3.960000e-01 &  3.830000e-01 &      -1.018 &  1.300000e-01 &  3.020000e-01 &  5.580000e-01 &  2.455000e+00 \\
+ope\_be\_x               &  294581.0 &  2.480000e-01 &  3.340000e-01 &      -5.705 &  1.720000e-01 &  2.240000e-01 &  3.330000e-01 &  2.299000e+00 \\
+ope\_bel1\_x             &  294581.0 &  3.220000e-01 &  4.980000e-01 &      -5.420 &  2.020000e-01 &  2.470000e-01 &  3.970000e-01 &  4.618000e+00 \\
+op\_at\_x                &  294581.0 &  1.470000e-01 &  1.280000e-01 &      -1.058 &  7.700000e-02 &  1.370000e-01 &  2.080000e-01 &  5.660000e-01 \\
+op\_atl1\_x              &  294581.0 &  1.830000e-01 &  1.990000e-01 &      -1.949 &  9.200000e-02 &  1.520000e-01 &  2.450000e-01 &  1.125000e+00 \\
+cop\_at\_x               &  294581.0 &  1.890000e-01 &  1.500000e-01 &      -1.029 &  1.120000e-01 &  1.700000e-01 &  2.590000e-01 &  8.800000e-01 \\
+cop\_atl1\_x             &  294581.0 &  2.280000e-01 &  2.250000e-01 &      -1.844 &  1.330000e-01 &  1.880000e-01 &  3.000000e-01 &  1.507000e+00 \\
+f\_score\_x              &  294581.0 &  5.173000e+00 &  1.413000e+00 &       1.000 &  5.000000e+00 &  5.000000e+00 &  6.000000e+00 &  9.000000e+00 \\
+o\_score\_x              &  294581.0 & -2.721000e+00 &  2.068000e+00 &      -8.385 & -3.800000e+00 & -2.767000e+00 & -2.092000e+00 &  1.799600e+01 \\
+z\_score\_x              &  294581.0 &  5.789000e+00 &  8.539000e+00 &      -7.856 &  2.387000e+00 &  3.525000e+00 &  5.488000e+00 &  9.787600e+01 \\
+pi\_nix\_x               &  294581.0 &  1.623000e+00 &  6.310000e-01 &       0.244 &  1.468000e+00 &  1.544000e+00 &  1.657000e+00 &  9.259000e+00 \\
+at\_be\_x                &  294581.0 &  3.946000e+00 &  4.895000e+00 &       1.023 &  1.596000e+00 &  2.137000e+00 &  3.387000e+00 &  5.215100e+01 \\
+saleq\_gr1\_x            &  294581.0 &  2.800000e-01 &  7.890000e-01 &      -0.988 &  2.200000e-02 &  1.130000e-01 &  2.780000e-01 &  1.052800e+01 \\
+opex\_at\_x              &  294581.0 &  8.560000e-01 &  7.380000e-01 &       0.036 &  3.030000e-01 &  7.170000e-01 &  1.156000e+00 &  4.588000e+00 \\
+emp\_gr1\_x              &  294581.0 &  9.700000e-02 &  2.260000e-01 &      -1.333 &  2.000000e-03 &  6.200000e-02 &  1.390000e-01 &  1.440000e+00 \\
+age\_x                  &  294581.0 &  2.577090e+02 &  2.162820e+02 &       7.000 &  8.100000e+01 &  1.780000e+02 &  3.920000e+02 &  8.880000e+02 \\
+dsale\_dinv\_x           &  294581.0 & -1.700000e-02 &  7.120000e-01 &      -9.498 & -4.700000e-02 &  3.000000e-02 &  1.140000e-01 &  3.472000e+00 \\
+dsale\_drec\_x           &  294581.0 & -3.200000e-02 &  5.320000e-01 &      -6.378 & -1.010000e-01 &  2.000000e-03 &  9.500000e-02 &  3.597000e+00 \\
+dgp\_dsale\_x            &  294581.0 &  3.200000e-02 &  4.350000e-01 &      -4.610 & -4.300000e-02 &  2.000000e-03 &  6.500000e-02 &  4.688000e+00 \\
+dsale\_dsga\_x           &  294581.0 &  2.200000e-02 &  2.700000e-01 &      -1.680 & -2.400000e-02 &  2.000000e-03 &  4.000000e-02 &  3.562000e+00 \\
+sale\_emp\_gr1\_x         &  294581.0 &  8.300000e-02 &  3.340000e-01 &      -0.841 & -4.000000e-03 &  4.000000e-02 &  1.100000e-01 &  4.904000e+00 \\
+tangibility\_x          &  294581.0 &  6.350000e-01 &  1.730000e-01 &       0.111 &  5.600000e-01 &  6.440000e-01 &  7.300000e-01 &  1.390000e+00 \\
+kz\_index\_x             &  294581.0 & -6.962000e+00 &  2.127700e+01 &    -352.632 & -5.199000e+00 & -1.327000e+00 &  2.110000e-01 &  1.127800e+01 \\
+cash\_at\_x              &  294581.0 &  1.330000e-01 &  1.820000e-01 &       0.000 &  1.700000e-02 &  5.600000e-02 &  1.650000e-01 &  9.310000e-01 \\
+ni\_ar1\_x               &  294581.0 &  1.810000e-01 &  4.900000e-01 &      -1.898 &  1.000000e-02 &  1.240000e-01 &  3.310000e-01 &  3.331000e+00 \\
+ni\_ivol\_x              &  294581.0 &  3.000000e-02 &  4.600000e-02 &       0.000 &  1.000000e-02 &  2.400000e-02 &  3.100000e-02 &  7.070000e-01 \\
+earnings\_variability\_x &  294581.0 &  7.750000e-01 &  6.210000e-01 &       0.027 &  3.660000e-01 &  7.820000e-01 &  9.030000e-01 &  6.427000e+00 \\
+aliq\_at\_x              &  294581.0 &  8.390000e-01 &  6.100000e-01 &       0.181 &  6.100000e-01 &  6.980000e-01 &  8.330000e-01 &  1.083700e+01 \\
+aliq\_mat\_x             &  294581.0 &  4.510000e-01 &  1.870000e-01 &       0.050 &  3.440000e-01 &  4.330000e-01 &  5.490000e-01 &  1.842000e+00 \\
+seas\_1\_1an\_x           &  294581.0 &  2.000000e-02 &  1.160000e-01 &      -0.578 & -3.700000e-02 &  9.000000e-03 &  6.900000e-02 &  1.407000e+00 \\
+seas\_1\_1na\_x           &  294581.0 &  1.900000e-02 &  3.300000e-02 &      -0.160 &  7.000000e-03 &  1.400000e-02 &  2.800000e-02 &  2.910000e-01 \\
+seas\_2\_5an\_x           &  294581.0 &  1.500000e-02 &  4.400000e-02 &      -0.276 &  5.000000e-03 &  1.200000e-02 &  2.600000e-02 &  5.270000e-01 \\
+ivol\_ff3\_21d\_x         &  294581.0 &  2.300000e-02 &  1.400000e-02 &       0.005 &  1.300000e-02 &  1.900000e-02 &  2.800000e-02 &  1.910000e-01 \\
+ivol\_capm\_252d\_x       &  294581.0 &  2.500000e-02 &  1.200000e-02 &       0.007 &  1.600000e-02 &  2.200000e-02 &  3.100000e-02 &  1.360000e-01 \\
+ivol\_capm\_21d\_x        &  294581.0 &  2.300000e-02 &  1.400000e-02 &       0.005 &  1.400000e-02 &  2.000000e-02 &  2.900000e-02 &  1.910000e-01 \\
+ivol\_hxz4\_21d\_x        &  294581.0 &  2.300000e-02 &  1.400000e-02 &       0.005 &  1.300000e-02 &  1.900000e-02 &  2.800000e-02 &  1.920000e-01 \\
+rvol\_21d\_x             &  294581.0 &  2.500000e-02 &  1.500000e-02 &       0.006 &  1.500000e-02 &  2.200000e-02 &  3.100000e-02 &  1.990000e-01 \\
+betabab\_1260d\_x        &  294581.0 &  1.025000e+00 &  5.100000e-01 &      -0.326 &  7.170000e-01 &  9.110000e-01 &  1.255000e+00 &  3.650000e+00 \\
+beta\_dimson\_21d\_x      &  294581.0 &  9.630000e-01 &  1.780000e+00 &     -17.092 &  7.100000e-02 &  8.230000e-01 &  1.721000e+00 &  1.921100e+01 \\
+turnover\_126d\_x        &  294581.0 &  3.000000e-03 &  3.000000e-03 &       0.000 &  1.000000e-03 &  3.000000e-03 &  4.000000e-03 &  2.900000e-02 \\
+turnover\_var\_126d\_x    &  294581.0 &  1.143000e+00 &  6.230000e-01 &       0.405 &  7.510000e-01 &  9.860000e-01 &  1.324000e+00 &  6.770000e+00 \\
+dolvol\_126d\_x          &  294581.0 &  6.536392e+06 &  1.464928e+07 &     486.102 &  5.446526e+05 &  1.610104e+06 &  5.476749e+06 &  1.547992e+08 \\
+dolvol\_var\_126d\_x      &  294581.0 &  1.148000e+00 &  6.240000e-01 &       0.383 &  7.540000e-01 &  1.002000e+00 &  1.333000e+00 &  6.601000e+00 \\
+ami\_126d\_x             &  294581.0 &  2.060000e-01 &  1.300000e+00 &       0.000 &  4.000000e-03 &  1.800000e-02 &  7.700000e-02 &  1.666870e+02 \\
+zero\_trades\_21d\_x      &  294581.0 &  2.430000e-01 &  1.301000e+00 &       0.000 &  2.000000e-03 &  3.000000e-03 &  5.000000e-03 &  2.009600e+01 \\
+zero\_trades\_126d\_x     &  294581.0 &  2.490000e-01 &  1.223000e+00 &       0.000 &  2.000000e-03 &  3.000000e-03 &  6.000000e-03 &  1.791600e+01 \\
+zero\_trades\_252d\_x     &  294581.0 &  2.580000e-01 &  1.216000e+00 &       0.000 &  2.000000e-03 &  3.000000e-03 &  6.000000e-03 &  1.752300e+01 \\
+rmax1\_21d\_x            &  294581.0 &  5.700000e-02 &  4.400000e-02 &       0.007 &  2.900000e-02 &  4.500000e-02 &  6.900000e-02 &  6.240000e-01 \\
+rskew\_21d\_x            &  294581.0 &  2.430000e-01 &  8.120000e-01 &      -2.818 & -2.200000e-01 &  2.130000e-01 &  6.900000e-01 &  3.243000e+00 \\
+iskew\_capm\_21d\_x       &  294581.0 &  2.440000e-01 &  7.890000e-01 &      -2.563 & -2.120000e-01 &  2.130000e-01 &  6.800000e-01 &  3.091000e+00 \\
+iskew\_ff3\_21d\_x        &  294581.0 &  1.980000e-01 &  7.250000e-01 &      -2.308 & -2.310000e-01 &  1.730000e-01 &  6.050000e-01 &  2.800000e+00 \\
+iskew\_hxz4\_21d\_x       &  294581.0 &  1.780000e-01 &  6.920000e-01 &      -2.037 & -2.370000e-01 &  1.550000e-01 &  5.730000e-01 &  2.748000e+00 \\
+coskew\_21d\_x           &  294581.0 & -1.900000e-02 &  3.120000e-01 &      -1.468 & -2.240000e-01 & -2.200000e-02 &  1.840000e-01 &  1.154000e+00 \\
+ret\_1\_0\_x              &  294581.0 &  2.300000e-02 &  1.300000e-01 &      -0.619 & -4.400000e-02 &  1.100000e-02 &  7.600000e-02 &  1.600000e+00 \\
+betadown\_252d\_x        &  294581.0 &  9.990000e-01 &  7.080000e-01 &      -3.514 &  5.370000e-01 &  9.180000e-01 &  1.339000e+00 &  5.699000e+00 \\
+bidaskhl\_21d\_x         &  294581.0 &  1.000000e-02 &  7.000000e-03 &       0.002 &  5.000000e-03 &  7.000000e-03 &  1.200000e-02 &  1.790000e-01 \\
+ret\_3\_1\_x              &  294581.0 &  4.100000e-02 &  1.820000e-01 &      -0.707 & -5.200000e-02 &  2.000000e-02 &  1.160000e-01 &  2.077000e+00 \\
+ret\_9\_1\_x              &  294581.0 &  1.590000e-01 &  4.120000e-01 &      -0.879 & -4.800000e-02 &  7.300000e-02 &  2.810000e-01 &  4.691000e+00 \\
+ret\_12\_7\_x             &  294581.0 &  9.700000e-02 &  2.910000e-01 &      -0.797 & -4.400000e-02 &  4.200000e-02 &  1.960000e-01 &  3.295000e+00 \\
+corr\_1260d\_x           &  294581.0 &  3.380000e-01 &  1.280000e-01 &      -0.037 &  2.630000e-01 &  3.170000e-01 &  4.110000e-01 &  7.320000e-01 \\
+rmax5\_21d\_x            &  294581.0 &  3.300000e-02 &  2.200000e-02 &       0.005 &  1.900000e-02 &  2.800000e-02 &  4.100000e-02 &  2.990000e-01 \\
+rmax5\_rvol\_21d\_x       &  294581.0 &  1.265000e+00 &  4.620000e-01 &       0.234 &  9.530000e-01 &  1.190000e+00 &  1.522000e+00 &  3.545000e+00 \\
+ni\_be\_x                &  294581.0 &  6.800000e-02 &  3.810000e-01 &      -7.304 &  6.100000e-02 &  1.110000e-01 &  1.650000e-01 &  8.470000e-01 \\
+ocf\_at\_x               &  294581.0 &  6.500000e-02 &  1.280000e-01 &      -1.240 &  1.900000e-02 &  7.100000e-02 &  1.260000e-01 &  4.950000e-01 \\
+ocf\_at\_chg1\_x          &  294581.0 &  6.000000e-03 &  1.090000e-01 &      -0.852 & -2.600000e-02 & -0.000000e+00 &  3.000000e-02 &  1.036000e+00 \\
+mispricing\_perf\_x      &  294581.0 &  5.780000e-01 &  1.820000e-01 &       0.021 &  4.540000e-01 &  5.790000e-01 &  7.130000e-01 &  9.610000e-01 \\
+mispricing\_mgmt\_x      &  294581.0 &  4.900000e-01 &  1.790000e-01 &       0.052 &  3.680000e-01 &  4.950000e-01 &  6.230000e-01 &  8.840000e-01 \\
+qmj\_x                  &  294581.0 &  2.170000e-01 &  7.590000e-01 &      -1.698 & -7.800000e-02 &  1.140000e-01 &  7.470000e-01 &  1.698000e+00 \\
+qmj\_prof\_x             &  294581.0 &  3.300000e-01 &  9.150000e-01 &      -1.698 & -3.660000e-01 &  4.030000e-01 &  1.126000e+00 &  1.698000e+00 \\
+qmj\_growth\_x           &  294581.0 &  7.200000e-02 &  7.390000e-01 &      -1.698 & -2.810000e-01 &  3.500000e-02 &  5.130000e-01 &  1.698000e+00 \\
+qmj\_safety\_x           &  294581.0 &  2.230000e-01 &  8.930000e-01 &      -1.698 & -4.430000e-01 &  2.640000e-01 &  9.700000e-01 &  1.701000e+00 \\
+\bottomrule
+\caption{Revised Global Factor Dataset Summary Statistics: Validation Set}
+\label{table:ss-val}
+\end{longtable}
+
+\newpage
+\setlength{\tabcolsep}{2pt}
+\begin{longtable}{|l|r|r|r|r|r|r|r|r|}
+\toprule
+{} &      count &          mean &           std &         min &           25\% &           50\% &           75\% &           max \\
+\midrule
+\endhead
+beta\_60m\_x             &  531461.0 &  1.143000e+00 &  6.650000e-01 &      -0.762 &  7.160000e-01 &  1.081000e+00 &  1.428000e+00 &  4.912000e+00 \\
+index                  &  531461.0 &  1.639772e+06 &  8.608909e+05 &    1495.000 &  8.349320e+05 &  1.872142e+06 &  2.405852e+06 &  2.739927e+06 \\
+mth                    &  531461.0 &  2.009810e+05 &  6.308130e+02 &  200001.000 &  2.004070e+05 &  2.010030e+05 &  2.015100e+05 &  2.020120e+05 \\
+permno                 &  531461.0 &  6.249862e+04 &  2.927243e+04 &   10012.000 &  3.294200e+04 &  7.752600e+04 &  8.648900e+04 &  9.343600e+04 \\
+permco                 &  531461.0 &  2.536554e+04 &  1.682836e+04 &       7.000 &  1.205800e+04 &  2.098100e+04 &  4.099800e+04 &  5.766700e+04 \\
+crsp\_shrcd             &  531461.0 &  1.110400e+01 &  3.060000e-01 &      10.000 &  1.100000e+01 &  1.100000e+01 &  1.100000e+01 &  1.200000e+01 \\
+crsp\_exchcd            &  531461.0 &  1.820000e+00 &  9.770000e-01 &       1.000 &  1.000000e+00 &  1.000000e+00 &  3.000000e+00 &  3.000000e+00 \\
+sic                    &  531461.0 &  4.731309e+03 &  1.973094e+03 &     100.000 &  3.312000e+03 &  4.813000e+03 &  6.211000e+03 &  9.999000e+03 \\
+ff49                   &  531461.0 &  3.088900e+01 &  1.275800e+01 &       1.000 &  2.100000e+01 &  3.400000e+01 &  4.200000e+01 &  4.900000e+01 \\
+adjfct                 &  531461.0 &  1.190000e+00 &  1.201000e+00 &       0.000 &  1.000000e+00 &  1.000000e+00 &  1.000000e+00 &  1.120000e+02 \\
+shares                 &  531461.0 &  2.183130e+02 &  6.077150e+02 &       1.009 &  3.797500e+01 &  7.258200e+01 &  1.709880e+02 &  2.920640e+04 \\
+me                     &  531461.0 &  9.114197e+03 &  3.153046e+04 &     178.093 &  9.360740e+02 &  2.009547e+03 &  5.793820e+03 &  2.255969e+06 \\
+me\_company             &  531461.0 &  9.284112e+03 &  3.274782e+04 &     178.093 &  9.401740e+02 &  2.023393e+03 &  5.869141e+03 &  2.255969e+06 \\
+prc                    &  531461.0 &  6.448400e+01 &  1.368034e+03 &       0.120 &  1.815000e+01 &  3.059000e+01 &  4.950000e+01 &  1.416000e+05 \\
+prc\_local              &  531461.0 &  6.448400e+01 &  1.368034e+03 &       0.120 &  1.815000e+01 &  3.059000e+01 &  4.950000e+01 &  1.416000e+05 \\
+dolvol                 &  531461.0 &  1.430663e+09 &  5.379275e+09 &       0.000 &  1.191406e+08 &  3.596018e+08 &  1.153573e+09 &  8.441730e+11 \\
+ret                    &  531461.0 &  1.800000e-02 &  1.510000e-01 &      -0.984 & -4.800000e-02 &  1.200000e-02 &  7.300000e-02 &  1.988400e+01 \\
+ret\_local              &  531461.0 &  1.800000e-02 &  1.510000e-01 &      -0.984 & -4.800000e-02 &  1.200000e-02 &  7.300000e-02 &  1.988400e+01 \\
+ret\_exc                &  531461.0 &  1.600000e-02 &  1.510000e-01 &      -0.985 & -4.900000e-02 &  1.000000e-02 &  7.200000e-02 &  1.988200e+01 \\
+ret\_lag\_dif            &  531461.0 &  1.000000e+00 &  0.000000e+00 &       1.000 &  1.000000e+00 &  1.000000e+00 &  1.000000e+00 &  1.000000e+00 \\
+ret\_exc\_lead1m         &  531461.0 &  7.000000e-03 &  1.370000e-01 &      -1.001 & -5.400000e-02 &  7.000000e-03 &  6.700000e-02 &  4.100000e+00 \\
+niq\_su\_x               &  531461.0 & -9.700000e-02 &  1.914000e+00 &     -50.846 & -6.530000e-01 & -1.100000e-02 &  6.410000e-01 &  2.019500e+01 \\
+ret\_6\_1\_x              &  531461.0 &  8.200000e-02 &  3.500000e-01 &      -0.917 & -7.900000e-02 &  4.600000e-02 &  1.920000e-01 &  8.412000e+00 \\
+ret\_12\_1\_x             &  531461.0 &  1.800000e-01 &  5.820000e-01 &      -0.973 & -8.800000e-02 &  8.600000e-02 &  3.200000e-01 &  1.223100e+01 \\
+saleq\_su\_x             &  531461.0 &  1.380000e-01 &  1.682000e+00 &     -16.096 & -7.990000e-01 &  1.300000e-01 &  1.062000e+00 &  8.648000e+00 \\
+tax\_gr1a\_x             &  531461.0 &  2.000000e-03 &  2.800000e-02 &      -0.216 & -4.000000e-03 &  1.000000e-03 &  9.000000e-03 &  2.050000e-01 \\
+ni\_inc8q\_x             &  531461.0 &  2.918000e+00 &  3.092000e+00 &       0.000 &  0.000000e+00 &  2.000000e+00 &  6.000000e+00 &  8.000000e+00 \\
+prc\_highprc\_252d\_x     &  531461.0 &  8.110000e-01 &  1.820000e-01 &       0.017 &  7.290000e-01 &  8.640000e-01 &  9.510000e-01 &  1.000000e+00 \\
+resff3\_6\_1\_x           &  531461.0 & -2.900000e-02 &  4.950000e-01 &      -2.363 & -2.870000e-01 & -2.200000e-02 &  2.540000e-01 &  1.833000e+00 \\
+resff3\_12\_1\_x          &  531461.0 & -1.300000e-02 &  2.530000e-01 &      -1.046 & -1.600000e-01 & -1.200000e-02 &  1.440000e-01 &  7.740000e-01 \\
+be\_me\_x                &  531461.0 &  5.420000e-01 &  5.170000e-01 &       0.005 &  2.440000e-01 &  4.390000e-01 &  6.890000e-01 &  2.516300e+01 \\
+debt\_me\_x              &  531461.0 &  5.270000e-01 &  1.260000e+00 &       0.000 &  4.300000e-02 &  2.080000e-01 &  5.440000e-01 &  6.550600e+01 \\
+at\_me\_x                &  531461.0 &  1.997000e+00 &  3.652000e+00 &       0.010 &  4.730000e-01 &  9.520000e-01 &  2.011000e+00 &  1.923120e+02 \\
+ret\_60\_12\_x            &  531461.0 &  7.400000e-01 &  1.402000e+00 &      -0.996 &  1.350000e-01 &  3.530000e-01 &  9.310000e-01 &  1.791400e+01 \\
+ni\_me\_x                &  531461.0 &  1.900000e-02 &  2.300000e-01 &     -18.929 &  1.300000e-02 &  4.200000e-02 &  6.600000e-02 &  9.920000e-01 \\
+fcf\_me\_x               &  531461.0 &  2.900000e-02 &  1.710000e-01 &      -7.856 &  2.000000e-03 &  3.700000e-02 &  7.200000e-02 &  4.202000e+00 \\
+div12m\_me\_x            &  531461.0 &  1.200000e-02 &  1.900000e-02 &       0.000 &  0.000000e+00 &  2.000000e-03 &  1.900000e-02 &  4.020000e-01 \\
+eqpo\_me\_x              &  531461.0 &  3.400000e-02 &  5.400000e-02 &      -0.000 &  1.000000e-03 &  1.600000e-02 &  4.500000e-02 &  1.725000e+00 \\
+eqnpo\_me\_x             &  531461.0 &  9.000000e-03 &  9.600000e-02 &      -3.911 & -3.000000e-03 &  9.000000e-03 &  3.800000e-02 &  1.443000e+00 \\
+sale\_gr3\_x             &  531461.0 &  7.190000e-01 &  2.545000e+00 &      -1.000 &  6.800000e-02 &  2.950000e-01 &  6.090000e-01 &  8.620400e+01 \\
+sale\_gr1\_x             &  531461.0 &  1.910000e-01 &  6.470000e-01 &      -0.996 &  4.000000e-03 &  8.700000e-02 &  2.090000e-01 &  1.370600e+01 \\
+ebitda\_mev\_x           &  531461.0 &  9.300000e-02 &  1.190000e-01 &      -5.587 &  5.500000e-02 &  9.000000e-02 &  1.290000e-01 &  1.983000e+00 \\
+sale\_me\_x              &  531461.0 &  9.930000e-01 &  1.606000e+00 &       0.000 &  2.740000e-01 &  5.560000e-01 &  1.105000e+00 &  7.507500e+01 \\
+ocf\_me\_x               &  531461.0 &  9.300000e-02 &  1.560000e-01 &      -4.343 &  3.900000e-02 &  7.500000e-02 &  1.280000e-01 &  5.711000e+00 \\
+intrinsic\_value\_x      &  531461.0 &  3.673158e+03 &  9.322883e+03 &       0.515 &  2.746770e+02 &  6.616840e+02 &  2.401336e+03 &  1.130984e+05 \\
+bev\_mev\_x              &  531461.0 &  5.450000e-01 &  4.310000e-01 &       0.001 &  2.580000e-01 &  4.990000e-01 &  7.490000e-01 &  1.692600e+01 \\
+netdebt\_me\_x           &  531461.0 &  3.480000e-01 &  1.073000e+00 &      -3.496 & -5.200000e-02 &  1.000000e-01 &  4.220000e-01 &  5.866300e+01 \\
+eq\_dur\_x               &  531461.0 &  1.683500e+01 &  5.240000e+00 &       1.053 &  1.565800e+01 &  1.686700e+01 &  1.783200e+01 &  3.430350e+02 \\
+capex\_abn\_x            &  531461.0 &  4.500000e-02 &  6.920000e-01 &      -1.028 & -2.420000e-01 & -6.700000e-02 &  1.680000e-01 &  1.196300e+01 \\
+at\_gr1\_x               &  531461.0 &  2.660000e-01 &  1.181000e+00 &      -0.740 &  3.000000e-03 &  7.700000e-02 &  2.080000e-01 &  3.163800e+01 \\
+ppeinv\_gr1a\_x          &  531461.0 &  7.400000e-02 &  1.740000e-01 &      -0.449 &  1.000000e-02 &  4.000000e-02 &  8.300000e-02 &  3.079000e+00 \\
+noa\_at\_x               &  531461.0 &  6.120000e-01 &  4.870000e-01 &      -1.152 &  4.460000e-01 &  6.240000e-01 &  7.550000e-01 &  1.038800e+01 \\
+noa\_gr1a\_x             &  531461.0 &  1.040000e-01 &  4.220000e-01 &      -0.737 & -1.300000e-02 &  3.300000e-02 &  1.020000e-01 &  1.075200e+01 \\
+lnoa\_gr1a\_x            &  531461.0 &  3.500000e-02 &  1.020000e-01 &      -0.578 & -4.000000e-03 &  1.200000e-02 &  4.500000e-02 &  7.540000e-01 \\
+capx\_gr1\_x             &  531461.0 &  3.700000e-01 &  1.543000e+00 &      -1.021 & -1.390000e-01 &  1.030000e-01 &  4.080000e-01 &  3.277600e+01 \\
+capx\_gr2\_x             &  531461.0 &  7.800000e-01 &  3.210000e+00 &      -1.010 & -1.390000e-01 &  2.160000e-01 &  6.650000e-01 &  7.697200e+01 \\
+capx\_gr3\_x             &  531461.0 &  1.128000e+00 &  4.517000e+00 &      -1.000 & -1.030000e-01 &  2.930000e-01 &  8.460000e-01 &  1.128460e+02 \\
+chcsho\_12m\_x           &  531461.0 &  4.600000e-02 &  2.130000e-01 &      -0.227 & -9.000000e-03 &  7.000000e-03 &  2.600000e-02 &  8.477000e+00 \\
+eqnpo\_12m\_x            &  531461.0 & -2.000000e-02 &  1.340000e-01 &      -2.249 & -2.100000e-02 &  1.000000e-03 &  3.300000e-02 &  3.470000e-01 \\
+debt\_gr3\_x             &  531461.0 &  4.136000e+00 &  2.614000e+01 &      -1.000 & -9.000000e-02 &  1.730000e-01 &  7.340000e-01 &  4.310000e+02 \\
+inv\_gr1\_x              &  531461.0 &  1.820000e-01 &  8.460000e-01 &      -1.000 & -1.300000e-02 &  7.700000e-02 &  1.570000e-01 &  1.698100e+01 \\
+inv\_gr1a\_x             &  531461.0 &  6.000000e-03 &  2.900000e-02 &      -0.288 & -0.000000e+00 &  0.000000e+00 &  9.000000e-03 &  2.080000e-01 \\
+oaccruals\_at\_x         &  531461.0 & -5.600000e-02 &  1.000000e-01 &      -2.264 & -8.100000e-02 & -4.400000e-02 & -1.400000e-02 &  3.810000e-01 \\
+taccruals\_at\_x         &  531461.0 & -6.900000e-02 &  1.810000e-01 &      -2.480 & -1.150000e-01 & -4.900000e-02 & -4.000000e-03 &  1.294000e+00 \\
+cowc\_gr1a\_x            &  531461.0 &  3.000000e-03 &  5.500000e-02 &      -0.605 & -1.400000e-02 &  3.000000e-03 &  2.000000e-02 &  3.410000e-01 \\
+coa\_gr1a\_x             &  531461.0 &  2.000000e-02 &  6.500000e-02 &      -0.777 & -2.000000e-03 &  1.400000e-02 &  3.900000e-02 &  4.190000e-01 \\
+col\_gr1a\_x             &  531461.0 &  1.700000e-02 &  5.000000e-02 &      -0.485 & -2.000000e-03 &  1.100000e-02 &  3.000000e-02 &  3.830000e-01 \\
+nncoa\_gr1a\_x           &  531461.0 &  4.100000e-02 &  1.340000e-01 &      -1.884 & -8.000000e-03 &  2.000000e-02 &  7.000000e-02 &  7.690000e-01 \\
+ncoa\_gr1a\_x            &  531461.0 &  4.900000e-02 &  1.420000e-01 &      -1.884 & -4.000000e-03 &  2.600000e-02 &  8.100000e-02 &  7.490000e-01 \\
+ncol\_gr1a\_x            &  531461.0 &  7.000000e-03 &  3.600000e-02 &      -0.360 & -2.000000e-03 &  2.000000e-03 &  1.500000e-02 &  3.340000e-01 \\
+nfna\_gr1a\_x            &  531461.0 & -1.400000e-02 &  1.460000e-01 &      -1.108 & -4.800000e-02 & -0.000000e+00 &  2.700000e-02 &  1.384000e+00 \\
+lti\_gr1a\_x             &  531461.0 &  5.000000e-03 &  3.500000e-02 &      -0.231 &  0.000000e+00 &  0.000000e+00 &  1.000000e-03 &  2.570000e-01 \\
+fnl\_gr1a\_x             &  531461.0 &  2.200000e-02 &  1.270000e-01 &      -1.230 & -1.400000e-02 &  0.000000e+00 &  4.300000e-02 &  1.130000e+00 \\
+be\_gr1a\_x              &  531461.0 &  4.500000e-02 &  1.460000e-01 &      -2.072 &  1.000000e-03 &  2.800000e-02 &  8.100000e-02 &  8.560000e-01 \\
+oaccruals\_ni\_x         &  531461.0 & -2.033000e+00 &  5.721000e+00 &     -71.442 & -1.715000e+00 & -7.240000e-01 & -2.420000e-01 &  1.429400e+01 \\
+taccruals\_ni\_x         &  531461.0 & -2.755000e+00 &  9.625000e+00 &    -131.510 & -2.469000e+00 & -8.370000e-01 & -6.300000e-02 &  6.728600e+01 \\
+netis\_at\_x             &  531461.0 & -2.800000e-02 &  2.270000e-01 &      -1.368 & -8.500000e-02 & -1.800000e-02 &  1.300000e-02 &  1.593000e+00 \\
+eqnetis\_at\_x           &  531461.0 &  2.100000e-02 &  1.510000e-01 &      -0.351 & -1.500000e-02 &  0.000000e+00 &  7.000000e-03 &  1.489000e+00 \\
+dbnetis\_at\_x           &  531461.0 & -4.800000e-02 &  1.610000e-01 &      -1.362 & -6.200000e-02 & -6.000000e-03 &  0.000000e+00 &  5.670000e-01 \\
+niq\_be\_x               &  531461.0 &  1.800000e-02 &  1.130000e-01 &      -2.022 &  9.000000e-03 &  2.600000e-02 &  4.600000e-02 &  6.990000e-01 \\
+niq\_be\_chg1\_x          &  531461.0 & -2.000000e-03 &  1.130000e-01 &      -2.004 & -1.100000e-02 & -1.000000e-03 &  1.000000e-02 &  1.228000e+00 \\
+niq\_at\_x               &  531461.0 &  6.000000e-03 &  4.700000e-02 &      -0.667 &  2.000000e-03 &  1.000000e-02 &  2.200000e-02 &  1.820000e-01 \\
+niq\_at\_chg1\_x          &  531461.0 &  1.000000e-03 &  4.500000e-02 &      -0.455 & -5.000000e-03 &  0.000000e+00 &  5.000000e-03 &  8.410000e-01 \\
+ebit\_bev\_x             &  531461.0 &  5.600000e-02 &  1.346000e+00 &     -41.056 &  7.400000e-02 &  1.310000e-01 &  2.330000e-01 &  2.800000e+00 \\
+ebit\_sale\_x            &  531461.0 & -2.370000e-01 &  4.578000e+00 &    -185.045 &  5.700000e-02 &  1.170000e-01 &  2.090000e-01 &  6.150000e-01 \\
+sale\_bev\_x             &  531461.0 &  2.041000e+00 &  3.073000e+00 &       0.000 &  6.210000e-01 &  1.261000e+00 &  2.224000e+00 &  3.887100e+01 \\
+at\_turnover\_x          &  531461.0 &  8.410000e-01 &  7.220000e-01 &       0.000 &  3.210000e-01 &  6.760000e-01 &  1.141000e+00 &  4.267000e+00 \\
+gp\_at\_x                &  531461.0 &  2.740000e-01 &  2.480000e-01 &      -1.169 &  1.000000e-01 &  2.390000e-01 &  3.990000e-01 &  1.293000e+00 \\
+gp\_atl1\_x              &  531461.0 &  3.240000e-01 &  3.250000e-01 &      -1.904 &  1.130000e-01 &  2.680000e-01 &  4.630000e-01 &  2.788000e+00 \\
+ope\_be\_x               &  531461.0 &  2.340000e-01 &  4.400000e-01 &      -8.815 &  1.450000e-01 &  2.040000e-01 &  3.170000e-01 &  3.725000e+00 \\
+ope\_bel1\_x             &  531461.0 &  2.740000e-01 &  5.480000e-01 &     -13.628 &  1.680000e-01 &  2.280000e-01 &  3.610000e-01 &  4.420000e+00 \\
+op\_at\_x                &  531461.0 &  1.320000e-01 &  1.220000e-01 &      -1.224 &  6.700000e-02 &  1.260000e-01 &  1.940000e-01 &  5.380000e-01 \\
+op\_atl1\_x              &  531461.0 &  1.470000e-01 &  2.450000e-01 &      -6.946 &  7.400000e-02 &  1.400000e-01 &  2.240000e-01 &  1.018000e+00 \\
+cop\_at\_x               &  531461.0 &  1.910000e-01 &  1.510000e-01 &      -0.924 &  1.070000e-01 &  1.760000e-01 &  2.650000e-01 &  1.940000e+00 \\
+cop\_atl1\_x             &  531461.0 &  2.190000e-01 &  2.240000e-01 &      -3.834 &  1.190000e-01 &  1.960000e-01 &  3.020000e-01 &  1.923000e+00 \\
+f\_score\_x              &  531461.0 &  5.234000e+00 &  1.422000e+00 &       1.000 &  4.000000e+00 &  5.000000e+00 &  6.000000e+00 &  9.000000e+00 \\
+o\_score\_x              &  531461.0 & -2.944000e+00 &  2.326000e+00 &      -9.387 & -4.243000e+00 & -3.020000e+00 & -2.185000e+00 &  2.287000e+01 \\
+z\_score\_x              &  531461.0 &  5.413000e+00 &  9.607000e+00 &     -37.336 &  1.997000e+00 &  3.275000e+00 &  5.180000e+00 &  1.744240e+02 \\
+pi\_nix\_x               &  531461.0 &  1.519000e+00 &  6.770000e-01 &       0.106 &  1.334000e+00 &  1.488000e+00 &  1.589000e+00 &  1.989400e+01 \\
+at\_be\_x                &  531461.0 &  3.707000e+00 &  4.571000e+00 &       1.023 &  1.582000e+00 &  2.157000e+00 &  3.430000e+00 &  5.963100e+01 \\
+saleq\_gr1\_x            &  531461.0 &  2.020000e-01 &  7.530000e-01 &      -1.000 & -7.000000e-03 &  8.500000e-02 &  2.150000e-01 &  1.574800e+01 \\
+opex\_at\_x              &  531461.0 &  7.050000e-01 &  6.560000e-01 &       0.003 &  2.430000e-01 &  5.380000e-01 &  9.460000e-01 &  4.437000e+00 \\
+emp\_gr1\_x              &  531461.0 &  7.300000e-02 &  2.000000e-01 &      -1.165 & -1.000000e-02 &  5.100000e-02 &  1.190000e-01 &  1.442000e+00 \\
+age\_x                  &  531461.0 &  3.164250e+02 &  2.392710e+02 &      10.000 &  1.300000e+02 &  2.440000e+02 &  4.400000e+02 &  1.115000e+03 \\
+dsale\_dinv\_x           &  531461.0 & -2.300000e-02 &  7.480000e-01 &     -19.478 & -6.100000e-02 &  2.500000e-02 &  9.800000e-02 &  5.598000e+00 \\
+dsale\_drec\_x           &  531461.0 & -2.200000e-02 &  5.420000e-01 &      -7.400 & -1.120000e-01 &  4.000000e-03 &  1.160000e-01 &  7.638000e+00 \\
+dgp\_dsale\_x            &  531461.0 &  3.700000e-02 &  4.720000e-01 &      -5.970 & -4.200000e-02 &  5.000000e-03 &  6.500000e-02 &  7.188000e+00 \\
+dsale\_dsga\_x           &  531461.0 &  2.300000e-02 &  2.880000e-01 &      -2.001 & -4.200000e-02 &  3.000000e-03 &  5.400000e-02 &  6.964000e+00 \\
+sale\_emp\_gr1\_x         &  531461.0 &  7.800000e-02 &  3.670000e-01 &      -0.956 & -3.000000e-02 &  3.900000e-02 &  1.070000e-01 &  7.027000e+00 \\
+tangibility\_x          &  531461.0 &  5.840000e-01 &  2.060000e-01 &       0.002 &  4.580000e-01 &  6.190000e-01 &  7.020000e-01 &  1.685000e+00 \\
+kz\_index\_x             &  531461.0 & -1.475800e+01 &  5.964000e+01 &   -1723.572 & -9.717000e+00 & -2.274000e+00 &  2.400000e-01 &  8.730000e+01 \\
+cash\_at\_x              &  531461.0 &  1.680000e-01 &  2.030000e-01 &       0.000 &  2.900000e-02 &  8.300000e-02 &  2.240000e-01 &  9.800000e-01 \\
+ni\_ar1\_x               &  531461.0 &  1.460000e-01 &  5.670000e-01 &      -3.964 & -1.330000e-01 &  1.060000e-01 &  3.650000e-01 &  9.144000e+00 \\
+ni\_ivol\_x              &  531461.0 &  4.200000e-02 &  8.300000e-02 &       0.000 &  1.000000e-02 &  2.300000e-02 &  3.700000e-02 &  1.757000e+00 \\
+earnings\_variability\_x &  531461.0 &  1.119000e+00 &  1.132000e+00 &       0.044 &  5.490000e-01 &  8.810000e-01 &  1.192000e+00 &  1.145300e+01 \\
+aliq\_at\_x              &  531461.0 &  7.410000e-01 &  9.790000e-01 &       0.104 &  5.050000e-01 &  6.250000e-01 &  7.440000e-01 &  2.804000e+01 \\
+aliq\_mat\_x             &  531461.0 &  3.770000e-01 &  1.890000e-01 &       0.027 &  2.380000e-01 &  3.610000e-01 &  4.780000e-01 &  2.246000e+00 \\
+seas\_1\_1an\_x           &  531461.0 &  1.600000e-02 &  1.280000e-01 &      -0.670 & -4.500000e-02 &  7.000000e-03 &  6.800000e-02 &  1.824000e+00 \\
+seas\_1\_1na\_x           &  531461.0 &  1.600000e-02 &  3.900000e-02 &      -0.235 & -2.000000e-03 &  1.200000e-02 &  3.000000e-02 &  3.870000e-01 \\
+seas\_2\_5an\_x           &  531461.0 &  1.500000e-02 &  5.600000e-02 &      -0.297 & -9.000000e-03 &  1.100000e-02 &  3.500000e-02 &  6.340000e-01 \\
+ivol\_ff3\_21d\_x         &  531461.0 &  2.000000e-02 &  1.500000e-02 &       0.002 &  1.000000e-02 &  1.600000e-02 &  2.400000e-02 &  2.280000e-01 \\
+ivol\_capm\_252d\_x       &  531461.0 &  2.300000e-02 &  1.300000e-02 &       0.005 &  1.400000e-02 &  2.000000e-02 &  2.800000e-02 &  1.410000e-01 \\
+ivol\_capm\_21d\_x        &  531461.0 &  2.100000e-02 &  1.600000e-02 &       0.002 &  1.100000e-02 &  1.600000e-02 &  2.600000e-02 &  2.420000e-01 \\
+ivol\_hxz4\_21d\_x        &  531461.0 &  2.000000e-02 &  1.500000e-02 &       0.002 &  1.000000e-02 &  1.500000e-02 &  2.400000e-02 &  2.310000e-01 \\
+rvol\_21d\_x             &  531461.0 &  2.500000e-02 &  1.800000e-02 &       0.002 &  1.400000e-02 &  2.000000e-02 &  3.100000e-02 &  2.520000e-01 \\
+betabab\_1260d\_x        &  531461.0 &  1.071000e+00 &  4.730000e-01 &      -0.029 &  7.670000e-01 &  1.029000e+00 &  1.303000e+00 &  3.831000e+00 \\
+beta\_dimson\_21d\_x      &  531461.0 &  1.175000e+00 &  1.449000e+00 &     -13.953 &  4.250000e-01 &  1.041000e+00 &  1.786000e+00 &  1.954200e+01 \\
+turnover\_126d\_x        &  531461.0 &  9.000000e-03 &  8.000000e-03 &       0.000 &  4.000000e-03 &  7.000000e-03 &  1.200000e-02 &  2.800000e-01 \\
+turnover\_var\_126d\_x    &  531461.0 &  7.410000e-01 &  4.240000e-01 &       0.280 &  4.880000e-01 &  6.180000e-01 &  8.450000e-01 &  7.510000e+00 \\
+dolvol\_126d\_x          &  531461.0 &  5.434158e+07 &  9.867098e+07 &    2317.257 &  5.641453e+06 &  1.690584e+07 &  5.411359e+07 &  1.038495e+09 \\
+dolvol\_var\_126d\_x      &  531461.0 &  7.390000e-01 &  4.300000e-01 &       0.262 &  4.840000e-01 &  6.190000e-01 &  8.520000e-01 &  8.104000e+00 \\
+ami\_126d\_x             &  531461.0 &  2.500000e-02 &  6.470000e-01 &       0.000 &  0.000000e+00 &  1.000000e-03 &  4.000000e-03 &  9.796700e+01 \\
+zero\_trades\_21d\_x      &  531461.0 &  1.100000e-02 &  2.260000e-01 &       0.000 &  1.000000e-03 &  2.000000e-03 &  3.000000e-03 &  1.575900e+01 \\
+zero\_trades\_126d\_x     &  531461.0 &  1.300000e-02 &  2.210000e-01 &       0.000 &  1.000000e-03 &  2.000000e-03 &  3.000000e-03 &  1.400900e+01 \\
+zero\_trades\_252d\_x     &  531461.0 &  1.500000e-02 &  2.330000e-01 &       0.000 &  1.000000e-03 &  2.000000e-03 &  3.000000e-03 &  1.359200e+01 \\
+rmax1\_21d\_x            &  531461.0 &  5.600000e-02 &  5.000000e-02 &       0.003 &  2.700000e-02 &  4.100000e-02 &  6.600000e-02 &  9.000000e-01 \\
+rskew\_21d\_x            &  531461.0 &  1.350000e-01 &  9.260000e-01 &      -3.581 & -3.520000e-01 &  1.140000e-01 &  5.940000e-01 &  3.808000e+00 \\
+iskew\_capm\_21d\_x       &  531461.0 &  1.560000e-01 &  9.940000e-01 &      -3.566 & -3.640000e-01 &  1.340000e-01 &  6.520000e-01 &  3.715000e+00 \\
+iskew\_ff3\_21d\_x        &  531461.0 &  1.300000e-01 &  8.940000e-01 &      -3.120 & -3.550000e-01 &  1.110000e-01 &  5.920000e-01 &  3.456000e+00 \\
+iskew\_hxz4\_21d\_x       &  531461.0 &  1.200000e-01 &  8.400000e-01 &      -3.081 & -3.460000e-01 &  1.020000e-01 &  5.650000e-01 &  3.276000e+00 \\
+coskew\_21d\_x           &  531461.0 & -3.000000e-03 &  3.090000e-01 &      -1.128 & -2.090000e-01 & -7.000000e-03 &  2.000000e-01 &  1.347000e+00 \\
+ret\_1\_0\_x              &  531461.0 &  1.700000e-02 &  1.360000e-01 &      -0.724 & -4.700000e-02 &  1.100000e-02 &  7.200000e-02 &  2.176000e+00 \\
+betadown\_252d\_x        &  531461.0 &  1.087000e+00 &  5.640000e-01 &      -1.626 &  7.370000e-01 &  1.024000e+00 &  1.371000e+00 &  3.822000e+00 \\
+bidaskhl\_21d\_x         &  531461.0 &  9.000000e-03 &  6.000000e-03 &       0.001 &  5.000000e-03 &  7.000000e-03 &  1.100000e-02 &  1.540000e-01 \\
+ret\_3\_1\_x              &  531461.0 &  3.300000e-02 &  1.990000e-01 &      -0.831 & -6.100000e-02 &  2.000000e-02 &  1.090000e-01 &  3.342000e+00 \\
+ret\_9\_1\_x              &  531461.0 &  1.300000e-01 &  4.620000e-01 &      -0.955 & -8.700000e-02 &  6.700000e-02 &  2.590000e-01 &  9.274000e+00 \\
+ret\_12\_7\_x             &  531461.0 &  7.800000e-02 &  3.330000e-01 &      -0.906 & -7.500000e-02 &  3.900000e-02 &  1.840000e-01 &  8.509000e+00 \\
+corr\_1260d\_x           &  531461.0 &  4.620000e-01 &  1.510000e-01 &      -0.010 &  3.610000e-01 &  4.500000e-01 &  5.780000e-01 &  8.220000e-01 \\
+rmax5\_21d\_x            &  531461.0 &  3.200000e-02 &  2.400000e-02 &       0.002 &  1.700000e-02 &  2.500000e-02 &  3.900000e-02 &  3.380000e-01 \\
+rmax5\_rvol\_21d\_x       &  531461.0 &  1.195000e+00 &  4.900000e-01 &       0.112 &  8.620000e-01 &  1.117000e+00 &  1.435000e+00 &  4.329000e+00 \\
+ni\_be\_x                &  531461.0 &  5.000000e-02 &  4.660000e-01 &     -10.754 &  3.800000e-02 &  9.600000e-02 &  1.630000e-01 &  1.451000e+00 \\
+ocf\_at\_x               &  531461.0 &  7.400000e-02 &  1.290000e-01 &      -1.818 &  3.100000e-02 &  8.100000e-02 &  1.330000e-01 &  3.960000e-01 \\
+ocf\_at\_chg1\_x          &  531461.0 &  7.000000e-03 &  1.060000e-01 &      -0.912 & -2.300000e-02 &  1.000000e-03 &  2.700000e-02 &  1.390000e+00 \\
+mispricing\_perf\_x      &  531461.0 &  5.800000e-01 &  1.740000e-01 &       0.031 &  4.650000e-01 &  5.890000e-01 &  7.090000e-01 &  9.240000e-01 \\
+mispricing\_mgmt\_x      &  531461.0 &  4.940000e-01 &  1.650000e-01 &       0.065 &  3.850000e-01 &  5.040000e-01 &  6.150000e-01 &  8.790000e-01 \\
+qmj\_x                  &  531461.0 &  2.090000e-01 &  8.600000e-01 &      -1.698 & -3.550000e-01 &  1.780000e-01 &  9.070000e-01 &  1.698000e+00 \\
+qmj\_prof\_x             &  531461.0 &  3.650000e-01 &  9.230000e-01 &      -1.698 & -3.270000e-01 &  4.870000e-01 &  1.161000e+00 &  1.698000e+00 \\
+qmj\_growth\_x           &  531461.0 &  7.800000e-02 &  8.590000e-01 &      -1.698 & -5.550000e-01 &  1.120000e-01 &  7.300000e-01 &  1.698000e+00 \\
+qmj\_safety\_x           &  531461.0 &  1.040000e-01 &  9.040000e-01 &      -1.698 & -6.120000e-01 &  1.430000e-01 &  8.510000e-01 &  1.708000e+00 \\
+\bottomrule
+\caption{Revised Global Factor Dataset Summary Statistics: Testing Set}
+\label{table:ss-test}
+\end{longtable}
+\end{landscape}
 \end{document}
