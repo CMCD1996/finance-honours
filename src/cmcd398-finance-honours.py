@@ -675,25 +675,39 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
         monthly_groups = regression_df.groupby("mth")
         for month, subset_predictions in monthly_groups:
             # Sort the predicted returns in the sub_predictiosn set
+            print('Subset of predictions before')
+            print(subset_predictions.head())
+            print(subset_predictions.tail())
             subset_predictions.sort_values(
                 by=[dependant_column], ascending=False)
             # Reset the index of this dorted dataframe for forming the hedge portfolio
             subset_predictions.reset_index(drop=True)
+            print('Subset of predictions after')
+            print(subset_predictions.head())
+            print(subset_predictions.tail())
             # Calculates decile 1 (Top 10%)
             decile_length = len(subset_predictions[dependant_column])/10
+            print('decile_length: ', decile_length)
             top_decile = range(0, (int(decile_length - 1)))
             bottom_decile = range((int(9*decile_length)),
                                   (int(10*decile_length-1)))
+            print('top_decile_length: ', top_decile)
+            print('bottom_decile_length: ', bottom_decile)
             # Calculates Hedge Portfolio Return (Decile 1 - Decile 10)
             top_decile_mean = subset_predictions[dependant_column].iloc[top_decile].mean(
                 axis=0)
             bottom_decile_mean = subset_predictions[dependant_column].iloc[bottom_decile].mean(
                 axis=0)
+            print('top_decile_mean: ', top_decile_mean)
+            print('bottom_decile_mean: ', bottom_decile_mean)
             hp_mean = top_decile_mean - bottom_decile_mean
+            print('hp_mean: ', hp_mean)
+            return
             # Forms the hedge portfolio and sets to new row
             new_row = {'mth': int(month), 'hedge_returns': hp_mean}
             # Stores the hedge portfolio return for the month in another dataframe
             hedge_returns = hedge_returns.append(new_row, ignore_index=True)
+        # Creates plots
         # Renames 'Date'  column to 'mth'
         factors_df.rename(columns={'Date': 'mth'}, inplace=True)
         # Convert mth dataframe column to the same dtype (float64)
@@ -1569,211 +1583,218 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
         metrics_storage = []
         other_metrics_storage = []
         for selected_loss in selected_losses:
-            # Loss variables
-            red = 'auto'
-            flt = True
-            ls = 0.0
-            ax = -1
-            dta = 1.0
-            # Loss classes
-            if selected_loss == 'binary_crossentropy':
-                lf = tf.keras.losses.BinaryCrossentropy(
-                    from_logits=flt, label_smoothing=ls, axis=ax, reduction=red, name='binary_crossentropy')
-            if selected_loss == 'categorical_crossentropy':
-                lf = tf.keras.losses.CategoricalCrossentropy(
-                    from_logits=flt, label_smoothing=ls, axis=ax, reduction=red, name='categorical_crossentropy')
-            if selected_loss == 'cosine_similarity':
-                lf = tf.keras.losses.CosineSimilarity(
-                    axis=-1, reduction=red, name='cosine_similarity')
-            if selected_loss == 'hinge':
-                lf = tf.keras.losses.Hinge(reduction=red, name='hinge')
-            if selected_loss == 'huber_loss':
-                lf = tf.keras.losses.Huber(
-                    delta=dta, reduction=red, name='huber_loss')
-            # loss = y_true * log(y_true / y_pred)
-            if selected_loss == 'kl_divergence':
-                lf = tf.keras.losses.KLDivergence(
-                    reduction=red, name='kl_divergence')
-            # logcosh = log((exp(x) + exp(-x))/2), where x is the error y_pred - y_true.
-            if selected_loss == 'log_cosh':
-                lf = tf.keras.losses.LogCosh(reduction=red, name='log_cosh')
-            if selected_loss == 'loss':
-                lf = tf.keras.losses.Loss(reduction=red, name=None)
-            # loss = abs(y_true - y_pred)
-            if selected_loss == 'mean_absolute_error':
-                lf = tf.keras.losses.MeanAbsoluteError(
-                    reduction=red, name='mean_absolute_error')
-            # loss = 100 * abs(y_true - y_pred) / y_true
-            if selected_loss == 'mean_absolute_percentage_error':
-                lf = tf.keras.losses.MeanAbsolutePercentageError(
-                    reduction=red, name='mean_absolute_percentage_error')
-            # loss = square(y_true - y_pred)
-            if selected_loss == 'mean_squared_error':
-                lf = tf.keras.losses.MeanSquaredError(
-                    reduction=red, name='mean_squared_error')
-            # loss = square(log(y_true + 1.) - log(y_pred + 1.))
-            if selected_loss == 'mean_squared_logarithmic_error':
-                lf = tf.keras.losses.MeanSquaredLogarithmicError(
-                    reduction=red, name='mean_squared_logarithmic_error')
-            # loss = y_pred - y_true * log(y_pred)
-            if selected_loss == 'poisson':
-                lf = tf.keras.losses.Poisson(reduction=red, name='poisson')
-            if selected_loss == 'sparse_categorical_crossentropy':
-                lf = tf.keras.losses.SparseCategoricalCrossentropy(
-                    from_logits=flt, reduction=red, name='sparse_categorical_crossentropy')
-            # loss = square(maximum(1 - y_true * y_pred, 0))
-            if selected_loss == 'squared_hinge':
-                lf = tf.keras.losses.SquaredHinge(
-                    reduction=red, name='squared_hinge')
-            # Custom Losses
-            if selected_loss == 'custom_mse':
-                lf = custom_mse(extra_tensor=None, reduction=red,
-                                name='custom_mse')
-            if selected_loss == 'custom_hp':
-                lf = custom_hp(extra_tensor=None, reduction=red,
-                               name='custom_hp')
-            if selected_loss == 'custom_sharpe':
-                lf = custom_sharpe(extra_tensor=None, reduction=red,
-                                   name='custom_sharpe')
-            if selected_loss == 'custom_information':
-                lf = custom_information(extra_tensor=None, reduction=red,
-                                        name='custom_information')
-            if selected_loss == 'custom_treynor':
-                lf = custom_treynor(extra_tensor=None, reduction=red,
-                                    name='custom_treynor')
-            if selected_loss == 'custom_hp_mse':
-                lf = custom_hp_mse(extra_tensor=None, reduction=red,
-                                   name='custom_hp_mse')
-            if selected_loss == 'custom_sharpe_mse':
-                lf = custom_sharpe_mse(extra_tensor=None, reduction=red,
-                                       name='custom_sharpe_mse')
-            if selected_loss == 'custom_information_mse':
-                lf = custom_information_mse(extra_tensor=None, reduction=red,
-                                            name='custom_information_mse')
-            #################################################################################
-            # Compiler
-            #################################################################################
-            # Compiler variables
-            # Establishes the compiler
-            print('Start: Model Compilation')
-            print('Metrics List', metrics_list)
-            model.compile(
-                optimizer=opt, loss=lf, metrics=metrics_list, loss_weights=lw,
-                weighted_metrics=wm, run_eagerly=regly, steps_per_execution=spe)
-            print('End: Model Compilation')
-            #################################################################################
-            # Visualise model (https://www.tensorflow.org/api_docs/python/tf/keras/utils/plot_model)
-            #################################################################################
-            # Visualisation variables
-            to_file = '/home/connormcdowall/finance-honours/results/plots/tensorflow-visualisations/' + \
-                model_name + '.png'
-            show_shapes = True
-            show_dtype = False
-            show_layer_names = True
-            rankdir = 'TB'  # TB (Top Bottom), LR (Left Right)
-            expand_nested = False
-            dpi = 96
-            layer_range = None
-            show_layer_activations = False
-            # Creates a plot of the model
-            tf.keras.utils.plot_model(model, to_file, show_shapes, show_dtype,
-                                      show_layer_names, rankdir, expand_nested, dpi, layer_range, show_layer_activations)
-            # Prints a summary of the model
-            print('Model Summary')
-            print(model.summary())
-            #################################################################################
-            # Model.fit (https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit)
-            #################################################################################
-            # Fit variables
-            x_train = train_dataset
-            y = None  # If x is a dataset, generator, or keras.utils.Sequence instance, y should
-            # not be specified (since targets will be obtained from x).
-            batch_size = None  # Defaults to 32
-            eps = 10  # Integer. Number of epochs to train the model. An epoch is an iteration over
-            # the entire x and y data provided (unless the steps_per_epoch flag is set to something other than None).
-            verbose = 'auto'
-            callbacks = None
-            validation_split = 0.0  # Not support when x is a dataset
-            validation_data = val_dataset
-            # Ignored when x is a generator or an object of tf.data.Dataset (This case)
-            shuffle = True
-            # Optional dictionary mapping class indices (integers) to a
-            class_weight = None
-            # continued: weight (float) value, used for weighting the loss function (during training only)
-            sample_weight = None  # This argument is not supported when x is a dataset
-            # Integer. Epoch at which to start training (useful for resuming a previous training run).
-            initial_epoch = 0
-            # If x is a tf.data dataset, and 'steps_per_epoch' is None, the epoch will run until the input dataset is exhausted.
-            steps_per_epoch = None
-            # Only relevant if validation_data is provided and is a tf.data dataset.
-            validation_steps = None
-            # Continued: If 'validation_steps' is None, validation will run until the validation_data dataset is exhausted.
-            # Do not specify the validation_batch_size if your data is in the form of datasets
-            validation_batch_size = None
-            validation_freq = 1
-            # Integer. Used for generator or keras.utils.Sequence input only.
-            max_queue_size = 10
-            # Continued: Maximum size for the generator queue. If unspecified, max_queue_size will default to 10.
-            # Integer. Used for generator or keras.utils.Sequence input only (Not this case)
-            workers = 1
-            # Boolean. Used for generator or keras.utils.Sequence input only.
-            use_multiprocessing = False
-            # Sets Neptune ai
-            project = "connormcdowall/finance-honours"
-            api_token = "eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vYXBwLm5lcHR1bmUuYWkiLCJhcGlfdXJsIjoiaHR0cHM6Ly9hcHAubmVwdHVuZS5haSIsImFwaV9rZXkiOiI4YzBmOTFlNS0zZTFiLTQyNDUtOGFjZi1jZGI0NDY4ZGVkOTQifQ=="
-            # Configures neptune ai
-            neptune_cbk = configure_training_ui(project, api_token)
-            # Fit the model
-            print('Start: Model Fitting')
-            model.fit(x=x_train, batch_size=32, epochs=eps,
-                      verbose='auto', validation_data=val_dataset, callbacks=[neptune_cbk])
-            # model.fit(x=x_train, batch_size=32, epochs=eps, verbose='auto',
-            #     callbacks=None, validation_data=val_dataset, shuffle=True,
-            #     class_weight=None, sample_weight=None, initial_epoch=0, steps_per_epoch=None,
-            #     validation_steps=None, max_queue_size=10, workers=1, use_multiprocessing=False)
-            print('End: Model Fitting')
-            # model.fit(x, batch_size, epochs=eps, verbose='auto',
-            # callbacks, validation_data, shuffle,
-            # class_weight, sample_weight, initial_epoch, steps_per_epoch,
-            # validation_steps, validation_batch_size, validation_freq,
-            # max_queue_size, workers, use_multiprocessing)
-            #################################################################################
-            # Model.evaluate (https://www.tensorflow.org/api_docs/python/tf/keras/Model#evaluate)
-            #################################################################################
-            # Evaluation variables
-            x_test = test_dataset
-            # Only use if target variables not specified in dataset, must align with x.
-            y = None
-            batch_size = None  # Defaults to 32
-            verb = 1  # 0 or 1. Verbosity mode. 0 = silent, 1 = progress bar.
-            sample_weight = None  # Optional, This argument is not supported when x is a dataset
-            steps = None  # If x is a tf.data dataset and steps is None, 'evaluate' will run until the dataset is exhausted
-            callbacks = None
-            mqs = 10  # Max queue size. If unspecified, max_queue_size will default to 10
-            workers = 1  # Integer. Used for generator or keras.utils.Sequence
-            # use_multiprocessing, boolean. Used for generator or keras.utils.Sequence input only.
-            ump = False
-            # Continued: If True, use process-based threading. If unspecified, use_multiprocessing will default to False.
-            rd = False  # If True, loss and metric results are returned as a dict,
-            # with each key being the name of the metric. If False, they are returned as a list.
-            # Model evaluation
-            print('Start: Model Evaluation')
-            loss, metrics, *other_metrics = model.evaluate(x_test, batch_size=None, verbose=verb, steps=None, callbacks=None,
-                                                           max_queue_size=mqs, workers=1, use_multiprocessing=ump, return_dict=rd)
-            #################################################################################
-            print('End: Model Evaluation')
-            print("Loss: ", loss)
-            print("Metric Descriptions: ", model.metrics_names)
-            print("Metric Values: ", metrics)
-            # Save the model
-            model.save(
-                '/home/connormcdowall/finance-honours/results/models/tensorflow/'+model_name + '-' + selected_loss)
-            # Monitor memory usage
-            monitor_memory_usage(units=3, cpu=True, gpu=True)
-            models.append(model)
-            losses.append(loss)
-            metrics_storage.append(metrics)
-            other_metrics_storage.append(other_metrics)
+            # Change back as only building and testing three models (tabed)
+            if selected_loss in ['mean_squared_error', 'custom_mse', 'custom_hp']:
+                # Loss variables
+                red = 'auto'
+                flt = True
+                ls = 0.0
+                ax = -1
+                dta = 1.0
+                # Loss classes
+                if selected_loss == 'binary_crossentropy':
+                    lf = tf.keras.losses.BinaryCrossentropy(
+                        from_logits=flt, label_smoothing=ls, axis=ax, reduction=red, name='binary_crossentropy')
+                if selected_loss == 'categorical_crossentropy':
+                    lf = tf.keras.losses.CategoricalCrossentropy(
+                        from_logits=flt, label_smoothing=ls, axis=ax, reduction=red, name='categorical_crossentropy')
+                if selected_loss == 'cosine_similarity':
+                    lf = tf.keras.losses.CosineSimilarity(
+                        axis=-1, reduction=red, name='cosine_similarity')
+                if selected_loss == 'hinge':
+                    lf = tf.keras.losses.Hinge(reduction=red, name='hinge')
+                if selected_loss == 'huber_loss':
+                    lf = tf.keras.losses.Huber(
+                        delta=dta, reduction=red, name='huber_loss')
+                # loss = y_true * log(y_true / y_pred)
+                if selected_loss == 'kl_divergence':
+                    lf = tf.keras.losses.KLDivergence(
+                        reduction=red, name='kl_divergence')
+                # logcosh = log((exp(x) + exp(-x))/2), where x is the error y_pred - y_true.
+                if selected_loss == 'log_cosh':
+                    lf = tf.keras.losses.LogCosh(
+                        reduction=red, name='log_cosh')
+                if selected_loss == 'loss':
+                    lf = tf.keras.losses.Loss(reduction=red, name=None)
+                # loss = abs(y_true - y_pred)
+                if selected_loss == 'mean_absolute_error':
+                    lf = tf.keras.losses.MeanAbsoluteError(
+                        reduction=red, name='mean_absolute_error')
+                # loss = 100 * abs(y_true - y_pred) / y_true
+                if selected_loss == 'mean_absolute_percentage_error':
+                    lf = tf.keras.losses.MeanAbsolutePercentageError(
+                        reduction=red, name='mean_absolute_percentage_error')
+                # loss = square(y_true - y_pred)
+                if selected_loss == 'mean_squared_error':
+                    lf = tf.keras.losses.MeanSquaredError(
+                        reduction=red, name='mean_squared_error')
+                # loss = square(log(y_true + 1.) - log(y_pred + 1.))
+                if selected_loss == 'mean_squared_logarithmic_error':
+                    lf = tf.keras.losses.MeanSquaredLogarithmicError(
+                        reduction=red, name='mean_squared_logarithmic_error')
+                # loss = y_pred - y_true * log(y_pred)
+                if selected_loss == 'poisson':
+                    lf = tf.keras.losses.Poisson(reduction=red, name='poisson')
+                if selected_loss == 'sparse_categorical_crossentropy':
+                    lf = tf.keras.losses.SparseCategoricalCrossentropy(
+                        from_logits=flt, reduction=red, name='sparse_categorical_crossentropy')
+                # loss = square(maximum(1 - y_true * y_pred, 0))
+                if selected_loss == 'squared_hinge':
+                    lf = tf.keras.losses.SquaredHinge(
+                        reduction=red, name='squared_hinge')
+                # Custom Losses
+                if selected_loss == 'custom_mse':
+                    lf = custom_mse(extra_tensor=None, reduction=red,
+                                    name='custom_mse')
+                if selected_loss == 'custom_hp':
+                    lf = custom_hp(extra_tensor=None, reduction=red,
+                                   name='custom_hp')
+                if selected_loss == 'custom_sharpe':
+                    lf = custom_sharpe(extra_tensor=None, reduction=red,
+                                       name='custom_sharpe')
+                if selected_loss == 'custom_information':
+                    lf = custom_information(extra_tensor=None, reduction=red,
+                                            name='custom_information')
+                if selected_loss == 'custom_treynor':
+                    lf = custom_treynor(extra_tensor=None, reduction=red,
+                                        name='custom_treynor')
+                if selected_loss == 'custom_hp_mse':
+                    lf = custom_hp_mse(extra_tensor=None, reduction=red,
+                                       name='custom_hp_mse')
+                if selected_loss == 'custom_sharpe_mse':
+                    lf = custom_sharpe_mse(extra_tensor=None, reduction=red,
+                                           name='custom_sharpe_mse')
+                if selected_loss == 'custom_information_mse':
+                    lf = custom_information_mse(extra_tensor=None, reduction=red,
+                                                name='custom_information_mse')
+                #################################################################################
+                # Compiler
+                #################################################################################
+                # Compiler variables
+                # Establishes the compiler
+                print('Start: Model Compilation')
+                print('Metrics List', metrics_list)
+                model.compile(
+                    optimizer=opt, loss=lf, metrics=metrics_list, loss_weights=lw,
+                    weighted_metrics=wm, run_eagerly=regly, steps_per_execution=spe)
+                print('End: Model Compilation')
+                #################################################################################
+                # Visualise model (https://www.tensorflow.org/api_docs/python/tf/keras/utils/plot_model)
+                #################################################################################
+                # Visualisation variables
+                to_file = '/home/connormcdowall/finance-honours/results/plots/tensorflow-visualisations/' + \
+                    model_name + '.png'
+                show_shapes = True
+                show_dtype = False
+                show_layer_names = True
+                rankdir = 'TB'  # TB (Top Bottom), LR (Left Right)
+                expand_nested = False
+                dpi = 96
+                layer_range = None
+                show_layer_activations = False
+                # Creates a plot of the model
+                tf.keras.utils.plot_model(model, to_file, show_shapes, show_dtype,
+                                          show_layer_names, rankdir, expand_nested, dpi, layer_range, show_layer_activations)
+                # Prints a summary of the model
+                print('Model Summary')
+                print(model.summary())
+                #################################################################################
+                # Model.fit (https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit)
+                #################################################################################
+                # Fit variables
+                x_train = train_dataset
+                y = None  # If x is a dataset, generator, or keras.utils.Sequence instance, y should
+                # not be specified (since targets will be obtained from x).
+                batch_size = None  # Defaults to 32
+                eps = 10  # Integer. Number of epochs to train the model. An epoch is an iteration over
+                # the entire x and y data provided (unless the steps_per_epoch flag is set to something other than None).
+                verbose = 'auto'
+                callbacks = None
+                validation_split = 0.0  # Not support when x is a dataset
+                validation_data = val_dataset
+                # Ignored when x is a generator or an object of tf.data.Dataset (This case)
+                shuffle = True
+                # Optional dictionary mapping class indices (integers) to a
+                class_weight = None
+                # continued: weight (float) value, used for weighting the loss function (during training only)
+                sample_weight = None  # This argument is not supported when x is a dataset
+                # Integer. Epoch at which to start training (useful for resuming a previous training run).
+                initial_epoch = 0
+                # If x is a tf.data dataset, and 'steps_per_epoch' is None, the epoch will run until the input dataset is exhausted.
+                steps_per_epoch = None
+                # Only relevant if validation_data is provided and is a tf.data dataset.
+                validation_steps = None
+                # Continued: If 'validation_steps' is None, validation will run until the validation_data dataset is exhausted.
+                # Do not specify the validation_batch_size if your data is in the form of datasets
+                validation_batch_size = None
+                validation_freq = 1
+                # Integer. Used for generator or keras.utils.Sequence input only.
+                max_queue_size = 10
+                # Continued: Maximum size for the generator queue. If unspecified, max_queue_size will default to 10.
+                # Integer. Used for generator or keras.utils.Sequence input only (Not this case)
+                workers = 1
+                # Boolean. Used for generator or keras.utils.Sequence input only.
+                use_multiprocessing = False
+                # Sets Neptune ai
+                project = "connormcdowall/finance-honours"
+                api_token = "eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vYXBwLm5lcHR1bmUuYWkiLCJhcGlfdXJsIjoiaHR0cHM6Ly9hcHAubmVwdHVuZS5haSIsImFwaV9rZXkiOiI4YzBmOTFlNS0zZTFiLTQyNDUtOGFjZi1jZGI0NDY4ZGVkOTQifQ=="
+                # Configures neptune ai
+                neptune_cbk = configure_training_ui(project, api_token)
+                # Fit the model
+                print('Start: Model Fitting')
+                # Sets up early stopping callback to accompany neptune.ai
+                early_stop_callback = tf.keras.callbacks.EarlyStopping(
+                    monitor='loss', patience=3)
+                model.fit(x=x_train, batch_size=32, epochs=eps,
+                          verbose='auto', validation_data=val_dataset, callbacks=[neptune_cbk, early_stop_callback])
+                # model.fit(x=x_train, batch_size=32, epochs=eps, verbose='auto',
+                #     callbacks=None, validation_data=val_dataset, shuffle=True,
+                #     class_weight=None, sample_weight=None, initial_epoch=0, steps_per_epoch=None,
+                #     validation_steps=None, max_queue_size=10, workers=1, use_multiprocessing=False)
+                print('End: Model Fitting')
+                # model.fit(x, batch_size, epochs=eps, verbose='auto',
+                # callbacks, validation_data, shuffle,
+                # class_weight, sample_weight, initial_epoch, steps_per_epoch,
+                # validation_steps, validation_batch_size, validation_freq,
+                # max_queue_size, workers, use_multiprocessing)
+                #################################################################################
+                # Model.evaluate (https://www.tensorflow.org/api_docs/python/tf/keras/Model#evaluate)
+                #################################################################################
+                # Evaluation variables
+                x_test = test_dataset
+                # Only use if target variables not specified in dataset, must align with x.
+                y = None
+                batch_size = None  # Defaults to 32
+                # 0 or 1. Verbosity mode. 0 = silent, 1 = progress bar.
+                verb = 1
+                sample_weight = None  # Optional, This argument is not supported when x is a dataset
+                steps = None  # If x is a tf.data dataset and steps is None, 'evaluate' will run until the dataset is exhausted
+                callbacks = None
+                mqs = 10  # Max queue size. If unspecified, max_queue_size will default to 10
+                workers = 1  # Integer. Used for generator or keras.utils.Sequence
+                # use_multiprocessing, boolean. Used for generator or keras.utils.Sequence input only.
+                ump = False
+                # Continued: If True, use process-based threading. If unspecified, use_multiprocessing will default to False.
+                rd = False  # If True, loss and metric results are returned as a dict,
+                # with each key being the name of the metric. If False, they are returned as a list.
+                # Model evaluation
+                print('Start: Model Evaluation')
+                loss, metrics, *other_metrics = model.evaluate(x_test, batch_size=None, verbose=verb, steps=None, callbacks=None,
+                                                               max_queue_size=mqs, workers=1, use_multiprocessing=ump, return_dict=rd)
+                #################################################################################
+                print('End: Model Evaluation')
+                print("Loss: ", loss)
+                print("Metric Descriptions: ", model.metrics_names)
+                print("Metric Values: ", metrics)
+                # Save the model (Change back once tested)
+                model.save(
+                    '/home/connormcdowall/finance-honours/results/models/tensorflow/'+model_name + '-' + selected_loss + 'es')
+                # Monitor memory usage
+                monitor_memory_usage(units=3, cpu=True, gpu=True)
+                models.append(model)
+                losses.append(loss)
+                metrics_storage.append(metrics)
+                other_metrics_storage.append(other_metrics)
             # Return the model, loss and accuracy
         return models, losses, metrics_storage, other_metrics_storage
     else:
@@ -2789,7 +2810,7 @@ rank_functions = False
 # Model Building
 create_models = False
 make_predictions = False
-perform_regressions = False
+perform_regressions = True
 # Output
 convert_text = False
 #################################################################################
