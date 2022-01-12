@@ -1141,7 +1141,7 @@ def create_tf_dataset(dataframe, target_column, shuffle=True, batch_size=32):
     # Print dataframe to ensure order is preserved
     ds = tf.data.Dataset.from_tensor_slices((dict(df), labels))
     if shuffle:
-        ds = ds.shuffle(buffer_size=(int(len(dataframe)/20)))
+        ds = ds.shuffle(buffer_size=(int(len(dataframe)/40)))
     ds = ds.batch(batch_size)
     ds = ds.prefetch(batch_size)
     print('Create Dataset: Successful')
