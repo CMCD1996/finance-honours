@@ -812,13 +812,13 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
         if realised_returns:
             return
     # Creates metrics dataframes and saves to latex variable
-    metrics_df_cols = ['Loss Function', 'Mean',
-                       'Sharpe Ratio', 'Treynor']
+    metrics_df_cols = ['Loss Function', 'HP Mean',
+                       'Sharpe Ratio', 'Treynor Ratio']
     metrics_df = pd.DataFrame(columns=metrics_df_cols)
-    metrics_df['Mean'] = hp_means
+    metrics_df['HP Mean'] = hp_means
     metrics_df['Loss Function'] = selected_losses
     metrics_df['Sharpe Ratio'] = hp_sharpes
-    metrics_df['Treynor'] = hp_treynors
+    metrics_df['Treynor Ratio'] = hp_treynors
     # Only extract the most relevant factors
     truncate = True
     if truncate:
@@ -2789,9 +2789,9 @@ rank_functions = False
 # Model Building
 create_models = False
 make_predictions = False
-perform_regressions = True
+perform_regressions = False
 # Output
-convert_text = True
+convert_text = False
 #################################################################################
 # Function Testing
 #################################################################################
