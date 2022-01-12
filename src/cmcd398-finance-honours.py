@@ -989,16 +989,15 @@ def execute_conversion_options(model_name, selected_losses, hp_ols=False, pooled
         selected_losses.append('realised-excess-returns')
         replacement_set_losses.append('realised excess returns')
     for loss in selected_losses:
-        # /home/connormcdowall/finance-honours/results/tables/
+        replacement_text = 'One Month Lead Excess Portfolio Return using ' + \
+            replacement_set_losses[replace_count]
+        # Get model accruracy measures
         if loss in ['mean_squared_error', 'custom_mse', 'custom_hp']:
             fp_in = base_directory_in + 'pooled-ols/accuracy/' + \
                 model_name + '-' + loss + '.txt'
             fp_out = base_directory_out + model_name + '-' + loss + '-accuracy.tex'
             convert_txt_to_tex(fp_in, fp_out, replace_text=False,
                                replacement_text=replacement_text)
-
-        replacement_text = 'One Month Lead Excess Portfolio Return using ' + \
-            replacement_set_losses[replace_count]
         if hp_ols:
             fp_in = base_directory_in + 'hedge-portfolio-ols/' + \
                 model_name + '-' + loss + '.txt'
