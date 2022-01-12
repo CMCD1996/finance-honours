@@ -541,12 +541,16 @@ Both Sharpe and Information ratios supplement hedge portfolio-related loss funct
 \newpage
 \section{Results}
 \subsection{Performance Matrix}
-
+\input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-calculations-metrics}.tex}
 \cite{hlavac2018stargazer} enables the tables in the regression analysis.
 \newpage
 \begin{landscape}
 \subsection{Model Accuracy}
 \subsubsection{Model Loss}
+Table X illustrates the performance of each model during training, validation, and testing.
+
+Table X informs the accruracy of predictions 
+\input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-regression-metrics}.tex}
 Fama MacBeth Regressions using individual securities.
 PooledOLS replaces Fama MacBeth in this instance.
 \subsection{Hedge Portfolio Performance}
@@ -671,7 +675,13 @@ Equation \ref{gma4} captures homoskedasticity and no autocorrelation assumptions
     \label{fig:hp-performance}
 \end{figure}
 \newpage
-\subsection{Pooled Ordinary Least Square Regressions}
+\subsection{Pooled Ordinary Least Square Regressions} \label{polsr}
+\subsubsection{In-Built Mean Square Error}
+\input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-mean_squared_error-accuracy}.tex}
+\subsubsection{Custom Mean Square Error}
+\input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse-accuracy}.tex}
+\subsubsection{Custom Hedge Portfolio}
+\input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_hp-accuracy}.tex}
 \subsection{Technical Details}
 \subsubsection{Organisation}
 This research essay uses data science best practise (\cite{J:10}).

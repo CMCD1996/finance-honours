@@ -112,24 +112,30 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {12.3}Pooled Ordinary Least Square Regressions}{40}{subsection.12.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {12.4}Technical Details}{40}{subsection.12.4}%
+\contentsline {subsubsection}{\numberline {12.3.1}In-Built Mean Square Error}{40}{subsubsection.12.3.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {12.4.1}Organisation}{40}{subsubsection.12.4.1}%
+\contentsline {subsubsection}{\numberline {12.3.2}Custom Mean Square Error}{41}{subsubsection.12.3.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {12.4.2}Version Control}{40}{subsubsection.12.4.2}%
+\contentsline {subsubsection}{\numberline {12.3.3}Custom Hedge Portfolio}{42}{subsubsection.12.3.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {12.4.3}Directories}{41}{subsubsection.12.4.3}%
+\contentsline {subsection}{\numberline {12.4}Technical Details}{42}{subsection.12.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {12.4.4}Python}{41}{subsubsection.12.4.4}%
+\contentsline {subsubsection}{\numberline {12.4.1}Organisation}{42}{subsubsection.12.4.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {12.4.5}Package Management}{41}{subsubsection.12.4.5}%
+\contentsline {subsubsection}{\numberline {12.4.2}Version Control}{43}{subsubsection.12.4.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {12.4.6}Code Style}{42}{subsubsection.12.4.6}%
+\contentsline {subsubsection}{\numberline {12.4.3}Directories}{43}{subsubsection.12.4.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {12.4.7}Infrastructure}{42}{subsubsection.12.4.7}%
+\contentsline {subsubsection}{\numberline {12.4.4}Python}{44}{subsubsection.12.4.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {12.4.8}Documentation}{42}{subsubsection.12.4.8}%
+\contentsline {subsubsection}{\numberline {12.4.5}Package Management}{44}{subsubsection.12.4.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {12.5}Dataset Summary Statistics}{43}{subsection.12.5}%
+\contentsline {subsubsection}{\numberline {12.4.6}Code Style}{44}{subsubsection.12.4.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {12.6}Code}{57}{subsection.12.6}%
+\contentsline {subsubsection}{\numberline {12.4.7}Infrastructure}{45}{subsubsection.12.4.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {12.4.8}Documentation}{45}{subsubsection.12.4.8}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {12.5}Dataset Summary Statistics}{46}{subsection.12.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {12.6}Code}{60}{subsection.12.6}%
