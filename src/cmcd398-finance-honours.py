@@ -710,7 +710,7 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
         exog = sm.add_constant(data[exog_vars])
         fb = lm.PooledOLS(data['predict'], exog).fit(
             cov_type='clustered', cluster_entity=True, cluster_time=True)
-        with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/accuracy/' + model_name + '-' + loss + '-.txt', 'w') as f:
+        with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/accuracy/' + model_name + '-' + loss + '.txt', 'w') as f:
             f.truncate(0)
             print(fb.summary.as_latex(), file=f)
             f.close()
