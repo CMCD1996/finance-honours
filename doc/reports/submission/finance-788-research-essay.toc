@@ -72,72 +72,62 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {11.1}Performance Matrix}{27}{subsection.11.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {11.2}Hedge Portfolio Performance}{28}{subsection.11.2}%
+\contentsline {subsection}{\numberline {11.2}Model Accuracy}{28}{subsection.11.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {11.2.1}Mean Square Error (Tensorflow)}{28}{subsubsection.11.2.1}%
+\contentsline {subsection}{\numberline {11.3}Hedge Portfolio Performance}{28}{subsection.11.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {11.2.2}Mean Square Error}{29}{subsubsection.11.2.2}%
+\contentsline {subsubsection}{\numberline {11.3.1}Mean Square Error (Tensorflow)}{28}{subsubsection.11.3.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {11.2.3}Hedge Portfolio}{30}{subsubsection.11.2.3}%
+\contentsline {subsubsection}{\numberline {11.3.2}Mean Square Error}{29}{subsubsection.11.3.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {11.2.4}Sharpe Ratio}{31}{subsubsection.11.2.4}%
+\contentsline {subsubsection}{\numberline {11.3.3}Hedge Portfolio}{30}{subsubsection.11.3.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {11.2.5}Sharpe Ratio (MSE)}{32}{subsubsection.11.2.5}%
+\contentsline {subsubsection}{\numberline {11.3.4}Sharpe Ratio}{31}{subsubsection.11.3.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {11.2.6}Information Ratio}{33}{subsubsection.11.2.6}%
+\contentsline {subsubsection}{\numberline {11.3.5}Sharpe Ratio (MSE)}{32}{subsubsection.11.3.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {11.3}Individual Panel Regressions}{34}{subsection.11.3}%
+\contentsline {subsubsection}{\numberline {11.3.6}Information Ratio}{33}{subsubsection.11.3.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {11.3.1}Realised Excess Returns}{34}{subsubsection.11.3.1}%
+\contentsline {subsection}{\numberline {11.4}Individual Panel Regressions}{34}{subsection.11.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {11.3.2}Mean Square Error (Tensorflow)}{38}{subsubsection.11.3.2}%
+\contentsline {section}{\numberline {12}Discussion}{34}{section.12}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {11.3.3}Mean Square Error}{42}{subsubsection.11.3.3}%
+\contentsline {section}{\numberline {13}Contributions}{34}{section.13}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {11.3.4}Hedge Portfolio}{46}{subsubsection.11.3.4}%
+\contentsline {section}{\numberline {14}Conclusion}{34}{section.14}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {11.3.5}Sharpe Ratio}{50}{subsubsection.11.3.5}%
+\contentsline {section}{\numberline {15}Appendix}{37}{section.15}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {11.3.6}Sharpe Ratio (MSE)}{54}{subsubsection.11.3.6}%
+\contentsline {subsection}{\numberline {15.1}Ordinary Least Squares (OLS)}{37}{subsection.15.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {11.3.7}Information Ratio}{58}{subsubsection.11.3.7}%
+\contentsline {subsubsection}{\numberline {15.1.1}Estimation Criteria}{37}{subsubsection.15.1.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {12}Discussion}{61}{section.12}%
+\contentsline {subsubsection}{\numberline {15.1.2}Properties of OLS Estimators}{38}{subsubsection.15.1.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {13}Contributions}{61}{section.13}%
+\contentsline {subsubsection}{\numberline {15.1.3}The Gauss-Markov Theorem}{39}{subsubsection.15.1.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {14}Conclusion}{61}{section.14}%
+\contentsline {subsection}{\numberline {15.2}Tensorflow Model Performance}{40}{subsection.15.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {15}Appendix}{64}{section.15}%
+\contentsline {subsection}{\numberline {15.3}Pooled Ordinary Least Square Regressions}{43}{subsection.15.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {15.1}Ordinary Least Squares (OLS)}{64}{subsection.15.1}%
+\contentsline {subsection}{\numberline {15.4}Technical Details}{43}{subsection.15.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {15.1.1}Estimation Criteria}{64}{subsubsection.15.1.1}%
+\contentsline {subsubsection}{\numberline {15.4.1}Organisation}{43}{subsubsection.15.4.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {15.1.2}Properties of OLS Estimators}{65}{subsubsection.15.1.2}%
+\contentsline {subsubsection}{\numberline {15.4.2}Version Control}{43}{subsubsection.15.4.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {15.1.3}The Gauss-Markov Theorem}{66}{subsubsection.15.1.3}%
+\contentsline {subsubsection}{\numberline {15.4.3}Directories}{44}{subsubsection.15.4.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {15.2}Tensorflow Model Performance}{67}{subsection.15.2}%
+\contentsline {subsubsection}{\numberline {15.4.4}Python}{44}{subsubsection.15.4.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {15.3}Technical Details}{70}{subsection.15.3}%
+\contentsline {subsubsection}{\numberline {15.4.5}Package Management}{44}{subsubsection.15.4.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {15.3.1}Organisation}{70}{subsubsection.15.3.1}%
+\contentsline {subsubsection}{\numberline {15.4.6}Code Style}{45}{subsubsection.15.4.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {15.3.2}Version Control}{70}{subsubsection.15.3.2}%
+\contentsline {subsubsection}{\numberline {15.4.7}Infrastructure}{45}{subsubsection.15.4.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {15.3.3}Directories}{71}{subsubsection.15.3.3}%
+\contentsline {subsubsection}{\numberline {15.4.8}Documentation}{45}{subsubsection.15.4.8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {15.3.4}Python}{71}{subsubsection.15.3.4}%
+\contentsline {subsection}{\numberline {15.5}Dataset Summary Statistics}{46}{subsection.15.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {15.3.5}Package Management}{71}{subsubsection.15.3.5}%
-\defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {15.3.6}Code Style}{72}{subsubsection.15.3.6}%
-\defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {15.3.7}Infrastructure}{72}{subsubsection.15.3.7}%
-\defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {15.3.8}Documentation}{72}{subsubsection.15.3.8}%
-\defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {15.4}Dataset Summary Statistics}{73}{subsection.15.4}%
-\defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {15.5}Code}{87}{subsection.15.5}%
+\contentsline {subsection}{\numberline {15.6}Code}{60}{subsection.15.6}%
