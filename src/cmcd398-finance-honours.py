@@ -679,7 +679,7 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             print(subset_predictions.head())
             print(subset_predictions.tail())
             subset_predictions.sort_values(
-                by=[dependant_column], ascending=False)
+                by=[dependant_column], ascending=False, inplace=True)
             # Reset the index of this dorted dataframe for forming the hedge portfolio
             subset_predictions.reset_index(drop=True)
             print('Subset of predictions after')
