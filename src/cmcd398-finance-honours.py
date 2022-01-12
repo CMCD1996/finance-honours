@@ -811,13 +811,13 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
         if realised_returns:
             return
     # Creates metrics dataframes and saves to latex variable
-    metrics_df_cols = ['Loss Function', 'Hedge Portfolio Mean',
-                       'Hedge Portfolio Sharpe Ratio', 'Hedge Portfolio Treynor']
+    metrics_df_cols = ['Loss Function', 'Mean',
+                       'Sharpe Ratio', 'Treynor']
     metrics_df = pd.DataFrame(columns=metrics_df_cols)
-    metrics_df['Hedge Portfolio Mean'] = hp_means
+    metrics_df['Mean'] = hp_means
     metrics_df['Loss Function'] = selected_losses
-    metrics_df['Hedge Portfolio Sharpe Ratio'] = hp_sharpes
-    metrics_df['Hedge Portfolio Treynor'] = hp_treynors
+    metrics_df['Sharpe Ratio'] = hp_sharpes
+    metrics_df['Treynor'] = hp_treynors
     # Only extract the most relevant factors
     truncate = True
     if truncate:
