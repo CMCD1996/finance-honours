@@ -655,6 +655,9 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
     # permno is the permanent unique firm identifier
     # Reads in all the pandas dataframes
     factors_df = pd.read_csv(factor_location)
+    # Divide factors in dataframe by 100 to convert to decimals from percentages
+    factors_df[['Mkt-RF', 'SMB', 'HML', 'RMW', 'CMA']
+               ] = factors_df[['Mkt-RF', 'SMB', 'HML', 'RMW', 'CMA']].div(100)
     for loss in selected_losses:
         regression_df = pd.read_csv(
             prediction_location + model_name + '-' + loss + '.csv')
@@ -706,7 +709,7 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             capm_exog_vars = ['Mkt-RF']
             capm_exog = sm.add_constant(data[capm_exog_vars])
             capm_fb = lm.PooledOLS(
-                data[dependant_column], capm_exog).fit(cov_type='robust')
+                data[dependant_column], capm_exog).fit(cov_type='clustered', cluster_entity=True, cluster_time=True)
             with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/capm/' + model_name + '-' + loss + '-capm.txt', 'w') as f:
                 f.truncate(0)
                 print(capm_fb.summary.as_latex(), file=f)
@@ -720,7 +723,7 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             ff3_exog_vars = ['Mkt-RF', 'SMB', 'HML']
             ff3_exog = sm.add_constant(data[ff3_exog_vars])
             ff3_fb = lm.PooledOLS(data[dependant_column],
-                                  ff3_exog).fit(cov_type='robust')
+                                  ff3_exog).fit(cov_type='clustered', cluster_entity=True, cluster_time=True)
             with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/ff3/' + model_name + '-' + loss + '-ff3.txt', 'w') as f:
                 f.truncate(0)
                 print(ff3_fb.summary.as_latex(), file=f)
@@ -734,7 +737,7 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             ff4_exog_vars = ['Mkt-RF', 'SMB', 'HML', 'RMW']
             ff4_exog = sm.add_constant(data[ff4_exog_vars])
             ff4_fb = lm.PooledOLS(data[dependant_column],
-                                  ff4_exog).fit(cov_type='robust')
+                                  ff4_exog).fit(cov_type='clustered', cluster_entity=True, cluster_time=True)
             with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/ff4/' + model_name + '-' + loss + '-ff4.txt', 'w') as f:
                 f.truncate(0)
                 print(ff4_fb.summary.as_latex(), file=f)
@@ -749,7 +752,7 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             ff5_exog_vars = ['Mkt-RF', 'SMB', 'HML', 'RMW', 'CMA']
             ff5_exog = sm.add_constant(data[ff5_exog_vars])
             ff5_fb = lm.PooledOLS(data[dependant_column],
-                                  ff5_exog).fit(cov_type='robust')
+                                  ff5_exog).fit(cov_type='clustered', cluster_entity=True, cluster_time=True)
             with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/ff5/' + model_name + '-' + loss + '-ff5.txt', 'w') as f:
                 f.truncate(0)
                 print(ff5_fb.summary.as_latex(), file=f)
@@ -2726,9 +2729,6 @@ if use_sass:
 if chronologically_sort_data:
     sort_data_chronologically(
         data_vm_directory, size_of_chunks=chunk_size, set_top_500=False)
-if convert_text:
-    execute_conversion_options(model_name, selected_losses,
-                               hp_ols=True, pooled_ols=True, true_excess_returns=True)
 #################################################################################
 # Tensorflow
 #################################################################################
@@ -2763,3 +2763,9 @@ if make_predictions:
 if perform_regressions:
     create_fama_factor_models(model_name=model_name, selected_losses=selected_losses, factor_location=factor_location, prediction_location=predictions_location,
                               dependant_column=dependant_column, regression_dictionary=regression_dictionary, realised_returns=False)
+##################################################################################
+# Output
+##################################################################################
+if convert_text:
+    execute_conversion_options(model_name, selected_losses,
+                               hp_ols=True, pooled_ols=True, true_excess_returns=True)
