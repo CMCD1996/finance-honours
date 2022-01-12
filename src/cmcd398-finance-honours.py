@@ -706,9 +706,9 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
         # Resets the index on both size_grp and mth
         data = regression_df.set_index(['permno', 'mth'])
         # Do Panel Regressions to determine model predictability
-        exog_vars = ['ret_exc_lead1m']
+        exog_vars = ['predict']
         exog = sm.add_constant(data[exog_vars])
-        fb = lm.PooledOLS(data['predict'], exog).fit(
+        fb = lm.PooledOLS(data['ret_exc_lead1m'], exog).fit(
             cov_type='clustered', cluster_entity=True, cluster_time=True)
         with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/accuracy/' + model_name + '-' + loss + '.txt', 'w') as f:
             f.truncate(0)
@@ -989,6 +989,14 @@ def execute_conversion_options(model_name, selected_losses, hp_ols=False, pooled
         selected_losses.append('realised-excess-returns')
         replacement_set_losses.append('realised excess returns')
     for loss in selected_losses:
+        # /home/connormcdowall/finance-honours/results/tables/
+        if loss in ['mean_squared_error', 'custom_mse', 'custom_hp']:
+            fp_in = base_directory_in + 'pooled-ols/accuracy/' + \
+                model_name + '-' + loss + '.txt'
+            fp_out = base_directory_out + model_name + '-' + loss + '-accuracy.tex'
+            convert_txt_to_tex(fp_in, fp_out, replace_text=False,
+                               replacement_text=replacement_text)
+
         replacement_text = 'One Month Lead Excess Portfolio Return using ' + \
             replacement_set_losses[replace_count]
         if hp_ols:
@@ -1005,6 +1013,12 @@ def execute_conversion_options(model_name, selected_losses, hp_ols=False, pooled
                 convert_txt_to_tex(
                     fp_in, fp_out, replace_text=True, replacement_text=replacement_text)
         replace_count = replace_count + 1
+    # Get the metrics file
+    fp_in = base_directory_in + 'metrics/' + \
+        model_name + '-' + loss + '-metrics.txt'
+    fp_out = base_directory_out + model_name + '-' + loss + '-metrics.tex'
+    convert_txt_to_tex(fp_in, fp_out, replace_text=False,
+                       replacement_text=replacement_text)
     return
 #################################################################################
 # Machine Learning
