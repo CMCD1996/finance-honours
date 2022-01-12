@@ -221,7 +221,7 @@ The training, testing, and validation sets consist of \textbf{532218}, \textbf{2
 Subsequently, the revised dataset has 217,321,600 data points.
 Tables \ref{table:ss-train}, \ref{table:ss-test}, and \ref{table:ss-val} in section \ref{dss:ss} describe summary statistics and factor retention after subset revision. 
 
-\subsection{Cloud Infrastructure}
+\subsubsection{Cloud Infrastructure}
 Cloud-centric computational products execute data processing and analysis.
 Google Cloud Platform Cloud Storage buckets and Compute Engine virtual machine (VM) instances manage large datasets and build, train, and evaluate deep neural networks, respectively.
 Cryptographic network protocols, mostly secure shells, establish remote connectivity between local and remote infrastructure to communicate and execute commands.
@@ -234,57 +234,81 @@ Section \ref{technical} elaborates on cloud centric computational approaches and
 
 \subsection{Neural Networks}
 \subsubsection{Normalisation \& Feature Encoding}
-Deep neural networks require tensors as inputs for fitting, training, and evaluating data to make predictions.
+Deep neural networks require tensors as inputs for fitting, training, and evaluating data.
 A tensor is a mathematical object describing the physical properties of an object with multilinear relationships between sets of algebraic objects related in vector space.
 Furthermore, transformation laws govern tensors. 
 Therefore, a tensor is considered an n dimensional array in conjunction with associated transformation laws.
 The dataset, also known as the feature matrix (\textbf{X}), must take the form of a tensor.
-The enumeration of a tensor conversion process follows:
+The enumeration of a tensor conversion process for each data subset follows:
+\singlespacing
 \begin{enumerate} 
 \item Identify target variable(s) for fitting, validation, and prediction.
-\item Shuffle instances in feature matrix to promotes better training by accommodating randomness.
-\item Normalise each numerical feature to zero mean and unit variance
-\item Encode each categorical feature  \footnote{}
-\item Convert both normalised and encoded features to an input tensor layer (one per feature) with aggregations feature designations
-\item Concatenate all input tensor layers 
+\item Configure dataset into a series of tensor slices
+\item Shuffle instances in convert dataset to promotes better training as accommodates randomness
+\item Instantiate an input tensor layer and use to extract required normalisation or encoding layer per feature \label{step-i}
+\item Normalise each numerical feature to zero mean/unit variance, and encode 
+\footnote{Encoding transforms categorical features instances into a series of binary variables.
+These may be one-hot encoded, and/or stored in sparse tensors, depending on input and desired application.} 
+each categorical feature, using encoding layers to form encoded features
+\item Combine instantiated input tensors (\ref{step-i}) into a set of inputs tensors, serving as the inputs fro a configured neural network
+\item Concatenate all encoded features into an aggregate input tensor for an unconfigured neural network. 
+The concatenation serves as the input layer when configuraing a neural network.
 \end{enumerate}
-The revised dataset includes eight categorical variables:
-\begin{enumerate}
-	\item \textbf{size\_group}: The aforementioned size grouping in \ref{data}
-	\item \textbf{permno}: Permanent unique firm identifier from CRSP
-	\item \textbf{permco}: Permanent unique issue identifier from CRSP
-	\item \textbf{crsp\_shrcd}: CRSP share code
-	\item \textbf{crsp\_exchcd}: Compustat stock exchange code
-	\item \textbf{sic}: Firm SIC industry
-	\item \textbf{ff49}: Classification of stocks in 49 industry groups based on SIC codes and the methodology in F.Fama \& K.French \citeyear{fama1997industry} with the addition of the software industry.
-	\item \textbf{adjfct}: Share Adjustment Factor
-\end{enumerate}
-Categorical encoding transforms the set of instances for a features into a series of binary variables.
-These may be one-hot encoded, and/or stored in sparse tensors, depending on input and desired application.
-The remaining variables are numerical where a normalization normalizes each feature to zero mean and unit variance.
+\doublespacing
+The revised datasets consist of eight categorical features
+\footnote{Descriptions of the eight categorical features follow. 
+\textbf{size\_group}, the aforementioned size grouping in section \label{data-processing}. 
+\textbf{permno}, permanent unique firm identifier from CRSP.
+\textbf{permco}, permanent unique issue identifier from CRSP.
+\textbf{crsp\_shrcd}, CRSP share code.
+\textbf{crsp\_exchcd},Compustat stock exchange code.
+\textbf{sic},Firm SIC industry.
+\textbf{ff49}, Classification of stocks in 49 industry groups, based on SIC codes and the methodology in F.Fama \& K.French \citeyear{fama1997industry}, with the addition of the software industry.
+\textbf{adjfct}, Share Adjustment Factor}
+and 152 numerical features.
 \subsection{Neural Network Architecture} \label{nn-architecture}
-\subsubsection{Multi Layer Perceptron (MLP)}\label{mlp-math}
+\subsubsection{Activation Functions, Linear Threshold Units, \& Perceptrons}\label{mlp-math}
 Artificial Neural Nets (ANN) frequently outperform other machine learning algorithms on large and complex problems.
-Linear threshold units (LTU) compose neural networks.
-A linear threshold unit (LTU) feeds the weighted sum of input values (\ref{w-sum}) into a step function (\ref{activation-function}).
-A perceptron is a single layer of LTUs connected to every input.
-Perceptrons are suitable for both regression and classification tasks.
-Perceptrons utilize a training algorithm assessing the strength of connections between perceptrons while considering errors.
-A perceptron is fed one training instance at a time, making predictions for each instance.
+Linear threshold units (LTU) compose neural networks, feeding the weighted sum of input values (\ref{w-sum}) into an activation (step) function (\ref{activation-function}).
+A perceptron is a single layer of LTUs connected to every input, suitable for both regression and classification tasks.
+Perceptrons utilize a training algorithm to assess the strength of connections between perceptrons in consideration of errors.
+A perceptron is fed one training instance sequentially, making predictions for each instance.
 For every output LTU that produced a wrong prediction, it re-enforces the connection weights using the perception learning rule (\ref{mlp-plr}) from the inputs that would have contributed to the right prediction.
-One LTU input layer, multiple LTU hidden layers, and an output LTU layer create an Multi Layer Perceptron (MLP).
-The step functions in each LTU are replaced by a logistic (\ref{ogistic-activation-function}) or ReLU function (\ref{relu-activation-function}) to enable gradient descent for optimisation.
-A shared activatition function replaces the individual activation functions in the output layer to enable exclusive classification or regression.
-The linear activation function (\ref{linear-activation-function}) is most suitable output layer activation function for regression task as predict values between ($-\infty,\infty$) directly, suitable for evaluating excess returns. 
-\begin{align*}
-	z&=\textbf{w}^{T} \cdot \textbf{x} \numberthis \label{w-sum]}\\
-	h_{w}(\textbf{x})&=step(z) \numberthis \label{activation-function}\\
-	\sigma(z)&=\frac{1}{1+ exp(-z)} \numberthis \label{logistic-activation-function} \\
-	ReLU(z) &= max(0,z) \numberthis \label{relu-activation-function} \\
-	Linear(z) &= z \numberthis \label{linear-activation-function} \\
-	w_{i,j}^{\text{next step}} &= w_{i,j} + \eta (\hat{y}_j - y_j)x_i \numberthis \label{mlp-plr}
-\end{align*}
+One input perceptron, multiple hidden perceptrons, and an output perceptron create a Multi Layer Perceptron (MLP).
+A non-linear activation function \footnote{\href{https://towardsdatascience.com/7-popular-activation-functions-you-should-know-in-deep-learning-and-how-to-use-them-with-keras-and-27b4d838dfe6}{There are several activation functions, each with different strengths and weaknesses}} (i.e.,Logistic (\ref{logistic-activation-function}), Rectified Linear Unit (ReLU) (\ref{relu-activation-function})) replaces the step functions for an LTU, in each perceptron, in an MLP.
+A shared activation function replaces the individual activation functions in the output layer to enable exclusive classification or regression.
+\begin{multicols}{3}
+\noindent
+    \begin{equation}
+        \textbf{z} =\textbf{w}^{T} \cdot \textbf{x}\\
+		\label{w-sum}
+	\end{equation}
+	\begin{equation}
+		h_{w}(\textbf{x})=step(\textbf{z})
+		\label{activation-function}
+	\end{equation}
+	\begin{equation}
+		w_{i,j}^{\text{next step}} = w_{i,j} + \eta (\hat{y}_j - y_j)x_i 
+		\label{mlp-plr}
+    \end{equation}
+\end{multicols}
+\begin{multicols}{3}
+	\noindent
+	\begin{equation}
+		\sigma(\textbf{z})=\frac{1}{1+ exp(-\textbf{z})} 
+		\label{logistic-activation-function}
+    \end{equation}
+    \begin{equation}
+		ReLU(\textbf{z}) = max(0,\textbf{z})
+		\label{relu-activation-function}
+	\end{equation}
+	\begin{equation}
+		Linear(\textbf{z}) = \textbf{z}
+		\label{linear-activation-function}
+	\end{equation}
+\end{multicols}
 Where
+\singlespacing
 \begin{itemize}
 	\item $w_{i,j}$ is the connection weights between the ith input neuron and the jth output neuron. 
 	\item $x_i$ is the ith input value of the current training instance.
@@ -292,7 +316,7 @@ Where
 	\item $y_{j}$ is the output of the jth output neuron for the current training instance.
 	\item $\eta$ is the rate.
 \end{itemize}
-The architecture for analysis is a large MLP.
+\doublespacing
 \subsubsection{Model Configuration}
 Figure \ref{fig:neural-network} visualises a standard neural network topography
 \begin{figure}[H]
@@ -304,6 +328,7 @@ Figure \ref{fig:neural-network} visualises a standard neural network topography
 The dots and lines represent nodes and connections between nodes, respectively.
 The architecture of the network is derivative of intended use.
 The set of
+The linear activation function (\ref{linear-activation-function}) is most suitable output layer activation function for regression task as predict values between ($-\infty,\infty$) directly, suitable for evaluating excess returns. 
 Figure \ref{fig:neural-network-configuration} illustrates the configuration for this project (work in prgoress).
 \newpage
 \begin{figure}[H]
@@ -578,6 +603,9 @@ the ability to shuffle training sets at lengths greater than or equal to the inp
 \printbibliography
 \newpage
 \section{Appendix}
+\subsection{Mathematics}
+\subsubsection{Equations \& Derivations}
+
 \subsection{Ordinary Least Squares (OLS)}\label{ols}
 The OLS regression is the most prominent statistical model in asset pricing theory.
 Rosenfeld (\citeyear{olsmf}) summarises OLS.

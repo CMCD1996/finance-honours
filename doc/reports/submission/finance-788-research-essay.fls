@@ -1360,6 +1360,7 @@ INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam5
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmbx6.tfm
 INPUT /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/images/neural-network.png
@@ -1401,3 +1402,49 @@ INPUT /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 78
 INPUT /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/sharpe-mse.png
 INPUT /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/sharpe-mse.png
 INPUT /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/sharpe-mse.png
+INPUT /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/information.png
+INPUT /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/information.png
+INPUT /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/information.png
+INPUT /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/information.png
+INPUT /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/information.png
+INPUT /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/hedge-portfolio.png
+INPUT /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/hedge-portfolio.png
+INPUT /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/hedge-portfolio.png
+INPUT /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/hedge-portfolio.png
+INPUT /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/hedge-portfolio.png
+INPUT /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-mean_squared_error-accuracy.tex
+INPUT /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-mean_squared_error-accuracy.tex
+INPUT /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-mean_squared_error-accuracy.tex
+INPUT /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-mean_squared_error-accuracy.tex
+INPUT /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse-accuracy.tex
+INPUT /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse-accuracy.tex
+INPUT /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse-accuracy.tex
+INPUT /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse-accuracy.tex
+INPUT /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_hp-accuracy.tex
+INPUT /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_hp-accuracy.tex
+INPUT /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_hp-accuracy.tex
+INPUT /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_hp-accuracy.tex
+INPUT finance-788-research-essay.aux
+INPUT ./finance-788-research-essay.out
+INPUT ./finance-788-research-essay.out
+INPUT finance-788-research-essay.run.xml
+OUTPUT finance-788-research-essay.run.xml
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb
