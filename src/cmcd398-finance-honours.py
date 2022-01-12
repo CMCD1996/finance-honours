@@ -768,24 +768,17 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             ff5_hp = sm.OLS(hedge_returns['hedge_returns'], ff5_hp_exog).fit(
                 cov_type='HAC', cov_kwds={'maxlags': 6})
         # Extract the metrics from loss function
-
         hp_mean = hedge_returns['hedge_returns'].mean(axis=0)
         hp_sharpe_ratio = (hedge_returns['hedge_returns'].mean(
             axis=0)/hedge_returns['hedge_returns'].std(axis=0))
         hp_teynor = (hedge_returns['hedge_returns'].mean(
             axis=0) / capm_hp.params[1])
         hp_means = hp_means.append(hp_mean)
-        hp_sharpe_ratios = hp_sharpe_ratios.append(hp_sharpe_ratio)
-        hp_teynors = hp_teynors.append(hp_teynor)
-
-        print('Failed: Could not calculate metrics for {} function'.format(loss))
-
+        hp_sharpes = hp_sharpes.append(hp_sharpe_ratio)
+        hp_treynors = hp_treynors.append(hp_teynor)
         hp_regress = sm.OLS(hedge_returns['hedge_returns'], hedge_returns['hedge_returns']).fit(
             cov_type='HAC', cov_kwds={'maxlags': 6})
         hp_regressions = hp_regressions.append(hp_regress)
-
-        print(
-            'Failed: Could not use regression to find mean {} function'.format(loss))
         # Creates tables for comparison using the stargazor package
         hp_stargazer = Stargazer([capm_hp, ff3_hp, ff4_hp, ff5_hp])
         with open('/home/connormcdowall/finance-honours/results/tables/hedge-portfolio-ols/' + model_name + '-' + loss + '.txt', 'w') as f:
