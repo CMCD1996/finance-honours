@@ -660,6 +660,7 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
                ] = factors_df[['Mkt-RF', 'SMB', 'HML', 'RMW', 'CMA']].div(100)
     # Creates arrays for metric storage
     hp_means = []
+    hp_cr = []
     hp_sharpes = []
     hp_treynors = []
     hp_regressions = []
@@ -806,9 +807,9 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
     # Only extract the most relevant factors
     truncate = True
     if truncate:
-        metrics_df = metrics_df[(metrics_df['Loss Function'] == 'mean_square_error') | (
+        metrics_df = metrics_df[(metrics_df['Loss Function'] == 'mean_squared_error') | (
             metrics_df['Loss Function'] == 'custom_mse') | (metrics_df['Loss Function'] == 'custom_hp')]
-    with open('/home/connormcdowall/finance-honours/results/tables/metrics/' + model_name + '-calcualtions-metrics.txt', 'w') as f:
+    with open('/home/connormcdowall/finance-honours/results/tables/metrics/' + model_name + '-calculations-metrics.txt', 'w') as f:
         # Deletes existing text
         f.truncate(0)
         print(metrics_df.to_latex(index=False), file=f)
