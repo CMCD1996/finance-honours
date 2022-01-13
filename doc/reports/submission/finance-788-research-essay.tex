@@ -389,7 +389,6 @@ Performance metrics inform comparisons between loss functions, to assess relativ
 \newpage
 \subsection{Brief Description of Remaining Methods}
 \begin{itemize}
-	\item Use stochastic gradient descent, train model with 10 epochs (2709 runs per epoch) for each of the six loss functions (tensorflow mse, custom mse, sharpe ratio, sharpe ratio mse, hedge portfolio mse, information ratio). Validate with validation set and evaluate with testign set.
 	\item Make predictions using entire testing set for each model. Merge predictions with fama french factors on month
 	\item Perform newy west regressing hedge portfolio returns on fama factors. Predictions grouped by month. hedge formed by mean of top decile - mean of bottom decile creating hedge return for the month.
 	\item Second set of regressions does a panel regression  accounting Heteroskedasticity Robust Covariance as Fama MacBeth did not execute due to rank deficiencies.
