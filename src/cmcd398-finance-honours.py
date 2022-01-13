@@ -2809,9 +2809,9 @@ rank_functions = False
 # Model Building
 create_models = False
 make_predictions = False
-perform_regressions = True
+perform_regressions = False
 # Output
-convert_text = False
+convert_text = True
 #################################################################################
 # Function Testing
 #################################################################################
