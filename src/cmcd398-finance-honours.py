@@ -2802,7 +2802,7 @@ make_predictions = False
 perform_regressions = False
 # Output
 convert_text = False
-plot_learning_curves = False
+plot_learning_curves = True
 #################################################################################
 # Function Testing
 #################################################################################
