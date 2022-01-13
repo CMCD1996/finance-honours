@@ -1128,7 +1128,6 @@ def create_tf_dataset(dataframe, target_column, shuffle=True, batch_size=32):
     df = dataframe.copy()
     print('Dataframe Before')
     print(list(df.columns))
-    print(df.info(verbose=True))
     # Returns the labels and drop columns from dataframe
     labels = df.pop(target_column)
     # List of columns to be shifted columns
@@ -1137,18 +1136,15 @@ def create_tf_dataset(dataframe, target_column, shuffle=True, batch_size=32):
         df = shuffle_columns(df, col)
     print('Dataframe After')
     print(list(df.columns))
+    # This call
     df = {key: value[:, tf.newaxis] for key, value in dataframe.items()}
     print(df)
     # Print dataframe to ensure order is preserved
     ds = tf.data.Dataset.from_tensor_slices((dict(df), labels))
-    print('Size of dataset after tensor slices: ', len(list(ds)))
     if shuffle:
         ds = ds.shuffle(buffer_size=(int(len(dataframe)/30)))
-    print('Size of dataset after shuffle: ', len(list(ds)))
     ds = ds.batch(batch_size)
-    print('Size of dataset after shuffle: ', len(list(ds)))
     ds = ds.prefetch(batch_size)
-    print('Size of dataset after shuffle: ', len(list(ds)))
     print('Create Dataset: Successful')
     return ds
 
