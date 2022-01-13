@@ -1769,8 +1769,9 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
                 model.save(
                     '/home/connormcdowall/finance-honours/results/models/tensorflow/'+model_name + '-' + selected_loss + '-active')
                 # Save the job history
-                joblib.dump(model, '/home/connormcdowall/finance-honours/results/models/history/' +
-                            model_name + '-' + selected_loss)
+                with open('/home/connormcdowall/finance-honours/results/models/history/' +
+                          model_name + '-' + selected_loss, 'wb') as file_pi:
+                    pickle.dump(model.history, file_pi)
                 # Monitor memory usage
                 monitor_memory_usage(units=3, cpu=True, gpu=True)
                 models.append(model)
