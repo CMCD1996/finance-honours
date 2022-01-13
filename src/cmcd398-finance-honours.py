@@ -40,6 +40,7 @@ from statsmodels.regression.rolling import RollingOLS  # Use factor loadings
 from keras.callbacks import Callback  # Logging training performance
 import neptune.new as neptune
 from neptunecontrib.monitoring.keras import NeptuneMonitor
+import joblib  # Store model history
 # APIs
 import wrds as wrds  # Wharton Research Data Services API
 import pydatastream as pds  # Thomas Reuters Datastream API
@@ -1189,6 +1190,10 @@ def encode_tensor_flow_features(train_df, val_df, test_df, target_column, numeri
     test_dataset = create_tf_dataset(
         test_df, target_column, shuffle=False, batch_size=size_of_batch)
 
+    # print lengths of dataset
+    print('Length of train dataset: ', len(list(train_dataset)))
+    print('Length of val dataset: ', len(list(val_dataset)))
+    print('Length of test dataset: ', len(list(test_dataset)))
     # Display a set of batches
     [(train_features, label_batch)] = train_dataset.take(1)
     # print('Every feature:', list(train_features.keys()))
@@ -1252,26 +1257,6 @@ def encode_tensor_flow_features(train_df, val_df, test_df, target_column, numeri
     # Monitor memory usage
     monitor_memory_usage(units=3, cpu=True, gpu=True)
     # Try saving tensorflow dataset
-    # try:
-    #     # Successfully save training dataset
-    #     filepath = '/home/connormcdowall/finance-honours/data/tf-datasets/'
-    #     tf.data.experimental.save(train_dataset, filepath + 'train')
-    #     tf.data.experimental.save(val_dataset, filepath + 'val')
-    #     tf.data.experimental.save(test_dataset, filepath + 'test')
-    # except:
-    #     print('Dataset could not be saved')
-    # try:
-    #     # Save encoded features
-    #     filepath = '/home/connormcdowall/finance-honours/data/tf-datasets/encoded-features.npy'
-    #     np.save(filepath, all_features, allow_pickle=True)
-    # except:
-    #     print('Encoded columns could not be saved')
-    # try:
-    #     # Save all inputs
-    #     filepath = '/home/connormcdowall/finance-honours/data/tf-datasets/all-inputs.npy'
-    #     np.save(filepath, all_inputs, allow_pickle=True)
-    # except:
-    #     print('Encoded columns could not be saved')
 
     return all_features, all_inputs, train_dataset, val_dataset, test_dataset
 
@@ -1706,7 +1691,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
                 # not be specified (since targets will be obtained from x).
                 batch_size = None  # Defaults to 32
                 # Integer. Number of epochs to train the model. An epoch is an iteration over  - Try running model with model epochs.
-                eps = 20
+                eps = 25
                 # the entire x and y data provided (unless the steps_per_epoch flag is set to something other than None).
                 verbose = 'auto'
                 callbacks = None
@@ -1744,8 +1729,8 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
                 print('Start: Model Fitting')
                 # Sets up early stopping callback to accompany neptune.ai
                 early_stop_callback = tf.keras.callbacks.EarlyStopping(
-                    monitor='loss', patience=3)
-                model.fit(x=x_train, batch_size=32, epochs=eps,
+                    monitor='val_loss',mode ="min", patience=5,restore_best_weights = True)
+                model.fit(x=x_train, batch_size=128, epochs=eps,
                           verbose='auto', validation_data=val_dataset, callbacks=[neptune_cbk, early_stop_callback])
                 # model.fit(x=x_train, batch_size=32, epochs=eps, verbose='auto',
                 #     callbacks=None, validation_data=val_dataset, shuffle=True,
@@ -1788,7 +1773,10 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
                 print("Metric Values: ", metrics)
                 # Save the model
                 model.save(
-                    '/home/connormcdowall/finance-honours/results/models/tensorflow/'+model_name + '-' + selected_loss + 'active')
+                    '/home/connormcdowall/finance-honours/results/models/tensorflow/'+model_name + '-' + selected_loss + '-active')
+                # Save the job history
+                joblib.dump(model, '/home/connormcdowall/finance-honours/results/models/history/' +
+                            model_name + '-' + selected_loss)
                 # Monitor memory usage
                 monitor_memory_usage(units=3, cpu=True, gpu=True)
                 models.append(model)
@@ -1848,6 +1836,7 @@ def create_tensorflow_models(data_vm_directory, list_of_columns, categorical_ass
         train_df = pd.read_stata(data_vm_directory + 'active_train.dta')
         print('Training Set')
         print(train_df.head())
+        print()
         val_df = pd.read_stata(data_vm_directory + 'active_val.dta')
         print('Validation Set')
         print(val_df.head())
@@ -1891,6 +1880,11 @@ def create_tensorflow_models(data_vm_directory, list_of_columns, categorical_ass
     save_df_statistics(train_df, 'train', statistics_location, data_location)
     save_df_statistics(val_df, 'validation',
                        statistics_location, data_location)
+
+    # Prints test of the dataframe
+    print(train_df.info(verbose = True))
+    print(val_df.info(verbose = True))
+    print(test_df.info(verbose = True))
     # Create feature lists for deep learning
     numerical_features, categorical_features = create_feature_lists(
         list_of_columns, categorical_assignment)
@@ -2816,12 +2810,12 @@ chronologically_sort_data = False
 analytical = False
 rank_functions = False
 # Model Building
-create_models = False
+create_models = True
 make_predictions = False
 perform_regressions = False
 # Output
 convert_text = False
-plot_learning_curves = True
+plot_learning_curves = False
 #################################################################################
 # Function Testing
 #################################################################################
