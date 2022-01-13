@@ -1128,7 +1128,7 @@ def create_tf_dataset(dataframe, target_column, shuffle=True, batch_size=32):
     df = dataframe.copy()
     print('Dataframe Before')
     print(list(df.columns))
-    print(df.head(verbose=True))
+    print(df.info(verbose=True))
     # Returns the labels and drop columns from dataframe
     labels = df.pop(target_column)
     # List of columns to be shifted columns
