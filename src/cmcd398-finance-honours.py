@@ -1253,7 +1253,7 @@ def encode_tensor_flow_features(train_df, val_df, test_df, target_column, numeri
     monitor_memory_usage(units=3, cpu=True, gpu=True)
     # Try saving tensorflow dataset
     try:
-        # Load with
+        # Successfully save training dataset
         filepath = '/home/connormcdowall/finance-honours/data/tf-datasets/'
         tf.data.experimental.save(train_dataset, filepath + 'train')
         tf.data.experimental.save(val_dataset, filepath + 'val')
@@ -1785,9 +1785,9 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
                 print("Loss: ", loss)
                 print("Metric Descriptions: ", model.metrics_names)
                 print("Metric Values: ", metrics)
-                # Save the model (Change back once tested)
+                # Save the model
                 model.save(
-                    '/home/connormcdowall/finance-honours/results/models/tensorflow/'+model_name + '-' + selected_loss + 'es')
+                    '/home/connormcdowall/finance-honours/results/models/tensorflow/'+model_name + '-' + selected_loss)
                 # Monitor memory usage
                 monitor_memory_usage(units=3, cpu=True, gpu=True)
                 models.append(model)
@@ -2181,9 +2181,9 @@ def reinforement_learning(model, env, target_vec):
 # V = All-Ones=Vector
 
 # Use Tensorlow backend functions
-
-# 0: Custom Example for reference
-# Loss Function (Class Example, not as efficient)
+# Symbolic Tensors do not work in function calls as require eager tensors.
+# Subsequently, must create custom class with call function
+# Utilisation of function closure to pass multiple inputs into the function.
 
 
 class CustomLossFunctionExample(tf.keras.losses.Loss):
@@ -2197,23 +2197,11 @@ class CustomLossFunctionExample(tf.keras.losses.Loss):
         rmse = tf.math.sqrt(mse)
         return rmse / tf.reduce_mean(tf.square(y_true)) - 1
 
-# 1: In-Built MSE Loss Function / Metric
-# Call MSE Loss Function/Metric with SGD in build_tensorflow_model()
-
-# 2: Custom L2 (Mean Square Error Function)
-
 
 @tf.function  # Decorate the function
 def custom_l2_mse(y_true, y_pred):
     mse = K.mean(K.square(y_true - y_pred))
     return mse
-
-# 3: Custom Hedge Portfolio Returns
-
-# 4: Custom Sharpe Ratio (# Negative to maximise)
-# Note: Symbolic Tensors do not work in function calls as require eager tensors.
-# Subsequently, must create custom class with call function
-# Utilisation of function closure to pass multiple inputs into the function.
 
 
 class custom_mse(tf.keras.losses.Loss):
@@ -2373,9 +2361,6 @@ def custom_sharpe_metric(y_true, y_pred):
     # Finds MSE between predited and true MSE
     loss = K.mean(K.square(sr_true - sr_pred))
     return loss
-
-# 5: Custom Information Ratio (E(R) - E(BM))/SD(R-BM))
-# Note: This instance uses the true results as the benchmanr
 
 
 @tf.function
@@ -2807,11 +2792,11 @@ chronologically_sort_data = False
 analytical = False
 rank_functions = False
 # Model Building
-create_models = True
-make_predictions = False
-perform_regressions = False
+create_models = False
+make_predictions = True
+perform_regressions = True
 # Output
-convert_text = False
+convert_text = True
 #################################################################################
 # Function Testing
 #################################################################################
