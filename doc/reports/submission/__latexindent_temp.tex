@@ -98,7 +98,6 @@
 \usepackage{hyperref}
 %%% DOCUMENT
 \begin{document}
-%%% FRONT MATTER NUMBERING
 %%% NEW COMMANDS
 \newcommand{\listequationsname}{List of Equations}
 \newlistof{myequations}{equ}{\listequationsname}
@@ -147,6 +146,7 @@
 	
 	\vfill % Push the date up 1/4 of the remaining page
 \end{titlepage}
+\pagenumbering{Roman}
 \newpage
 \section*{Acknowledgements}
 \begin{center}
@@ -159,7 +159,8 @@
 \listoffigures
 \listoftables
 \listofmyequations
-\newpage
+\newpage 
+\pagenumbering{arabic} 
 \section{Introduction (3 pages)}
 \newpage
 \section{Literature (3 pages)}\label{LR}
@@ -686,18 +687,18 @@ Equation \ref{gma4} captures homoskedasticity and no autocorrelation assumptions
 \begin{landscape}
 \subsection{Model Training \& Validation Performance} \label{model-training-validation-performance}
 \begin{figure}[H]
-    \includegraphics[width=1.5\textwidth]{mean-square-error-tensorflow.png}
+    \includegraphics[width=1.5\textwidth]{mean-squared-error.png}
     \caption{Performance: In-Built Mean Square Error}
     \label{fig:mse-tf-performance}
 \end{figure}
 \begin{figure}[H]
-    \includegraphics[width=1.5\textwidth]{mean-square-error.png}
+    \includegraphics[width=1.5\textwidth]{custom-mse.png}
     \caption{Performance: Custom Mean Square Error}
     \label{fig:mse-performance}
 \end{figure}
 \begin{figure}[H]
     \includegraphics[width=1.5\textwidth]{hedge-portfolio.png}
-    \caption{Performance: Custom hedge Portfolio}
+    \caption{Performance: Custom Hedge Portfolio}
     \label{fig:hp-performance}
 \end{figure}
 \end{landscape}
