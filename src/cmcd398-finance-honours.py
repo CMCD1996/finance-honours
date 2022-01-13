@@ -1917,19 +1917,23 @@ def create_tensorflow_models(data_vm_directory, list_of_columns, categorical_ass
 def create_learning_curves(model_name, model_directory, selected_losses, custom_objects):
     # Set destination dictionary
     destination_directory = '/home/connormcdowall/finance-honours/results/plots/learning-curves/'
-    # Sets model directory based on loss
-    for loss in selected_losses:
-        path = model_directory + '-' + loss
-        # Load model
+    path = '/home/connormcdowall/finance-honours/results/models/tensorflow/cmcd398-finance-honours-mean_squared_error'
+    try:
         model = tf.keras.models.load_model(path, custom_objects=custom_objects)
-        # Create learning curves
-        plt.plot(model.history['loss'], label=' Loss (Training)')
-        plt.plot(model.history['val_loss'], label='Loss (validation)')
-        plt.title(model_name + ' ' + loss + ' Learning Curves')
-        plt.ylabel('Loss value')
-        plt.xlabel('No. epoch')
-        plt.legend(loc="upper left")
-        plt.savefig(destination_directory + model_name + '-' + loss + '.png')
+        print('Model successfully loaded')
+    except:
+        print('Model failed to load')
+        return
+    # Create learning curves
+    plt.plot(model.history['loss'], label=' Loss (Training)')
+    plt.plot(model.history['val_loss'], label='Loss (validation)')
+    plt.title(model_name + ' Mean Squared Error Learning Curves')
+    plt.ylabel('Loss value')
+    plt.xlabel('No. epoch')
+    plt.legend(loc="upper left")
+    plt.savefig(destination_directory + model_name +
+                '-' + 'mean-squared-error' + '.png')
+    # Sets model directory based on los
     return
 
 
