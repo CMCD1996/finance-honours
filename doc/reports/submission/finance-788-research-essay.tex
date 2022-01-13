@@ -328,10 +328,14 @@ Figure \ref{fig:neural-network} visualises a standard neural network topography
 \end{figure}
 The dots and lines represent nodes and connections between nodes, respectively.
 The architecture of the network is derivative of intended use.
-Figure \ref{fig:neural-network-configuration} illustrates the required configuration for evaluating excess returns.\footnote{Configuration uses both Newtonian and Matrix Notation}
-$N(x,y)$ represents the yth node in xth layer. .
-\textbf{z} = \text{$\sum_{a = 1}^{189} w_{(n,a,b)}x_{(n,a,b)}$ ($=\textbf{w}^{T} \cdot \textbf{x}$) represents the dot product of all outputs (x) and connection weights (w) from the nth layer, between the nodes a and b)in layers n and n+1, respectively.
-The linear activation function (\ref{linear-activation-function}) is most suitable output layer activation function for regression task as predict values between ($-\infty,\infty$) directly, suitable for evaluating excess returns. 
+Figure \ref{fig:neural-network-configuration} illustrates the required configuration for evaluating excess returns.
+$N(x,y)$ represents the yth node in xth layer.
+\textbf{z} = $\sum_{a = 1}^{189} w_{(n,a,b)}x_{(n,a,b)} (= \textbf{w}^{T} \cdot \textbf{x})$ is the dot product between all outputs (x) and connection weights (w) from the nth layer, between all nodes a and b connecting layers n and n+1, respectively.
+The use of dense layers deeply connects two layers where each node recieves an input from the previous layer.
+The single dropout layer randomly sets input units to 0 with a frequency of rate = 50\% at each step during training time. Inputs not set to 0 are scaled up by 2 ($\frac{1}{(1-(rate = 0.5))}$ to leave the sum over all inputs unchanged.
+The inclusion of a dropout layer helps prevent overfitting.
+Hidden layers and output later use ReLU \ref{relu-activation-function} and linear \ref{linear-activation-function} activation functions, respectively.
+An ouput linear activation (\ref{linear-activation-function}) is the most suitable for regression, predicting values ($Prediction_{k}$) between ($-\infty,\infty$) directly.
 \newpage
 \begin{figure}[H]
 	\centering
@@ -354,7 +358,8 @@ The linear activation function (\ref{linear-activation-function}) is most suitab
     \label{fig:neural-network-configuration}
 \end{figure}
 \newpage
-\textbf{10 epochs, 207 runs per epochs.}
+\subsubsection{Loss Functions}
+\subsubsection{Performance Measure}
 \subsection{Brief Description of Remaining Methods}
 \begin{itemize}
 	\item Use stochastic gradient descent, train model with 10 epochs (2709 runs per epoch) for each of the six loss functions (tensorflow mse, custom mse, sharpe ratio, sharpe ratio mse, hedge portfolio mse, information ratio). Validate with validation set and evaluate with testign set.
@@ -384,7 +389,6 @@ Ordinary Least Squares (OLS) regressions is an extension of the linear model pre
 The mathematical rigor and suitability of the OLS estimator section \ref{ols}.
 The theory underlying OLS informs the common practice in minimising of the sum of least squares when evaluating prediction performance.
 The mathematical tractability, in accordance with the aforementioned assumption, frame our thinking surrounding the derivation of custom loss functions.
-\subsubsection{Automatic Differentiation}
 \subsubsection{Loss \& Metric Definition}
 \subsection{Hedge Portfolio Construction}
 \subsection{Regression Analysis}
@@ -528,29 +532,7 @@ Where
 The residuals of risk-return regressions and co-efficient 'fair game' observations are consistent with the efficient market hypothesis ((\cite{samuelson2016proof}), (\cite{fama1995random}), (\cite{fama1963mandelbrot}), (\cite{fama1965behavior}) (\cite{fama2021efficient})).
 Subsequently, this research essay uses the excess one month lead returns of the hedge portfolio (\ref{hpm})), Capital Asset Pricing Model (\ref{capm}), 
 Fama-French Three Factor Model (\ref{ff3}), and Fama-French Five Factor Model (\ref{ff5}) as performance metrics for each loss function.
-Table \ref{plfpe} outlines the proposed]performance metrics and loss functions.
-	\begin{table}[H]
-		\centering
-		\begin{tabular}{||c|c||}
-			\hline
-			Performance Metric & Loss Function \\ [0.5ex]
-			\hline \hline
-			Hedge Portfolio Mean & Hedge Portfolio Excess Returns \\
-			\hline
-			Hedge Portfolio FF3& Sharpe Ratio \\
-			\hline
-			Hedge Portfolio FF5& Information Ratio\\
-			\hline
-			Sharpe Ratio & Validation\\ 
-			\hline
-			Information Ratio & Validation \\ 
-			\hline
-			Mean Square Error & Mean Square Error\\ [1.0ex]
-			\hline
-		\end{tabular}
-	\caption{Proposed Loss Functions and Performance Metrics}
-	\label{plfpe}
-\end{table}
+
 Hou et al (\citeyear{jensen2021there}) provide the required data to derive these performance metric and loss functions.
 \subsubsection{Sharpe Ratio}
 Nobel Laurette William F. Sharpe (\citeyear{sharpe1994sharpe}) introduced the Sharpe Ratio (\ref{sr}) as a measure for risk-adjusted returns
@@ -571,9 +553,38 @@ $\mathop{\mathbb{E}} [R_a - R_b]$ is the excess return on the benchmark. $\sigma
 	IR &= \mathop{\mathbb{E}} \frac{[R_a - R_b]}{\sigma(R_a - R_b)} \numberthis \label{ir}\\
 \end{align*}
 Both Sharpe and Information ratios supplement hedge portfolio-related loss functions and performance metrics.
-% Show the embedded class structure within this section.
 \newpage
 \section{Results}
+\subsection{Main Findings}
+Table \ref{plfpe} summarises main findings
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{||c|c|c|c||}
+			\hline
+			Result & $MSE_{TF}$($\hat{y}$,y) & $MSE$($\hat{y}$,y) & HP($\hat{y}$)\\ [0.5ex]
+			\hline \hline
+			$\theta_{(Final)}$ & & & \\
+			\hline
+			$\lambda_{(Final)}$ & & & \\
+			\hline
+			$\mu_{(HP)}$ & & & \\
+			\hline
+			$\alpha_{(HP,CAPM)}$ & & & \\
+			\hline
+			$\alpha_{(HP,FF3)}$ & & & \\
+			\hline
+			$\alpha_{(HP,FF4)}$ & & & \\
+			\hline
+			$\alpha_{(HP,FF5)}$& & &\\
+			\hline
+			$SR_{HP}$& & &\\ 
+			\hline
+			$TR_{HP}$ & & & \\ 
+			\hline
+		\end{tabular}
+	\caption{Summary of Main Findings}
+	\label{results summary}
+\end{table}
 \subsection{Performance Matrix}
 \input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-calculations-metrics}.tex}
 \cite{hlavac2018stargazer} enables the tables in the regression analysis.
@@ -685,7 +696,7 @@ Equation \ref{gma4} captures homoskedasticity and no autocorrelation assumptions
     \label{fig:mse-performance}
 \end{figure}
 \begin{figure}[H]
-    \includegraphics[width=\textwidth]{hedge-portfolio.png}
+    \includegraphics[width=1.5\textwidth]{hedge-portfolio.png}
     \caption{Performance: Custom hedge Portfolio}
     \label{fig:hp-performance}
 \end{figure}
