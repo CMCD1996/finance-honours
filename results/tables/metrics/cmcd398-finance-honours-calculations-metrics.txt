@@ -2,9 +2,9 @@
 \toprule
      Loss Function &  HP Mean &  Sharpe Ratio &  Treynor Ratio \\
 \midrule
-mean\_squared\_error & 0.505614 &      3.628857 &      -6.425331 \\
-        custom\_mse & 0.417429 &      3.462801 &     -11.406585 \\
-         custom\_hp & 0.134763 &      3.673352 &       2.903001 \\
+mean\_squared\_error & 0.740782 &      3.114522 &      25.593305 \\
+        custom\_mse & 0.544295 &      3.184718 &       5.777423 \\
+         custom\_hp & 0.020479 &      2.594538 &      -1.865454 \\
 \bottomrule
 \end{tabular}
 
