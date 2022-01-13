@@ -1128,7 +1128,7 @@ def create_tf_dataset(dataframe, target_column, shuffle=True, batch_size=32):
     df = dataframe.copy()
     print('Dataframe Before')
     print(list(df.columns))
-    print(df[target_column].head())
+    print(df.head(verbose=True))
     # Returns the labels and drop columns from dataframe
     labels = df.pop(target_column)
     # List of columns to be shifted columns
@@ -1141,10 +1141,14 @@ def create_tf_dataset(dataframe, target_column, shuffle=True, batch_size=32):
     print(df)
     # Print dataframe to ensure order is preserved
     ds = tf.data.Dataset.from_tensor_slices((dict(df), labels))
+    print('Size of dataset after tensor slices: ', len(list(ds)))
     if shuffle:
         ds = ds.shuffle(buffer_size=(int(len(dataframe)/30)))
+    print('Size of dataset after shuffle: ', len(list(ds)))
     ds = ds.batch(batch_size)
+    print('Size of dataset after shuffle: ', len(list(ds)))
     ds = ds.prefetch(batch_size)
+    print('Size of dataset after shuffle: ', len(list(ds)))
     print('Create Dataset: Successful')
     return ds
 
@@ -1729,7 +1733,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
                 print('Start: Model Fitting')
                 # Sets up early stopping callback to accompany neptune.ai
                 early_stop_callback = tf.keras.callbacks.EarlyStopping(
-                    monitor='val_loss',mode ="min", patience=5,restore_best_weights = True)
+                    monitor='val_loss', mode="min", patience=5, restore_best_weights=True)
                 model.fit(x=x_train, batch_size=128, epochs=eps,
                           verbose='auto', validation_data=val_dataset, callbacks=[neptune_cbk, early_stop_callback])
                 # model.fit(x=x_train, batch_size=32, epochs=eps, verbose='auto',
@@ -1882,9 +1886,9 @@ def create_tensorflow_models(data_vm_directory, list_of_columns, categorical_ass
                        statistics_location, data_location)
 
     # Prints test of the dataframe
-    print(train_df.info(verbose = True))
-    print(val_df.info(verbose = True))
-    print(test_df.info(verbose = True))
+    print(train_df.info(verbose=True))
+    print(val_df.info(verbose=True))
+    print(test_df.info(verbose=True))
     # Create feature lists for deep learning
     numerical_features, categorical_features = create_feature_lists(
         list_of_columns, categorical_assignment)
