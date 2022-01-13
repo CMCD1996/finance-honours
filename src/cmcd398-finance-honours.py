@@ -3,6 +3,7 @@
 #################################################################################
 # Author; Connor Robert McDowall
 # Linux Terminal Call on Google Cloud Platform Virtual Machine Instance
+# via SSH connection
 # 1) cd finance-honours
 # 2) cd src
 # 3) python cmcd398-finance-honours.py
@@ -1727,21 +1728,13 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
                 neptune_cbk = configure_training_ui(project, api_token)
                 # Fit the model
                 print('Start: Model Fitting')
-                # Sets up early stopping callback to accompany neptune.ai
+                # Sets up early stopping callback to accompany neptune.ai callback
                 early_stop_callback = tf.keras.callbacks.EarlyStopping(
                     monitor='val_loss', mode="min", patience=5, restore_best_weights=True)
+                # Fits model
                 model.fit(x=x_train, batch_size=128, epochs=eps,
                           verbose='auto', validation_data=val_dataset, callbacks=[neptune_cbk, early_stop_callback])
-                # model.fit(x=x_train, batch_size=32, epochs=eps, verbose='auto',
-                #     callbacks=None, validation_data=val_dataset, shuffle=True,
-                #     class_weight=None, sample_weight=None, initial_epoch=0, steps_per_epoch=None,
-                #     validation_steps=None, max_queue_size=10, workers=1, use_multiprocessing=False)
                 print('End: Model Fitting')
-                # model.fit(x, batch_size, epochs=eps, verbose='auto',
-                # callbacks, validation_data, shuffle,
-                # class_weight, sample_weight, initial_epoch, steps_per_epoch,
-                # validation_steps, validation_batch_size, validation_freq,
-                # max_queue_size, workers, use_multiprocessing)
                 #################################################################################
                 # Model.evaluate (https://www.tensorflow.org/api_docs/python/tf/keras/Model#evaluate)
                 #################################################################################
@@ -1911,24 +1904,28 @@ def create_tensorflow_models(data_vm_directory, list_of_columns, categorical_ass
 def create_learning_curves(model_name, model_directory, selected_losses, custom_objects):
     # Set destination dictionary
     destination_directory = '/home/connormcdowall/finance-honours/results/plots/learning-curves/'
+    history_path = '/home/connormcdowall/finance-honours/results/models/history/'
     path = '/home/connormcdowall/finance-honours/results/models/tensorflow/cmcd398-finance-honours-mean_squared_error'
-    try:
-        model = tf.keras.models.load_model(path, custom_objects=custom_objects)
-        print('Model successfully loaded')
-    except:
-        print('Model failed to load')
-        return
-    # Create learning curves
-    plt.plot(model.history['loss'], label=' Loss (Training)')
-    plt.plot(model.history['val_loss'], label='Loss (validation)')
-    plt.title(model_name + ' Mean Squared Error Learning Curves')
-    plt.ylabel('Loss value')
-    plt.xlabel('No. epoch')
-    plt.legend(loc="upper left")
-    plt.savefig(destination_directory + model_name +
-                '-' + 'mean-squared-error' + '.png')
-    # Sets model directory based on los
-    return
+    for loss in selected_losses:
+        if loss in ['mean_squared_error', 'custom_mse', 'custom_hp']:
+            path = history_path + model_name + '-' + loss
+            try:
+                model = joblib.load(path)
+                print('Model successfully loaded')
+            except:
+                print('Model failed to load')
+                return
+            # Create learning curves
+            plt.plot(model.history['loss'], label=' Loss (Training)')
+            plt.plot(model.history['val_loss'], label='Loss (validation)')
+            plt.title(model_name + ' Mean Squared Error Learning Curves')
+            plt.ylabel('Loss value')
+            plt.xlabel('No. epoch')
+            plt.legend(loc="upper left")
+            plt.savefig(destination_directory + model_name +
+                        '-' + 'mean-squared-error' + '.png')
+            # Sets model directory based on los
+            return
 
 
 def make_tensorflow_predictions(model_name, model_directory, selected_losses, dataframe_location, custom_objects):
@@ -2214,12 +2211,6 @@ class CustomLossFunctionExample(tf.keras.losses.Loss):
         mse = tf.reduce_mean(tf.square(y_true, y_pred))
         rmse = tf.math.sqrt(mse)
         return rmse / tf.reduce_mean(tf.square(y_true)) - 1
-
-
-@tf.function  # Decorate the function
-def custom_l2_mse(y_true, y_pred):
-    mse = K.mean(K.square(y_true - y_pred))
-    return mse
 
 
 class custom_mse(tf.keras.losses.Loss):
@@ -2810,12 +2801,12 @@ chronologically_sort_data = False
 analytical = False
 rank_functions = False
 # Model Building
-create_models = True
+create_models = False
 make_predictions = False
 perform_regressions = False
 # Output
 convert_text = False
-plot_learning_curves = False
+plot_learning_curves = True
 #################################################################################
 # Function Testing
 #################################################################################
