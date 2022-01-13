@@ -5,7 +5,7 @@
 \textbf{Estimator:}        &     PooledOLS      & \textbf{  R-squared (Between):}  &     -0.0262      \\
 \textbf{No. Observations:} &       531461       & \textbf{  R-squared (Within):}   &      0.0003      \\
 \textbf{Date:}             &  Thu, Jan 13 2022  & \textbf{  R-squared (Overall):}  &      0.0003      \\
-\textbf{Time:}             &      04:03:41      & \textbf{  Log-likelihood     }   &    -2.199e+06    \\
+\textbf{Time:}             &      14:14:04      & \textbf{  Log-likelihood     }   &    -2.199e+06    \\
 \textbf{Cov. Estimator:}   &     Clustered      & \textbf{                     }   &                  \\
 \textbf{}                  &                    & \textbf{  F-statistic:       }   &      143.01      \\
 \textbf{Entities:}         &        7282        & \textbf{  P-value            }   &      0.0000      \\
