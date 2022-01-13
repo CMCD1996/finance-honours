@@ -1253,6 +1253,21 @@ def encode_tensor_flow_features(train_df, val_df, test_df, target_column, numeri
         monitor_memory_usage(units=3, cpu=True, gpu=True)
     # Concatenate all encoded layers
     all_features = tf.keras.layers.concatenate(encoded_features)
+    # Try to pickle both all inputs and all encoded features
+    try:
+        with open('/home/connormcdowall/finance-honours/results/models/features/all-inputs', 'wb') as f:
+            pickle.dump(all_inputs, f)
+            f.close()
+            print('Complete: Pickled all inputs')
+    except:
+        print('Complete: Pickled all inputs')
+    try:
+        with open('/home/connormcdowall/finance-honours/results/models/features/all-features', 'wb') as f:
+            pickle.dump(all_features, f)
+            f.close()
+            print('Complete: Pickled all features')
+    except:
+        print('Complete: Pickled all features')
     print('All Features')
     print(all_features)
     print('Encoding: Successful')
@@ -1693,7 +1708,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
                 # not be specified (since targets will be obtained from x).
                 batch_size = None  # Defaults to 32
                 # Integer. Number of epochs to train the model. An epoch is an iteration over  - Try running model with model epochs.
-                eps = 25
+                eps = 30
                 # the entire x and y data provided (unless the steps_per_epoch flag is set to something other than None).
                 verbose = 'auto'
                 callbacks = None
@@ -1736,6 +1751,23 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
                 model.fit(x=x_train, batch_size=128, epochs=eps,
                           verbose='auto', validation_data=val_dataset, callbacks=[neptune_cbk, early_stop_callback])
                 print('End: Model Fitting')
+                # Creates learning curves
+                try:
+                    create_learning_curves(model_name, model, selected_loss)
+                    print('Successfully printed learning curves')
+                except:
+                    print('Failed to print learning curves')
+                # Save the model history
+                try:
+                    with open('/home/connormcdowall/finance-honours/results/models/history/' +
+                              model_name + '-' + selected_loss, 'wb') as f:
+                        pickle.dump(model.history, f)
+                        f.close()
+                        print(
+                            'Complete: Pickled {selected_loss} training history'.format())
+                except:
+                    print(
+                        'Incomplete: Failed to pickle {selected_loss} training history'.format())
                 #################################################################################
                 # Model.evaluate (https://www.tensorflow.org/api_docs/python/tf/keras/Model#evaluate)
                 #################################################################################
@@ -1768,10 +1800,6 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
                 # Save the model
                 model.save(
                     '/home/connormcdowall/finance-honours/results/models/tensorflow/'+model_name + '-' + selected_loss + '-active')
-                # Save the job history
-                with open('/home/connormcdowall/finance-honours/results/models/history/' +
-                          model_name + '-' + selected_loss, 'wb') as file_pi:
-                    pickle.dump(model.history, file_pi)
                 # Monitor memory usage
                 monitor_memory_usage(units=3, cpu=True, gpu=True)
                 models.append(model)
@@ -1903,26 +1931,23 @@ def create_tensorflow_models(data_vm_directory, list_of_columns, categorical_ass
     return
 
 
-def create_learning_curves(model_name, model_directory, selected_losses, custom_objects):
+def create_learning_curves(model_name, model, selected_loss):
     # Set destination dictionary
     destination_directory = '/home/connormcdowall/finance-honours/results/plots/learning-curves/'
     history_path = '/home/connormcdowall/finance-honours/results/models/history/'
-    path = '/home/connormcdowall/finance-honours/results/models/tensorflow/cmcd398-finance-honours-mean_squared_error'
-    for loss in selected_losses:
-        if loss in ['mean_squared_error', 'custom_mse', 'custom_hp']:
-            path = history_path + model_name + '-' + loss
-            model = pickle.load(open(path, "rb"))
-            # Create learning curves
-            plt.plot(model.history['loss'], label=' Loss (Training)')
-            plt.plot(model.history['val_loss'], label='Loss (validation)')
-            plt.title(model_name + ' Mean Squared Error Learning Curves')
-            plt.ylabel('Loss value')
-            plt.xlabel('No. epoch')
-            plt.legend(loc="upper left")
-            plt.savefig(destination_directory + model_name +
-                        '-' + 'mean-squared-error' + '.png')
-            # Sets model directory based on los
-            return
+    if selected_loss in ['mean_squared_error', 'custom_mse', 'custom_hp']:
+        # path = history_path + model_name + '-' + loss
+        # model = pickle.load(open(path, "rb"))
+        # Create learning curves
+        plt.plot(model.history['loss'], label=' Training')
+        plt.plot(model.history['val_loss'], label='Validation')
+        plt.title(model_name + '-' + selected_loss + '-learning-curves')
+        plt.ylabel('Losses')
+        plt.xlabel('No. epoch')
+        plt.legend(loc="upper left")
+        plt.savefig(destination_directory + model_name +
+                    '-' + selected_loss + '.png')
+        return
 
 
 def make_tensorflow_predictions(model_name, model_directory, selected_losses, dataframe_location, custom_objects):
@@ -2798,12 +2823,12 @@ chronologically_sort_data = False
 analytical = False
 rank_functions = False
 # Model Building
-create_models = False
+create_models = True
 make_predictions = False
 perform_regressions = False
 # Output
 convert_text = False
-plot_learning_curves = True
+plot_learning_curves = False
 #################################################################################
 # Function Testing
 #################################################################################
@@ -2841,8 +2866,6 @@ if extract_test_data:
                             test_data, full_implementation=True)
 if example_autodiff:
     autodiff_guide(example=5)
-if test_loss_function:
-    print('Add Function Here')
 #################################################################################
 # Analytical
 #################################################################################
