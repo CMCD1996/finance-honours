@@ -1914,6 +1914,25 @@ def create_tensorflow_models(data_vm_directory, list_of_columns, categorical_ass
     return
 
 
+def create_learning_curves(model_name, model_directory, selected_losses, custom_objects):
+    # Set destination dictionary
+    destination_directory = '/home/connormcdowall/finance-honours/results/plots/learning-curves/'
+    # Sets model directory based on loss
+    for loss in selected_losses:
+        path = model_directory + '-' + loss
+        # Load model
+        model = tf.keras.models.load_model(path, custom_objects=custom_objects)
+        # Create learning curves
+        plt.plot(model.history['loss'], label=' Loss (Training)')
+        plt.plot(model.history['val_loss'], label='Loss (validation)')
+        plt.title(model_name + ' ' + loss + ' Learning Curves')
+        plt.ylabel('Loss value')
+        plt.xlabel('No. epoch')
+        plt.legend(loc="upper left")
+        plt.savefig(destination_directory + model_name + '-' + loss + '.png')
+    return
+
+
 def make_tensorflow_predictions(model_name, model_directory, selected_losses, dataframe_location, custom_objects):
     # Initialises new dataframe
     column_names = ['size_grp', "mth", "predict", 'ret_exc_lead1m', 'permno']
@@ -1956,8 +1975,8 @@ def make_tensorflow_predictions(model_name, model_directory, selected_losses, da
     print('Loaded: Hedge Portfolio')
     models = [mse_tf_model, mse_model, sharpe_model,
               sharpe_mse_model, information_model, hp_model]
-    # hp_mse_model = tf.keras.models.load_model(
-    # filepath=model_locations[6], custom_objects=custom_objects)
+    # Creates learning curves plots
+
     # Resets df predictions dataframe
     print('Setting Prediction Dataframe')
     mse_df_predictions = pd.DataFrame(columns=column_names)
@@ -2793,11 +2812,12 @@ chronologically_sort_data = False
 analytical = False
 rank_functions = False
 # Model Building
-create_models = True
+create_models = False
 make_predictions = False
 perform_regressions = False
 # Output
 convert_text = False
+plot_learning_curves = True
 #################################################################################
 # Function Testing
 #################################################################################
@@ -2862,3 +2882,6 @@ if perform_regressions:
 if convert_text:
     execute_conversion_options(model_name, selected_losses,
                                hp_ols=True, pooled_ols=True, true_excess_returns=True)
+if plot_learning_curves:
+    create_learning_curves(model_name=model_name, model_directory=model_directory,
+                           selected_losses=selected_losses, custom_objects=custom_tf_objects)
