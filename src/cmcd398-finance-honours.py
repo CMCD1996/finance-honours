@@ -1909,12 +1909,7 @@ def create_learning_curves(model_name, model_directory, selected_losses, custom_
     for loss in selected_losses:
         if loss in ['mean_squared_error', 'custom_mse', 'custom_hp']:
             path = history_path + model_name + '-' + loss
-            try:
-                model = joblib.load(path)
-                print('Model successfully loaded')
-            except:
-                print('Model failed to load')
-                return
+            model = joblib.load(path)
             # Create learning curves
             plt.plot(model.history['loss'], label=' Loss (Training)')
             plt.plot(model.history['val_loss'], label='Loss (validation)')
