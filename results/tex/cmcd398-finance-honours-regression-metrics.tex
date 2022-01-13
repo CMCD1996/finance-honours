@@ -1,10 +1,10 @@
-\begin{table}[H] \centering
+\begin{table}[!htbp] \centering
 \begin{tabular}{@{\extracolsep{5pt}}lccc}
 \\[-1.8ex]\hline
 \hline \\[-1.8ex]
-& \multicolumn{3}{c}{\textit{Dependent Variable:One Month lead Excess Return}} \
+& \multicolumn{3}{c}{\textit{Dependent variable:}} \
 \cr \cline{3-4}
-\\[-1.8ex] & In-Built MSE & Custom MSE & Custom HP \\
+\\[-1.8ex] & (1) & (2) & (3) \\
 \hline \\[-1.8ex]
  predict & 0.033$^{***}$ & 0.045$^{***}$ & 0.069$^{***}$ \\
   & (0.002) & (0.002) & (0.005) \\
@@ -12,14 +12,10 @@
  Observations & 531,461 & 531,461 & 531,461 \\
  $R^2$ & 0.002 & 0.003 & 0.001 \\
  Adjusted $R^2$ & 0.002 & 0.003 & 0.001 \\
- Residual Std. Error & 0.137 & 0.137 & 0.137  \\
-                    &(df = 531460) & (df = 531460) &  (df = 531460)\\
- F Statistic & 486.597$^{***}$ & 461.414$^{***}$ & 161.031$^{***}$ \\
-  & (df = 1.0; 531460.0) & (df = 1.0; 531460.0) & (df = 1.0; 531460.0) \\
+ Residual Std. Error & 0.137(df = 531460) & 0.137(df = 531460) & 0.137(df = 531460)  \\
+ F Statistic & 486.597$^{***}$ (df = 1.0; 531460.0) & 461.414$^{***}$ (df = 1.0; 531460.0) & 161.031$^{***}$ (df = 1.0; 531460.0) \\
 \hline
 \hline \\[-1.8ex]
-\textit{Note: } & \multicolumn{3}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\
+\textit{Note:} & \multicolumn{3}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\
 \end{tabular}
-\caption{Explanatory Power of Neural Networks Predictions in explaining One Month Lead Excess Returns and validate model predictive capabilities}.
-\label{test-model-predict}
 \end{table}
