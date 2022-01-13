@@ -1141,7 +1141,7 @@ def create_tf_dataset(dataframe, target_column, shuffle=True, batch_size=32):
     # Print dataframe to ensure order is preserved
     ds = tf.data.Dataset.from_tensor_slices((dict(df), labels))
     if shuffle:
-        ds = ds.shuffle(buffer_size=(int(len(dataframe)/40)))
+        ds = ds.shuffle(buffer_size=(int(len(dataframe)/30)))
     ds = ds.batch(batch_size)
     ds = ds.prefetch(batch_size)
     print('Create Dataset: Successful')
@@ -1252,26 +1252,26 @@ def encode_tensor_flow_features(train_df, val_df, test_df, target_column, numeri
     # Monitor memory usage
     monitor_memory_usage(units=3, cpu=True, gpu=True)
     # Try saving tensorflow dataset
-    try:
-        # Successfully save training dataset
-        filepath = '/home/connormcdowall/finance-honours/data/tf-datasets/'
-        tf.data.experimental.save(train_dataset, filepath + 'train')
-        tf.data.experimental.save(val_dataset, filepath + 'val')
-        tf.data.experimental.save(test_dataset, filepath + 'test')
-    except:
-        print('Dataset could not be saved')
-    try:
-        # Save encoded features
-        filepath = '/home/connormcdowall/finance-honours/data/tf-datasets/encoded-features.npy'
-        np.save(filepath, all_features, allow_pickle=True)
-    except:
-        print('Encoded columns could not be saved')
-    try:
-        # Save all inputs
-        filepath = '/home/connormcdowall/finance-honours/data/tf-datasets/all-inputs.npy'
-        np.save(filepath, all_inputs, allow_pickle=True)
-    except:
-        print('Encoded columns could not be saved')
+    # try:
+    #     # Successfully save training dataset
+    #     filepath = '/home/connormcdowall/finance-honours/data/tf-datasets/'
+    #     tf.data.experimental.save(train_dataset, filepath + 'train')
+    #     tf.data.experimental.save(val_dataset, filepath + 'val')
+    #     tf.data.experimental.save(test_dataset, filepath + 'test')
+    # except:
+    #     print('Dataset could not be saved')
+    # try:
+    #     # Save encoded features
+    #     filepath = '/home/connormcdowall/finance-honours/data/tf-datasets/encoded-features.npy'
+    #     np.save(filepath, all_features, allow_pickle=True)
+    # except:
+    #     print('Encoded columns could not be saved')
+    # try:
+    #     # Save all inputs
+    #     filepath = '/home/connormcdowall/finance-honours/data/tf-datasets/all-inputs.npy'
+    #     np.save(filepath, all_inputs, allow_pickle=True)
+    # except:
+    #     print('Encoded columns could not be saved')
 
     return all_features, all_inputs, train_dataset, val_dataset, test_dataset
 
@@ -1705,7 +1705,8 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
                 y = None  # If x is a dataset, generator, or keras.utils.Sequence instance, y should
                 # not be specified (since targets will be obtained from x).
                 batch_size = None  # Defaults to 32
-                eps = 10  # Integer. Number of epochs to train the model. An epoch is an iteration over
+                # Integer. Number of epochs to train the model. An epoch is an iteration over  - Try running model with model epochs.
+                eps = 20
                 # the entire x and y data provided (unless the steps_per_epoch flag is set to something other than None).
                 verbose = 'auto'
                 callbacks = None
@@ -2792,11 +2793,11 @@ chronologically_sort_data = False
 analytical = False
 rank_functions = False
 # Model Building
-create_models = False
-make_predictions = True
-perform_regressions = True
+create_models = True
+make_predictions = False
+perform_regressions = False
 # Output
-convert_text = True
+convert_text = False
 #################################################################################
 # Function Testing
 #################################################################################
