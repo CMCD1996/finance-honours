@@ -2807,11 +2807,11 @@ chronologically_sort_data = False
 analytical = False
 rank_functions = False
 # Model Building
-create_models = False
+create_models = True
 make_predictions = False
 perform_regressions = False
 # Output
-convert_text = True
+convert_text = False
 #################################################################################
 # Function Testing
 #################################################################################
