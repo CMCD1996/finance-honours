@@ -39,8 +39,11 @@
 \usepackage{color}
 \usepackage{listings}
 \usepackage{docmute}
+\usepackage{indentfirst}
+\usepackage{array}
 % DECLARATIONS
-\DeclareMathOperator*{\argmax}{argmax} % thin space, limits underneath in displays
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min} % thin space, limits underneath in displays
 % STYLE FORMATTING
 \usepackage{xcolor}
 \definecolor{codegreen}{rgb}{0,0.6,0}
@@ -161,32 +164,28 @@
 \listofmyequations
 \newpage 
 \pagenumbering{arabic} 
-\section{Introduction (3 pages)}
+\section{Introduction (2-3 pages)}
+\newpage
 \newpage
 \section{Literature (3 pages)}\label{LR}
 Overview of literature in asset pricing (761/751), ML application, factor pricing - very brief, 12pt, double spaced
 \subsection{Asset Pricing}
 \subsection{Machine Learning}
-Convexity is an important concept in optimisation
+A couple of recent publications highlight the increased application of machine learning algorithms in financial contexts.
+\cite{corporate-culture}
+Gu et al (\citeyear{eapvml}) explore the comparative use of machine learning in empirical asset pricing.
+However, intepretability issus persist in machine learning applications.
+\subsection{Custom Loss Functions}
+Convexity
 Monotonic ranking
-\subsection{Optimisation}
 \newpage
-\section{Motivation}
+\newpage
+\newpage
+\section{Motivation (1 page)}
 \subsection{Research Question}
 \textbf{Can neural networks, optimizsed to maximise financial metrics (e.g., Hedge Portfolio Excess Return, Sharpe Ratio etc.,) outperform conventional loss minimisation optimisation strategies,
 when predicting excess returns in individual equities and equity hedge portfolios?}
 \subsection{Hypotheses}
-\section{Literature Review (3 pages)}
-\subsection{Asset Pricing}
-\subsection{Optimisation}
-\begin{itemize}
-	\item Convexity
-	\item Monotonic Ranking Function
-\end{itemize}
-\subsection{Machine Learning}
-A couple of recent publications highlight the increased application of machine learning algorithms in financial contexts.
-\cite{corporate-culture}
-Gu et al (\citeyear{eapvml}) explore the comparative use of machine learning in empirical asset pricing.
 \newpage
 \section{Methodology}
 The required methodology to construct the methods to build, develop, and deploy neural networks with custom objective functions.
@@ -319,7 +318,7 @@ Where
 	\item $\eta$: Rate.
 \end{itemize}
 \doublespacing
-\subsubsection{Model Configuration}
+\subsubsection{Model Configuration} \label{network-configuration}
 Figure \ref{fig:neural-network} visualises a standard neural network topography
 \begin{figure}[H]
     \centering
@@ -360,7 +359,34 @@ An ouput linear activation (\ref{linear-activation-function}) is the most suitab
 \end{figure}
 \newpage
 \subsubsection{Loss Functions}
-\subsubsection{Performance Measure}
+Loss functions map an event or variable set, onto a real number, intuitively representing some loss, associated with the event e.g., difference between predicted and realised excess returns.
+Optimisation algorithms seek to minimise loss functions by finding an exact analytical solution, or applying numerical methods to find an approximate solution, terminating after meeting exit criteria, when an analytical solution is not possible.
+The training and evaluation of accurate neural networks uses this method.\footnote{The optimisation algorithm is synonymous with the training algorithm in section (\ref{mlp-math}).}
+The configured neural network (figure \ref{fig:neural-network-configuration}) uses a stochastic gradient descent (SGD) algorithm (\ref{sgd}).
+
+The relative performance between conventional minimisation loss functions, and maximisation of hedge portfolio excess returns, relies on comparing derivatives to these objectives.
+The mathematical rigor and suitability of the OLS estimator (\ref{ols}) informs the widespread use of OLS regressions, and minimisation of sum of least squares, in prior asset pricing literature.
+The proposition of three loss functions follow:
+\singlespacing
+\begin{enumerate}
+	\item \textbf{In-Built Mean Square Error}: Optimized for neural networks in Tensorflow. \footnote{\href{https://www.tensorflow.org/}{activation-functionPython library for neural network modelling from Google}}
+	\item \textbf{Custom Mean Square Error}: Confirm presence of automatic differentiation functionalities in Tensorflow.
+	\footnote{A set of techniques to evaluate the derivative of a function specified by a computer programme,
+	exploiting the sequential nature of elementary arithmetic operation and functions, repeatedly applying the chain rule in both forward and backward accumulations to compute gradients.
+	Automatic differentiation solves code inefficiencies and round off error issues associated with symbolic and numerical differentiation methods, while easily calculating higher order derivatives, and partial derivatives with many inputs.}
+	\item \textbf{Custom Hedge Portfolio}: A non-convex function seeking to maximise hedge portfolio returns with hedge portfolio weights determined by a monotonic ranking function mapping.
+	Section \ref{hedge-portfolio-derivation} elaborates on hedge portfolio theory and formulation.
+\end{enumerate}
+Section \ref{loss-function-formulation} describes both mean squared error and hedge portfolio loss function formulation.
+Best practice training, validation, and testing practice succeed configuration with one iteration per loss function.
+The deployment of twenty-five epochs, shuffling of instances prior to every epoch run, and use of early stopping procedures in validation help prevent over and underfitting.
+\subsubsection{Performance Metrics}
+Performance metrics inform comparisons between loss functions, to assess relative performance, after successful training and validation.
+\begin{enumerate}
+	\item The trained models predict one month lead excess returns for each instance (firm-year observation).
+	\item 
+\end{enumerate}
+\newpage
 \subsection{Brief Description of Remaining Methods}
 \begin{itemize}
 	\item Use stochastic gradient descent, train model with 10 epochs (2709 runs per epoch) for each of the six loss functions (tensorflow mse, custom mse, sharpe ratio, sharpe ratio mse, hedge portfolio mse, information ratio). Validate with validation set and evaluate with testign set.
@@ -368,114 +394,16 @@ An ouput linear activation (\ref{linear-activation-function}) is the most suitab
 	\item Perform newy west regressing hedge portfolio returns on fama factors. Predictions grouped by month. hedge formed by mean of top decile - mean of bottom decile creating hedge return for the month.
 	\item Second set of regressions does a panel regression  accounting Heteroskedasticity Robust Covariance as Fama MacBeth did not execute due to rank deficiencies.
 \end{itemize}
-\subsection{Loss Functions \& Performance Metrics}
-\subsubsection{Modelling, Loss, and Optimisation}\label{sec:mlo}
-We summarize the theory surrounding predictive modelling, loss functions, and optimisation algorithms.
-These functions train models by comparing predictions to realized observations using optimisation algorithms to minimize the loss function.
-We examine a linear model as our predictive model (\ref{lm}).
-Mean square error (\ref{mse}) and Gradient Descent (GD) are basic examples of a loss function and optimisation algorithm, respectively.
-\begin{align*}
-	\hat{y} &= mx_i + b \numberthis \label{lm}\\
-	f(y,(mx_{i} + b)) &= \frac{1}{n} \sum_{i=1}^{n}(y_i - (mx_{i} + b))^{2} \numberthis \label{mse}
-\end{align*}
-Firstly, gradient descent takes the partial derivatives of the loss function, with the respect to the parameters in our predictive model.
-In our example, equations \ref{pdmsem} and \ref{pdmseb} are the partial derivatives for the mean square error loss function.
-\begin{align*}
-	\frac{\partial f(y,(mx_{i} + b)}{ \partial m} &= \frac{1}{n} \sum_{i=1}^{n}-2x_{i}(y_i - (mx_{i} + b))^{2} \numberthis \label{pdmsem}\\
-	\frac{\partial f(y,(mx_{i} + b)}{ \partial b} &= \frac{1}{n} \sum_{i=1}^{n}-2(y_i - (mx_{i} + b))^{2} \numberthis \label{pdmseb}
-\end{align*}
-Secondly, the algorithm explores epochs, using a learning rate to update parameters to move in the opposite directions of the partial derivatives until settling in a local minima.
-This extrema is the optimisation of the loss function, quantifying the accuracy of the predicative model.
-Ordinary Least Squares (OLS) regressions is an extension of the linear model prevalent in asset pricing.
-The mathematical rigor and suitability of the OLS estimator section \ref{ols}.
-The theory underlying OLS informs the common practice in minimising of the sum of least squares when evaluating prediction performance.
-The mathematical tractability, in accordance with the aforementioned assumption, frame our thinking surrounding the derivation of custom loss functions.
-\subsubsection{Loss \& Metric Definition}
-\subsection{Hedge Portfolio Construction}
+
 \subsection{Regression Analysis}
 \newpage 
-\subsection{Loss Functions \& Performance Metrics}
-Table \ref{hpt} emphasises the separation between training and validation datasets.
-	\begin{table}[H]
-		\centering
-		\begin{tabular}{||c|c|c|c||}
-			\hline
-			Variable & Description & $ MSE(y,\hat{y}) $ & $ HP(y,\hat{y}) $\\ [0.5ex]
-			\hline
-			&&&\\
-			$\theta$ & Estimation& $ \hat{\theta}_{MSE}$& $ \hat{\theta}_{HP}$ \\ [0.5ex]
-			& Training & & \\
-			\hline
-			&&&\\
-			$\lambda$ & Validation & $\hat{\lambda}_{MSE}$ & $\hat{\lambda}_{HP}$\\ [1.0ex]
-			\hline
-		\end{tabular}
-	\caption{Objective (MSE: Mean Square Error, HP: Hedge Portfolio)}
-	\label{hpt}
-\end{table}
 \subsubsection{Mean Square Error (MSE)}
 Section \ref{sec:mlo} outlines advantages to Ordinary Least Squares.
 Subsequently, MSE serves as a baseline for loss function and performance metric comparisons.
 The following function (\ref{mself}) and partial derivative (\ref{pdmself}) describe Tensorflows's Mean Square Error implementation, both from in-built and custom contexts. 
 Python classes describe equation \ref{mself} to enable Tensorflow's automatic differentiation capabilities, approximating the partial derivatives of the loss function (\ref{pdmself}) with numerical methods.
-Please note the use of Hadamard exponentiation ($x^{\circ n}$) as an element-wise operation.
-\begin{align*}
-	f(y, X^{T} \hat{\theta}) &= \frac{\vec{1}}{\vec{1}^{T}\vec{1}} (y - X^{T}\hat{\theta})^{\circ 2} \numberthis \label{mself}\\
-	\frac{\partial f(y, X^{T} \hat{\theta})}{ \partial \hat{\theta}} &= \frac{\vec{1}}{\vec{1}^{T}\vec{1}} (-2(y-X{T} \hat{\theta})^{\circ 1}) \numberthis \label{pdmself}\\
-\end{align*}
-\subsubsection{Hedge Portfolio}
-Hedge portfolios rely on monotonic ranking functions for optimisation as their monotonic nature preserves or reverses a given ordered set.
-The analysis cross-section of one-month lead portfolio excess returns using monotonic functions 
-\begin{align}
-	R(y_{i,t}) \numberthis \label{ranking-function}
-\end{align}
-The ranking function (R($y_{i,t}$)) and thresholds (u,v) form subsets of long and short portfolios.
-Long (L) or Short (S) sets include excess returns conditioned on the associated monotonic ranking given a threshold, bound by the cardinality of the excess return vector ($|y|$).
-The subsequent truth sets mathematically express aforementioned time-series hedge portfolios.
-\begin{align*}
-	L &= \{ y_{i,t} | R(y_{i,t})\leq u\}\\
-	S &= \{ y_{i,t} | R(y_{i,t})\geq v\}\\
-	0 & < u \leq |y|\\
-	0 & < v \leq |y|\\
-	u & < v
-\end{align*}
-Equation \ref{htls} describes hedge portfolio lead excess returns ($H_t$) at a given time (t).
-\begin{align}
-	H_t &= \frac{1}{|L|}\sum_{i\epsilon L} y_{i,t} - \frac{1}{|S|}\sum_{i\epsilon S} y_{i,t} \label{htls}
-\end{align}
-Figure \ref{fig:mrf}) illustrates an approximate linear monotonic ranking function with a sample of 100 uniformly distributed excess returns  between -10\% and 10\%.
-Boundary conditions u and v are set to 20 and 80 , respectively.
-Subsequently, excess returns above (below) the green (blue) dotted line belong to the long (L) (short (S)) set. 
-\begin{figure}[H]
-    \centering 
-    \includegraphics[width=\textwidth]{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/monotonic-ranking}.png}
-    \caption{Approximate Linear Monotonic Ranking Function}
-    \label{fig:mrf}
-\end{figure}
-The permutations in monotonic ranking functions, and subsequent hedge portfolios, are endless. 
-This research essay develops a monotonic ranking function proportionally weighting one month lead excess returns (\ref{w1}).
-Therefore, equation \ref{pwlf} defines the loss function.
-\begin{align*}
-	R(\hat{y}) &= W \numberthis \label{w1}\\
-	W&:= \frac{\hat{y}}{\vec{\textbf{1}}\hat{y}}\\
-	\hat{y} &= X^{T} \hat{\theta}\\
-	f_{\hat{\theta}}(X) &= (\frac{X^{T} \hat{\theta}}{\vec{\textbf{1}}X^{T} \hat{\theta}})^\top X^{T} \hat{\theta} \numberthis \label{pwlf}
-\end{align*}
-The above loss function is differentiable using symbolic mathematic as shown in equation \ref{pdewlf}.
-\begin{align*}
-	\frac{\partial f_{\hat{\theta}}(X)}{\partial \hat{\theta}} &= \frac{\partial ((\frac{X^{T} \hat{\theta}}{\vec{\textbf{1}}X^{T} \hat{\theta}})^\top X^{T} \hat{\theta})}{\partial \hat{\theta}} \\
-	\frac{\partial (f_{\hat{\theta}}(X))}{\partial \hat{\theta}}  &= \frac{1}{(\hat{\theta}^\top X \vec{1})} X X^\top \hat{\theta} +\frac{1}{\vec{1}X^\top \hat{\theta}} XX^\top \hat{\theta} -\frac{1}{(\hat{\theta}^\top X \vec{1})^{2}} \hat{\theta}^\top XX^\top \hat{\theta} X \vec{1} \numberthis \label{pdewlf}
-\end{align*}
-Our research
-Subsection \ref{sec:mlo} explains the theory supporting loss minimisation.
-Applying gradient descent methods to the product of  the loss function and scaler of -1 transforms the minimisation to maximisation.
-This transformation leads to finding the argmax of maximisation function with respect to $\hat{\theta}$ (\ref{argmax}).
-The aforementioned transformation is simply and suitable for exploration in the context of the research intent.
-More sophisticated methods exist for maximisation such as reinforcement learning (\ref{rifml}).
-\begin{align*}
-	\argmax_{\hat{\theta}} &: (\frac{X^{T} \hat{\theta}}{\vec{\textbf{1}}X^{T} \hat{\theta}})^\top X^{T} \hat{\theta} \numberthis \label{argmax}
-\end{align*}
-\subsection{Conventional Asset Pricing Models}
+
+\subsection{Asset Pricing Models}
 Conventional asset pricing methodologies persist in academic literature.
 The use of the Capital Asset Pricing Model (CAPM) persists, regardless of the identifiable shortcomings in market proxies and empirical failings invalidating use (\cite{fama2004capital}).
 Nonetheless, this research essay uses the model as a performance metric for comparative purposes.
@@ -567,7 +495,7 @@ Table \ref{plfpe} summarises main findings
 			$\theta_{(Final)}$ & & & \\
 			\hline
 			$\lambda_{(Final)}$ & & & \\
-			\hline
+			\hline \hline
 			$\mu_{(HP)}$ & & & \\
 			\hline
 			$\alpha_{(HP,CAPM)}$ & & & \\
@@ -620,7 +548,145 @@ the ability to shuffle training sets at lengths greater than or equal to the inp
 \section{Appendix}
 \subsection{Mathematics}
 \subsubsection{Equations \& Derivations}
+\subsubsection{Hedge Portfolio} \label{hedge-portfolio-derivation}
+Hedge portfolios rely on monotonic ranking functions for optimisation as their monotonic nature preserves or reverses a given ordered set.
+The analysis cross-section of one-month lead portfolio excess returns using monotonic functions 
+\begin{align}
+	R(y_{i,t}) \numberthis \label{ranking-function}
+\end{align}
+The ranking function (R($y_{i,t}$)) and thresholds (u,v) form subsets of long and short portfolios.
+Long (L) or Short (S) sets include excess returns conditioned on the associated monotonic ranking given a threshold, bound by the cardinality of the excess return vector ($|y|$).
+The subsequent truth sets mathematically express aforementioned time-series hedge portfolios.
+\begin{align*}
+	L &= \{ y_{i,t} | R(y_{i,t})\leq u\}\\
+	S &= \{ y_{i,t} | R(y_{i,t})\geq v\}\\
+	0 & < u \leq |y|\\
+	0 & < v \leq |y|\\
+	u & < v
+\end{align*}
+Equation \ref{htls} describes hedge portfolio lead excess returns ($H_t$) at a given time (t).
+\begin{align}
+	H_t &= \frac{1}{|L|}\sum_{i\epsilon L} y_{i,t} - \frac{1}{|S|}\sum_{i\epsilon S} y_{i,t} \label{htls}
+\end{align}
+Figure \ref{fig:mrf}) illustrates an approximate linear monotonic ranking function with a sample of 100 uniformly distributed excess returns  between -10\% and 10\%.
+Boundary conditions u and v are set to 20 and 80 , respectively.
+Subsequently, excess returns above (below) the green (blue) dotted line belong to the long (L) (short (S)) set. 
+\begin{figure}[H]
+    \centering 
+    \includegraphics[width=\textwidth]{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/monotonic-ranking}.png}
+    \caption{Approximate Linear Monotonic Ranking Function}
+    \label{fig:mrf}
+\end{figure}
+The permutations in monotonic ranking functions, and subsequent hedge portfolios, are endless. 
+This research essay develops a monotonic ranking function proportionally weighting one month lead excess returns (\ref{w1}).
+Therefore, equation \ref{pwlf} defines the loss function.
+\begin{align*}
+	R(\hat{y}) &= W \numberthis \label{w1}\\
+	W&:= \frac{\hat{y}}{\vec{\textbf{1}}\hat{y}}\\
+	\hat{y} &= X^{T} \hat{\theta}\\
+	f_{\hat{\theta}}(X) &= (\frac{X^{T} \hat{\theta}}{\vec{\textbf{1}}X^{T} \hat{\theta}})^\top X^{T} \hat{\theta} \numberthis \label{pwlf}
+\end{align*}
+The above loss function is differentiable using symbolic mathematic as shown in equation \ref{pdewlf}.
+\begin{align*}
+	\frac{\partial f_{\hat{\theta}}(X)}{\partial \hat{\theta}} &= \frac{\partial ((\frac{X^{T} \hat{\theta}}{\vec{\textbf{1}}X^{T} \hat{\theta}})^\top X^{T} \hat{\theta})}{\partial \hat{\theta}} \\
+	\frac{\partial (f_{\hat{\theta}}(X))}{\partial \hat{\theta}}  &= \frac{1}{(\hat{\theta}^\top X \vec{1})} X X^\top \hat{\theta} +\frac{1}{\vec{1}X^\top \hat{\theta}} XX^\top \hat{\theta} -\frac{1}{(\hat{\theta}^\top X \vec{1})^{2}} \hat{\theta}^\top XX^\top \hat{\theta} X \vec{1} \numberthis \label{pdewlf}
+\end{align*}
+Subsection \ref{sec:mlo} explains the theory supporting loss minimisation.
+Applying gradient descent methods to the product of  the loss function and scaler of -1 transforms the minimisation to maximisation.
+This transformation leads to finding the argmax of maximisation function with respect to $\hat{\theta}$ (\ref{argmax}).
+The aforementioned transformation is simply and suitable for exploration in the context of the research intent.
+More sophisticated methods exist for maximisation such as reinforcement learning (\ref{rifml}).
+\begin{align*}
+	\argmax_{\hat{\theta}} &: (\frac{X^{T} \hat{\theta}}{\vec{\textbf{1}}X^{T} \hat{\theta}})^\top X^{T} \hat{\theta} \numberthis \label{argmax}
+\end{align*}
+\subsubsection{Loss Functions}\label{loss-function-formulation}
+Equations \ref{f-mse} and \ref{f-hp} show the loss functions calculating mean squared errors and aforementioned hedge portfolios, respectively.
+Equations \ref{argmin-mse} and \ref{argmax-hp} illustrate optimisation objectives for mean squared error and hedge portfolio loss functions, respectively. \footnote{$\argmax_{\hat{\theta}}: (f_{\hat{\theta}}(X)) \equiv \argmin_{\hat{\theta}}: (-f_{\hat{\theta}}(X))$}
+Equations \ref{pd-mse} and \ref{pd-hp} describe the partial derivative functions for both mean squared error and hedge portfolio loss functions, respectively.
+The global optimum for both functions is the combination of parameters ($\hat{\theta}$) setting the partial derivative to zero. 
+The first is trivial in an analytical form. The second is non-trivial, requiring symbolic, numerical, or automatic methods.
+The immediate code listings show the translation of loss functions mathematical expressions (\ref{f-mse} and \ref{f-hp}) into tensor compatible formats for analysis.
+\begin{multicols}{2}
+\noindent
+	\begin{equation}
+		f_{\hat{\theta}}(y, X)= \frac{\vec{1}}{\vec{1}^{T}\vec{1}} (\textbf{y} - X^{T}\hat{\theta})^{\circ 2} \numberthis 
+		\label{f-mse}
+	\end{equation}
+	\begin{equation}
+		f_{\hat{\theta}}(X)= (\frac{X^{T} \hat{\theta}}{\vec{\textbf{1}}X^{T} \hat{\theta}})^\top X^{T} \hat{\theta} \numberthis
+		\label{f-hp}
+	\end{equation}
+\end{multicols}
+\begin{multicols}{2}
+	\noindent
+		\begin{equation}
+		\argmin_{\hat{\theta}}: (f_{\hat{\theta}}(y, X)) \numberthis 
+		\label{argmin-mse}
+	\end{equation}
+	\begin{equation}
+		\argmax_{\hat{\theta}}: (f_{\hat{\theta}}(X)) \numberthis 
+		\label{argmax-hp}
+	\end{equation}
+\end{multicols}
+\begin{equation}
+	\frac{\partial f_{\hat{\theta}}(y, X)}{ \partial \hat{\theta}} = \frac{\vec{1}}{\vec{1}^{T}\vec{1}} (-2(\textbf{y}-X^{T} \hat{\theta})^{\circ 1}) \numberthis 
+	\label{pd-mse}
+\end{equation}
+\begin{equation}
+	\frac{\partial (f_{\hat{\theta}}(X))}{\partial \hat{\theta}}  = \frac{1}{(\hat{\theta}^\top X \vec{1})} X X^\top \hat{\theta} +\frac{1}{\vec{1}X^\top \hat{\theta}} XX^\top \hat{\theta} -\frac{1}{(\hat{\theta}^\top X \vec{1})^{2}} \hat{\theta}^\top XX^\top \hat{\theta} X \vec{1} \numberthis 
+	\label{pd-hp}
+\end{equation}
+\begin{lstlisting}[language=Python, caption = Custom Mean Squared Error Implementation]
+	class custom_mse(tf.keras.losses.Loss):
+		def __init__(self, extra_tensor=None, reduction=tf.keras.losses.Reduction.AUTO, name='custom_mse'):
+			super().__init__(reduction=reduction, name=name)
+			self.extra_tensor = extra_tensor
 
+		def call(self, y_true, y_pred):
+			extra_tensor = self.extra_tensor
+			loss = K.mean(K.square(y_pred - y_true))
+			return loss
+\end{lstlisting}
+\begin{lstlisting}[language=Python,caption = Custom Hedge Portfolio Implementation]
+	class custom_hp(tf.keras.losses.Loss):
+		def __init__(self, extra_tensor=None, reduction=tf.keras.losses.Reduction.AUTO, name='custom_hp'):
+			super().__init__(reduction=reduction, name=name)
+			self.extra_tensor = extra_tensor
+
+		def call(self, y_true, y_pred):
+			extra_tensor = self.extra_tensor
+			# Calculates sum over vector tensors
+			y_true_sum = K.sum(y_true)
+			y_pred_sum = K.sum(y_pred)
+			#
+			y_true_weights = (y_true/y_true_sum)
+			y_pred_weights = (y_pred/y_pred_sum)
+			# Transpose the weights
+			y_true_transposed = K.transpose(y_true_weights)
+			y_pred_transposed = K.transpose(y_pred_weights)
+			# Multiply by the weights
+			y_true_loss = K.dot(y_true_transposed, y_true)
+			y_pred_loss = K.dot(y_pred_transposed, y_pred)
+			loss = -1*(y_pred_loss)
+			return loss
+\end{lstlisting}
+
+\subsection{Stochastic Gradient Descent}\label{sgd}
+Firstly, SGD finds loss function partial derivatives, with the respect to the parameter in a predictive model.
+Secondly, the exploration of epochs update parameters using a learning rate, moving away from the partial derivatives, until settling in a minimum as a potential solution.
+Several methods aid escape from local minima to continue searching for global minimum solutions, depending on the algorithm. 
+The below illustrates the use of mean squared error as a loss function, on a linear model, where SGD would adjust both intercept and co-efficient parameters, in order to find the argmax of the loss function.
+\\
+Equations for linear model (\ref{lm}) and mean squared error (\label{mse}).
+\begin{align*}
+	\hat{y} &= mx_i + b \numberthis \label{lm}\\
+	f(y,(mx_{i} + b)) &= \frac{1}{n} \sum_{i=1}^{n}(y_i - (mx_{i} + b))^{2} \numberthis 
+\end{align*}
+Partial derivatives of parameters m (\ref{pdmsem}) and b (\ref{pdmseb}), respectively.
+\begin{align*}
+	\frac{\partial f(y,(mx_{i} + b)}{ \partial m} &= \frac{1}{n} \sum_{i=1}^{n}-2x_{i}(y_i - (mx_{i} + b))^{2} \numberthis \label{pdmsem}\\
+	\frac{\partial f(y,(mx_{i} + b)}{ \partial b} &= \frac{1}{n} \sum_{i=1}^{n}-2(y_i - (mx_{i} + b))^{2} \numberthis \label{pdmseb}
+\end{align*}
 \subsection{Ordinary Least Squares (OLS)}\label{ols}
 The OLS regression is the most prominent statistical model in asset pricing theory.
 Rosenfeld (\citeyear{olsmf}) summarises OLS.
@@ -710,6 +776,7 @@ Equation \ref{gma4} captures homoskedasticity and no autocorrelation assumptions
 \input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse-accuracy}.tex}
 \subsubsection{Custom Hedge Portfolio}
 \input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_hp-accuracy}.tex}
+
 \subsection{Technical Details}\label{technical}
 \subsubsection{Organisation}
 This research essay uses data science best practise (\cite{J:10}).
@@ -724,7 +791,7 @@ This functionality enables reproducibility, error correction, and the ability to
 
 \subsubsection{Version Control}\label{Version Control}
 Git, hosted by GitHub, provides a comprehensive set of version control technologies and range of benefits.
-These technologies manage version control for the the programming of approximately 40 methods, classes, and functions.
+These technologies manage version control for the programming of approximately 40 methods, classes, and functions.
 Firstly, Git enables collaborative functionalities. 
 The master version of a project is accessible for all who have access to the repository. 
 Each contributor can create custom copies of branches through pull requests on the master branch. 
@@ -778,7 +845,9 @@ The parsing of yapf docstrings enables automated documentation generators to cre
 This research essay deploys variations in artificial neural networks of changing size and complexity.
 Analysis either took place locally, or remotely, depending on the computational requirements for the particular analysis.
 An Apple MacBook Pro 13 Inch 2019 with 8 GB 2133 MHz LPDDR3 memory and 1.4 GHz Quad-Core Intel Core i5 processor handles simple tasks locally.
-A Virtual Machine Instance on the Google Cloud Platform \textbf{Insert specification before submission} handles complex tasks remotely.
+A Virtual Machine Instance on the Google Cloud Platform handles more complex tasks remotely.
+The instance is a n1-standard-8 machine, with an intel Broadwell CPU platform, outfitted with one NVIDIA Tesla K80 GPU.
+The boot disk stores up to 100GB. CPU and GPU capacity are 30GB and 10GB, respectively
 
 \subsubsection{Documentation}
 The research essay documentation keeps an accurate record of key design decisions.
