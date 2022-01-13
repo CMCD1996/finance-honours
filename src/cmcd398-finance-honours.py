@@ -1788,7 +1788,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
                 print("Metric Values: ", metrics)
                 # Save the model
                 model.save(
-                    '/home/connormcdowall/finance-honours/results/models/tensorflow/'+model_name + '-' + selected_loss)
+                    '/home/connormcdowall/finance-honours/results/models/tensorflow/'+model_name + '-' + selected_loss + 'active')
                 # Monitor memory usage
                 monitor_memory_usage(units=3, cpu=True, gpu=True)
                 models.append(model)
