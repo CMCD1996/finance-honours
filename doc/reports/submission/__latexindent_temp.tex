@@ -98,6 +98,7 @@
 \usepackage{hyperref}
 %%% DOCUMENT
 \begin{document}
+%%% FRONT MATTER NUMBERING
 %%% NEW COMMANDS
 \newcommand{\listequationsname}{List of Equations}
 \newlistof{myequations}{equ}{\listequationsname}
@@ -310,11 +311,11 @@ A shared activation function replaces the individual activation functions in the
 Where
 \singlespacing
 \begin{itemize}
-	\item $w_{i,j}$ is the connection weights between the ith input neuron and the jth output neuron. 
-	\item $x_i$ is the ith input value of the current training instance.
-	\item $\hat{y}_{j}$ is the output of the jth output neuron for the current training instance.
-	\item $y_{j}$ is the output of the jth output neuron for the current training instance.
-	\item $\eta$ is the rate.
+	\item $w_{i,j}$: Connection weights between the ith input neuron and the jth output neuron. 
+	\item $x_i$: Ith input value of the current training instance.
+	\item $\hat{y}_{j}$: Output of the jth output neuron for the current training instance.
+	\item $y_{j}$: Output of the jth output neuron for the current training instance.
+	\item $\eta$: Rate.
 \end{itemize}
 \doublespacing
 \subsubsection{Model Configuration}
@@ -327,9 +328,10 @@ Figure \ref{fig:neural-network} visualises a standard neural network topography
 \end{figure}
 The dots and lines represent nodes and connections between nodes, respectively.
 The architecture of the network is derivative of intended use.
-The set of
+Figure \ref{fig:neural-network-configuration} illustrates the required configuration for evaluating excess returns.\footnote{Configuration uses both Newtonian and Matrix Notation}
+$N(x,y)$ represents the yth node in xth layer. .
+\textbf{z} = \text{$\sum_{a = 1}^{189} w_{(n,a,b)}x_{(n,a,b)}$ ($=\textbf{w}^{T} \cdot \textbf{x}$) represents the dot product of all outputs (x) and connection weights (w) from the nth layer, between the nodes a and b)in layers n and n+1, respectively.
 The linear activation function (\ref{linear-activation-function}) is most suitable output layer activation function for regression task as predict values between ($-\infty,\infty$) directly, suitable for evaluating excess returns. 
-Figure \ref{fig:neural-network-configuration} illustrates the configuration for this project (work in prgoress).
 \newpage
 \begin{figure}[H]
 	\centering
@@ -342,7 +344,7 @@ Figure \ref{fig:neural-network-configuration} illustrates the configuration for 
 	\node (output) [outputlayer, below of=hidden4, yshift=-1.5cm] {\textbf{Dense IV} \\ \text{$N_{(5,f)}$: \textbf{$f$ $\epsilon \{1\}$}} \\ \textbf{k} = Linear(\textbf{t})};
 	\node (predict) [predict, below of=output, yshift=-1cm] {\textbf{$Prediction_{k}$}};
 	\draw [arrow] (in) -- node[anchor=west] {\textbf{z} = \text{$\sum_{a = 1}^{189} w_{(0,a,b)}x_{(0,a,b)}$} \text{$\forall$ b}} (hidden1);
-	\draw [arrow] (hidden1) -- node[anchor=west] {\textbf{y} = \text{$\sum_{b = 1}^{32} w_{(1,b,c)}g_{(1,b,c)}$} \text{$\forall$ c}} (hidden2);
+	\draw [arrow] (hidden1) -- node[anchor=west] {\textbf{y} = \textbf{g}} (hidden2);
 	\draw [arrow] (hidden2) -- node[anchor=west] {\textbf{v} = \text{$\sum_{c = 1}^{32} w_{(2,c,d)}h_{(2,c,d)}$} \text{$\forall$ d}} (hidden3);
 	\draw [arrow] (hidden3) -- node[anchor=west] {\textbf{u} = \text{$\sum_{d = 1}^{64} w_{(3,d,e)}i_{(3,d,e)}$} \text{$\forall$ e}} (hidden4);
 	\draw [arrow] (hidden4) -- node[anchor=west] {\textbf{t} = \text{$\sum_{e = 1}^{128} w_{(4,e,f)}j_{(4,e,f)}$} \text{$\forall$ f}} (output);
@@ -577,6 +579,7 @@ Both Sharpe and Information ratios supplement hedge portfolio-related loss funct
 \cite{hlavac2018stargazer} enables the tables in the regression analysis.
 \newpage
 \subsection{Model Accuracy}
+Section \ref{model-training-validation-performance} illustrates relative training and validation performance between loss functions.
 \subsubsection{Model Loss}
 Table X illustrates the performance of each model during training, validation, and testing.
 Table \ref{test-model-predict} informs the accruracy of predictions 
@@ -668,43 +671,25 @@ The intention of the Gauss-Markov Theorem, conditional on the below assumptions,
 \end{itemize}
 Equation \ref{gma3} implies $E(y) = X\beta$ as no observations of the independent variables convey any information about the expected values of the disturbances.
 Equation \ref{gma4} captures homoskedasticity and no autocorrelation assumptions.
-\subsection{Tensorflow Model Performance}
+\newpage
+\begin{landscape}
+\subsection{Model Training \& Validation Performance} \label{model-training-validation-performance}
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{mean-square-error-tensorflow.png}
-    \caption{Mean Square Error Model (Tensorflow)}
+    \includegraphics[width=1.5\textwidth]{mean-square-error-tensorflow.png}
+    \caption{Performance: In-Built Mean Square Error}
     \label{fig:mse-tf-performance}
 \end{figure}
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{mean-square-error.png}
-    \caption{Mean Square Error Loss Function}
+    \includegraphics[width=1.5\textwidth]{mean-square-error.png}
+    \caption{Performance: Custom Mean Square Error}
     \label{fig:mse-performance}
 \end{figure}
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{sharpe.png}
-    \caption{Sharpe Ratio Loss Function}
-    \label{fig:sr-performance}
-\end{figure}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{sharpe-mse.png}
-    \caption{Sharpe Ratio (MSE) Loss Function}
-    \label{fig:sr-mse-performance}
-\end{figure}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{information.png}
-    \caption{Information Ratio Loss Function}
-    \label{fig:ir-performance}
-\end{figure}
-\begin{figure}[H]
-    \centering
     \includegraphics[width=\textwidth]{hedge-portfolio.png}
-    \caption{Hedge Portfolio Loss Function}
+    \caption{Performance: Custom hedge Portfolio}
     \label{fig:hp-performance}
 \end{figure}
+\end{landscape}
 \newpage
 \subsection{Pooled Ordinary Least Square Regressions} \label{polsr}
 \subsubsection{In-Built Mean Square Error}
