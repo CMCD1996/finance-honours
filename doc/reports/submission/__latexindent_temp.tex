@@ -13,8 +13,6 @@
 \doublespacing
 \geometry{a4paper}
 %%% PACKAGES
-% \usepackage{caption}
-% \usepackage{subcaption}
 \usepackage{graphicx} % For better graphics
 % Sets graphics paths
 \graphicspath{ {/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots}{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance} }
@@ -41,6 +39,7 @@
 \usepackage{docmute}
 \usepackage{indentfirst}
 \usepackage{array}
+\usepackage{wrapfig}
 % DECLARATIONS
 \DeclareMathOperator*{\argmax}{arg\,max}
 \DeclareMathOperator*{\argmin}{arg\,min} % thin space, limits underneath in displays
@@ -171,11 +170,11 @@
 \subsection{[Placeholder III]}
 \newpage
 \section{Literature (3 pages)}\label{LR}
-Overview of literature in asset pricing (761/751), ML application, factor pricing - very brief, 12pt, double spaced
+
 \subsection{Asset Pricing}
-Asset pricing in finance literature.
-The use of the Capital Asset Pricing Model (CAPM) persists, regardless of the identifiable shortcomings in market proxies and empirical failings invalidating use (\cite{fama2004capital}).
-Nonetheless, this research essay uses the model as a performance metric for comparative purposes.\\
+
+Capital Asset Pricing Model (CAPM) use persists, regardless of the invalidation from identifiable shortcomings in market proxies and empirical failings invalidating use (\cite{fama2004capital}).
+Nonetheless, this research essay uses the model as a performance metric for comparative purposes.
 
 E. Fama and K. French (\citeyear{eugene1992cross}) validate the explanatory power of size and value (book-to-market) factors
 in their ability to capture the cross-sectional variation in average stock returns, in association with market risk, size, leverage, book-to-market, and earnings-price ratios.
@@ -183,7 +182,7 @@ E. Fama and K. French further their analysis on the common characteristics betwe
 and add two additional factors to consider profitability and investment.
 The main combinations are the Fama French Three (FF3) (\ref{ff3}) and Five (FF5) (\ref{ff5}) models.
 E. Fama and K. French consider a momentum factor on international stock returns in subsequent years (\cite{fama2012size}).
-The omission of momentum from the models stand.\\
+The omission of momentum from the models stand.
 
 K. French continues to maintain FF3 and FF5 related datasets (\cite{french-personal})
 E. Fama, with J. MacBeth, developed the Fama-MacBeth regression (\cite{fama1973risk}) to estimate factor loadings and prices.
@@ -408,8 +407,7 @@ Methods for performance metrics inception and formulation follow:
 	\item Standard monthly sorts of predicted one month lead excess returns form standard decile ten (top 10\%) minus decile one (bottom 10\%) hedge portfolios returns per month.
 	\item Use hedge portfolio to calculate the mean across all months, sharpe ratio, and treynor ratio \footnote{Uses the estimation for systematic risk from the CAPM OLS estimator}.
 	\item Learning curves validate model representation.
-	\item Ordinary least squares regression incorporating Newey-West estimators, (\cite{newey1987hypothesis})
-	\footnote{The estimator aims to ensure autocorrelation and heteroskedasticity consistency for the regressions of time-series panel data}.
+	\item Ordinary least squares regression, incorporating Newey-West\footnote{The estimator aims to ensure autocorrelation and heteroskedasticity consistency for the regressions of time-series panel data.} estimators and six month lags (\cite{newey1987hypothesis}),
 	regress: 
 	\begin{itemize}
 		\item Realised one month lead excess return on predicted one month lead excess return
@@ -457,23 +455,50 @@ Table \ref{plfpe} summarises main findings
 \end{table}
 \subsection{Performance Matrix}
 \input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-calculations-metrics}.tex}
-\cite{hlavac2018stargazer} enables the tables in the regression analysis.
 \newpage
-\subsection{Model Accuracy}
-Section \ref{model-training-validation-performance} illustrates relative training and validation performance between loss functions.
+\cite{hlavac2018stargazer} enables the tables in the regression analysis.
 \subsection{Learning Curves}
+\begin{figure}[H]
+	\centering
+    \subfloat[In-Built Mean Square Error Learning curve\label{fig-lc-mse}]{%
+      \includegraphics[width=\textwidth]{mean-squared-error-learning-curve.png}
+    }
+    \vfill
+    \subfloat[Custom MSE\label{fig-lc-cmse}]{%
+      \includegraphics[width=\textwidth]{custom-mse-learning-curve.png}
+    }
+    \caption{Learning Curves }
+    \label{fig:mse-learning-curves}
+  \end{figure}
+  \begin{figure}[H]
+	\centering
+    \includegraphics[width=\textwidth]{custom-hp-learning-curve.png}
+	\caption{Hedge Portfolio Learning Curves}
+	\label{fig:hp-lc}
+  \end{figure}
+Figure \ref{fig:mse-learning-curves} and \ref{fig:hp-lc} visualise learning curves for mean squared error variants, and hedge portfolio loss functions, respectively.
+Learning curves serve as diagnostic tools for underfitting, or overfitting.\footnote{Overfitting: Overlearns training data, generalises new data poorly. Underfitting: Inadequate training leading to poor predictions.}
+\textbf{Elaborate all this curves show the dataset is representative, suitable for ML contributions}
+Section \ref{model-training-validation-performance} aggregates learning curves, and conventional performance metrics, evaluating model training and validation.
+\footnote{Generate using a Custom \href{https://neptune.ai/}{Neptune.ai} callback during model fitting.}
 
-\subsubsection{Model Loss}
-Table X illustrates the performance of each model during training, validation, and testing.
-Table \ref{test-model-predict} informs the accruracy of predictions 
+\subsection{Return Predictability}
+Table \ref{predicability-actual-returns} regress one month lead excess returns, on the predicted returns, for every loss function.
 \input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-regression-metrics}.tex}
-Fama MacBeth Regressions using individual securities.
-PooledOLS replaces Fama MacBeth in this instance.
+However, the hedge portfolio loss function optimises predicted hedge portfolios.
+\input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-regression-metrics-hedge}.tex}
 \subsection{Hedge Portfolio Performance}
-
-\subsubsection{Inbuilt Mean Square Error}
-\subsubsection{Custom Mean Square Error}
-\subsubsection{Custom Hedge Portfolio}
+\begin{landscape}
+\subsubsection{Mean Square Error}
+\input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-mean\_squared\_error}.tex}
+\newpage
+\subsubsection{Mean Square Error (Custom)}
+\input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom\_mse}.tex}
+\newpage
+\subsubsection{Hedge Portfolio}
+\input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom\_hp}.tex}
+\newpage
+\end{landscape}
 \newpage
 \section{Discussion}
 \section{Conclusion (2 pages)}
@@ -754,6 +779,7 @@ Where
 	\item $\epsilon_{n,t}$: Residual for an asset at a time (t)
 	\item $\gamma_{t,f}$: Factor pricing for a factor (f)
 \end{itemize}
+\subsection{Performance Measures}
 \subsubsection{Sharpe Ratio}
 Nobel Laurette William F. Sharpe (\citeyear{sharpe1994sharpe}) introduced the Sharpe Ratio (\ref{sr}) as a measure for risk-adjusted returns,
 where $\mathop{\mathbb{E}} [R_a - R_f]$ is the expectation for excess returns, and $\sigma(R_a)$ is the standard deviation of excess returns.

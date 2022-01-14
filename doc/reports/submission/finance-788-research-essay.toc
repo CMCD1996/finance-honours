@@ -12,138 +12,138 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.1}Asset Pricing}{4}{subsection.2.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.2}Machine Learning in Finance}{6}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.2}Machine Learning in Finance}{5}{subsection.2.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.3}Loss Functions}{7}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.3}Loss Functions}{6}{subsection.2.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3}Motivation (1 page)}{8}{section.3}%
+\contentsline {section}{\numberline {3}Motivation (1 page)}{7}{section.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.1}Research Question}{8}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.1}Research Question}{7}{subsection.3.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.2}Hypotheses}{8}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.2}Hypotheses}{7}{subsection.3.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4}Methodology}{9}{section.4}%
+\contentsline {section}{\numberline {4}Methodology}{8}{section.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.1}Data}{9}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.1}Data}{8}{subsection.4.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.1.1}Global Factors Dataset}{9}{subsubsection.4.1.1}%
+\contentsline {subsubsection}{\numberline {4.1.1}Global Factors Dataset}{8}{subsubsection.4.1.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.1.2}Processing}{10}{subsubsection.4.1.2}%
+\contentsline {subsubsection}{\numberline {4.1.2}Processing}{9}{subsubsection.4.1.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.1.3}Cloud Infrastructure}{10}{subsubsection.4.1.3}%
+\contentsline {subsubsection}{\numberline {4.1.3}Cloud Infrastructure}{9}{subsubsection.4.1.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.2}Neural Networks}{11}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.2}Neural Networks}{10}{subsection.4.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.2.1}Normalisation \& Feature Encoding}{11}{subsubsection.4.2.1}%
+\contentsline {subsubsection}{\numberline {4.2.1}Normalisation \& Feature Encoding}{10}{subsubsection.4.2.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3}Neural Network Architecture}{12}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.3}Neural Network Architecture}{11}{subsection.4.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.3.1}Activation Functions, Linear Threshold Units, \& Perceptrons}{12}{subsubsection.4.3.1}%
+\contentsline {subsubsection}{\numberline {4.3.1}Activation Functions, Linear Threshold Units, \& Perceptrons}{11}{subsubsection.4.3.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.3.2}Model Configuration}{13}{subsubsection.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.2}Model Configuration}{12}{subsubsection.4.3.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.3.3}Loss Functions}{15}{subsubsection.4.3.3}%
+\contentsline {subsubsection}{\numberline {4.3.3}Loss Functions}{14}{subsubsection.4.3.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.3.4}Performance Metrics}{15}{subsubsection.4.3.4}%
+\contentsline {subsubsection}{\numberline {4.3.4}Performance Metrics}{14}{subsubsection.4.3.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5}Results}{17}{section.5}%
+\contentsline {section}{\numberline {5}Results}{16}{section.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1}Main Findings}{17}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.1}Main Findings}{16}{subsection.5.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.2}Performance Matrix}{17}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.2}Performance Matrix}{16}{subsection.5.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.3}Model Accuracy}{18}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.3}Learning Curves}{19}{subsection.5.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.4}Learning Curves}{18}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.4}Return Predictability}{20}{subsection.5.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.4.1}Model Loss}{18}{subsubsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.5}Hedge Portfolio Performance}{22}{subsection.5.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.5}Hedge Portfolio Performance}{18}{subsection.5.5}%
+\contentsline {subsubsection}{\numberline {5.5.1}Mean Square Error}{23}{subsubsection.5.5.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.5.1}Inbuilt Mean Square Error}{18}{subsubsection.5.5.1}%
+\contentsline {subsubsection}{\numberline {5.5.2}Mean Square Error (Custom)}{24}{subsubsection.5.5.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.5.2}Custom Mean Square Error}{18}{subsubsection.5.5.2}%
+\contentsline {subsubsection}{\numberline {5.5.3}Hedge Portfolio}{25}{subsubsection.5.5.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.5.3}Custom Hedge Portfolio}{18}{subsubsection.5.5.3}%
+\contentsline {section}{\numberline {6}Discussion}{26}{section.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6}Discussion}{19}{section.6}%
+\contentsline {section}{\numberline {7}Conclusion (2 pages)}{26}{section.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7}Conclusion (2 pages)}{19}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Contributions}{26}{subsection.7.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.1}Contributions}{19}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Further Research}{26}{subsection.7.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.2}Further Research}{19}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Limitations}{26}{subsection.7.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.3}Limitations}{19}{subsection.7.3}%
+\contentsline {subsubsection}{\numberline {7.3.1}Resources}{26}{subsubsection.7.3.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {7.3.1}Resources}{19}{subsubsection.7.3.1}%
+\contentsline {section}{\numberline {8}Appendix}{29}{section.8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {8}Appendix}{22}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Mathematics}{29}{subsection.8.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.1}Mathematics}{22}{subsection.8.1}%
+\contentsline {subsubsection}{\numberline {8.1.1}Equations \& Derivations}{29}{subsubsection.8.1.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {8.1.1}Equations \& Derivations}{22}{subsubsection.8.1.1}%
+\contentsline {subsubsection}{\numberline {8.1.2}Hedge Portfolio}{29}{subsubsection.8.1.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {8.1.2}Hedge Portfolio}{22}{subsubsection.8.1.2}%
+\contentsline {subsubsection}{\numberline {8.1.3}Loss Functions}{31}{subsubsection.8.1.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {8.1.3}Loss Functions}{24}{subsubsection.8.1.3}%
+\contentsline {subsection}{\numberline {8.2}Stochastic Gradient Descent}{33}{subsection.8.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.2}Stochastic Gradient Descent}{26}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}Ordinary Least Squares (OLS)}{34}{subsection.8.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.3}Ordinary Least Squares (OLS)}{27}{subsection.8.3}%
+\contentsline {subsubsection}{\numberline {8.3.1}Estimation Criteria}{34}{subsubsection.8.3.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {8.3.1}Estimation Criteria}{27}{subsubsection.8.3.1}%
+\contentsline {subsubsection}{\numberline {8.3.2}Properties of OLS Estimators}{35}{subsubsection.8.3.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {8.3.2}Properties of OLS Estimators}{28}{subsubsection.8.3.2}%
+\contentsline {subsubsection}{\numberline {8.3.3}The Gauss-Markov Theorem}{36}{subsubsection.8.3.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {8.3.3}The Gauss-Markov Theorem}{29}{subsubsection.8.3.3}%
+\contentsline {subsection}{\numberline {8.4}Model Training \& Validation Performance}{37}{subsection.8.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.4}Model Training \& Validation Performance}{30}{subsection.8.4}%
+\contentsline {subsection}{\numberline {8.5}Asset Pricing Models}{40}{subsection.8.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.5}Asset Pricing Models}{33}{subsection.8.5}%
+\contentsline {subsubsection}{\numberline {8.5.1}Capital Asset Pricing Model}{40}{subsubsection.8.5.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {8.5.1}Capital Asset Pricing Model}{33}{subsubsection.8.5.1}%
+\contentsline {subsubsection}{\numberline {8.5.2}Fama-French Factor Models}{40}{subsubsection.8.5.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {8.5.2}Fama-French Factor Models}{33}{subsubsection.8.5.2}%
+\contentsline {subsubsection}{\numberline {8.5.3}Fama-MacBeth Regressions}{41}{subsubsection.8.5.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {8.5.3}Fama-MacBeth Regressions}{34}{subsubsection.8.5.3}%
+\contentsline {subsection}{\numberline {8.6}Performance Measures}{42}{subsection.8.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {8.5.4}Sharpe Ratio}{35}{subsubsection.8.5.4}%
+\contentsline {subsubsection}{\numberline {8.6.1}Sharpe Ratio}{42}{subsubsection.8.6.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {8.5.5}Treynor Ratio}{35}{subsubsection.8.5.5}%
+\contentsline {subsubsection}{\numberline {8.6.2}Treynor Ratio}{42}{subsubsection.8.6.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.6}Pooled Ordinary Least Square Regressions}{36}{subsection.8.6}%
+\contentsline {subsection}{\numberline {8.7}Pooled Ordinary Least Square Regressions}{43}{subsection.8.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {8.6.1}In-Built Mean Square Error}{36}{subsubsection.8.6.1}%
+\contentsline {subsubsection}{\numberline {8.7.1}In-Built Mean Square Error}{43}{subsubsection.8.7.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {8.6.2}Custom Mean Square Error}{37}{subsubsection.8.6.2}%
+\contentsline {subsubsection}{\numberline {8.7.2}Custom Mean Square Error}{44}{subsubsection.8.7.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {8.6.3}Custom Hedge Portfolio}{38}{subsubsection.8.6.3}%
+\contentsline {subsubsection}{\numberline {8.7.3}Custom Hedge Portfolio}{45}{subsubsection.8.7.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.7}Technical Details}{38}{subsection.8.7}%
+\contentsline {subsection}{\numberline {8.8}Technical Details}{45}{subsection.8.8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {8.7.1}Organisation}{38}{subsubsection.8.7.1}%
+\contentsline {subsubsection}{\numberline {8.8.1}Organisation}{45}{subsubsection.8.8.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {8.7.2}Version Control}{39}{subsubsection.8.7.2}%
+\contentsline {subsubsection}{\numberline {8.8.2}Version Control}{46}{subsubsection.8.8.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {8.7.3}Directories}{39}{subsubsection.8.7.3}%
+\contentsline {subsubsection}{\numberline {8.8.3}Directories}{46}{subsubsection.8.8.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {8.7.4}Python}{40}{subsubsection.8.7.4}%
+\contentsline {subsubsection}{\numberline {8.8.4}Python}{47}{subsubsection.8.8.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {8.7.5}Package Management}{40}{subsubsection.8.7.5}%
+\contentsline {subsubsection}{\numberline {8.8.5}Package Management}{47}{subsubsection.8.8.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {8.7.6}Code Style}{40}{subsubsection.8.7.6}%
+\contentsline {subsubsection}{\numberline {8.8.6}Code Style}{47}{subsubsection.8.8.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {8.7.7}Infrastructure}{41}{subsubsection.8.7.7}%
+\contentsline {subsubsection}{\numberline {8.8.7}Infrastructure}{48}{subsubsection.8.8.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {8.7.8}Documentation}{41}{subsubsection.8.7.8}%
+\contentsline {subsubsection}{\numberline {8.8.8}Documentation}{48}{subsubsection.8.8.8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.8}Code}{41}{subsection.8.8}%
+\contentsline {subsection}{\numberline {8.9}Code}{48}{subsection.8.9}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.9}Data}{42}{subsection.8.9}%
+\contentsline {subsection}{\numberline {8.10}Data}{49}{subsection.8.10}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {8.9.1}Composition \& Sources}{42}{subsubsection.8.9.1}%
+\contentsline {subsubsection}{\numberline {8.10.1}Composition \& Sources}{49}{subsubsection.8.10.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {8.9.2}Data Processing}{42}{subsubsection.8.9.2}%
+\contentsline {subsubsection}{\numberline {8.10.2}Data Processing}{49}{subsubsection.8.10.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {8.9.3}Summary Statistics}{42}{subsubsection.8.9.3}%
+\contentsline {subsubsection}{\numberline {8.10.3}Summary Statistics}{49}{subsubsection.8.10.3}%
