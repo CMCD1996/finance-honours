@@ -2893,4 +2893,4 @@ if plot_learning_curves:
     losses = ['mean_squared_error', 'custom_mse', 'custom_hp']
     for loss in losses:
         create_learning_curves(
-            model_name, loss, history=None, from_load_file=True)
+            model_name, loss, model_history=None, from_load_file=True)
