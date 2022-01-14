@@ -1751,7 +1751,7 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
                 # Creates learning curves
                 try:
                     create_learning_curves(
-                        model_name, selected_loss, history)
+                        model_name, selected_loss, history, from_load_file=False)
                     print('Successfully printed learning curves')
                 except:
                     print('Failed to print learning curves')
@@ -1928,22 +1928,30 @@ def create_tensorflow_models(data_vm_directory, list_of_columns, categorical_ass
     return
 
 
-def create_learning_curves(model_name, selected_loss, model_history):
+def create_learning_curves(model_name, selected_loss, model_history=None, from_load_file=True):
     # Set destination dictionary
     destination_directory = '/home/connormcdowall/finance-honours/results/plots/learning-curves/'
     history_path = '/home/connormcdowall/finance-honours/results/models/history/'
+    path = history_path + model_name + '-' + selected_loss
+    if from_load_file:
+        with open(path, "rb") as f:
+            model_history = pickle.load(f)
+            f.close()
+    else:
+        model_history = model_history.history
     if selected_loss in ['mean_squared_error', 'custom_mse', 'custom_hp']:
-        # path = history_path + model_name + '-' + loss
+        path = history_path + model_name + '-' + selected_loss
         # model = pickle.load(open(path, "rb"))
         # Create learning curves
-        plt.plot(model_history.history['loss'], label=' Training')
-        plt.plot(model_history.history['val_loss'], label='Validation')
-        plt.title(model_name + '-' + selected_loss + '-learning-curves')
+        plt.plot(model_history['loss'], label=' Training')
+        plt.plot(model_history['val_loss'], label='Validation')
+        plt.title(selected_loss)
         plt.ylabel('Losses')
         plt.xlabel('No. epoch')
         plt.legend(loc="upper left")
         plt.savefig(destination_directory + model_name +
                     '-' + selected_loss + '.png')
+        plt.clf()
         return
 
 
@@ -2345,13 +2353,6 @@ class custom_information_mse(tf.keras.losses.Loss):
         extra_tensor = self.extra_tensor
         loss = -1*((K.mean(y_pred) - K.mean(y_true))/K.std(y_pred - y_true))
         return loss
-
-    # def custom_loss(layer):
-    #     # Create a loss function that adds the MSE loss to the mean of all squared activations of a specific layer
-    #     def loss(y_true,y_pred):
-    #         return K.mean(K.square(y_pred - y_true) + K.square(layer), axis=-1)
-    #     # Return a function
-    #     return loss
 
 #################################################################################
 # Metrics
@@ -2820,12 +2821,12 @@ chronologically_sort_data = False
 analytical = False
 rank_functions = False
 # Model Building
-create_models = True
+create_models = False
 make_predictions = False
 perform_regressions = False
 # Output
 convert_text = False
-plot_learning_curves = False
+plot_learning_curves = True
 #################################################################################
 # Function Testing
 #################################################################################
@@ -2889,5 +2890,7 @@ if convert_text:
     execute_conversion_options(model_name, selected_losses,
                                hp_ols=True, pooled_ols=True, true_excess_returns=True)
 if plot_learning_curves:
-    create_learning_curves(model_name=model_name, model_directory=model_directory,
-                           selected_losses=selected_losses, custom_objects=custom_tf_objects)
+    losses = ['mean_squared_error', 'custom_mse', 'custom_hp']
+    for loss in losses:
+        create_learning_curves(
+            model_name, loss, history=None, from_load_file=True)
