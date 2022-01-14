@@ -87,137 +87,6 @@
       \field{pages}{427\bibrangedash 465}
       \range{pages}{39}
     \endentry
-    \entry{fama1963mandelbrot}{article}{}
-      \name{author}{1}{}{%
-        {{un=0,uniquepart=base,hash=cf1dad75742cba1f00261a0ee70e7ba2}{%
-           family={Fama},
-           familyi={F\bibinitperiod},
-           given={Eugene\bibnamedelima F},
-           giveni={E\bibinitperiod\bibinitdelim F\bibinitperiod},
-           givenun=0}}%
-      }
-      \list{publisher}{1}{%
-        {JSTOR}%
-      }
-      \strng{namehash}{cf1dad75742cba1f00261a0ee70e7ba2}
-      \strng{fullhash}{cf1dad75742cba1f00261a0ee70e7ba2}
-      \strng{bibnamehash}{cf1dad75742cba1f00261a0ee70e7ba2}
-      \strng{authorbibnamehash}{cf1dad75742cba1f00261a0ee70e7ba2}
-      \strng{authornamehash}{cf1dad75742cba1f00261a0ee70e7ba2}
-      \strng{authorfullhash}{cf1dad75742cba1f00261a0ee70e7ba2}
-      \field{extraname}{1}
-      \field{sortinit}{F}
-      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{year}
-      \true{uniqueprimaryauthor}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{The journal of business}
-      \field{number}{4}
-      \field{title}{Mandelbrot and the stable Paretian hypothesis}
-      \field{volume}{36}
-      \field{year}{1963}
-      \field{pages}{420\bibrangedash 429}
-      \range{pages}{10}
-    \endentry
-    \entry{fama1965behavior}{article}{}
-      \name{author}{1}{}{%
-        {{un=0,uniquepart=base,hash=cf1dad75742cba1f00261a0ee70e7ba2}{%
-           family={Fama},
-           familyi={F\bibinitperiod},
-           given={Eugene\bibnamedelima F},
-           giveni={E\bibinitperiod\bibinitdelim F\bibinitperiod},
-           givenun=0}}%
-      }
-      \list{publisher}{1}{%
-        {JSTOR}%
-      }
-      \strng{namehash}{cf1dad75742cba1f00261a0ee70e7ba2}
-      \strng{fullhash}{cf1dad75742cba1f00261a0ee70e7ba2}
-      \strng{bibnamehash}{cf1dad75742cba1f00261a0ee70e7ba2}
-      \strng{authorbibnamehash}{cf1dad75742cba1f00261a0ee70e7ba2}
-      \strng{authornamehash}{cf1dad75742cba1f00261a0ee70e7ba2}
-      \strng{authorfullhash}{cf1dad75742cba1f00261a0ee70e7ba2}
-      \field{extraname}{2}
-      \field{sortinit}{F}
-      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{year}
-      \true{uniqueprimaryauthor}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{The journal of Business}
-      \field{number}{1}
-      \field{title}{The behavior of stock-market prices}
-      \field{volume}{38}
-      \field{year}{1965}
-      \field{pages}{34\bibrangedash 105}
-      \range{pages}{72}
-    \endentry
-    \entry{fama1995random}{article}{}
-      \name{author}{1}{}{%
-        {{un=0,uniquepart=base,hash=cf1dad75742cba1f00261a0ee70e7ba2}{%
-           family={Fama},
-           familyi={F\bibinitperiod},
-           given={Eugene\bibnamedelima F},
-           giveni={E\bibinitperiod\bibinitdelim F\bibinitperiod},
-           givenun=0}}%
-      }
-      \list{publisher}{1}{%
-        {Taylor \& Francis}%
-      }
-      \strng{namehash}{cf1dad75742cba1f00261a0ee70e7ba2}
-      \strng{fullhash}{cf1dad75742cba1f00261a0ee70e7ba2}
-      \strng{bibnamehash}{cf1dad75742cba1f00261a0ee70e7ba2}
-      \strng{authorbibnamehash}{cf1dad75742cba1f00261a0ee70e7ba2}
-      \strng{authornamehash}{cf1dad75742cba1f00261a0ee70e7ba2}
-      \strng{authorfullhash}{cf1dad75742cba1f00261a0ee70e7ba2}
-      \field{extraname}{3}
-      \field{sortinit}{F}
-      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{year}
-      \true{uniqueprimaryauthor}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Financial analysts journal}
-      \field{number}{1}
-      \field{title}{Random walks in stock market prices}
-      \field{volume}{51}
-      \field{year}{1995}
-      \field{pages}{75\bibrangedash 80}
-      \range{pages}{6}
-    \endentry
-    \entry{fama2021efficient}{book}{}
-      \name{author}{1}{}{%
-        {{un=0,uniquepart=base,hash=cf1dad75742cba1f00261a0ee70e7ba2}{%
-           family={Fama},
-           familyi={F\bibinitperiod},
-           given={Eugene\bibnamedelima F},
-           giveni={E\bibinitperiod\bibinitdelim F\bibinitperiod},
-           givenun=0}}%
-      }
-      \list{publisher}{1}{%
-        {University of Chicago Press}%
-      }
-      \strng{namehash}{cf1dad75742cba1f00261a0ee70e7ba2}
-      \strng{fullhash}{cf1dad75742cba1f00261a0ee70e7ba2}
-      \strng{bibnamehash}{cf1dad75742cba1f00261a0ee70e7ba2}
-      \strng{authorbibnamehash}{cf1dad75742cba1f00261a0ee70e7ba2}
-      \strng{authornamehash}{cf1dad75742cba1f00261a0ee70e7ba2}
-      \strng{authorfullhash}{cf1dad75742cba1f00261a0ee70e7ba2}
-      \field{extraname}{4}
-      \field{sortinit}{F}
-      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{year}
-      \true{uniqueprimaryauthor}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{Efficient capital markets II}
-      \field{year}{2021}
-    \endentry
     \entry{fama1997industry}{article}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=cf1dad75742cba1f00261a0ee70e7ba2}{%
@@ -765,6 +634,43 @@
       \verb https://git-scm.com/
       \endverb
     \endentry
+    \entry{newey1987hypothesis}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=058d74ae5e89fbd5a49ebdbe97b4c922}{%
+           family={Newey},
+           familyi={N\bibinitperiod},
+           given={Whitney\bibnamedelima K},
+           giveni={W\bibinitperiod\bibinitdelim K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c9458dd7fe490cece576ba5c37b500fb}{%
+           family={West},
+           familyi={W\bibinitperiod},
+           given={Kenneth\bibnamedelima D},
+           giveni={K\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {JSTOR}%
+      }
+      \strng{namehash}{d3fa486ef38e9026d7e9a49009f51077}
+      \strng{fullhash}{d3fa486ef38e9026d7e9a49009f51077}
+      \strng{bibnamehash}{d3fa486ef38e9026d7e9a49009f51077}
+      \strng{authorbibnamehash}{d3fa486ef38e9026d7e9a49009f51077}
+      \strng{authornamehash}{d3fa486ef38e9026d7e9a49009f51077}
+      \strng{authorfullhash}{d3fa486ef38e9026d7e9a49009f51077}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{International Economic Review}
+      \field{title}{Hypothesis testing with efficient method of moments estimation}
+      \field{year}{1987}
+      \field{pages}{777\bibrangedash 787}
+      \range{pages}{11}
+    \endentry
     \entry{PYPL_Pop}{misc}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=68da608daec4950bcdec8a2691f5a0ef}{%
@@ -813,37 +719,6 @@
       \field{howpublished}{Available at \url{https://web.stanford.edu/~mrosenfe/soc_meth_proj3/matrix_OLS_NYU_notes.pdf} (2021/08/18)}
       \field{title}{OLS in Matrix Form}
       \field{year}{2021}
-    \endentry
-    \entry{samuelson2016proof}{inbook}{}
-      \name{author}{1}{}{%
-        {{un=0,uniquepart=base,hash=78270c793a8e0c5fa92c64dca4b6a2b8}{%
-           family={Samuelson},
-           familyi={S\bibinitperiod},
-           given={Paul\bibnamedelima A},
-           giveni={P\bibinitperiod\bibinitdelim A\bibinitperiod},
-           givenun=0}}%
-      }
-      \list{publisher}{1}{%
-        {World Scientific}%
-      }
-      \strng{namehash}{78270c793a8e0c5fa92c64dca4b6a2b8}
-      \strng{fullhash}{78270c793a8e0c5fa92c64dca4b6a2b8}
-      \strng{bibnamehash}{78270c793a8e0c5fa92c64dca4b6a2b8}
-      \strng{authorbibnamehash}{78270c793a8e0c5fa92c64dca4b6a2b8}
-      \strng{authornamehash}{78270c793a8e0c5fa92c64dca4b6a2b8}
-      \strng{authorfullhash}{78270c793a8e0c5fa92c64dca4b6a2b8}
-      \field{sortinit}{S}
-      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{year}
-      \true{uniqueprimaryauthor}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{booktitle}{The world scientific handbook of futures markets}
-      \field{title}{Proof that properly anticipated prices fluctuate randomly}
-      \field{year}{2016}
-      \field{pages}{25\bibrangedash 38}
-      \range{pages}{14}
     \endentry
     \entry{sharpe1994sharpe}{article}{}
       \name{author}{1}{}{%

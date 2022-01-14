@@ -1358,10 +1358,6 @@ INPUT ./finance-788-research-essay.lot
 INPUT finance-788-research-essay.lot
 INPUT finance-788-research-essay.lot
 OUTPUT finance-788-research-essay.lot
-INPUT ./finance-788-research-essay.equ
-INPUT finance-788-research-essay.equ
-INPUT finance-788-research-essay.equ
-OUTPUT finance-788-research-essay.equ
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm

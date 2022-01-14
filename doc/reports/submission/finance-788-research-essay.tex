@@ -161,25 +161,43 @@
 \tableofcontents
 \listoffigures
 \listoftables
-\listofmyequations
 \newpage 
 \pagenumbering{arabic} 
 \section{Introduction (2-3 pages)}
+\subsection{[Placeholder I]}
 \newpage
+\subsection{[Placeholder II]}
+\newpage
+\subsection{[Placeholder III]}
 \newpage
 \section{Literature (3 pages)}\label{LR}
 Overview of literature in asset pricing (761/751), ML application, factor pricing - very brief, 12pt, double spaced
 \subsection{Asset Pricing}
-\subsection{Machine Learning}
+Asset pricing in finance literature.
+The use of the Capital Asset Pricing Model (CAPM) persists, regardless of the identifiable shortcomings in market proxies and empirical failings invalidating use (\cite{fama2004capital}).
+Nonetheless, this research essay uses the model as a performance metric for comparative purposes.\\
+
+E. Fama and K. French (\citeyear{eugene1992cross}) validate the explanatory power of size and value (book-to-market) factors
+in their ability to capture the cross-sectional variation in average stock returns, in association with market risk, size, leverage, book-to-market, and earnings-price ratios.
+E. Fama and K. French further their analysis on the common characteristics between stocks and bonds (\cite{fama2021common})\footnote{Reprinted. Originally published in 1993}, 
+and add two additional factors to consider profitability and investment.
+The main combinations are the Fama French Three (FF3) (\ref{ff3}) and Five (FF5) (\ref{ff5}) models.
+E. Fama and K. French consider a momentum factor on international stock returns in subsequent years (\cite{fama2012size}).
+The omission of momentum from the models stand.\\
+
+K. French continues to maintain FF3 and FF5 related datasets (\cite{french-personal})
+E. Fama, with J. MacBeth, developed the Fama-MacBeth regression (\cite{fama1973risk}) to estimate factor loadings and prices.
+The methodology is a two-stage estimation process, similar for estimating factor loadings, and prices, for a given portfolio.
+The first step requires determining each asset's $\beta$ exposures by regressing each of n asset returns against m proposed \ref{fb1}.
+The second step determines the risk premium (factor pricing) for each asset by regressing all asset returns for each of T periods against previously estimated $\beta$s (\ref{fb2}).
+\newpage
+\subsection{Machine Learning in Finance}
 A couple of recent publications highlight the increased application of machine learning algorithms in financial contexts.
 \cite{corporate-culture}
 Gu et al (\citeyear{eapvml}) explore the comparative use of machine learning in empirical asset pricing.
 However, intepretability issus persist in machine learning applications.
-\subsection{Custom Loss Functions}
-Convexity
-Monotonic ranking
 \newpage
-\newpage
+\subsection{Loss Functions}
 \newpage
 \section{Motivation (1 page)}
 \subsection{Research Question}
@@ -375,112 +393,36 @@ The proposition of three loss functions follow:
 	exploiting the sequential nature of elementary arithmetic operation and functions, repeatedly applying the chain rule in both forward and backward accumulations to compute gradients.
 	Automatic differentiation solves code inefficiencies and round off error issues associated with symbolic and numerical differentiation methods, while easily calculating higher order derivatives, and partial derivatives with many inputs.}
 	\item \textbf{Custom Hedge Portfolio}: A non-convex function seeking to maximise hedge portfolio returns with hedge portfolio weights determined by a monotonic ranking function mapping.
+	The selected mapping weights individual equities by the proportion of their contributions to aggregate returns of all equities in a given month, considering all equities in the portfolio.
 	Section \ref{hedge-portfolio-derivation} elaborates on hedge portfolio theory and formulation.
 \end{enumerate}
 Section \ref{loss-function-formulation} describes both mean squared error and hedge portfolio loss function formulation.
 Best practice training, validation, and testing practice succeed configuration with one iteration per loss function.
-The deployment of twenty-five epochs, shuffling of instances prior to every epoch run, and use of early stopping procedures in validation help prevent over and underfitting.
+The deployment of thirty epochs, shuffling of instances prior to every epoch run, and use of early stopping procedures in validation, help prevent over and under fitting.
 \subsubsection{Performance Metrics}
-Performance metrics inform comparisons between loss functions, to assess relative performance, after successful training and validation.
+Performance metrics inform comparisons between loss functions, to assess relative performance, after successfully training and validating a deep neural network for each loss function.
+Methods for performance metrics inception and formulation follow:
+\singlespacing
 \begin{enumerate}
-	\item The trained models predict one month lead excess returns for each instance (firm-year observation).
-	\item 
+	\item The trained models predict one month lead excess returns for each instance (firm-year observation) in the testing dataset.
+	\item Standard monthly sorts of predicted one month lead excess returns form standard decile ten (top 10\%) minus decile one (bottom 10\%) hedge portfolios returns per month.
+	\item Use hedge portfolio to calculate the mean across all months, sharpe ratio, and treynor ratio \footnote{Uses the estimation for systematic risk from the CAPM OLS estimator}.
+	\item Learning curves validate model representation.
+	\item Ordinary least squares regression incorporating Newey-West estimators, (\cite{newey1987hypothesis})
+	\footnote{The estimator aims to ensure autocorrelation and heteroskedasticity consistency for the regressions of time-series panel data}.
+	regress: 
+	\begin{itemize}
+		\item Realised one month lead excess return on predicted one month lead excess return
+		\item Realised hedge portfoliio excess return on predicted one month lead excess return 
+		\item Hedge portfolio returns on monthly Fama-French factors, \footnote{https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data\_library.html} to find alpha in CAPM, FF3, FF4, and FF5 models (\ref{apt}).
+	\end{itemize}
+	\item Supplementary to OLS, Fama-MacBeth (\cite{fama1973risk})
+	\footnote{Adjusted for clustered covariance with entity and time fixed effect. Standard Fama-MacBeth regressions only correct standard error for cross-sectional variation, omitting time-series autocorrelation.
+	Standard forms suffice when using daily or weekly returns (and by extension, prices) as time-series correlation is weak.
+	Stronger time-series autocorrelations may exist during longer period. Therefore, one month lead excess returns neccessitate time-series correction.}
+	regressions validate OLS estimations. 
 \end{enumerate}
-\newpage
-\subsection{Brief Description of Remaining Methods}
-\begin{itemize}
-	\item Make predictions using entire testing set for each model. Merge predictions with fama french factors on month
-	\item Perform newy west regressing hedge portfolio returns on fama factors. Predictions grouped by month. hedge formed by mean of top decile - mean of bottom decile creating hedge return for the month.
-	\item Second set of regressions does a panel regression  accounting Heteroskedasticity Robust Covariance as Fama MacBeth did not execute due to rank deficiencies.
-\end{itemize}
-
-\subsection{Regression Analysis}
-\newpage 
-\subsubsection{Mean Square Error (MSE)}
-Section \ref{sec:mlo} outlines advantages to Ordinary Least Squares.
-Subsequently, MSE serves as a baseline for loss function and performance metric comparisons.
-The following function (\ref{mself}) and partial derivative (\ref{pdmself}) describe Tensorflows's Mean Square Error implementation, both from in-built and custom contexts. 
-Python classes describe equation \ref{mself} to enable Tensorflow's automatic differentiation capabilities, approximating the partial derivatives of the loss function (\ref{pdmself}) with numerical methods.
-
-\subsection{Asset Pricing Models}
-Conventional asset pricing methodologies persist in academic literature.
-The use of the Capital Asset Pricing Model (CAPM) persists, regardless of the identifiable shortcomings in market proxies and empirical failings invalidating use (\cite{fama2004capital}).
-Nonetheless, this research essay uses the model as a performance metric for comparative purposes.
-\begin{align*}
-	R_{i,t} - R_{f,t} &= \alpha_{i,t} + \beta_{i,t}^{1}(R_{M,t}-R_{f,t}) \numberthis \label{capm}
-\end{align*}
-E. Fama and K. French (\citeyear{eugene1992cross}) validate the explanatory power of size and value (book-to-market) factors
-in their ability to capture the cross-sectional variation in average stock returns, in association with market risk, size, leverage, book-to-market, and earnings-price ratios.
-E. Fama and K. French further their analysis on the common characteristics between stocks and bonds (\cite{fama2021common})\footnote{Reprinted. Originally published in 1993}, 
-and add two additional factors to consider profitability and investment.
-The main combinations are the Fama French Three (FF3) (\ref{ff3}) and Five (FF5) (\ref{ff5}) models.
-E. Fama and K. French consider a momentum factor on international stock returns in subsequent years (\cite{fama2012size}).
-The omission of momentum from the models stand.
-\begin{align*}
-	R_{i,t} - R_{f,t} &= \alpha_{i,t} + \beta_{i,t}(R_{M,t}-R_{f,t}) \numberthis \label{ff3}\\
-	R_{i,t} - R_{f,t} &= \alpha_{i,t} + \beta_{i,t}(R_{M,t}-R_{f,t}) \numberthis \label{ff5}
-\end{align*}
-where
-\begin{itemize} 
-	\item $R_{i,t} - R_{f,t}$: Portfolio Excess Return on the market for a given portfolio and time, value-weighted using all incorporated US CRSP firms incorporated in the US, listed on the NYSE, AMEX, or NASDAQ.
-	\item $\alpha_{i,t}$: Jensen's alpha indicating mispricing in the asset.
-	\item $\beta_{t}^{1}$: Market Risk Factor (co-efficient)
-	\item $\beta_{t}^{1}$: Size Factor (co-efficient)
-	\item $\beta_{t}^{2}$: Value Factor (co-efficient)
-	\item $\beta_{t}^{2}$: Value Factor (co-efficient)
-	\item $\beta_{t}^{3}$: Profitability Factor (co-efficient)
-	\item $\beta_{t}^{4}$: Investment Factor (co-efficient)
-	\item $(R_{M,t}-R_{f,t})$: Market Risk Premium
-	\item $SMB_{t}$: Size Premium (small minus big) is the difference in average return between nine small stock and nine large value-weighted portfolios.
-	\item $HML_{t}$: Value Premium (high minus low) is the difference in average return between two value and two growth value-weighted portfolios.
-	\item $RMW_{t}$: Profitability Premium (robust minus weak) is the difference in average return between two robust operating profitability and two weak operating profitability value-weighted portfolios.
-	\item $CMA_{t}$: Investment Premium minus aggressive is the difference in average return on the two conservative and two aggressive investment portfolios
-\end{itemize}
-K. French continues to maintain FF3 and FF5 related datasets (\cite{french-personal})
-E. Fama, with J. MacBeth, developed the Fama-MacBeth regression (\cite{fama1973risk}) to estimate factor loadings and prices.
-The methodology is a two-stage estimation process, similar for estimating factor loadings, and prices, for a given portfolio.
-The first step requires determining each asset's $\beta$ exposures by regressing each of n asset returns against m proposed \ref{fb1}.
-The second step determines the risk premium (factor pricing) for each asset by regressing all asset returns for each of T periods against previously estimated $\beta$s (\ref{fb2}).
-\begin{align*}
-	R_{n,t} &= \alpha_{n} + \sum_{f=1}^{F} \beta_{n,F_{f}}F_{f,t} + \epsilon_{n,t} \numberthis \label{fb1} \\
-	&\forall \text{  }n\epsilon\{1,...,N\}\\
-	R_{i,t} &= \gamma_{t,0} + \sum_{f=1}^{F} \gamma_{t,f}\hat{\beta_{i,F_{f}}} + \epsilon_{i,t} \numberthis \label{fb2} \\
-	&t\epsilon\{1,...,N\}
-\end{align*}
-Where
-\begin{itemize}
-	\item $R_{n,t}$: Return for an asset (n) at a time (t).
-	\item $\alpha_{n}$: Jensen's alpha for an asset (n) implying mispricing.
-	\item $\beta_{n,F_{f}}$: An asset's (n) exposure to a factor (f)
-	\item $\hat{\beta_{i,F_{f}}}$: Estimated factor loading for a factor (f) from regression of asset (i)
-	\item $F_{f,t}$: Risk factor (f) at a given time (t) e.g., SMB, HML etc.,
-	\item $\epsilon_{n,t}$: Residual for an asset at a time (t)
-	\item $\gamma_{t,f}$: Factor pricing for a factor (f)
-\end{itemize}
-The residuals of risk-return regressions and co-efficient 'fair game' observations are consistent with the efficient market hypothesis ((\cite{samuelson2016proof}), (\cite{fama1995random}), (\cite{fama1963mandelbrot}), (\cite{fama1965behavior}) (\cite{fama2021efficient})).
-Subsequently, this research essay uses the excess one month lead returns of the hedge portfolio (\ref{hpm})), Capital Asset Pricing Model (\ref{capm}), 
-Fama-French Three Factor Model (\ref{ff3}), and Fama-French Five Factor Model (\ref{ff5}) as performance metrics for each loss function.
-
-Hou et al (\citeyear{jensen2021there}) provide the required data to derive these performance metric and loss functions.
-\subsubsection{Sharpe Ratio}
-Nobel Laurette William F. Sharpe (\citeyear{sharpe1994sharpe}) introduced the Sharpe Ratio (\ref{sr}) as a measure for risk-adjusted returns
-where $\mathop{\mathbb{E}} [R_a - R_f]$ is the expectation for excess returns and $\sigma(R_a)$ is the standard deviation of excess returns.
-\begin{align*}
-	SR &= \mathop{\mathbb{E}} \frac{[R_a - R_f]}{\sigma(R_a)} \numberthis \label{sr}\\
-	\sigma &= \sqrt{\sum_{i=1}^{n}}\frac{(R_a) - \bar{R_a})^2}{n}
-\end{align*}
-The matrix notation for the Sharpe Ratio loss function () follows:
-\begin{align*}
-	SR &= 1 \numberthis \label{srlf}
-	\partial SR
-\end{align*}
-\subsubsection{Information Ratio}
-The Information Ratio (IR) is another risk-return measure (\ref{ir}), evaluating the performance of a portfolio compared to a selected benchmark e.g., an exchange traded fund.
-$\mathop{\mathbb{E}} [R_a - R_b]$ is the excess return on the benchmark. $\sigma(R_a - R_b)$ is the standard deviation of the difference between the portfolio and benchmark known as the tracking error.
-\begin{align*}
-	IR &= \mathop{\mathbb{E}} \frac{[R_a - R_b]}{\sigma(R_a - R_b)} \numberthis \label{ir}\\
-\end{align*}
-Both Sharpe and Information ratios supplement hedge portfolio-related loss functions and performance metrics.
+\doublespacing
 \newpage
 \section{Results}
 \subsection{Main Findings}
@@ -519,6 +461,8 @@ Table \ref{plfpe} summarises main findings
 \newpage
 \subsection{Model Accuracy}
 Section \ref{model-training-validation-performance} illustrates relative training and validation performance between loss functions.
+\subsection{Learning Curves}
+
 \subsubsection{Model Loss}
 Table X illustrates the performance of each model during training, validation, and testing.
 Table \ref{test-model-predict} informs the accruracy of predictions 
@@ -532,7 +476,7 @@ PooledOLS replaces Fama MacBeth in this instance.
 \subsubsection{Custom Hedge Portfolio}
 \newpage
 \section{Discussion}
-\section{Conclusion}
+\section{Conclusion (2 pages)}
 \subsection{Contributions}
 \subsection{Further Research}
 \subsection{Limitations}
@@ -767,6 +711,62 @@ Equation \ref{gma4} captures homoskedasticity and no autocorrelation assumptions
     \label{fig:hp-performance}
 \end{figure}
 \end{landscape}
+\subsection{Asset Pricing Models}\label{apm}
+\subsubsection{Capital Asset Pricing Model}
+\begin{align*}
+	R_{i,t} - R_{f,t} &= \alpha_{i,t} + \beta_{i,t}^{1}(R_{M,t}-R_{f,t}) \numberthis \label{capm}
+\end{align*}
+\subsubsection{Fama-French Factor Models}
+\begin{align*}
+	R_{i,t} - R_{f,t} &= \alpha_{i,t} + \beta_{i,t}(R_{M,t}-R_{f,t}) \numberthis \label{ff3}\\
+	R_{i,t} - R_{f,t} &= \alpha_{i,t} + \beta_{i,t}(R_{M,t}-R_{f,t}) \numberthis \label{ff5}
+\end{align*}
+where
+\begin{itemize} 
+	\item $R_{i,t} - R_{f,t}$: Portfolio Excess Return on the market for a given portfolio and time, value-weighted using all incorporated US CRSP firms incorporated in the US, listed on the NYSE, AMEX, or NASDAQ.
+	\item $\alpha_{i,t}$: Jensen's alpha indicating mispricing in the asset.
+	\item $\beta_{t}^{1}$: Market Risk Factor (co-efficient)
+	\item $\beta_{t}^{1}$: Size Factor (co-efficient)
+	\item $\beta_{t}^{2}$: Value Factor (co-efficient)
+	\item $\beta_{t}^{2}$: Value Factor (co-efficient)
+	\item $\beta_{t}^{3}$: Profitability Factor (co-efficient)
+	\item $\beta_{t}^{4}$: Investment Factor (co-efficient)
+	\item $(R_{M,t}-R_{f,t})$: Market Risk Premium
+	\item $SMB_{t}$: Size Premium (small minus big) is the difference in average return between nine small stock and nine large value-weighted portfolios.
+	\item $HML_{t}$: Value Premium (high minus low) is the difference in average return between two value and two growth value-weighted portfolios.
+	\item $RMW_{t}$: Profitability Premium (robust minus weak) is the difference in average return between two robust operating profitability and two weak operating profitability value-weighted portfolios.
+	\item $CMA_{t}$: Investment Premium minus aggressive is the difference in average return on the two conservative and two aggressive investment portfolios
+\end{itemize}
+\subsubsection{Fama-MacBeth Regressions}
+\begin{align*}
+	R_{n,t} &= \alpha_{n} + \sum_{f=1}^{F} \beta_{n,F_{f}}F_{f,t} + \epsilon_{n,t} \numberthis \label{fb1} \\
+	&\forall \text{  }n\epsilon\{1,...,N\}\\
+	R_{i,t} &= \gamma_{t,0} + \sum_{f=1}^{F} \gamma_{t,f}\hat{\beta_{i,F_{f}}} + \epsilon_{i,t} \numberthis \label{fb2} \\
+	&t\epsilon\{1,...,N\}
+\end{align*}
+Where
+\begin{itemize}
+	\item $R_{n,t}$: Return for an asset (n) at a time (t).
+	\item $\alpha_{n}$: Jensen's alpha for an asset (n) implying mispricing.
+	\item $\beta_{n,F_{f}}$: An asset's (n) exposure to a factor (f)
+	\item $\hat{\beta_{i,F_{f}}}$: Estimated factor loading for a factor (f) from regression of asset (i)
+	\item $F_{f,t}$: Risk factor (f) at a given time (t) e.g., SMB, HML etc.,
+	\item $\epsilon_{n,t}$: Residual for an asset at a time (t)
+	\item $\gamma_{t,f}$: Factor pricing for a factor (f)
+\end{itemize}
+\subsubsection{Sharpe Ratio}
+Nobel Laurette William F. Sharpe (\citeyear{sharpe1994sharpe}) introduced the Sharpe Ratio (\ref{sr}) as a measure for risk-adjusted returns,
+where $\mathop{\mathbb{E}} [R_a - R_f]$ is the expectation for excess returns, and $\sigma(R_a)$ is the standard deviation of excess returns.
+\begin{align*}
+	SR &= \mathop{\mathbb{E}} \frac{[R_a - R_f]}{\sigma(R_a)} \numberthis \label{sr}\\
+	\sigma &= \sqrt{\sum_{i=1}^{n}}\frac{(R_a) - \bar{R_a})^2}{n}
+\end{align*}
+\subsubsection{Treynor Ratio}
+The Treynor ratio is another risk-return measure (\ref{tr}), evaluating the excess return of a portfolio per unit of systemic risk\footnote{}.
+$\mathop{\mathbb{E}} [R_a - R_b]$ is the excess return on the benchmark. $\sigma(R_a - R_b)$ is the standard deviation of the difference between the portfolio and benchmark known as the tracking error.
+\begin{align*}
+	\text{Treynor} &= \mathop{\mathbb{E}} \frac{[R_a - R_b]}{\beta_{M}} \numberthis \label{tr}\\
+\end{align*}
 \newpage
 \subsection{Pooled Ordinary Least Square Regressions} \label{polsr}
 \subsubsection{In-Built Mean Square Error}
