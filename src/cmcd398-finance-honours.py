@@ -2853,10 +2853,10 @@ analytical = False
 rank_functions = False
 # Model Building
 create_models = False
-make_predictions = True
-perform_regressions = False
+make_predictions = False
+perform_regressions = True
 # Output
-convert_text = False
+convert_text = True
 plot_learning_curves = False
 #################################################################################
 # Function Testing
