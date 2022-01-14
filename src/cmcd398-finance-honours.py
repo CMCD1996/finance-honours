@@ -757,7 +757,7 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             hedge_actual = hedge_actual.append(new_row, ignore_index=True)
 
         # Uses stats models to perform standard linear regressions
-        predict_regress_actual = sm.OLS(hedge_actual[], hedge_returns['hedge_returns']).fit(
+        predict_regress_actual = sm.OLS(hedge_actual['hedge_returns'], hedge_returns['hedge_returns']).fit(
             cov_type='HAC', cov_kwds={'maxlags': 6})
         if loss in ['mean_squared_error', 'custom_mse', 'custom_hp']:
             hp_predictability_regressions.append(predict_regress_actual)
