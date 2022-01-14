@@ -1198,85 +1198,73 @@ def encode_tensor_flow_features(train_df, val_df, test_df, target_column, numeri
     print('Length of test dataset: ', len(list(test_dataset)))
     # Display a set of batches
     [(train_features, label_batch)] = train_dataset.take(1)
-    load_features_and_inputs = True
-    if load_features_and_inputs:
-        all_inputs_location = '/home/connormcdowall/finance-honours/results/models/features/all-inputs'
-        all_features_location = '/home/connormcdowall/finance-honours/results/models/features/all-features'
-        # Loads all inputs
-        with open(all_inputs_location, 'rb') as f:
-            all_inputs = pickle.load(f)
-            f.close()
-        # Loads all features
-        with open(all_features_location, 'rb') as f:
-            all_features = pickle.load(f)
-            f.close()
-    else:
-        # Initilise input and encoded feature arrays
-        all_inputs = []
-        encoded_features = []
-        numerical_count = 0
-        categorical_count = 0
 
-        # Encode the categorical features
-        for header in categorical_features:
-            try:
-                print('Start: ', header)
-                categorical_col = tf.keras.Input(
-                    shape=(1,), name=header, dtype=categorical_dictionary[header])
-                print('Processing: Input Categorical Column')
-                encoding_layer = get_category_encoding_layer(name=header,
-                                                             dataset=train_dataset,
-                                                             dtype=categorical_dictionary[header],
-                                                             max_tokens=5)
-                print('Processing: Sourced Encoding Layer')
-                encoded_categorical_col = encoding_layer(categorical_col)
-                print('Processing: Encoded Categorical Column')
-                all_inputs.append(categorical_col)
-                encoded_features.append(encoded_categorical_col)
-                print('Passed: ', header)
-                categorical_count = categorical_count + 1
-                print('Number of Categorical Features Encoded: ', categorical_count)
-            except RuntimeError as e:
-                print(e)
-            # Monitor memory usage
-            monitor_memory_usage(units=3, cpu=True, gpu=True)
-        # Normalise the numerical features
-        for header in numerical_features:
-            try:
-                print('Start: ', header)
-                numeric_col = tf.keras.Input(shape=(1,), name=header)
-                print('Processing: Input Numeric Column')
-                normalization_layer = get_normalization_layer(
-                    header, train_dataset)
-                print('Processing: Sourced Normalization Layer')
-                encoded_numeric_col = normalization_layer(numeric_col)
-                print('Processing: Encoded Numerical Column')
-                all_inputs.append(numeric_col)
-                encoded_features.append(encoded_numeric_col)
-                print('Passed: ', header)
-                numerical_count = numerical_count + 1
-                print('Number of Numerical Features Encoded: ', numerical_count)
-            except RuntimeError as e:
-                print(e)
-            # Monitor memory usage
-            monitor_memory_usage(units=3, cpu=True, gpu=True)
-        # Concatenate all encoded layers
-        all_features = tf.keras.layers.concatenate(encoded_features)
-        # Try to pickle both all inputs and all encoded features
+    # Initilise input and encoded feature arrays
+    all_inputs = []
+    encoded_features = []
+    numerical_count = 0
+    categorical_count = 0
+
+    # Encode the categorical features
+    for header in categorical_features:
         try:
-            with open('/home/connormcdowall/finance-honours/results/models/features/all-inputs', 'wb') as f:
-                pickle.dump(all_inputs, f)
-                f.close()
-                print('Complete: Pickled all inputs')
-        except:
+            print('Start: ', header)
+            categorical_col = tf.keras.Input(
+                shape=(1,), name=header, dtype=categorical_dictionary[header])
+            print('Processing: Input Categorical Column')
+            encoding_layer = get_category_encoding_layer(name=header,
+                                                         dataset=train_dataset,
+                                                         dtype=categorical_dictionary[header],
+                                                         max_tokens=5)
+            print('Processing: Sourced Encoding Layer')
+            encoded_categorical_col = encoding_layer(categorical_col)
+            print('Processing: Encoded Categorical Column')
+            all_inputs.append(categorical_col)
+            encoded_features.append(encoded_categorical_col)
+            print('Passed: ', header)
+            categorical_count = categorical_count + 1
+            print('Number of Categorical Features Encoded: ', categorical_count)
+        except RuntimeError as e:
+            print(e)
+        # Monitor memory usage
+        monitor_memory_usage(units=3, cpu=True, gpu=True)
+    # Normalise the numerical features
+    for header in numerical_features:
+        try:
+            print('Start: ', header)
+            numeric_col = tf.keras.Input(shape=(1,), name=header)
+            print('Processing: Input Numeric Column')
+            normalization_layer = get_normalization_layer(
+                header, train_dataset)
+            print('Processing: Sourced Normalization Layer')
+            encoded_numeric_col = normalization_layer(numeric_col)
+            print('Processing: Encoded Numerical Column')
+            all_inputs.append(numeric_col)
+            encoded_features.append(encoded_numeric_col)
+            print('Passed: ', header)
+            numerical_count = numerical_count + 1
+            print('Number of Numerical Features Encoded: ', numerical_count)
+        except RuntimeError as e:
+            print(e)
+        # Monitor memory usage
+        monitor_memory_usage(units=3, cpu=True, gpu=True)
+    # Concatenate all encoded layers
+    all_features = tf.keras.layers.concatenate(encoded_features)
+    # Try to pickle both all inputs and all encoded features
+    try:
+        with open('/home/connormcdowall/finance-honours/results/models/features/all-inputs', 'wb') as f:
+            pickle.dump(all_inputs, f)
+            f.close()
             print('Complete: Pickled all inputs')
-        try:
-            with open('/home/connormcdowall/finance-honours/results/models/features/all-features', 'wb') as f:
-                pickle.dump(all_features, f)
-                f.close()
-                print('Complete: Pickled all features')
-        except:
+    except:
+        print('Complete: Pickled all inputs')
+    try:
+        with open('/home/connormcdowall/finance-honours/results/models/features/all-features', 'wb') as f:
+            pickle.dump(all_features, f)
+            f.close()
             print('Complete: Pickled all features')
+    except:
+        print('Complete: Pickled all features')
     print('All Features')
     print(all_features)
     print('Encoding: Successful')
@@ -1757,13 +1745,13 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
                 early_stop_callback = tf.keras.callbacks.EarlyStopping(
                     monitor='val_loss', mode="min", patience=5, restore_best_weights=True)
                 # Fits model
-                model.fit(x=x_train, batch_size=128, epochs=eps,
-                          verbose='auto', validation_data=val_dataset, callbacks=[neptune_cbk, early_stop_callback])
+                history = model.fit(x=x_train, batch_size=128, epochs=eps,
+                                    verbose='auto', validation_data=val_dataset, callbacks=[neptune_cbk, early_stop_callback])
                 print('End: Model Fitting')
                 # Creates learning curves
                 try:
                     create_learning_curves(
-                        model_name, selected_loss, history_of_losses=model.history['loss'], history_of_val_losses=model.history['val_loss'])
+                        model_name, selected_loss, history)
                     print('Successfully printed learning curves')
                 except:
                     print('Failed to print learning curves')
@@ -1771,13 +1759,12 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
                 try:
                     with open('/home/connormcdowall/finance-honours/results/models/history/' +
                               model_name + '-' + selected_loss, 'wb') as f:
-                        pickle.dump(model.history, f)
+                        pickle.dump(history.history, f)
                         f.close()
                         print(
-                            'Complete: Pickled {} training history'.format(selected_loss))
+                            'Complete: Pickled history')
                 except:
-                    print(
-                        'Incomplete: Failed to pickle {} training history'.format(selected_loss))
+                    print('Incomplete: Failed to pickle hisotry')
                 #################################################################################
                 # Model.evaluate (https://www.tensorflow.org/api_docs/python/tf/keras/Model#evaluate)
                 #################################################################################
@@ -1941,7 +1928,7 @@ def create_tensorflow_models(data_vm_directory, list_of_columns, categorical_ass
     return
 
 
-def create_learning_curves(model_name, selected_loss, history_of_losses, history_of_val_losses):
+def create_learning_curves(model_name, selected_loss, model_history):
     # Set destination dictionary
     destination_directory = '/home/connormcdowall/finance-honours/results/plots/learning-curves/'
     history_path = '/home/connormcdowall/finance-honours/results/models/history/'
@@ -1949,8 +1936,8 @@ def create_learning_curves(model_name, selected_loss, history_of_losses, history
         # path = history_path + model_name + '-' + loss
         # model = pickle.load(open(path, "rb"))
         # Create learning curves
-        plt.plot(history_of_losses, label=' Training')
-        plt.plot(history_of_val_losses, label='Validation')
+        plt.plot(model_history.history['loss'], label=' Training')
+        plt.plot(model_history.history['val_loss'], label='Validation')
         plt.title(model_name + '-' + selected_loss + '-learning-curves')
         plt.ylabel('Losses')
         plt.xlabel('No. epoch')
