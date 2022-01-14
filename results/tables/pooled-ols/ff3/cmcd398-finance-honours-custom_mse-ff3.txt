@@ -1,18 +1,18 @@
 \begin{center}
 \begin{tabular}{lclc}
 \toprule
-\textbf{Dep. Variable:}    &      predict       & \textbf{  R-squared:         }   &      0.0046      \\
-\textbf{Estimator:}        &     PooledOLS      & \textbf{  R-squared (Between):}  &     -0.0521      \\
-\textbf{No. Observations:} &       531461       & \textbf{  R-squared (Within):}   &      0.0065      \\
-\textbf{Date:}             &  Thu, Jan 13 2022  & \textbf{  R-squared (Overall):}  &      0.0046      \\
-\textbf{Time:}             &      14:12:50      & \textbf{  Log-likelihood     }   &    2.548e+04     \\
+\textbf{Dep. Variable:}    &      predict       & \textbf{  R-squared:         }   &      0.0004      \\
+\textbf{Estimator:}        &     PooledOLS      & \textbf{  R-squared (Between):}  &     -0.0065      \\
+\textbf{No. Observations:} &       531461       & \textbf{  R-squared (Within):}   &      0.0002      \\
+\textbf{Date:}             &  Fri, Jan 14 2022  & \textbf{  R-squared (Overall):}  &      0.0004      \\
+\textbf{Time:}             &      14:00:57      & \textbf{  Log-likelihood     }   &    3.848e+05     \\
 \textbf{Cov. Estimator:}   &     Clustered      & \textbf{                     }   &                  \\
-\textbf{}                  &                    & \textbf{  F-statistic:       }   &      811.15      \\
+\textbf{}                  &                    & \textbf{  F-statistic:       }   &      67.018      \\
 \textbf{Entities:}         &        7282        & \textbf{  P-value            }   &      0.0000      \\
 \textbf{Avg Obs:}          &       72.983       & \textbf{  Distribution:      }   &   F(3,531457)    \\
 \textbf{Min Obs:}          &       1.0000       & \textbf{                     }   &                  \\
-\textbf{Max Obs:}          &       252.00       & \textbf{  F-statistic (robust):} &      7.7884      \\
-\textbf{}                  &                    & \textbf{  P-value            }   &      0.0000      \\
+\textbf{Max Obs:}          &       252.00       & \textbf{  F-statistic (robust):} &      0.5573      \\
+\textbf{}                  &                    & \textbf{  P-value            }   &      0.6432      \\
 \textbf{Time periods:}     &        252         & \textbf{  Distribution:      }   &   F(3,531457)    \\
 \textbf{Avg Obs:}          &       2109.0       & \textbf{                     }   &                  \\
 \textbf{Min Obs:}          &       1869.0       & \textbf{                     }   &                  \\
@@ -22,10 +22,10 @@
 \begin{tabular}{lcccccc}
                 & \textbf{Parameter} & \textbf{Std. Err.} & \textbf{T-stat} & \textbf{P-value} & \textbf{Lower CI} & \textbf{Upper CI}  \\
 \midrule
-\textbf{const}  &      -0.1145       &       0.0046       &     -24.815     &      0.0000      &      -0.1235      &      -0.1055       \\
-\textbf{Mkt-RF} &      -0.1668       &       0.0785       &     -2.1252     &      0.0336      &      -0.3206      &      -0.0130       \\
-\textbf{SMB}    &       0.2157       &       0.1255       &      1.7187     &      0.0857      &      -0.0303      &       0.4616       \\
-\textbf{HML}    &       0.3697       &       0.0963       &      3.8388     &      0.0001      &       0.1809      &       0.5584       \\
+\textbf{const}  &       0.0114       &       0.0016       &      7.1813     &      0.0000      &       0.0083      &       0.0145       \\
+\textbf{Mkt-RF} &       0.0020       &       0.0348       &      0.0580     &      0.9537      &      -0.0662      &       0.0702       \\
+\textbf{SMB}    &      -0.0363       &       0.0386       &     -0.9403     &      0.3470      &      -0.1119      &       0.0393       \\
+\textbf{HML}    &      -0.0581       &       0.0612       &     -0.9505     &      0.3419      &      -0.1780      &       0.0618       \\
 \bottomrule
 \end{tabular}
 %\caption{PooledOLS Estimation Summary}

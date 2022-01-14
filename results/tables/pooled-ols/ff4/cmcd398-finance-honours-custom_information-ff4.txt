@@ -4,8 +4,8 @@
 \textbf{Dep. Variable:}    &      predict       & \textbf{  R-squared:         }   &      0.0030      \\
 \textbf{Estimator:}        &     PooledOLS      & \textbf{  R-squared (Between):}  &     -0.0257      \\
 \textbf{No. Observations:} &       531461       & \textbf{  R-squared (Within):}   &      0.0068      \\
-\textbf{Date:}             &  Thu, Jan 13 2022  & \textbf{  R-squared (Overall):}  &      0.0030      \\
-\textbf{Time:}             &      14:14:14      & \textbf{  Log-likelihood     }   &    -2.199e+06    \\
+\textbf{Date:}             &  Fri, Jan 14 2022  & \textbf{  R-squared (Overall):}  &      0.0030      \\
+\textbf{Time:}             &      14:02:35      & \textbf{  Log-likelihood     }   &    -2.199e+06    \\
 \textbf{Cov. Estimator:}   &     Clustered      & \textbf{                     }   &                  \\
 \textbf{}                  &                    & \textbf{  F-statistic:       }   &      400.77      \\
 \textbf{Entities:}         &        7282        & \textbf{  P-value            }   &      0.0000      \\
