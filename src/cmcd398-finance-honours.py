@@ -667,44 +667,37 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
     hp_treynors = []
     hp_regressions = []
     predictability_regressions = []
+    hp_predictability_regressions = []
+    # Sets actual returns subset
     for loss in selected_losses:
         regression_df = pd.read_csv(
             prediction_location + model_name + '-' + loss + '.csv')
         if realised_returns:
             loss = 'realised-excess-returns'
             dependant_column = 'ret_exc_lead1m'
+        # Creates new dataframes for hedge (predicted and return)
         hedge_returns = pd.DataFrame(columns=['mth', 'hedge_returns'])
+        hedge_actual = pd.DataFrame(columns=['mth', 'hedge_returns'])
         # Creates portfolio returns via groupings
         monthly_groups = regression_df.groupby("mth")
         for month, subset_predictions in monthly_groups:
             # Sort the predicted returns in the sub_predictiosn set
-            # print('Subset of predictions before')
-            # print(subset_predictions.head())
-            # print(subset_predictions.tail())
             subset_predictions.sort_values(
                 by=[dependant_column], ascending=False, inplace=True)
             # Reset the index of this dorted dataframe for forming the hedge portfolio
             subset_predictions.reset_index(drop=True, inplace=True)
-            # print('Subset of predictions after')
-            # print(subset_predictions.head())
-            # print(subset_predictions.tail())
             # Calculates decile 1 (Top 10%)
             decile_length = len(subset_predictions[dependant_column])/10
             # print('decile_length: ', decile_length)
             top_decile = range(0, (int(decile_length - 1)))
             bottom_decile = range((int(9*decile_length)),
                                   (int(10*decile_length-1)))
-            # print('top_decile_length: ', top_decile)
-            # print('bottom_decile_length: ', bottom_decile)
             # Calculates Hedge Portfolio Return (Decile 1 - Decile 10)
             top_decile_mean = subset_predictions[dependant_column].iloc[top_decile].mean(
                 axis=0)
             bottom_decile_mean = subset_predictions[dependant_column].iloc[bottom_decile].mean(
                 axis=0)
-            # print('top_decile_mean: ', top_decile_mean)
-            # print('bottom_decile_mean: ', bottom_decile_mean)
             hp_mean = top_decile_mean - bottom_decile_mean
-            # print('hp_mean: ', hp_mean)
             # Forms the hedge portfolio and sets to new row
             new_row = {'mth': int(month), 'hedge_returns': hp_mean}
             # Stores the hedge portfolio return for the month in another dataframe
@@ -722,7 +715,7 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
         regression_df = regression_df.merge(factors_df, how='inner', on='mth')
         # Resets the index on both size_grp and mth
         data = regression_df.set_index(['permno', 'mth'])
-        # Do Panel Regressions to determine model predictability
+        # Do Panel Regressions to determine model predictability of predicted returns
         exog_vars = ['predict']
         # exog = sm.add_constant(data[exog_vars])
         exog = data[exog_vars]
@@ -737,6 +730,37 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             cov_type='HAC', cov_kwds={'maxlags': 6})
         if loss in ['mean_squared_error', 'custom_mse', 'custom_hp']:
             predictability_regressions.append(predict_regress)
+
+        # Calculate realised hedge portfolios f
+        monthly_groups = regression_df.groupby("mth")
+        for month, subset_predictions in monthly_groups:
+            # Sort the predicted returns in the sub_predictiosn set
+            subset_predictions.sort_values(
+                by=['ret_exc_lead1m'], ascending=False, inplace=True)
+            # Reset the index of this dorted dataframe for forming the hedge portfolio
+            subset_predictions.reset_index(drop=True, inplace=True)
+            # Calculates decile 1 (Top 10%)
+            decile_length = len(subset_predictions['ret_exc_lead1m'])/10
+            # print('decile_length: ', decile_length)
+            top_decile = range(0, (int(decile_length - 1)))
+            bottom_decile = range((int(9*decile_length)),
+                                  (int(10*decile_length-1)))
+            # Calculates Hedge Portfolio Return (Decile 1 - Decile 10)
+            top_decile_mean = subset_predictions['ret_exc_lead1m'].iloc[top_decile].mean(
+                axis=0)
+            bottom_decile_mean = subset_predictions['ret_exc_lead1m'].iloc[bottom_decile].mean(
+                axis=0)
+            hp_mean = top_decile_mean - bottom_decile_mean
+            # Forms the hedge portfolio and sets to new row
+            new_row = {'mth': int(month), 'hedge_returns': hp_mean}
+            # Stores the hedge portfolio return for the month in another dataframe
+            hedge_actual = hedge_actual.append(new_row, ignore_index=True)
+
+        # Uses stats models to perform standard linear regressions
+        predict_regress_actual = sm.OLS(hedge_actual[], hedge_returns['hedge_returns']).fit(
+            cov_type='HAC', cov_kwds={'maxlags': 6})
+        if loss in ['mean_squared_error', 'custom_mse', 'custom_hp']:
+            hp_predictability_regressions.append(predict_regress_actual)
         print(hedge_returns['hedge_returns'])
         print(hedge_returns[['Mkt-RF', 'SMB', 'HML', 'RMW', 'CMA']])
         # Create fama factors for the dataset from K.French
@@ -851,6 +875,13 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
         # Deletes existing text
         f.truncate(0)
         print(hp_metric_stargazer.render_latex(), file=f)
+        f.close()
+    # Create new sharelatex regression columns
+    hp_actual_metric_stargazer = Stargazer(hp_predictability_regressions)
+    with open('/home/connormcdowall/finance-honours/results/tables/metrics/' + model_name + '-regression-metrics-actual.txt', 'w') as f:
+        # Deletes existing text
+        f.truncate(0)
+        print(hp_actual_metric_stargazer.render_latex(), file=f)
         f.close()
     return
 
