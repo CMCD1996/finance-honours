@@ -1,25 +1,16 @@
-\begin{table}[!htbp] \centering
-\begin{tabular}{@{\extracolsep{5pt}}lccc}
-\\[-1.8ex]\hline
-\hline \\[-1.8ex]
-& \multicolumn{3}{c}{\textit{Dependent variable: One Month Lead Excess Returns (OMLER)}} \
-\cr \cline{3-4}
-\\[-1.8ex] &  MSE & MSE (Custom) & Hedge Portfolio \\
-\hline \\[-1.8ex]
- Predicted (OMLER)  & 0.129$^{***}$ & 0.238$^{***}$ & -1.319$^{***}$ \\
-  & (0.004) & (0.005) & (0.210) \\
-\hline \\[-1.8ex]
- Observations & 531,461 & 531,461 & 531,461 \\
- $R^2$ & 0.012 & 0.042 & 0.001 \\
- Adjusted $R^2$ & 0.012 & 0.042 & 0.001 \\
- Residual Std. Error & 0.137 & 0.135 & 0.137  \\
-                      &(df = 531460)&(df = 531460)&(df = 531460)\\
- F Statistic & 1188.583$^{***}$  & 2037.581$^{***}$ & 39.655$^{***}$ \\
-            &(df = 1.0; 531460.0)&(df = 1.0; 531460.0)&(df = 1.0; 531460.0)\\
-\hline
-\hline \\[-1.8ex]
-\textit{Note:} & \multicolumn{3}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\
+\begin{table}[H]
+     \centering
+\begin{tabular}{lrrr}
+\toprule
+     Loss Function &   HP Mean &  Sharpe Ratio &  Treynor Ratio \\
+\midrule
+MSE &  0.052639 &      0.847708 &      -0.272728 \\
+       MSE (Custom) &  0.103894 &      1.202689 &      -0.296685 \\
+         Hedge Portfolio & -0.017128 &     -0.595183 &      -0.202894 \\[1ex]
+\bottomrule
+\textit{Insert table description} \\
 \end{tabular}
-\caption{Excess Return Predictability}
-\label{predicability-actual-returns}
+\caption{Performance Measures}
+\label{performance-metrics}
 \end{table}
+
