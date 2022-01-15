@@ -939,7 +939,7 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
     truncate = True
     if truncate:
         metrics_df = metrics_df[(metrics_df['Loss Function'] == 'mean_squared_error') | (
-            metrics_df['Loss Function'] == 'custom_mse') | (metrics_df['Loss Function'] == 'custom_hp') | (metrics_df['Loss Function'] == traditional_sort)]
+            metrics_df['Loss Function'] == 'custom_mse') | (metrics_df['Loss Function'] == 'custom_hp')]  # | (metrics_df['Loss Function'] == traditional_sort)
     with open('/home/connormcdowall/finance-honours/results/tables/metrics/' + model_name + '-calculations-metrics.txt', 'w') as f:
         # Deletes existing text
         f.truncate(0)
