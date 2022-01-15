@@ -851,11 +851,11 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             hedge_actual[['hedge_returns']].mean(axis=0))
         print('Traditional Hedge Portfolio Mean for {} is {}'.format(
             loss, hp_mean_actual))
-        hp_sharpe_ratio_actual = np.asscalar((hedge_returns[['hedge_returns']].mean(
+        hp_sharpe_ratio_actual = np.asscalar((hedge_actual[['hedge_returns']].mean(
             axis=0)/hedge_returns[['hedge_returns']].std(axis=0)))
         print('Actual Hedge Portfolio Sharpe Ratio for {} is {}'.format(
             loss, hp_sharpe_ratio_actual))
-        hp_treynor_actual = np.asscalar((hedge_returns[['hedge_returns']].mean(
+        hp_treynor_actual = np.asscalar((hedge_actual[['hedge_returns']].mean(
             axis=0) / capm_hp.params[1]))
         print('Actual Hedge Portfolio treynor for {} is {}'.format(
             loss, hp_treynor_actual))
@@ -921,7 +921,7 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
     truncate = True
     if truncate:
         metrics_df = metrics_df[(metrics_df['Loss Function'] == 'mean_squared_error') | (
-            metrics_df['Loss Function'] == 'custom_mse') | (metrics_df['Loss Function'] == 'custom_hp')]
+            metrics_df['Loss Function'] == 'custom_mse') | (metrics_df['Loss Function'] == 'custom_hp') | (metrics_df['Loss Function'] == traditional_sort)]
     with open('/home/connormcdowall/finance-honours/results/tables/metrics/' + model_name + '-calculations-metrics.txt', 'w') as f:
         # Deletes existing text
         f.truncate(0)
@@ -935,14 +935,6 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
         f.truncate(0)
         print(hp_metric_stargazer.render_latex(), file=f)
         f.close()
-    # # Create new sharelatex regression columns
-    # hp_actual_metric_stargazer = Stargazer(hp_predictability_regressions)
-    # with open('/home/connormcdowall/finance-honours/results/tables/metrics/' + model_name + '-regression-metrics-actual.txt', 'w') as f:
-    #     # Deletes existing text
-    #     f.truncate(0)
-    #     print(hp_actual_metric_stargazer.render_latex(), file=f)
-    #     f.close()
-    # return
 
 
 def sort_data_chronologically(data_directory, size_of_chunks, set_top_500=False):
