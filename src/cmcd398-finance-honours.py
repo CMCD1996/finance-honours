@@ -774,12 +774,11 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             hp_predictability_regressions.append(predict_regress_actual)
         print(hedge_returns['hedge_returns'])
         print(hedge_returns[['Mkt-RF', 'SMB', 'HML', 'RMW', 'CMA']])
-        # Create fama factors for the dataset from K.French
-        # Performs series of panel regressions with firm returns and standard regressions with hedge returns
         # Get standard statistics
 
         # Get the means for the regressions and add to tables
-        mean_exog = None
+        mean_exog_vars = ['Mkt-RF']
+        mean_exog = sm.add_constant(data[mean_exog_vars])
         mean_fb = lm.PooledOLS(
             data[dependant_column], mean_exog).fit(cov_type='clustered', cluster_entity=True, cluster_time=True)
         with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/mean/' + model_name + '-' + loss + '-capm.txt', 'w') as f:
