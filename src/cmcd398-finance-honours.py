@@ -782,16 +782,17 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             axis=0)/hedge_returns[['hedge_returns']].std(axis=0)))
         print('Actual Hedge Portfolio Sharpe Ratio for {} is {}'.format(
             loss, hp_sharpe_ratio_actual))
-        hp_teynor_actual = np.asscalar((hedge_returns[['hedge_returns']].mean(
+        hp_treynor_actual = np.asscalar((hedge_returns[['hedge_returns']].mean(
             axis=0) / capm_hp.params[1]))
-        print('Actual Hedge Portfolio treynor for {} is {}'.format(loss, hp_teynor))
+        print('Actual Hedge Portfolio treynor for {} is {}'.format(
+            loss, hp_treynor_actual))
 
         # Append to array
-        hp_means_actual.append(hp_mean)
+        hp_means_actual.append(hp_mean_actual)
         print('Actual Hedge portfolio means are: ', hp_means)
-        hp_sharpes_actual.append(hp_sharpe_ratio)
+        hp_sharpes_actual.append(hp_sharpe_ratio_actual)
         print('Actual Hedge portfolio sharpe ratios are: ', hp_sharpes)
-        hp_treynors_actual.append(hp_teynor)
+        hp_treynors_actual.append(hp_teynor_actual)
         print('Actual Hedge portfolio treynors are: ', hp_treynors)
 
         # Uses stats models to perform standard linear regressions
