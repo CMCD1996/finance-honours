@@ -178,6 +178,17 @@ def configure_training_ui(project, api_token):
     neptune_cbk = NeptuneCallback(
         run=run, base_namespace='metrics', batch=None, epoch=None)
     return neptune_cbk
+
+
+def set_gpus(manual_GPU_device_placement=False):
+    gpu = tf.config.list_physical_devices('GPU')
+    print(gpu)
+    print('Tensorflow GPU: {}'.format(len(gpu)))
+    # Set the log device of the GPU
+    tf.debugging.set_log_device_placement(True)
+    if manual_GPU_device_placement:
+        return tf.device('/GPU:0')
+
 #################################################################################
 # Data Processing
 #################################################################################
@@ -693,16 +704,16 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             bottom_decile = range((int(9*decile_length)),
                                   (int(10*decile_length-1)))
             # Calculates Hedge Portfolio Return (Decile 1 - Decile 10)
-            top_decile_mean = subset_predictions[dependant_column].iloc[top_decile].mean(
+            top_decile_mean = subset_predictions['ret_exc_lead1m'].iloc[top_decile].mean(
                 axis=0)
-            bottom_decile_mean = subset_predictions[dependant_column].iloc[bottom_decile].mean(
+            bottom_decile_mean = subset_predictions['ret_exc_lead1m'].iloc[bottom_decile].mean(
                 axis=0)
             hp_mean = top_decile_mean - bottom_decile_mean
             # Forms the hedge portfolio and sets to new row
             new_row = {'mth': int(month), 'hedge_returns': hp_mean}
             # Stores the hedge portfolio return for the month in another dataframe
             hedge_returns = hedge_returns.append(new_row, ignore_index=True)
-        # Creates plots
+
         # Renames 'Date'  column to 'mth'
         factors_df.rename(columns={'Date': 'mth'}, inplace=True)
         # Convert mth dataframe column to the same dtype (float64)
@@ -766,12 +777,26 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
         # Create fama factors for the dataset from K.French
         # Performs series of panel regressions with firm returns and standard regressions with hedge returns
         # Get standard statistics
+
+        # Get the means for the regressions and add to tables
+        mean_exog = None
+        mean_fb = lm.PooledOLS(
+            data[dependant_column], mean_exog).fit(cov_type='clustered', cluster_entity=True, cluster_time=True)
+        with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/mean/' + model_name + '-' + loss + '-capm.txt', 'w') as f:
+            f.truncate(0)
+            print(mean_fb.summary.as_latex(), file=f)
+            f.close()
+        # Uses stats models to perform standard linear regressions
+        mean_hp = sm.OLS(hedge_returns['hedge_returns'], exog=None).fit(
+            cov_type='HAC', cov_kwds={'maxlags': 6})
+
+        # Get regression for asset pricing models
         if regression_dictionary['capm'] == True:
             # Uses linear models to perform CAPM regressions (Panel Regressions)
             capm_exog_vars = ['Mkt-RF']
             capm_exog = sm.add_constant(data[capm_exog_vars])
             capm_fb = lm.PooledOLS(
-                data[dependant_column], capm_exog).fit(cov_type='clustered', cluster_entity=True, cluster_time=True)
+                data['ret_exc_lead1m'], capm_exog).fit(cov_type='clustered', cluster_entity=True, cluster_time=True)
             with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/capm/' + model_name + '-' + loss + '-capm.txt', 'w') as f:
                 f.truncate(0)
                 print(capm_fb.summary.as_latex(), file=f)
@@ -784,7 +809,7 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             # Uses linear models to perform FF3 regression (Panel Regressions)
             ff3_exog_vars = ['Mkt-RF', 'SMB', 'HML']
             ff3_exog = sm.add_constant(data[ff3_exog_vars])
-            ff3_fb = lm.PooledOLS(data[dependant_column],
+            ff3_fb = lm.PooledOLS(data['ret_exc_lead1m'],
                                   ff3_exog).fit(cov_type='clustered', cluster_entity=True, cluster_time=True)
             with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/ff3/' + model_name + '-' + loss + '-ff3.txt', 'w') as f:
                 f.truncate(0)
@@ -798,7 +823,7 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             # Uses linear models to perform FF4 (Carhart) regression (Panel Regressions)
             ff4_exog_vars = ['Mkt-RF', 'SMB', 'HML', 'RMW']
             ff4_exog = sm.add_constant(data[ff4_exog_vars])
-            ff4_fb = lm.PooledOLS(data[dependant_column],
+            ff4_fb = lm.PooledOLS(data['ret_exc_lead1m'],
                                   ff4_exog).fit(cov_type='clustered', cluster_entity=True, cluster_time=True)
             with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/ff4/' + model_name + '-' + loss + '-ff4.txt', 'w') as f:
                 f.truncate(0)
@@ -813,7 +838,7 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             # Uses linear model to perform FF5 regression (Panel Regressions)
             ff5_exog_vars = ['Mkt-RF', 'SMB', 'HML', 'RMW', 'CMA']
             ff5_exog = sm.add_constant(data[ff5_exog_vars])
-            ff5_fb = lm.PooledOLS(data[dependant_column],
+            ff5_fb = lm.PooledOLS(data['ret_exc_lead1m'],
                                   ff5_exog).fit(cov_type='clustered', cluster_entity=True, cluster_time=True)
             with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/ff5/' + model_name + '-' + loss + '-ff5.txt', 'w') as f:
                 f.truncate(0)
@@ -823,6 +848,7 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             ff5_hp_exog = sm.add_constant(hedge_returns[ff5_exog_vars])
             ff5_hp = sm.OLS(hedge_returns['hedge_returns'], ff5_hp_exog).fit(
                 cov_type='HAC', cov_kwds={'maxlags': 6})
+
         # Extract the metrics from loss function
         hp_mean = np.asscalar(hedge_returns[['hedge_returns']].mean(axis=0))
         print('Hedge Portfolio Mean for {} is {}'.format(loss, hp_mean))
@@ -843,7 +869,7 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             cov_type='HAC', cov_kwds={'maxlags': 6})
         hp_regressions.append(hp_regress)
         # Creates tables for comparison using the stargazor package
-        hp_stargazer = Stargazer([capm_hp, ff3_hp, ff4_hp, ff5_hp])
+        hp_stargazer = Stargazer([mean_hp, capm_hp, ff3_hp, ff4_hp, ff5_hp])
         with open('/home/connormcdowall/finance-honours/results/tables/hedge-portfolio-ols/' + model_name + '-' + loss + '.txt', 'w') as f:
             # Deletes existing text
             f.truncate(0)
@@ -2865,8 +2891,6 @@ plot_learning_curves = False
 #################################################################################
 if sys_check:
     reconfigure_gpu(restrict_tf=False, growth_memory=True)
-if check_gpus:
-    list_gpus()
 #################################################################################
 # Data processing
 #################################################################################
