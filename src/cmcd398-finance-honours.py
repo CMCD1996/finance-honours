@@ -680,148 +680,189 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
     hp_treynors = []
     hp_regressions = []
     predictability_regressions = []
-    # Sets actual returns subset
-    for loss in selected_losses:
-        regression_df = pd.read_csv(
-            prediction_location + model_name + '-' + loss + '.csv')
-        if realised_returns:
-            loss = 'realised-excess-returns'
-            dependant_column = 'ret_exc_lead1m'
-        # Creates new dataframes for hedge (predicted and return)
-        hedge_returns = pd.DataFrame(columns=['mth', 'hedge_returns'])
-        hedge_actual = pd.DataFrame(columns=['mth', 'hedge_returns'])
-        # Creates portfolio returns via groupings
-        monthly_groups = regression_df.groupby("mth")
-        for month, subset_predictions in monthly_groups:
-            # Sort the predicted returns in the sub_predictiosn set
-            subset_predictions.sort_values(
-                by=[dependant_column], ascending=False, inplace=True)
-            # Reset the index of this dorted dataframe for forming the hedge portfolio
-            subset_predictions.reset_index(drop=True, inplace=True)
-            # Calculates decile 1 (Top 10%)
-            decile_length = len(subset_predictions[dependant_column])/10
-            # print('decile_length: ', decile_length)
-            top_decile = range(0, (int(decile_length - 1)))
-            bottom_decile = range((int(9*decile_length)),
-                                  (int(10*decile_length-1)))
-            # Calculates Hedge Portfolio Return (Decile 1 - Decile 10)
-            top_decile_mean = subset_predictions['ret_exc_lead1m'].iloc[top_decile].mean(
-                axis=0)
-            bottom_decile_mean = subset_predictions['ret_exc_lead1m'].iloc[bottom_decile].mean(
-                axis=0)
-            hp_mean = top_decile_mean - bottom_decile_mean
-            # Forms the hedge portfolio and sets to new row
-            new_row = {'mth': int(month), 'hedge_returns': hp_mean}
-            # Stores the hedge portfolio return for the month in another dataframe
-            hedge_returns = hedge_returns.append(new_row, ignore_index=True)
 
-        # Renames 'Date'  column to 'mth'
-        factors_df.rename(columns={'Date': 'mth'}, inplace=True)
-        # Convert mth dataframe column to the same dtype (float64)
-        regression_df['mth'] = regression_df['mth'].astype(np.float64)
-        factors_df['mth'] = factors_df['mth'].astype(np.float64)
-        hedge_returns['mth'] = hedge_returns['mth'].astype(np.float64)
-        # Merges hedge returns with factors
-        hedge_returns = hedge_returns.merge(factors_df, how='inner', on='mth')
-        # Adds the factors to the regression dataframe via merge
-        regression_df = regression_df.merge(factors_df, how='inner', on='mth')
-        # Resets the index on both size_grp and mth
-        data = regression_df.set_index(['permno', 'mth'])
-        # Do Panel Regressions to determine model predictability of predicted returns
-        exog_vars = ['predict']
-        # exog = sm.add_constant(data[exog_vars])
-        exog = data[exog_vars]
-        fb = lm.PooledOLS(data['ret_exc_lead1m'], exog).fit(
-            cov_type='clustered', cluster_entity=True, cluster_time=True)
-        with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/accuracy/' + model_name + '-' + loss + '.txt', 'w') as f:
-            f.truncate(0)
-            print(fb.summary.as_latex(), file=f)
-            f.close()
-        # Uses stats models to perform standard linear regressions
-        predict_regress = sm.OLS(data['ret_exc_lead1m'], exog).fit(
-            cov_type='HAC', cov_kwds={'maxlags': 6})
-        if loss in ['mean_squared_error', 'custom_mse', 'custom_hp']:
-            predictability_regressions.append(predict_regress)
+    # Regress booleans
+    regress_prediction = False
+    regress_actual = True
 
-        # # Uses stats models to perform standard linear regressions
-        # predict_regress_actual = sm.OLS(hedge_actual['hedge_returns'], hedge_returns['hedge_returns']).fit(
-        #     cov_type='HAC', cov_kwds={'maxlags': 6})
-        # if loss in ['mean_squared_error', 'custom_mse', 'custom_hp']:
-        #     hp_predictability_regressions.append(predict_regress_actual)
-        print(hedge_returns['hedge_returns'])
-        print(hedge_returns[['Mkt-RF', 'SMB', 'HML', 'RMW', 'CMA']])
-        # Get standard statistics
+    if regress_prediction:
+        # Sets actual returns subset
+        for loss in selected_losses:
+            regression_df = pd.read_csv(
+                prediction_location + model_name + '-' + loss + '.csv')
+            if realised_returns:
+                loss = 'realised-excess-returns'
+                dependant_column = 'ret_exc_lead1m'
+            # Creates new dataframes for hedge (predicted and return)
+            hedge_returns = pd.DataFrame(columns=['mth', 'hedge_returns'])
+            hedge_actual = pd.DataFrame(columns=['mth', 'hedge_returns'])
+            # Creates portfolio returns via groupings
+            monthly_groups = regression_df.groupby("mth")
+            for month, subset_predictions in monthly_groups:
+                # Sort the predicted returns in the sub_predictiosn set
+                subset_predictions.sort_values(
+                    by=[dependant_column], ascending=False, inplace=True)
+                # Reset the index of this dorted dataframe for forming the hedge portfolio
+                subset_predictions.reset_index(drop=True, inplace=True)
+                # Calculates decile 1 (Top 10%)
+                decile_length = len(subset_predictions[dependant_column])/10
+                # print('decile_length: ', decile_length)
+                top_decile = range(0, (int(decile_length - 1)))
+                bottom_decile = range((int(9*decile_length)),
+                                      (int(10*decile_length-1)))
+                # Calculates Hedge Portfolio Return (Decile 1 - Decile 10)
+                top_decile_mean = subset_predictions['ret_exc_lead1m'].iloc[top_decile].mean(
+                    axis=0)
+                bottom_decile_mean = subset_predictions['ret_exc_lead1m'].iloc[bottom_decile].mean(
+                    axis=0)
+                hp_mean = top_decile_mean - bottom_decile_mean
+                # Forms the hedge portfolio and sets to new row
+                new_row = {'mth': int(month), 'hedge_returns': hp_mean}
+                # Stores the hedge portfolio return for the month in another dataframe
+                hedge_returns = hedge_returns.append(
+                    new_row, ignore_index=True)
 
-        # Uses stats models to perform standard linear regressions
-        # mean_hp = sm.OLS(hedge_returns['hedge_returns'], exog=None).fit(
-        # cov_type='HAC', cov_kwds={'maxlags': 6})
-        # print('Shape of predictions is: ')
-        # hedge_returns['hedge_returns'].shape()
-        # hp = sm.OLS(hedge_returns['hedge_returns']).fit(
-        #     cov_type='HAC', cov_kwds={'maxlags': 6})
-        # Get regression for asset pricing models
-        if regression_dictionary['capm'] == True:
-            # Uses linear models to perform CAPM regressions (Panel Regressions)
-            capm_exog_vars = ['Mkt-RF']
-            capm_exog = sm.add_constant(data[capm_exog_vars])
-            capm_fb = lm.PooledOLS(
-                data['ret_exc_lead1m'], capm_exog).fit(cov_type='clustered', cluster_entity=True, cluster_time=True)
-            with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/capm/' + model_name + '-' + loss + '-capm.txt', 'w') as f:
+            # Renames 'Date'  column to 'mth'
+            factors_df.rename(columns={'Date': 'mth'}, inplace=True)
+            # Convert mth dataframe column to the same dtype (float64)
+            regression_df['mth'] = regression_df['mth'].astype(np.float64)
+            factors_df['mth'] = factors_df['mth'].astype(np.float64)
+            hedge_returns['mth'] = hedge_returns['mth'].astype(np.float64)
+            # Merges hedge returns with factors
+            hedge_returns = hedge_returns.merge(
+                factors_df, how='inner', on='mth')
+            # Adds the factors to the regression dataframe via merge
+            regression_df = regression_df.merge(
+                factors_df, how='inner', on='mth')
+            # Resets the index on both size_grp and mth
+            data = regression_df.set_index(['permno', 'mth'])
+            # Do Panel Regressions to determine model predictability of predicted returns
+            exog_vars = ['predict']
+            # exog = sm.add_constant(data[exog_vars])
+            exog = data[exog_vars]
+            fb = lm.PooledOLS(data['ret_exc_lead1m'], exog).fit(
+                cov_type='clustered', cluster_entity=True, cluster_time=True)
+            with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/accuracy/' + model_name + '-' + loss + '.txt', 'w') as f:
                 f.truncate(0)
-                print(capm_fb.summary.as_latex(), file=f)
+                print(fb.summary.as_latex(), file=f)
                 f.close()
             # Uses stats models to perform standard linear regressions
-            capm_hp_exog = sm.add_constant(hedge_returns[capm_exog_vars])
-            capm_hp = sm.OLS(hedge_returns['hedge_returns'], capm_hp_exog).fit(
+            predict_regress = sm.OLS(data['ret_exc_lead1m'], exog).fit(
                 cov_type='HAC', cov_kwds={'maxlags': 6})
-        if regression_dictionary['ff3'] == True:
-            # Uses linear models to perform FF3 regression (Panel Regressions)
-            ff3_exog_vars = ['Mkt-RF', 'SMB', 'HML']
-            ff3_exog = sm.add_constant(data[ff3_exog_vars])
-            ff3_fb = lm.PooledOLS(data['ret_exc_lead1m'],
-                                  ff3_exog).fit(cov_type='clustered', cluster_entity=True, cluster_time=True)
-            with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/ff3/' + model_name + '-' + loss + '-ff3.txt', 'w') as f:
-                f.truncate(0)
-                print(ff3_fb.summary.as_latex(), file=f)
-                f.close()
-            # Uses stats models to perform standard linear regressions
-            ff3_hp_exog = sm.add_constant(hedge_returns[ff3_exog_vars])
-            ff3_hp = sm.OLS(hedge_returns['hedge_returns'], ff3_hp_exog).fit(
-                cov_type='HAC', cov_kwds={'maxlags': 6})
-        if regression_dictionary['ff4'] == True:
-            # Uses linear models to perform FF4 (Carhart) regression (Panel Regressions)
-            ff4_exog_vars = ['Mkt-RF', 'SMB', 'HML', 'RMW']
-            ff4_exog = sm.add_constant(data[ff4_exog_vars])
-            ff4_fb = lm.PooledOLS(data['ret_exc_lead1m'],
-                                  ff4_exog).fit(cov_type='clustered', cluster_entity=True, cluster_time=True)
-            with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/ff4/' + model_name + '-' + loss + '-ff4.txt', 'w') as f:
-                f.truncate(0)
-                print(ff4_fb.summary.as_latex(), file=f)
-                f.close()
-            print(ff4_fb)
-            # Uses stats models to perform standard linear regressions
-            ff4_hp_exog = sm.add_constant(hedge_returns[ff4_exog_vars])
-            ff4_hp = sm.OLS(hedge_returns['hedge_returns'], ff4_hp_exog).fit(
-                cov_type='HAC', cov_kwds={'maxlags': 6})
-        if regression_dictionary['ff5'] == True:
-            # Uses linear model to perform FF5 regression (Panel Regressions)
-            ff5_exog_vars = ['Mkt-RF', 'SMB', 'HML', 'RMW', 'CMA']
-            ff5_exog = sm.add_constant(data[ff5_exog_vars])
-            ff5_fb = lm.PooledOLS(data['ret_exc_lead1m'],
-                                  ff5_exog).fit(cov_type='clustered', cluster_entity=True, cluster_time=True)
-            with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/ff5/' + model_name + '-' + loss + '-ff5.txt', 'w') as f:
-                f.truncate(0)
-                print(ff5_fb.summary.as_latex(), file=f)
-                f.close()
-            # Uses stats models to perform standard linear regressions
-            ff5_hp_exog = sm.add_constant(hedge_returns[ff5_exog_vars])
-            ff5_hp = sm.OLS(hedge_returns['hedge_returns'], ff5_hp_exog).fit(
-                cov_type='HAC', cov_kwds={'maxlags': 6})
+            if loss in ['mean_squared_error', 'custom_mse', 'custom_hp']:
+                predictability_regressions.append(predict_regress)
 
+            # # Uses stats models to perform standard linear regressions
+            # predict_regress_actual = sm.OLS(hedge_actual['hedge_returns'], hedge_returns['hedge_returns']).fit(
+            #     cov_type='HAC', cov_kwds={'maxlags': 6})
+            # if loss in ['mean_squared_error', 'custom_mse', 'custom_hp']:
+            #     hp_predictability_regressions.append(predict_regress_actual)
+            print(hedge_returns['hedge_returns'])
+            print(hedge_returns[['Mkt-RF', 'SMB', 'HML', 'RMW', 'CMA']])
+            # Get standard statistics
+
+            # Uses stats models to perform standard linear regressions
+            # mean_hp = sm.OLS(hedge_returns['hedge_returns'], exog=None).fit(
+            # cov_type='HAC', cov_kwds={'maxlags': 6})
+            # print('Shape of predictions is: ')
+            # hedge_returns['hedge_returns'].shape()
+            # hp = sm.OLS(hedge_returns['hedge_returns']).fit(
+            #     cov_type='HAC', cov_kwds={'maxlags': 6})
+            # Get regression for asset pricing models
+            if regression_dictionary['capm'] == True:
+                # Uses linear models to perform CAPM regressions (Panel Regressions)
+                capm_exog_vars = ['Mkt-RF']
+                capm_exog = sm.add_constant(data[capm_exog_vars])
+                capm_fb = lm.PooledOLS(
+                    data['ret_exc_lead1m'], capm_exog).fit(cov_type='clustered', cluster_entity=True, cluster_time=True)
+                with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/capm/' + model_name + '-' + loss + '-capm.txt', 'w') as f:
+                    f.truncate(0)
+                    print(capm_fb.summary.as_latex(), file=f)
+                    f.close()
+                # Uses stats models to perform standard linear regressions
+                capm_hp_exog = sm.add_constant(hedge_returns[capm_exog_vars])
+                capm_hp = sm.OLS(hedge_returns['hedge_returns'], capm_hp_exog).fit(
+                    cov_type='HAC', cov_kwds={'maxlags': 6})
+            if regression_dictionary['ff3'] == True:
+                # Uses linear models to perform FF3 regression (Panel Regressions)
+                ff3_exog_vars = ['Mkt-RF', 'SMB', 'HML']
+                ff3_exog = sm.add_constant(data[ff3_exog_vars])
+                ff3_fb = lm.PooledOLS(data['ret_exc_lead1m'],
+                                      ff3_exog).fit(cov_type='clustered', cluster_entity=True, cluster_time=True)
+                with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/ff3/' + model_name + '-' + loss + '-ff3.txt', 'w') as f:
+                    f.truncate(0)
+                    print(ff3_fb.summary.as_latex(), file=f)
+                    f.close()
+                # Uses stats models to perform standard linear regressions
+                ff3_hp_exog = sm.add_constant(hedge_returns[ff3_exog_vars])
+                ff3_hp = sm.OLS(hedge_returns['hedge_returns'], ff3_hp_exog).fit(
+                    cov_type='HAC', cov_kwds={'maxlags': 6})
+            if regression_dictionary['ff4'] == True:
+                # Uses linear models to perform FF4 (Carhart) regression (Panel Regressions)
+                ff4_exog_vars = ['Mkt-RF', 'SMB', 'HML', 'RMW']
+                ff4_exog = sm.add_constant(data[ff4_exog_vars])
+                ff4_fb = lm.PooledOLS(data['ret_exc_lead1m'],
+                                      ff4_exog).fit(cov_type='clustered', cluster_entity=True, cluster_time=True)
+                with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/ff4/' + model_name + '-' + loss + '-ff4.txt', 'w') as f:
+                    f.truncate(0)
+                    print(ff4_fb.summary.as_latex(), file=f)
+                    f.close()
+                print(ff4_fb)
+                # Uses stats models to perform standard linear regressions
+                ff4_hp_exog = sm.add_constant(hedge_returns[ff4_exog_vars])
+                ff4_hp = sm.OLS(hedge_returns['hedge_returns'], ff4_hp_exog).fit(
+                    cov_type='HAC', cov_kwds={'maxlags': 6})
+            if regression_dictionary['ff5'] == True:
+                # Uses linear model to perform FF5 regression (Panel Regressions)
+                ff5_exog_vars = ['Mkt-RF', 'SMB', 'HML', 'RMW', 'CMA']
+                ff5_exog = sm.add_constant(data[ff5_exog_vars])
+                ff5_fb = lm.PooledOLS(data['ret_exc_lead1m'],
+                                      ff5_exog).fit(cov_type='clustered', cluster_entity=True, cluster_time=True)
+                with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/ff5/' + model_name + '-' + loss + '-ff5.txt', 'w') as f:
+                    f.truncate(0)
+                    print(ff5_fb.summary.as_latex(), file=f)
+                    f.close()
+                # Uses stats models to perform standard linear regressions
+                ff5_hp_exog = sm.add_constant(hedge_returns[ff5_exog_vars])
+                ff5_hp = sm.OLS(hedge_returns['hedge_returns'], ff5_hp_exog).fit(
+                    cov_type='HAC', cov_kwds={'maxlags': 6})
+
+            # Extract the metrics from loss function
+            hp_mean = np.asscalar(
+                hedge_returns[['hedge_returns']].mean(axis=0))
+            print('Hedge Portfolio Mean for {} is {}'.format(loss, hp_mean))
+            hp_sharpe_ratio = np.asscalar((hedge_returns[['hedge_returns']].mean(
+                axis=0)/hedge_returns[['hedge_returns']].std(axis=0)))
+            print('Hedge Portfolio Sharpe Ratio for {} is {}'.format(
+                loss, hp_sharpe_ratio))
+            hp_teynor = np.asscalar((hedge_returns[['hedge_returns']].mean(
+                axis=0) / capm_hp.params[1]))
+            print('Hedge Portfolio treynor for {} is {}'.format(loss, hp_teynor))
+            hp_means.append(hp_mean)
+            print('Hedge portfolio means are: ', hp_means)
+            hp_sharpes.append(hp_sharpe_ratio)
+            print('Hedge portfolio sharpe ratios are: ', hp_sharpes)
+            hp_treynors.append(hp_teynor)
+            print('Hedge portfolio means are: ', hp_treynors)
+            hp_regress = sm.OLS(hedge_returns['hedge_returns'], hedge_returns['hedge_returns']).fit(
+                cov_type='HAC', cov_kwds={'maxlags': 6})
+            hp_regressions.append(hp_regress)
+
+            # Creates tables for comparison using the stargazor package
+            hp_stargazer = Stargazer([capm_hp, ff3_hp, ff4_hp, ff5_hp])
+            with open('/home/connormcdowall/finance-honours/results/tables/hedge-portfolio-ols/' + model_name + '-' + loss + '.txt', 'w') as f:
+                # Deletes existing text
+                f.truncate(0)
+                print(hp_stargazer.render_latex(), file=f)
+        # Uses stargazer and arrays
+            if realised_returns:
+                return
+
+    if regress_actual:
         # Calculates actual portfolio metrics
         # Calculate standard portfolio return not on the metric
         regression_actual_df = pd.read_csv(
-            prediction_location + model_name + '-' + loss + '.csv')
+            prediction_location + model_name + '-' + 'mean_squared_error' + '.csv')
         monthly_groups = regression_actual_df.groupby("mth")
         for month, subset_predictions in monthly_groups:
             # Sort the predicted returns in the sub_predictiosn set
@@ -858,12 +899,32 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
         # Adds the factors to the regression dataframe via merge
         # regression_df = regression_df.merge(factors_df, how='inner', on='mth')
 
-        # Uses stats models to perform standard linear regressions
-        capm_actual_exog_vars = ['Mkt-RF']
-        capm_actual_hp_exog = sm.add_constant(
-            hedge_actual[capm_actual_exog_vars])
-        capm_actual_hp = sm.OLS(hedge_actual['hedge_returns'], capm_actual_hp_exog).fit(
+        # Uses statsmodels to get market approximations
+        capm_actual_exog = sm.add_constant(hedge_actual[['Mkt-RF']])
+        ff3_actual_exog = sm.add_constant(
+            hedge_actual[['Mkt-RF', 'SMB', 'HML']])
+        ff4_actual_exog = sm.add_constant(
+            hedge_actual[['Mkt-RF', 'SMB', 'HML', 'RMW']])
+        ff5_actual_exog = sm.add_constant(
+            hedge_actual[['Mkt-RF', 'SMB', 'HML', 'RMW', 'CMA']])
+
+        capm_actual_hp = sm.OLS(hedge_actual['hedge_returns'], capm_actual_exog).fit(
             cov_type='HAC', cov_kwds={'maxlags': 6})
+        ff3_actual_hp = sm.OLS(hedge_actual['hedge_returns'], ff3_actual_exog).fit(
+            cov_type='HAC', cov_kwds={'maxlags': 6})
+        ff4_actual_hp = sm.OLS(hedge_actual['hedge_returns'], ff4_actual_exog).fit(
+            cov_type='HAC', cov_kwds={'maxlags': 6})
+        ff5_actual_hp = sm.OLS(hedge_actual['hedge_returns'], ff5_actual_exog).fit(
+            cov_type='HAC', cov_kwds={'maxlags': 6})
+
+        # Save the model to file
+        hp_stargazer = Stargazer(
+            [capm_actual_hp, ff3_actual_hp, ff4_actual_hp, ff5_actual_hp])
+        with open('/home/connormcdowall/finance-honours/results/tables/hedge-portfolio-ols/' + model_name + '-' + 'omlhpex' + '-actual.txt', 'w') as f:
+            # Deletes existing text
+            f.truncate(0)
+            print(hp_stargazer.render_latex(), file=f)
+
         # Sets up arrays to append
         hp_means_actual = []
         hp_sharpes_actual = []
@@ -891,73 +952,46 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
         hp_treynors_actual.append(hp_treynor_actual)
         print('Actual Hedge portfolio treynors are: ', hp_treynors)
 
-        # Extract the metrics from loss function
-        hp_mean = np.asscalar(hedge_returns[['hedge_returns']].mean(axis=0))
-        print('Hedge Portfolio Mean for {} is {}'.format(loss, hp_mean))
-        hp_sharpe_ratio = np.asscalar((hedge_returns[['hedge_returns']].mean(
-            axis=0)/hedge_returns[['hedge_returns']].std(axis=0)))
-        print('Hedge Portfolio Sharpe Ratio for {} is {}'.format(
-            loss, hp_sharpe_ratio))
-        hp_teynor = np.asscalar((hedge_returns[['hedge_returns']].mean(
-            axis=0) / capm_hp.params[1]))
-        print('Hedge Portfolio treynor for {} is {}'.format(loss, hp_teynor))
-        hp_means.append(hp_mean)
-        print('Hedge portfolio means are: ', hp_means)
-        hp_sharpes.append(hp_sharpe_ratio)
-        print('Hedge portfolio sharpe ratios are: ', hp_sharpes)
-        hp_treynors.append(hp_teynor)
-        print('Hedge portfolio means are: ', hp_treynors)
-        hp_regress = sm.OLS(hedge_returns['hedge_returns'], hedge_returns['hedge_returns']).fit(
-            cov_type='HAC', cov_kwds={'maxlags': 6})
-        hp_regressions.append(hp_regress)
+    if regress_prediction:
+        # Creates metrics dataframes and saves to latex variable
+        metrics_df_cols = ['Loss Function', 'HP Mean',
+                           'Sharpe Ratio', 'Treynor Ratio']
+        metrics_df = pd.DataFrame(columns=metrics_df_cols)
 
-        # Creates tables for comparison using the stargazor package
-        hp_stargazer = Stargazer([capm_hp, ff3_hp, ff4_hp, ff5_hp])
-        with open('/home/connormcdowall/finance-honours/results/tables/hedge-portfolio-ols/' + model_name + '-' + loss + '.txt', 'w') as f:
+        # Set name if just
+        traditional_sort = 'traditional_sort'
+
+        # Append to dataframe
+        hp_means.append(hp_means_actual[0])
+        hp_sharpes.append(hp_sharpes_actual[0])
+        hp_treynors.append(hp_treynors_actual[0])
+        selected_losses.append(traditional_sort[0])
+
+        # Create the metrics dataframe
+        metrics_df['HP Mean'] = hp_means
+        metrics_df['Loss Function'] = selected_losses
+        metrics_df['Sharpe Ratio'] = hp_sharpes
+        metrics_df['Treynor Ratio'] = hp_treynors
+
+        # Only extract the most relevant factors
+        truncate = True
+        if truncate:
+            metrics_df = metrics_df[(metrics_df['Loss Function'] == 'mean_squared_error') | (
+                metrics_df['Loss Function'] == 'custom_mse') | (metrics_df['Loss Function'] == 'custom_hp')]  # | (metrics_df['Loss Function'] == traditional_sort)
+        with open('/home/connormcdowall/finance-honours/results/tables/metrics/' + model_name + '-calculations-metrics.txt', 'w') as f:
             # Deletes existing text
             f.truncate(0)
-            print(hp_stargazer.render_latex(), file=f)
-    # Uses stargazer and arrays
-        if realised_returns:
-            return
-    # Creates metrics dataframes and saves to latex variable
-    metrics_df_cols = ['Loss Function', 'HP Mean',
-                       'Sharpe Ratio', 'Treynor Ratio']
-    metrics_df = pd.DataFrame(columns=metrics_df_cols)
+            print(metrics_df.to_latex(index=False), file=f)
+            f.close()
 
-    # Set name if just
-    traditional_sort = 'traditional_sort'
-
-    # Append to dataframe
-    hp_means.append(hp_means_actual[0])
-    hp_sharpes.append(hp_sharpes_actual[0])
-    hp_treynors.append(hp_treynors_actual[0])
-    selected_losses.append(traditional_sort[0])
-
-    # Create the metrics dataframe
-    metrics_df['HP Mean'] = hp_means
-    metrics_df['Loss Function'] = selected_losses
-    metrics_df['Sharpe Ratio'] = hp_sharpes
-    metrics_df['Treynor Ratio'] = hp_treynors
-
-    # Only extract the most relevant factors
-    truncate = True
-    if truncate:
-        metrics_df = metrics_df[(metrics_df['Loss Function'] == 'mean_squared_error') | (
-            metrics_df['Loss Function'] == 'custom_mse') | (metrics_df['Loss Function'] == 'custom_hp')]  # | (metrics_df['Loss Function'] == traditional_sort)
-    with open('/home/connormcdowall/finance-honours/results/tables/metrics/' + model_name + '-calculations-metrics.txt', 'w') as f:
-        # Deletes existing text
-        f.truncate(0)
-        print(metrics_df.to_latex(index=False), file=f)
-        f.close()
-
-    # Create new sharelatex regression columns
-    hp_metric_stargazer = Stargazer(predictability_regressions)
-    with open('/home/connormcdowall/finance-honours/results/tables/metrics/' + model_name + '-regression-metrics.txt', 'w') as f:
-        # Deletes existing text
-        f.truncate(0)
-        print(hp_metric_stargazer.render_latex(), file=f)
-        f.close()
+        # Create new sharelatex regression columns
+        hp_metric_stargazer = Stargazer(predictability_regressions)
+        with open('/home/connormcdowall/finance-honours/results/tables/metrics/' + model_name + '-regression-metrics.txt', 'w') as f:
+            # Deletes existing text
+            f.truncate(0)
+            print(hp_metric_stargazer.render_latex(), file=f)
+            f.close()
+    return
 
 
 def sort_data_chronologically(data_directory, size_of_chunks, set_top_500=False):
