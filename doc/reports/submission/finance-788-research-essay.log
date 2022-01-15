@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.12.31)  16 JAN 2022 00:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.12.31)  16 JAN 2022 00:35
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1044,14 +1044,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 \@quotelevel=\count496
 \@quotereset=\count497
 Package translations Info: No language package found. I am going to use `english' as default language. on input line 102.
- (./finance-788-research-essay.aux
-
-LaTeX Warning: Label `data-processing' multiply defined.
-
-
-LaTeX Warning: Label `data-processing' multiply defined.
-
-)
+ (./finance-788-research-essay.aux)
 \openout1 = `finance-788-research-essay.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 102.
@@ -1110,11 +1103,11 @@ Package: blx-case-expl3 2020/12/31 v3.16 expl3 case changing code for biblatex
 \openout3 = `finance-788-research-essay.bcf'.
 
 Package biblatex Info: Trying to load bibliographic data...
-Package biblatex Info: ... file 'finance-788-research-essay.bbl' found.
- (./finance-788-research-essay.bbl)
+Package biblatex Info: ... file 'finance-788-research-essay.bbl' not found.
+
+No file finance-788-research-essay.bbl.
 Package biblatex Info: Reference section=0 on input line 102.
 Package biblatex Info: Reference segment=0 on input line 102.
-
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -1203,7 +1196,6 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 102.
 LaTeX Info: Redefining \pageref on input line 102.
 LaTeX Info: Redefining \nameref on input line 102.
- (./finance-788-research-essay.out) (./finance-788-research-essay.out)
 \@outlinefile=\write5
 \openout5 = `finance-788-research-essay.out'.
 
@@ -1217,62 +1209,208 @@ LaTeX Info: Redefining \nameref on input line 102.
 \cftafterequtitleskip=\skip148
  [1
 
-{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [1] [2] (./finance-788-research-essay.toc
-LaTeX Font Info:    Trying to load font information for U+msa on input line 3.
- (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 3.
- (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [3] [4])
+{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [1] [2]
 \tf@toc=\write6
 \openout6 = `finance-788-research-essay.toc'.
 
- (./finance-788-research-essay.lof)
 \tf@lof=\write7
 \openout7 = `finance-788-research-essay.lof'.
 
- [5] (./finance-788-research-essay.lot)
 \tf@lot=\write8
 \openout8 = `finance-788-research-essay.lot'.
 
- [6]pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
+ [3]pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.167 \newpage
-               [1] [2] [3] [4] [5] [6] [7] [8] [9]
+               [1] [2] [3]
+
+LaTeX Warning: Citation 'fama2004capital' on page 4 undefined on input line 176.
+
+
+LaTeX Warning: Citation 'eugene1992cross' on page 4 undefined on input line 179.
+
+
+LaTeX Warning: Citation 'fama2021common' on page 4 undefined on input line 181.
+
+LaTeX Font Info:    Trying to load font information for U+msa on input line 181.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 181.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+
+LaTeX Warning: Reference `ff3' on page 4 undefined on input line 183.
+
+
+LaTeX Warning: Reference `ff5' on page 4 undefined on input line 183.
+
+
+LaTeX Warning: Citation 'fama2012size' on page 4 undefined on input line 184.
+
+
+LaTeX Warning: Citation 'french-personal' on page 4 undefined on input line 187.
+
+
+LaTeX Warning: Citation 'fama1973risk' on page 4 undefined on input line 188.
+
+
+LaTeX Warning: Reference `fb1' on page 4 undefined on input line 190.
+
+
+LaTeX Warning: Reference `fb2' on page 4 undefined on input line 191.
+
+[4]
+
+LaTeX Warning: Citation 'corporate-culture' on page 5 undefined on input line 195.
+
+
+LaTeX Warning: Citation 'eapvml' on page 5 undefined on input line 196.
+
+[5] [6] [7]
+
+LaTeX Warning: Citation 'hou2020replicating' on page 8 undefined on input line 211.
+
+
+LaTeX Warning: Citation 'jensen2021there' on page 8 undefined on input line 218.
+
+
+LaTeX Warning: Reference `dss' on page 8 undefined on input line 221.
+
+[8]
+
+LaTeX Warning: Citation 'jensen2021there' on page 9 undefined on input line 233.
+
+
+LaTeX Warning: Reference `table:ss-train' on page 9 undefined on input line 242.
+
+
+LaTeX Warning: Reference `table:ss-test' on page 9 undefined on input line 242.
+
+
+LaTeX Warning: Reference `table:ss-val' on page 9 undefined on input line 242.
+
+
+LaTeX Warning: Reference `dss:ss' on page 9 undefined on input line 242.
+
+
+LaTeX Warning: Reference `data-processing' on page 9 undefined on input line 252.
+
+
+LaTeX Warning: Reference `technical' on page 9 undefined on input line 253.
+
+[9]
+
+LaTeX Warning: Reference `step-i' on page 10 undefined on input line 273.
+
+
+LaTeX Warning: Citation 'fama1997industry' on page 10 undefined on input line 287.
+
+
 Overfull \hbox (5.23434pt too wide) in paragraph at lines 278--289
 \OT1/cmr/m/n/12 The re-vised datasets con-sist of eight cat-e-gor-i-cal fea-tures [][][] and 152 nu-mer-i-cal fea-tures. 
  []
 
+
+LaTeX Warning: Reference `w-sum' on page 10 undefined on input line 292.
+
+
+LaTeX Warning: Reference `activation-function' on page 10 undefined on input line 292.
+
+
+LaTeX Warning: Reference `mlp-plr' on page 10 undefined on input line 296.
+
+
+LaTeX Warning: Reference `logistic-activation-function' on page 10 undefined on input line 298.
+
+
+LaTeX Warning: Reference `relu-activation-function' on page 10 undefined on input line 298.
+
 [10] [11]
-</Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/images/neural-network.png, id=580, 1313.90875pt x 933.4875pt>
+
+LaTeX Warning: Reference `fig:neural-network' on page 12 undefined on input line 341.
+
+</Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/images/neural-network.png, id=134, 1313.90875pt x 933.4875pt>
 File: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/images/neural-network.png Graphic file (type png)
 <use /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/images/neural-network.png>
 Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/images/neural-network.png  used on input line 344.
 (pdftex.def)             Requested size: 339.7262pt x 241.3621pt.
- [12 </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/images/neural-network.png>] [13] [14]
+
+LaTeX Warning: Reference `fig:neural-network-configuration' on page 12 undefined on input line 350.
+
+
+LaTeX Warning: Reference `relu-activation-function' on page 12 undefined on input line 356.
+
+
+LaTeX Warning: Reference `linear-activation-function' on page 12 undefined on input line 356.
+
+
+LaTeX Warning: Reference `linear-activation-function' on page 12 undefined on input line 357.
+
+[12 </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/images/neural-network.png>] [13]
+
+LaTeX Warning: Reference `mlp-math' on page 14 undefined on input line 383.
+
+
+LaTeX Warning: Reference `fig:neural-network-configuration' on page 14 undefined on input line 384.
+
+
+LaTeX Warning: Reference `sgd' on page 14 undefined on input line 384.
+
+
+LaTeX Warning: Reference `ols' on page 14 undefined on input line 387.
+
+
+LaTeX Warning: Reference `hedge-portfolio-derivation' on page 14 undefined on input line 398.
+
+
+LaTeX Warning: Reference `loss-function-formulation' on page 14 undefined on input line 400.
+
+[14]
+
+LaTeX Warning: Citation 'newey1987hypothesis' on page 15 undefined on input line 412.
+
 
 LaTeX Warning: Reference `apt' on page 15 undefined on input line 417.
 
-[15] (/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-main-findings.tex) (/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-calculations-metrics.tex)
-</Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-squared-error-learning-curve.png, id=642, 613.29124pt x 452.69125pt>
+
+LaTeX Warning: Citation 'fama1973risk' on page 15 undefined on input line 419.
+
+[15]
+
+LaTeX Warning: Reference `main-findings' on page 16 undefined on input line 429.
+
+(/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-main-findings.tex) (/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-calculations-metrics.tex)
+
+LaTeX Warning: Citation 'hlavac2018stargazer' on page 16 undefined on input line 433.
+
+</Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-squared-error-learning-curve.png, id=186, 613.29124pt x 452.69125pt>
 File: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-squared-error-learning-curve.png Graphic file (type png)
 <use /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-squared-error-learning-curve.png>
 Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-squared-error-learning-curve.png  used on input line 439.
 (pdftex.def)             Requested size: 362.37598pt x 267.47925pt.
-</Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/custom-mse-learning-curve.png, id=643, 615.29875pt x 451.6875pt>
+</Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/custom-mse-learning-curve.png, id=187, 615.29875pt x 451.6875pt>
 File: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/custom-mse-learning-curve.png Graphic file (type png)
 <use /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/custom-mse-learning-curve.png>
 Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/custom-mse-learning-curve.png  used on input line 443.
 (pdftex.def)             Requested size: 362.37598pt x 266.02464pt.
-</Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/custom-hp-learning-curve.png, id=644, 612.2875pt x 419.5675pt>
+</Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/custom-hp-learning-curve.png, id=188, 612.2875pt x 419.5675pt>
 File: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/custom-hp-learning-curve.png Graphic file (type png)
 <use /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/custom-hp-learning-curve.png>
 Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/custom-hp-learning-curve.png  used on input line 449.
 (pdftex.def)             Requested size: 362.37598pt x 248.31732pt.
- [16] [17 </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-squared-error-learning-curve.png> </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/custom-mse-learning-curve.png>]
+[16] [17 </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-squared-error-learning-curve.png> </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/custom-mse-learning-curve.png>]
+
+LaTeX Warning: Reference `fig:mse-learning-curves' on page 18 undefined on input line 453.
+
+
+LaTeX Warning: Reference `fig:hp-lc' on page 18 undefined on input line 453.
+
+
+LaTeX Warning: Reference `model-training-validation-performance' on page 18 undefined on input line 456.
+
 
 LaTeX Warning: Reference `predicability-actual-returns' on page 18 undefined on input line 459.
 
@@ -1282,7 +1420,7 @@ Overfull \hbox (18.52892pt too wide) in paragraph at lines 2--23
  []
 
 ) [18 </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/custom-hp-learning-curve.png>] (/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-mean_squared_error.tex
-Overfull \hbox (78.04391pt too wide) in paragraph at lines 2--34
+Overfull \hbox (109.37692pt too wide) in paragraph at lines 2--34
  [][] 
  []
 
@@ -1290,83 +1428,917 @@ Overfull \hbox (78.04391pt too wide) in paragraph at lines 2--34
 Overfull \vbox (23.35121pt too high) has occurred while \output is active []
 
  [21]) (/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex
-Overfull \hbox (78.04391pt too wide) in paragraph at lines 2--34
- [][] 
- []
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:29: Misplaced \noalign.
+\hline ->\noalign 
+                  {\ifnum 0=`}\fi \hrule \@height \arrayrulewidth \futurelet...
+l.29     \hline
+               
+I expect to see \noalign only after the \cr of
+an alignment. Proceed, and I'll ignore this case.
 
-) [22] (/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_hp.tex
-Overfull \hbox (30.54562pt too wide) in paragraph at lines 2--34
- [][] 
- []
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:29: You can't use `\hrule' here except with leaders.
+\hline ->\noalign {\ifnum 0=`}\fi \hrule 
+                                         \@height \arrayrulewidth \futurelet...
+l.29     \hline
+               
+To put a horizontal rule in an hbox or an alignment,
+you should use \leaders or \hrulefill (see The TeXbook).
 
-) [23] [24] [25] [26]
-</Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/monotonic-ranking.png, id=728, 462.528pt x 346.896pt>
-File: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/monotonic-ranking.png Graphic file (type png)
-<use /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/monotonic-ranking.png>
-Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/monotonic-ranking.png  used on input line 513.
-(pdftex.def)             Requested size: 452.96826pt x 339.74402pt.
- [27] [28 </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/monotonic-ranking.png>]
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:29: Missing number, treated as zero.
+<to be read again> 
+                   \futurelet 
+l.29     \hline
+               
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
 
-LaTeX Warning: Reference `sec:mlo' on page 29 undefined on input line 531.
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:29: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \futurelet 
+l.29     \hline
+               
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
 
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing } inserted.
+<inserted text> 
+                }
+l.30     \hline
+                                                                            ...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
 
-LaTeX Warning: Reference `rifml' on page 29 undefined on input line 535.
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.30     \hline
+                                                                            ...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
 
-[29] (/usr/local/texlive/2021/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2020/03/24 1.8d listings language file
-) [30] [31] [32]
-Overfull \hbox (2.92308pt too wide) in paragraph at lines 670--671
-[]\OT1/cmr/m/n/12 The re-gres-sion hy-per-plane passes through the means of ob-served val-ues i.e., $[][] =
- []
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing } inserted.
+<inserted text> 
+                }
+l.30     \hline
+                                                                            ...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
 
-[33] [34]
-</Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-squared-error.png, id=870, 1866.975pt x 686.565pt>
-File: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-squared-error.png Graphic file (type png)
-<use /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-squared-error.png>
-Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-squared-error.png  used on input line 693.
-(pdftex.def)             Requested size: 679.4524pt x 249.86604pt.
-</Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/custom-mse.png, id=871, 1863.96375pt x 685.56125pt>
-File: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/custom-mse.png Graphic file (type png)
-<use /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/custom-mse.png>
-Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/custom-mse.png  used on input line 698.
-(pdftex.def)             Requested size: 679.4524pt x 249.89825pt.
-</Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/custom-hp.png, id=872, 1865.97125pt x 686.565pt>
-File: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/custom-hp.png Graphic file (type png)
-<use /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/custom-hp.png>
-Package pdftex.def Info: /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/custom-hp.png  used on input line 703.
-(pdftex.def)             Requested size: 679.4524pt x 249.99176pt.
- [35
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
 
- </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-squared-error.png>] [36 </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/custom-mse.png>] [37 </Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/custom-hp.png>] [38
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing } inserted.
+<inserted text> 
+                }
+l.30     \hline
+                                                                            ...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
 
-] [39] [40] (/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-mean_squared_error-accuracy.tex) (/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse-accuracy.tex [41]) (/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_hp-accuracy.tex [42]) [43] [44] [45] [46] [47] [48
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
 
-] [49] [50] [51] [52] [53] [54] [55] [56] [57] [58] [59] [60] [61] [62] [63] [64] [65] [66] [67] [68] [69] [70] [71] [72] [73] [74] [75] [76] [77] [78] [79] (./finance-788-research-essay.aux)
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
 
-LaTeX Warning: There were undefined references.
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
 
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
 
-LaTeX Warning: There were multiply-defined labels.
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
 
-Package rerunfilecheck Info: File `finance-788-research-essay.out' has not changed.
-(rerunfilecheck)             Checksum: 88C48E8E4F482E676FEB723D715BA8C5;11638.
-Package logreq Info: Writing requests to 'finance-788-research-essay.run.xml'.
-\openout1 = `finance-788-research-essay.run.xml'.
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
 
- ) 
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+I'm guessing that you meant to end an alignment here.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Misplaced \cr.
+<inserted text> \cr 
+                    
+l.30     \hline
+                                                                            ...
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.30     \hline
+                                                                            ...
+(That makes 100 errors; please try again.) 
 Here is how much of TeX's memory you used:
- 39380 strings out of 478353
- 797627 string characters out of 5848085
- 1686632 words of memory out of 5000000
- 56551 multiletter control sequences out of 15000+600000
- 415098 words of font info for 71 fonts, out of 8000000 for 9000
+ 38329 strings out of 478353
+ 776460 string characters out of 5848085
+ 1480072 words of memory out of 5000000
+ 55776 multiletter control sequences out of 15000+600000
+ 414761 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,14n,80p,1115b,4823s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on finance-788-research-essay.pdf (86 pages, 1514174 bytes).
-PDF statistics:
- 1257 PDF objects out of 1440 (max. 8388607)
- 1098 compressed objects within 11 object streams
- 324 named destinations out of 1000 (max. 500000)
- 645 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 84i,12n,80p,876b,4823s stack positions out of 5000i,500n,10000p,200000b,80000s
 
+/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex:30:  ==> Fatal error occurred, no output PDF file produced!
