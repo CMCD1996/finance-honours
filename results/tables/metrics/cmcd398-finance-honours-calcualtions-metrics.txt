@@ -1,9 +1,0 @@
-\begin{tabular}{lrrr}
-\toprule
-Loss Function &  Hedge Portfolio Mean &  Hedge Portfolio Sharpe Ratio &  Hedge Portfolio Treynor \\
-\midrule
-   custom\_mse &             -0.023323 &                     -1.062051 &                 0.391186 \\
-    custom\_hp &              0.011715 &                      1.292756 &                 1.962854 \\
-\bottomrule
-\end{tabular}
-

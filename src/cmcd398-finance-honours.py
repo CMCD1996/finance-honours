@@ -678,7 +678,6 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
     hp_treynors = []
     hp_regressions = []
     predictability_regressions = []
-    hp_predictability_regressions = []
     # Sets actual returns subset
     for loss in selected_losses:
         regression_df = pd.read_csv(
@@ -906,10 +905,10 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
     traditional_sort = 'traditional_sort'
 
     # Append to dataframe
-    hp_means.append(hp_means_actual)
-    hp_sharpes.append(hp_sharpes_actual)
-    hp_treynors.append(hp_treynors_actual)
-    selected_losses.append(traditional_sort)
+    hp_means.append(hp_means_actual[0])
+    hp_sharpes.append(hp_sharpes_actual[0])
+    hp_treynors.append(hp_treynors_actual[0])
+    selected_losses.append(traditional_sort[0])
 
     # Create the metrics dataframe
     metrics_df['HP Mean'] = hp_means
