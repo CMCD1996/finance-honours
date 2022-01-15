@@ -742,11 +742,11 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
         if loss in ['mean_squared_error', 'custom_mse', 'custom_hp']:
             predictability_regressions.append(predict_regress)
 
-        # Uses stats models to perform standard linear regressions
-        predict_regress_actual = sm.OLS(hedge_actual['hedge_returns'], hedge_returns['hedge_returns']).fit(
-            cov_type='HAC', cov_kwds={'maxlags': 6})
-        if loss in ['mean_squared_error', 'custom_mse', 'custom_hp']:
-            hp_predictability_regressions.append(predict_regress_actual)
+        # # Uses stats models to perform standard linear regressions
+        # predict_regress_actual = sm.OLS(hedge_actual['hedge_returns'], hedge_returns['hedge_returns']).fit(
+        #     cov_type='HAC', cov_kwds={'maxlags': 6})
+        # if loss in ['mean_squared_error', 'custom_mse', 'custom_hp']:
+        #     hp_predictability_regressions.append(predict_regress_actual)
         print(hedge_returns['hedge_returns'])
         print(hedge_returns[['Mkt-RF', 'SMB', 'HML', 'RMW', 'CMA']])
         # Get standard statistics
@@ -935,14 +935,14 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
         f.truncate(0)
         print(hp_metric_stargazer.render_latex(), file=f)
         f.close()
-    # Create new sharelatex regression columns
-    hp_actual_metric_stargazer = Stargazer(hp_predictability_regressions)
-    with open('/home/connormcdowall/finance-honours/results/tables/metrics/' + model_name + '-regression-metrics-actual.txt', 'w') as f:
-        # Deletes existing text
-        f.truncate(0)
-        print(hp_actual_metric_stargazer.render_latex(), file=f)
-        f.close()
-    return
+    # # Create new sharelatex regression columns
+    # hp_actual_metric_stargazer = Stargazer(hp_predictability_regressions)
+    # with open('/home/connormcdowall/finance-honours/results/tables/metrics/' + model_name + '-regression-metrics-actual.txt', 'w') as f:
+    #     # Deletes existing text
+    #     f.truncate(0)
+    #     print(hp_actual_metric_stargazer.render_latex(), file=f)
+    #     f.close()
+    # return
 
 
 def sort_data_chronologically(data_directory, size_of_chunks, set_top_500=False):
