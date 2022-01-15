@@ -2907,7 +2907,7 @@ dependant_column = 'predict'
 #################################################################################
 # System Checks
 sys_check = False
-sys_gpu = True
+sys_gpu = False
 # Data processing
 source_data = False
 split_vm_data = False
@@ -2924,9 +2924,9 @@ chronologically_sort_data = False
 analytical = False
 rank_functions = False
 # Model Building
-create_models = False
+create_models = True
 make_predictions = False
-perform_regressions = True
+perform_regressions = False
 # Output
 convert_text = False
 plot_learning_curves = False
