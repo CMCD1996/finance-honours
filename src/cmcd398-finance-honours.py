@@ -755,128 +755,129 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
         # Uses stats models to perform standard linear regressions
         # mean_hp = sm.OLS(hedge_returns['hedge_returns'], exog=None).fit(
         # cov_type='HAC', cov_kwds={'maxlags': 6})
-        hp = sm.OLS(hedge_returns['hedge_returns']).fit(
-            cov_type='HAC', cov_kwds={'maxlags': 6})
+        hp = sm.OLS(hedge_returns['hedge_returns'])
+        # .fit(
+            cov_type = 'HAC', cov_kwds = {'maxlags': 6})
         # Get regression for asset pricing models
         if regression_dictionary['capm'] == True:
             # Uses linear models to perform CAPM regressions (Panel Regressions)
-            capm_exog_vars = ['Mkt-RF']
-            capm_exog = sm.add_constant(data[capm_exog_vars])
-            capm_fb = lm.PooledOLS(
-                data['ret_exc_lead1m'], capm_exog).fit(cov_type='clustered', cluster_entity=True, cluster_time=True)
+            capm_exog_vars=['Mkt-RF']
+            capm_exog=sm.add_constant(data[capm_exog_vars])
+            capm_fb=lm.PooledOLS(
+                data['ret_exc_lead1m'], capm_exog).fit(cov_type = 'clustered', cluster_entity = True, cluster_time = True)
             with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/capm/' + model_name + '-' + loss + '-capm.txt', 'w') as f:
                 f.truncate(0)
-                print(capm_fb.summary.as_latex(), file=f)
+                print(capm_fb.summary.as_latex(), file = f)
                 f.close()
             # Uses stats models to perform standard linear regressions
-            capm_hp_exog = sm.add_constant(hedge_returns[capm_exog_vars])
-            capm_hp = sm.OLS(hedge_returns['hedge_returns'], capm_hp_exog).fit(
-                cov_type='HAC', cov_kwds={'maxlags': 6})
+            capm_hp_exog=sm.add_constant(hedge_returns[capm_exog_vars])
+            capm_hp=sm.OLS(hedge_returns['hedge_returns'], capm_hp_exog).fit(
+                cov_type = 'HAC', cov_kwds = {'maxlags': 6})
         if regression_dictionary['ff3'] == True:
             # Uses linear models to perform FF3 regression (Panel Regressions)
-            ff3_exog_vars = ['Mkt-RF', 'SMB', 'HML']
-            ff3_exog = sm.add_constant(data[ff3_exog_vars])
-            ff3_fb = lm.PooledOLS(data['ret_exc_lead1m'],
-                                  ff3_exog).fit(cov_type='clustered', cluster_entity=True, cluster_time=True)
+            ff3_exog_vars=['Mkt-RF', 'SMB', 'HML']
+            ff3_exog=sm.add_constant(data[ff3_exog_vars])
+            ff3_fb=lm.PooledOLS(data['ret_exc_lead1m'],
+                                  ff3_exog).fit(cov_type = 'clustered', cluster_entity = True, cluster_time = True)
             with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/ff3/' + model_name + '-' + loss + '-ff3.txt', 'w') as f:
                 f.truncate(0)
-                print(ff3_fb.summary.as_latex(), file=f)
+                print(ff3_fb.summary.as_latex(), file = f)
                 f.close()
             # Uses stats models to perform standard linear regressions
-            ff3_hp_exog = sm.add_constant(hedge_returns[ff3_exog_vars])
-            ff3_hp = sm.OLS(hedge_returns['hedge_returns'], ff3_hp_exog).fit(
-                cov_type='HAC', cov_kwds={'maxlags': 6})
+            ff3_hp_exog=sm.add_constant(hedge_returns[ff3_exog_vars])
+            ff3_hp=sm.OLS(hedge_returns['hedge_returns'], ff3_hp_exog).fit(
+                cov_type = 'HAC', cov_kwds = {'maxlags': 6})
         if regression_dictionary['ff4'] == True:
             # Uses linear models to perform FF4 (Carhart) regression (Panel Regressions)
-            ff4_exog_vars = ['Mkt-RF', 'SMB', 'HML', 'RMW']
-            ff4_exog = sm.add_constant(data[ff4_exog_vars])
-            ff4_fb = lm.PooledOLS(data['ret_exc_lead1m'],
-                                  ff4_exog).fit(cov_type='clustered', cluster_entity=True, cluster_time=True)
+            ff4_exog_vars=['Mkt-RF', 'SMB', 'HML', 'RMW']
+            ff4_exog=sm.add_constant(data[ff4_exog_vars])
+            ff4_fb=lm.PooledOLS(data['ret_exc_lead1m'],
+                                  ff4_exog).fit(cov_type = 'clustered', cluster_entity = True, cluster_time = True)
             with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/ff4/' + model_name + '-' + loss + '-ff4.txt', 'w') as f:
                 f.truncate(0)
-                print(ff4_fb.summary.as_latex(), file=f)
+                print(ff4_fb.summary.as_latex(), file = f)
                 f.close()
             print(ff4_fb)
             # Uses stats models to perform standard linear regressions
-            ff4_hp_exog = sm.add_constant(hedge_returns[ff4_exog_vars])
-            ff4_hp = sm.OLS(hedge_returns['hedge_returns'], ff4_hp_exog).fit(
-                cov_type='HAC', cov_kwds={'maxlags': 6})
+            ff4_hp_exog=sm.add_constant(hedge_returns[ff4_exog_vars])
+            ff4_hp=sm.OLS(hedge_returns['hedge_returns'], ff4_hp_exog).fit(
+                cov_type = 'HAC', cov_kwds = {'maxlags': 6})
         if regression_dictionary['ff5'] == True:
             # Uses linear model to perform FF5 regression (Panel Regressions)
-            ff5_exog_vars = ['Mkt-RF', 'SMB', 'HML', 'RMW', 'CMA']
-            ff5_exog = sm.add_constant(data[ff5_exog_vars])
-            ff5_fb = lm.PooledOLS(data['ret_exc_lead1m'],
-                                  ff5_exog).fit(cov_type='clustered', cluster_entity=True, cluster_time=True)
+            ff5_exog_vars=['Mkt-RF', 'SMB', 'HML', 'RMW', 'CMA']
+            ff5_exog=sm.add_constant(data[ff5_exog_vars])
+            ff5_fb=lm.PooledOLS(data['ret_exc_lead1m'],
+                                  ff5_exog).fit(cov_type = 'clustered', cluster_entity = True, cluster_time = True)
             with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/ff5/' + model_name + '-' + loss + '-ff5.txt', 'w') as f:
                 f.truncate(0)
-                print(ff5_fb.summary.as_latex(), file=f)
+                print(ff5_fb.summary.as_latex(), file = f)
                 f.close()
             # Uses stats models to perform standard linear regressions
-            ff5_hp_exog = sm.add_constant(hedge_returns[ff5_exog_vars])
-            ff5_hp = sm.OLS(hedge_returns['hedge_returns'], ff5_hp_exog).fit(
-                cov_type='HAC', cov_kwds={'maxlags': 6})
+            ff5_hp_exog=sm.add_constant(hedge_returns[ff5_exog_vars])
+            ff5_hp=sm.OLS(hedge_returns['hedge_returns'], ff5_hp_exog).fit(
+                cov_type = 'HAC', cov_kwds = {'maxlags': 6})
 
         # Calculates actual portfolio metrics
         # Calculate standard portfolio return not on the metric
-        regression_actual_df = pd.read_csv(
+        regression_actual_df=pd.read_csv(
             prediction_location + model_name + '-' + loss + '.csv')
-        monthly_groups = regression_actual_df.groupby("mth")
+        monthly_groups=regression_actual_df.groupby("mth")
         for month, subset_predictions in monthly_groups:
             # Sort the predicted returns in the sub_predictiosn set
             subset_predictions.sort_values(
-                by=['ret_exc_lead1m'], ascending=False, inplace=True)
+                by = ['ret_exc_lead1m'], ascending = False, inplace = True)
             # Reset the index of this dorted dataframe for forming the hedge portfolio
-            subset_predictions.reset_index(drop=True, inplace=True)
+            subset_predictions.reset_index(drop = True, inplace = True)
             # Calculates decile 1 (Top 10%)
-            decile_length = len(subset_predictions['ret_exc_lead1m'])/10
+            decile_length=len(subset_predictions['ret_exc_lead1m'])/10
             # print('decile_length: ', decile_length)
-            top_decile = range(0, (int(decile_length - 1)))
-            bottom_decile = range((int(9*decile_length)),
+            top_decile=range(0, (int(decile_length - 1)))
+            bottom_decile=range((int(9*decile_length)),
                                   (int(10*decile_length-1)))
             # Calculates Hedge Portfolio Return (Decile 1 - Decile 10)
-            top_decile_mean = subset_predictions['ret_exc_lead1m'].iloc[top_decile].mean(
-                axis=0)
-            bottom_decile_mean = subset_predictions['ret_exc_lead1m'].iloc[bottom_decile].mean(
-                axis=0)
-            hp_mean = top_decile_mean - bottom_decile_mean
+            top_decile_mean=subset_predictions['ret_exc_lead1m'].iloc[top_decile].mean(
+                axis = 0)
+            bottom_decile_mean=subset_predictions['ret_exc_lead1m'].iloc[bottom_decile].mean(
+                axis = 0)
+            hp_mean=top_decile_mean - bottom_decile_mean
             # Forms the hedge portfolio and sets to new row
-            new_row = {'mth': int(month), 'hedge_returns': hp_mean}
+            new_row={'mth': int(month), 'hedge_returns': hp_mean}
             # Stores the hedge portfolio return for the month in another dataframe
-            hedge_actual = hedge_actual.append(new_row, ignore_index=True)
+            hedge_actual=hedge_actual.append(new_row, ignore_index = True)
 
         # Renames 'Date'  column to 'mth'
         # factors_df.rename(columns={'Date': 'mth'}, inplace=True)
         # Convert mth dataframe column to the same dtype (float64)
-        regression_actual_df['mth'] = regression_actual_df['mth'].astype(
+        regression_actual_df['mth']=regression_actual_df['mth'].astype(
             np.float64)
         # factors_df['mth'] = factors_df['mth'].astype(np.float64)
-        hedge_actual['mth'] = hedge_actual['mth'].astype(np.float64)
+        hedge_actual['mth']=hedge_actual['mth'].astype(np.float64)
         # Merges hedge returns with factors
-        hedge_actual = hedge_actual.merge(factors_df, how='inner', on='mth')
+        hedge_actual=hedge_actual.merge(factors_df, how = 'inner', on = 'mth')
         # Adds the factors to the regression dataframe via merge
         # regression_df = regression_df.merge(factors_df, how='inner', on='mth')
 
         # Uses stats models to perform standard linear regressions
-        capm_actual_exog_vars = ['Mkt-RF']
-        capm_actual_hp_exog = sm.add_constant(
+        capm_actual_exog_vars=['Mkt-RF']
+        capm_actual_hp_exog=sm.add_constant(
             hedge_actual[capm_actual_exog_vars])
-        capm_actual_hp = sm.OLS(hedge_actual['hedge_returns'], capm_actual_hp_exog).fit(
-            cov_type='HAC', cov_kwds={'maxlags': 6})
+        capm_actual_hp=sm.OLS(hedge_actual['hedge_returns'], capm_actual_hp_exog).fit(
+            cov_type = 'HAC', cov_kwds = {'maxlags': 6})
         # Sets up arrays to append
-        hp_means_actual = []
-        hp_sharpes_actual = []
-        hp_treynors_actual = []
+        hp_means_actual=[]
+        hp_sharpes_actual=[]
+        hp_treynors_actual=[]
 
         # Extract the metrics from loss function
-        hp_mean_actual = np.asscalar(
+        hp_mean_actual=np.asscalar(
             hedge_actual[['hedge_returns']].mean(axis=0))
         print('Traditional Hedge Portfolio Mean for {} is {}'.format(
             loss, hp_mean_actual))
-        hp_sharpe_ratio_actual = np.asscalar((hedge_actual[['hedge_returns']].mean(
+        hp_sharpe_ratio_actual=np.asscalar((hedge_actual[['hedge_returns']].mean(
             axis=0)/hedge_actual[['hedge_returns']].std(axis=0)))
         print('Actual Hedge Portfolio Sharpe Ratio for {} is {}'.format(
             loss, hp_sharpe_ratio_actual))
-        hp_treynor_actual = np.asscalar((hedge_actual[['hedge_returns']].mean(
+        hp_treynor_actual=np.asscalar((hedge_actual[['hedge_returns']].mean(
             axis=0) / capm_actual_hp.params[1]))
         print('Actual Hedge Portfolio treynor for {} is {}'.format(
             loss, hp_treynor_actual))
@@ -890,13 +891,13 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
         print('Actual Hedge portfolio treynors are: ', hp_treynors)
 
         # Extract the metrics from loss function
-        hp_mean = np.asscalar(hedge_returns[['hedge_returns']].mean(axis=0))
+        hp_mean=np.asscalar(hedge_returns[['hedge_returns']].mean(axis=0))
         print('Hedge Portfolio Mean for {} is {}'.format(loss, hp_mean))
-        hp_sharpe_ratio = np.asscalar((hedge_returns[['hedge_returns']].mean(
+        hp_sharpe_ratio=np.asscalar((hedge_returns[['hedge_returns']].mean(
             axis=0)/hedge_returns[['hedge_returns']].std(axis=0)))
         print('Hedge Portfolio Sharpe Ratio for {} is {}'.format(
             loss, hp_sharpe_ratio))
-        hp_teynor = np.asscalar((hedge_returns[['hedge_returns']].mean(
+        hp_teynor=np.asscalar((hedge_returns[['hedge_returns']].mean(
             axis=0) / capm_hp.params[1]))
         print('Hedge Portfolio treynor for {} is {}'.format(loss, hp_teynor))
         hp_means.append(hp_mean)
@@ -905,21 +906,21 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
         print('Hedge portfolio sharpe ratios are: ', hp_sharpes)
         hp_treynors.append(hp_teynor)
         print('Hedge portfolio means are: ', hp_treynors)
-        hp_regress = sm.OLS(hedge_returns['hedge_returns'], hedge_returns['hedge_returns']).fit(
-            cov_type='HAC', cov_kwds={'maxlags': 6})
+        hp_regress=sm.OLS(hedge_returns['hedge_returns'], hedge_returns['hedge_returns']).fit(
+            cov_type = 'HAC', cov_kwds = {'maxlags': 6})
         hp_regressions.append(hp_regress)
 
         # Creates tables for comparison using the stargazor package
-        hp_stargazer = Stargazer([hp,capm_hp, ff3_hp, ff4_hp, ff5_hp])
+        hp_stargazer=Stargazer([capm_hp, ff3_hp, ff4_hp, ff5_hp])
         with open('/home/connormcdowall/finance-honours/results/tables/hedge-portfolio-ols/' + model_name + '-' + loss + '.txt', 'w') as f:
             # Deletes existing text
             f.truncate(0)
-            print(hp_stargazer.render_latex(), file=f)
+            print(hp_stargazer.render_latex(), file = f)
     # Uses stargazer and arrays
         if realised_returns:
             return
     # Creates metrics dataframes and saves to latex variable
-    metrics_df_cols = ['Loss Function', 'HP Mean',
+    metrics_df_cols=['Loss Function', 'HP Mean',
                        'Sharpe Ratio', 'Treynor Ratio']
     metrics_df = pd.DataFrame(columns=metrics_df_cols)
 
@@ -973,60 +974,60 @@ def sort_data_chronologically(data_directory, size_of_chunks, set_top_500=False)
     # Each dataframe in turn
     for dataframe in dataframes:
         subset = pd.read_stata(data_directory + dataframe,
-                               chunksize=size_of_chunks)
+                               chunksize = size_of_chunks)
         # Create new dataframe
-        df_full = pd.DataFrame()
+        df_full=pd.DataFrame()
         for df in subset:
             # Monitor memeory usage
-            monitor_memory_usage(units=3, cpu=True, gpu=True)
+            monitor_memory_usage(units = 3, cpu = True, gpu = True)
             # Converts mth from datetime to int
             for index, row in df.iterrows():
                 # Gets datetime value
-                datetime = row['mth']
+                datetime=row['mth']
                 # Sets year and month values from datetime
-                year = datetime.year
-                month = datetime.month
+                year=datetime.year
+                month=datetime.month
                 if month < 10:
-                    month_str = '0'+str(month)
+                    month_str='0'+str(month)
                 else:
-                    month_str = str(month)
+                    month_str=str(month)
                 # Concatenates new value and converst to int
-                new_mth = int(str(year) + month_str)
+                new_mth=int(str(year) + month_str)
                 # Sets new month value
-                df.at[index, 'mth'] = new_mth
+                df.at[index, 'mth']=new_mth
             # Sets mth column to int type
-            df['mth'] = df['mth'].astype(int)
+            df['mth']=df['mth'].astype(int)
             # Monitor memeory usage
-            monitor_memory_usage(units=3, cpu=True, gpu=True)
+            monitor_memory_usage(units = 3, cpu = True, gpu = True)
             # Removes nans
-            df = replace_nan(df, replacement_method=3)
+            df=replace_nan(df, replacement_method = 3)
             # Resizes the dataframe (Resize dataframe)
-            df = resizing_dataframe(df, resizing_options=[True, True, True])
-            df_full = df_full.append(df)
+            df=resizing_dataframe(df, resizing_options = [True, True, True])
+            df_full=df_full.append(df)
             # Prints list of unique months
             print(df_full.info(verbose=True))
             print(sorted(df_full['mth'].unique()))
         # Saves the formatted dataframe to file
         df_full.to_stata(data_directory + 'sorted_' + dataframe)
     # Inititalises new chronological dataframes
-    first_loop = True
+    first_loop=True
     for dataframe in dataframes:
-        df = pd.read_stata(data_directory + 'sorted_' + dataframe)
-        column_names = df.columns
+        df=pd.read_stata(data_directory + 'sorted_' + dataframe)
+        column_names=df.columns
         print(df.head())
-        monitor_memory_usage(units=3, cpu=True, gpu=True)
-        train_subset = df[(df["mth"] <= 198912)]
+        monitor_memory_usage(units = 3, cpu = True, gpu = True)
+        train_subset=df[(df["mth"] <= 198912)]
         print('Training Subset')
         print(train_subset.head())
-        val_subset = df[(df["mth"] > 198912) & (df["mth"] <= 199912)]
+        val_subset=df[(df["mth"] > 198912) & (df["mth"] <= 199912)]
         print('Validation Subset')
         print(val_subset.head())
-        test_subset = df[(df["mth"] > 199912)]
+        test_subset=df[(df["mth"] > 199912)]
         print('Testing Subset')
         print(test_subset.head())
         # Concatenate dataframes while ignoring the appendix
         if first_loop == True:
-            train_chronological = pd.DataFrame(
+            train_chronological=pd.DataFrame(
                 train_subset, columns=column_names)
             val_chronological = pd.DataFrame(val_subset, columns=column_names)
             test_chronological = pd.DataFrame(
