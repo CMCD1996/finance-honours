@@ -742,7 +742,7 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
         if loss in ['mean_squared_error', 'custom_mse', 'custom_hp']:
             predictability_regressions.append(predict_regress)
 
-        # Calculate realised hedge portfolios f
+        # Calculate standard portfolio return not on the metric
         monthly_groups = regression_df.groupby("mth")
         for month, subset_predictions in monthly_groups:
             # Sort the predicted returns in the sub_predictiosn set
@@ -767,6 +767,33 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             # Stores the hedge portfolio return for the month in another dataframe
             hedge_actual = hedge_actual.append(new_row, ignore_index=True)
 
+        # Sets up arrays to append
+        hp_means_actual = []
+        hp_sharpes_actual = []
+        hp_treynors_actual = []
+        # Get the CAPM from Hedge Returns for actual returns
+
+        # Extract the metrics from loss function
+        hp_mean_actual = np.asscalar(
+            hedge_actual[['hedge_returns']].mean(axis=0))
+        print('Traditional Hedge Portfolio Mean for {} is {}'.format(
+            loss, hp_mean_actual))
+        hp_sharpe_ratio_actual = np.asscalar((hedge_returns[['hedge_returns']].mean(
+            axis=0)/hedge_returns[['hedge_returns']].std(axis=0)))
+        print('Actual Hedge Portfolio Sharpe Ratio for {} is {}'.format(
+            loss, hp_sharpe_ratio_actual))
+        hp_teynor_actual = np.asscalar((hedge_returns[['hedge_returns']].mean(
+            axis=0) / capm_hp.params[1]))
+        print('Actual Hedge Portfolio treynor for {} is {}'.format(loss, hp_teynor))
+
+        # Append to array
+        hp_means_actual.append(hp_mean)
+        print('Actual Hedge portfolio means are: ', hp_means)
+        hp_sharpes_actual.append(hp_sharpe_ratio)
+        print('Actual Hedge portfolio sharpe ratios are: ', hp_sharpes)
+        hp_treynors_actual.append(hp_teynor)
+        print('Actual Hedge portfolio treynors are: ', hp_treynors)
+
         # Uses stats models to perform standard linear regressions
         predict_regress_actual = sm.OLS(hedge_actual['hedge_returns'], hedge_returns['hedge_returns']).fit(
             cov_type='HAC', cov_kwds={'maxlags': 6})
@@ -776,18 +803,9 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
         print(hedge_returns[['Mkt-RF', 'SMB', 'HML', 'RMW', 'CMA']])
         # Get standard statistics
 
-        # Get the means for the regressions and add to tables
-        mean_exog_vars = ['Mkt-RF']
-        mean_exog = sm.add_constant(data[mean_exog_vars])
-        mean_fb = lm.PooledOLS(
-            data[dependant_column], mean_exog).fit(cov_type='clustered', cluster_entity=True, cluster_time=True)
-        with open('/home/connormcdowall/finance-honours/results/tables/pooled-ols/mean/' + model_name + '-' + loss + '-capm.txt', 'w') as f:
-            f.truncate(0)
-            print(mean_fb.summary.as_latex(), file=f)
-            f.close()
         # Uses stats models to perform standard linear regressions
         # mean_hp = sm.OLS(hedge_returns['hedge_returns'], exog=None).fit(
-            # cov_type='HAC', cov_kwds={'maxlags': 6})
+        # cov_type='HAC', cov_kwds={'maxlags': 6})
 
         # Get regression for asset pricing models
         if regression_dictionary['capm'] == True:
@@ -867,6 +885,7 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
         hp_regress = sm.OLS(hedge_returns['hedge_returns'], hedge_returns['hedge_returns']).fit(
             cov_type='HAC', cov_kwds={'maxlags': 6})
         hp_regressions.append(hp_regress)
+
         # Creates tables for comparison using the stargazor package
         hp_stargazer = Stargazer([capm_hp, ff3_hp, ff4_hp, ff5_hp])
         with open('/home/connormcdowall/finance-honours/results/tables/hedge-portfolio-ols/' + model_name + '-' + loss + '.txt', 'w') as f:
@@ -880,10 +899,22 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
     metrics_df_cols = ['Loss Function', 'HP Mean',
                        'Sharpe Ratio', 'Treynor Ratio']
     metrics_df = pd.DataFrame(columns=metrics_df_cols)
+
+    # Set name if just
+    traditional_sort = 'traditional_sort'
+
+    # Append to dataframe
+    hp_means.append(hp_means_actual)
+    hp_sharpes.append(hp_sharpes_actual)
+    hp_treynors.append(hp_treynors_actual)
+    selected_losses.append(traditional_sort)
+
+    # Create the metrics dataframe
     metrics_df['HP Mean'] = hp_means
     metrics_df['Loss Function'] = selected_losses
     metrics_df['Sharpe Ratio'] = hp_sharpes
     metrics_df['Treynor Ratio'] = hp_treynors
+
     # Only extract the most relevant factors
     truncate = True
     if truncate:
@@ -894,6 +925,7 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
         f.truncate(0)
         print(metrics_df.to_latex(index=False), file=f)
         f.close()
+
     # Create new sharelatex regression columns
     hp_metric_stargazer = Stargazer(predictability_regressions)
     with open('/home/connormcdowall/finance-honours/results/tables/metrics/' + model_name + '-regression-metrics.txt', 'w') as f:

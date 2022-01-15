@@ -1,0 +1,6 @@
+Extracts to speed up formmating
+
+cmcd398-finance-honours-regression-metrics
+ Residual Std. Error: &(df = 531460)&(df = 531460)&(df = 531460)\\
+ F Statistic =  &(df = 1.0; 531460.0)&(df = 1.0; 531460.0)&(df = 1.0; 531460.0)\\
+
