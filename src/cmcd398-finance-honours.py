@@ -864,6 +864,7 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
         # Calculate standard portfolio return not on the metric
         regression_actual_df = pd.read_csv(
             prediction_location + model_name + '-' + 'mean_squared_error' + '.csv')
+        print(regression_actual_df.head())
         monthly_groups = regression_actual_df.groupby("mth")
         for month, subset_predictions in monthly_groups:
             # Sort the predicted returns in the sub_predictiosn set
