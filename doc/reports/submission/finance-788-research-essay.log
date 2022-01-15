@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2021.11.18)  15 JAN 2022 06:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2021.11.18)  15 JAN 2022 11:36
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/home/connormcdowall/finance-honours/doc/reports/submission/__latexindent_temp.tex
-(/home/connormcdowall/finance-honours/doc/reports/submission/__latexindent_temp.tex
+**/home/connormcdowall/finance-honours/doc/reports/submission/finance-788-research-essay.tex
+(/home/connormcdowall/finance-honours/doc/reports/submission/finance-788-research-essay.tex
 LaTeX2e <2018-12-01>
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
@@ -1334,8 +1334,8 @@ File: english.lbx 2018/11/02 v3.12 biblatex localization (PK/MW)
 ))))
 \@quotelevel=\count483
 \@quotereset=\count484
- (./__latexindent_temp.aux)
-\openout1 = `__latexindent_temp.aux'.
+ (./finance-788-research-essay.aux)
+\openout1 = `finance-788-research-essay.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 102.
 LaTeX Font Info:    ... okay on input line 102.
@@ -1360,12 +1360,12 @@ LaTeX Font Info:    ... okay on input line 102.
 Package biblatex Info: Input encoding 'utf8' detected.
 Package biblatex Info: Automatic encoding selection.
 (biblatex)             Assuming data encoding 'utf8'.
-\openout3 = `__latexindent_temp.bcf'.
+\openout3 = `finance-788-research-essay.bcf'.
 
 Package biblatex Info: Trying to load bibliographic data...
-Package biblatex Info: ... file '__latexindent_temp.bbl' not found.
+Package biblatex Info: ... file 'finance-788-research-essay.bbl' not found.
 
-No file __latexindent_temp.bbl.
+No file finance-788-research-essay.bbl.
 Package biblatex Info: Reference section=0 on input line 102.
 Package biblatex Info: Reference segment=0 on input line 102.
 *geometry* driver: auto-detecting
@@ -1455,7 +1455,7 @@ LaTeX Info: Redefining \ref on input line 102.
 LaTeX Info: Redefining \pageref on input line 102.
 LaTeX Info: Redefining \nameref on input line 102.
 \@outlinefile=\write5
-\openout5 = `__latexindent_temp.out'.
+\openout5 = `finance-788-research-essay.out'.
 
 LaTeX Font Info:    Try loading font information for U+msa on input line 102.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
@@ -1477,13 +1477,13 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [1] [2]
 \tf@toc=\write6
-\openout6 = `__latexindent_temp.toc'.
+\openout6 = `finance-788-research-essay.toc'.
 
 \tf@lof=\write7
-\openout7 = `__latexindent_temp.lof'.
+\openout7 = `finance-788-research-essay.lof'.
 
 \tf@lot=\write8
-\openout8 = `__latexindent_temp.lot'.
+\openout8 = `finance-788-research-essay.lot'.
 
  [3]pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
@@ -1539,122 +1539,121 @@ LaTeX Warning: Reference `dss' on page 8 undefined on input line 221.
 
 [8]
 
-LaTeX Warning: Citation 'jensen2021there' on page 9 undefined on input line 231.
+LaTeX Warning: Citation 'jensen2021there' on page 9 undefined on input line 233.
 
 
-LaTeX Warning: Reference `table:ss-train' on page 9 undefined on input line 240.
+LaTeX Warning: Reference `table:ss-train' on page 9 undefined on input line 242.
 
 
-LaTeX Warning: Reference `table:ss-test' on page 9 undefined on input line 240.
+LaTeX Warning: Reference `table:ss-test' on page 9 undefined on input line 242.
 
 
-LaTeX Warning: Reference `table:ss-val' on page 9 undefined on input line 240.
+LaTeX Warning: Reference `table:ss-val' on page 9 undefined on input line 242.
 
 
-LaTeX Warning: Reference `dss:ss' on page 9 undefined on input line 240.
+LaTeX Warning: Reference `dss:ss' on page 9 undefined on input line 242.
 
 
-LaTeX Warning: Reference `data-processing' on page 9 undefined on input line 250.
+LaTeX Warning: Reference `data-processing' on page 9 undefined on input line 252.
 
 
-LaTeX Warning: Reference `technical' on page 9 undefined on input line 251.
+LaTeX Warning: Reference `technical' on page 9 undefined on input line 253.
 
 [9]
 
-LaTeX Warning: Reference `step-i' on page 10 undefined on input line 271.
+LaTeX Warning: Reference `step-i' on page 10 undefined on input line 273.
 
 
-LaTeX Warning: Citation 'fama1997industry' on page 10 undefined on input line 285.
+LaTeX Warning: Citation 'fama1997industry' on page 10 undefined on input line 287.
 
 
-Overfull \hbox (5.23434pt too wide) in paragraph at lines 276--287
+Overfull \hbox (5.23434pt too wide) in paragraph at lines 278--289
 \OT1/cmr/m/n/12 The re-vised datasets con-sist of eight cat-e-gor-i-cal fea-tures [][][] and 152 nu-mer-i-cal fea-tures. 
  []
 
 
-LaTeX Warning: Reference `w-sum' on page 10 undefined on input line 290.
+LaTeX Warning: Reference `w-sum' on page 10 undefined on input line 292.
 
 
-LaTeX Warning: Reference `activation-function' on page 10 undefined on input line 290.
+LaTeX Warning: Reference `activation-function' on page 10 undefined on input line 292.
 
 
-LaTeX Warning: Reference `mlp-plr' on page 10 undefined on input line 294.
+LaTeX Warning: Reference `mlp-plr' on page 10 undefined on input line 296.
 
 
-LaTeX Warning: Reference `logistic-activation-function' on page 10 undefined on input line 296.
+LaTeX Warning: Reference `logistic-activation-function' on page 10 undefined on input line 298.
 
 
-LaTeX Warning: Reference `relu-activation-function' on page 10 undefined on input line 296.
+LaTeX Warning: Reference `relu-activation-function' on page 10 undefined on input line 298.
 
-[10]
+[10] [11]
 
-LaTeX Warning: Reference `fig:neural-network' on page 11 undefined on input line 339.
-
-
-LaTeX Warning: File `{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/images/neural-network}.png' not found on input line 342.
+LaTeX Warning: Reference `fig:neural-network' on page 12 undefined on input line 341.
 
 
-/home/connormcdowall/finance-honours/doc/reports/submission/__latexindent_temp.tex:342: Package pdftex.def Error: File `/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/images/neural-network.png' not found: using draft setting.
+LaTeX Warning: File `{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/images/neural-network}.png' not found on input line 344.
+
+
+/home/connormcdowall/finance-honours/doc/reports/submission/finance-788-research-essay.tex:344: Package pdftex.def Error: File `/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/images/neural-network.png' not found: using draft setting.
 
 See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.342 ...s/doc/reports/images/neural-network}.png}
+l.344 ...s/doc/reports/images/neural-network}.png}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-[11]
 
-LaTeX Warning: Reference `fig:neural-network-configuration' on page 12 undefined on input line 348.
-
-
-LaTeX Warning: Reference `relu-activation-function' on page 12 undefined on input line 354.
+LaTeX Warning: Reference `fig:neural-network-configuration' on page 12 undefined on input line 350.
 
 
-LaTeX Warning: Reference `linear-activation-function' on page 12 undefined on input line 354.
+LaTeX Warning: Reference `relu-activation-function' on page 12 undefined on input line 356.
 
 
-LaTeX Warning: Reference `linear-activation-function' on page 12 undefined on input line 355.
+LaTeX Warning: Reference `linear-activation-function' on page 12 undefined on input line 356.
+
+
+LaTeX Warning: Reference `linear-activation-function' on page 12 undefined on input line 357.
 
 [12] [13] [14]
 
-LaTeX Warning: Reference `mlp-math' on page 15 undefined on input line 381.
+LaTeX Warning: Reference `mlp-math' on page 15 undefined on input line 383.
 
 
-LaTeX Warning: Reference `fig:neural-network-configuration' on page 15 undefined on input line 382.
+LaTeX Warning: Reference `fig:neural-network-configuration' on page 15 undefined on input line 384.
 
 
-LaTeX Warning: Reference `sgd' on page 15 undefined on input line 382.
+LaTeX Warning: Reference `sgd' on page 15 undefined on input line 384.
 
 
-LaTeX Warning: Reference `ols' on page 15 undefined on input line 385.
+LaTeX Warning: Reference `ols' on page 15 undefined on input line 387.
 
 
-LaTeX Warning: Reference `hedge-portfolio-derivation' on page 15 undefined on input line 396.
+LaTeX Warning: Reference `hedge-portfolio-derivation' on page 15 undefined on input line 398.
 
 
-LaTeX Warning: Reference `loss-function-formulation' on page 15 undefined on input line 398.
+LaTeX Warning: Reference `loss-function-formulation' on page 15 undefined on input line 400.
 
 [15]
 
-LaTeX Warning: Citation 'newey1987hypothesis' on page 16 undefined on input line 410.
+LaTeX Warning: Citation 'newey1987hypothesis' on page 16 undefined on input line 412.
 
 
-LaTeX Warning: Reference `apt' on page 16 undefined on input line 415.
+LaTeX Warning: Reference `apt' on page 16 undefined on input line 417.
 
 
-LaTeX Warning: Citation 'fama1973risk' on page 16 undefined on input line 417.
+LaTeX Warning: Citation 'fama1973risk' on page 16 undefined on input line 419.
 
 [16]
 
-LaTeX Warning: Reference `main-findings' on page 17 undefined on input line 427.
+LaTeX Warning: Reference `main-findings' on page 17 undefined on input line 429.
 
-/home/connormcdowall/finance-honours/doc/reports/submission/__latexindent_temp.tex:428: Too many }'s.
+/home/connormcdowall/finance-honours/doc/reports/submission/finance-788-research-essay.tex:430: Too many }'s.
 <argument> ...cd398-finance-honours-main-findings}
                                                   .tex
-l.428 ...cd398-finance-honours-main-findings}.tex}
+l.430 ...cd398-finance-honours-main-findings}.tex}
                                                   
 You've closed more groups than you opened.
 Such booboos are generally harmless, so keep going.
@@ -1666,20 +1665,20 @@ Type X to quit or <RETURN> to proceed,
 or enter new name. (Default extension: tex)
 
 Enter file name: 
-/home/connormcdowall/finance-honours/doc/reports/submission/__latexindent_temp.tex:428: Emergency stop.
+/home/connormcdowall/finance-honours/doc/reports/submission/finance-788-research-essay.tex:430: Emergency stop.
 <read *> 
          
-l.428 ...cd398-finance-honours-main-findings}.tex}
+l.430 ...cd398-finance-honours-main-findings}.tex}
                                                   ^^M
 *** (cannot \read from terminal in nonstop modes)
 
  
 Here is how much of TeX's memory you used:
- 41406 strings out of 492615
- 801156 string characters out of 6131389
- 1221986 words of memory out of 5000000
+ 41407 strings out of 492615
+ 801232 string characters out of 6131389
+ 1222019 words of memory out of 5000000
  44696 multiletter control sequences out of 15000+600000
  546143 words of font info for 77 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,11n,63p,901b,3866s stack positions out of 5000i,500n,10000p,200000b,80000s
-/home/connormcdowall/finance-honours/doc/reports/submission/__latexindent_temp.tex:428:  ==> Fatal error occurred, no output PDF file produced!
+ 55i,11n,63p,909b,3866s stack positions out of 5000i,500n,10000p,200000b,80000s
+/home/connormcdowall/finance-honours/doc/reports/submission/finance-788-research-essay.tex:430:  ==> Fatal error occurred, no output PDF file produced!

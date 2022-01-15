@@ -888,22 +888,8 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             # top_decile[0], top_decile[1], bottom_decile[0], bottom_decile[1]))
 
             # Calculates Hedge Portfolio Return (Decile 1 - Decile 10)
-            top_decile_df = subset_predictions.iloc[top_decile[0]
-                :top_decile[1]]
-            bottom_decile_df = subset_predictions.iloc[bottom_decile[0]                                                       :bottom_decile[1]]
-
-            # Describe the two deciles
-            # print('Top Decile')
-            # print(top_decile_df.describe())
-            # print(top_decile_df.info(verbose=False))
-            # print(top_decile_df.head())
-            # print(top_decile_df.tail())
-
-            # print('Bottom Decile')
-            # print(bottom_decile_df.describe())
-            # print(bottom_decile_df.info(verbose=False))
-            # print(bottom_decile_df.head())
-            # print(bottom_decile_df.tail())
+            top_decile_df = subset_predictions.iloc[top_decile[0]                                                    :top_decile[1]]
+            bottom_decile_df = subset_predictions.iloc[bottom_decile[0]:bottom_decile[1]]
 
             top_decile_mean = subset_predictions['ret_exc_lead1m'].iloc[top_decile[0]: top_decile[1]].mean(
                 axis=0)
