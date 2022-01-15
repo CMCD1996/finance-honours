@@ -917,7 +917,6 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             new_row = {'mth': int(month), 'hedge_returns': hp_mean}
             # Stores the hedge portfolio return for the month in another dataframe
             hedge_actual = hedge_actual.append(new_row, ignore_index=True)
-        print(hedge_actual[])
         hedge_actual.to_csv(
             '/home/connormcdowall/finance-honours/results/predictions/cmcd398-finance-honours-hedge-actual.csv')
         return
