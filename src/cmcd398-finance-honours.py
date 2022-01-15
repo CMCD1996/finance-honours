@@ -188,6 +188,8 @@ def set_gpus(manual_GPU_device_placement=False):
     tf.debugging.set_log_device_placement(True)
     if manual_GPU_device_placement:
         return tf.device('/GPU:0')
+    else:
+        return
 
 #################################################################################
 # Data Processing
@@ -2905,6 +2907,7 @@ dependant_column = 'predict'
 #################################################################################
 # System Checks
 sys_check = False
+sys_gpu = True
 # Data processing
 source_data = False
 split_vm_data = False
@@ -2934,6 +2937,8 @@ plot_learning_curves = False
 #################################################################################
 if sys_check:
     reconfigure_gpu(restrict_tf=False, growth_memory=True)
+if sys_gpu:
+    set_gpus(manual_GPU_device_placement=False)
 #################################################################################
 # Data processing
 #################################################################################
