@@ -220,8 +220,10 @@ and provide an alternative multiple testing adjustment, more powerful than commo
 Jensen et al., adapt the global dataset to focus only on one-month holding periods for all factors, only include most recent accounting data (quarterly or annually) and add 15 new factors.
 Section \ref{dss} describes factor composition, resources for data acquisition, and summary statistics.
 The complete global dataset has 406 characteristics, a superset of the original 153 in Jensen et al., with 2,739,928 firm-year observations, from January 1st 1961 to December 31st 2020.
-Subsequently, the complete dataset has 1.112 billion data points. \textbf{One month lead excess returns} is the designated target variable for prediction as will inform the construction of hedge portfolios to
-assess relative performance between optimisation functionalities.
+Subsequently, the complete dataset has 1.112 billion data points. \textbf{One month lead excess returns}\footnote{One month lead excess returns (ret\_exc\_lead1m is RET-T30RET)/21 from CRSP, extracted using WRDS. T30 is the treasury yield rate. 
+If T30RET is unavailable,
+is used instead RF. If the return is a daily return rather than a monthly return, (RET - T30RET) is divided by 1 rather than 21.} is the designated target variable for prediction as will inform the construction of hedge portfolios to
+assess relative performance between loss functions.
 The exhaustive nature and accessibility of the global dataset makes it well-suited for exploring optimisation functions, maximising renown financial metrics, in deep neural-networks.
 
 \subsubsection{Processing} \label{data-processing}
@@ -404,7 +406,7 @@ Methods for performance metrics inception and formulation follow:
 \singlespacing
 \begin{enumerate}
 	\item The trained models predict one month lead excess returns for each instance (firm-year observation) in the testing dataset.
-	\item Standard monthly sorts of predicted one month lead excess returns form standard decile ten (top 10\%) minus decile one (bottom 10\%) hedge portfolios returns per month.
+	\item Standard monthly sorts of predicted one month lead excess returns form standard tercile hedge portfolios returns per month.
 	\item Use hedge portfolio to calculate the mean across all months, sharpe ratio, and treynor ratio \footnote{Uses the estimation for systematic risk from the CAPM OLS estimator}.
 	\item Learning curves validate model representation.
 	\item Ordinary least squares regression, incorporating Newey-West\footnote{The estimator aims to ensure autocorrelation and heteroskedasticity consistency for the regressions of time-series panel data.} estimators and six month lags (\cite{newey1987hypothesis}),
