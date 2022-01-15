@@ -1,41 +1,36 @@
-\begin{table}[H] \centering
-  \begin{tabular}{@{\extracolsep{5pt}}lcccc}
-    \\[-1.8ex]\hline
-    \hline                                                                                                                                                         \\[-1.8ex]
-                        & \multicolumn{4}{c}{\textit{Dependant: One Month Lead Excess Hedge Portfolio}} \
-    \cr \cline{2-5}
-    \\[-1.8ex] & CAPM & FF3 & FF4 & FF5 \\
-    \hline                                                                                                                                                         \\[-1.8ex]
-    CMA                 &                                                                                  &                   &                   & 0.435$^{**}$  \\
-                        &                                                                                  &                   &                   & (0.218)       \\
-    HML                 &                                                                                  & 0.080$^{}$        & 0.130$^{}$        & -0.030$^{}$   \\
-                        &                                                                                  & (0.105)           & (0.120)           & (0.101)       \\
-    Mkt-RF              & -0.141$^{***}$                                                                   & -0.178$^{***}$    & -0.202$^{**}$     & -0.147$^{**}$ \\
-                        & (0.054)                                                                          & (0.068)           & (0.096)           & (0.067)       \\
-    RMW                 &                                                                                  &                   & -0.134$^{}$       & -0.115$^{}$   \\
-                        &                                                                                  &                   & (0.208)           & (0.186)       \\
-    SMB                 &                                                                                  & 0.180$^{}$        & 0.128$^{}$        & 0.105$^{}$    \\
-                        &                                                                                  & (0.120)           & (0.081)           & (0.077)       \\
-    const               & 0.043$^{***}$                                                                    & 0.043$^{***}$     & 0.044$^{***}$     & 0.042$^{***}$ \\
-                        & (0.004)                                                                          & (0.004)           & (0.005)           & (0.004)       \\
-    \hline                                                                                                                                                         \\[-1.8ex]
-    Observations        & 252                                                                              & 252               & 252               & 252           \\
-    $R^2$               & 0.031                                                                            & 0.057             & 0.063             & 0.096         \\
-    Adjusted $R^2$      & 0.027                                                                            & 0.046             & 0.048             & 0.078         \\
-    Residual Std.       & 0.036                                                                            & 0.036             & 0.036             & 0.035         \\
-    Error               & (df = 250)                                                                       & (df = 248)        & (df = 247)        & (df = 246)    \\
-    F Statistic         & 6.741$^{***}$                                                                    & 2.751$^{**}$      & 2.294$^{*}$       & 2.581$^{**}$  \\
-    &  (df = 1.0; 250.0) & (df = 3.0; 248.0)                                                                & (df = 4.0; 247.0) & (df = 5.0; 246.0)                 \\
-    \hline
-    \hline                                                                                                                                                        \\[-1.8ex]
-    \textit{Note:} & \multicolumn{4}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01}
-    \textit{Insert Variable Explanations}                                                                                                                         \\
-  \end{tabular}
-  \caption{Mean Square Error Loss Function: Asset Pricing Models}
-  \label{mse-tf-apm}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{||c||c||c||c||}
+        \hline
+        Result & $MSE$($\hat{y}$,y) & $MSE_{Custom}$($\hat{y}$,y) & Hedge Portfolio ($\hat{y}$)\\ [0.5ex]
+        \hline \hline
+        $\theta_{(Final)}$ &0.011 & 0.010 & 0.474\\
+        \hline
+        $\lambda_{(Final)}$ & 0.017 & 0.014& 9.039 \\
+        \hline \hline 
+        RMSE & $0.129^{***}$ & $0.238^{***}$ & $-1.319^{***}$\\
+        \hline
+        Adjusted $R^{2}$ &0.012& 0.042 & 0.001\\
+        \hline
+        F Statistic & $1188.583^{***}$ & $2037.581^{***}$ & $39.655^{***}$\\
+        \hline \hline
+        $\mu_{(HP)}$ &0.042428 & 0.076401 & -0.016803\\
+        \hline
+        $Sharpe_{HP}$& 1.150458& 1.450415&  -0.714680\\ 
+        \hline
+        $Treynor_{HP}$ & -0.300111 & -0.309781& -0.283188\\ 
+        \hline
+        $\beta_{HP}$ & $-0.141^{***}$ & $-0.309781^{***}$& $-0.283188^{***}$\\ 
+        \hline\hline
+        $\alpha_{(HP,CAPM)}$ & $0.043^{***}$ & $0.078^{***}$& $-0.017^{***}$ \\
+        \hline
+        $\alpha_{(HP,FF3)}$ & $0.043^{***}$ & $0.077^{***}$& $-0.017^{***}$ \\
+        \hline
+        $\alpha_{(HP,FF4)}$ & $0.044^{***}$& $0.078^{***}$& $-0.016^{***}$\\
+        \hline
+        $\alpha_{(HP,FF5)}$& $0.042^{***}$ & $0.076^{***}$& $-0.016^{***}$\\
+        \hline
+    \end{tabular}
+    \caption{Summary of Main Findings}
+    \label{main-findings}
 \end{table}
-
-
-
-
-

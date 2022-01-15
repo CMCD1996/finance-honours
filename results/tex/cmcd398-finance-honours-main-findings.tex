@@ -1,26 +1,34 @@
 \begin{table}[H]
     \centering
-    \begin{tabular}{||c|c|c|c||}
+    \begin{tabular}{||c||c||c||c||}
         \hline
-        Result & $MSE_{TF}$($\hat{y}$,y) & $MSE$($\hat{y}$,y) & HP($\hat{y}$)\\ [0.5ex]
+        Result & $MSE$($\hat{y}$,y) & $MSE_{Custom}$($\hat{y}$,y) & Hedge Portfolio ($\hat{y}$)\\ [0.5ex]
         \hline \hline
-        $\theta_{(Final)}$ & & & \\
+        $\theta_{(Final)}$ &0.011 & 0.010 & 0.474\\
         \hline
-        $\lambda_{(Final)}$ & & & \\
+        $\lambda_{(Final)}$ & 0.017 & 0.014& 9.039 \\
+        \hline \hline 
+        RMSE & $0.129^{***}$ & $0.238^{***}$ & $-1.319^{***}$\\
+        \hline
+        Adjusted $R^{2}$ &0.012& 0.042 & 0.001\\
+        \hline
+        F Statistic & $1188.583^{***}$ & $2037.581^{***}$ & $39.655^{***}$\\
         \hline \hline
-        $\mu_{(HP)}$ & & & \\
+        $\mu_{(HP)}$ &0.042428 & 0.076401 & -0.016803\\
         \hline
-        $\alpha_{(HP,CAPM)}$ & & & \\
+        $Sharpe_{HP}$& 1.150458& 1.450415&  -0.714680\\ 
         \hline
-        $\alpha_{(HP,FF3)}$ & & & \\
+        $Treynor_{HP}$ & -0.300111 & -0.309781& -0.283188\\ 
         \hline
-        $\alpha_{(HP,FF4)}$ & & & \\
+        $\beta_{HP}$ & $-0.141^{***}$ & $-0.309781^{***}$& $-0.283188^{***}$\\ 
+        \hline\hline
+        $\alpha_{(HP,CAPM)}$ & $0.043^{***}$ & $0.078^{***}$& $-0.017^{***}$ \\
         \hline
-        $\alpha_{(HP,FF5)}$& & &\\
+        $\alpha_{(HP,FF3)}$ & $0.043^{***}$ & $0.077^{***}$& $-0.017^{***}$ \\
         \hline
-        $SR_{HP}$& & &\\ 
+        $\alpha_{(HP,FF4)}$ & $0.044^{***}$& $0.078^{***}$& $-0.016^{***}$\\
         \hline
-        $TR_{HP}$ & & & \\ 
+        $\alpha_{(HP,FF5)}$& $0.042^{***}$ & $0.076^{***}$& $-0.016^{***}$\\
         \hline
     \end{tabular}
     \caption{Summary of Main Findings}
