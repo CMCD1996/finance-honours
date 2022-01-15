@@ -870,25 +870,36 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             # Sort the predicted returns in the sub_predictiosn set
             subset_predictions.sort_values(
                 by=['ret_exc_lead1m'], ascending=False, inplace=True)
+            print('This subset dataset describes')
+            print(subset_predictions.describe())
+            print(subset_predictions.info(verbose=False))
+            print(subset_predictions.head())
+            print(subset_predictions.tail())
             # Reset the index of this dorted dataframe for forming the hedge portfolio
             subset_predictions.reset_index(drop=True, inplace=True)
             # Calculates decile 1 (Top 10%)
             decile_length = len(subset_predictions['ret_exc_lead1m'])/10
+            print('Decile Length for month; {} is {}'.format(month, decile_length))
             # print('decile_length: ', decile_length)
             top_decile = range(0, (int(decile_length - 1)))
             bottom_decile = range((int(9*decile_length)),
                                   (int(10*decile_length-1)))
+            print('The decile range is decile 1: {} - {}, decile 10 {} - {}'.format(0,
+                  decile_length - 1, 9*decile_length, 10*decile_length-1))
             # Calculates Hedge Portfolio Return (Decile 1 - Decile 10)
             top_decile_mean = subset_predictions['ret_exc_lead1m'].iloc[top_decile].mean(
                 axis=0)
             bottom_decile_mean = subset_predictions['ret_exc_lead1m'].iloc[bottom_decile].mean(
                 axis=0)
+            print('The top and bottom deciles have a mean value of {} and {}, respectively'.format(
+                top_decile_mean, bottom_decile_mean))
             hp_mean = top_decile_mean - bottom_decile_mean
+            print('The hedge portfolio mean for {} is {}'.format(month, hp_mean))
             # Forms the hedge portfolio and sets to new row
             new_row = {'mth': int(month), 'hedge_returns': hp_mean}
             # Stores the hedge portfolio return for the month in another dataframe
             hedge_actual = hedge_actual.append(new_row, ignore_index=True)
-
+            return
         # Renames 'Date'  column to 'mth'
         factors_df.rename(columns={'Date': 'mth'}, inplace=True)
         # Convert mth dataframe column to the same dtype (float64)
