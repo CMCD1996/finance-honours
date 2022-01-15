@@ -680,7 +680,8 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
     hp_treynors = []
     hp_regressions = []
     predictability_regressions = []
-
+    # Sets up actual
+    hedge_actual = pd.DataFrame(columns=['mth', 'hedge_returns'])
     # Regress booleans
     regress_prediction = False
     regress_actual = True
