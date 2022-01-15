@@ -890,12 +890,13 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             hedge_actual = hedge_actual.append(new_row, ignore_index=True)
 
         # Renames 'Date'  column to 'mth'
-        # factors_df.rename(columns={'Date': 'mth'}, inplace=True)
+        factors_df.rename(columns={'Date': 'mth'}, inplace=True)
         # Convert mth dataframe column to the same dtype (float64)
         regression_actual_df['mth'] = regression_actual_df['mth'].astype(
             np.float64)
         # factors_df['mth'] = factors_df['mth'].astype(np.float64)
         hedge_actual['mth'] = hedge_actual['mth'].astype(np.float64)
+        print(hedge_actual.head())
         # Merges hedge returns with factors
         hedge_actual = hedge_actual.merge(factors_df, how='inner', on='mth')
         # Adds the factors to the regression dataframe via merge
