@@ -864,63 +864,62 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
         # Calculate standard portfolio return not on the metric
         regression_actual_df = pd.read_csv(
             prediction_location + model_name + '-' + 'mean_squared_error' + '.csv')
-        print(regression_actual_df.head())
+        # print(regression_actual_df.head())
         monthly_groups = regression_actual_df.groupby("mth")
         for month, subset_predictions in monthly_groups:
             # Sort the predicted returns in the sub_predictiosn set
             subset_predictions.sort_values(
                 by=['ret_exc_lead1m'], ascending=False, inplace=True)
-            print('This subset dataset describes')
-            print(subset_predictions.describe())
-            print(subset_predictions.info(verbose=False))
-            print(subset_predictions.head())
-            print(subset_predictions.tail())
+            # print('This subset dataset describes')
+            # print(subset_predictions.describe())
+            # print(subset_predictions.info(verbose=False))
+            # print(subset_predictions.head())
+            # print(subset_predictions.tail())
             # Reset the index of this dorted dataframe for forming the hedge portfolio
             subset_predictions.reset_index(drop=True, inplace=True)
             # Calculates decile 1 (Top 10%)
             decile_length = len(subset_predictions['ret_exc_lead1m'])/10
-            print('Decile Length for month; {} is {}'.format(month, decile_length))
+            # print('Decile Length for month; {} is {}'.format(month, decile_length))
             # print('decile_length: ', decile_length)
             top_decile = [0, int(decile_length - 1)]
             bottom_decile = [int(9*decile_length), int(10*decile_length-1)]
 
-            print('The decile range is decile 1: {} - {}, decile 10 {} - {}'.format(
-                top_decile[0], top_decile[1], bottom_decile[0], bottom_decile[1]))
+            # print('The decile range is decile 1: {} - {}, decile 10 {} - {}'.format(
+            # top_decile[0], top_decile[1], bottom_decile[0], bottom_decile[1]))
 
             # Calculates Hedge Portfolio Return (Decile 1 - Decile 10)
-            top_decile_df = subset_predictions.iloc[top_decile[0]
-                :top_decile[1]]
+            top_decile_df = subset_predictions.iloc[top_decile[0]                                                    :top_decile[1]]
             bottom_decile_df = subset_predictions.iloc[bottom_decile[0]
                 :bottom_decile[1]]
 
             # Describe the two deciles
-            print('Top Decile')
-            print(top_decile_df.describe())
-            print(top_decile_df.info(verbose=False))
-            print(top_decile_df.head())
-            print(top_decile_df.tail())
+            # print('Top Decile')
+            # print(top_decile_df.describe())
+            # print(top_decile_df.info(verbose=False))
+            # print(top_decile_df.head())
+            # print(top_decile_df.tail())
 
-            print('Bottom Decile')
-            print(bottom_decile_df.describe())
-            print(bottom_decile_df.info(verbose=False))
-            print(bottom_decile_df.head())
-            print(bottom_decile_df.tail())
+            # print('Bottom Decile')
+            # print(bottom_decile_df.describe())
+            # print(bottom_decile_df.info(verbose=False))
+            # print(bottom_decile_df.head())
+            # print(bottom_decile_df.tail())
 
             top_decile_mean = subset_predictions['ret_exc_lead1m'].iloc[top_decile[0]: top_decile[1]].mean(
                 axis=0)
             bottom_decile_mean = subset_predictions['ret_exc_lead1m'].iloc[bottom_decile[0]: bottom_decile[1]].mean(
                 axis=0)
-            print('The top and bottom deciles have a mean value of {} and {}, respectively'.format(
-                top_decile_mean, bottom_decile_mean))
+            # print('The top and bottom deciles have a mean value of {} and {}, respectively'.format(
+            # top_decile_mean, bottom_decile_mean))
             hp_mean = top_decile_mean - bottom_decile_mean
-            print('The hedge portfolio mean for {} is {}'.format(month, hp_mean))
+            # print('The hedge portfolio mean for {} is {}'.format(month, hp_mean))
             # Forms the hedge portfolio and sets to new row
             new_row = {'mth': int(month), 'hedge_returns': hp_mean}
             # Stores the hedge portfolio return for the month in another dataframe
             hedge_actual = hedge_actual.append(new_row, ignore_index=True)
 
         hedge_actual.to_csv(
-            '/home/connormcdowall/finance-honours/results/predictions/cmcd398-finance-honours-actual.csv')
+            '/home/connormcdowall/finance-honours/results/predictions/cmcd398-finance-honours-hedge-actual.csv')
         return
         # Renames 'Date'  column to 'mth'
         factors_df.rename(columns={'Date': 'mth'}, inplace=True)
@@ -2534,13 +2533,13 @@ class custom_information_mse(tf.keras.losses.Loss):
 #################################################################################
 
 
-@tf.function
+@ tf.function
 def custom_mse_metric(y_pred, y_true):
     metric = K.mean(K.square(y_pred - y_true))
     return metric
 
 
-@tf.function
+@ tf.function
 def custom_hp_metric(y_true, y_pred):
     y_true_sum = K.sum(y_true)
     y_pred_sum = K.sum(y_pred)
@@ -2557,7 +2556,7 @@ def custom_hp_metric(y_true, y_pred):
     return mean
 
 
-@tf.function
+@ tf.function
 def custom_sharpe_metric(y_true, y_pred):
     # Finds Sharpe ratios of both true and predicted returns
     sr_pred = -1*(K.mean(y_pred)/K.std(y_pred))
@@ -2567,13 +2566,13 @@ def custom_sharpe_metric(y_true, y_pred):
     return loss
 
 
-@tf.function
+@ tf.function
 def custom_information_metric(y_true, y_pred):
     loss = -1*((K.mean(y_pred) - K.mean(y_true))/K.std(y_pred - y_true))
     return loss
 
 
-@tf.function
+@ tf.function
 def custom_capm_metric(factors):
     def capm_metric(y_pred, y_true):
         return K.mean(K.square(y_pred - y_true)) + K.mean(factors)
