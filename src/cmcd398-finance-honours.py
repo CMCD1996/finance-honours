@@ -786,8 +786,8 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             print(mean_fb.summary.as_latex(), file=f)
             f.close()
         # Uses stats models to perform standard linear regressions
-        mean_hp = sm.OLS(hedge_returns['hedge_returns'], exog=None).fit(
-            cov_type='HAC', cov_kwds={'maxlags': 6})
+        # mean_hp = sm.OLS(hedge_returns['hedge_returns'], exog=None).fit(
+            # cov_type='HAC', cov_kwds={'maxlags': 6})
 
         # Get regression for asset pricing models
         if regression_dictionary['capm'] == True:
@@ -868,7 +868,7 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             cov_type='HAC', cov_kwds={'maxlags': 6})
         hp_regressions.append(hp_regress)
         # Creates tables for comparison using the stargazor package
-        hp_stargazer = Stargazer([mean_hp, capm_hp, ff3_hp, ff4_hp, ff5_hp])
+        hp_stargazer = Stargazer([capm_hp, ff3_hp, ff4_hp, ff5_hp])
         with open('/home/connormcdowall/finance-honours/results/tables/hedge-portfolio-ols/' + model_name + '-' + loss + '.txt', 'w') as f:
             # Deletes existing text
             f.truncate(0)
