@@ -1,11 +1,11 @@
-\begin{table}[!htbp] \centering
-\begin{tabular}{@{\extracolsep{5pt}}lcccc}
-\\[-1.8ex]\hline
-\hline \\[-1.8ex]
-& \multicolumn{4}{c}{\textit{One Month Lead Excess Portfolio Return using custom hp:}} \
-\cr \cline{4-5}
-\\[-1.8ex] & CAPM & FF3 & FF4 & FF5 \\
-\hline \\[-1.8ex]
+\begin{table}[H] \centering
+  \begin{tabular}{@{\extracolsep{5pt}}lcccc}
+  \\[-1.8ex]\hline
+  \hline \\[-1.8ex]
+  & \multicolumn{4}{c}{\textit{Dependant: One Month Lead Hedge Portfolio Excess Return}} \
+  \cr \cline{2-5}
+  \\[-1.8ex] & CAPM & FF3 & FF4 & FF5 \\
+  \hline \\[-1.8ex]
  CMA & & & & -0.042$^{}$ \\
   & & & & (0.118) \\
  HML & & -0.156$^{***}$ & -0.101$^{*}$ & -0.085$^{}$ \\
@@ -22,10 +22,12 @@
  Observations & 252 & 252 & 252 & 252 \\
  $R^2$ & 0.018 & 0.052 & 0.064 & 0.064 \\
  Adjusted $R^2$ & 0.014 & 0.040 & 0.049 & 0.045 \\
- Residual Std. Error & 0.029(df = 250) & 0.028(df = 248) & 0.028(df = 247) & 0.028(df = 246)  \\
- F Statistic & 5.117$^{**}$ (df = 1.0; 250.0) & 4.666$^{***}$ (df = 3.0; 248.0) & 3.830$^{***}$ (df = 4.0; 247.0) & 3.145$^{***}$ (df = 5.0; 246.0) \\
-\hline
-\hline \\[-1.8ex]
-\textit{Note:} & \multicolumn{4}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\
-\end{tabular}
-\end{table}
+ Residual Std. & 0.029 & 0.028 & 0.028 & 0.028  \\
+  Error & (df = 250) & (df = 248) & (df = 247) & (df = 246)  \\
+ F Statistic & 5.117$^{**}$ & 4.666$^{***}$ & 3.830$^{***}$ & 3.145$^{***}$ \\
+  & (df = 1.0; 250.0) &(df = 3.0; 248.0) & (df = 4.0; 247.0) & (df = 5.0; 246.0) \\
+  \hline
+  \hline \\[-1.8ex]
+  \textit{Note:} & \multicolumn{4}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\
+  \end{tabular}
+  \end{table}
