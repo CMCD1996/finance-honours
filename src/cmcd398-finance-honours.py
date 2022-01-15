@@ -886,8 +886,26 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
                                   (int(10*decile_length-1)))
             print('The decile range is decile 1: {} - {}, decile 10 {} - {}'.format(0,
                   decile_length - 1, 9*decile_length, 10*decile_length-1))
+
             # Calculates Hedge Portfolio Return (Decile 1 - Decile 10)
-            top_decile_mean = subset_predictions['ret_exc_lead1m'].iloc[top_decile].mean(
+            top_decile = subset_predictions.iloc[top_decile[0], top_decile[-1]]
+            bottom_decile = subset_predictions.iloc[bottom_decile[0],
+                                                    bottom_decile[-1]]
+
+            # Describe the two deciles
+            print('Top Decile')
+            print(top_decile.describe())
+            print(top_decile.info(verbose=False))
+            print(top_decile.head())
+            print(top_decile.tail())
+
+            print('Bottom Decile')
+            print(bottom_decile.describe())
+            print(bottom_decile.info(verbose=False))
+            print(bottom_decile.head())
+            print(bottom_decile.tail())
+
+            top_decile_mean = subset_predictions['ret_exc_lead1m'].iloc[top_decile[0], top_decile[-1]].mean(
                 axis=0)
             bottom_decile_mean = subset_predictions['ret_exc_lead1m'].iloc[bottom_decile].mean(
                 axis=0)
@@ -900,6 +918,8 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             # Stores the hedge portfolio return for the month in another dataframe
             hedge_actual = hedge_actual.append(new_row, ignore_index=True)
             return
+        hedge_actual.to_csv(
+            '/home/connormcdowall/finance-honours/results/predictions/cmcd398-finance-honours-actual.csv')
         # Renames 'Date'  column to 'mth'
         factors_df.rename(columns={'Date': 'mth'}, inplace=True)
         # Convert mth dataframe column to the same dtype (float64)
