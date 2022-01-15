@@ -2856,7 +2856,7 @@ create_models = False
 make_predictions = False
 perform_regressions = True
 # Output
-convert_text = True
+convert_text = False
 plot_learning_curves = False
 #################################################################################
 # Function Testing
@@ -2865,6 +2865,8 @@ plot_learning_curves = False
 #################################################################################
 if sys_check:
     reconfigure_gpu(restrict_tf=False, growth_memory=True)
+if check_gpus:
+    list_gpus()
 #################################################################################
 # Data processing
 #################################################################################
