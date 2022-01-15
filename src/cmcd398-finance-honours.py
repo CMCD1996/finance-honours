@@ -755,11 +755,10 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
         # Uses stats models to perform standard linear regressions
         # mean_hp = sm.OLS(hedge_returns['hedge_returns'], exog=None).fit(
         # cov_type='HAC', cov_kwds={'maxlags': 6})
-        print('Shape of predictions is: ')
-        print(hedge_returns['hedge_returns'].shape)
-        return
-        hp = sm.OLS(hedge_returns['hedge_returns']).fit(
-            cov_type='HAC', cov_kwds={'maxlags': 6})
+        # print('Shape of predictions is: ')
+        # hedge_returns['hedge_returns'].shape()
+        # hp = sm.OLS(hedge_returns['hedge_returns']).fit(
+        #     cov_type='HAC', cov_kwds={'maxlags': 6})
         # Get regression for asset pricing models
         if regression_dictionary['capm'] == True:
             # Uses linear models to perform CAPM regressions (Panel Regressions)
