@@ -1,6 +1,13 @@
 Extracts to speed up formmating
 
 cmcd398-finance-honours-regression-metrics
+
+ & \multicolumn{3}{c}{\textit{Dependent variable: One Month Lead Excess Returns (OMLER)}} \
+\cr \cline{3-4}
+\\[-1.8ex] &  MSE & MSE (Custom) & Hedge Portfolio \\
+\hline \\[-1.8ex]
+ Predicted (OMLER)  
+ 
  Residual Std. Error: &(df = 531460)&(df = 531460)&(df = 531460)\\
  F Statistic =  &(df = 1.0; 531460.0)&(df = 1.0; 531460.0)&(df = 1.0; 531460.0)\\
 
