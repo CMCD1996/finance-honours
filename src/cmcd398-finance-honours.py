@@ -706,11 +706,11 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
                 # Reset the index of this dorted dataframe for forming the hedge portfolio
                 subset_predictions.reset_index(drop=True, inplace=True)
                 # Calculates decile 1 (Top 10%)
-                decile_length = len(subset_predictions[dependant_column])/10
+                decile_length = len(subset_predictions[dependant_column])/3
                 # print('decile_length: ', decile_length)
                 top_decile = range(0, (int(decile_length - 1)))
-                bottom_decile = range((int(9*decile_length)),
-                                      (int(10*decile_length-1)))
+                bottom_decile = range((int(2*decile_length)),
+                                      (int(3 * decile_length-1)))
                 # Calculates Hedge Portfolio Return (Decile 1 - Decile 10)
                 top_decile_mean = subset_predictions['ret_exc_lead1m'].iloc[top_decile].mean(
                     axis=0)
@@ -888,9 +888,9 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             # top_decile[0], top_decile[1], bottom_decile[0], bottom_decile[1]))
 
             # Calculates Hedge Portfolio Return (Decile 1 - Decile 10)
-            top_decile_df = subset_predictions.iloc[top_decile[0]:top_decile[1]]
-            bottom_decile_df = subset_predictions.iloc[bottom_decile[0]
-                :bottom_decile[1]]
+            top_decile_df = subset_predictions.iloc[top_decile[0]
+                :top_decile[1]]
+            bottom_decile_df = subset_predictions.iloc[bottom_decile[0]                                                       :bottom_decile[1]]
 
             # Describe the two deciles
             # print('Top Decile')
