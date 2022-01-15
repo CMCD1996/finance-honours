@@ -919,7 +919,6 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             hedge_actual = hedge_actual.append(new_row, ignore_index=True)
         hedge_actual.to_csv(
             '/home/connormcdowall/finance-honours/results/predictions/cmcd398-finance-honours-hedge-actual.csv')
-        return
         # Renames 'Date'  column to 'mth'
         factors_df.rename(columns={'Date': 'mth'}, inplace=True)
         # Convert mth dataframe column to the same dtype (float64)
