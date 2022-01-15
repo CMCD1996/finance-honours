@@ -881,33 +881,34 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             decile_length = len(subset_predictions['ret_exc_lead1m'])/10
             print('Decile Length for month; {} is {}'.format(month, decile_length))
             # print('decile_length: ', decile_length)
-            top_decile = range(0, (int(decile_length - 1)))
-            bottom_decile = range((int(9*decile_length)),
-                                  (int(10*decile_length-1)))
-            print('The decile range is decile 1: {} - {}, decile 10 {} - {}'.format(0,
-                  decile_length - 1, 9*decile_length, 10*decile_length-1))
+            top_decile = [0, int(decile_length - 1)]
+            bottom_decile = [int(9*decile_length), int(10*decile_length-1)]
+
+            print('The decile range is decile 1: {} - {}, decile 10 {} - {}'.format(
+                top_decile[0], top_decile[1], bottom_decile[0], bottom_decile[1]))
 
             # Calculates Hedge Portfolio Return (Decile 1 - Decile 10)
-            top_decile = subset_predictions.iloc[top_decile[0], top_decile[-1]]
-            bottom_decile = subset_predictions.iloc[bottom_decile[0],
-                                                    bottom_decile[-1]]
+            top_decile_df = subset_predictions.iloc[top_decile[0]
+                :top_decile[1]]
+            bottom_decile_df = subset_predictions.iloc[bottom_decile[0]
+                :bottom_decile[1]]
 
             # Describe the two deciles
             print('Top Decile')
-            print(top_decile.describe())
-            print(top_decile.info(verbose=False))
-            print(top_decile.head())
-            print(top_decile.tail())
+            print(top_decile_df.describe())
+            print(top_decile_df.info(verbose=False))
+            print(top_decile_df.head())
+            print(top_decile_df.tail())
 
             print('Bottom Decile')
-            print(bottom_decile.describe())
-            print(bottom_decile.info(verbose=False))
-            print(bottom_decile.head())
-            print(bottom_decile.tail())
+            print(bottom_decile_df.describe())
+            print(bottom_decile_df.info(verbose=False))
+            print(bottom_decile_df.head())
+            print(bottom_decile_df.tail())
 
-            top_decile_mean = subset_predictions['ret_exc_lead1m'].iloc[top_decile[0], top_decile[-1]].mean(
+            top_decile_mean = subset_predictions['ret_exc_lead1m'].iloc[top_decile[0]: top_decile[1]].mean(
                 axis=0)
-            bottom_decile_mean = subset_predictions['ret_exc_lead1m'].iloc[bottom_decile].mean(
+            bottom_decile_mean = subset_predictions['ret_exc_lead1m'].iloc[bottom_decile[0]: bottom_decile[1]].mean(
                 axis=0)
             print('The top and bottom deciles have a mean value of {} and {}, respectively'.format(
                 top_decile_mean, bottom_decile_mean))
