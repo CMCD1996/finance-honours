@@ -815,7 +815,9 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
 
         # Calculates actual portfolio metrics
         # Calculate standard portfolio return not on the metric
-        monthly_groups = regression_df.groupby("mth")
+        regression_actual_df = pd.read_csv(
+            prediction_location + model_name + '-' + loss + '.csv')
+        monthly_groups = regression_actual_df.groupby("mth")
         for month, subset_predictions in monthly_groups:
             # Sort the predicted returns in the sub_predictiosn set
             subset_predictions.sort_values(
@@ -839,11 +841,28 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             # Stores the hedge portfolio return for the month in another dataframe
             hedge_actual = hedge_actual.append(new_row, ignore_index=True)
 
+        # Renames 'Date'  column to 'mth'
+        # factors_df.rename(columns={'Date': 'mth'}, inplace=True)
+        # Convert mth dataframe column to the same dtype (float64)
+        regression_actual_df['mth'] = regression_actual_df['mth'].astype(
+            np.float64)
+        # factors_df['mth'] = factors_df['mth'].astype(np.float64)
+        hedge_actual['mth'] = hedge_actual['mth'].astype(np.float64)
+        # Merges hedge returns with factors
+        hedge_actual = hedge_actual.merge(factors_df, how='inner', on='mth')
+        # Adds the factors to the regression dataframe via merge
+        # regression_df = regression_df.merge(factors_df, how='inner', on='mth')
+
+        # Uses stats models to perform standard linear regressions
+        capm_actual_exog_vars = ['Mkt-RF']
+        capm_actual_hp_exog = sm.add_constant(
+            hedge_actual[capm_actual_exog_vars])
+        capm_actual_hp = sm.OLS(hedge_actual['hedge_returns'], capm_actual_hp_exog).fit(
+            cov_type='HAC', cov_kwds={'maxlags': 6})
         # Sets up arrays to append
         hp_means_actual = []
         hp_sharpes_actual = []
         hp_treynors_actual = []
-        # Get the CAPM from Hedge Returns for actual returns
 
         # Extract the metrics from loss function
         hp_mean_actual = np.asscalar(
@@ -851,11 +870,11 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
         print('Traditional Hedge Portfolio Mean for {} is {}'.format(
             loss, hp_mean_actual))
         hp_sharpe_ratio_actual = np.asscalar((hedge_actual[['hedge_returns']].mean(
-            axis=0)/hedge_returns[['hedge_returns']].std(axis=0)))
+            axis=0)/hedge_actual[['hedge_returns']].std(axis=0)))
         print('Actual Hedge Portfolio Sharpe Ratio for {} is {}'.format(
             loss, hp_sharpe_ratio_actual))
         hp_treynor_actual = np.asscalar((hedge_actual[['hedge_returns']].mean(
-            axis=0) / capm_hp.params[1]))
+            axis=0) / capm_actual_hp.params[1]))
         print('Actual Hedge Portfolio treynor for {} is {}'.format(
             loss, hp_treynor_actual))
 
