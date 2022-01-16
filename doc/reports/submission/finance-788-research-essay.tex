@@ -486,7 +486,7 @@ Gu et al. (\citeyear{eapvml}) benchmarks analysis \footnote{Discrepancies in dat
     \item $Sharpe_{HP}$ is the sharpe ratio for the hedge portfolio
     \item $Treynor_{HP}$ is the treynor ratio for the hedge portfolio
     \item $\beta_{HP}$ is systematic market risk for the hedge portolio
-    \item $\alpha_{(HP,FF3)}$, $\alpha_{(HP,FF3)}$, $\alpha_{(HP,FF4)}$, and $\alpha_{(HP,FF5)}$ are the hedge portfolio alphas generated in their respective asset pricing models.
+    \item $\alpha_{(HP,CAPM)}$, $\alpha_{(HP,FF3)}$, $\alpha_{(HP,FF4)}$, and $\alpha_{(HP,FF5)}$ are the hedge portfolio alphas generated in their respective asset pricing models.
     \item Adjusted $R^{2}$ is explained variation when regressing actual one month lead excess returns on predicted returns.
     \item $MSE$($\hat{y}$,y) is the traditional mean squared error loss function.
     \item $MSE_{Custom}$($\hat{y}$,y) is the customised mean squared error loss function.
@@ -607,32 +607,34 @@ Ultimately, -0.016803, -0.714680, and -0.283188 for hedge portfolio mean and sha
 \subsubsection{Hedge Portfolio Mean, Sharpe, and Treynor}
 \input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-calculations-metrics}.tex}
 \newpage
-\subsubsection{Asset Pricing Models
-Figures \ref{mse-tf-apm}, \ref{mse-apm-cmse}, and \ref{hp-apm-hp} show estimations for hedge portfolio alpha per month, for each standard factor pricing model, using an optimisation strategy, 
+\subsubsection{Asset Pricing Models}
+Tables \ref{mse-tf-apm}, \ref{mse-apm-cmse}, and \ref{hp-apm-hp} show estimations for hedge portfolio alpha per month, for each standard factor pricing model, using an optimisation strategy, 
 for $MSE$($\hat{y}$,y), $MSE_{Custom}$($\hat{y}$,y), and Hedge Portfolio ($\hat{y}$), respectively.
-\begin{enumerate}
-    \item CAPM is the Capital Asset Pricing Model 
-    \item FF3 is the Fama-French Three Factor Model
-    \item FF4 is the Fama-French Four Factor Model
-    \item FF5 is the Fama-French Five Factor Model
+\singlespacing
+    \begin{enumerate}
     \item $SMB_{t}$: Size Premium (small minus big) is the difference in average return between nine small stock and nine large value-weighted portfolios.
 	\item $HML_{t}$: Value Premium (high minus low) is the difference in average return between two value and two growth value-weighted portfolios.
 	\item $RMW_{t}$: Profitability Premium (robust minus weak) is the difference in average return between two robust operating profitability and two weak operating profitability value-weighted portfolios.
 	\item $CMA_{t}$: Investment Premium minus aggressive is the difference in average return on the two conservative and two aggressive investment portfolios
-    \item $\alpha_{(HP,FF3)}$, $\alpha_{(HP,FF3)}$, $\alpha_{(HP,FF4)}$, and $\alpha_{(HP,FF5)}$ are the hedge portfolio alphas generated in their respective asset pricing models.
-    \item Adjusted $R^{2}$ is explained variation when regressing actual one month lead excess returns on predicted returns.
-    \item $MSE$($\hat{y}$,y) is the traditional mean squared error loss function.
-    \item $MSE_{Custom}$($\hat{y}$,y) is the customised mean squared error loss function.
-    \item Hedge Portfolio ($\hat{y}$) is the hedge portfolio optimisation function.\\
+    \item $(R_{M,t}-R_{f,t})$: Market Risk Premium
+    \item $\alpha_{(HP,CAPM)}$, $\alpha_{(HP,FF3)}$, $\alpha_{(HP,FF4)}$, and $\alpha_{(HP,FF5)}$ are the hedge portfolio alphas generated in their respective asset pricing models.
+    \item CAPM is the capital asset pricing model
+    \item FF3 is the Fama-French Three Factor Model
+    \item FF4 is the Fama-French Four Factor Model
+    \item FF5 is the Fama-French Five Factor Model
     \end{enumerate}
     \doublespacing
-\newpage
+$MSE$($\hat{y}$,y) (table \ref{mse-tf-apm}), $MSE_{Custom}$($\hat{y}$,y) (\ref{mse-apm-cmse}), and Hedge Portfolio ($\hat{y}$) (\ref{hp-apm-hp}) neural networks generate portfolios which align with their hedge portfolio means, across all factor models, statistical significant at the 1\% level.
+The MSE variants only have highly statistical significant negative market premia factors, and the Hedge portfolio have statistical significant negative RMW and SMB in FF4 and FF5 (5\% level).
+The market risk premia is statistical insignificant in CAPM, FF4, and FF5 for the netword maximising hedge portfolio returns.
+The market risk premia factor is negative in all models accross loss functions. The out-of-sample period includes both the Dotcom crash and Financial Crisis.
+The sample period, incomplete dataset, shorting positions in the hedge portfolios, and capped weighting methodology may be driving these results.
+Regardless, the results are inconclusive in assessing relative performance.
+However, if they were, the hedge portfolio maximsation strategy would not outperform tradtional loss minimisation methodolgies.
 \input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-mean\_squared\_error}.tex}
 \newpage
-\subsubsection{Asset Pricing: $MSE_{Custom}(\hat{y},y)$}
 \input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom\_mse}.tex}
 \newpage
-\subsubsection{Hedge Portfolio ($\hat{y})$}
 \input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom\_hp}.tex}
 \newpage
 \section{Research Implications}
