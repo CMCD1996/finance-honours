@@ -1,14 +1,15 @@
 \begin{table}[H]
+    \small
     \centering
     \begin{tabular}{||c||c||c||c||}
         \hline
         Result & $MSE$($\hat{y}$,y) & $MSE_{Custom}$($\hat{y}$,y) & Hedge Portfolio ($\hat{y}$)\\ [0.5ex]
         \hline \hline
-        $\theta_{(Final)}$ &0.011 & 0.010 & 0.474\\
+        $\theta_{(Final)}$ &0.011 & 0.010 & 0.010\\
         \hline
-        $\lambda_{(Final)}$ & 0.017 & 0.014& 9.039 \\
+        $\lambda_{(Final)}$ & 0.017 & 0.014& 0.001 \\
         \hline \hline 
-        RMSE & $0.129^{***}$ & $0.238^{***}$ & $-1.319^{***}$\\
+        OMLER & $0.129^{***}$ & $0.238^{***}$ & $-1.319^{***}$\\
         \hline
         Adjusted $R^{2}$ &0.012& 0.042 & 0.001\\
         \hline
@@ -30,7 +31,7 @@
         \hline
         $\alpha_{(HP,FF5)}$& $0.042^{***}$ & $0.076^{***}$& $-0.016^{***}$\\
         \hline
-    \end{tabular}
+    \end{tabular} 
     \caption{Summary of Main Findings}
     \label{main-findings}
 \end{table}

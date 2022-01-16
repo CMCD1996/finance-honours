@@ -40,6 +40,8 @@
 \usepackage{indentfirst}
 \usepackage{array}
 \usepackage{wrapfig}
+\usepackage{threeparttable}
+
 % DECLARATIONS
 \DeclareMathOperator*{\argmax}{arg\,max}
 \DeclareMathOperator*{\argmin}{arg\,min} % thin space, limits underneath in displays
@@ -162,54 +164,101 @@
 \listoftables
 \newpage 
 \pagenumbering{arabic} 
-\section{Introduction (2-3 pages)}
+\section{Introduction}
 \subsection{[Placeholder I]}
 \newpage
 \subsection{[Placeholder II]}
 \newpage
-\subsection{[Placeholder III]}
-\newpage
-\section{Literature (3 pages)}\label{LR}
-
+\section{Literature}\label{LR}
 \subsection{Asset Pricing}
-Asset pricing theory is a cornerstone in prior
-Capital Asset Pricing Model (CAPM) use persists, regardless of the invalidation from identifiable shortcomings in market proxies and empirical failings invalidating use (\cite{fama2004capital}).
-Nonetheless, this research essay uses the model as a performance metric for comparative purposes.
-
-E. Fama and K. French (\citeyear{eugene1992cross}) validate the explanatory power of size and value (book-to-market) factors
+Literature on stock return predictability typically takes on of two forms.
+First, cross-sectional analysis on expected returns as a function of stock level characters (\cite{fama2008dissecting}).
+Second, surveillance of return time-series (\cite{koijen2011predictability},\cite{rapach2013forecasting}).
+Factor-based models feature prominently in finance literature.
+Most models are derivative of the Capital Asset Pricing Model (CAPM), assessing exposure to systematic risk.
+Use persist, regardless of the invalidation from identifiable shortcomings in market proxies and empirical failings invalidating use (\cite{fama2004capital}). E. Fama and K. French (\citeyear{eugene1992cross}) validate the substantial explanatory power of size and value (book-to-market) factors
 in their ability to capture the cross-sectional variation in average stock returns, in association with market risk, size, leverage, book-to-market, and earnings-price ratios.
+Size and value factors continue feature in factor models.
 E. Fama and K. French further their analysis on the common characteristics between stocks and bonds (\cite{fama2021common})\footnote{Reprinted. Originally published in 1993}, 
 and add two additional factors to consider profitability and investment.
-The main combinations are the Fama French Three (FF3) (\ref{ff3}) and Five (FF5) (\ref{ff5}) models.
 E. Fama and K. French consider a momentum factor on international stock returns in subsequent years (\cite{fama2012size}).
-The omission of momentum from the models stand.
-
-K. French continues to maintain FF3 and FF5 related datasets (\cite{french-personal})
-E. Fama, with J. MacBeth, developed the Fama-MacBeth regression (\cite{fama1973risk}) to estimate factor loadings and prices.
+The omission of momentum from models stand. E. Fama, with J. MacBeth, developed the Fama-MacBeth regression (\cite{fama1973risk}) to estimate factor loadings and prices.
 The methodology is a two-stage estimation process, similar for estimating factor loadings, and prices, for a given portfolio.
 The first step requires determining each asset's $\beta$ exposures by regressing each of n asset returns against m proposed \ref{fb1}.
 The second step determines the risk premium (factor pricing) for each asset by regressing all asset returns for each of T periods against previously estimated $\beta$s (\ref{fb2}).
-\newpage
+This methodology enables the estimation of unconventional factors e.g. seasonalities in mood (\cite{hirshleifer2020mood}) and carbon risk (\cite{bolton2021investors}).
+However, limitations exist for both traditional methods when considering a large number of characteristics or periods.
 \subsection{Machine Learning in Finance}
-A couple of recent publications highlight the increased application of machine learning algorithms in financial contexts.
-\cite{corporate-culture}
-Gu et al (\citeyear{eapvml}) explore the comparative use of machine learning in empirical asset pricing.
-However, intepretability issus persist in machine learning applications.
-\newpage
+Proliferating data, advancement in computing, and accessibility to technology
+The pivotal publication by Gu et al (\citeyear{eapvml}) illustrates the improvement to empirical asset pricing via machine learning.
+In summary,
+\begin{enumerate}
+	\item Machine learning shows great promise for empirical asset pricing,
+	\item Vast predictor sets are viable for linear prediction when either penalisation or dimension reduction is used.
+	\item Allowing for non-linearities substantially improves predictions.
+	\item Shallow learning outperforms deeper learning. In particular, neural network performance peaks at three layers.
+	\item The distance between non-linear methods and the benchmark widens when predicting portfolio returns.
+	\item The economic gains from machine learning are large
+	\item The most successful predictors are price trends, volatility, and liquidity
+	\item Simulations improve machine learning findings
+\end{enumerate}
+Researchers sporadically contributed publications investigating the utilisation of machine learning financial contexts.
+Rapach et al. (\citeyear{rapach2013international}) predict global equity market returns using lagged returns of, all countries, with a lasso algorithm.
+Multiple academics explore forecasting derivative prices using neural networks (\cite{fleck1994strain}, \cite{cai2000functional}).
+Regression trees predict consumer credit card delinquencies and defaults (\cite{khandani2010consumer}, \cite{butaru2016risk}).
+Predicting mortgage risk through neural networks (\cite{sirignano2016deep}).
+Revise the multiple comparisons problem using bootstrap procedures (\cite{harvey2016and}).
+Factor pricing estimations using dimensionality reduction (\cite{feng2020taming}).
+Application of tree-based models to portfolio sorts (\cite{moritz2016tree}).
+Measuring corporate culture using natural language processing (\cite{corporate-culture}).
+However, interpretability issues persist given the nature, opacity, and complexity of underlying algorithms and associations.
+Fortunately, acceptance continues to improve, with highly reputable journals e.g.,
+The Journal of Finance, The Review of Financial Studies etc. are publishing literature articles intersecting finance and machine learning with increasing frequency.
+Data science in finance continues to evolve in academic and industry-related uses.
 \subsection{Loss Functions}
+Most machine learning applications in equity return predictions, and finance in general, use a traditional loss function.
+A subset of related literature considers customized loss functions.
+Gu et al. (\citeyear{eapvml}) test various functions including mean squared error (MSE) (weighted and unweighted), and huber loss mixing MSE and mean absolute error (MAE).
+Lim et al. (\citeyear{lim2019enhancing}) investigate enhancing time-series momentum strategies using neural networks with MSE loss functions enriched with a Sharpe ratio-based regulation.
+Zhou et al. (\citeyear{zhou2018stock}) assess a combination of forecasting error loss and MSE when predicting stock market prices on high-frequency data.
+However, the subset of custom loss functions for predicting stock returns is small.
+There is an investigation into the minimisation of hedging loss in options trading strategies (\cite{ruf2021hedging})
+Reinforcement learning methods attempt to optimise financial portfolios after dimensionality reduction but do not apply maximisation in consideration of an aggregate hedge portfolio (\cite{soleymani2020financial}).
+In conclusion, the inclusion of a hedge portfolio maximsation strategy in predicted excess returns derivative of hedge portfolio excess returns is novel at present.
 \newpage
-\section{Motivation (1 page)}
+\section{Motivation}
 \subsection{Research Question}
-\textbf{Can neural networks, optimizsed to maximise financial metrics (e.g., Hedge Portfolio Excess Return, Sharpe Ratio etc.,) outperform conventional loss minimisation optimisation strategies,
-when predicting excess returns in individual equities and equity hedge portfolios?}
+Our main motivation roots itself in economic significance.
+Machine learning algorithms rely on the minimisation of a loss function, making predictions on target variables in relation to their realisations on known, in-sample, factors. 
+The model learns factor contributions to the targets during the training process, fine-tunes model parameters in the validation phase, and evaluate out-of-sample instances.
+Subsequently, the model makes predictions on unlabelled instances to estimate labels.
+In financial contexts, asset pricing factors and excess returns are factors and targets, respectively.
+Trading strategies rely on hedge portfolios to diversify idiosyncratic risk and maximise returns.
+Hedge portfolio excess returns are derivative of the excess returns for individuals.
+Subsequently, investors interests lie in maximise the returns from their hedging strategies.
+Machine learning algorithms capture non-linear associations between factors not feasible by other asset pricing method.
+Non-linear associations may exist in constructing hedge portfolios absent when predicting excess returns from individual equities.
+Subsequently, we ask:
+\begin{center}
+	\textbf{Can neural networks configured to maximise hedge portfolios outperform standard loss minimisation configurations,
+	when predicting one month lead excess returns using a long-short zero cost investment strategy?}
+\end{center}
 \subsection{Hypotheses}
+Two hypotheses relate to the above question:
+\singlespacing
+\begin{enumerate}
+	\item It is feasible to implement maximisation strategies in machine learning algorithms given $\argmax{f(x)}=\argmin{-f(x)}$
+	\item A hedge portfolio maximisation strategy will not outperform loss minimisation strategies given model architecture.
+\end{enumerate}
+\doublespacing
+Our analysis aims to prove and disprove hypothesis one and two, respectively.
 \newpage
 \section{Methodology}
-The required methodology to construct the methods to build, develop, and deploy neural networks with custom objective functions.
+A comprehensive outline of the methodology follows.
 \subsection{Data}\label{data}
-\subsubsection{Global Factors Dataset}
+\subsubsection*{Global Factors Dataset}
 Hou et al., (\citeyear{hou2020replicating}) use an extensive data library to assess 452 anomalies across anomalies literature.
-Their analysis informs which abnormalities drive the cross section of expected returns. 
+Their analysis informs which abnormalities drive the cross-section of expected returns. 
 Most abnormalities fail under current standards of empirical finance when using a single hurdle test of absolute t-stat greater or equal to 1.96.
 Firstly, the paper finds economic fundamentals take precedence over trading frictions in explanatory power, statistical and economic significance.
 Secondly, micro-caps account for anomalies disproportionately, leading to NYSE breakpoints, value-weighted returns in both portfolio sorts and cross-sectional regressions with weighted least squares. 
@@ -220,13 +269,14 @@ and provide an alternative multiple testing adjustment, more powerful than commo
 Jensen et al., adapt the global dataset to focus only on one-month holding periods for all factors, only include most recent accounting data (quarterly or annually) and add 15 new factors.
 Section \ref{dss} describes factor composition, resources for data acquisition, and summary statistics.
 The complete global dataset has 406 characteristics, a superset of the original 153 in Jensen et al., with 2,739,928 firm-year observations, from January 1st 1961 to December 31st 2020.
-Subsequently, the complete dataset has 1.112 billion data points. \textbf{One month lead excess returns}\footnote{One month lead excess returns (ret\_exc\_lead1m is RET-T30RET)/21 from CRSP, extracted using WRDS. T30 is the treasury yield rate. 
-If T30RET is unavailable,
-is used instead RF. If the return is a daily return rather than a monthly return, (RET - T30RET) is divided by 1 rather than 21.} is the designated target variable for prediction as will inform the construction of hedge portfolios to
-assess relative performance between loss functions.
-The exhaustive nature and accessibility of the global dataset makes it well-suited for exploring optimisation functions, maximising renown financial metrics, in deep neural-networks.
+Subsequently, the complete dataset has 1.112 billion data points. \textbf{One month lead excess returns}\footnote{O ret\_exc\_lead1m = RET-T30RET)/21 from CRSP, extracted using WRDS. T30 is the treasury yield rate. 
+If T30RET is unavailable, is used instead RF. If the return is a daily return rather than a monthly return, (RET - T30RET) is divided by 1 rather than 21.} 
+is the target variable for prediction, informing hedge portfolios construction to
+assess the relative performance between loss functions.
+Factors in month t predict the excess returns in month t + 1 (e.g., one month lead excess return). 
+The exhaustive nature and accessibility of the global dataset makes it well-suited for exploring maximising monthly hedge portfolio excess returns in deep neural-networks.
 
-\subsubsection{Processing} \label{data-processing}
+\subsubsection*{Processing} \label{data-processing}
 Neural networks demand the partitioning of the dataset into training, validation, and testing subsets.
 The initial training, testing, and validation sets consist of \textbf{1031516}, \textbf{706908}, and \textbf{1001504} global equity firm-year observations across 406 features, respectively.
 The division of subsets is chronological with firm-year observations [1961-1990), [1990-2000), [2000-2020] for training, validation, and testing, respectively.
@@ -241,7 +291,7 @@ The training, testing, and validation sets consist of \textbf{532218}, \textbf{2
 Subsequently, the revised dataset has 217,321,600 data points.
 Tables \ref{table:ss-train}, \ref{table:ss-test}, and \ref{table:ss-val} in section \ref{dss:ss} describe summary statistics and factor retention after subset revision. 
 
-\subsubsection{Cloud Infrastructure}
+\subsubsection*{Cloud Infrastructure}
 Cloud-centric computational products execute data processing and analysis.
 Google Cloud Platform Cloud Storage buckets and Compute Engine virtual machine (VM) instances manage large datasets and build, train, and evaluate deep neural networks, respectively.
 Cryptographic network protocols, mostly secure shells, establish remote connectivity between local and remote infrastructure to communicate and execute commands.
@@ -253,7 +303,7 @@ However, the reasons necessitating factor reduction and size grouping exclusion 
 Section \ref{technical} elaborates on cloud centric computational approaches and further technologies.
 
 \subsection{Neural Networks}
-\subsubsection{Normalisation \& Feature Encoding}
+\subsubsection*{Normalisation \& Feature Encoding}
 Deep neural networks require tensors as inputs for fitting, training, and evaluating data.
 A tensor is a mathematical object describing the physical properties of an object with multilinear relationships between sets of algebraic objects related in vector space.
 Furthermore, transformation laws govern tensors. 
@@ -272,7 +322,7 @@ These may be one-hot encoded, and/or stored in sparse tensors, depending on inpu
 each categorical feature, using encoding layers to form encoded features
 \item Combine instantiated input tensors (\ref{step-i}) into a set of inputs tensors, serving as the inputs fro a configured neural network
 \item Concatenate all encoded features into an aggregate input tensor for an unconfigured neural network. 
-The concatenation serves as the input layer when configuraing a neural network.
+The concatenation serves as the input layer when configuring a neural network.
 \end{enumerate}
 \doublespacing
 The revised datasets consist of eight categorical features
@@ -286,8 +336,8 @@ The revised datasets consist of eight categorical features
 \textbf{ff49}, Classification of stocks in 49 industry groups, based on SIC codes and the methodology in F.Fama \& K.French \citeyear{fama1997industry}, with the addition of the software industry.
 \textbf{adjfct}, Share Adjustment Factor}
 and 152 numerical features.
-\subsection{Neural Network Architecture} \label{nn-architecture}
-\subsubsection{Activation Functions, Linear Threshold Units, \& Perceptrons}\label{mlp-math}
+\subsection{Architecture} \label{nn-architecture}
+\subsubsection*{Activation Functions, Linear Threshold Units, \& Perceptrons}\label{mlp-math}
 Artificial Neural Nets (ANN) frequently outperform other machine learning algorithms on large and complex problems.
 Linear threshold units (LTU) compose neural networks, feeding the weighted sum of input values (\ref{w-sum}) into an activation (step) function (\ref{activation-function}).
 A perceptron is a single layer of LTUs connected to every input, suitable for both regression and classification tasks.
@@ -327,17 +377,16 @@ A shared activation function replaces the individual activation functions in the
 		\label{linear-activation-function}
 	\end{equation}
 \end{multicols}
-Where
 \singlespacing
 \begin{itemize}
 	\item $w_{i,j}$: Connection weights between the ith input neuron and the jth output neuron. 
 	\item $x_i$: Ith input value of the current training instance.
 	\item $\hat{y}_{j}$: Output of the jth output neuron for the current training instance.
 	\item $y_{j}$: Output of the jth output neuron for the current training instance.
-	\item $\eta$: Rate.
+	\item $\eta$: Learning rate.
 \end{itemize}
 \doublespacing
-\subsubsection{Model Configuration} \label{network-configuration}
+\subsubsection*{Model Configuration} \label{network-configuration}
 Figure \ref{fig:neural-network} visualises a standard neural network topography
 \begin{figure}[H]
     \centering
@@ -347,7 +396,7 @@ Figure \ref{fig:neural-network} visualises a standard neural network topography
 \end{figure}
 The dots and lines represent nodes and connections between nodes, respectively.
 The architecture of the network is derivative of intended use.
-Figure \ref{fig:neural-network-configuration} illustrates the required configuration for evaluating excess returns.
+Figure \ref{fig:neural-network-configuration} illustrates the designated neural network configuration.\footnote{Optimal layer density as per gu et al. (\cite{eapvml}) with three hidden layers (The dropout is a processing layer to prevent overfitting).}
 $N(x,y)$ represents the yth node in xth layer.
 \textbf{z} = $\sum_{a = 1}^{189} w_{(n,a,b)}x_{(n,a,b)} (= \textbf{w}^{T} \cdot \textbf{x})$ is the dot product between all outputs (x) and connection weights (w) from the nth layer, between all nodes a and b connecting layers n and n+1, respectively.
 The use of dense layers deeply connects two layers where each node recieves an input from the previous layer.
@@ -377,10 +426,10 @@ An ouput linear activation (\ref{linear-activation-function}) is the most suitab
     \label{fig:neural-network-configuration}
 \end{figure}
 \newpage
-\subsubsection{Loss Functions}
+\subsection{Loss Functions}
 Loss functions map an event or variable set, onto a real number, intuitively representing some loss, associated with the event e.g., difference between predicted and realised excess returns.
 Optimisation algorithms seek to minimise loss functions by finding an exact analytical solution, or applying numerical methods to find an approximate solution, terminating after meeting exit criteria, when an analytical solution is not possible.
-The training and evaluation of accurate neural networks uses this method.\footnote{The optimisation algorithm is synonymous with the training algorithm in section (\ref{mlp-math}).}
+The training and evaluation of accurate neural networks use this method.\footnote{The optimisation algorithm is synonymous with the training algorithm in section (\ref{mlp-math}).}
 The configured neural network (figure \ref{fig:neural-network-configuration}) uses a stochastic gradient descent (SGD) algorithm (\ref{sgd}).
 
 The relative performance between conventional minimisation loss functions, and maximisation of hedge portfolio excess returns, relies on comparing derivatives to these objectives.
@@ -397,88 +446,206 @@ The proposition of three loss functions follow:
 	The selected mapping weights individual equities by the proportion of their contributions to aggregate returns of all equities in a given month, considering all equities in the portfolio.
 	Section \ref{hedge-portfolio-derivation} elaborates on hedge portfolio theory and formulation.
 \end{enumerate}
-Section \ref{loss-function-formulation} describes both mean squared error and hedge portfolio loss function formulation.
+Section \ref{loss-function-formulation} describes both mean squared error and hedge portfolio loss functions mathematically.
 Best practice training, validation, and testing practice succeed configuration with one iteration per loss function.
 The deployment of thirty epochs, shuffling of instances prior to every epoch run, and use of early stopping procedures in validation, help prevent over and under fitting.
-\subsubsection{Performance Metrics}
+\subsection{Performance Metrics}
 Performance metrics inform comparisons between loss functions, to assess relative performance, after successfully training and validating a deep neural network for each loss function.
 Methods for performance metrics inception and formulation follow:
 \singlespacing
 \begin{enumerate}
 	\item The trained models predict one month lead excess returns for each instance (firm-year observation) in the testing dataset.
-	\item Standard monthly sorts of predicted one month lead excess returns form standard tercile hedge portfolios returns per month.
-	\item Use hedge portfolio to calculate the mean across all months, sharpe ratio, and treynor ratio \footnote{Uses the estimation for systematic risk from the CAPM OLS estimator}.
+	\item Standard monthly sorts of predicted one month lead excess returns form standard tercile hedge portfolios returns per month.\footnote{Aligns with methodology in constructing one month holding period returns in section }
+	\item Use hedge portfolio to calculate the hedge portfolio mean, sharpe ratio, and treynor ratio across all months \footnote{Uses the estimation for systematic risk from the CAPM OLS estimator}.
 	\item Learning curves validate model representation.
 	\item Ordinary least squares regression, incorporating Newey-West\footnote{The estimator aims to ensure autocorrelation and heteroskedasticity consistency for the regressions of time-series panel data.} estimators and six month lags (\cite{newey1987hypothesis}),
 	regress: 
 	\begin{itemize}
 		\item Realised one month lead excess return on predicted one month lead excess return
-		\item Realised hedge portfoliio excess return on predicted one month lead excess return 
-		\item Hedge portfolio returns on monthly Fama-French factors, \footnote{https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data\_library.html} to find alpha in CAPM, FF3, FF4, and FF5 models (\ref{apt}).
+		\item Realised hedge portfolio excess return on predicted one month lead excess return 
+		\item Hedge portfolio returns on monthly Fama-French factors, \footnote{https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data\_library.html} to find alpha in CAPM, FF3, FF4, and FF5 models (\ref{apm}).
+		\footnote{Standard Fama-MacBeth regressions only correct standard error for cross-sectional variation, omitting time-series autocorrelation.
+		Standard forms suffice when using daily or weekly returns (and by extension, prices) as time-series correlation is weak.
+		Stronger time-series autocorrelations may exist during longer period. Therefore, one month lead excess returns necessitate time-series correction.
+		Newey-West suceeds Fama-MacBeth adjusted for clustered covariance with entity and time fixed effects.}
 	\end{itemize}
-	\item Supplementary to OLS, Fama-MacBeth (\cite{fama1973risk})
-	\footnote{Adjusted for clustered covariance with entity and time fixed effect. Standard Fama-MacBeth regressions only correct standard error for cross-sectional variation, omitting time-series autocorrelation.
-	Standard forms suffice when using daily or weekly returns (and by extension, prices) as time-series correlation is weak.
-	Stronger time-series autocorrelations may exist during longer period. Therefore, one month lead excess returns neccessitate time-series correction.}
-	regressions validate OLS estimations. 
 \end{enumerate}
 \doublespacing
 \newpage
 \section{Results}
 \subsection{Main Findings}
-Table \ref{main-findings} summarises main findings
+Table \ref{main-findings} summarises main findings across model training, validation, individual return predictability, performance measures, and hedge portfolio comparisons.
+Gu et al. (\citeyear{eapvml}) benchmarks analysis \footnote{Discrepancies in data and methodologies exist, raised appropriately}. 
 \input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-main-findings}.tex}
-\subsection{Performance Matrix}
-\input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-calculations-metrics}.tex}
-\cite{hlavac2018stargazer} enables the tables in the regression analysis.
-\subsection{Learning Curves}
-\begin{figure}[H]
+\singlespacing
+    \begin{enumerate}
+    \item $\theta_{(Final)}$ is the final validation loss after training. 
+    \item $\lambda_{(Final)}$ is the final validation loss after validation.
+    \item OMLER is the coefficient when regressing actual lead one month returns on predicted.
+    \item $\mu_{(HP)}$ is the hedge portfolio mean across all months.
+    \item $Sharpe_{HP}$ is the sharpe ratio for the hedge portfolio
+    \item $Treynor_{HP}$ is the treynor ratio for the hedge portfolio
+    \item $\beta_{HP}$ is systematic market risk for the hedge portolio
+    \item $\alpha_{(HP,FF3)}$, $\alpha_{(HP,FF3)}$, $\alpha_{(HP,FF4)}$, and $\alpha_{(HP,FF5)}$ are the hedge portfolio alphas generated in their respective asset pricing models.
+    \item Adjusted $R^{2}$ is explained variation when regressing actual one month lead excess returns on predicted returns.
+    \item $MSE$($\hat{y}$,y) is the traditional mean squared error loss function.
+    \item $MSE_{Custom}$($\hat{y}$,y) is the customised mean squared error loss function.
+    \item Hedge Portfolio ($\hat{y}$) is the hedge portfolio optimisation function.\\
+    \end{enumerate}
+    \doublespacing
+\subsection{Revision of Hypotheses}
+Our restated hypothesis in our motivations follows:
+\singlespacing
+\begin{enumerate}
+	\item It is feasible to implement maximisation strategies in machine learning algorithms given $\argmax{f(x)}=\argmin{-f(x)}$
+	\item A hedge portfolio maximisation strategy will not outperform loss minimisation strategies given model architecture.
+\end{enumerate}
+\doublespacing
+The confirmation, or rejection, of these hypotheses is relatively simple, and intuitive. 
+Comparisons between training/validation losses, return predictability measures, and hedge portfolios alphas are telling. 
+The results from Gu et al., (\citeyear{eapvml}) serve as a benchmark to gauge feasibility.
+The complexity in this article lies in the mathematics (\ref{loss-function-formulation}) and implementation of neural network architecture (\ref{code}).
+\newpage
+\section{Training \& Validation Losses}
+Table \ref{train-val-losses} outlines the training and validation losses from neural network using the specified loss functions.
+\begin{table}[H]
+	\small
+	\singlespacing
+	\begin{enumerate}
+	\item $\theta_{(Final)}$ is the final validation loss after training. 
+    \item $\lambda_{(Final)}$ is the final validation loss after validation.
+	\item $MSE$($\hat{y}$,y) is the traditional mean squared error loss function.
+    \item $MSE_{Custom}$($\hat{y}$,y) is the customised mean squared error loss function.
+	\item Hedge Portfolio ($\hat{y}$) is the hedge portfolio optimisation function.
+	\end{enumerate}
+	\doublespacing
 	\centering
-    \subfloat[In-Built Mean Square Error Learning curve\label{fig-lc-mse}]{%
-      \includegraphics[width=0.8\textwidth]{mean-squared-error-learning-curve.png}
-    }
-    \vfill
-    \subfloat[Custom MSE\label{fig-lc-cmse}]{%
-      \includegraphics[width=0.8\textwidth]{custom-mse-learning-curve.png}
-    }
-    \caption{Learning Curves }
-    \label{fig:mse-learning-curves}
-  \end{figure}
-  \begin{figure}[H]
+    \begin{tabular}{||c||c||c||c||}
+        \hline
+        Result & $MSE$($\hat{y}$,y) & $MSE_{Custom}$($\hat{y}$,y) & Hedge Portfolio ($\hat{y}$)\\ [0.5ex]
+        \hline \hline
+        $\theta_{(Final)}$ &0.011 & 0.010 & 0.010\\
+        \hline
+        $\lambda_{(Final)}$ & 0.017 & 0.014& 0.001\\
+		\hline
+    \end{tabular}
+    \caption{Training and validation losses}
+    \label{train-val-losses}
+\end{table}
+Both the $MSE$($\hat{y}$,y) and $MSE_{Custom}$($\hat{y}$,y) final training losses are near identical at 0.011 and 0.010, respectively.
+The pattern for validation losses is similar at 0.017 and 0.014 for $MSE$($\hat{y}$,y) and $MSE_{Custom}$($\hat{y}$,y), respectively.
+The similarity confirms automatic differentiation is working\footnote{Tensorflow's Automatic Differentiation functionality using Keras Backend}
+The Hedge Portfolio loss function has a minimum training and validation loss of 0.01 and 0.001 before running for a further three epochs before early termination. respectively.
+The latter shows promising signs a loss function maximising is feasible. 
+Subseqently, it is important to test fit through the observation of learning curves.
+Figure \ref{fig:hp-lc} and \ref{fig:mse-learning-curves} visualise learning curves for hedge portfolio loss functions, and both mean squared error variants, respectively.
+\subsection{Learning Curves}
+Learning curves 
+\footnote{Generated using a Custom \href{https://neptune.ai/}{Neptune.ai} callback during model fitting.}
+serve as diagnostic tools for underfitting, or overfitting.\footnote{Overfitting: Overlearns training data, generalises new data poorly. Underfitting: Inadequate training leading to poor predictions.}
+Both MSE loss functions (fig \ref{fig-la-mse} and fig \ref{fig-lb-cmse}) show evidence of a goof fit. 
+Both sets of losses display convexity, continuing to decrease until beginning to plateau. 
+Early stopping does not initiate as the minimum allowed loss is zero in this instance.
+Hedge Portfolio loss function (fig \ref{fig-lc}) shows an interesting trend, displaying signs of non-convexity.
+This is not a surprising as the loss function is non-trivial, and the permutation of nodes within the hidden layers,
+in combination with weights in subsequent connections, could have multiple solutions, resulting in the same loss.
+The validation loss does follow the training loss closely, and early stopping is initiated at the eleventh epoch, and terminated at epoch fourteen.
+The rapid change in gradient may be a combination in the complexity of the loss function in conjunction with an unsatisfactory learning rate of $\eta = 0.001$\footnote{The appropriate range is between 0.1 and $1e^{-6}$}
+Section \ref{model-training-validation-performance} aggregates learning curves, and conventional performance metrics, evaluating model training and validation.
+
+\begin{figure}[H]
 	\centering
     \includegraphics[width=0.8\textwidth]{custom-hp-learning-curve.png}
 	\caption{Hedge Portfolio Learning Curves}
 	\label{fig:hp-lc}
   \end{figure}
-Figure \ref{fig:mse-learning-curves} and \ref{fig:hp-lc} visualise learning curves for mean squared error variants, and hedge portfolio loss functions, respectively.
-Learning curves serve as diagnostic tools for underfitting, or overfitting.\footnote{Overfitting: Overlearns training data, generalises new data poorly. Underfitting: Inadequate training leading to poor predictions.}
-\textbf{Elaborate all this curves show the dataset is representative, suitable for ML contributions}
-Section \ref{model-training-validation-performance} aggregates learning curves, and conventional performance metrics, evaluating model training and validation.
-\footnote{Generate using a Custom \href{https://neptune.ai/}{Neptune.ai} callback during model fitting.}
+\begin{figure}[H]
+	\centering
+    \subfloat[In-Built Mean Square Error Learning curve\label{fig-la-mse}]{%
+      \includegraphics[width=0.8\textwidth]{mean-squared-error-learning-curve.png}
+    }
+    \vfill
+    \subfloat[Custom MSE\label{fig-lb-cmse}]{%
+      \includegraphics[width=0.8\textwidth]{custom-mse-learning-curve.png}
+    }
+    \caption{Learning Curves}
+    \label{fig:mse-learning-curves}
+  \end{figure}
+ 
+
 \subsection{Return Predictability}
-Table \ref{predicability-actual-returns} regress one month lead excess returns, on the predicted returns, for every loss function.
+Table \ref{return-predictability} regresses realised one month lead excess returns, on the predicted returns, for every loss function.
+The F Statistic on all tests is highly statistically significant at the one percent level, 
+verifying realised returns are derivative of predictions.
+The out-of-sample adjusted $R^{2}$ values are 0.012, 0.042, and 0.001 for $MSE$($\hat{y}$,y), $MSE_{Custom}$($\hat{y}$,y), and $Hedge Portfolio $($\hat{y})$ respectively.
+Gu et al. (\citeyear{eapvml}) has a range of out-of-sample from 0.33\% (0.0033) to 0.40\% (0.004) for non-linear predictions.
+Our are higher, but may be from using a more powerful algorithm (neural networks) and one-sixth the number of factors.
+The coefficients of $MSE$($\hat{y}$,y), $MSE_{Custom}$($\hat{y}$,y), and $Hedge Portfolio $($\hat{y})$ highly statistical significant at the one percent level, 0.129, 0.238, and -1.319, respectively.
+The negative co-efficient is not unexpected given the objective function seeks to maximise redicted hedge portfolio returns opposed minimising the loss between actual and realised.
+Subsequently, it is feasible to use maximisation strategies in neural networks, confirming our first hypothesis.
+Ultimately , the adoption of maximisation strategies lies in their economic significance.
 \input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-regression-metrics}.tex}
-However, the hedge portfolio loss function optimises predicted hedge portfolios.
 \subsection{Hedge Portfolio Performance}
-\subsubsection{Mean Square Error}
+Figure \ref{performance-metrics} displays the mean
+The hedge portfolio means for $MSE$($\hat{y}$,y), $MSE_{Custom}$($\hat{y}$,y), and Hedge Portfolio ($\hat{y}$) loss functions are 0.0424, 0.0764 and, -0.0168 per month, respectively.
+These raise concern given they exceed observations from prior literature. 
+However, there are some hypotheses.
+Section \ref{jensen-fpc} describe the method Jensen et al. (\citeyear{jensen2021there}) in constructing
+factor portfolios. In summary, they sort stocks into terciles in the 20th percentile on market capitalisation or higher first, 
+then evenly distribute all the stock below the 20th percentile on market capitalisation evenly into the three terciles using similar sorting characteristics.
+Following, each tercile has it's capped value weight return calculated, ensuring tiny stocks have tiny weight, and large stocks don't dominate the portfolio.
+The predicting of construction of hedge protfolios should reflect this construction methodology.
+However, equities below the 20th percentile were omitted, as mentioned in section \ref{data}. 
+Therefore, large stocks dominate the portfolio, raising the hedge portfolio mean.
+Preliminary analysis used deciles, recording 0.05 and 0.1 for $MSE$($\hat{y}$,y), and $MSE_{Custom}$($\hat{y}$,y), respectively. 
+The change to deciles reduced the hedge portfolio means to the aforementioned figures.
+For context, the mean excess return on realised one month lead excess returns is 0.0007 (0.7\%).
+The treynor ratio indicates the excess return on systematic risk is consistent across the three strategies (~-0.30).
+The sharpe ratios for both MSE variants are feasible at ~1.15 to 1.45 for $MSE$($\hat{y}$,y), and $MSE_{Custom}$($\hat{y}$,y).
+Ultimately, -0.016803, -0.714680, and -0.283188 for hedge portfolio mean and sharpe ratio shows the hedge portfolio maximisation strategy does not outperform traditional loss minimisation regardless of accuracy.
+
+\subsubsection{Hedge Portfolio Mean, Sharpe, and Treynor}
+\input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-calculations-metrics}.tex}
+\newpage
+\subsubsection{Asset Pricing Models
+Figures \ref{mse-tf-apm}, \ref{mse-apm-cmse}, and \ref{hp-apm-hp} show estimations for hedge portfolio alpha per month, for each standard factor pricing model, using an optimisation strategy, 
+for $MSE$($\hat{y}$,y), $MSE_{Custom}$($\hat{y}$,y), and Hedge Portfolio ($\hat{y}$), respectively.
+\begin{enumerate}
+    \item CAPM is the Capital Asset Pricing Model 
+    \item FF3 is the Fama-French Three Factor Model
+    \item FF4 is the Fama-French Four Factor Model
+    \item FF5 is the Fama-French Five Factor Model
+    \item $SMB_{t}$: Size Premium (small minus big) is the difference in average return between nine small stock and nine large value-weighted portfolios.
+	\item $HML_{t}$: Value Premium (high minus low) is the difference in average return between two value and two growth value-weighted portfolios.
+	\item $RMW_{t}$: Profitability Premium (robust minus weak) is the difference in average return between two robust operating profitability and two weak operating profitability value-weighted portfolios.
+	\item $CMA_{t}$: Investment Premium minus aggressive is the difference in average return on the two conservative and two aggressive investment portfolios
+    \item $\alpha_{(HP,FF3)}$, $\alpha_{(HP,FF3)}$, $\alpha_{(HP,FF4)}$, and $\alpha_{(HP,FF5)}$ are the hedge portfolio alphas generated in their respective asset pricing models.
+    \item Adjusted $R^{2}$ is explained variation when regressing actual one month lead excess returns on predicted returns.
+    \item $MSE$($\hat{y}$,y) is the traditional mean squared error loss function.
+    \item $MSE_{Custom}$($\hat{y}$,y) is the customised mean squared error loss function.
+    \item Hedge Portfolio ($\hat{y}$) is the hedge portfolio optimisation function.\\
+    \end{enumerate}
+    \doublespacing
+\newpage
 \input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-mean\_squared\_error}.tex}
 \newpage
-\subsubsection{Mean Square Error (Custom)}
+\subsubsection{Asset Pricing: $MSE_{Custom}(\hat{y},y)$}
 \input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom\_mse}.tex}
 \newpage
-\subsubsection{Hedge Portfolio}
+\subsubsection{Hedge Portfolio ($\hat{y})$}
 \input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom\_hp}.tex}
 \newpage
-\section{Discussion}
-\section{Conclusion (2 pages)}
+\section{Research Implications}
 \subsection{Contributions}
-\subsection{Further Research}
+\subsection{Maximisation Strategies}
 \subsection{Limitations}
-Further research will rely on addressing severals limitation.
-\subsubsection{Resources}
+\subsubsection*{Resources}
 The lack of resources to explore the entire dataset within reasonable timeframes, and at reasonable costs.
 The most material inhibitions are the inability to explore all 400 factors for all size groupings, the reduction in level of precision for numerical features, and
 the ability to shuffle training sets at lengths greater than or equal to the input sets.
+\subsubsection*{Dataset Revisions}
+\subsection{Model Reconstruction}
+\subsubsection*{Simulations}
 \newpage
 \printbibliography
 \newpage
@@ -506,7 +673,7 @@ Equation \ref{htls} describes hedge portfolio lead excess returns ($H_t$) at a g
 	H_t &= \frac{1}{|L|}\sum_{i\epsilon L} y_{i,t} - \frac{1}{|S|}\sum_{i\epsilon S} y_{i,t} \label{htls}
 \end{align}
 Figure \ref{fig:mrf}) illustrates an approximate linear monotonic ranking function with a sample of 100 uniformly distributed excess returns  between -10\% and 10\%.
-Boundary conditions u and v are set to 20 and 80 , respectively.
+Boundary conditions u and v are set to 20 and 80, respectively.
 Subsequently, excess returns above (below) the green (blue) dotted line belong to the long (L) (short (S)) set. 
 \begin{figure}[H]
     \centering 
@@ -763,14 +930,8 @@ $\mathop{\mathbb{E}} [R_a - R_f]$ is the excess return on the market. $\beta_{M}
 	\text{Treynor} &= \mathop{\mathbb{E}} \frac{[R_a - R_b]}{\beta_{M}} \numberthis \label{tr}\\
 \end{align*}
 \newpage
-\subsection{Pooled Ordinary Least Square Regressions} \label{polsr}
-\subsubsection{In-Built Mean Square Error}
-\input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-mean_squared_error-accuracy}.tex}
-\subsubsection{Custom Mean Square Error}
-\input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse-accuracy}.tex}
-\subsubsection{Custom Hedge Portfolio}
-\input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_hp-accuracy}.tex}
-
+\subsection{Hedge Portfolio: Realised One Month Excess Returns}
+\input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-actual}.tex}
 \subsection{Technical Details}\label{technical}
 \subsubsection{Organisation}
 This research essay uses data science best practise (\cite{J:10}).
@@ -854,10 +1015,32 @@ The document listing function and class docstring is available for download \hre
 Furthermore, the coding listings for this research essay follow. Try update.
 % \lstinputlisting[language=Python]{cmcd398-finance-honours.py}
 \subsection{Data} \label{dss}
-\subsubsection{Composition \& Sources}
+\subsubsection{Description \& Sources}
 The authors provide documentation and web-based resources on \href{https://github.com/bkelly-lab/ReplicationCrisis}{GitHub} to reconstruct an updated dataset from Wharton Research Data Services (WRDS) using SAS Studio.
 Identifier variables (e.g., size group), Accounting variables (e.g., COGS), accounting characteristics (e.g., change in net working capital, solvency ratios etc.), market variables (e.g., share price, excess return), market characteristics (e.g., market equity, 60 month CAPM $\beta$), 
 and detailed characteristics (e.g., equity duration, Altman Z-Score) and Foreign Exchange Conversion Rates feature in the dataset's composition.
+\subsubsection{Factor Portfolio Construction}\label{jensen-fpc}
+The below enumeration describes verbatim one month holding period return within each country by Jensen et al. (\cite{jensen2021there}).
+\begin{enumerate}
+	\item In each country and month, we sort stocks into characteristic terciles (top, middle, and bottom
+	with breakpoints based on non-micro stocks in that country. Specifically, we
+	start with all non-micro stocks in a country (i.e., larger than NYSE 20th percentile)
+	and sort them into three groups of equal numbers of stocks based on the characteristic,
+	say book-to-market. Then we distribute the micro-cap stocks into the three groups
+	based on the same characteristic breakpoints. This process ensures that the non-micro
+	stocks are distributed equally among across portfolios, creating more tradable portfolios.
+	\item For each tercile, we compute its capped value weight" return, meaning that we weight
+	stocks by their market equity, winsorized at the NYSE 80th percentile. This construc-
+	tion ensures that tiny stocks have tiny weights and any one mega stock does not
+	dominate a portfolio, seeking to create tradable, yet balanced, portfolios.
+	\item The factor is then defined as the high-tercile return minus the low-tercile return, corre-
+	sponding to the excess return of a long-short zero-net-investment strategy. The factor
+	is long (short) the tercile identified by the original paper to have the highest (lowest)
+	expected return.
+	\item For a factor return to be non-missing, we require that it has at least 5 stocks in each of
+	the long and short legs. We also require a minimum of 60 valid monthly observations
+	for each country-specific factor for inclusion in our sample.
+\end{enumerate}
 \subsubsection{Data Processing} \label{data-processing}
 However, the computational complexity exceeds resources available at the time of analysis.
 The replacement of NaN values in a feature columns with the median value of the respective column to retain observations.

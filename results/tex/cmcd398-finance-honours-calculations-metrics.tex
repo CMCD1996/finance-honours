@@ -2,13 +2,12 @@
      \centering
      \begin{tabular}{lrrr}
           \toprule
-          Loss Function   & HP Mean   & Sharpe Ratio & Treynor Ratio \\
+          Loss Function   & $\mu_{(HP)}$   & $Sharpe_{HP}$ & $Treynor_{HP}$ \\
           \midrule
-          MSE             & 0.042428  & 1.150458     & -0.300111     \\
-          MSE (Custom)    & 0.076401  & 1.450415     & -0.309781     \\
-          Hedge Portfolio & -0.016803 & -0.714680    & -0.283188     \\[1ex]
-          \bottomrule
-          \textit{Insert table description}                          \\
+          $MSE$($\hat{y}$,y)            & 0.042428  & 1.150458     & -0.300111     \\
+          $MSE_{Custom}$($\hat{y}$,y)    & 0.076401  & 1.450415     & -0.309781     \\
+          Hedge Portfolio ($\hat{y}$) & -0.016803 & -0.714680    & -0.283188     \\[1ex]
+          \bottomrule                         \\
      \end{tabular}
      \caption{Performance Measures}
      \label{performance-metrics}

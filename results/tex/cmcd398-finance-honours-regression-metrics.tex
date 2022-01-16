@@ -2,11 +2,11 @@
   \begin{tabular}{@{\extracolsep{5pt}}lccc}
     \\[-1.8ex]\hline
     \hline                                                                                                                                                        \\[-1.8ex]
-                        & \multicolumn{3}{c}{\textit{Dependent variable: One Month Lead Excess Returns (OMLER)}} \
-    \cr \cline{2-4}
-    \\[-1.8ex] &  MSE & MSE (Custom) & Hedge Portfolio \\
+                        & \multicolumn{3}{c}{\textit{Dependent variable: POMLER}} \
+    \cr \cline{3-4}
+    \\[-1.8ex] &  $MSE$($\hat{y}$,y) & $MSE_{Custom}$($\hat{y}$,y) & $Hedge Portfolio $($\hat{y})$ \\
     \hline                                                                                                                                                        \\[-1.8ex]
-    Predicted (OMLER)   & 0.129$^{***}$                                                                             & 0.238$^{***}$        & -1.319$^{***}$       \\
+    OMLER   & 0.129$^{***}$                                                                             & 0.238$^{***}$        & -1.319$^{***}$       \\
                         & (0.004)                                                                                   & (0.005)              & (0.210)              \\
     \hline                                                                                                                                                        \\[-1.8ex]
     Observations        & 531,461                                                                                   & 531,461              & 531,461              \\
@@ -20,5 +20,11 @@
     \hline                                                                                                                                                        \\[-1.8ex]
     \textit{Note:}      & \multicolumn{3}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01}                                                                    \\
   \end{tabular}
-  \caption{Predictability of One Month Lead Portfolio Excess Returns}
+  \small \\
+  \begin{enumerate}
+    \item POMLER is the Predicted One Month Lead Excess Returns by the Neural Networks for respective loss functions.
+    \item OMLER is the Realised One Month Lead Excess Returns
+  \end{enumerate}
+  \caption{Realised One Month Lead Excess Returns regressed on Predicted One Month Lead Excess Returns}
+  \label{return-predictability}
 \end{table}
