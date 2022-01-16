@@ -1,12 +1,12 @@
 # Fdb version 3
-["biber __latexindent_temp"] 0 "__latexindent_temp.bcf" "__latexindent_temp.bbl" "__latexindent_temp" 0
-  "__latexindent_temp.bcf" 0 -1 0 "pdflatex"
+["biber finance-788-research-essay"] 0 "finance-788-research-essay.bcf" "finance-788-research-essay.bbl" "finance-788-research-essay" 0
+  "finance-788-research-essay.bcf" 0 -1 0 "pdflatex"
   (generated)
-  "__latexindent_temp.bbl"
-  "__latexindent_temp.blg"
-["pdflatex"] 1642345968 "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/submission/__latexindent_temp.tex" "__latexindent_temp.pdf" "__latexindent_temp" 1642345968
+  "finance-788-research-essay.bbl"
+  "finance-788-research-essay.blg"
+["pdflatex"] 1642346455 "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/submission/finance-788-research-essay.tex" "finance-788-research-essay.pdf" "finance-788-research-essay" 1642346455
   "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/images/neural-network.png" 1641855127 598293 fa6ca47736b16b1c972221539611baac ""
-  "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/submission/__latexindent_temp.tex" 1642345932 207464 90ab0bbfd06cce32803f5bf1833c4bd9 ""
+  "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/submission/finance-788-research-essay.tex" 1642346449 209064 afca3ee7cef0f1a1417d97d3bf30058f ""
   "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/custom-hp-learning-curve.png" 1642159939 57467 ca674c5950b90446b7da6c01beda7ecb ""
   "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/custom-mse-learning-curve.png" 1642158856 50061 95f8bec2937dfb0a8b90c194078a9cfc ""
   "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/mean-squared-error-learning-curve.png" 1642158987 40164 614421a1fa0662e2ba05839d6742dacb ""
@@ -227,15 +227,15 @@
   "/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1640947762 4374891 c8eaa50db59648610d53abf3959a7b8a ""
   "/usr/local/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1640947902 2820137 8a01174d86c6355935f4bd6f2dfaa23c ""
   "/usr/local/texlive/2021/texmf.cnf" 1616695596 577 4c1911a7228e554c6032256d3cf5567d ""
-  "__latexindent_temp.aux" 1642345968 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
-  "__latexindent_temp.bbl" 0 -1 0 "biber __latexindent_temp"
-  "__latexindent_temp.tex" 1642345932 207464 90ab0bbfd06cce32803f5bf1833c4bd9 ""
+  "finance-788-research-essay.aux" 1642346455 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "finance-788-research-essay.bbl" 0 -1 0 "biber finance-788-research-essay"
+  "finance-788-research-essay.tex" 1642346449 209064 afca3ee7cef0f1a1417d97d3bf30058f ""
   (generated)
-  "__latexindent_temp.aux"
-  "__latexindent_temp.bcf"
-  "__latexindent_temp.lof"
-  "__latexindent_temp.log"
-  "__latexindent_temp.lot"
-  "__latexindent_temp.out"
-  "__latexindent_temp.pdf"
-  "__latexindent_temp.toc"
+  "finance-788-research-essay.aux"
+  "finance-788-research-essay.bcf"
+  "finance-788-research-essay.lof"
+  "finance-788-research-essay.log"
+  "finance-788-research-essay.lot"
+  "finance-788-research-essay.out"
+  "finance-788-research-essay.pdf"
+  "finance-788-research-essay.toc"

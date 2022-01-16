@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.12.31)  17 JAN 2022 04:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.12.31)  17 JAN 2022 04:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/submission/__latexindent_temp.tex"
-(/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/submission/__latexindent_temp.tex
+**"/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/submission/finance-788-research-essay.tex"
+(/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/submission/finance-788-research-essay.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2021-11-22> (/usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
@@ -1047,8 +1047,8 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 \@quotelevel=\count496
 \@quotereset=\count497
 Package translations Info: No language package found. I am going to use `english' as default language. on input line 104.
- (./__latexindent_temp.aux)
-\openout1 = `__latexindent_temp.aux'.
+ (./finance-788-research-essay.aux)
+\openout1 = `finance-788-research-essay.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 104.
 LaTeX Font Info:    ... okay on input line 104.
@@ -1103,12 +1103,12 @@ Package: xparse 2021-11-12 L3 Experimental document command parser
 )
 Package: blx-case-expl3 2020/12/31 v3.16 expl3 case changing code for biblatex
 )
-\openout3 = `__latexindent_temp.bcf'.
+\openout3 = `finance-788-research-essay.bcf'.
 
 Package biblatex Info: Trying to load bibliographic data...
-Package biblatex Info: ... file '__latexindent_temp.bbl' not found.
+Package biblatex Info: ... file 'finance-788-research-essay.bbl' not found.
 
-No file __latexindent_temp.bbl.
+No file finance-788-research-essay.bbl.
 Package biblatex Info: Reference section=0 on input line 104.
 Package biblatex Info: Reference segment=0 on input line 104.
 *geometry* driver: auto-detecting
@@ -1201,7 +1201,7 @@ LaTeX Info: Redefining \ref on input line 104.
 LaTeX Info: Redefining \pageref on input line 104.
 LaTeX Info: Redefining \nameref on input line 104.
 \@outlinefile=\write5
-\openout5 = `__latexindent_temp.out'.
+\openout5 = `finance-788-research-essay.out'.
 
 \docmute@nestinglevel=\count506
 \c@myequations=\count507
@@ -1215,13 +1215,13 @@ LaTeX Info: Redefining \nameref on input line 104.
 
 {/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [1] [2]
 \tf@toc=\write6
-\openout6 = `__latexindent_temp.toc'.
+\openout6 = `finance-788-research-essay.toc'.
 
 \tf@lof=\write7
-\openout7 = `__latexindent_temp.lof'.
+\openout7 = `finance-788-research-essay.lof'.
 
 \tf@lot=\write8
-\openout8 = `__latexindent_temp.lot'.
+\openout8 = `finance-788-research-essay.lot'.
 
  [3]pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
@@ -1532,11 +1532,11 @@ LaTeX Warning: Reference `data' on page 22 undefined on input line 598.
 
 [22] (/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-calculations-metrics.tex) [23])
 Runaway argument?
-{Asset Pricing Models Figures \ref {}, \ref {}, and \ref {} show esti\ETC.
+{Asset Pricing Models Figures \ref {mse-tf-apm}, \ref {mse-apm-cmse},\ETC.
 ! File ended while scanning use of \@xdblarg.
 <inserted text> 
                 \par 
-<*> .../reports/submission/__latexindent_temp.tex"
+<*> .../submission/finance-788-research-essay.tex"
                                                   
 I suspect you have forgotten a `}', causing me
 to read past where you wanted me to stop.
@@ -1544,17 +1544,17 @@ I'll try to recover; but if the error is serious,
 you'd better type `E' or `X' now and fix your file.
 
 ! Emergency stop.
-<*> .../reports/submission/__latexindent_temp.tex"
+<*> .../submission/finance-788-research-essay.tex"
                                                   
 *** (job aborted, no legal \end found)
 
  
 Here is how much of TeX's memory you used:
  38427 strings out of 478353
- 776441 string characters out of 5848085
- 1483163 words of memory out of 5000000
+ 776601 string characters out of 5848085
+ 1483187 words of memory out of 5000000
  55840 multiletter control sequences out of 15000+600000
  416309 words of font info for 75 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,12n,80p,868b,4823s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 84i,12n,80p,876b,4823s stack positions out of 5000i,500n,10000p,200000b,80000s
 !  ==> Fatal error occurred, no output PDF file produced!

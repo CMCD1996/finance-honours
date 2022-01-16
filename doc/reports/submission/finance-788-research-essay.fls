@@ -2,8 +2,8 @@ PWD /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/
 INPUT /usr/local/texlive/2021/texmf.cnf
 INPUT /usr/local/texlive/2021/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/submission/__latexindent_temp.tex
-OUTPUT __latexindent_temp.log
+INPUT /Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/submission/finance-788-research-essay.tex
+OUTPUT finance-788-research-essay.log
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls
@@ -1181,10 +1181,10 @@ INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/uniquecounter/uniquecounter
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/infwarerr/infwarerr.sty
-INPUT ./__latexindent_temp.aux
-INPUT __latexindent_temp.aux
-INPUT __latexindent_temp.aux
-OUTPUT __latexindent_temp.aux
+INPUT ./finance-788-research-essay.aux
+INPUT finance-788-research-essay.aux
+INPUT finance-788-research-essay.aux
+OUTPUT finance-788-research-essay.aux
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/biblatex-apa/english-apa.lbx
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/biblatex-apa/english-apa.lbx
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/biblatex-apa/english-apa.lbx
@@ -1229,7 +1229,7 @@ INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3kernel/expl3.sty
-OUTPUT __latexindent_temp.bcf
+OUTPUT finance-788-research-essay.bcf
 INPUT /usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -1304,8 +1304,8 @@ INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/gettitlestring/gettitlestri
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
-OUTPUT __latexindent_temp.out
-OUTPUT __latexindent_temp.pdf
+OUTPUT finance-788-research-essay.out
+OUTPUT finance-788-research-essay.pdf
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmcsc10.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmcsc10.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmcsc10.tfm
@@ -1317,9 +1317,9 @@ INPUT /usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
-OUTPUT __latexindent_temp.toc
-OUTPUT __latexindent_temp.lof
-OUTPUT __latexindent_temp.lot
+OUTPUT finance-788-research-essay.toc
+OUTPUT finance-788-research-essay.lof
+OUTPUT finance-788-research-essay.lot
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmr6.tfm
