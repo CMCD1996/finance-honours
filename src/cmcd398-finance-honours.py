@@ -181,6 +181,14 @@ def configure_training_ui(project, api_token):
 
 
 def set_gpus(manual_GPU_device_placement=False):
+    """ Set GPU configuration
+
+    Args:
+        manual_GPU_device_placement (bool, optional): Mnnual place CPU. Defaults to False.
+
+    Returns:
+        [sys]: GPU Device configuration
+    """
     gpu = tf.config.list_physical_devices('GPU')
     print(gpu)
     print('Tensorflow GPU: {}'.format(len(gpu)))
@@ -458,6 +466,11 @@ def resizing_dataframe(dataframe, resizing_options):
 
 
 def create_original_list_of_columns(dataframe):
+    """ Gets the original dataframe list
+
+    Args:
+        dataframe (df): Pandas dataframe
+    """
     new_columns = []
     list_of_columns = '/home/connormcdowall/finance-honours/data/178-factors.txt'
     file = open(list_of_columns, 'r')
@@ -632,6 +645,14 @@ def process_vm_dataset(data_vm_dta, size_of_chunks, resizing_options, save_stati
 
 
 def save_df_statistics(df, frame_set, statistics_location, data_location):
+    """ Save dataframe summary statistics
+
+    Args:
+        df (df): Dataframe
+        frame_set (str): name of frame
+        statistics_location (str): directory to store stats
+        data_location (str): directory to store file
+    """
     # Sets file paths
     description_file = statistics_location + '/' + frame_set + '-description.txt'
     information_file = statistics_location + '/' + frame_set + '-information.txt'
@@ -659,6 +680,15 @@ def save_df_statistics(df, frame_set, statistics_location, data_location):
 
 
 def convert_datetime_to_int(dataframe, column_name):
+    """Convert datetime formats to int
+
+    Args:
+        dataframe (df): Dataframe
+        column_name (str): column name to convert
+
+    Returns:
+        df: Updated dataframe
+    """
     # Creates new month column in dataframe
     dataframe[column_name] = int(
         str(dataframe[column_name].year) + str(dataframe[column_name].month))
@@ -667,6 +697,17 @@ def convert_datetime_to_int(dataframe, column_name):
 
 
 def create_fama_factor_models(model_name, selected_losses, factor_location, prediction_location, dependant_column, regression_dictionary, realised_returns=False):
+    """ Creates pricing models and regressions from predictions
+
+    Args:
+        model_name (Str): Name of run
+        selected_losses (Str): Name of loss function
+        factor_location (Str): Factors Directory location
+        prediction_location (Str): Prediction Directory location
+        dependant_column (Str): dependant variable
+        regression_dictionary (Str): Checks for regressions
+        realised_returns (bool, optional): use realised values. Defaults to False.
+    """
     # Note: uses permo and mth to create multiple index for panel regressions
     # permno is the permanent unique firm identifier
     # Reads in all the pandas dataframes
@@ -1118,6 +1159,14 @@ def sort_data_chronologically(data_directory, size_of_chunks, set_top_500=False)
 
 
 def convert_txt_to_tex(fp_in, fp_out, replace_text=False, replacement_text=None):
+    """Convert text files to latex format
+
+    Args:
+        fp_in (str): Path in
+        fp_out (str): Path out
+        replace_text (bool, optional): Replace text in file. Defaults to False.
+        replacement_text ([type], optional): Text to replace. Defaults to None.
+    """
     texdoc = []  # a list of string representing the latex document in python
     # Set base directory
     with open(fp_in, 'r') as fin:
@@ -1160,6 +1209,15 @@ def convert_txt_to_tex(fp_in, fp_out, replace_text=False, replacement_text=None)
 
 
 def execute_conversion_options(model_name, selected_losses, hp_ols=False, pooled_ols=False, true_excess_returns=False):
+    """Do all the text to tex conversion.
+
+    Args:
+        model_name (Str): 
+        selected_losses ([type]): [description]
+        hp_ols (bool, optional): Do HP OLS. Defaults to False.
+        pooled_ols (bool, optional): Do pooled OLS. Defaults to False.
+        true_excess_returns (bool, optional): Do realised OLS. Defaults to False.
+    """
     base_directory_in = '/home/connormcdowall/finance-honours/results/tables/'
     base_directory_out = '/home/connormcdowall/finance-honours/results/tex/'
     factor_models = ['capm', 'ff3', 'ff4', 'ff5']
@@ -1215,6 +1273,11 @@ def execute_conversion_options(model_name, selected_losses, hp_ols=False, pooled
 
 
 def download_test_data():
+    """Download test data
+
+    Returns:
+        [list]]: List of different dataframes
+    """
     dataset_url = 'http://storage.googleapis.com/download.tensorflow.org/data/petfinder-mini.zip'
     csv_file = 'datasets/petfinder-mini/petfinder-mini.csv'
     tf.keras.utils.get_file('petfinder_mini.zip', dataset_url,
@@ -1261,11 +1324,11 @@ def shuffle_columns(df, column_name):
     """Shuffles columns to front of the dataframe
 
     Args:
-        df ([type]): [description]
-        column_name ([type]): [description]
+        df (df): Dataframe
+        column_name (Str): Column name
 
     Returns:
-        [type]: [description]
+        [df]: Dataframe
     """
     column_to_insert = df[column_name]
     df.drop(labels=[column_name], axis=1, inplace=True)
@@ -1283,7 +1346,7 @@ def create_tf_dataset(dataframe, target_column, shuffle=True, batch_size=32):
         batch_size (int, optional): Sets batch size. Defaults to 32.
 
     Returns:
-        [type]: [description]
+        [ds]: Tensorflow dataset
     """
     df = dataframe.copy()
     print('Dataframe Before')
@@ -1310,6 +1373,15 @@ def create_tf_dataset(dataframe, target_column, shuffle=True, batch_size=32):
 
 
 def get_normalization_layer(name, dataset):
+    """Get normalisation error
+
+    Args:
+        name ([type]): [description]
+        dataset ([type]): [description]
+
+    Returns:
+        [type]: [description]
+    """
     # Create a Normalization layer for the feature.
     # Layer Normalization normalizes each feature of the activations
     # to zero mean and unit variance.

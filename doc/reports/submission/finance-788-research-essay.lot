@@ -1,25 +1,23 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {1}{\ignorespaces Summary of Main Findings\relax }}{17}{table.caption.11}%
+\contentsline {table}{\numberline {1}{\ignorespaces Summary of Main Findings\relax }}{17}{table.caption.8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {2}{\ignorespaces Training and validation losses\relax }}{19}{table.caption.12}%
+\contentsline {table}{\numberline {2}{\ignorespaces Training and validation losses\relax }}{19}{table.caption.9}%
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {3}{\ignorespaces Realised One Month Lead Excess Returns regressed on Predicted One Month Lead Excess Returns\relax }}{23}{table.caption.15}%
+\contentsline {table}{\numberline {3}{\ignorespaces Realised One Month Lead Excess Returns regressed on Predicted One Month Lead Excess Returns\relax }}{23}{table.caption.12}%
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {4}{\ignorespaces Performance Measures\relax }}{24}{table.caption.16}%
+\contentsline {table}{\numberline {4}{\ignorespaces Performance Measures\relax }}{24}{table.caption.13}%
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {5}{\ignorespaces Mean Square Error Loss Function: Asset Pricing Models\relax }}{26}{table.caption.17}%
+\contentsline {table}{\numberline {5}{\ignorespaces Mean Square Error Loss Function: Asset Pricing Models\relax }}{26}{table.caption.14}%
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {6}{\ignorespaces MSE (Custom) Loss Function: Asset Pricing Models\relax }}{27}{table.caption.18}%
+\contentsline {table}{\numberline {6}{\ignorespaces MSE (Custom) Loss Function: Asset Pricing Models\relax }}{27}{table.caption.15}%
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {7}{\ignorespaces Hedge Portfolio Loss Function: Asset Pricing Models\relax }}{28}{table.caption.19}%
+\contentsline {table}{\numberline {7}{\ignorespaces Hedge Portfolio Loss Function: Asset Pricing Models\relax }}{28}{table.caption.16}%
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {8}{\ignorespaces Hedge Portfolio: Realised One Month Lead Excess Returns\relax }}{47}{table.caption.82}%
+\contentsline {table}{\numberline {8}{\ignorespaces Complete Global Factor Dataset Summary Statistics\relax }}{64}{table.8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {9}{\ignorespaces Complete Global Factor Dataset Summary Statistics\relax }}{64}{table.9}%
+\contentsline {table}{\numberline {9}{\ignorespaces Revised Global Factor Dataset Summary Statistics: Training Set\relax }}{70}{table.9}%
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {10}{\ignorespaces Revised Global Factor Dataset Summary Statistics: Training Set\relax }}{70}{table.10}%
+\contentsline {table}{\numberline {10}{\ignorespaces Revised Global Factor Dataset Summary Statistics: Validation Set\relax }}{76}{table.10}%
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {11}{\ignorespaces Revised Global Factor Dataset Summary Statistics: Validation Set\relax }}{76}{table.11}%
-\defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {12}{\ignorespaces Revised Global Factor Dataset Summary Statistics: Testing Set\relax }}{82}{table.12}%
+\contentsline {table}{\numberline {11}{\ignorespaces Revised Global Factor Dataset Summary Statistics: Testing Set\relax }}{82}{table.11}%

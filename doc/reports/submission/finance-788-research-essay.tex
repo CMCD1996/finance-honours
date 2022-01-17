@@ -128,7 +128,7 @@
 	
 	\HRule\\[0.5cm]
 	
-	{\huge\bfseries Finance 788: Research Essay}\\[0.4cm] % Title of your document
+	{\huge\bfseries Direct Hedge Portfolio Excess Return Maximisation using Deep Neural Networks}\\[0.4cm] % Title of your document
 	
 	\HRule\\[0.5cm]
 	
@@ -155,13 +155,36 @@
 \section*{Acknowledgements}
 \begin{center}
 	\textbf{Dr Paul Geertsema}\\
-	\textbf{Professor Henk Berkman}
+	Paul, for the constant support during the research project.
+	After some reflection, it has been quite a journey since from our first whiteboard session deriving mathematical expressions for training and validation losses.
+	We persevered through the pandemic, lockdowns, extensions, and programming compilation issues to finish this essay.
+	Although it didn't turn out as expected, it was an incredibly technical, difficult,
+	and intellectually stimulating piece of research. 
+	Thank you for the office chats, zoom conferences, resources, and last minute phone calls.
+	It has been a herculean effort, but one worth every success, new skill, late night, and failing.
+	\\
+	\textbf{Professor Henk Berkman}\\
+	Henk, for the intellectually stimulating conversations; discussions on academic literature, non-fiction, and classic fiction; 
+	office chats on corporate governance, boards, and corporate finance; and calm guidance through the tumultuous, academic world of finance. 
+	Finally, I must commend your match making abilities in making introductions.
+	The chemistry is electric between myself and Fama, French, Jensen, Black, Scholes, Merton, Sharpe, and of course, et al. 
+	Their work will feature prominently on my bookshelf for years to come.
+	
 \end{center}
 \newpage
 \section*{Abstract}
-\begin{center}
-	
-\end{center}
+	The publication by Gu et al. (\citeyear{eapvml}) illustrates the improvement to empirical asset pricing via machine learning.
+	Machine learning algorithms capture non-linear associations between factors not feasible by other asset pricing method.
+	Non-linear associations may exist in constructing hedge portfolios absent when predicting excess returns from individual equities.
+	Subsequently, we ask can neural networks configured to maximise hedge portfolios outperform standard loss minimisation configurations,
+	when predicting one month lead excess returns using a long-short zero cost investment strategy?
+	The data used is factor portfolio dataset from Hou et al. (\citeyear{hou2020replicating}), developed by Jensen et al. (\citeyear{jensen2021there}) with
+	training, testing, and validation sets of 532218, 294581, and 531461 global equity firm-year observations across 160 features,
+	chronological divided between 1961-1989, 1990-1999, and 2000-2020, respectively.
+	The maximisation function is a non-convex function seeking to maximise hedge portfolio returns, with hedge portfolio weights determined by a monotonic ranking function mapping.
+	The selected mapping weights individual equities by the proportion of their contributions to aggregate returns of all equities in a given month, considering all equities in the portfolio.
+	After model training and evaluation, the trained models are accruate, but do not outperform models trained using conventional loss minimisation functions. 
+	However, limitations render the research question inconclusive at this time.
 \newpage
 \tableofcontents
 \listoffigures
@@ -212,7 +235,7 @@ Researchers sporadically investigated utilising machine learning in financial co
 Rapach et al. (\citeyear{rapach2013international}) predict global equity market returns using lagged returns, of all countries, with a lasso algorithm.
 Multiple academics explore forecasting derivative prices using neural networks (\cite{fleck1994strain}, \cite{cai2000functional}).
 Regression trees predict consumer credit card delinquencies and defaults (\cite{khandani2010consumer}, \cite{butaru2016risk}).
-Predicting mortgage risk through neural networks (\cite{sirignano2016deep}).
+Predicting mortgage risk with neural networks (\cite{sirignano2016deep}).
 Revise the multiple comparisons problem using bootstrap procedures (\cite{harvey2016and}).
 Factor pricing estimations using dimensionality reduction (\cite{feng2020taming}).
 Application of tree-based models to portfolio sorts (\cite{moritz2016tree}).
@@ -282,7 +305,7 @@ assess the relative performance between loss functions.
 Factors in month t predict the excess returns in month t + 1 (e.g., one month lead excess return). 
 The exhaustive nature and accessibility of the global dataset makes it well-suited for exploring maximising monthly hedge portfolio excess returns in deep neural-networks.
 
-\subsubsection*{Processing} \label{data-processing}
+\subsubsection{Processing} \label{data-processing}
 Neural networks demand the partitioning of the dataset into training, validation, and testing subsets.
 The initial training, testing, and validation sets consist of \textbf{1031516}, \textbf{706908}, and \textbf{1001504} global equity firm-year observations across 406 features, respectively.
 The division of subsets is chronological with firm-year observations [1961-1990), [1990-2000), [2000-2020] for training, validation, and testing, respectively.
@@ -297,7 +320,7 @@ The training, testing, and validation sets consist of \textbf{532218}, \textbf{2
 Subsequently, the revised dataset has 217,321,600 data points.
 Tables \ref{table:ss-train}, \ref{table:ss-test}, and \ref{table:ss-val} in section \ref{dss:ss} describe summary statistics and factor retention after subset revision. 
 
-\subsubsection*{Cloud Infrastructure}
+\subsubsection{Cloud Infrastructure}
 Cloud-centric computational infrastructure performs data processing and analysis.
 Google Cloud Platform Cloud Storage buckets and Compute Engine virtual machine (VM) instances manage large datasets and build, train, and evaluate deep neural networks, respectively.
 Cryptographic network protocols, mostly secure shells, establish remote connectivity between local and remote infrastructure to communicate and execute commands.
@@ -308,7 +331,7 @@ the ability to shuffle training sets at lengths greater than or equal to the inp
 However, the reasons necessitating factor reduction and size grouping exclusion stated in section \ref{data-processing} superseed resource constraints.}
 Section \ref{technical} elaborates on cloud infrastructure and further technologies.
 
-\subsection{Neural Networks}
+\subsection{Tensor Processing}
 \subsubsection{Normalisation \& Feature Encoding}
 Deep neural networks require tensors as inputs for fitting, training, and evaluating data.
 A tensor is a mathematical object describing the physical properties of an object with multilinear relationships between sets of algebraic objects related in vector space.
@@ -342,13 +365,13 @@ The revised datasets consist of eight categorical features
 \textbf{ff49}, Classification of stocks in 49 industry groups, based on SIC codes and the methodology in F.Fama \& K.French \citeyear{fama1997industry}, with the addition of the software industry.
 \textbf{adjfct}, Share Adjustment Factor}
 and 152 numerical features.
-\subsection{Architecture} \label{nn-architecture}
+\subsection{Neural Networks} \label{nn-architecture}
 \subsubsection{Activation Functions, Linear Threshold Units, \& Perceptrons}\label{mlp-math}
 Artificial Neural Nets (ANN) frequently outperform other machine learning algorithms on large and complex problems.
 Linear threshold units (LTU) compose neural networks, feeding the weighted sum of input values (\ref{w-sum}) into an activation (step) function (\ref{activation-function}).
 A perceptron is a single layer of LTUs connected to every input, suitable for both regression and classification tasks.
 Perceptrons utilise a training algorithm to assess the strength of connections between perceptrons in consideration of errors.
-A perceptron is fed one training instance sequentially, making predictions for each instance.
+A perceptron feeds one training instance sequentially, making predictions for each instance.
 For every output LTU that produced a wrong prediction, it re-enforces the connection weights using the perception learning rule (\ref{mlp-plr}) from the inputs that would have contributed to the right prediction.
 One input perceptron, multiple hidden perceptrons, and an output perceptron create a Multi Layer Perceptron (MLP).
 A non-linear activation function \footnote{\href{https://towardsdatascience.com/7-popular-activation-functions-you-should-know-in-deep-learning-and-how-to-use-them-with-keras-and-27b4d838dfe6}{There are several activation functions, each with different strengths and weaknesses}} (i.e.,Logistic (\ref{logistic-activation-function}), Rectified Linear Unit (ReLU) (\ref{relu-activation-function})) replaces the step functions for an LTU, in each perceptron, in an MLP.
@@ -392,7 +415,7 @@ A shared activation function replaces the individual activation functions in the
 	\item $\eta$: Learning rate.
 \end{itemize}
 \doublespacing
-\subsubsection*{Model Configuration} \label{network-configuration}
+\subsubsection{Model Configuration} \label{network-configuration}
 Figure \ref{fig:neural-network} visualises a standard neural network topography
 \begin{figure}[H]
     \centering
@@ -987,8 +1010,6 @@ $\mathop{\mathbb{E}} [R_a - R_f]$ is the excess return on the market. $\beta_{M}
 	\text{Treynor} &= \mathop{\mathbb{E}} \frac{[R_a - R_b]}{\beta_{M}} \numberthis \label{tr}\\
 \end{align*}
 \newpage
-\subsection{Hedge Portfolio: Realised One Month Excess Returns}
-\input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-actual}.tex}
 \subsection{Technical Details}\label{technical}
 \subsubsection{Organisation}
 This research essay uses data science best practise (\cite{J:10}).
