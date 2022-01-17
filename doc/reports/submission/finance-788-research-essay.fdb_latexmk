@@ -1,13 +1,13 @@
 # Fdb version 3
-["biber finance-788-research-essay"] 1642373125 "finance-788-research-essay.bcf" "finance-788-research-essay.bbl" "finance-788-research-essay" 1642374175
-  "finance-788-research-essay.bcf" 1642374174 126119 ff9787755a94cdc574569382e4637552 "pdflatex"
+["biber finance-788-research-essay"] 1642382266 "finance-788-research-essay.bcf" "finance-788-research-essay.bbl" "finance-788-research-essay" 1642382573
+  "finance-788-research-essay.bcf" 1642382572 126385 f72856949757d201f5bb74c1ecdc0c8a "pdflatex"
   "finance-honours.bib" 1642314424 18584 01f3bb09b3f129a8638f181f835ef5cc ""
   (generated)
   "finance-788-research-essay.bbl"
   "finance-788-research-essay.blg"
-["pdflatex"] 1642374166 "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/submission/finance-788-research-essay.tex" "finance-788-research-essay.pdf" "finance-788-research-essay" 1642374175
+["pdflatex"] 1642382567 "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/submission/finance-788-research-essay.tex" "finance-788-research-essay.pdf" "finance-788-research-essay" 1642382573
   "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/images/neural-network.png" 1641855127 598293 fa6ca47736b16b1c972221539611baac ""
-  "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/submission/finance-788-research-essay.tex" 1642374154 213905 489f642c4af3fea52269e18666e3adb1 ""
+  "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/doc/reports/submission/finance-788-research-essay.tex" 1642382567 214194 f35d9b561aa605a48b41e07fa9e1417c ""
   "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/custom-hp-learning-curve.png" 1642159939 57467 ca674c5950b90446b7da6c01beda7ecb ""
   "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/custom-hp.png" 1642159932 192716 b39c1028e8d6482ef508b351a4b6a7e2 ""
   "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/model-performance/custom-mse-learning-curve.png" 1642158856 50061 95f8bec2937dfb0a8b90c194078a9cfc ""
@@ -17,8 +17,10 @@
   "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/plots/monotonic-ranking.png" 1640910140 26495 77684b5b8c4e19316f9961e37d54caaf ""
   "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-actual.tex" 1642345314 1943 18c6fffb32923b127c5a259227808aa9 ""
   "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-calculations-metrics.tex" 1642345028 587 1a9ca157913b013ab42c4b86e1d16de6 ""
+  "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-conclusion.tex" 1642382567 2420 f0e78d01c118953fb67b998b9c2f5e26 ""
   "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_hp.tex" 1642346027 4461 636c3804d16af70a8ffbdfb18f14802e ""
   "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom_mse.tex" 1642346042 4549 62ece862b71804611a8e1c82f2441202 ""
+  "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-introduction.tex" 1642381526 9378 2537c5cfaf3202c8cc21ab90034f9cbd ""
   "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-main-findings.tex" 1642340777 1397 ce281226b29bfb0c00f01d1965415498 ""
   "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-mean_squared_error.tex" 1642343814 4502 5b4a7362102b9b6ddd6b38978b6a7963 ""
   "/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-regression-metrics.tex" 1642339458 3034 4f166e0f874723dce743aa4d5e8ce067 ""
@@ -263,14 +265,14 @@
   "/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1640947762 4374891 c8eaa50db59648610d53abf3959a7b8a ""
   "/usr/local/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1640947902 2820137 8a01174d86c6355935f4bd6f2dfaa23c ""
   "/usr/local/texlive/2021/texmf.cnf" 1616695596 577 4c1911a7228e554c6032256d3cf5567d ""
-  "finance-788-research-essay.aux" 1642374174 34770 01fc4a0bbb58292a02bdf481628cadbc "pdflatex"
-  "finance-788-research-essay.bbl" 1642373127 62887 9cfda5fd402cd08e9f83159df0692f04 "biber finance-788-research-essay"
-  "finance-788-research-essay.lof" 1642374174 1644 32f269ae5bf66139497f044591877e63 "pdflatex"
-  "finance-788-research-essay.lot" 1642374174 2122 d7134cd478062619d77aa941b2ea4851 "pdflatex"
-  "finance-788-research-essay.out" 1642374174 11644 5eb1503c89fc6afbbe6a00e7fba06953 "pdflatex"
-  "finance-788-research-essay.run.xml" 1642374174 2586 43bd152b2b4d01e4708421212f746791 "pdflatex"
-  "finance-788-research-essay.tex" 1642374154 213905 489f642c4af3fea52269e18666e3adb1 ""
-  "finance-788-research-essay.toc" 1642374174 9093 2dda971b2c20d7773930b3874da9b0e3 "pdflatex"
+  "finance-788-research-essay.aux" 1642382572 35429 f0b51f9bf1a740efba0f0a50c6778338 "pdflatex"
+  "finance-788-research-essay.bbl" 1642382269 62887 9cfda5fd402cd08e9f83159df0692f04 "biber finance-788-research-essay"
+  "finance-788-research-essay.lof" 1642382572 1644 e0dec315be1103c036c974a1657d777b "pdflatex"
+  "finance-788-research-essay.lot" 1642382572 2122 e81698686210594edc012ee8698208e5 "pdflatex"
+  "finance-788-research-essay.out" 1642382572 11644 5eb1503c89fc6afbbe6a00e7fba06953 "pdflatex"
+  "finance-788-research-essay.run.xml" 1642382572 2586 43bd152b2b4d01e4708421212f746791 "pdflatex"
+  "finance-788-research-essay.tex" 1642382567 214194 f35d9b561aa605a48b41e07fa9e1417c ""
+  "finance-788-research-essay.toc" 1642382572 9097 d9e134e5d479b317650b3d092b18b319 "pdflatex"
   (generated)
   "finance-788-research-essay.aux"
   "finance-788-research-essay.bcf"

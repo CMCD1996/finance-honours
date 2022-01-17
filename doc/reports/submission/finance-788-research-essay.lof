@@ -1,21 +1,21 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {1}{\ignorespaces Standard Neural Network Topography (Source: IBM)\relax }}{10}{figure.caption.9}%
+\contentsline {figure}{\numberline {1}{\ignorespaces Standard Neural Network Topography (Source: IBM)\relax }}{13}{figure.caption.9}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {2}{\ignorespaces Neural Network Configuration\relax }}{11}{figure.caption.10}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Neural Network Configuration\relax }}{14}{figure.caption.10}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {3}{\ignorespaces Hedge Portfolio Learning Curves\relax }}{17}{figure.caption.13}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Hedge Portfolio Learning Curves\relax }}{20}{figure.caption.13}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4}{\ignorespaces Learning Curves\relax }}{18}{figure.caption.14}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Learning Curves\relax }}{21}{figure.caption.14}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {In-Built Mean Square Error Learning curve}}}{18}{subfigure.4.1}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {In-Built Mean Square Error Learning curve}}}{21}{subfigure.4.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Custom MSE}}}{18}{subfigure.4.2}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Custom MSE}}}{21}{subfigure.4.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5}{\ignorespaces Approximate Linear Monotonic Ranking Function\relax }}{33}{figure.caption.24}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Approximate Linear Monotonic Ranking Function\relax }}{36}{figure.caption.24}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {6}{\ignorespaces Performance: In-Built Mean Square Error\relax }}{38}{figure.caption.65}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Performance: In-Built Mean Square Error\relax }}{41}{figure.caption.65}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {7}{\ignorespaces Performance: Custom Mean Square Error\relax }}{39}{figure.caption.66}%
+\contentsline {figure}{\numberline {7}{\ignorespaces Performance: Custom Mean Square Error\relax }}{42}{figure.caption.66}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {8}{\ignorespaces Performance: Custom Hedge Portfolio\relax }}{40}{figure.caption.67}%
+\contentsline {figure}{\numberline {8}{\ignorespaces Performance: Custom Hedge Portfolio\relax }}{43}{figure.caption.67}%
