@@ -165,9 +165,9 @@
 \newpage 
 \pagenumbering{arabic} 
 \section{Introduction}
-\subsection{[Placeholder I]}
-\newpage
-\subsection{[Placeholder II]}
+Factor-based models feature prominently in finance literature, in forms of cross-sectional analysis on expected returns as a function of stock level characters.
+Another form is the surveillance of return time-series.
+However, limitations exist for both traditional methods in consideration a large set of characteristics or periods.
 \newpage
 \section{Literature}\label{LR}
 \subsection{Asset Pricing}
@@ -176,34 +176,38 @@ First, cross-sectional analysis on expected returns as a function of stock level
 Second, surveillance of return time-series (\cite{koijen2011predictability},\cite{rapach2013forecasting}).
 Factor-based models feature prominently in finance literature.
 Most models are derivative of the Capital Asset Pricing Model (CAPM), assessing exposure to systematic risk.
-Use persist, regardless of the invalidation from identifiable shortcomings in market proxies and empirical failings invalidating use (\cite{fama2004capital}). E. Fama and K. French (\citeyear{eugene1992cross}) validate the substantial explanatory power of size and value (book-to-market) factors
+Use persists, regardless of the invalidation from identifiable shortcomings in market proxies and empirical failings (\cite{fama2004capital}). 
+E. Fama and K. French (\citeyear{eugene1992cross}) validate the substantial explanatory power of size and value (book-to-market) factors
 in their ability to capture the cross-sectional variation in average stock returns, in association with market risk, size, leverage, book-to-market, and earnings-price ratios.
 Size and value factors continue feature in factor models.
 E. Fama and K. French further their analysis on the common characteristics between stocks and bonds (\cite{fama2021common})\footnote{Reprinted. Originally published in 1993}, 
 and add two additional factors to consider profitability and investment.
 E. Fama and K. French consider a momentum factor on international stock returns in subsequent years (\cite{fama2012size}).
-The omission of momentum from models stand. E. Fama, with J. MacBeth, developed the Fama-MacBeth regression (\cite{fama1973risk}) to estimate factor loadings and prices.
+The omission of momentum from models stand. 
+E. Fama, with J. MacBeth, developed the Fama-MacBeth regression (\cite{fama1973risk}) to estimate factor loadings and prices.
 The methodology is a two-stage estimation process, similar for estimating factor loadings, and prices, for a given portfolio.
 The first step requires determining each asset's $\beta$ exposures by regressing each of n asset returns against m proposed \ref{fb1}.
 The second step determines the risk premium (factor pricing) for each asset by regressing all asset returns for each of T periods against previously estimated $\beta$s (\ref{fb2}).
-This methodology enables the estimation of unconventional factors e.g. seasonalities in mood (\cite{hirshleifer2020mood}) and carbon risk (\cite{bolton2021investors}).
-However, limitations exist for both traditional methods when considering a large number of characteristics or periods.
+This methodology enables the estimation of unconventional factors e.g. seasonalities in mood (\cite{hirshleifer2020mood}), carbon risk (\cite{bolton2021investors}) etc.
+However, limitations exist for both traditional methods in consideration a large set of characteristics or periods.
 \subsection{Machine Learning in Finance}
-Proliferating data, advancement in computing, and accessibility to technology
+Proliferating data, advancement in computing, and accessibility to technology led to a wide adoption of artificial intelligence and machine learning.
 The pivotal publication by Gu et al (\citeyear{eapvml}) illustrates the improvement to empirical asset pricing via machine learning.
 In summary,
+\singlespacing
 \begin{enumerate}
 	\item Machine learning shows great promise for empirical asset pricing,
-	\item Vast predictor sets are viable for linear prediction when either penalisation or dimension reduction is used.
+	\item Vast predictor sets are viable for linear prediction when using either penalisation or dimension reduction.
 	\item Allowing for non-linearities substantially improves predictions.
 	\item Shallow learning outperforms deeper learning. In particular, neural network performance peaks at three layers.
 	\item The distance between non-linear methods and the benchmark widens when predicting portfolio returns.
-	\item The economic gains from machine learning are large
-	\item The most successful predictors are price trends, volatility, and liquidity
-	\item Simulations improve machine learning findings
+	\item The economic gains from machine learning are large.
+	\item The most successful predictors are price trends, volatility, and liquidity.
+	\item Simulations improve machine learning findings.
 \end{enumerate}
-Researchers sporadically contributed publications investigating the utilisation of machine learning financial contexts.
-Rapach et al. (\citeyear{rapach2013international}) predict global equity market returns using lagged returns of, all countries, with a lasso algorithm.
+\doublespacing
+Researchers sporadically investigated utilising machine learning in financial contexts.
+Rapach et al. (\citeyear{rapach2013international}) predict global equity market returns using lagged returns, of all countries, with a lasso algorithm.
 Multiple academics explore forecasting derivative prices using neural networks (\cite{fleck1994strain}, \cite{cai2000functional}).
 Regression trees predict consumer credit card delinquencies and defaults (\cite{khandani2010consumer}, \cite{butaru2016risk}).
 Predicting mortgage risk through neural networks (\cite{sirignano2016deep}).
@@ -213,19 +217,17 @@ Application of tree-based models to portfolio sorts (\cite{moritz2016tree}).
 Measuring corporate culture using natural language processing (\cite{corporate-culture}).
 However, interpretability issues persist given the nature, opacity, and complexity of underlying algorithms and associations.
 Fortunately, acceptance continues to improve, with highly reputable journals e.g.,
-The Journal of Finance, The Review of Financial Studies etc. are publishing literature articles intersecting finance and machine learning with increasing frequency.
+The Journal of Finance, The Review of Financial Studies etc. are publishing intersections between finance and machine learning with increasing frequency.
 Data science in finance continues to evolve in academic and industry-related uses.
 \subsection{Loss Functions}
 Most machine learning applications in equity return predictions, and finance in general, use a traditional loss function.
-A subset of related literature considers customized loss functions.
-Gu et al. (\citeyear{eapvml}) test various functions including mean squared error (MSE) (weighted and unweighted), and huber loss mixing MSE and mean absolute error (MAE).
+A subset of related literature considers customised loss functions.
+Gu et al. (\citeyear{eapvml}) test various functions including mean squared error (MSE) (weighted and unweighted), and huber loss functions mixing MSE and mean absolute error (MAE).
 Lim et al. (\citeyear{lim2019enhancing}) investigate enhancing time-series momentum strategies using neural networks with MSE loss functions enriched with a Sharpe ratio-based regulation.
 Zhou et al. (\citeyear{zhou2018stock}) assess a combination of forecasting error loss and MSE when predicting stock market prices on high-frequency data.
 However, the subset of custom loss functions for predicting stock returns is small.
 There is an investigation into the minimisation of hedging loss in options trading strategies (\cite{ruf2021hedging})
 Reinforcement learning methods attempt to optimise financial portfolios after dimensionality reduction but do not apply maximisation in consideration of an aggregate hedge portfolio (\cite{soleymani2020financial}).
-In conclusion, the inclusion of a hedge portfolio maximsation strategy in predicted excess returns derivative of hedge portfolio excess returns is novel at present.
-\newpage
 \section{Motivation}
 \subsection{Research Question}
 Our main motivation roots itself in economic significance.
@@ -234,37 +236,39 @@ The model learns factor contributions to the targets during the training process
 Subsequently, the model makes predictions on unlabelled instances to estimate labels.
 In financial contexts, asset pricing factors and excess returns are factors and targets, respectively.
 Trading strategies rely on hedge portfolios to diversify idiosyncratic risk and maximise returns.
-Hedge portfolio excess returns are derivative of the excess returns for individuals.
-Subsequently, investors interests lie in maximise the returns from their hedging strategies.
+Hedge portfolio excess returns are derivative of the individual equity excess returns.
+Subsequently, investors' interests lie in maximising the hedge portfolio excess returns from their hedging strategies.
 Machine learning algorithms capture non-linear associations between factors not feasible by other asset pricing method.
 Non-linear associations may exist in constructing hedge portfolios absent when predicting excess returns from individual equities.
+The inclusion of a hedge portfolio maximisation strategy to directly maximise hedge portfolio excess returns is novel at time of writing.
 Subsequently, we ask:
 \begin{center}
 	\textbf{Can neural networks configured to maximise hedge portfolios outperform standard loss minimisation configurations,
 	when predicting one month lead excess returns using a long-short zero cost investment strategy?}
 \end{center}
 \subsection{Hypotheses}
-Two hypotheses relate to the above question:
 \singlespacing
 \begin{enumerate}
 	\item It is feasible to implement maximisation strategies in machine learning algorithms given $\argmax{f(x)}=\argmin{-f(x)}$
 	\item A hedge portfolio maximisation strategy will not outperform loss minimisation strategies given model architecture.
 \end{enumerate}
 \doublespacing
-Our analysis aims to prove and disprove hypothesis one and two, respectively.
+Both relate to the research question. Hypothesis one is elementary.
+Neural networks are optimised for loss minimisation objective. A maximisation criteria, with no reference to a realisation, may create complications in hypothesis two.
+Subsequently, our analysis aims to prove and disprove hypothesis one and two, respectively.
 \newpage
 \section{Methodology}
 A comprehensive outline of the methodology follows.
 \subsection{Data}\label{data}
-\subsubsection*{Global Factors Dataset}
+\subsubsection{Global Factors Dataset}
 Hou et al., (\citeyear{hou2020replicating}) use an extensive data library to assess 452 anomalies across anomalies literature.
-Their analysis informs which abnormalities drive the cross-section of expected returns. 
+Their analysis informs which anomalies drive the cross-section of expected returns. 
 Most abnormalities fail under current standards of empirical finance when using a single hurdle test of absolute t-stat greater or equal to 1.96.
 Firstly, the paper finds economic fundamentals take precedence over trading frictions in explanatory power, statistical and economic significance.
 Secondly, micro-caps account for anomalies disproportionately, leading to NYSE breakpoints, value-weighted returns in both portfolio sorts and cross-sectional regressions with weighted least squares. 
 Lastly, arguments in improving anomalies literature credibility follow a closer alignment to economic theory as the field persists to be statistical in nature.
 Overall, capital market efficiency is higher than expected.
-Jensen et al., \citeyear{jensen2021there} use the above dataset to explore hierarchical bayesian models of alphas emphasising the joint behaviours of factors, 
+Jensen et al. \citeyear{jensen2021there} use the above dataset to explore hierarchical bayesian models of alphas emphasising the joint behaviours of factors, 
 and provide an alternative multiple testing adjustment, more powerful than common methods.
 Jensen et al., adapt the global dataset to focus only on one-month holding periods for all factors, only include most recent accounting data (quarterly or annually) and add 15 new factors.
 Section \ref{dss} describes factor composition, resources for data acquisition, and summary statistics.
@@ -292,7 +296,7 @@ Subsequently, the revised dataset has 217,321,600 data points.
 Tables \ref{table:ss-train}, \ref{table:ss-test}, and \ref{table:ss-val} in section \ref{dss:ss} describe summary statistics and factor retention after subset revision. 
 
 \subsubsection*{Cloud Infrastructure}
-Cloud-centric computational products execute data processing and analysis.
+Cloud-centric computational infrastructure performs data processing and analysis.
 Google Cloud Platform Cloud Storage buckets and Compute Engine virtual machine (VM) instances manage large datasets and build, train, and evaluate deep neural networks, respectively.
 Cryptographic network protocols, mostly secure shells, establish remote connectivity between local and remote infrastructure to communicate and execute commands.
 However, use of cloud computing does not resolve all resource constraints. 
@@ -300,10 +304,10 @@ However, use of cloud computing does not resolve all resource constraints.
 The most material inhibitions are the inability to explore all 406 factors for all size groupings, the reduction in level of precision for numerical features, and
 the ability to shuffle training sets at lengths greater than or equal to the input sets when training neural networks.
 However, the reasons necessitating factor reduction and size grouping exclusion stated in section \ref{data-processing} superseed resource constraints.}
-Section \ref{technical} elaborates on cloud centric computational approaches and further technologies.
+Section \ref{technical} elaborates on cloud infrastructure and further technologies.
 
 \subsection{Neural Networks}
-\subsubsection*{Normalisation \& Feature Encoding}
+\subsubsection{Normalisation \& Feature Encoding}
 Deep neural networks require tensors as inputs for fitting, training, and evaluating data.
 A tensor is a mathematical object describing the physical properties of an object with multilinear relationships between sets of algebraic objects related in vector space.
 Furthermore, transformation laws govern tensors. 
@@ -313,14 +317,14 @@ The enumeration of a tensor conversion process for each data subset follows:
 \singlespacing
 \begin{enumerate} 
 \item Identify target variable(s) for fitting, validation, and prediction.
-\item Configure dataset into a series of tensor slices
-\item Shuffle instances in convert dataset to promotes better training as accommodates randomness
-\item Instantiate an input tensor layer and use to extract required normalisation or encoding layer per feature \label{step-i}
+\item Configure dataset into a series of tensor slices.
+\item Shuffle instances in convert dataset to promotes better training as accommodates randomness.
+\item Instantiate an input tensor layer and use to extract required normalisation or encoding layer per feature \label{step-i}.
 \item Normalise each numerical feature to zero mean/unit variance, and encode 
 \footnote{Encoding transforms categorical features instances into a series of binary variables.
 These may be one-hot encoded, and/or stored in sparse tensors, depending on input and desired application.} 
-each categorical feature, using encoding layers to form encoded features
-\item Combine instantiated input tensors (\ref{step-i}) into a set of inputs tensors, serving as the inputs fro a configured neural network
+each categorical feature, using encoding layers to form encoded features.
+\item Combine instantiated input tensors (\ref{step-i}) into one set, serving as the inputs for a configured neural network.
 \item Concatenate all encoded features into an aggregate input tensor for an unconfigured neural network. 
 The concatenation serves as the input layer when configuring a neural network.
 \end{enumerate}
@@ -337,7 +341,7 @@ The revised datasets consist of eight categorical features
 \textbf{adjfct}, Share Adjustment Factor}
 and 152 numerical features.
 \subsection{Architecture} \label{nn-architecture}
-\subsubsection*{Activation Functions, Linear Threshold Units, \& Perceptrons}\label{mlp-math}
+\subsubsection{Activation Functions, Linear Threshold Units, \& Perceptrons}\label{mlp-math}
 Artificial Neural Nets (ANN) frequently outperform other machine learning algorithms on large and complex problems.
 Linear threshold units (LTU) compose neural networks, feeding the weighted sum of input values (\ref{w-sum}) into an activation (step) function (\ref{activation-function}).
 A perceptron is a single layer of LTUs connected to every input, suitable for both regression and classification tasks.
@@ -602,7 +606,7 @@ The change to deciles reduced the hedge portfolio means to the aforementioned fi
 For context, the mean excess return on realised one month lead excess returns is 0.0007 (0.7\%).
 The treynor ratio indicates the excess return on systematic risk is consistent across the three strategies (~-0.30).
 The sharpe ratios for both MSE variants are feasible at ~1.15 to 1.45 for $MSE$($\hat{y}$,y), and $MSE_{Custom}$($\hat{y}$,y).
-Ultimately, -0.016803, -0.714680, and -0.283188 for hedge portfolio mean and sharpe ratio shows the hedge portfolio maximisation strategy does not outperform traditional loss minimisation regardless of accuracy.
+Ultimately, -0.016803 and -0.714680 for hedge portfolio mean and sharpe ratio shows the hedge portfolio maximisation strategy does not outperform traditional loss minimisation regardless of accuracy.
 
 \subsubsection{Hedge Portfolio Mean, Sharpe, and Treynor}
 \input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-calculations-metrics}.tex}
@@ -630,7 +634,7 @@ The market risk premia is statistical insignificant in CAPM, FF4, and FF5 for th
 The market risk premia factor is negative in all models accross loss functions. The out-of-sample period includes both the Dotcom crash and Financial Crisis.
 The sample period, incomplete dataset, shorting positions in the hedge portfolios, and capped weighting methodology may be driving these results.
 Regardless, the results are inconclusive in assessing relative performance.
-However, if they were, the hedge portfolio maximsation strategy would not outperform tradtional loss minimisation methodolgies.
+However, if they were, the hedge portfolio maximisation strategy would not outperform traditional loss minimisation techniques.
 \input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-mean\_squared\_error}.tex}
 \newpage
 \input{{/Users/connor/Google Drive/Documents/University/Courses/2020-21/Finance 788/finance-honours/results/tex/cmcd398-finance-honours-custom\_mse}.tex}
@@ -639,15 +643,63 @@ However, if they were, the hedge portfolio maximsation strategy would not outper
 \newpage
 \section{Research Implications}
 \subsection{Contributions}
-\subsection{Maximisation Strategies}
+\subsubsection{Maximisation Strategies}
+Maximisation strategies are feasible from a technical perspective.
+Neural net architecture, and automatic differentiation in Keras Backend, 
+enable the construction of custom optimisation functions
+in consideration of objectives outside standard loss minimisation.
+You can consider the maximisation of hedge portfolios, 
+However, the extent to their economic significance remains unanswered.
+This is a partial, novel contribution tp the literature.
+\subsubsection{Use of Factor Portfolio Dataset}
+A minor contribution is validating the use of factor portfolio dataset by Jensen et al. (\citeyear{jensen2021there}) for empirical asset pricing analysis with machine learning techniques.
+The dataset is of sufficient size, quality, and granularity for this form of analysis.
 \subsection{Limitations}
-\subsubsection*{Resources}
-The lack of resources to explore the entire dataset within reasonable timeframes, and at reasonable costs.
+Material limitations persist, evident from the economically (or lack there of) significant outcomes.
+\subsubsection{Resources}
+Resource constraints in exploring the entire dataset within reasonable timeframes, and at reasonable costs, within the scope of an 30pt honours dissertation.
+Google's Cloud Platform Free Trial gave an allocation of \$300 in free credit. Analysis consumed all free credit on the lowest cost infrastructure.
 The most material inhibitions are the inability to explore all 400 factors for all size groupings, the reduction in level of precision for numerical features, and
 the ability to shuffle training sets at lengths greater than or equal to the input sets.
-\subsubsection*{Dataset Revisions}
-\subsection{Model Reconstruction}
+Training includes two hours of numerical encoding, a further hour per model to train and evaluate across 30 epochs with early stopping activated.
+\subsubsection{Data revisions}
+The condensed dataset omits entities in the 20th percentile of market capitalisation, and halves the number of instances from approximately 2.7 million to 1.35 million.
+The omission was material given the methodology in constructing factors, discovered towards
+\subsubsection{Optimisation Functions}
+The maximisation strategy mapping a monotonic ranking function by weighting by contributions of individual predicted excess returns to aggregate predicted excess returns is one form of hedge portfolio.
+There are many permutations. 
+This objective function does not reference realisations.
+Permutations of objective function exist.
+It is possible to include factors originating from the input feature in loss calculations
+This opens the possibility of exploring a whole range of decisions 
+\subsubsection{Neural Network Architecture}
+The analysis is highly dependent of neural net architecture.
+Our research only consider one configuration in this instance.
+Greater attention to model architecture and hyper-parameter finetuning would be most beneficial.
 \subsubsection*{Simulations}
+Our analysis only considers one combination of model architecture and minimisation/maximisation functions.
+Distributions, gathered through simulation, improve evaluating outcomes and answering to motivations.
+This is a key finding in Gu et al. (\citeyear{eapvml}).
+
+\subsubsection{Use in Conjunction with Optimisation Technologies}
+Other optimisation techniques exist which may add value e.g., reinformcement learning, dynamic programming etc.
+They may be considered in parallel, out in pipelines, to neural networks in maximising
+\subsection{Assessment of Motivations}
+Our motivations asked:
+\begin{center}
+	\textbf{Can neural networks configured to maximise hedge portfolios outperform standard loss minimisation configurations,
+	when predicting one month lead excess returns using a long-short zero cost investment strategy?}
+\end{center}
+The answer is inconclusive in this instance given the combined poor performance measure outcomes and limitations.
+However, if outcomes and limitation were acceptable, the answer would be no.
+Furthermore, both hypotheses would be true.
+\singlespacing
+\begin{enumerate}
+	\item It is feasible to implement maximisation strategies in machine learning algorithms given $\argmax{f(x)}=\argmin{-f(x)}$: \textbf{Yes}
+	\item A hedge portfolio maximisation strategy will not outperform loss minimisation strategies given model architecture: \textbf{Yes}
+\end{enumerate}
+\newpage
+\section{Conclusion}
 \newpage
 \printbibliography
 \newpage
