@@ -1,0 +1,23 @@
+[0] Config.pm:311> INFO - This is Biber 2.16
+[0] Config.pm:314> INFO - Logfile is '__latexindent_temp.blg'
+[113] biber-darwin:340> INFO - === Mon Jan 17, 2022, 13:21:30
+[153] Biber.pm:415> INFO - Reading '__latexindent_temp.bcf'
+[260] Biber.pm:952> INFO - Found 37 citekeys in bib section 0
+[277] Biber.pm:4340> INFO - Processing section 0
+[292] Biber.pm:4531> INFO - Looking for bibtex format file 'finance-honours.bib' for section 0
+[295] bibtex.pm:1689> INFO - LaTeX decoding ...
+[371] bibtex.pm:1494> INFO - Found BibTeX data source 'finance-honours.bib'
+[375] Utils.pm:395> WARN - Duplicate entry key: 'soleymani2020financial' in file 'finance-honours.bib', skipping ...
+[611] Utils.pm:395> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/biber_tmp_hwGo/681028049f1e1896b2220fc783d77e32_5334.utf8, line 6, warning: 16 characters of junk seen at toplevel
+[611] Utils.pm:395> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/biber_tmp_hwGo/681028049f1e1896b2220fc783d77e32_5334.utf8, line 38, warning: 13 characters of junk seen at toplevel
+[611] Utils.pm:395> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/biber_tmp_hwGo/681028049f1e1896b2220fc783d77e32_5334.utf8, line 179, warning: 12 characters of junk seen at toplevel
+[611] Utils.pm:395> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/biber_tmp_hwGo/681028049f1e1896b2220fc783d77e32_5334.utf8, line 208, warning: 5 characters of junk seen at toplevel
+[611] Utils.pm:395> WARN - BibTeX subsystem: /var/folders/pk/1vzw3fs97zgf0876ytxyth9r0000gn/T/biber_tmp_hwGo/681028049f1e1896b2220fc783d77e32_5334.utf8, line 226, warning: 10 characters of junk seen at toplevel
+[612] Utils.pm:395> WARN - BibTeX subsystem: warning: comma(s) at end of name (removing)
+[680] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[680] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[680] Biber.pm:4168> INFO - Sorting list 'apa/global//global/global' of type 'entry' with template 'apa' and locale 'en-US'
+[680] Biber.pm:4174> INFO - No sort tailoring available for locale 'en-US'
+[732] bbl.pm:654> INFO - Writing '__latexindent_temp.bbl' with encoding 'UTF-8'
+[759] bbl.pm:757> INFO - Output to __latexindent_temp.bbl
+[760] Biber.pm:128> INFO - WARNINGS: 7
