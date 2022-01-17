@@ -162,14 +162,14 @@
 	and intellectually stimulating piece of research. 
 	Thank you for the office chats, zoom conferences, resources, and last minute phone calls.
 	It has been a herculean effort, but one worth every success, new skill, late night, and failing.
-	\\
+\end{center}
+\begin{center}
 	\textbf{Professor Henk Berkman}\\
 	Henk, for the intellectually stimulating conversations; discussions on academic literature, non-fiction, and classic fiction; 
 	office chats on corporate governance, boards, and corporate finance; and calm guidance through the tumultuous, academic world of finance. 
 	Finally, I must commend your match making abilities in making introductions.
 	The chemistry is electric between myself and Fama, French, Jensen, Black, Scholes, Merton, Sharpe, and of course, et al. 
 	Their work will feature prominently on my bookshelf for years to come.
-	
 \end{center}
 \newpage
 \section*{Abstract}
@@ -729,7 +729,7 @@ Furthermore, both hypotheses would be true.
 \newpage
 \printbibliography
 \newpage
-\section{Appendix} \label{appendix}.
+\section{Appendix} \label{appendix}
 \subsection{Mathematics}
 \subsubsection{Equations \& Derivations}
 \subsubsection{Hedge Portfolio} \label{hedge-portfolio-derivation}
@@ -861,10 +861,10 @@ Secondly, the exploration of epochs update parameters using a learning rate, mov
 Several methods aid escape from local minima to continue searching for global minimum solutions, depending on the algorithm. 
 The below illustrates the use of mean squared error as a loss function, on a linear model, where SGD would adjust both intercept and co-efficient parameters, in order to find the argmax of the loss function.
 \\
-Equations for linear model (\ref{lm}) and mean squared error (\label{mse}).
+Equations for linear model (\ref{lm}) and mean squared error (\ref{mse}).
 \begin{align*}
 	\hat{y} &= mx_i + b \numberthis \label{lm}\\
-	f(y,(mx_{i} + b)) &= \frac{1}{n} \sum_{i=1}^{n}(y_i - (mx_{i} + b))^{2} \numberthis 
+	f(y,(mx_{i} + b)) &= \frac{1}{n} \sum_{i=1}^{n}(y_i - (mx_{i} + b))^{2} \numberthis \label{mse}
 \end{align*}
 Partial derivatives of parameters m (\ref{pdmsem}) and b (\ref{pdmseb}), respectively.
 \begin{align*}
@@ -1009,7 +1009,6 @@ $\mathop{\mathbb{E}} [R_a - R_f]$ is the excess return on the market. $\beta_{M}
 \begin{align*}
 	\text{Treynor} &= \mathop{\mathbb{E}} \frac{[R_a - R_b]}{\beta_{M}} \numberthis \label{tr}\\
 \end{align*}
-\newpage
 \subsection{Technical Details}\label{technical}
 \subsubsection{Organisation}
 This research essay uses data science best practise (\cite{J:10}).
@@ -1018,7 +1017,7 @@ Data retention in all forms receives high levels of attention.
 Project files synchonises continuously to Google Drive (\cite{Google_Drive}). 
 Git (\cite{Git}) manages version control protocols for source code, data, documents, and results.
 Git stores a complete history of versions using Git hashes. 
-These hashes are strings unique to each state of the publicly available finance-honours repository\footnote[1]{https://github.com/CMCD1996/finance-honours}. 
+These hashes are strings unique to each state of the publicly available finance-honours repository\footnote{https://github.com/CMCD1996/finance-honours}. 
 Git hashes enable discretisation of finance-honours development, enabling the accessibility and recollection of all previous states given a unique git hash. 
 This functionality enables reproducibility, error correction, and the ability to revert to previous models.
 
@@ -1088,10 +1087,9 @@ Commit histories (\ref{Version Control}) is the most important form of documenta
 Application of auxiliary documentation methods are supplementary.
 \subsection{Code} \label{code}
 All files, resources, and code is available for download from \href{https://github.com/CMCD1996/finance-honours}{Github}.
-The document listing function and class docstring is available for download \href{/Users/connor/Google Drive/Documents/Professional/Projects/Portfolio/downloads/wip.pdf}{here}.
-% Decide to include/exclude depending on size.
-Furthermore, the coding listings for this research essay follow. Try update.
-% \lstinputlisting[language=Python]{cmcd398-finance-honours.py}
+Over fifty custom functions and classes 
+The script and functions is too large to practically list in this file. Instead, you can access it through the docstring.
+The document listing function and class docstring is available for download \href{/Users/connor/Google Drive/Documents/Professional/Projects/Portfolio/downloads/cmcd398-finance-honours-code-listing.pdf}{here}.
 \subsection{Data} \label{dss}
 \subsubsection{Description \& Sources}
 The authors provide documentation and web-based resources on \href{https://github.com/bkelly-lab/ReplicationCrisis}{GitHub} to reconstruct an updated dataset from Wharton Research Data Services (WRDS) using SAS Studio.

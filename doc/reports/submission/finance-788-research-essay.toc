@@ -118,32 +118,32 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{\numberline {9.6.2}Treynor Ratio}{45}{subsubsection.9.6.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.7}Technical Details}{47}{subsection.9.7}%
+\contentsline {subsection}{\numberline {9.7}Technical Details}{46}{subsection.9.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {9.7.1}Organisation}{47}{subsubsection.9.7.1}%
+\contentsline {subsubsection}{\numberline {9.7.1}Organisation}{46}{subsubsection.9.7.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {9.7.2}Version Control}{47}{subsubsection.9.7.2}%
+\contentsline {subsubsection}{\numberline {9.7.2}Version Control}{46}{subsubsection.9.7.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {9.7.3}Directories}{47}{subsubsection.9.7.3}%
+\contentsline {subsubsection}{\numberline {9.7.3}Directories}{46}{subsubsection.9.7.3}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{\numberline {9.7.4}Python}{47}{subsubsection.9.7.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {9.7.5}Package Management}{48}{subsubsection.9.7.5}%
+\contentsline {subsubsection}{\numberline {9.7.5}Package Management}{47}{subsubsection.9.7.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {9.7.6}Code Style}{48}{subsubsection.9.7.6}%
+\contentsline {subsubsection}{\numberline {9.7.6}Code Style}{47}{subsubsection.9.7.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {9.7.7}Infrastructure}{48}{subsubsection.9.7.7}%
+\contentsline {subsubsection}{\numberline {9.7.7}Infrastructure}{47}{subsubsection.9.7.7}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{\numberline {9.7.8}Documentation}{48}{subsubsection.9.7.8}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {9.8}Code}{48}{subsection.9.8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.9}Data}{49}{subsection.9.9}%
+\contentsline {subsection}{\numberline {9.9}Data}{48}{subsection.9.9}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {9.9.1}Description \& Sources}{49}{subsubsection.9.9.1}%
+\contentsline {subsubsection}{\numberline {9.9.1}Description \& Sources}{48}{subsubsection.9.9.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {9.9.2}Factor Portfolio Construction}{49}{subsubsection.9.9.2}%
+\contentsline {subsubsection}{\numberline {9.9.2}Factor Portfolio Construction}{48}{subsubsection.9.9.2}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{\numberline {9.9.3}Data Processing}{49}{subsubsection.9.9.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {9.9.4}Summary Statistics}{50}{subsubsection.9.9.4}%
+\contentsline {subsubsection}{\numberline {9.9.4}Summary Statistics}{49}{subsubsection.9.9.4}%
