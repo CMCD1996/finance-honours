@@ -153,8 +153,6 @@ def configure_training_ui(project, api_token):
     # https://app.neptune.ai/common/tf-keras-integration/e/TFK-35541/dashboard/metrics-b11ccc73-9ac7-4126-be1a-cf9a3a4f9b74
     # Initialise neptune with credientials
     run = neptune.init(project=project, api_token=api_token)
-    # project - 'connormcdowall/finance-honours')
-    # api_token  = 'eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vYXBwLm5lcHR1bmUuYWkiLCJhcGlfdXJsIjoiaHR0cHM6Ly9hcHAubmVwdHVuZS5haSIsImFwaV9rZXkiOiI4YzBmOTFlNS0zZTFiLTQyNDUtOGFjZi1jZGI0NDY4ZGVkOTQifQ=='
     # Define the custom class for the function
 
     class NeptuneCallback(Callback):
@@ -484,8 +482,6 @@ def create_original_list_of_columns(dataframe):
     for column in new_columns:
         if column in cols:
             extract_columns.append(column)
-    # Extract the old columns
-    # dataframe = dataframe[extract_columns]
     # Rewrite new working file for numerical encoding
     file = open(
         "/home/connormcdowall/finance-honours/data/working-columns.txt", "r+")
@@ -555,7 +551,7 @@ def process_vm_dataset(data_vm_dta, size_of_chunks, resizing_options, save_stati
         sample (bool, optional): Process a smaller set of memory. Defaults to False.
 
     Returns:
-        [type]: [description]
+        df: Complete dataset
     """
     # Load the test and train datasets into dataframes in chunks
     # df = pd.read_stata(data_vm_dta)
@@ -578,14 +574,8 @@ def process_vm_dataset(data_vm_dta, size_of_chunks, resizing_options, save_stati
             # Saves information on missing values in the dataframe
             np.savetxt(
                 r'/home/connormcdowall/finance-honours/results/statistics/missing-values.txt', df.isna().sum(), fmt='%s')
-        # Gets list of dataframe column values
-        column_list = list(df.columns.values)
-        # Gets list of unique dataframe dtype
-        data_type_list = list(df.dtypes.unique())
         # Gets unique list of size_grp
         size_grp_list = list(df['size_grp'].unique())
-        # Removes the mth column/factor from the dataframe given datatime format
-        # df['mth'] = pd.to_numeric(df['mth'], downcast='float')
         # Converts month to integrer format (Need for regressions with predictions)
         print(df['mth'].head())
         for index, row in df.iterrows():
@@ -794,22 +784,9 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             if loss in ['mean_squared_error', 'custom_mse', 'custom_hp']:
                 predictability_regressions.append(predict_regress)
 
-            # # Uses stats models to perform standard linear regressions
-            # predict_regress_actual = sm.OLS(hedge_actual['hedge_returns'], hedge_returns['hedge_returns']).fit(
-            #     cov_type='HAC', cov_kwds={'maxlags': 6})
-            # if loss in ['mean_squared_error', 'custom_mse', 'custom_hp']:
-            #     hp_predictability_regressions.append(predict_regress_actual)
             print(hedge_returns['hedge_returns'])
             print(hedge_returns[['Mkt-RF', 'SMB', 'HML', 'RMW', 'CMA']])
-            # Get standard statistics
 
-            # Uses stats models to perform standard linear regressions
-            # mean_hp = sm.OLS(hedge_returns['hedge_returns'], exog=None).fit(
-            # cov_type='HAC', cov_kwds={'maxlags': 6})
-            # print('Shape of predictions is: ')
-            # hedge_returns['hedge_returns'].shape()
-            # hp = sm.OLS(hedge_returns['hedge_returns']).fit(
-            #     cov_type='HAC', cov_kwds={'maxlags': 6})
             # Get regression for asset pricing models
             if regression_dictionary['capm'] == True:
                 # Uses linear models to perform CAPM regressions (Panel Regressions)
@@ -911,35 +888,18 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             # Sort the predicted returns in the sub_predictiosn set
             subset_predictions.sort_values(
                 by=['ret_exc_lead1m'], ascending=False, inplace=True)
-            # print('This subset dataset describes')
-            # print(subset_predictions.describe())
-            # print(subset_predictions.info(verbose=False))
-            # print(subset_predictions.head())
-            # print(subset_predictions.tail())
             # Reset the index of this dorted dataframe for forming the hedge portfolio
             subset_predictions.reset_index(drop=True, inplace=True)
             # Calculates decile 1 (Top 10%)
             decile_length = len(subset_predictions['ret_exc_lead1m'])/3
-            # print('Decile Length for month; {} is {}'.format(month, decile_length))
-            # print('decile_length: ', decile_length)
             top_decile = [0, int(decile_length - 1)]
             bottom_decile = [int(2*decile_length), int(3*decile_length-1)]
-
-            # print('The decile range is decile 1: {} - {}, decile 10 {} - {}'.format(
-            # top_decile[0], top_decile[1], bottom_decile[0], bottom_decile[1]))
-
-            # Calculates Hedge Portfolio Return (Decile 1 - Decile 10)
-            top_decile_df = subset_predictions.iloc[top_decile[0]                                                    :top_decile[1]]
-            bottom_decile_df = subset_predictions.iloc[bottom_decile[0]:bottom_decile[1]]
-
+            # Calculates decile means
             top_decile_mean = subset_predictions['ret_exc_lead1m'].iloc[top_decile[0]: top_decile[1]].mean(
                 axis=0)
             bottom_decile_mean = subset_predictions['ret_exc_lead1m'].iloc[bottom_decile[0]: bottom_decile[1]].mean(
                 axis=0)
-            # print('The top and bottom deciles have a mean value of {} and {}, respectively'.format(
-            # top_decile_mean, bottom_decile_mean))
             hp_mean = top_decile_mean - bottom_decile_mean
-            # print('The hedge portfolio mean for {} is {}'.format(month, hp_mean))
             # Forms the hedge portfolio and sets to new row
             new_row = {'mth': int(month), 'hedge_returns': hp_mean}
             # Stores the hedge portfolio return for the month in another dataframe
@@ -948,16 +908,13 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
             '/home/connormcdowall/finance-honours/results/predictions/cmcd398-finance-honours-hedge-actual.csv')
         # Renames 'Date'  column to 'mth'
         factors_df.rename(columns={'Date': 'mth'}, inplace=True)
-        # Convert mth dataframe column to the same dtype (float64)
+        # Converts mth dataframe column to the same dtype (float64)
         regression_actual_df['mth'] = regression_actual_df['mth'].astype(
             np.float64)
-        # factors_df['mth'] = factors_df['mth'].astype(np.float64)
         hedge_actual['mth'] = hedge_actual['mth'].astype(np.float64)
         print(hedge_actual.head())
         # Merges hedge returns with factors
         hedge_actual = hedge_actual.merge(factors_df, how='inner', on='mth')
-        # Adds the factors to the regression dataframe via merge
-        # regression_df = regression_df.merge(factors_df, how='inner', on='mth')
 
         # Uses statsmodels to get market approximations
         capm_actual_exog = sm.add_constant(hedge_actual[['Mkt-RF']])
@@ -1037,7 +994,7 @@ def create_fama_factor_models(model_name, selected_losses, factor_location, pred
         truncate = True
         if truncate:
             metrics_df = metrics_df[(metrics_df['Loss Function'] == 'mean_squared_error') | (
-                metrics_df['Loss Function'] == 'custom_mse') | (metrics_df['Loss Function'] == 'custom_hp')]  # | (metrics_df['Loss Function'] == traditional_sort)
+                metrics_df['Loss Function'] == 'custom_mse') | (metrics_df['Loss Function'] == 'custom_hp')]
         with open('/home/connormcdowall/finance-honours/results/tables/metrics/' + model_name + '-calculations-metrics.txt', 'w') as f:
             # Deletes existing text
             f.truncate(0)
@@ -1276,7 +1233,7 @@ def download_test_data():
     """Download test data
 
     Returns:
-        [list]]: List of different dataframes
+        [list]]: List of different dataframes (Total, training, validation, testing)
     """
     dataset_url = 'http://storage.googleapis.com/download.tensorflow.org/data/petfinder-mini.zip'
     csv_file = 'datasets/petfinder-mini/petfinder-mini.csv'
@@ -1303,7 +1260,8 @@ def create_feature_lists(list_of_columns, categorical_assignment):
         categorical_assignment ([type]): [description]
 
     Returns:
-        [type]: [description]
+        numerical_features: 
+        categorical_features: 
     """
     # Assignn variables
     categorical_features = []
@@ -1361,8 +1319,6 @@ def create_tf_dataset(dataframe, target_column, shuffle=True, batch_size=32):
     print(list(df.columns))
     # This call
     df = {key: value[:, tf.newaxis] for key, value in dataframe.items()}
-    print(df)
-    # Print dataframe to ensure order is preserved
     ds = tf.data.Dataset.from_tensor_slices((dict(df), labels))
     if shuffle:
         ds = ds.shuffle(buffer_size=(int(len(dataframe)/30)))
@@ -1394,6 +1350,17 @@ def get_normalization_layer(name, dataset):
 
 
 def get_category_encoding_layer(name, dataset, dtype, max_tokens=None):
+    """ Get encoding layer for categorical variables
+
+    Args:
+        name (str): [description]
+        dataset (ds): Tensroflow dataset
+        dtype (str): Datatype for encoded variable
+        max_tokens (int, optional): Number of max tokens. Defaults to None.
+
+    Returns:
+        [lamdba]: lambda function for the encoded feature
+    """
     # Create a layer that turns strings into integer indices.
     if dtype == 'string':
         index = layers.StringLookup(max_tokens=max_tokens)
@@ -1412,7 +1379,24 @@ def get_category_encoding_layer(name, dataset, dtype, max_tokens=None):
 
 
 def encode_tensor_flow_features(train_df, val_df, test_df, target_column, numerical_features, categorical_features, categorical_dictionary, size_of_batch=256):
-    """ size of batch may vary, defaults to 256
+    """Encodes tensorflow features
+
+    Args:
+        train_df (df): Training dataframe
+        val_df (df): Validation dataframe
+        test_df (df): Testign dataframe
+        target_column (str): Target column for prediction
+        numerical_features (list): List of numerical features
+        categorical_features (list): List of categorical features
+        categorical_dictionary (dict): Dictionary of categorical features
+        size_of_batch (int, optional): Batch size. Defaults to 256.
+
+    Returns:
+        all_features (tf.layer): Tensorflow layer of all features
+        all_inputs (list): Tensorflow layer of all inputs
+        train_dataset (ds): Training Dataset
+        val_dataset (ds): Validation Dataset
+        test_dataset (ds): Testing Dataset
     """
     # Creates the dataset
     train_dataset = create_tf_dataset(
@@ -1506,6 +1490,25 @@ def encode_tensor_flow_features(train_df, val_df, test_df, target_column, numeri
 
 
 def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name, all_features, all_inputs, selected_optimizer, selected_losses, selected_metrics, finance_configuration=True):
+    """Builds tensorflow neural networks
+
+    Args:
+        train_dataset (ds): Training dataset
+        val_dataset (ds): Validation dataset
+        test_dataset (ds): Testing dataset
+        model_name (str): Run name
+        all_features ([type]): [description]
+        all_inputs ([type]): [description]
+        selected_optimizer (str): optimizer to use
+        selected_losses (str): Loss function to use
+        selected_metrics (list): List of sleection metrics to use
+        finance_configuration (bool, optional): Run the complex configuration options. Defaults to True.
+
+    Returns:
+        model (tf.model): Tensorflow model
+        loss (float): Loss metric
+        accuracy (float): Accuracy metric
+    """
     # Information pertaining to the tf.keras.layers.dense function
     if finance_configuration:
         # Note: The combination of optimizer. loss function and metric must be compatible
@@ -2062,6 +2065,24 @@ def build_tensor_flow_model(train_dataset, val_dataset, test_dataset, model_name
 
 
 def create_tensorflow_models(data_vm_directory, list_of_columns, categorical_assignment, target_column, chunk_size, resizing_options, batch_size, model_name, selected_optimizer, selected_losses, selected_metrics, split_data=False, trial=False, sample=False):
+    """Creates the tensorflow models combining all the analysis
+
+    Args:
+        data_vm_directory (str): Directory of source data
+        list_of_columns (str): Directory to txt file with list of columns
+        categorical_assignment (dict): Dictionary of features to be categorical
+        target_column (str): Target column
+        chunk_size (int): Chunk size 
+        resizing_options (list): List of boolean variables for resizgin the dataset
+        batch_size (int): Batch size for creating tensor slices
+        model_name (str): Run name
+        selected_optimizer (str): optimizer to use
+        selected_losses (str): Loss function to use
+        selected_metrics (list): List of sleection metrics to use
+        split_data (bool, optional): Boolean to split the original dataset. Defaults to False.
+        trial (bool, optional): Boolean to taek a smaller dataset. Defaults to False.
+        sample (bool, optional): Boolean to take an even smaller dataset. Defaults to False.
+    """
     # Prints memory usage before analysis
     monitor_memory_usage(units=3, cpu=True, gpu=True)
     # Reset working textfile if resizing used for numerical encoding
@@ -2159,6 +2180,14 @@ def create_tensorflow_models(data_vm_directory, list_of_columns, categorical_ass
 
 
 def create_learning_curves(model_name, selected_loss, model_history=None, from_load_file=True):
+    """Creates learning curves to model training losses
+
+    Args:
+        model_name (str): Run name
+        selected_loss (str): Selected loss function
+        model_history (str, optional): Load a model history. Defaults to None.
+        from_load_file (bool, optional): Load from a file instead. Defaults to True.
+    """
     # Set destination dictionary
     destination_directory = '/home/connormcdowall/finance-honours/results/plots/learning-curves/'
     history_path = '/home/connormcdowall/finance-honours/results/models/history/'
@@ -2186,6 +2215,15 @@ def create_learning_curves(model_name, selected_loss, model_history=None, from_l
 
 
 def make_tensorflow_predictions(model_name, model_directory, selected_losses, dataframe_location, custom_objects):
+    """ Makes tensorflo predictions
+
+    Args:
+        model_name (str): Run name
+        model_directory (str): Model directory
+        selected_losses (str): Loss function
+        dataframe_location (str): Directory to the government
+        custom_objects (list): List of custom objects in the tensorflow model
+    """
     # Initialises new dataframe
     column_names = ['size_grp', "mth", "predict", 'ret_exc_lead1m', 'permno']
     model_locations = []
@@ -2345,6 +2383,15 @@ def perform_tensorflow_model_inference(model_name, sample):
 
 
 def implement_test_data(dataframe, train, val, test, full_implementation=False):
+    """[summary]
+
+    Args:
+        dataframe (df): Dataframe
+        train (df): Training dataframe
+        val (df): Validation dataframe
+        test (df): Testing dataframe
+        full_implementation (bool, optional): Implement a full implementation. Defaults to False.
+    """
     # Sets the batch size
     target_column = 'target'
     batch_size = 5
@@ -2412,6 +2459,13 @@ def implement_test_data(dataframe, train, val, test, full_implementation=False):
 
 
 def reinforement_learning(model, env, target_vec):
+    """ Exammple to reinforcement learning
+
+    Args:
+        model (tf.model): Configured model
+        env (env): Reinforcement learning environment
+        target_vec (): 
+    """
     discount_factor = 0.95
     eps = 0.5
     eps_decay_factor = 0.999
@@ -2461,10 +2515,21 @@ def reinforement_learning(model, env, target_vec):
 class CustomLossFunctionExample(tf.keras.losses.Loss):
     # Example from Youtube (https://www.youtube.com/watch?v=gcwRjM1nZ4o)
     def __init__(self):
+        """Initialisation of a custom loss function template
+        """
         # Initialise the function
         super().__init__()
 
     def call(self, y_true, y_pred):
+        """Call for loss function
+
+        Args:
+            y_true (tf): Tensor of realisations
+            y_pred (tf): Tensor of predictions
+
+        Returns:
+            : Loss
+        """
         mse = tf.reduce_mean(tf.square(y_true, y_pred))
         rmse = tf.math.sqrt(mse)
         return rmse / tf.reduce_mean(tf.square(y_true)) - 1
@@ -2472,10 +2537,26 @@ class CustomLossFunctionExample(tf.keras.losses.Loss):
 
 class custom_mse(tf.keras.losses.Loss):
     def __init__(self, extra_tensor=None, reduction=tf.keras.losses.Reduction.AUTO, name='custom_mse'):
+        """Initialisation of custom mse portfolio function
+
+        Args:
+            extra_tensor (tensor, optional): Original tensor format. Defaults to None.
+            reduction (red, optional): Reduction. Defaults to tf.keras.losses.Reduction.AUTO.
+            name (str, optional): name of function. Defaults to 'custom_hp'.
+        """
         super().__init__(reduction=reduction, name=name)
         self.extra_tensor = extra_tensor
 
     def call(self, y_true, y_pred):
+        """Call for mse loss function
+
+        Args:
+            y_true (tf): Tensor of realisations
+            y_pred (tf): Tensor of predictions
+
+        Returns:
+            : Loss
+        """
         extra_tensor = self.extra_tensor
         loss = K.mean(K.square(y_pred - y_true))
         return loss
@@ -2483,10 +2564,26 @@ class custom_mse(tf.keras.losses.Loss):
 
 class custom_hp(tf.keras.losses.Loss):
     def __init__(self, extra_tensor=None, reduction=tf.keras.losses.Reduction.AUTO, name='custom_hp'):
+        """Initialisation of custom hedge portfolio function
+
+        Args:
+            extra_tensor (tensor, optional): Original tensor format. Defaults to None.
+            reduction (red, optional): Reduction. Defaults to tf.keras.losses.Reduction.AUTO.
+            name (str, optional): name of function. Defaults to 'custom_hp'.
+        """
         super().__init__(reduction=reduction, name=name)
         self.extra_tensor = extra_tensor
 
     def call(self, y_true, y_pred):
+        """Call for hp loss function
+
+        Args:
+            y_true (tf): Tensor of realisations
+            y_pred (tf): Tensor of predictions
+
+        Returns:
+            : Loss
+        """
         extra_tensor = self.extra_tensor
         # Calculates sum over vector tensors
         y_true_sum = K.sum(y_true)
@@ -2506,10 +2603,26 @@ class custom_hp(tf.keras.losses.Loss):
 
 class custom_sharpe(tf.keras.losses.Loss):
     def __init__(self, extra_tensor=None, reduction=tf.keras.losses.Reduction.AUTO, name='custom_sharpe'):
+        """Initialisation of custom sharpe portfolio function
+
+        Args:
+            extra_tensor (tensor, optional): Original tensor format. Defaults to None.
+            reduction (red, optional): Reduction. Defaults to tf.keras.losses.Reduction.AUTO.
+            name (str, optional): name of function. Defaults to 'custom_sharpe'.
+        """
         super().__init__(reduction=reduction, name=name)
         self.extra_tensor = extra_tensor
 
     def call(self, y_true, y_pred):
+        """Call for sharpe loss function
+
+        Args:
+            y_true (tf): Tensor of realisations
+            y_pred (tf): Tensor of predictions
+
+        Returns:
+            : Loss
+        """
         extra_tensor = self.extra_tensor
         sr_pred = -1*(K.mean(y_pred)/K.std(y_pred))
         sr_true = -1*(K.mean(y_true)/K.std(y_true))
@@ -2518,10 +2631,26 @@ class custom_sharpe(tf.keras.losses.Loss):
 
 class custom_information(tf.keras.losses.Loss):
     def __init__(self, extra_tensor=None, reduction=tf.keras.losses.Reduction.AUTO, name='custom_information'):
+        """Initialisation of custom information portfolio function
+
+        Args:
+            extra_tensor (tensor, optional): Original tensor format. Defaults to None.
+            reduction (red, optional): Reduction. Defaults to tf.keras.losses.Reduction.AUTO.
+            name (str, optional): name of function. Defaults to 'custom_information'.
+        """
         super().__init__(reduction=reduction, name=name)
         self.extra_tensor = extra_tensor
 
     def call(self, y_true, y_pred):
+        """Call for information loss function
+
+        Args:
+            y_true (tf): Tensor of realisations
+            y_pred (tf): Tensor of predictions
+
+        Returns:
+            : Loss
+        """
         extra_tensor = self.extra_tensor
         loss = -1*((K.mean(y_pred) - K.mean(y_true))/K.std(y_pred - y_true))
         return loss
@@ -2529,10 +2658,26 @@ class custom_information(tf.keras.losses.Loss):
 
 class custom_treynor(tf.keras.losses.Loss):
     def __init__(self, extra_tensor=None, reduction=tf.keras.losses.Reduction.AUTO, name='custom_treynor'):
+        """Initialisation of custom trynor portfolio function
+
+        Args:
+            extra_tensor (tensor, optional): Original tensor format. Defaults to None.
+            reduction (red, optional): Reduction. Defaults to tf.keras.losses.Reduction.AUTO.
+            name (str, optional): name of function. Defaults to 'custom_treynor'.
+        """
         super().__init__(reduction=reduction, name=name)
         self.extra_tensor = extra_tensor
 
     def call(self, y_true, y_pred):
+        """Call for treynor loss function
+
+        Args:
+            y_true (tf): Tensor of realisations
+            y_pred (tf): Tensor of predictions
+
+        Returns:
+            : Loss
+        """
         extra_tensor = self.extra_tensor
         loss = K.mean(K.square(y_pred - y_true))
         return loss
@@ -2540,10 +2685,26 @@ class custom_treynor(tf.keras.losses.Loss):
 
 class custom_hp_mse(tf.keras.losses.Loss):
     def __init__(self, extra_tensor=None, reduction=tf.keras.losses.Reduction.AUTO, name='custom_hp_mse'):
+        """Initialisation of custom hedge portfolio mse portfolio function
+
+        Args:
+            extra_tensor (tensor, optional): Original tensor format. Defaults to None.
+            reduction (red, optional): Reduction. Defaults to tf.keras.losses.Reduction.AUTO.
+            name (str, optional): name of function. Defaults to 'custom_hp_mse'.
+        """
         super().__init__(reduction=reduction, name=name)
         self.extra_tensor = extra_tensor
 
     def call(self, y_true, y_pred):
+        """Call for hp mse loss function
+
+        Args:
+            y_true (tf): Tensor of realisations
+            y_pred (tf): Tensor of predictions
+
+        Returns:
+            : Loss
+        """
         extra_tensor = self.extra_tensor
         # Calculates sum over vector tensors
         y_true_sum = K.sum(y_true)
@@ -2563,10 +2724,26 @@ class custom_hp_mse(tf.keras.losses.Loss):
 
 class custom_sharpe_mse(tf.keras.losses.Loss):
     def __init__(self, extra_tensor=None, reduction=tf.keras.losses.Reduction.AUTO, name='custom_sharpe_mse'):
+        """Initialisation of custom sharpe mse portfolio function
+
+        Args:
+            extra_tensor (tensor, optional): Original tensor format. Defaults to None.
+            reduction (red, optional): Reduction. Defaults to tf.keras.losses.Reduction.AUTO.
+            name (str, optional): name of function. Defaults to 'custom_sharpe_mse'.
+        """
         super().__init__(reduction=reduction, name=name)
         self.extra_tensor = extra_tensor
 
     def call(self, y_true, y_pred):
+        """Call for sharpe mse loss function
+
+        Args:
+            y_true (tf): Tensor of realisations
+            y_pred (tf): Tensor of predictions
+
+        Returns:
+            : Loss
+        """
         extra_tensor = self.extra_tensor
         sr_pred_loss = -1*(K.mean(y_pred)/K.std(y_pred))
         sr_true_loss = -1*(K.mean(y_true)/K.std(y_true))
@@ -2576,10 +2753,26 @@ class custom_sharpe_mse(tf.keras.losses.Loss):
 
 class custom_information_mse(tf.keras.losses.Loss):
     def __init__(self, extra_tensor=None, reduction=tf.keras.losses.Reduction.AUTO, name='custom_information_mse'):
+        """Initialisation of custom information mse portfolio function
+
+        Args:
+            extra_tensor (tensor, optional): Original tensor format. Defaults to None.
+            reduction (red, optional): Reduction. Defaults to tf.keras.losses.Reduction.AUTO.
+            name (str, optional): name of function. Defaults to 'custom_information_mse'.
+        """
         super().__init__(reduction=reduction, name=name)
         self.extra_tensor = extra_tensor
 
     def call(self, y_true, y_pred):
+        """Call for information mse loss function
+
+        Args:
+            y_true (tf): Tensor of realisations
+            y_pred (tf): Tensor of predictions
+
+        Returns:
+            : Loss
+        """
         extra_tensor = self.extra_tensor
         loss = -1*((K.mean(y_pred) - K.mean(y_true))/K.std(y_pred - y_true))
         return loss
@@ -2591,12 +2784,30 @@ class custom_information_mse(tf.keras.losses.Loss):
 
 @ tf.function
 def custom_mse_metric(y_pred, y_true):
+    """Call for mse metric
+
+    Args:
+        y_true (tf): Tensor of realisations
+        y_pred (tf): Tensor of predictions
+
+    Returns:
+        : Loss
+    """
     metric = K.mean(K.square(y_pred - y_true))
     return metric
 
 
 @ tf.function
 def custom_hp_metric(y_true, y_pred):
+    """Call for hp metric
+
+    Args:
+        y_true (tf): Tensor of realisations
+        y_pred (tf): Tensor of predictions
+
+    Returns:
+        : Loss
+    """
     y_true_sum = K.sum(y_true)
     y_pred_sum = K.sum(y_pred)
     # Calculate the weights
@@ -2614,6 +2825,15 @@ def custom_hp_metric(y_true, y_pred):
 
 @ tf.function
 def custom_sharpe_metric(y_true, y_pred):
+    """Call for sharpe metric
+
+    Args:
+        y_true (tf): Tensor of realisations
+        y_pred (tf): Tensor of predictions
+
+    Returns:
+        : Loss
+    """
     # Finds Sharpe ratios of both true and predicted returns
     sr_pred = -1*(K.mean(y_pred)/K.std(y_pred))
     sr_true = -1*(K.mean(y_true)/K.std(y_true))
@@ -2624,12 +2844,26 @@ def custom_sharpe_metric(y_true, y_pred):
 
 @ tf.function
 def custom_information_metric(y_true, y_pred):
+    """Call for information metric
+
+    Args:
+        y_true (tf): Tensor of realisations
+        y_pred (tf): Tensor of predictions
+
+    Returns:
+        : Loss
+    """
     loss = -1*((K.mean(y_pred) - K.mean(y_true))/K.std(y_pred - y_true))
     return loss
 
 
 @ tf.function
 def custom_capm_metric(factors):
+    """ Call for CAPM metric
+
+    Args:
+        factors (tensor): Tensor of factors
+    """
     def capm_metric(y_pred, y_true):
         return K.mean(K.square(y_pred - y_true)) + K.mean(factors)
     return capm_metric
@@ -2638,6 +2872,13 @@ def custom_capm_metric(factors):
 class CustomSharpeMetric(tf.keras.metrics.Metric):
     def __init__(self, num_classes=None, batch_size=None,
                  name='sharpe_ratio', **kwargs):
+        """Initialisation for custom metric
+
+        Args:
+            num_classes (int, optional): Number of classes. Defaults to None.
+            batch_size (int, optional): Batch size. Defaults to None.
+            name (str, optional): name of string. Defaults to 'sharpe_ratio'.
+        """
         super().__init__(name=name, **kwargs)
         self.batch_size = batch_size
         self.num_classes = num_classes
@@ -2645,6 +2886,13 @@ class CustomSharpeMetric(tf.keras.metrics.Metric):
             name=name, initializer="zeros")
 
     def update_state(self, y_true, y_pred, sample_weight=None):
+        """Update state position
+
+        Args:
+            y_true (tf): Tensor of realisations
+            y_pred (tf): Tensor of predictions
+            sample_weight (int, optional): Sample weights. Defaults to None.
+        """
         # Returns the index of the maximum values along the last axis in y_true (Last layer)
         y_true = K.argmax(y_true, axis=-1)
         # Returns the index of the maximum values along the last axis in y_true (Last layer)
@@ -2657,6 +2905,11 @@ class CustomSharpeMetric(tf.keras.metrics.Metric):
         self.hedge_portflio_mean.assign_add(true_poss)
 
     def result(self):
+        """Result return
+
+        Returns:
+            Metric: 
+        """
         return self.hedge_portflio_mean
 
 #################################################################################
@@ -2673,7 +2926,7 @@ class CustomSharpeMetric(tf.keras.metrics.Metric):
 # Function to test loss functions and metrics using autodiff
 
 
-def loss_function_testing(custom_loss_function):
+def loss_function_testing():
     """ Uses tensorflow autodifferientiation functionality
         to confirm differientable nature and feasibility
         of custom loss functions.
