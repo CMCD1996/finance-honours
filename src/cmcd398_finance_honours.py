@@ -302,6 +302,7 @@ def replace_nan(df, replacement_method):
                                 : 1 - remove columns with nan values
                                 : 2 - fill nan with column mean
                                 : 3 - fill nan with column median
+
     Returns:
         dataframe: Updated pandas dataframe
     """
