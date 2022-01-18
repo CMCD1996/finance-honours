@@ -41,7 +41,12 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="src.cmcd398_finance_honours.CustomLossFunctionExample">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">CustomLossFunctionExample</span></span><a class="headerlink" href="#src.cmcd398_finance_honours.CustomLossFunctionExample" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="py method">
+<dd><p>Example Custom Loss Function Class</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>tf (env): Tensorflow keras losses environment</p>
+</dd>
+</dl>
+<dl class="py method">
 <dt class="sig sig-object py" id="src.cmcd398_finance_honours.CustomLossFunctionExample.call">
 <span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.CustomLossFunctionExample.call" title="Permalink to this definition">¶</a></dt>
 <dd><p>Call for loss function</p>
@@ -59,7 +64,12 @@ y_pred (tf): Tensor of predictions</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="src.cmcd398_finance_honours.CustomSharpeMetric">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">CustomSharpeMetric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.CustomSharpeMetric" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="py method">
+<dd><p>Custom Sharpe Metric</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>tf (env): Tensorflow keras metrics environment</p>
+</dd>
+</dl>
+<dl class="py method">
 <dt class="sig sig-object py" id="src.cmcd398_finance_honours.CustomSharpeMetric.result">
 <span class="sig-name descname"><span class="pre">result</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.CustomSharpeMetric.result" title="Permalink to this definition">¶</a></dt>
 <dd><p>Result return</p>
@@ -293,7 +303,12 @@ batch_size (int, optional): Sets batch size. Defaults to 32.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="src.cmcd398_finance_honours.custom_hp">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">custom_hp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extra_tensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'custom_hp'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.custom_hp" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="py method">
+<dd><p>Custom Hedge Portfolio Function Class</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>tf (env): Tensorflow keras losses environment</p>
+</dd>
+</dl>
+<dl class="py method">
 <dt class="sig sig-object py" id="src.cmcd398_finance_honours.custom_hp.call">
 <span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.custom_hp.call" title="Permalink to this definition">¶</a></dt>
 <dd><p>Call for hp loss function</p>
@@ -324,7 +339,12 @@ y_pred (tf): Tensor of predictions</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="src.cmcd398_finance_honours.custom_hp_mse">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">custom_hp_mse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extra_tensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'custom_hp_mse'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.custom_hp_mse" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="py method">
+<dd><p>Custom Hedge Portfolio + Mean Squared Error Loss Function Class</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>tf (env): Tensorflow keras losses environment</p>
+</dd>
+</dl>
+<dl class="py method">
 <dt class="sig sig-object py" id="src.cmcd398_finance_honours.custom_hp_mse.call">
 <span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.custom_hp_mse.call" title="Permalink to this definition">¶</a></dt>
 <dd><p>Call for hp mse loss function</p>
@@ -342,7 +362,12 @@ y_pred (tf): Tensor of predictions</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="src.cmcd398_finance_honours.custom_information">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">custom_information</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extra_tensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'custom_information'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.custom_information" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="py method">
+<dd><p>Custom Information Function Class</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>tf (env): Tensorflow keras losses environment</p>
+</dd>
+</dl>
+<dl class="py method">
 <dt class="sig sig-object py" id="src.cmcd398_finance_honours.custom_information.call">
 <span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.custom_information.call" title="Permalink to this definition">¶</a></dt>
 <dd><p>Call for information loss function</p>
@@ -373,7 +398,12 @@ y_pred (tf): Tensor of predictions</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="src.cmcd398_finance_honours.custom_information_mse">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">custom_information_mse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extra_tensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'custom_information_mse'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.custom_information_mse" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="py method">
+<dd><p>Custom Information + Mean Squared Error Function Class</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>tf (env): Tensorflow keras losses environment</p>
+</dd>
+</dl>
+<dl class="py method">
 <dt class="sig sig-object py" id="src.cmcd398_finance_honours.custom_information_mse.call">
 <span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.custom_information_mse.call" title="Permalink to this definition">¶</a></dt>
 <dd><p>Call for information mse loss function</p>
@@ -391,7 +421,12 @@ y_pred (tf): Tensor of predictions</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="src.cmcd398_finance_honours.custom_mse">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">custom_mse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extra_tensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'custom_mse'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.custom_mse" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="py method">
+<dd><p>Custom Mean Squared Error Function Class</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>tf (env): Tensorflow keras losses environment</p>
+</dd>
+</dl>
+<dl class="py method">
 <dt class="sig sig-object py" id="src.cmcd398_finance_honours.custom_mse.call">
 <span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.custom_mse.call" title="Permalink to this definition">¶</a></dt>
 <dd><p>Call for mse loss function</p>
@@ -422,7 +457,12 @@ y_pred (tf): Tensor of predictions</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="src.cmcd398_finance_honours.custom_sharpe">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">custom_sharpe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extra_tensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'custom_sharpe'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.custom_sharpe" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="py method">
+<dd><p>Custom Sharpe Ratio Function Class</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>tf (env): Tensorflow keras losses environment</p>
+</dd>
+</dl>
+<dl class="py method">
 <dt class="sig sig-object py" id="src.cmcd398_finance_honours.custom_sharpe.call">
 <span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.custom_sharpe.call" title="Permalink to this definition">¶</a></dt>
 <dd><p>Call for sharpe loss function</p>
@@ -453,7 +493,12 @@ y_pred (tf): Tensor of predictions</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="src.cmcd398_finance_honours.custom_sharpe_mse">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">custom_sharpe_mse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extra_tensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'custom_sharpe_mse'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.custom_sharpe_mse" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="py method">
+<dd><p>Custom Sharpe + Mean Squared Error Function Class</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>tf (env): Tensorflow keras losses environment</p>
+</dd>
+</dl>
+<dl class="py method">
 <dt class="sig sig-object py" id="src.cmcd398_finance_honours.custom_sharpe_mse.call">
 <span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.custom_sharpe_mse.call" title="Permalink to this definition">¶</a></dt>
 <dd><p>Call for sharpe mse loss function</p>
@@ -471,7 +516,12 @@ y_pred (tf): Tensor of predictions</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="src.cmcd398_finance_honours.custom_treynor">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">custom_treynor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extra_tensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'custom_treynor'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.custom_treynor" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="py method">
+<dd><p>Custom Treynor Ratio Function Class</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>tf (env): Tensorflow keras losses environment</p>
+</dd>
+</dl>
+<dl class="py method">
 <dt class="sig sig-object py" id="src.cmcd398_finance_honours.custom_treynor.call">
 <span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.custom_treynor.call" title="Permalink to this definition">¶</a></dt>
 <dd><p>Call for treynor loss function</p>

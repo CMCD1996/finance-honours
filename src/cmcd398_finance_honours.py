@@ -298,10 +298,10 @@ def replace_nan(df, replacement_method):
     Args:
         df (dataframe): Pandas Dataframe
         replacement_method (int): Specify replacement methods
-                                : 0 - remove rows with nan values
-                                : 1 - remove columns with nan values
-                                : 2 - fill nan with column mean
-                                : 3 - fill nan with column median
+        {0: remove rows with nan values;
+        {1: remove columns with nan values;
+        {2: fill nan with column mean;
+        {3: fill nan with column median}
 
     Returns:
         dataframe: Updated pandas dataframe
