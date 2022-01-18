@@ -2514,7 +2514,13 @@ def reinforement_learning(model, env, target_vec):
 
 
 class CustomLossFunctionExample(tf.keras.losses.Loss):
+    """Example Custom Loss Function Class
+
+    Args:
+        tf (env): Tensorflow keras losses environment
+    """
     # Example from Youtube (https://www.youtube.com/watch?v=gcwRjM1nZ4o)
+
     def __init__(self):
         """Initialisation of a custom loss function template
         """
@@ -2537,6 +2543,12 @@ class CustomLossFunctionExample(tf.keras.losses.Loss):
 
 
 class custom_mse(tf.keras.losses.Loss):
+    """Custom Mean Squared Error Function Class
+
+    Args:
+        tf (env): Tensorflow keras losses environment
+    """
+
     def __init__(self, extra_tensor=None, reduction=tf.keras.losses.Reduction.AUTO, name='custom_mse'):
         """Initialisation of custom mse portfolio function
 
@@ -2564,6 +2576,12 @@ class custom_mse(tf.keras.losses.Loss):
 
 
 class custom_hp(tf.keras.losses.Loss):
+    """Custom Hedge Portfolio Function Class
+
+    Args:
+        tf (env): Tensorflow keras losses environment
+    """
+
     def __init__(self, extra_tensor=None, reduction=tf.keras.losses.Reduction.AUTO, name='custom_hp'):
         """Initialisation of custom hedge portfolio function
 
@@ -2603,6 +2621,12 @@ class custom_hp(tf.keras.losses.Loss):
 
 
 class custom_sharpe(tf.keras.losses.Loss):
+    """Custom Sharpe Ratio Function Class
+
+    Args:
+        tf (env): Tensorflow keras losses environment
+    """
+
     def __init__(self, extra_tensor=None, reduction=tf.keras.losses.Reduction.AUTO, name='custom_sharpe'):
         """Initialisation of custom sharpe portfolio function
 
@@ -2631,6 +2655,12 @@ class custom_sharpe(tf.keras.losses.Loss):
 
 
 class custom_information(tf.keras.losses.Loss):
+    """Custom Information Function Class
+
+    Args:
+        tf (env): Tensorflow keras losses environment
+    """
+
     def __init__(self, extra_tensor=None, reduction=tf.keras.losses.Reduction.AUTO, name='custom_information'):
         """Initialisation of custom information portfolio function
 
@@ -2658,6 +2688,12 @@ class custom_information(tf.keras.losses.Loss):
 
 
 class custom_treynor(tf.keras.losses.Loss):
+    """Custom Treynor Ratio Function Class
+
+    Args:
+        tf (env): Tensorflow keras losses environment
+    """
+
     def __init__(self, extra_tensor=None, reduction=tf.keras.losses.Reduction.AUTO, name='custom_treynor'):
         """Initialisation of custom trynor portfolio function
 
@@ -2685,6 +2721,12 @@ class custom_treynor(tf.keras.losses.Loss):
 
 
 class custom_hp_mse(tf.keras.losses.Loss):
+    """Custom Hedge Portfolio + Mean Squared Error Loss Function Class
+
+    Args:
+        tf (env): Tensorflow keras losses environment
+    """
+
     def __init__(self, extra_tensor=None, reduction=tf.keras.losses.Reduction.AUTO, name='custom_hp_mse'):
         """Initialisation of custom hedge portfolio mse portfolio function
 
@@ -2724,6 +2766,12 @@ class custom_hp_mse(tf.keras.losses.Loss):
 
 
 class custom_sharpe_mse(tf.keras.losses.Loss):
+    """Custom Sharpe + Mean Squared Error Function Class
+
+    Args:
+        tf (env): Tensorflow keras losses environment
+    """
+
     def __init__(self, extra_tensor=None, reduction=tf.keras.losses.Reduction.AUTO, name='custom_sharpe_mse'):
         """Initialisation of custom sharpe mse portfolio function
 
@@ -2753,6 +2801,12 @@ class custom_sharpe_mse(tf.keras.losses.Loss):
 
 
 class custom_information_mse(tf.keras.losses.Loss):
+    """Custom Information + Mean Squared Error Function Class
+
+    Args:
+        tf (env): Tensorflow keras losses environment
+    """
+
     def __init__(self, extra_tensor=None, reduction=tf.keras.losses.Reduction.AUTO, name='custom_information_mse'):
         """Initialisation of custom information mse portfolio function
 
@@ -2871,6 +2925,12 @@ def custom_capm_metric(factors):
 
 
 class CustomSharpeMetric(tf.keras.metrics.Metric):
+    """Custom Sharpe Metric 
+
+    Args:
+        tf (env): Tensorflow keras metrics environment
+    """
+
     def __init__(self, num_classes=None, batch_size=None,
                  name='sharpe_ratio', **kwargs):
         """Initialisation for custom metric
