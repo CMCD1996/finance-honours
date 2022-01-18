@@ -104,6 +104,32 @@
                     SingleStyledText('CustomLossFunctionExample')
         StaticGroupedFlowables(style='content')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.CustomLossFunctionExample)   <desc_content>
              > (0,0,2,0,3) object description content [Sphinx] > definition
+          Paragraph('Example Custom Loss Function Cla...')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:1 (docstring of src.cmcd398_finance_honours.CustomLossFunctionExample)   <paragraph>
+               > (0,0,2,0,5) object description content paragraph [Sphinx] > body
+                 (0,0,0,0,2) body [Sphinx] > default
+              MixedStyledText('Example Custom Loss Function Cla...')
+                MixedStyledText('Example Custom Loss Function Cla...')
+                  SingleStyledText('Example Custom Loss Function Cla...')
+          DefinitionList()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.CustomLossFunctionExample.call)   <definition_list>
+               > (0,0,0,0,2) definition list [Sphinx] > DEFAULT
+            LabeledFlowable()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:5 (docstring of src.cmcd398_finance_honours.CustomLossFunctionExample)   <definition_list_item>
+                 > (0,0,0,0,4) definition list item [Sphinx] > DEFAULT
+              StaticGroupedFlowables(style='definition term')
+                   > (0,0,1,0,5) definition term [Sphinx] > DEFAULT
+                Paragraph('Args:')
+                     > (0,0,1,0,7) definition term paragraph [Sphinx] > default
+                       (0,0,0,0,2) body [Sphinx] > default
+                    MixedStyledText('Args:')
+                      MixedStyledText('Args:')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:5 (docstring of src.cmcd398_finance_honours.CustomLossFunctionExample)   <term>
+                        SingleStyledText('Args:')
+              StaticGroupedFlowables(style='definition')   <definition>
+                   > (0,0,1,0,5) definition [Sphinx] > DEFAULT
+                Paragraph('tf (env): Tensorflow keras losse...')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:4 (docstring of src.cmcd398_finance_honours.CustomLossFunctionExample)   <paragraph>
+                     > (0,0,1,0,7) definition paragraph [Sphinx] > body
+                       (0,0,0,0,2) body [Sphinx] > default
+                    MixedStyledText('tf (env): Tensorflow keras losse...')
+                      MixedStyledText('tf (env): Tensorflow keras losse...')
+                        SingleStyledText('tf (env): Tensorflow keras losse...')
           LabeledFlowable(style='object description')   <desc>
                > (0,0,1,0,2) object description [Sphinx] > definition list item
             StaticGroupedFlowables(style='signatures')
@@ -220,6 +246,32 @@
                          > (0,0,3,0,6) object parentheses [Sphinx] > DEFAULT
         StaticGroupedFlowables(style='content')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.CustomSharpeMetric)   <desc_content>
              > (0,0,2,0,3) object description content [Sphinx] > definition
+          Paragraph('Custom Sharpe Metric')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:1 (docstring of src.cmcd398_finance_honours.CustomSharpeMetric)   <paragraph>
+               > (0,0,2,0,5) object description content paragraph [Sphinx] > body
+                 (0,0,0,0,2) body [Sphinx] > default
+              MixedStyledText('Custom Sharpe Metric')
+                MixedStyledText('Custom Sharpe Metric')
+                  SingleStyledText('Custom Sharpe Metric')
+          DefinitionList()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.CustomSharpeMetric.result)   <definition_list>
+               > (0,0,0,0,2) definition list [Sphinx] > DEFAULT
+            LabeledFlowable()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:5 (docstring of src.cmcd398_finance_honours.CustomSharpeMetric)   <definition_list_item>
+                 > (0,0,0,0,4) definition list item [Sphinx] > DEFAULT
+              StaticGroupedFlowables(style='definition term')
+                   > (0,0,1,0,5) definition term [Sphinx] > DEFAULT
+                Paragraph('Args:')
+                     > (0,0,1,0,7) definition term paragraph [Sphinx] > default
+                       (0,0,0,0,2) body [Sphinx] > default
+                    MixedStyledText('Args:')
+                      MixedStyledText('Args:')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:5 (docstring of src.cmcd398_finance_honours.CustomSharpeMetric)   <term>
+                        SingleStyledText('Args:')
+              StaticGroupedFlowables(style='definition')   <definition>
+                   > (0,0,1,0,5) definition [Sphinx] > DEFAULT
+                Paragraph('tf (env): Tensorflow keras metri...')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:4 (docstring of src.cmcd398_finance_honours.CustomSharpeMetric)   <paragraph>
+                     > (0,0,1,0,7) definition paragraph [Sphinx] > body
+                       (0,0,0,0,2) body [Sphinx] > default
+                    MixedStyledText('tf (env): Tensorflow keras metri...')
+                      MixedStyledText('tf (env): Tensorflow keras metri...')
+                        SingleStyledText('tf (env): Tensorflow keras metri...')
           LabeledFlowable(style='object description')   <desc>
                > (0,0,1,0,2) object description [Sphinx] > definition list item
             StaticGroupedFlowables(style='signatures')
@@ -446,6 +498,43 @@
                           MixedStyledText(': 1 - ‘simple’ : 2 - ‘simple_ten...')
                             MixedStyledText(': 1 - ‘simple’ : 2 - ‘simple_ten...')
                               SingleStyledText(': 1 - ‘simple’ : 2 - ‘simple_ten...')
+#### DownExpandingContainer('footer')
+  StaticGroupedFlowables()
+    Footer('		1')
+         > (0,0,0,0,2) footer [Sphinx] > header_footer
+        MixedStyledText('		1')
+          MixedStyledText('		1')
+            Tab('	')
+            Tab('	')
+            Field('1')
+              SingleStyledText('1')
+---------------------------------- page 2 ----------------------------------
+#### FootnoteContainer('footnotes')
+  StaticGroupedFlowables()
+#### DownExpandingContainer('floats')
+  StaticGroupedFlowables()
+#### ChainedContainer('column1')
+  (continued) StaticGroupedFlowables()
+    (continued) DocumentTree()   index.rst   <document>
+      (continued) LabeledFlowable(style='object description')   index.rst   <desc>
+           > (0,0,1,0,2) object description [Sphinx] > definition list item
+        (continued) StaticGroupedFlowables(style='content')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.autodiff_guide)   <desc_content>
+             > (0,0,2,0,3) object description content [Sphinx] > definition
+          (continued) DefinitionList()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.autodiff_guide)   <definition_list>
+               > (0,0,0,0,2) definition list [Sphinx] > DEFAULT
+            (continued) LabeledFlowable()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:15 (docstring of src.cmcd398_finance_honours.autodiff_guide)   <definition_list_item>
+                 > (0,0,0,0,4) definition list item [Sphinx] > DEFAULT
+              (continued) StaticGroupedFlowables(style='definition')   <definition>
+                   > (0,0,1,0,5) definition [Sphinx] > DEFAULT
+                (continued) DefinitionList()   <definition_list>
+                     > (0,0,0,0,2) definition list [Sphinx] > DEFAULT
+                  (continued) LabeledFlowable()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:15 (docstring of src.cmcd398_finance_honours.autodiff_guide)   <definition_list_item>
+                       > (0,0,0,0,4) definition list item [Sphinx] > DEFAULT
+                    (continued) StaticGroupedFlowables(style='definition')   <definition>
+                         > (0,0,1,0,5) definition [Sphinx] > DEFAULT
+                      (continued) Paragraph(': 1 - ‘simple’ : 2 - ‘simple_ten...')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:7 (docstring of src.cmcd398_finance_honours.autodiff_guide)   <paragraph>
+                           > (0,0,1,0,7) definition paragraph [Sphinx] > body
+                             (0,0,0,0,2) body [Sphinx] > default
       LabeledFlowable(style='object description')   index.rst   <desc>
            > (0,0,1,0,2) object description [Sphinx] > definition list item
         StaticGroupedFlowables(style='signatures')
@@ -530,28 +619,6 @@
               MixedStyledText('Builds tensorflow neural network...')
                 MixedStyledText('Builds tensorflow neural network...')
                   SingleStyledText('Builds tensorflow neural network...')
-#### DownExpandingContainer('footer')
-  StaticGroupedFlowables()
-    Footer('		1')
-         > (0,0,0,0,2) footer [Sphinx] > header_footer
-        MixedStyledText('		1')
-          MixedStyledText('		1')
-            Tab('	')
-            Tab('	')
-            Field('1')
-              SingleStyledText('1')
----------------------------------- page 2 ----------------------------------
-#### FootnoteContainer('footnotes')
-  StaticGroupedFlowables()
-#### DownExpandingContainer('floats')
-  StaticGroupedFlowables()
-#### ChainedContainer('column1')
-  (continued) StaticGroupedFlowables()
-    (continued) DocumentTree()   index.rst   <document>
-      (continued) LabeledFlowable(style='object description')   index.rst   <desc>
-           > (0,0,1,0,2) object description [Sphinx] > definition list item
-        (continued) StaticGroupedFlowables(style='content')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.build_tensor_flow_model)   <desc_content>
-             > (0,0,2,0,3) object description content [Sphinx] > definition
           DefinitionList()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.build_tensor_flow_model)   <definition_list>
                > (0,0,0,0,2) definition list [Sphinx] > DEFAULT
             LabeledFlowable()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:13 (docstring of src.cmcd398_finance_honours.build_tensor_flow_model)   <definition_list_item>
@@ -569,6 +636,9 @@
                 Paragraph('train_dataset (ds): Training dat...')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:4 (docstring of src.cmcd398_finance_honours.build_tensor_flow_model)   <paragraph>
                      > (0,0,1,0,7) definition paragraph [Sphinx] > body
                        (0,0,0,0,2) body [Sphinx] > default
+                    MixedStyledText('train_dataset (ds): Training dat...')
+                      MixedStyledText('train_dataset (ds): Training dat...')
+                        SingleStyledText('train_dataset (ds): Training dat...')
             LabeledFlowable()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:17 (docstring of src.cmcd398_finance_honours.build_tensor_flow_model)   <definition_list_item>
                  > (0,0,0,0,4) definition list item [Sphinx] > DEFAULT
               StaticGroupedFlowables(style='definition term')
@@ -988,6 +1058,43 @@
                     MixedStyledText('model_name (Str): Name of run se...')
                       MixedStyledText('model_name (Str): Name of run se...')
                         SingleStyledText('model_name (Str): Name of run se...')
+#### UpExpandingContainer('header')
+  StaticGroupedFlowables()
+    Header('cmcd398-finance-honours, Release...')
+         > (0,0,0,0,2) header [Sphinx] > header_footer
+        MixedStyledText('cmcd398-finance-honours, Release...')
+          MixedStyledText('cmcd398-finance-honours, Release...')
+            Field('cmcd398-finance-honours')
+              SingleStyledText('cmcd398-finance-honours')
+            SingleStyledText(', ')
+            Field('Release 0.0.1')
+              SingleStyledText('Release 0.0.1')
+#### DownExpandingContainer('footer')
+  StaticGroupedFlowables()
+    Footer('2		Chapter ​.  ​')
+         > (0,0,0,0,2) footer [Sphinx] > header_footer
+        MixedStyledText('2		Chapter ​.  ​')
+          MixedStyledText('2		Chapter ​.  ​')
+            Field('2')
+              SingleStyledText('2')
+            Tab('	')
+            Tab('	')
+            StringField('Chapter')
+              SingleStyledText('Chapter')
+            SingleStyledText(' ')
+            Field('​')
+              SingleStyledText('​')
+            SingleStyledText('.  ')
+            Field('​')
+              SingleStyledText('​')
+---------------------------------- page 3 ----------------------------------
+#### FootnoteContainer('footnotes')
+  StaticGroupedFlowables()
+#### DownExpandingContainer('floats')
+  StaticGroupedFlowables()
+#### ChainedContainer('column1')
+  (continued) StaticGroupedFlowables()
+    (continued) DocumentTree()   index.rst   <document>
       LabeledFlowable(style='object description')   index.rst   <desc>
            > (0,0,1,0,2) object description [Sphinx] > definition list item
         StaticGroupedFlowables(style='signatures')
@@ -1048,49 +1155,6 @@
                     MixedStyledText('list_of_columns ([type]): [descr...')
                       MixedStyledText('list_of_columns ([type]): [descr...')
                         SingleStyledText('list_of_columns ([type]): [descr...')
-#### UpExpandingContainer('header')
-  StaticGroupedFlowables()
-    Header('cmcd398-finance-honours, Release...')
-         > (0,0,0,0,2) header [Sphinx] > header_footer
-        MixedStyledText('cmcd398-finance-honours, Release...')
-          MixedStyledText('cmcd398-finance-honours, Release...')
-            Field('cmcd398-finance-honours')
-              SingleStyledText('cmcd398-finance-honours')
-            SingleStyledText(', ')
-            Field('Release 0.0.1')
-              SingleStyledText('Release 0.0.1')
-#### DownExpandingContainer('footer')
-  StaticGroupedFlowables()
-    Footer('2		Chapter ​.  ​')
-         > (0,0,0,0,2) footer [Sphinx] > header_footer
-        MixedStyledText('2		Chapter ​.  ​')
-          MixedStyledText('2		Chapter ​.  ​')
-            Field('2')
-              SingleStyledText('2')
-            Tab('	')
-            Tab('	')
-            StringField('Chapter')
-              SingleStyledText('Chapter')
-            SingleStyledText(' ')
-            Field('​')
-              SingleStyledText('​')
-            SingleStyledText('.  ')
-            Field('​')
-              SingleStyledText('​')
----------------------------------- page 3 ----------------------------------
-#### FootnoteContainer('footnotes')
-  StaticGroupedFlowables()
-#### DownExpandingContainer('floats')
-  StaticGroupedFlowables()
-#### ChainedContainer('column1')
-  (continued) StaticGroupedFlowables()
-    (continued) DocumentTree()   index.rst   <document>
-      (continued) LabeledFlowable(style='object description')   index.rst   <desc>
-           > (0,0,1,0,2) object description [Sphinx] > definition list item
-        (continued) StaticGroupedFlowables(style='content')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.create_feature_lists)   <desc_content>
-             > (0,0,2,0,3) object description content [Sphinx] > definition
-          (continued) DefinitionList()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.create_feature_lists)   <definition_list>
-               > (0,0,0,0,2) definition list [Sphinx] > DEFAULT
             LabeledFlowable()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:8 (docstring of src.cmcd398_finance_honours.create_feature_lists)   <definition_list_item>
                  > (0,0,0,0,4) definition list item [Sphinx] > DEFAULT
               StaticGroupedFlowables(style='definition term')
@@ -1106,6 +1170,9 @@
                 Paragraph('numerical_features:  categorical...')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:8 (docstring of src.cmcd398_finance_honours.create_feature_lists)   <paragraph>
                      > (0,0,1,0,7) definition paragraph [Sphinx] > body
                        (0,0,0,0,2) body [Sphinx] > default
+                    MixedStyledText('numerical_features:  categorical...')
+                      MixedStyledText('numerical_features:  categorical...')
+                        SingleStyledText('numerical_features:  categorical...')
       LabeledFlowable(style='object description')   index.rst   <desc>
            > (0,0,1,0,2) object description [Sphinx] > definition list item
         StaticGroupedFlowables(style='signatures')
@@ -1576,6 +1643,72 @@
                          > (0,0,3,0,6) object parentheses [Sphinx] > DEFAULT
         StaticGroupedFlowables(style='content')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.custom_hp)   <desc_content>
              > (0,0,2,0,3) object description content [Sphinx] > definition
+          Paragraph('Custom Hedge Portfolio Function ...')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:1 (docstring of src.cmcd398_finance_honours.custom_hp)   <paragraph>
+               > (0,0,2,0,5) object description content paragraph [Sphinx] > body
+                 (0,0,0,0,2) body [Sphinx] > default
+              MixedStyledText('Custom Hedge Portfolio Function ...')
+                MixedStyledText('Custom Hedge Portfolio Function ...')
+                  SingleStyledText('Custom Hedge Portfolio Function ...')
+#### UpExpandingContainer('header')
+  StaticGroupedFlowables()
+    Header('		cmcd398-finance-honours, Relea...')
+         > (0,0,0,0,2) header [Sphinx] > header_footer
+        MixedStyledText('		cmcd398-finance-honours, Relea...')
+          MixedStyledText('		cmcd398-finance-honours, Relea...')
+            Tab('	')
+            Tab('	')
+            Field('cmcd398-finance-honours')
+              SingleStyledText('cmcd398-finance-honours')
+            SingleStyledText(', ')
+            Field('Release 0.0.1')
+              SingleStyledText('Release 0.0.1')
+#### DownExpandingContainer('footer')
+  StaticGroupedFlowables()
+    Footer('​.  ​		3')
+         > (0,0,0,0,2) footer [Sphinx] > header_footer
+        MixedStyledText('​.  ​		3')
+          MixedStyledText('​.  ​		3')
+            Field('​')
+              SingleStyledText('​')
+            SingleStyledText('.  ')
+            Field('​')
+              SingleStyledText('​')
+            Tab('	')
+            Tab('	')
+            Field('3')
+              SingleStyledText('3')
+---------------------------------- page 4 ----------------------------------
+#### FootnoteContainer('footnotes')
+  StaticGroupedFlowables()
+#### DownExpandingContainer('floats')
+  StaticGroupedFlowables()
+#### ChainedContainer('column1')
+  (continued) StaticGroupedFlowables()
+    (continued) DocumentTree()   index.rst   <document>
+      (continued) LabeledFlowable(style='object description')   index.rst   <desc>
+           > (0,0,1,0,2) object description [Sphinx] > definition list item
+        (continued) StaticGroupedFlowables(style='content')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.custom_hp)   <desc_content>
+             > (0,0,2,0,3) object description content [Sphinx] > definition
+          DefinitionList()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.custom_hp.call)   <definition_list>
+               > (0,0,0,0,2) definition list [Sphinx] > DEFAULT
+            LabeledFlowable()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:5 (docstring of src.cmcd398_finance_honours.custom_hp)   <definition_list_item>
+                 > (0,0,0,0,4) definition list item [Sphinx] > DEFAULT
+              StaticGroupedFlowables(style='definition term')
+                   > (0,0,1,0,5) definition term [Sphinx] > DEFAULT
+                Paragraph('Args:')
+                     > (0,0,1,0,7) definition term paragraph [Sphinx] > default
+                       (0,0,0,0,2) body [Sphinx] > default
+                    MixedStyledText('Args:')
+                      MixedStyledText('Args:')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:5 (docstring of src.cmcd398_finance_honours.custom_hp)   <term>
+                        SingleStyledText('Args:')
+              StaticGroupedFlowables(style='definition')   <definition>
+                   > (0,0,1,0,5) definition [Sphinx] > DEFAULT
+                Paragraph('tf (env): Tensorflow keras losse...')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:4 (docstring of src.cmcd398_finance_honours.custom_hp)   <paragraph>
+                     > (0,0,1,0,7) definition paragraph [Sphinx] > body
+                       (0,0,0,0,2) body [Sphinx] > default
+                    MixedStyledText('tf (env): Tensorflow keras losse...')
+                      MixedStyledText('tf (env): Tensorflow keras losse...')
+                        SingleStyledText('tf (env): Tensorflow keras losse...')
           LabeledFlowable(style='object description')   <desc>
                > (0,0,1,0,2) object description [Sphinx] > definition list item
             StaticGroupedFlowables(style='signatures')
@@ -1633,52 +1766,6 @@
                         MixedStyledText('y_true (tf): Tensor of realisati...')
                           MixedStyledText('y_true (tf): Tensor of realisati...')
                             SingleStyledText('y_true (tf): Tensor of realisati...')
-#### UpExpandingContainer('header')
-  StaticGroupedFlowables()
-    Header('		cmcd398-finance-honours, Relea...')
-         > (0,0,0,0,2) header [Sphinx] > header_footer
-        MixedStyledText('		cmcd398-finance-honours, Relea...')
-          MixedStyledText('		cmcd398-finance-honours, Relea...')
-            Tab('	')
-            Tab('	')
-            Field('cmcd398-finance-honours')
-              SingleStyledText('cmcd398-finance-honours')
-            SingleStyledText(', ')
-            Field('Release 0.0.1')
-              SingleStyledText('Release 0.0.1')
-#### DownExpandingContainer('footer')
-  StaticGroupedFlowables()
-    Footer('​.  ​		3')
-         > (0,0,0,0,2) footer [Sphinx] > header_footer
-        MixedStyledText('​.  ​		3')
-          MixedStyledText('​.  ​		3')
-            Field('​')
-              SingleStyledText('​')
-            SingleStyledText('.  ')
-            Field('​')
-              SingleStyledText('​')
-            Tab('	')
-            Tab('	')
-            Field('3')
-              SingleStyledText('3')
----------------------------------- page 4 ----------------------------------
-#### FootnoteContainer('footnotes')
-  StaticGroupedFlowables()
-#### DownExpandingContainer('floats')
-  StaticGroupedFlowables()
-#### ChainedContainer('column1')
-  (continued) StaticGroupedFlowables()
-    (continued) DocumentTree()   index.rst   <document>
-      (continued) LabeledFlowable(style='object description')   index.rst   <desc>
-           > (0,0,1,0,2) object description [Sphinx] > definition list item
-        (continued) StaticGroupedFlowables(style='content')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.custom_hp)   <desc_content>
-             > (0,0,2,0,3) object description content [Sphinx] > definition
-          (continued) LabeledFlowable(style='object description')   <desc>
-               > (0,0,1,0,2) object description [Sphinx] > definition list item
-            (continued) StaticGroupedFlowables(style='content')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.custom_hp.call)   <desc_content>
-                 > (0,0,2,0,3) object description content [Sphinx] > definition
-              (continued) DefinitionList()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.custom_hp.call)   <definition_list>
-                   > (0,0,0,0,2) definition list [Sphinx] > DEFAULT
                 LabeledFlowable()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:7 (docstring of src.cmcd398_finance_honours.custom_hp.call)   <definition_list_item>
                      > (0,0,0,0,4) definition list item [Sphinx] > DEFAULT
                   StaticGroupedFlowables(style='definition term')
@@ -1694,6 +1781,9 @@
                     Paragraph(': Loss')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:8 (docstring of src.cmcd398_finance_honours.custom_hp.call)   <paragraph>
                          > (0,0,1,0,7) definition paragraph [Sphinx] > body
                            (0,0,0,0,2) body [Sphinx] > default
+                        MixedStyledText(': Loss')
+                          MixedStyledText(': Loss')
+                            SingleStyledText(': Loss')
       LabeledFlowable(style='object description')   index.rst   <desc>
            > (0,0,1,0,2) object description [Sphinx] > definition list item
         StaticGroupedFlowables(style='signatures')
@@ -1826,6 +1916,32 @@
                          > (0,0,3,0,6) object parentheses [Sphinx] > DEFAULT
         StaticGroupedFlowables(style='content')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.custom_hp_mse)   <desc_content>
              > (0,0,2,0,3) object description content [Sphinx] > definition
+          Paragraph('Custom Hedge Portfolio + Mean Sq...')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:1 (docstring of src.cmcd398_finance_honours.custom_hp_mse)   <paragraph>
+               > (0,0,2,0,5) object description content paragraph [Sphinx] > body
+                 (0,0,0,0,2) body [Sphinx] > default
+              MixedStyledText('Custom Hedge Portfolio + Mean Sq...')
+                MixedStyledText('Custom Hedge Portfolio + Mean Sq...')
+                  SingleStyledText('Custom Hedge Portfolio + Mean Sq...')
+          DefinitionList()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.custom_hp_mse.call)   <definition_list>
+               > (0,0,0,0,2) definition list [Sphinx] > DEFAULT
+            LabeledFlowable()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:5 (docstring of src.cmcd398_finance_honours.custom_hp_mse)   <definition_list_item>
+                 > (0,0,0,0,4) definition list item [Sphinx] > DEFAULT
+              StaticGroupedFlowables(style='definition term')
+                   > (0,0,1,0,5) definition term [Sphinx] > DEFAULT
+                Paragraph('Args:')
+                     > (0,0,1,0,7) definition term paragraph [Sphinx] > default
+                       (0,0,0,0,2) body [Sphinx] > default
+                    MixedStyledText('Args:')
+                      MixedStyledText('Args:')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:5 (docstring of src.cmcd398_finance_honours.custom_hp_mse)   <term>
+                        SingleStyledText('Args:')
+              StaticGroupedFlowables(style='definition')   <definition>
+                   > (0,0,1,0,5) definition [Sphinx] > DEFAULT
+                Paragraph('tf (env): Tensorflow keras losse...')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:4 (docstring of src.cmcd398_finance_honours.custom_hp_mse)   <paragraph>
+                     > (0,0,1,0,7) definition paragraph [Sphinx] > body
+                       (0,0,0,0,2) body [Sphinx] > default
+                    MixedStyledText('tf (env): Tensorflow keras losse...')
+                      MixedStyledText('tf (env): Tensorflow keras losse...')
+                        SingleStyledText('tf (env): Tensorflow keras losse...')
           LabeledFlowable(style='object description')   <desc>
                > (0,0,1,0,2) object description [Sphinx] > definition list item
             StaticGroupedFlowables(style='signatures')
@@ -1955,6 +2071,32 @@
                          > (0,0,3,0,6) object parentheses [Sphinx] > DEFAULT
         StaticGroupedFlowables(style='content')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.custom_information)   <desc_content>
              > (0,0,2,0,3) object description content [Sphinx] > definition
+          Paragraph('Custom Information Function Clas...')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:1 (docstring of src.cmcd398_finance_honours.custom_information)   <paragraph>
+               > (0,0,2,0,5) object description content paragraph [Sphinx] > body
+                 (0,0,0,0,2) body [Sphinx] > default
+              MixedStyledText('Custom Information Function Clas...')
+                MixedStyledText('Custom Information Function Clas...')
+                  SingleStyledText('Custom Information Function Clas...')
+          DefinitionList()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.custom_information.call)   <definition_list>
+               > (0,0,0,0,2) definition list [Sphinx] > DEFAULT
+            LabeledFlowable()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:5 (docstring of src.cmcd398_finance_honours.custom_information)   <definition_list_item>
+                 > (0,0,0,0,4) definition list item [Sphinx] > DEFAULT
+              StaticGroupedFlowables(style='definition term')
+                   > (0,0,1,0,5) definition term [Sphinx] > DEFAULT
+                Paragraph('Args:')
+                     > (0,0,1,0,7) definition term paragraph [Sphinx] > default
+                       (0,0,0,0,2) body [Sphinx] > default
+                    MixedStyledText('Args:')
+                      MixedStyledText('Args:')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:5 (docstring of src.cmcd398_finance_honours.custom_information)   <term>
+                        SingleStyledText('Args:')
+              StaticGroupedFlowables(style='definition')   <definition>
+                   > (0,0,1,0,5) definition [Sphinx] > DEFAULT
+                Paragraph('tf (env): Tensorflow keras losse...')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:4 (docstring of src.cmcd398_finance_honours.custom_information)   <paragraph>
+                     > (0,0,1,0,7) definition paragraph [Sphinx] > body
+                       (0,0,0,0,2) body [Sphinx] > default
+                    MixedStyledText('tf (env): Tensorflow keras losse...')
+                      MixedStyledText('tf (env): Tensorflow keras losse...')
+                        SingleStyledText('tf (env): Tensorflow keras losse...')
           LabeledFlowable(style='object description')   <desc>
                > (0,0,1,0,2) object description [Sphinx] > definition list item
             StaticGroupedFlowables(style='signatures')
@@ -2162,6 +2304,73 @@
                          > (0,0,3,0,6) object parentheses [Sphinx] > DEFAULT
         StaticGroupedFlowables(style='content')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.custom_information_mse)   <desc_content>
              > (0,0,2,0,3) object description content [Sphinx] > definition
+          Paragraph('Custom Information + Mean Square...')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:1 (docstring of src.cmcd398_finance_honours.custom_information_mse)   <paragraph>
+               > (0,0,2,0,5) object description content paragraph [Sphinx] > body
+                 (0,0,0,0,2) body [Sphinx] > default
+              MixedStyledText('Custom Information + Mean Square...')
+                MixedStyledText('Custom Information + Mean Square...')
+                  SingleStyledText('Custom Information + Mean Square...')
+#### UpExpandingContainer('header')
+  StaticGroupedFlowables()
+    Header('cmcd398-finance-honours, Release...')
+         > (0,0,0,0,2) header [Sphinx] > header_footer
+        MixedStyledText('cmcd398-finance-honours, Release...')
+          MixedStyledText('cmcd398-finance-honours, Release...')
+            Field('cmcd398-finance-honours')
+              SingleStyledText('cmcd398-finance-honours')
+            SingleStyledText(', ')
+            Field('Release 0.0.1')
+              SingleStyledText('Release 0.0.1')
+#### DownExpandingContainer('footer')
+  StaticGroupedFlowables()
+    Footer('4		Chapter ​.  ​')
+         > (0,0,0,0,2) footer [Sphinx] > header_footer
+        MixedStyledText('4		Chapter ​.  ​')
+          MixedStyledText('4		Chapter ​.  ​')
+            Field('4')
+              SingleStyledText('4')
+            Tab('	')
+            Tab('	')
+            StringField('Chapter')
+              SingleStyledText('Chapter')
+            SingleStyledText(' ')
+            Field('​')
+              SingleStyledText('​')
+            SingleStyledText('.  ')
+            Field('​')
+              SingleStyledText('​')
+---------------------------------- page 5 ----------------------------------
+#### FootnoteContainer('footnotes')
+  StaticGroupedFlowables()
+#### DownExpandingContainer('floats')
+  StaticGroupedFlowables()
+#### ChainedContainer('column1')
+  (continued) StaticGroupedFlowables()
+    (continued) DocumentTree()   index.rst   <document>
+      (continued) LabeledFlowable(style='object description')   index.rst   <desc>
+           > (0,0,1,0,2) object description [Sphinx] > definition list item
+        (continued) StaticGroupedFlowables(style='content')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.custom_information_mse)   <desc_content>
+             > (0,0,2,0,3) object description content [Sphinx] > definition
+          DefinitionList()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.custom_information_mse.call)   <definition_list>
+               > (0,0,0,0,2) definition list [Sphinx] > DEFAULT
+            LabeledFlowable()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:5 (docstring of src.cmcd398_finance_honours.custom_information_mse)   <definition_list_item>
+                 > (0,0,0,0,4) definition list item [Sphinx] > DEFAULT
+              StaticGroupedFlowables(style='definition term')
+                   > (0,0,1,0,5) definition term [Sphinx] > DEFAULT
+                Paragraph('Args:')
+                     > (0,0,1,0,7) definition term paragraph [Sphinx] > default
+                       (0,0,0,0,2) body [Sphinx] > default
+                    MixedStyledText('Args:')
+                      MixedStyledText('Args:')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:5 (docstring of src.cmcd398_finance_honours.custom_information_mse)   <term>
+                        SingleStyledText('Args:')
+              StaticGroupedFlowables(style='definition')   <definition>
+                   > (0,0,1,0,5) definition [Sphinx] > DEFAULT
+                Paragraph('tf (env): Tensorflow keras losse...')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:4 (docstring of src.cmcd398_finance_honours.custom_information_mse)   <paragraph>
+                     > (0,0,1,0,7) definition paragraph [Sphinx] > body
+                       (0,0,0,0,2) body [Sphinx] > default
+                    MixedStyledText('tf (env): Tensorflow keras losse...')
+                      MixedStyledText('tf (env): Tensorflow keras losse...')
+                        SingleStyledText('tf (env): Tensorflow keras losse...')
           LabeledFlowable(style='object description')   <desc>
                > (0,0,1,0,2) object description [Sphinx] > definition list item
             StaticGroupedFlowables(style='signatures')
@@ -2291,6 +2500,32 @@
                          > (0,0,3,0,6) object parentheses [Sphinx] > DEFAULT
         StaticGroupedFlowables(style='content')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.custom_mse)   <desc_content>
              > (0,0,2,0,3) object description content [Sphinx] > definition
+          Paragraph('Custom Mean Squared Error Functi...')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:1 (docstring of src.cmcd398_finance_honours.custom_mse)   <paragraph>
+               > (0,0,2,0,5) object description content paragraph [Sphinx] > body
+                 (0,0,0,0,2) body [Sphinx] > default
+              MixedStyledText('Custom Mean Squared Error Functi...')
+                MixedStyledText('Custom Mean Squared Error Functi...')
+                  SingleStyledText('Custom Mean Squared Error Functi...')
+          DefinitionList()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.custom_mse.call)   <definition_list>
+               > (0,0,0,0,2) definition list [Sphinx] > DEFAULT
+            LabeledFlowable()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:5 (docstring of src.cmcd398_finance_honours.custom_mse)   <definition_list_item>
+                 > (0,0,0,0,4) definition list item [Sphinx] > DEFAULT
+              StaticGroupedFlowables(style='definition term')
+                   > (0,0,1,0,5) definition term [Sphinx] > DEFAULT
+                Paragraph('Args:')
+                     > (0,0,1,0,7) definition term paragraph [Sphinx] > default
+                       (0,0,0,0,2) body [Sphinx] > default
+                    MixedStyledText('Args:')
+                      MixedStyledText('Args:')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:5 (docstring of src.cmcd398_finance_honours.custom_mse)   <term>
+                        SingleStyledText('Args:')
+              StaticGroupedFlowables(style='definition')   <definition>
+                   > (0,0,1,0,5) definition [Sphinx] > DEFAULT
+                Paragraph('tf (env): Tensorflow keras losse...')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:4 (docstring of src.cmcd398_finance_honours.custom_mse)   <paragraph>
+                     > (0,0,1,0,7) definition paragraph [Sphinx] > body
+                       (0,0,0,0,2) body [Sphinx] > default
+                    MixedStyledText('tf (env): Tensorflow keras losse...')
+                      MixedStyledText('tf (env): Tensorflow keras losse...')
+                        SingleStyledText('tf (env): Tensorflow keras losse...')
           LabeledFlowable(style='object description')   <desc>
                > (0,0,1,0,2) object description [Sphinx] > definition list item
             StaticGroupedFlowables(style='signatures')
@@ -2348,53 +2583,6 @@
                         MixedStyledText('y_true (tf): Tensor of realisati...')
                           MixedStyledText('y_true (tf): Tensor of realisati...')
                             SingleStyledText('y_true (tf): Tensor of realisati...')
-#### UpExpandingContainer('header')
-  StaticGroupedFlowables()
-    Header('cmcd398-finance-honours, Release...')
-         > (0,0,0,0,2) header [Sphinx] > header_footer
-        MixedStyledText('cmcd398-finance-honours, Release...')
-          MixedStyledText('cmcd398-finance-honours, Release...')
-            Field('cmcd398-finance-honours')
-              SingleStyledText('cmcd398-finance-honours')
-            SingleStyledText(', ')
-            Field('Release 0.0.1')
-              SingleStyledText('Release 0.0.1')
-#### DownExpandingContainer('footer')
-  StaticGroupedFlowables()
-    Footer('4		Chapter ​.  ​')
-         > (0,0,0,0,2) footer [Sphinx] > header_footer
-        MixedStyledText('4		Chapter ​.  ​')
-          MixedStyledText('4		Chapter ​.  ​')
-            Field('4')
-              SingleStyledText('4')
-            Tab('	')
-            Tab('	')
-            StringField('Chapter')
-              SingleStyledText('Chapter')
-            SingleStyledText(' ')
-            Field('​')
-              SingleStyledText('​')
-            SingleStyledText('.  ')
-            Field('​')
-              SingleStyledText('​')
----------------------------------- page 5 ----------------------------------
-#### FootnoteContainer('footnotes')
-  StaticGroupedFlowables()
-#### DownExpandingContainer('floats')
-  StaticGroupedFlowables()
-#### ChainedContainer('column1')
-  (continued) StaticGroupedFlowables()
-    (continued) DocumentTree()   index.rst   <document>
-      (continued) LabeledFlowable(style='object description')   index.rst   <desc>
-           > (0,0,1,0,2) object description [Sphinx] > definition list item
-        (continued) StaticGroupedFlowables(style='content')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.custom_mse)   <desc_content>
-             > (0,0,2,0,3) object description content [Sphinx] > definition
-          (continued) LabeledFlowable(style='object description')   <desc>
-               > (0,0,1,0,2) object description [Sphinx] > definition list item
-            (continued) StaticGroupedFlowables(style='content')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.custom_mse.call)   <desc_content>
-                 > (0,0,2,0,3) object description content [Sphinx] > definition
-              (continued) DefinitionList()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.custom_mse.call)   <definition_list>
-                   > (0,0,0,0,2) definition list [Sphinx] > DEFAULT
                 LabeledFlowable()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:7 (docstring of src.cmcd398_finance_honours.custom_mse.call)   <definition_list_item>
                      > (0,0,0,0,4) definition list item [Sphinx] > DEFAULT
                   StaticGroupedFlowables(style='definition term')
@@ -2545,6 +2733,32 @@
                          > (0,0,3,0,6) object parentheses [Sphinx] > DEFAULT
         StaticGroupedFlowables(style='content')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.custom_sharpe)   <desc_content>
              > (0,0,2,0,3) object description content [Sphinx] > definition
+          Paragraph('Custom Sharpe Ratio Function Cla...')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:1 (docstring of src.cmcd398_finance_honours.custom_sharpe)   <paragraph>
+               > (0,0,2,0,5) object description content paragraph [Sphinx] > body
+                 (0,0,0,0,2) body [Sphinx] > default
+              MixedStyledText('Custom Sharpe Ratio Function Cla...')
+                MixedStyledText('Custom Sharpe Ratio Function Cla...')
+                  SingleStyledText('Custom Sharpe Ratio Function Cla...')
+          DefinitionList()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.custom_sharpe.call)   <definition_list>
+               > (0,0,0,0,2) definition list [Sphinx] > DEFAULT
+            LabeledFlowable()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:5 (docstring of src.cmcd398_finance_honours.custom_sharpe)   <definition_list_item>
+                 > (0,0,0,0,4) definition list item [Sphinx] > DEFAULT
+              StaticGroupedFlowables(style='definition term')
+                   > (0,0,1,0,5) definition term [Sphinx] > DEFAULT
+                Paragraph('Args:')
+                     > (0,0,1,0,7) definition term paragraph [Sphinx] > default
+                       (0,0,0,0,2) body [Sphinx] > default
+                    MixedStyledText('Args:')
+                      MixedStyledText('Args:')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:5 (docstring of src.cmcd398_finance_honours.custom_sharpe)   <term>
+                        SingleStyledText('Args:')
+              StaticGroupedFlowables(style='definition')   <definition>
+                   > (0,0,1,0,5) definition [Sphinx] > DEFAULT
+                Paragraph('tf (env): Tensorflow keras losse...')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:4 (docstring of src.cmcd398_finance_honours.custom_sharpe)   <paragraph>
+                     > (0,0,1,0,7) definition paragraph [Sphinx] > body
+                       (0,0,0,0,2) body [Sphinx] > default
+                    MixedStyledText('tf (env): Tensorflow keras losse...')
+                      MixedStyledText('tf (env): Tensorflow keras losse...')
+                        SingleStyledText('tf (env): Tensorflow keras losse...')
           LabeledFlowable(style='object description')   <desc>
                > (0,0,1,0,2) object description [Sphinx] > definition list item
             StaticGroupedFlowables(style='signatures')
@@ -2752,6 +2966,72 @@
                          > (0,0,3,0,6) object parentheses [Sphinx] > DEFAULT
         StaticGroupedFlowables(style='content')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.custom_sharpe_mse)   <desc_content>
              > (0,0,2,0,3) object description content [Sphinx] > definition
+          Paragraph('Custom Sharpe + Mean Squared Err...')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:1 (docstring of src.cmcd398_finance_honours.custom_sharpe_mse)   <paragraph>
+               > (0,0,2,0,5) object description content paragraph [Sphinx] > body
+                 (0,0,0,0,2) body [Sphinx] > default
+              MixedStyledText('Custom Sharpe + Mean Squared Err...')
+                MixedStyledText('Custom Sharpe + Mean Squared Err...')
+                  SingleStyledText('Custom Sharpe + Mean Squared Err...')
+#### UpExpandingContainer('header')
+  StaticGroupedFlowables()
+    Header('		cmcd398-finance-honours, Relea...')
+         > (0,0,0,0,2) header [Sphinx] > header_footer
+        MixedStyledText('		cmcd398-finance-honours, Relea...')
+          MixedStyledText('		cmcd398-finance-honours, Relea...')
+            Tab('	')
+            Tab('	')
+            Field('cmcd398-finance-honours')
+              SingleStyledText('cmcd398-finance-honours')
+            SingleStyledText(', ')
+            Field('Release 0.0.1')
+              SingleStyledText('Release 0.0.1')
+#### DownExpandingContainer('footer')
+  StaticGroupedFlowables()
+    Footer('​.  ​		5')
+         > (0,0,0,0,2) footer [Sphinx] > header_footer
+        MixedStyledText('​.  ​		5')
+          MixedStyledText('​.  ​		5')
+            Field('​')
+              SingleStyledText('​')
+            SingleStyledText('.  ')
+            Field('​')
+              SingleStyledText('​')
+            Tab('	')
+            Tab('	')
+            Field('5')
+              SingleStyledText('5')
+---------------------------------- page 6 ----------------------------------
+#### FootnoteContainer('footnotes')
+  StaticGroupedFlowables()
+#### DownExpandingContainer('floats')
+  StaticGroupedFlowables()
+#### ChainedContainer('column1')
+  (continued) StaticGroupedFlowables()
+    (continued) DocumentTree()   index.rst   <document>
+      (continued) LabeledFlowable(style='object description')   index.rst   <desc>
+           > (0,0,1,0,2) object description [Sphinx] > definition list item
+        (continued) StaticGroupedFlowables(style='content')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.custom_sharpe_mse)   <desc_content>
+             > (0,0,2,0,3) object description content [Sphinx] > definition
+          DefinitionList()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.custom_sharpe_mse.call)   <definition_list>
+               > (0,0,0,0,2) definition list [Sphinx] > DEFAULT
+            LabeledFlowable()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:5 (docstring of src.cmcd398_finance_honours.custom_sharpe_mse)   <definition_list_item>
+                 > (0,0,0,0,4) definition list item [Sphinx] > DEFAULT
+              StaticGroupedFlowables(style='definition term')
+                   > (0,0,1,0,5) definition term [Sphinx] > DEFAULT
+                Paragraph('Args:')
+                     > (0,0,1,0,7) definition term paragraph [Sphinx] > default
+                       (0,0,0,0,2) body [Sphinx] > default
+                    MixedStyledText('Args:')
+                      MixedStyledText('Args:')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:5 (docstring of src.cmcd398_finance_honours.custom_sharpe_mse)   <term>
+                        SingleStyledText('Args:')
+              StaticGroupedFlowables(style='definition')   <definition>
+                   > (0,0,1,0,5) definition [Sphinx] > DEFAULT
+                Paragraph('tf (env): Tensorflow keras losse...')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:4 (docstring of src.cmcd398_finance_honours.custom_sharpe_mse)   <paragraph>
+                     > (0,0,1,0,7) definition paragraph [Sphinx] > body
+                       (0,0,0,0,2) body [Sphinx] > default
+                    MixedStyledText('tf (env): Tensorflow keras losse...')
+                      MixedStyledText('tf (env): Tensorflow keras losse...')
+                        SingleStyledText('tf (env): Tensorflow keras losse...')
           LabeledFlowable(style='object description')   <desc>
                > (0,0,1,0,2) object description [Sphinx] > definition list item
             StaticGroupedFlowables(style='signatures')
@@ -2881,6 +3161,32 @@
                          > (0,0,3,0,6) object parentheses [Sphinx] > DEFAULT
         StaticGroupedFlowables(style='content')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.custom_treynor)   <desc_content>
              > (0,0,2,0,3) object description content [Sphinx] > definition
+          Paragraph('Custom Treynor Ratio Function Cl...')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:1 (docstring of src.cmcd398_finance_honours.custom_treynor)   <paragraph>
+               > (0,0,2,0,5) object description content paragraph [Sphinx] > body
+                 (0,0,0,0,2) body [Sphinx] > default
+              MixedStyledText('Custom Treynor Ratio Function Cl...')
+                MixedStyledText('Custom Treynor Ratio Function Cl...')
+                  SingleStyledText('Custom Treynor Ratio Function Cl...')
+          DefinitionList()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.custom_treynor.call)   <definition_list>
+               > (0,0,0,0,2) definition list [Sphinx] > DEFAULT
+            LabeledFlowable()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:5 (docstring of src.cmcd398_finance_honours.custom_treynor)   <definition_list_item>
+                 > (0,0,0,0,4) definition list item [Sphinx] > DEFAULT
+              StaticGroupedFlowables(style='definition term')
+                   > (0,0,1,0,5) definition term [Sphinx] > DEFAULT
+                Paragraph('Args:')
+                     > (0,0,1,0,7) definition term paragraph [Sphinx] > default
+                       (0,0,0,0,2) body [Sphinx] > default
+                    MixedStyledText('Args:')
+                      MixedStyledText('Args:')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:5 (docstring of src.cmcd398_finance_honours.custom_treynor)   <term>
+                        SingleStyledText('Args:')
+              StaticGroupedFlowables(style='definition')   <definition>
+                   > (0,0,1,0,5) definition [Sphinx] > DEFAULT
+                Paragraph('tf (env): Tensorflow keras losse...')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:4 (docstring of src.cmcd398_finance_honours.custom_treynor)   <paragraph>
+                     > (0,0,1,0,7) definition paragraph [Sphinx] > body
+                       (0,0,0,0,2) body [Sphinx] > default
+                    MixedStyledText('tf (env): Tensorflow keras losse...')
+                      MixedStyledText('tf (env): Tensorflow keras losse...')
+                        SingleStyledText('tf (env): Tensorflow keras losse...')
           LabeledFlowable(style='object description')   <desc>
                > (0,0,1,0,2) object description [Sphinx] > definition list item
             StaticGroupedFlowables(style='signatures')
@@ -3007,42 +3313,6 @@
                     MixedStyledText('[list]]: List of different dataf...')
                       MixedStyledText('[list]]: List of different dataf...')
                         SingleStyledText('[list]]: List of different dataf...')
-#### UpExpandingContainer('header')
-  StaticGroupedFlowables()
-    Header('		cmcd398-finance-honours, Relea...')
-         > (0,0,0,0,2) header [Sphinx] > header_footer
-        MixedStyledText('		cmcd398-finance-honours, Relea...')
-          MixedStyledText('		cmcd398-finance-honours, Relea...')
-            Tab('	')
-            Tab('	')
-            Field('cmcd398-finance-honours')
-              SingleStyledText('cmcd398-finance-honours')
-            SingleStyledText(', ')
-            Field('Release 0.0.1')
-              SingleStyledText('Release 0.0.1')
-#### DownExpandingContainer('footer')
-  StaticGroupedFlowables()
-    Footer('​.  ​		5')
-         > (0,0,0,0,2) footer [Sphinx] > header_footer
-        MixedStyledText('​.  ​		5')
-          MixedStyledText('​.  ​		5')
-            Field('​')
-              SingleStyledText('​')
-            SingleStyledText('.  ')
-            Field('​')
-              SingleStyledText('​')
-            Tab('	')
-            Tab('	')
-            Field('5')
-              SingleStyledText('5')
----------------------------------- page 6 ----------------------------------
-#### FootnoteContainer('footnotes')
-  StaticGroupedFlowables()
-#### DownExpandingContainer('floats')
-  StaticGroupedFlowables()
-#### ChainedContainer('column1')
-  (continued) StaticGroupedFlowables()
-    (continued) DocumentTree()   index.rst   <document>
       LabeledFlowable(style='object description')   index.rst   <desc>
            > (0,0,1,0,2) object description [Sphinx] > definition list item
         StaticGroupedFlowables(style='signatures')
@@ -3296,6 +3566,47 @@
               MixedStyledText('Get encoding layer for categoric...')
                 MixedStyledText('Get encoding layer for categoric...')
                   SingleStyledText('Get encoding layer for categoric...')
+#### UpExpandingContainer('header')
+  StaticGroupedFlowables()
+    Header('cmcd398-finance-honours, Release...')
+         > (0,0,0,0,2) header [Sphinx] > header_footer
+        MixedStyledText('cmcd398-finance-honours, Release...')
+          MixedStyledText('cmcd398-finance-honours, Release...')
+            Field('cmcd398-finance-honours')
+              SingleStyledText('cmcd398-finance-honours')
+            SingleStyledText(', ')
+            Field('Release 0.0.1')
+              SingleStyledText('Release 0.0.1')
+#### DownExpandingContainer('footer')
+  StaticGroupedFlowables()
+    Footer('6		Chapter ​.  ​')
+         > (0,0,0,0,2) footer [Sphinx] > header_footer
+        MixedStyledText('6		Chapter ​.  ​')
+          MixedStyledText('6		Chapter ​.  ​')
+            Field('6')
+              SingleStyledText('6')
+            Tab('	')
+            Tab('	')
+            StringField('Chapter')
+              SingleStyledText('Chapter')
+            SingleStyledText(' ')
+            Field('​')
+              SingleStyledText('​')
+            SingleStyledText('.  ')
+            Field('​')
+              SingleStyledText('​')
+---------------------------------- page 7 ----------------------------------
+#### FootnoteContainer('footnotes')
+  StaticGroupedFlowables()
+#### DownExpandingContainer('floats')
+  StaticGroupedFlowables()
+#### ChainedContainer('column1')
+  (continued) StaticGroupedFlowables()
+    (continued) DocumentTree()   index.rst   <document>
+      (continued) LabeledFlowable(style='object description')   index.rst   <desc>
+           > (0,0,1,0,2) object description [Sphinx] > definition list item
+        (continued) StaticGroupedFlowables(style='content')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.get_category_encoding_layer)   <desc_content>
+             > (0,0,2,0,3) object description content [Sphinx] > definition
           DefinitionList()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.get_category_encoding_layer)   <definition_list>
                > (0,0,0,0,2) definition list [Sphinx] > DEFAULT
             LabeledFlowable()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:7 (docstring of src.cmcd398_finance_honours.get_category_encoding_layer)   <definition_list_item>
@@ -3313,9 +3624,6 @@
                 Paragraph('name (str): [description] datase...')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:4 (docstring of src.cmcd398_finance_honours.get_category_encoding_layer)   <paragraph>
                      > (0,0,1,0,7) definition paragraph [Sphinx] > body
                        (0,0,0,0,2) body [Sphinx] > default
-                    MixedStyledText('name (str): [description] datase...')
-                      MixedStyledText('name (str): [description] datase...')
-                        SingleStyledText('name (str): [description] datase...')
             LabeledFlowable()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:9 (docstring of src.cmcd398_finance_honours.get_category_encoding_layer)   <definition_list_item>
                  > (0,0,0,0,4) definition list item [Sphinx] > DEFAULT
               StaticGroupedFlowables(style='definition term')
@@ -3577,47 +3885,6 @@
               MixedStyledText('Makes tensorflo predictions')
                 MixedStyledText('Makes tensorflo predictions')
                   SingleStyledText('Makes tensorflo predictions')
-#### UpExpandingContainer('header')
-  StaticGroupedFlowables()
-    Header('cmcd398-finance-honours, Release...')
-         > (0,0,0,0,2) header [Sphinx] > header_footer
-        MixedStyledText('cmcd398-finance-honours, Release...')
-          MixedStyledText('cmcd398-finance-honours, Release...')
-            Field('cmcd398-finance-honours')
-              SingleStyledText('cmcd398-finance-honours')
-            SingleStyledText(', ')
-            Field('Release 0.0.1')
-              SingleStyledText('Release 0.0.1')
-#### DownExpandingContainer('footer')
-  StaticGroupedFlowables()
-    Footer('6		Chapter ​.  ​')
-         > (0,0,0,0,2) footer [Sphinx] > header_footer
-        MixedStyledText('6		Chapter ​.  ​')
-          MixedStyledText('6		Chapter ​.  ​')
-            Field('6')
-              SingleStyledText('6')
-            Tab('	')
-            Tab('	')
-            StringField('Chapter')
-              SingleStyledText('Chapter')
-            SingleStyledText(' ')
-            Field('​')
-              SingleStyledText('​')
-            SingleStyledText('.  ')
-            Field('​')
-              SingleStyledText('​')
----------------------------------- page 7 ----------------------------------
-#### FootnoteContainer('footnotes')
-  StaticGroupedFlowables()
-#### DownExpandingContainer('floats')
-  StaticGroupedFlowables()
-#### ChainedContainer('column1')
-  (continued) StaticGroupedFlowables()
-    (continued) DocumentTree()   index.rst   <document>
-      (continued) LabeledFlowable(style='object description')   index.rst   <desc>
-           > (0,0,1,0,2) object description [Sphinx] > definition list item
-        (continued) StaticGroupedFlowables(style='content')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.make_tensorflow_predictions)   <desc_content>
-             > (0,0,2,0,3) object description content [Sphinx] > definition
           DefinitionList()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.make_tensorflow_predictions)   <definition_list>
                > (0,0,0,0,2) definition list [Sphinx] > DEFAULT
             LabeledFlowable()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:7 (docstring of src.cmcd398_finance_honours.make_tensorflow_predictions)   <definition_list_item>
@@ -3849,6 +4116,42 @@
                     MixedStyledText('[type]: [description]')
                       MixedStyledText('[type]: [description]')
                         SingleStyledText('[type]: [description]')
+#### UpExpandingContainer('header')
+  StaticGroupedFlowables()
+    Header('		cmcd398-finance-honours, Relea...')
+         > (0,0,0,0,2) header [Sphinx] > header_footer
+        MixedStyledText('		cmcd398-finance-honours, Relea...')
+          MixedStyledText('		cmcd398-finance-honours, Relea...')
+            Tab('	')
+            Tab('	')
+            Field('cmcd398-finance-honours')
+              SingleStyledText('cmcd398-finance-honours')
+            SingleStyledText(', ')
+            Field('Release 0.0.1')
+              SingleStyledText('Release 0.0.1')
+#### DownExpandingContainer('footer')
+  StaticGroupedFlowables()
+    Footer('​.  ​		7')
+         > (0,0,0,0,2) footer [Sphinx] > header_footer
+        MixedStyledText('​.  ​		7')
+          MixedStyledText('​.  ​		7')
+            Field('​')
+              SingleStyledText('​')
+            SingleStyledText('.  ')
+            Field('​')
+              SingleStyledText('​')
+            Tab('	')
+            Tab('	')
+            Field('7')
+              SingleStyledText('7')
+---------------------------------- page 8 ----------------------------------
+#### FootnoteContainer('footnotes')
+  StaticGroupedFlowables()
+#### DownExpandingContainer('floats')
+  StaticGroupedFlowables()
+#### ChainedContainer('column1')
+  (continued) StaticGroupedFlowables()
+    (continued) DocumentTree()   index.rst   <document>
       LabeledFlowable(style='object description')   index.rst   <desc>
            > (0,0,1,0,2) object description [Sphinx] > definition list item
         StaticGroupedFlowables(style='signatures')
@@ -4142,48 +4445,6 @@
                     MixedStyledText('props (dataframe): Pandas Datafr...')
                       MixedStyledText('props (dataframe): Pandas Datafr...')
                         SingleStyledText('props (dataframe): Pandas Datafr...')
-#### UpExpandingContainer('header')
-  StaticGroupedFlowables()
-    Header('		cmcd398-finance-honours, Relea...')
-         > (0,0,0,0,2) header [Sphinx] > header_footer
-        MixedStyledText('		cmcd398-finance-honours, Relea...')
-          MixedStyledText('		cmcd398-finance-honours, Relea...')
-            Tab('	')
-            Tab('	')
-            Field('cmcd398-finance-honours')
-              SingleStyledText('cmcd398-finance-honours')
-            SingleStyledText(', ')
-            Field('Release 0.0.1')
-              SingleStyledText('Release 0.0.1')
-#### DownExpandingContainer('footer')
-  StaticGroupedFlowables()
-    Footer('​.  ​		7')
-         > (0,0,0,0,2) footer [Sphinx] > header_footer
-        MixedStyledText('​.  ​		7')
-          MixedStyledText('​.  ​		7')
-            Field('​')
-              SingleStyledText('​')
-            SingleStyledText('.  ')
-            Field('​')
-              SingleStyledText('​')
-            Tab('	')
-            Tab('	')
-            Field('7')
-              SingleStyledText('7')
----------------------------------- page 8 ----------------------------------
-#### FootnoteContainer('footnotes')
-  StaticGroupedFlowables()
-#### DownExpandingContainer('floats')
-  StaticGroupedFlowables()
-#### ChainedContainer('column1')
-  (continued) StaticGroupedFlowables()
-    (continued) DocumentTree()   index.rst   <document>
-      (continued) LabeledFlowable(style='object description')   index.rst   <desc>
-           > (0,0,1,0,2) object description [Sphinx] > definition list item
-        (continued) StaticGroupedFlowables(style='content')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.reduce_mem_usage)   <desc_content>
-             > (0,0,2,0,3) object description content [Sphinx] > definition
-          (continued) DefinitionList()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.reduce_mem_usage)   <definition_list>
-               > (0,0,0,0,2) definition list [Sphinx] > DEFAULT
             LabeledFlowable()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:7 (docstring of src.cmcd398_finance_honours.reduce_mem_usage)   <definition_list_item>
                  > (0,0,0,0,4) definition list item [Sphinx] > DEFAULT
               StaticGroupedFlowables(style='definition term')
@@ -4309,7 +4570,7 @@
                   SingleStyledText('Replace/Remove nan files in a da...')
           DefinitionList()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.replace_nan)   <definition_list>
                > (0,0,0,0,2) definition list [Sphinx] > DEFAULT
-            LabeledFlowable()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:8 (docstring of src.cmcd398_finance_honours.replace_nan)   <definition_list_item>
+            LabeledFlowable()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:9 (docstring of src.cmcd398_finance_honours.replace_nan)   <definition_list_item>
                  > (0,0,0,0,4) definition list item [Sphinx] > DEFAULT
               StaticGroupedFlowables(style='definition term')
                    > (0,0,1,0,5) definition term [Sphinx] > DEFAULT
@@ -4317,7 +4578,7 @@
                      > (0,0,1,0,7) definition term paragraph [Sphinx] > default
                        (0,0,0,0,2) body [Sphinx] > default
                     MixedStyledText('Args:')
-                      MixedStyledText('Args:')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:8 (docstring of src.cmcd398_finance_honours.replace_nan)   <term>
+                      MixedStyledText('Args:')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:9 (docstring of src.cmcd398_finance_honours.replace_nan)   <term>
                         SingleStyledText('Args:')
               StaticGroupedFlowables(style='definition')   <definition>
                    > (0,0,1,0,5) definition [Sphinx] > DEFAULT
@@ -4327,14 +4588,7 @@
                     MixedStyledText('df (dataframe): Pandas Dataframe...')
                       MixedStyledText('df (dataframe): Pandas Dataframe...')
                         SingleStyledText('df (dataframe): Pandas Dataframe...')
-                StaticGroupedFlowables(style='block quote')   <block_quote>
-                     > (0,0,1,0,1) block quote [Sphinx] > DEFAULT
-                  Paragraph(': 0 - remove rows with nan value...')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:6 (docstring of src.cmcd398_finance_honours.replace_nan)   <paragraph>
-                       > (0,0,0,0,2) body [Sphinx] > default
-                      MixedStyledText(': 0 - remove rows with nan value...')
-                        MixedStyledText(': 0 - remove rows with nan value...')
-                          SingleStyledText(': 0 - remove rows with nan value...')
-            LabeledFlowable()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:10 (docstring of src.cmcd398_finance_honours.replace_nan)   <definition_list_item>
+            LabeledFlowable()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:11 (docstring of src.cmcd398_finance_honours.replace_nan)   <definition_list_item>
                  > (0,0,0,0,4) definition list item [Sphinx] > DEFAULT
               StaticGroupedFlowables(style='definition term')
                    > (0,0,1,0,5) definition term [Sphinx] > DEFAULT
@@ -4342,11 +4596,11 @@
                      > (0,0,1,0,7) definition term paragraph [Sphinx] > default
                        (0,0,0,0,2) body [Sphinx] > default
                     MixedStyledText('Returns:')
-                      MixedStyledText('Returns:')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:10 (docstring of src.cmcd398_finance_honours.replace_nan)   <term>
+                      MixedStyledText('Returns:')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:11 (docstring of src.cmcd398_finance_honours.replace_nan)   <term>
                         SingleStyledText('Returns:')
               StaticGroupedFlowables(style='definition')   <definition>
                    > (0,0,1,0,5) definition [Sphinx] > DEFAULT
-                Paragraph('dataframe: Updated pandas datafr...')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:11 (docstring of src.cmcd398_finance_honours.replace_nan)   <paragraph>
+                Paragraph('dataframe: Updated pandas datafr...')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:12 (docstring of src.cmcd398_finance_honours.replace_nan)   <paragraph>
                      > (0,0,1,0,7) definition paragraph [Sphinx] > body
                        (0,0,0,0,2) body [Sphinx] > default
                     MixedStyledText('dataframe: Updated pandas datafr...')
@@ -4412,6 +4666,49 @@
                     MixedStyledText('dataframe (df): Data in datafram...')
                       MixedStyledText('dataframe (df): Data in datafram...')
                         SingleStyledText('dataframe (df): Data in datafram...')
+#### UpExpandingContainer('header')
+  StaticGroupedFlowables()
+    Header('cmcd398-finance-honours, Release...')
+         > (0,0,0,0,2) header [Sphinx] > header_footer
+        MixedStyledText('cmcd398-finance-honours, Release...')
+          MixedStyledText('cmcd398-finance-honours, Release...')
+            Field('cmcd398-finance-honours')
+              SingleStyledText('cmcd398-finance-honours')
+            SingleStyledText(', ')
+            Field('Release 0.0.1')
+              SingleStyledText('Release 0.0.1')
+#### DownExpandingContainer('footer')
+  StaticGroupedFlowables()
+    Footer('8		Chapter ​.  ​')
+         > (0,0,0,0,2) footer [Sphinx] > header_footer
+        MixedStyledText('8		Chapter ​.  ​')
+          MixedStyledText('8		Chapter ​.  ​')
+            Field('8')
+              SingleStyledText('8')
+            Tab('	')
+            Tab('	')
+            StringField('Chapter')
+              SingleStyledText('Chapter')
+            SingleStyledText(' ')
+            Field('​')
+              SingleStyledText('​')
+            SingleStyledText('.  ')
+            Field('​')
+              SingleStyledText('​')
+---------------------------------- page 9 ----------------------------------
+#### FootnoteContainer('footnotes')
+  StaticGroupedFlowables()
+#### DownExpandingContainer('floats')
+  StaticGroupedFlowables()
+#### ChainedContainer('column1')
+  (continued) StaticGroupedFlowables()
+    (continued) DocumentTree()   index.rst   <document>
+      (continued) LabeledFlowable(style='object description')   index.rst   <desc>
+           > (0,0,1,0,2) object description [Sphinx] > definition list item
+        (continued) StaticGroupedFlowables(style='content')   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.resizing_dataframe)   <desc_content>
+             > (0,0,2,0,3) object description content [Sphinx] > definition
+          (continued) DefinitionList()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py (docstring of src.cmcd398_finance_honours.resizing_dataframe)   <definition_list>
+               > (0,0,0,0,2) definition list [Sphinx] > DEFAULT
             LabeledFlowable()   /home/connormcdowall/finance-honours/src/cmcd398_finance_honours.py:10 (docstring of src.cmcd398_finance_honours.resizing_dataframe)   <definition_list_item>
                  > (0,0,0,0,4) definition list item [Sphinx] > DEFAULT
               StaticGroupedFlowables(style='definition term')
@@ -4710,43 +5007,6 @@
                     MixedStyledText('[df]: Dataframe')
                       MixedStyledText('[df]: Dataframe')
                         SingleStyledText('[df]: Dataframe')
-#### UpExpandingContainer('header')
-  StaticGroupedFlowables()
-    Header('cmcd398-finance-honours, Release...')
-         > (0,0,0,0,2) header [Sphinx] > header_footer
-        MixedStyledText('cmcd398-finance-honours, Release...')
-          MixedStyledText('cmcd398-finance-honours, Release...')
-            Field('cmcd398-finance-honours')
-              SingleStyledText('cmcd398-finance-honours')
-            SingleStyledText(', ')
-            Field('Release 0.0.1')
-              SingleStyledText('Release 0.0.1')
-#### DownExpandingContainer('footer')
-  StaticGroupedFlowables()
-    Footer('8		Chapter ​.  ​')
-         > (0,0,0,0,2) footer [Sphinx] > header_footer
-        MixedStyledText('8		Chapter ​.  ​')
-          MixedStyledText('8		Chapter ​.  ​')
-            Field('8')
-              SingleStyledText('8')
-            Tab('	')
-            Tab('	')
-            StringField('Chapter')
-              SingleStyledText('Chapter')
-            SingleStyledText(' ')
-            Field('​')
-              SingleStyledText('​')
-            SingleStyledText('.  ')
-            Field('​')
-              SingleStyledText('​')
----------------------------------- page 9 ----------------------------------
-#### FootnoteContainer('footnotes')
-  StaticGroupedFlowables()
-#### DownExpandingContainer('floats')
-  StaticGroupedFlowables()
-#### ChainedContainer('column1')
-  (continued) StaticGroupedFlowables()
-    (continued) DocumentTree()   index.rst   <document>
       LabeledFlowable(style='object description')   index.rst   <desc>
            > (0,0,1,0,2) object description [Sphinx] > definition list item
         StaticGroupedFlowables(style='signatures')
@@ -5110,10 +5370,10 @@
             MixedStyledText('build_tensor_flow_model() (in mo...')
               MixedStyledText('build_tensor_flow_model() (in mo...')
                 SingleStyledText('build_tensor_flow_model() (in mo...')
-                MixedStyledText('1')
-                  Reference('1')
+                MixedStyledText('2')
+                  Reference('2')
                        > (0,0,0,0,1) linked reference [Sphinx] > DEFAULT
-                    SingleStyledText('1')
+                    SingleStyledText('2')
         IndexLabel('C')
              > (0,0,0,0,2) index section label [Sphinx] > DEFAULT
                (0,0,0,0,1) body [Sphinx] > default
@@ -5124,26 +5384,6 @@
             MixedStyledText('call() (src.cmcd398_finance_hono...')
               MixedStyledText('call() (src.cmcd398_finance_hono...')
                 SingleStyledText('call() (src.cmcd398_finance_hono...')
-                MixedStyledText('3')
-                  Reference('3')
-                       > (0,0,0,0,1) linked reference [Sphinx] > DEFAULT
-                    SingleStyledText('3')
-        IndexEntry('call() (src.cmcd398_finance_hono...')
-             > (0,0,0,1,2) level 1 index entry [Sphinx] > default
-               (0,0,0,0,1) body [Sphinx] > default
-            MixedStyledText('call() (src.cmcd398_finance_hono...')
-              MixedStyledText('call() (src.cmcd398_finance_hono...')
-                SingleStyledText('call() (src.cmcd398_finance_hono...')
-                MixedStyledText('4')
-                  Reference('4')
-                       > (0,0,0,0,1) linked reference [Sphinx] > DEFAULT
-                    SingleStyledText('4')
-        IndexEntry('call() (src.cmcd398_finance_hono...')
-             > (0,0,0,1,2) level 1 index entry [Sphinx] > default
-               (0,0,0,0,1) body [Sphinx] > default
-            MixedStyledText('call() (src.cmcd398_finance_hono...')
-              MixedStyledText('call() (src.cmcd398_finance_hono...')
-                SingleStyledText('call() (src.cmcd398_finance_hono...')
                 MixedStyledText('4')
                   Reference('4')
                        > (0,0,0,0,1) linked reference [Sphinx] > DEFAULT
@@ -5198,6 +5438,26 @@
                   Reference('5')
                        > (0,0,0,0,1) linked reference [Sphinx] > DEFAULT
                     SingleStyledText('5')
+        IndexEntry('call() (src.cmcd398_finance_hono...')
+             > (0,0,0,1,2) level 1 index entry [Sphinx] > default
+               (0,0,0,0,1) body [Sphinx] > default
+            MixedStyledText('call() (src.cmcd398_finance_hono...')
+              MixedStyledText('call() (src.cmcd398_finance_hono...')
+                SingleStyledText('call() (src.cmcd398_finance_hono...')
+                MixedStyledText('6')
+                  Reference('6')
+                       > (0,0,0,0,1) linked reference [Sphinx] > DEFAULT
+                    SingleStyledText('6')
+        IndexEntry('call() (src.cmcd398_finance_hono...')
+             > (0,0,0,1,2) level 1 index entry [Sphinx] > default
+               (0,0,0,0,1) body [Sphinx] > default
+            MixedStyledText('call() (src.cmcd398_finance_hono...')
+              MixedStyledText('call() (src.cmcd398_finance_hono...')
+                SingleStyledText('call() (src.cmcd398_finance_hono...')
+                MixedStyledText('6')
+                  Reference('6')
+                       > (0,0,0,0,1) linked reference [Sphinx] > DEFAULT
+                    SingleStyledText('6')
         IndexEntry('call() (src.cmcd398_finance_hono...')
              > (0,0,0,1,2) level 1 index entry [Sphinx] > default
                (0,0,0,0,1) body [Sphinx] > default
@@ -5264,10 +5524,10 @@
             MixedStyledText('create_feature_lists() (in modul...')
               MixedStyledText('create_feature_lists() (in modul...')
                 SingleStyledText('create_feature_lists() (in modul...')
-                MixedStyledText('2')
-                  Reference('2')
+                MixedStyledText('3')
+                  Reference('3')
                        > (0,0,0,0,1) linked reference [Sphinx] > DEFAULT
-                    SingleStyledText('2')
+                    SingleStyledText('3')
 #### ChainedContainer('column2')
   (continued) StaticGroupedFlowables()
     (continued) IndexSection()
@@ -5383,10 +5643,10 @@
             MixedStyledText('custom_mse (class in src.cmcd398...')
               MixedStyledText('custom_mse (class in src.cmcd398...')
                 SingleStyledText('custom_mse (class in src.cmcd398...')
-                MixedStyledText('4')
-                  Reference('4')
+                MixedStyledText('5')
+                  Reference('5')
                        > (0,0,0,0,1) linked reference [Sphinx] > DEFAULT
-                    SingleStyledText('4')
+                    SingleStyledText('5')
         IndexEntry('custom_mse_metric() (in module s...')
              > (0,0,0,1,2) level 1 index entry [Sphinx] > default
                (0,0,0,0,1) body [Sphinx] > default
@@ -5433,10 +5693,10 @@
             MixedStyledText('custom_treynor (class in src.cmc...')
               MixedStyledText('custom_treynor (class in src.cmc...')
                 SingleStyledText('custom_treynor (class in src.cmc...')
-                MixedStyledText('5')
-                  Reference('5')
+                MixedStyledText('6')
+                  Reference('6')
                        > (0,0,0,0,1) linked reference [Sphinx] > DEFAULT
-                    SingleStyledText('5')
+                    SingleStyledText('6')
         IndexEntry('CustomLossFunctionExample (class...')
              > (0,0,0,1,2) level 1 index entry [Sphinx] > default
                (0,0,0,0,1) body [Sphinx] > default
@@ -5467,10 +5727,10 @@
             MixedStyledText('download_test_data() (in module ...')
               MixedStyledText('download_test_data() (in module ...')
                 SingleStyledText('download_test_data() (in module ...')
-                MixedStyledText('5')
-                  Reference('5')
+                MixedStyledText('6')
+                  Reference('6')
                        > (0,0,0,0,1) linked reference [Sphinx] > DEFAULT
-                    SingleStyledText('5')
+                    SingleStyledText('6')
 #### DownExpandingContainer('footer')
   StaticGroupedFlowables()
     Footer('		13')
@@ -5535,10 +5795,10 @@
             MixedStyledText('get_normalization_layer() (in mo...')
               MixedStyledText('get_normalization_layer() (in mo...')
                 SingleStyledText('get_normalization_layer() (in mo...')
-                MixedStyledText('6')
-                  Reference('6')
+                MixedStyledText('7')
+                  Reference('7')
                        > (0,0,0,0,1) linked reference [Sphinx] > DEFAULT
-                    SingleStyledText('6')
+                    SingleStyledText('7')
         IndexLabel('I')
              > (0,0,0,0,2) index section label [Sphinx] > DEFAULT
                (0,0,0,0,1) body [Sphinx] > default
@@ -5549,10 +5809,10 @@
             MixedStyledText('implement_test_data() (in module...')
               MixedStyledText('implement_test_data() (in module...')
                 SingleStyledText('implement_test_data() (in module...')
-                MixedStyledText('6')
-                  Reference('6')
+                MixedStyledText('7')
+                  Reference('7')
                        > (0,0,0,0,1) linked reference [Sphinx] > DEFAULT
-                    SingleStyledText('6')
+                    SingleStyledText('7')
         IndexLabel('L')
              > (0,0,0,0,2) index section label [Sphinx] > DEFAULT
                (0,0,0,0,1) body [Sphinx] > default
@@ -5563,10 +5823,10 @@
             MixedStyledText('loss_function_testing() (in modu...')
               MixedStyledText('loss_function_testing() (in modu...')
                 SingleStyledText('loss_function_testing() (in modu...')
-                MixedStyledText('6')
-                  Reference('6')
+                MixedStyledText('7')
+                  Reference('7')
                        > (0,0,0,0,1) linked reference [Sphinx] > DEFAULT
-                    SingleStyledText('6')
+                    SingleStyledText('7')
         IndexLabel('M')
              > (0,0,0,0,2) index section label [Sphinx] > DEFAULT
                (0,0,0,0,1) body [Sphinx] > default
@@ -5577,10 +5837,10 @@
             MixedStyledText('make_tensorflow_predictions() (i...')
               MixedStyledText('make_tensorflow_predictions() (i...')
                 SingleStyledText('make_tensorflow_predictions() (i...')
-                MixedStyledText('6')
-                  Reference('6')
+                MixedStyledText('7')
+                  Reference('7')
                        > (0,0,0,0,1) linked reference [Sphinx] > DEFAULT
-                    SingleStyledText('6')
+                    SingleStyledText('7')
         IndexEntry('module')
              > (0,0,0,1,2) level 1 index entry [Sphinx] > default
                (0,0,0,0,1) body [Sphinx] > default
@@ -5635,10 +5895,10 @@
             MixedStyledText('process_vm_dataset() (in module ...')
               MixedStyledText('process_vm_dataset() (in module ...')
                 SingleStyledText('process_vm_dataset() (in module ...')
-                MixedStyledText('7')
-                  Reference('7')
+                MixedStyledText('8')
+                  Reference('8')
                        > (0,0,0,0,1) linked reference [Sphinx] > DEFAULT
-                    SingleStyledText('7')
+                    SingleStyledText('8')
         IndexLabel('R')
              > (0,0,0,0,2) index section label [Sphinx] > DEFAULT
                (0,0,0,0,1) body [Sphinx] > default
@@ -5649,30 +5909,30 @@
             MixedStyledText('ranking_function() (in module sr...')
               MixedStyledText('ranking_function() (in module sr...')
                 SingleStyledText('ranking_function() (in module sr...')
-                MixedStyledText('7')
-                  Reference('7')
+                MixedStyledText('8')
+                  Reference('8')
                        > (0,0,0,0,1) linked reference [Sphinx] > DEFAULT
-                    SingleStyledText('7')
+                    SingleStyledText('8')
         IndexEntry('reconfigure_gpu() (in module src...')
              > (0,0,0,1,2) level 1 index entry [Sphinx] > default
                (0,0,0,0,1) body [Sphinx] > default
             MixedStyledText('reconfigure_gpu() (in module src...')
               MixedStyledText('reconfigure_gpu() (in module src...')
                 SingleStyledText('reconfigure_gpu() (in module src...')
-                MixedStyledText('7')
-                  Reference('7')
+                MixedStyledText('8')
+                  Reference('8')
                        > (0,0,0,0,1) linked reference [Sphinx] > DEFAULT
-                    SingleStyledText('7')
+                    SingleStyledText('8')
         IndexEntry('reduce_mem_usage() (in module sr...')
              > (0,0,0,1,2) level 1 index entry [Sphinx] > default
                (0,0,0,0,1) body [Sphinx] > default
             MixedStyledText('reduce_mem_usage() (in module sr...')
               MixedStyledText('reduce_mem_usage() (in module sr...')
                 SingleStyledText('reduce_mem_usage() (in module sr...')
-                MixedStyledText('7')
-                  Reference('7')
+                MixedStyledText('8')
+                  Reference('8')
                        > (0,0,0,0,1) linked reference [Sphinx] > DEFAULT
-                    SingleStyledText('7')
+                    SingleStyledText('8')
         IndexEntry('reinforement_learning() (in modu...')
              > (0,0,0,1,2) level 1 index entry [Sphinx] > default
                (0,0,0,0,1) body [Sphinx] > default
@@ -5729,40 +5989,40 @@
             MixedStyledText('sass_access() (in module src.cmc...')
               MixedStyledText('sass_access() (in module src.cmc...')
                 SingleStyledText('sass_access() (in module src.cmc...')
-                MixedStyledText('8')
-                  Reference('8')
+                MixedStyledText('9')
+                  Reference('9')
                        > (0,0,0,0,1) linked reference [Sphinx] > DEFAULT
-                    SingleStyledText('8')
+                    SingleStyledText('9')
         IndexEntry('save_df_statistics() (in module ...')
              > (0,0,0,1,2) level 1 index entry [Sphinx] > default
                (0,0,0,0,1) body [Sphinx] > default
             MixedStyledText('save_df_statistics() (in module ...')
               MixedStyledText('save_df_statistics() (in module ...')
                 SingleStyledText('save_df_statistics() (in module ...')
-                MixedStyledText('8')
-                  Reference('8')
+                MixedStyledText('9')
+                  Reference('9')
                        > (0,0,0,0,1) linked reference [Sphinx] > DEFAULT
-                    SingleStyledText('8')
+                    SingleStyledText('9')
         IndexEntry('set_gpus() (in module src.cmcd39...')
              > (0,0,0,1,2) level 1 index entry [Sphinx] > default
                (0,0,0,0,1) body [Sphinx] > default
             MixedStyledText('set_gpus() (in module src.cmcd39...')
               MixedStyledText('set_gpus() (in module src.cmcd39...')
                 SingleStyledText('set_gpus() (in module src.cmcd39...')
-                MixedStyledText('8')
-                  Reference('8')
+                MixedStyledText('9')
+                  Reference('9')
                        > (0,0,0,0,1) linked reference [Sphinx] > DEFAULT
-                    SingleStyledText('8')
+                    SingleStyledText('9')
         IndexEntry('shuffle_columns() (in module src...')
              > (0,0,0,1,2) level 1 index entry [Sphinx] > default
                (0,0,0,0,1) body [Sphinx] > default
             MixedStyledText('shuffle_columns() (in module src...')
               MixedStyledText('shuffle_columns() (in module src...')
                 SingleStyledText('shuffle_columns() (in module src...')
-                MixedStyledText('8')
-                  Reference('8')
+                MixedStyledText('9')
+                  Reference('9')
                        > (0,0,0,0,1) linked reference [Sphinx] > DEFAULT
-                    SingleStyledText('8')
+                    SingleStyledText('9')
         IndexEntry('sort_data_chronologically() (in ...')
              > (0,0,0,1,2) level 1 index entry [Sphinx] > default
                (0,0,0,0,1) body [Sphinx] > default

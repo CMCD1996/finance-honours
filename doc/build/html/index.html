@@ -754,15 +754,13 @@ target_vec ():</p>
 <dt class="sig sig-object py" id="src.cmcd398_finance_honours.replace_nan">
 <span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">replace_nan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replacement_method</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.replace_nan" title="Permalink to this definition">¶</a></dt>
 <dd><p>Replace/Remove nan files in a dataframe</p>
-<dl>
+<dl class="simple">
 <dt>Args:</dt><dd><p>df (dataframe): Pandas Dataframe
-replacement_method (int): Specify replacement methods</p>
-<blockquote>
-<div><p>: 0 - remove rows with nan values
-: 1 - remove columns with nan values
-: 2 - fill nan with column mean
-: 3 - fill nan with column median</p>
-</div></blockquote>
+replacement_method (int): Specify replacement methods
+{0: remove rows with nan values;
+{1: remove columns with nan values;
+{2: fill nan with column mean;
+{3: fill nan with column median}</p>
 </dd>
 <dt>Returns:</dt><dd><p>dataframe: Updated pandas dataframe</p>
 </dd>
