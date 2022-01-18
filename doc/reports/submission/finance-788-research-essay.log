@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2021.11.18)  18 JAN 2022 08:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2021.11.18)  18 JAN 2022 08:26
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1526,7 +1526,7 @@ l.195 ...mcd398-finance-honours-introduction}.tex}
 Here is how much of TeX's memory you used:
  41167 strings out of 492615
  797151 string characters out of 6131389
- 1218124 words of memory out of 5000000
+ 1218125 words of memory out of 5000000
  44537 multiletter control sequences out of 15000+600000
  541462 words of font info for 58 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
