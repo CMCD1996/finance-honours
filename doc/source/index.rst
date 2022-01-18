@@ -12,7 +12,7 @@ Welcome to cmcd398-finance-honours's documentation!
 
 Python Functions
 ===================
-.. autodoc:: src.cmcd398-finance-honours
+.. automodule:: src.cmcd398_finance_honours
    :members:
 
 Indices and tables
