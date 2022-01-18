@@ -1,0 +1,887 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Welcome to cmcd398-finance-honours’s documentation! &#8212; cmcd398-finance-honours 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="welcome-to-cmcd398-finance-honours-s-documentation">
+<h1>Welcome to cmcd398-finance-honours’s documentation!<a class="headerlink" href="#welcome-to-cmcd398-finance-honours-s-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="module-src.cmcd398_finance_honours">
+<span id="python-functions"></span><h1>Python Functions<a class="headerlink" href="#module-src.cmcd398_finance_honours" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.CustomLossFunctionExample">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">CustomLossFunctionExample</span></span><a class="headerlink" href="#src.cmcd398_finance_honours.CustomLossFunctionExample" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.CustomLossFunctionExample.call">
+<span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.CustomLossFunctionExample.call" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call for loss function</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>y_true (tf): Tensor of realisations
+y_pred (tf): Tensor of predictions</p>
+</dd>
+<dt>Returns:</dt><dd><p>: Loss</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.CustomSharpeMetric">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">CustomSharpeMetric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.CustomSharpeMetric" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.CustomSharpeMetric.result">
+<span class="sig-name descname"><span class="pre">result</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.CustomSharpeMetric.result" title="Permalink to this definition">¶</a></dt>
+<dd><p>Result return</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>Metric:</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.CustomSharpeMetric.update_state">
+<span class="sig-name descname"><span class="pre">update_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.CustomSharpeMetric.update_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update state position</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>y_true (tf): Tensor of realisations
+y_pred (tf): Tensor of predictions
+sample_weight (int, optional): Sample weights. Defaults to None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.analytical_analysis">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">analytical_analysis</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.analytical_analysis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests symbolic math functionality</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.autodiff_guide">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">autodiff_guide</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">example</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.autodiff_guide" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Execute autodiff examples from Tensorflow resources.</dt><dd><p>Used to help gain an understanding of different
+functionalities (Demonstration Purposes Only)</p>
+</dd>
+<dt>Args:</dt><dd><dl class="simple">
+<dt>example (int): Example to implement</dt><dd><p>: 1 - ‘simple’
+: 2 - ‘simple_tensor’
+: 3 - ‘simple_model’
+: 4 - ‘control_tape’
+: 5 - ‘control_tensor_tape’
+: 6 - ‘stop_recording’
+: 7 - ‘watch_multiple_variables’
+: 8 - ‘higher_order_derivatives’
+: 9 - ‘jacobian’
+: 10- ‘hessian_newton’</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.build_tensor_flow_model">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">build_tensor_flow_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">train_dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_inputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">selected_optimizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">selected_losses</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">selected_metrics</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">finance_configuration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.build_tensor_flow_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Builds tensorflow neural networks</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>train_dataset (ds): Training dataset
+val_dataset (ds): Validation dataset
+test_dataset (ds): Testing dataset
+model_name (str): Run name
+all_features ([type]): [description]
+all_inputs ([type]): [description]
+selected_optimizer (str): optimizer to use
+selected_losses (str): Loss function to use
+selected_metrics (list): List of sleection metrics to use
+finance_configuration (bool, optional): Run the complex configuration options. Defaults to True.</p>
+</dd>
+<dt>Returns:</dt><dd><p>model (tf.model): Tensorflow model
+loss (float): Loss metric
+accuracy (float): Accuracy metric</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.configure_training_ui">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">configure_training_ui</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_token</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.configure_training_ui" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configures Neptune.ai API, integrated with Github,
+to record and monitor dashboard performance</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>project (str): Name of Neptune.ai project
+api_token (str): API token to authenticate account</p>
+</dd>
+<dt>Returns:</dt><dd><p>var: Neptune callback configuration</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.convert_datetime_to_int">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">convert_datetime_to_int</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.convert_datetime_to_int" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert datetime formats to int</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>dataframe (df): Dataframe
+column_name (str): column name to convert</p>
+</dd>
+<dt>Returns:</dt><dd><p>df: Updated dataframe</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.convert_txt_to_tex">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">convert_txt_to_tex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fp_in</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fp_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace_text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replacement_text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.convert_txt_to_tex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert text files to latex format</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>fp_in (str): Path in
+fp_out (str): Path out
+replace_text (bool, optional): Replace text in file. Defaults to False.
+replacement_text ([type], optional): Text to replace. Defaults to None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.create_dataframes">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">create_dataframes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">csv_location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multi_csv</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.create_dataframes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates dataframes</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>csv_location (str): directory of csvs
+multi_csv (bool): True/False for loading multiple csvs</p>
+</dd>
+<dt>Returns:</dt><dd><p>dataframe: Returns dataframe after convert the csv file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.create_fama_factor_models">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">create_fama_factor_models</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">selected_losses</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">factor_location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prediction_location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dependant_column</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regression_dictionary</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">realised_returns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.create_fama_factor_models" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates pricing models and regressions from predictions</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>model_name (Str): Name of run
+selected_losses (Str): Name of loss function
+factor_location (Str): Factors Directory location
+prediction_location (Str): Prediction Directory location
+dependant_column (Str): dependant variable
+regression_dictionary (Str): Checks for regressions
+realised_returns (bool, optional): use realised values. Defaults to False.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.create_feature_lists">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">create_feature_lists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list_of_columns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">categorical_assignment</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.create_feature_lists" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates required feature lists of normalisation and encoding</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>list_of_columns ([type]): [description]
+categorical_assignment ([type]): [description]</p>
+</dd>
+<dt>Returns:</dt><dd><p>numerical_features: 
+categorical_features:</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.create_learning_curves">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">create_learning_curves</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">selected_loss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_history</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">from_load_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.create_learning_curves" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates learning curves to model training losses</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>model_name (str): Run name
+selected_loss (str): Selected loss function
+model_history (str, optional): Load a model history. Defaults to None.
+from_load_file (bool, optional): Load from a file instead. Defaults to True.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.create_original_list_of_columns">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">create_original_list_of_columns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.create_original_list_of_columns" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the original dataframe list</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>dataframe (df): Pandas dataframe</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.create_tensorflow_models">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">create_tensorflow_models</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_vm_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_of_columns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">categorical_assignment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_column</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resizing_options</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">selected_optimizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">selected_losses</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">selected_metrics</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.create_tensorflow_models" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates the tensorflow models combining all the analysis</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>data_vm_directory (str): Directory of source data
+list_of_columns (str): Directory to txt file with list of columns
+categorical_assignment (dict): Dictionary of features to be categorical
+target_column (str): Target column
+chunk_size (int): Chunk size 
+resizing_options (list): List of boolean variables for resizgin the dataset
+batch_size (int): Batch size for creating tensor slices
+model_name (str): Run name
+selected_optimizer (str): optimizer to use
+selected_losses (str): Loss function to use
+selected_metrics (list): List of sleection metrics to use
+split_data (bool, optional): Boolean to split the original dataset. Defaults to False.
+trial (bool, optional): Boolean to taek a smaller dataset. Defaults to False.
+sample (bool, optional): Boolean to take an even smaller dataset. Defaults to False.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.create_tf_dataset">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">create_tf_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_column</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shuffle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">32</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.create_tf_dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set target variable and converts dataframe to tensorflow dataset</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>df (dataframe): dataframe
+target_column (str): Column used to predict for labels
+shuffle (bool, optional): [description]. Defaults to True.
+batch_size (int, optional): Sets batch size. Defaults to 32.</p>
+</dd>
+<dt>Returns:</dt><dd><p>[ds]: Tensorflow dataset</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.custom_capm_metric">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">custom_capm_metric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">factors</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.custom_capm_metric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call for CAPM metric</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>factors (tensor): Tensor of factors</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.custom_hp">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">custom_hp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extra_tensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'custom_hp'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.custom_hp" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.custom_hp.call">
+<span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.custom_hp.call" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call for hp loss function</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>y_true (tf): Tensor of realisations
+y_pred (tf): Tensor of predictions</p>
+</dd>
+<dt>Returns:</dt><dd><p>: Loss</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.custom_hp_metric">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">custom_hp_metric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.custom_hp_metric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call for hp metric</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>y_true (tf): Tensor of realisations
+y_pred (tf): Tensor of predictions</p>
+</dd>
+<dt>Returns:</dt><dd><p>: Loss</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.custom_hp_mse">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">custom_hp_mse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extra_tensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'custom_hp_mse'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.custom_hp_mse" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.custom_hp_mse.call">
+<span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.custom_hp_mse.call" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call for hp mse loss function</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>y_true (tf): Tensor of realisations
+y_pred (tf): Tensor of predictions</p>
+</dd>
+<dt>Returns:</dt><dd><p>: Loss</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.custom_information">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">custom_information</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extra_tensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'custom_information'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.custom_information" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.custom_information.call">
+<span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.custom_information.call" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call for information loss function</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>y_true (tf): Tensor of realisations
+y_pred (tf): Tensor of predictions</p>
+</dd>
+<dt>Returns:</dt><dd><p>: Loss</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.custom_information_metric">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">custom_information_metric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.custom_information_metric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call for information metric</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>y_true (tf): Tensor of realisations
+y_pred (tf): Tensor of predictions</p>
+</dd>
+<dt>Returns:</dt><dd><p>: Loss</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.custom_information_mse">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">custom_information_mse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extra_tensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'custom_information_mse'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.custom_information_mse" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.custom_information_mse.call">
+<span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.custom_information_mse.call" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call for information mse loss function</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>y_true (tf): Tensor of realisations
+y_pred (tf): Tensor of predictions</p>
+</dd>
+<dt>Returns:</dt><dd><p>: Loss</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.custom_mse">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">custom_mse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extra_tensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'custom_mse'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.custom_mse" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.custom_mse.call">
+<span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.custom_mse.call" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call for mse loss function</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>y_true (tf): Tensor of realisations
+y_pred (tf): Tensor of predictions</p>
+</dd>
+<dt>Returns:</dt><dd><p>: Loss</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.custom_mse_metric">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">custom_mse_metric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.custom_mse_metric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call for mse metric</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>y_true (tf): Tensor of realisations
+y_pred (tf): Tensor of predictions</p>
+</dd>
+<dt>Returns:</dt><dd><p>: Loss</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.custom_sharpe">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">custom_sharpe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extra_tensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'custom_sharpe'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.custom_sharpe" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.custom_sharpe.call">
+<span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.custom_sharpe.call" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call for sharpe loss function</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>y_true (tf): Tensor of realisations
+y_pred (tf): Tensor of predictions</p>
+</dd>
+<dt>Returns:</dt><dd><p>: Loss</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.custom_sharpe_metric">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">custom_sharpe_metric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.custom_sharpe_metric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call for sharpe metric</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>y_true (tf): Tensor of realisations
+y_pred (tf): Tensor of predictions</p>
+</dd>
+<dt>Returns:</dt><dd><p>: Loss</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.custom_sharpe_mse">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">custom_sharpe_mse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extra_tensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'custom_sharpe_mse'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.custom_sharpe_mse" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.custom_sharpe_mse.call">
+<span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.custom_sharpe_mse.call" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call for sharpe mse loss function</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>y_true (tf): Tensor of realisations
+y_pred (tf): Tensor of predictions</p>
+</dd>
+<dt>Returns:</dt><dd><p>: Loss</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.custom_treynor">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">custom_treynor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extra_tensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'custom_treynor'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.custom_treynor" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.custom_treynor.call">
+<span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.custom_treynor.call" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call for treynor loss function</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>y_true (tf): Tensor of realisations
+y_pred (tf): Tensor of predictions</p>
+</dd>
+<dt>Returns:</dt><dd><p>: Loss</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.download_test_data">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">download_test_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.download_test_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download test data</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>[list]]: List of different dataframes (Total, training, validation, testing)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.encode_tensor_flow_features">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">encode_tensor_flow_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">train_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_column</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numerical_features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">categorical_features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">categorical_dictionary</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size_of_batch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">256</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.encode_tensor_flow_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>Encodes tensorflow features</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>train_df (df): Training dataframe
+val_df (df): Validation dataframe
+test_df (df): Testign dataframe
+target_column (str): Target column for prediction
+numerical_features (list): List of numerical features
+categorical_features (list): List of categorical features
+categorical_dictionary (dict): Dictionary of categorical features
+size_of_batch (int, optional): Batch size. Defaults to 256.</p>
+</dd>
+<dt>Returns:</dt><dd><p>all_features (tf.layer): Tensorflow layer of all features
+all_inputs (list): Tensorflow layer of all inputs
+train_dataset (ds): Training Dataset
+val_dataset (ds): Validation Dataset
+test_dataset (ds): Testing Dataset</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.execute_conversion_options">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">execute_conversion_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">selected_losses</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hp_ols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pooled_ols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">true_excess_returns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.execute_conversion_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do all the text to tex conversion.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>model_name (Str): 
+selected_losses ([type]): [description]
+hp_ols (bool, optional): Do HP OLS. Defaults to False.
+pooled_ols (bool, optional): Do pooled OLS. Defaults to False.
+true_excess_returns (bool, optional): Do realised OLS. Defaults to False.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.get_category_encoding_layer">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">get_category_encoding_layer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_tokens</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.get_category_encoding_layer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get encoding layer for categorical variables</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>name (str): [description]
+dataset (ds): Tensroflow dataset
+dtype (str): Datatype for encoded variable
+max_tokens (int, optional): Number of max tokens. Defaults to None.</p>
+</dd>
+<dt>Returns:</dt><dd><p>[lamdba]: lambda function for the encoded feature</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.get_normalization_layer">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">get_normalization_layer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.get_normalization_layer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get normalisation error</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>name ([type]): [description]
+dataset ([type]): [description]</p>
+</dd>
+<dt>Returns:</dt><dd><p>[type]: [description]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.implement_test_data">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">implement_test_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">full_implementation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.implement_test_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>[summary]</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>dataframe (df): Dataframe
+train (df): Training dataframe
+val (df): Validation dataframe
+test (df): Testing dataframe
+full_implementation (bool, optional): Implement a full implementation. Defaults to False.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.loss_function_testing">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">loss_function_testing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.loss_function_testing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses tensorflow autodifferientiation functionality
+to confirm differientable nature and feasibility
+of custom loss functions.
+Note: code verbatim from tensorflow guide.
+Merely for illustration purposes</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.make_tensorflow_predictions">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">make_tensorflow_predictions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">selected_losses</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataframe_location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom_objects</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.make_tensorflow_predictions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes tensorflo predictions</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>model_name (str): Run name
+model_directory (str): Model directory
+selected_losses (str): Loss function
+dataframe_location (str): Directory to the government
+custom_objects (list): List of custom objects in the tensorflow model</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.monitor_memory_usage">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">monitor_memory_usage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">units</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cpu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gpu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.monitor_memory_usage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to monitor both CPU &amp; GPU memory consumption</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>units (int): Memory units (0 = Bytes, 1 = KB, 2 = MB, 3 = GB, 4 = TB, 5 = PB)
+cpu (bool, optional): CPU Information. Defaults to False.
+gpu (bool, optional): GPU Information. Defaults to False.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.partition_data">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">partition_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_destination</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.partition_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts dta  format to a series of 100k line csvs</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>data_location (str): directory to source dta file
+data_destination (str): directory to store csvs</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.perform_tensorflow_model_inference">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">perform_tensorflow_model_inference</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.perform_tensorflow_model_inference" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform evaluations from model (must be configured)</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>model_name ([type]): [description]
+sample ([type]): [description]</p>
+</dd>
+<dt>Returns:</dt><dd><p>[type]: [description]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.process_vm_dataset">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">process_vm_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_vm_dta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size_of_chunks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resizing_options</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_statistics</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.process_vm_dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>This script processes the training and testing datasets for Tensorflow
+following the classify structured data with feature columns tutorial</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>data_vm_dta (str): Directory
+size_of_chunks (int): Size of chunks e.g., 10000
+resizing_options ([type]): [description]
+save_statistics (bool, optional): Save Statistics. Defaults to False.
+sample (bool, optional): Process a smaller set of memory. Defaults to False.</p>
+</dd>
+<dt>Returns:</dt><dd><p>df: Complete dataset</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.ranking_function">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">ranking_function</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.ranking_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ranking function to produce charts for demonstration purposes</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>type ([type]): String for desired ranking functions</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.reconfigure_gpu">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">reconfigure_gpu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">restrict_tf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">growth_memory</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.reconfigure_gpu" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Reconfigures GPU to either restrict the numner of GPU</dt><dd><p>or enable allocated GPU to grow on use oppose to allocating
+all memory</p>
+</dd>
+<dt>Args:</dt><dd><p>restrict_tf (bool): True/False to restrict number of GPUs
+growth_memory (bool): True/False to enable contuous</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.reduce_mem_usage">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">reduce_mem_usage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">props</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.reduce_mem_usage" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Function reducing the memory size of a dataframe from Kaggle</dt><dd><p><a class="reference external" href="https://www.kaggle.com/arjanso/reducing-dataframe-memory-size-by-65">https://www.kaggle.com/arjanso/reducing-dataframe-memory-size-by-65</a></p>
+</dd>
+<dt>Args:</dt><dd><p>props (dataframe): Pandas Dataframe</p>
+</dd>
+<dt>Returns:</dt><dd><p>props (dataframe): Resized Pandas Dataframe</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.reinforement_learning">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">reinforement_learning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_vec</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.reinforement_learning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exammple to reinforcement learning</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>model (tf.model): Configured model
+env (env): Reinforcement learning environment
+target_vec ():</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.replace_nan">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">replace_nan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replacement_method</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.replace_nan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Replace/Remove nan files in a dataframe</p>
+<dl>
+<dt>Args:</dt><dd><p>df (dataframe): Pandas Dataframe
+replacement_method (int): Specify replacement methods</p>
+<blockquote>
+<div><p>: 0 - remove rows with nan values
+: 1 - remove columns with nan values
+: 2 - fill nan with column mean
+: 3 - fill nan with column median</p>
+</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><p>dataframe: Updated pandas dataframe</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.resizing_dataframe">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">resizing_dataframe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resizing_options</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.resizing_dataframe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resizes the dataframe to control number of factors
+(fullset) or original ~178, remove mircro and nano size groups,
+and optimise variable type by reducing float64 types to float32.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>dataframe (df): Data in dataframe format
+resizing_options (list): List of True/False statements
+to control sizing statements.</p>
+</dd>
+<dt>Returns:</dt><dd><p>df: Resized dataframe</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.sass_access">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">sass_access</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.sass_access" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remote access to SAS functionalities</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>dataframe (dataframe): Data to convert to SAS datafile</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.save_df_statistics">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">save_df_statistics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_set</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">statistics_location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_location</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.save_df_statistics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save dataframe summary statistics</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>df (df): Dataframe
+frame_set (str): name of frame
+statistics_location (str): directory to store stats
+data_location (str): directory to store file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.set_gpus">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">set_gpus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">manual_GPU_device_placement</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.set_gpus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set GPU configuration</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>manual_GPU_device_placement (bool, optional): Mnnual place CPU. Defaults to False.</p>
+</dd>
+<dt>Returns:</dt><dd><p>[sys]: GPU Device configuration</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.shuffle_columns">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">shuffle_columns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.shuffle_columns" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shuffles columns to front of the dataframe</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>df (df): Dataframe
+column_name (Str): Column name</p>
+</dd>
+<dt>Returns:</dt><dd><p>[df]: Dataframe</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.sort_data_chronologically">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">sort_data_chronologically</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size_of_chunks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">set_top_500</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.sort_data_chronologically" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Processes the dataset to the following chronilogical order</dt><dd><p>Training: Before 1990 [1861,1989]
+Validation: Between 1990 and 1999 [1990,1999]
+Testing: After 2000 [2000,2021]</p>
+</dd>
+<dt>Args:</dt><dd><p>data_directory (str): Directory of stored data on the virtual instance
+size_of_chunks (int): Chunk_size for reading pandas dataframes
+set_top_500 (bool, optional): Select top 500 equities. Defaults to False.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.cmcd398_finance_honours.split_vm_dataset">
+<span class="sig-prename descclassname"><span class="pre">src.cmcd398_finance_honours.</span></span><span class="sig-name descname"><span class="pre">split_vm_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_vm_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">create_statistics</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split_new_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">create_validation_set</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.cmcd398_finance_honours.split_vm_dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Splits the dta dataset into training, testing, and validation sets</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>data_vm_directory (str): Directory locating dta file (combined factors)
+create_statistics (bool): True/False to create summary statistics
+split_new_data (bool): True/False to split the data into training/testing
+create_validation_set (bool): Treu/False (nested) to create validation set</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">cmcd398-finance-honours</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, Connor Robert McDowall.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
